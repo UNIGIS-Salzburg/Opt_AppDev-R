@@ -16,136 +16,1201 @@ favicon: "branding/favicon.ico"
 csl: "branding/journal-of-geographical-systems.csl"
 ---
 
-# Introduction to R
 
-Placeholder
+# Introduction to R
 
 
 ## About this module
+
+This module will provide you with the fundamental skills in
+
+- basic programming in R
+- data wrangling
+
+
+**Learning objectives**
+
+- xxx
+- xxx
+
+Upon the completion of this lesson, you will .... 
+
+
+
 ## R programming language
+    
+One of the most widely used programming languages and an effective tool for *(geospatial)* data science
+
+- data wrangling
+- statistical analysis
+- machine learning
+- data visualisation and maps
+- processing spatial data
+- geographic information analysis
+
+
+
+
+
 ## Schedule
+
+The lectures and practical sessions have been designed to follow the schedule below
+
+xxx
+
+
 ## Reference books
+
+Suggested reading
+
+- *Programming Skills for Data Science: Start Writing Code to Wrangle, Analyze, and Visualize Data with R* by Michael Freeman and Joel Ross, Addison-Wesley, 2019. See book [webpage](https://www.pearson.com/us/higher-education/program/Freeman-Programming-Skills-for-Data-Science-Start-Writing-Code-to-Wrangle-Analyze-and-Visualize-Data-with-R/PGM2047488.html) and [repository](https://programming-for-data-science.github.io/).
+- *R for Data Science* by Garrett Grolemund and Hadley Wickham, O'Reilly Media, 2016. See [online book](https://r4ds.had.co.nz/).
+- *Discovering Statistics Using R* by Andy Field, Jeremy Miles and Zoë Field, SAGE Publications Ltd, 2012. See book [webpage](https://www.discoveringstatistics.com/books/discovering-statistics-using-r/).
+- *Machine Learning with R: Expert techniques for predictive modeling* by Brett Lantz, Packt Publishing, 2019. See book [webpage](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788295864).
+
+Further reading
+
+- *The Art of R Programming: A Tour of Statistical Software Design* by Norman Matloff, No Starch Press, 2011. See book [webpage](https://nostarch.com/artofr.htm)
+- *An Introduction to R for Spatial Analysis and Mapping* by Chris Brunsdon and Lex Comber, Sage, 2015. See book [webpage](https://uk.sagepub.com/en-gb/eur/an-introduction-to-r-for-spatial-analysis-and-mapping/book241031)
+- *Geocomputation with R* by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. See [online book](https://bookdown.org/robinlovelace/geocompr/).
+
+
+
 ## R
+
+Created in 1992 by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand
+
+- Free, open-source implementation of *S*
+    - statistical programming language 
+    - Bell Labs
+
+
+- Functional programming language
+- Supports (and commonly used as) procedural (i.e., imperative) programming
+- Object-oriented
+- Interpreted (not compiled)
+
+
+
 ## Interpreting values
+
+When values and operations are inputted in the *Console*, the interpreter returns the results of its interpretation of the expression
+
+```{r, echo=TRUE}
+2
+"String value"
+# comments are ignored
+```
+
+
+
 ## Basic types
+
+R provides three core data types
+
+- numeric 
+    - both integer and real numbers
+- character 
+    - i.e., text, also called *strings*
+- logical
+    - `TRUE` or `FALSE`
+
+
 ## Numeric operators
+
+R provides a series of basic numeric operators
+
+
+
+|Operator|Meaning         |Example  |Output     |
+|--------|----------------|---------|-----------|
+|+       |Plus            |`5 + 2`  |`r 5 + 2`  |
+|-       |Minus           |`5 - 2`  |`r 5 - 2`  |
+|`*`     |Product         |`5 * 2`  |`r 5 * 2`  |
+|/       |Division        |`5 / 2`  |`r 5 / 2`  |
+|%/%     |Integer division|`5 %/% 2`|`r 5 %/% 2`|
+|%%      |Module          |`5 %% 2` |`r 5 %% 2` |
+|^       |Power           |`5^2`    |`r 5^2`    |
+
+
+
+```{r, echo=TRUE}
+5 + 2
+```
+
+
+
 ## Logical operators
+
+
+R provides a series of basic logical operators to test
+
+
+
+|Operator|Meaning           |Example           |Output              |
+|--------|------------------|------------------|--------------------|
+|==      |Equal             |`5 == 2`          |`r 5 == 2`          |
+|!=      |Not equal         |`5 != 2`          |`r 5 != 2`          |
+|> (>=)  |Greater (or equal)|`5 > 2`           |`r 5 > 2`           |
+|< (<=)  |Less (or equal)   |`5 <= 2`          |`r 5 <= 2`          |
+|!       |Not               |`!TRUE`           |`r !TRUE`           |
+|&       |And               |`TRUE & FALSE`    |`r TRUE & FALSE`    |
+|\|      |Or                |`TRUE | FALSE`    |`r TRUE | FALSE`    |
+
+
+
+```{r, echo=TRUE}
+5 >= 2
+```
+
+
+
 ## Summary
+
+An introduction to R
+
+- Basic types
+- Basic operators
+
+**Next**: Core concepts
+
+- Variables
+- Functions
+- Libraries
+
+```{r cleanup, include=FALSE}
+rm(list = ls())
+```
 
 <!--chapter:end:index.rmd-->
 
-
 # Core concepts
 
-Placeholder
-
-
 ## Recap
+
+**Prev**: An introduction to R
+
+- Basic types
+- Basic operators
+
+**Now**: Core concepts
+
+- Variables
+- Functions
+- Libraries
+
+
+
 ## Variables
+
+Variables **store data** and can be defined 
+
+- using an *identifier* (e.g., `a_variable`) 
+- on the left of an *assignment operator* `<-`
+- followed by the object to be linked to the identifier
+- such as a *value* (e.g., `1`) 
+
+```{r, echo=TRUE}
+a_variable <- 1
+```
+
+The value of the variable can be invoked by simply specifying the **identifier**.
+
+```{r, echo=TRUE}
+a_variable
+```
+
+
+
 ## Algorithms and functions
+
+*An* **algorithm** *or effective procedure is a mechanical rule, or automatic method, or programme for performing some mathematical operation* (Cutland, 1980).
+
+A **program** is a specific set of instructions that implement an abstract algorithm.
+
+The definition of an algorithm (and thus a program) can consist of one or more **function**s
+
+- set of instructions that preform a task 
+- possibly using an input, possibly returning an output value
+
+Programming languages usually provide pre-defined functions that implement common algorithms (e.g., to find the square root of a number or to calculate a linear regression)
+
+
+
 ## Functions
+
+Functions execute complex operations and can be invoked 
+
+- specifying the *function name*
+- the *arguments* (input values) between simple brackets
+    - each *argument* corresponds to a *parameter*
+    - sometimes the *parameter* name must be specified
+
+```{r, echo=TRUE}
+sqrt(2)
+round(1.414214, digits = 2)
+```
+
+
+
 ## Functions and variables
+
+- functions can be used on the right side of `<-` 
+- variables and functions can be used as *arguments*
+
+```{r, echo=TRUE}
+sqrt_of_two <- sqrt(2)
+sqrt_of_two
+round(sqrt_of_two, digits = 2)
+round(sqrt(2), digits = 2)
+```
+
+
+
 ## Naming
+
+When creating an identifier for a variable or function
+
+- R is a **case sensitive** language
+    - UPPER and lower case are not the same
+    - `a_variable` is different from `a_VARIABLE`
+- names can include
+    -  alphanumeric symbols
+    - `.` and `_`
+- names must start with
+    - a letter
+
+
+
 ## Libraries
+
+Once a number of related, reusable functions are created
+
+- they can be collected and stored in **libraries** (a.k.a. *packages*)
+  - `install.packages` is a function that can be used to install libraries (i.e., downloads it on your computer)
+  - `library` is a function that *loads* a library (i.e., makes it available to a script)
+
+Libraries can be of any size and complexity, e.g.:
+
+- `base`: base R functions, including the `sqrt` function above
+- `rgdal`: implementation of the [GDAL (Geospatial Data Abstraction Library)](https://gdal.org/) functionalities
+
+
 ## stringr
+
+R provides some basic functions to manipulate strings, but the `stringr` library provides a more consistent and well-defined set
+
+```{r, echo=TRUE}
+library(stringr)
+str_length("Leicester")
+str_detect("Leicester", "e")
+str_replace_all("Leicester", "e", "x")
+```
+
+
+
+
 ## Summary
+
+Core concepts
+
+- Variables
+- Functions
+- Libraries
+
+**Next**: Tidyverse
+
+- Tidyverse libraries
+- *pipe* operator
+
 
 <!--chapter:end:02-CoreConcepts.rmd-->
 
-
 # Data Types
 
-Placeholder
-
-
 ## Recap
+
+**Prev**: Introduction
+
+- 101 Lecture: Introduction to R
+- 102 Lecture: Core concepts
+- 103 Lecture: Tidyverse
+- 104 Practical session
+
+**Now**: Data types
+
+- vectors
+- factors
+- matrices, arrays
+- lists
+
+
+
 ## Vectors
+**Vectors** are ordered list of values.
+
+- Vectors can be of any data type
+    - numeric
+    - character
+    - logic
+- All items in a vector have to be of the same type
+- Vectors can be of any length
+
+
 ## Defining vectors
+
+A vector variable can be defined using 
+
+- an **identifier** (e.g., `a_vector`) 
+- on the left of an **assignment operator** `<-`
+- followed by the object to be linked to the identifier
+- in this case, the result returned by the function `c`
+- which creates a vector containing the provided elements
+
+```{r, echo=TRUE}
+a_vector <- c("Birmingham", "Derby", "Leicester",
+  "Lincoln", "Nottingham", "Wolverhampton")
+a_vector
+```
+
+<!--
+Note that the second line of the answer provided by R in the console when asking to evaluate the variable starts with `[5]`, as the second line stats with the fifth element of the answer (i.e., the vector)
+-->
+
 ## Creating vectors
+
+- the operator `:`
+- the function `seq`
+- the function `rep`
+
+```{r, echo=TRUE}
+4:7
+seq(1, 7, by = 0.5)
+seq(1, 10, length.out = 7)
+rep("Ciao", 4)
+```
+
+
 ## Selection
+
+Each element of a vector can be retrieved specifying the related **index** between square brackets, after the identifier of the vector. The first element of the vector has index 1.
+
+```{r, echo=TRUE}
+a_vector[3]
+```
+
+
+A vector of indexes can be used to retrieve more than one element.
+
+```{r, echo=TRUE}
+a_vector[c(5, 3)]
+```
+
+
+<!--
 ## Examples
+```{r, echo=TRUE}
+east_midlands_cities <- c("Derby", "Leicester", "Lincoln", "Nottingham")
+my_indexes <- 2:4
+east_midlands_cities[my_indexes]
+selected_cities <- c(east_midlands_cities[1], east_midlands_cities[3:4])
+```
+-->
+
+
 ## Functions on vectors
+
+Functions can be used on a vector variable directly
+
+```{r, echo=TRUE}
+a_numeric_vector <- 1:5
+a_numeric_vector + 10
+sqrt(a_numeric_vector)
+a_numeric_vector >= 3
+```
+
+
+
 ## Any and all
+
+Overall expressions can be tested using the functions:
+
+- **any**, TRUE if any of the elements satisfies the condition
+- **all**, TRUE if all of the elements satisfy the condition
+
+```{r, echo=TRUE}
+any(a_numeric_vector >= 3)
+all(a_numeric_vector >= 3)
+```
+
+
+
 ## Factors
+
+A **factor** is a data type similar to a vector. However, the values contained in a factor can only be selected from a set of **levels**.
+
+```{r, echo=TRUE}
+houses_vector <- c("Bungalow", "Flat", "Flat",
+  "Detached", "Flat", "Terrace", "Terrace")
+houses_vector
+houses_factor <- factor(c("Bungalow", "Flat", "Flat",
+  "Detached", "Flat", "Terrace", "Terrace"))
+houses_factor
+```
+
 ## table
+
+The function **table** can be used to obtain a tabulated count for each level.
+
+```{r, echo=TRUE}
+houses_factor <- factor(c("Bungalow", "Flat", "Flat",
+  "Detached", "Flat", "Terrace", "Terrace"))
+houses_factor
+table(houses_factor)
+```
+
 ## Specified levels
+
+A specific set of levels can be specified when creating a factor by providing a **levels** argument.
+
+```{r, echo=TRUE}
+houses_factor_spec <- factor(
+  c("People Carrier", "Flat", "Flat", "Hatchback",
+      "Flat", "Terrace", "Terrace"),
+  levels = c("Bungalow", "Flat", "Detached",
+       "Semi", "Terrace"))
+table(houses_factor_spec)
+```
+
+
 ## (Unordered) Factors
+
+In statistics terminology, (unordered) factors are **categorical** (i.e., binary or nominal) variables. Levels are not ordered.
+
+```{r, echo=TRUE}
+income_nominal <- factor(
+  c("High", "High", "Low", "Low", "Low",
+      "Medium", "Low", "Medium"),
+  levels = c("Low", "Medium", "High"))
+```
+
+The *greater than* operator is not meaningful on the `income_nominal` factor defined above
+
+```{r, echo=TRUE}
+income_nominal > "Low"
+```
+
 ## Ordered Factors
+
+In statistics terminology, ordered factors are **ordinal** variables. Levels are ordered.
+
+```{r, echo=TRUE}
+income_ordered <- ordered(
+  c("High", "High", "Low", "Low", "Low",
+      "Medium", "Low", "Medium"),
+  levels = c("Low", "Medium", "High"))
+income_ordered > "Low"
+sort(income_ordered)
+```
+
+
+
 ## Matrices
+
+**Matrices** are collections of numerics arranged in a two-dimensional rectangular layout
+
+- the first argument is a vector of values
+- the second specifies number of rows and columns
+- R offers operators and functions for matrix algebra
+
+```{r, echo=TRUE}
+a_matrix <- matrix(c(3, 5, 7, 4, 3, 1), c(3, 2))
+a_matrix
+```
+
+<!--
 ## Matrices
+Variables of the type **matrix** are collections of data elements arranged in a two-dimensional rectangular layout. The first argument is vector a containing the values, the second is a vector specifying the number of rows and columns.
+```{r, echo=TRUE, eval=FALSE}
+x <- matrix(c(3, 5, 7, 4, 3, 1), c(3, 2))
+x
+y <- matrix(c(3, 5, 7, 4, 3, 1), c(2, 3))
+y
+z <- matrix(c(3, 5, 7, 4, 3, 1), c(2, 3), byrow = TRUE)
+z
+```
 ## Matrix algebra
+Operations as in mathematical matrix algebra.
+```{r, echo=TRUE, eval=FALSE}
+x
+y
+z
+```
+```{r, echo=TRUE, eval=FALSE}
+y + z
+y %*% x
+t(x)
+```
 ## Matrix algebra
+Operations as in mathematical matrix algebra.
+```{r, echo=TRUE, eval=FALSE}
+A <- matrix(
+      c(3, 1, 2, 1),
+      nrow = 2, ncol = 2)
+A
+b <- matrix(
+      c(8, 2),
+      nrow = 2, ncol = 1)
+b
+```
+```{r, echo=TRUE, eval=FALSE}
+# inverse
+solve(A)
+# returns x, where b = Ax
+solve(A, b)
+# That is
+# 8 = 3*4 + 2*-2
+# 2 = 1*4 + 1*-2
+```
+-->
+
 ## Arrays
+
+:::::: {.cols data-latex=""}
+
+::: {.col data-latex="{0.5\textwidth}"}
+
+Variables of the type **array**<br/>are higher-dimensional<br/>matrices.
+
+- the first argument is a<br/>vector containing the<br/>values
+- the second argument is<br/>avector specifying the<br/>depth of each dimension
+
+```{r, echo=TRUE}
+a3dim_array <- array(1:24, dim=c(4, 3, 2))
+```
+
+```{r, echo=TRUE, eval=FALSE}
+a3dim_array
+```
+:::
+
+::: {.col data-latex="{0.5\textwidth}"}
+
+```{r, echo=FALSE}
+a3dim_array
+```
+
+:::
+::::::
+
+
+
+<!--
 ## Matrices and arrays: selection
+The subset can be specified as a matrix of indexes.
+```{r, echo=TRUE, eval=FALSE}
+x2 
+choose_x2 <- matrix(
+              c(3, 3, 3, 1, 2, 1, 2, 3),
+              c(4, 2), byrow = TRUE)
+choose_x2
+x2[choose_x2]
+```
+-->
+
+
 ## Selection
+
+Subsets of matrices (and arrays) can be selected as seen for vectors.
+
+```{r, echo=TRUE}
+a_matrix[2, c(1, 2)]
+a3dim_array[c(1, 2), 2, 2]
+```
+
+
+
+<!--
 ## apply
+`apply` applies another function to each level of a set dimension of an array
+```{r, echo=TRUE}
+apply(a3dim_array, 3, min) # apply on third dimension
+apply(a3dim_array, 1, min) # apply on first dimension
+apply(a3dim_array, 2, min) # apply on second dimension
+```
+-->
+
+
+
 ## Lists
+
+Variables of the type **list** can contain elements of different types (including vectors and matrices), whereas elements of vectors are all of the same type. 
+
+```{r, echo=TRUE}
+employee <- list("Stef", 2015)
+employee
+employee[[1]] # Note the double square brackets for selection
+```
+
+
 ## Named Lists
+
+In **named lists** each element has a name, and elements can be selected using their name after the symbol `$`. 
+
+```{r, echo=TRUE}
+employee <- list(employee_name = "Stef", start_year = 2015)
+employee
+employee$employee_name
+```
+
+
+<!--
 ## lapply
+With `lapply` take care that the function makes sense for *any* element in the list
+```{r, echo=TRUE}
+various <- list(
+  "Some text",
+  matrix(c(6, 3, 1, 2), c(2, 2))
+)
+lapply(various, is.numeric)
+```
 ## Lists: append
+The function **append** can be used to append a new element at the end of a list.
+```{r, echo=TRUE, eval=FALSE}
+various <- list("Stefano", c(2015, 2016), "Lecturer",
+                matrix(c(6, 3, 1, 2), c(2, 2)))
+various <- append(various, list(c(7, 6, 9, 1))) 
+various
+```
+-->
+
+
+
 ## Recap
+
+Data types
+
+- Vectors
+- Factors
+- Matrices, arrays
+- Lists
+
+**Next**: Control structures
+
+- Conditional statements
+- Loops
+
 
 <!--chapter:end:03-dataTypes.rmd-->
 
-
 # Control structures
 
-Placeholder
-
-
 ## Recap
+
+**Prev**: Data types
+
+- Vectors
+- Factors
+- Matrices and arrays
+- Lists
+
+**Now**: Control structures
+
+- Conditional statements
+- Loops
+
+
+
 ## If
+
+Format: **if** (*condition*) *statement*
+
+- *condition*: expression returning a logic value (`TRUE` or `FALSE`)
+- *statement*: any valid R statement
+- *statement* only executed if *condition* is `TRUE`
+
+
+```{r, echo=TRUE}
+a_value <- -7
+if (a_value < 0) cat("Negative")
+a_value <- 8
+if (a_value < 0) cat("Negative")
+```
+
+
 ## Else
+Format: **if** (*condition*) *statement1* **else** *statement2*
+
+- *condition*: expression returning a logic value (`TRUE` or `FALSE`)
+- *statement1* and *statement2*: any valid R statements
+- *statement1*  executed if *condition* is `TRUE`
+- *statement2*  executed if *condition* is `FALSE`
+
+
+```{r, echo=TRUE}
+a_value <- -7
+if (a_value < 0) cat("Negative") else cat("Positive")
+a_value <- 8
+if (a_value < 0) cat("Negative") else cat("Positive")
+```
+
+<!--
 ## Example
+```{r, echo=TRUE}
+x <- 10
+if (is.numeric(x) & (!(x < 0) & (x != 0)) ) cat("greater than zero")
+```
+-->
+
+
 ## Code blocks
+
+**Code blocks** allow to encapsulate **several** statements in a single group
+
+- `{` and `}` contain code blocks
+- the statements are execute together
+
+```{r, echo=TRUE}
+first_value <- 8
+second_value <- 5
+if (first_value > second_value) {
+  cat("First is greater than second\n") 
+  difference <- first_value - second_value
+  cat("Their difference is ", difference)
+}
+```
+
+
+
 ## Loops
+Loops are a fundamental component of (procedural) programming.
+
+
+There are two main types of loops:
+
+- **conditional** loops are executed as long as a defined condition holds true
+    - construct `while`
+    - construct `repeat`
+- **deterministic** loops are executed a pre-determined number of times
+    - construct `for`
+
+
 ## While
+
+The *while* construct can be defined using the `while` reserved word, followed by the conditional statement between simple brackets, and a code block. The instructions in the code block are re-executed as long as the result of the evaluation of the conditional statement is `TRUE`.
+
+```{r, echo=TRUE}
+current_value <- 0
+while (current_value < 3) {
+  cat("Current value is", current_value, "\n")
+  current_value <- current_value + 1
+}
+```
+
+<!--
 ## Repeat
+The *repeat* construct can be defined using the `repeat` reserved word, followed by a code block. The instructions in the code block are re-executed until the command `break` is given. The latter is currently given through an `if` construct, which tests the condition that would stop the loop.
+```{r, echo=TRUE}
+current_value <- 0
+repeat {
+  cat("Current value is", current_value, "\n")
+  current_value <- current_value + 1
+  if (current_value >= 3) break
+}
+```
 ## While vs Repeat
+The difference between `while` and `repeat` is mostly syntactical.
+- Sometimes one or the other might fit better with the algorithm you have in mind
+- Use the one that comes easier to you in the given situation
+-->
+
 ## For
+
+The *for* construct can be defined using the `for` reserved word, followed by the definition of an **iterator**. The iterator is a variable which is temporarily assigned with the current element of a vector, as the construct iterates through all elements of the vector. This definition is followed by a code block, whose instructions are re-executed once for each element of the vector.
+
+```{r, echo=TRUE}
+cities <- c("Derby", "Leicester", "Lincoln", "Nottingham")
+for (city in cities) {
+  cat("Do you live in", city, "?\n")
+}
+```
+
+
 ## For
+
+It is common practice to create a vector of integers on the spot in order to execute a certain sequence of steps a pre-defined number of times.
+
+```{r, echo=TRUE}
+for (i in 1:3) {
+  cat("This is exectuion number", i, ":\n")
+  cat("    See you later!\n")
+}
+```
+
+
 ## Loops with conditional statements
+
+```{r, echo=TRUE}
+3:0
+#Example: countdown!
+for (i in 3:0) {
+  if (i == 0) {
+    cat("Go!\n")
+  } else {
+    cat(i, "\n")
+  }
+}
+```
+
+
+
 ## Summary
+
+Control structures
+
+- Conditional statements
+- Loops
+
+**Next**: Functions
+
+- Defining functions
+- Scope of a variable
+
 
 <!--chapter:end:04-ControlStructures.rmd-->
 
-
 # Functions
 
-Placeholder
-
-
 ## Summary
+
+**Prev**:Control structures
+
+- Conditional statements
+- Loops
+
+**Now**: Functions
+
+- Defining functions
+- Scope of a variable
+
+
+
 ## Defining functions
+
+A function can be defined 
+
+- using an **identifier** (e.g., `add_one`) 
+- on the left of an **assignment operator** `<-`
+- followed by the corpus of the function
+
+```{r, echo=TRUE}
+add_one <- function (input_value) {
+  output_value <- input_value + 1
+  output_value
+  }
+```
+
 ## Defining functions
+
+The corpus 
+
+- starts with the reserved word `function`
+- followed by the **parameter(s)** (e.g., `input_value`) between simple brackets
+- and the instruction(s) to be executed in a code block
+- the value of the last statement is returned as output
+
+```{r, echo=TRUE}
+add_one <- function (input_value) {
+  output_value <- input_value + 1
+  output_value
+  }
+```
+
+
 ## Defining functions
+
+After being defined
+
+- a function can be invoked by specifying 
+  - the **identifier**
+  - the necessary **parameter(s)**
+
+```{r, echo=TRUE}
+add_one(3)
+add_one(1024)
+```
+
+
 ## More parameters
+
+- A function can be defined as having two or more **parameters** 
+  - by specifying  more than one parameter name (separated by **commas**) in the function definition
+- A function always take as input as many values as the number of parameters specified in the definition
+  - otherwise an error is generated
+
+```{r, echo=TRUE}
+area_rectangle <- function (hight, width) {
+  area <- hight * width
+  area
+}
+area_rectangle(3, 2)
+```
+
+
 ## Functions and control structures
+
+Functions can contain both loops and conditional statements
+
+```{r, echo=TRUE}
+factorial <- function (input_value) {
+  result <- 1
+  for (i in 1:input_value) {
+    cat("current:", result, " | i:", i, "\n")
+    result <- result * i
+  }
+  result
+}
+factorial(3)
+```
+
+
+<!--
 ## Functions and control structures
+Factorial using `while`
+```{r, echo=TRUE}
+factorial <- function (input_value) {
+  result <- 1
+  while (input_value > 0) {
+    cat("current:", result, " | input:", input_value, "\n")
+    result <- result * input_value
+    input_value <- input_value - 1
+  }
+  result
+}
+factorial(3)
+```
+-->
+
+
+
 ## Scope
+
+The **scope of a variable** is the part of code in which the variable is ``visible''
+In R, variables have a **hierarchical** scope:
+- a variable defined in a script can be used referred to from within a definition of a function in the same script
+- a variable defined within a definition of a function will **not** be referable from outside the definition
+- scope does **not** apply to `if` or loop constructs
 ## Example
+In the case below
+- `x_value` is **global** to the function `times_x`
+- `new_value` and `input_value` are **local** to the function `times_x`
+    - referring to `new_value` or `input_value` from outside the definition of `times_x` would result in an error
+```{r, echo=TRUE}
+x_value <- 10
+times_x <- function (input_value) {
+  new_value <- input_value * x_value
+  new_value
+}
+times_x(2)
+```
+<!--
+Hint: try *debug* the function above and observe how the *local* environment is created and then discarded
+-->
+
+
+<!--
+# Debugging
 ## What is debugging?
+- Hardly any reasonably sized function works first time!
+- Two broad kinds of problem
+    - The function crashes (i.e. throws up an error)
+    - The function doesn't crash  but returns the wrong answer
+    - Generally, the second kind of error is the worst
+- Prevention is better than cure, test the code as you write.
+- **Debugging** is the process of finding the problems in the code.
+- A typical approach
+    - `Step' through the function line by line.  Find out where a crash occurs,  if one does.
+    - Check the values of variables, and see if they are doing what they are supposed to.
+- R has tools to help with this.
 ## To debug a function
+- Enter `debug( <<Function Name>> )`
+- For example: `debug(area.tri)`
+- Then just use the function - it goes into 'debug mode'.
+- Prompt becomes `Browse>`
+- Line of function about to be executed is listed
+- Pressing return executes it and goes to the next line
+- Typing in a variable name lists the value of that variable
+- Typing in any other command executes that command
+- Typing in `c` and the return runs to the end of a function/block
+- Typing in `Q` exits the function
+- R can `see' variables that are specific to the function
+- Enter `undebug(<<Function Name>>)` to return to normal
 ## Example
+Debug the following example
+```{r, echo=TRUE, eval=FALSE}
+percentage_change <- function (before, after){
+  difference <- before - after
+  prop_change <- difference / before
+  perc_change <- prop_change * 100
+  perc_change
+```
+-->
+
+
 ## Summary
+
+Functions
+
+- Defining functions
+- Scope of a variable
+
+**Next**: Practical session
+
+- Conditional statements
+- Loops
+    - While
+    - For
+- Functions
+    - Loading functions from scripts
+- Debugging
 
 <!--chapter:end:05-Functions.rmd-->
 
-
 # Data frames
 
-Placeholder
-
-
 ## Recap
+
+**Prev**: R programming
+
+- 111 Lecture: Data types
+- 112 Lecture: Control structures
+- 113 Lecture: Functions
+- 114 Practical session
+
+**Now**: Data Frames
+
+- Data Frames
+- Tibbles
+
+
 ## Lists and named lists
+
+**List**
+
+- can contain elements of different types
+  - whereas elements of vectors are all of the same type
+- in **named lists**, each element has a name
+  - elements can be selected using the operator `$`
+
+```{r, echo=TRUE}
+employee <- list(employee_name = "Stef", start_year = 2015)
+employee[[1]]
+employee$employee_name
+```
+
+
+
 ## Data Frames
+
+A **data frame** is equivalent to a *named list* where all elements are *vectors of the same length*.
+
+```{r, echo=TRUE}
+employees <- data.frame(
+  EmployeeName = c("Maria", "Pete", "Sarah"),
+  Age = c(47, 34, 32),
+  Role = c("Professor", "Researcher", "Researcher"))
+employees
+```
+
+Data frames are the most common way to represent tabular data in R. Matrices and lists can be converted to data frames.
+
+<!--
+**Note:** As is common in R, the elements of an eventual too short column are recycled to match column lengths.
+-->
+
 ## Selection
+
+Selection is similar to vectors and lists.
+
+```{r, echo=TRUE}
+employees[1, 1] # value selection
+employees[1, ] # row selection
+employees[, 1] # column selection
+```
+
+
 ## Selection
+
+Selection is similar to vectors and lists.
+
+```{r, echo=TRUE}
+employees$EmployeeName # column selection, as for named lists
+employees$EmployeeName[1]
+```
+
+
+
 ## Table manipulation
+
+- Values can be assigned to cells
+  - using any selection method 
+  - and the assignment operator `<-`
+- New columns can be defined 
+  - assigning a vector to a new name
+
+```{r, echo=TRUE}
+employees$Age[3] <- 33 
+employees$Place <- c("Leicester", "Leicester","Leicester") 
+employees
+```
+
+
+
 ## Column processing
+
+Operations can be performed on columns as they where vectors
+
+```{r, echo=TRUE}
+10 - c(1, 2, 3)
+```
+
+```{r, echo=TRUE}
+# Use Sys.Date to retrieve the current year
+current_year <- as.integer(format(Sys.Date(), "%Y"))
+# Calculate employee year of birth
+employees$Year_of_birth <- current_year - employees$Age
+employees
+```
+
+
+
 ## tibble
+
+A [tibble](https://tibble.tidyverse.org/) is a modern reimagining of the data.frame within `tidyverse`
+
+- they do less 
+    - don’t change column names or types
+    - don’t do partial matching
+- complain more
+    - e.g. when referring to a column that does not exist
+    
+That forces you to confront problems earlier, typically leading to cleaner, more expressive code.
+
+
+
 ## Summary
+
+Data Frames
+
+- Data Frames
+- Tibbles
+
+**Next**: Data selection and filtering
+
+- dplyr
+- dplyr::select
+- dplyr::filter
+
 
 <!--chapter:end:06-dataFrames.rmd-->
 
@@ -188,7 +1253,7 @@ library(tidyverse)
 ## Example dataset
 
 The library `nycflights13` contains a dataset storing data about all the flights departed from New York City in 2013
-<!--
+
 ```{r, echo=TRUE, eval=FALSE}
 install.packages("nycflights13")
 ```
@@ -361,7 +1426,7 @@ nycflights13::flights %>%
   dplyr::filter(month == 11) %>%
   print(n = 3, width = 52)
 ```
--->
+
 
 
 ## Summary
