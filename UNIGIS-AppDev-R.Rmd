@@ -178,10 +178,6 @@ An introduction to R
 - Functions
 - Libraries
 
-```{r cleanup, include=FALSE}
-rm(list = ls())
-```
-
 <!--chapter:end:index.rmd-->
 
 # Core concepts
@@ -1216,6 +1212,7 @@ Data Frames
 
 # Selection and filtering
 
+
 ## Recap
 
 **Prev**: Data Frames
@@ -1243,21 +1240,20 @@ The `dplyr` (pronounced *dee-ply-er*) library is part of `tidyverse` and it offe
 - `mutate`: add columns
 - `join`: merge tables (`tibbles` or `data.frames`)
 
-<!--
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
 library(tidyverse)
 ```
--->
+
 
 
 ## Example dataset
 
 The library `nycflights13` contains a dataset storing data about all the flights departed from New York City in 2013
-
+<!--
 ```{r, echo=TRUE, eval=FALSE}
 install.packages("nycflights13")
 ```
-
+-->
 ```{r, echo=TRUE, eval=FALSE, message=FALSE, warning=FALSE}
 library(nycflights13)
 nycflights13::flights
