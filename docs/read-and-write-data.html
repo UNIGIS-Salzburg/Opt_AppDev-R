@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Introduction to Geoinformatics</title>
+  <title>Lesson 8 Read and write data | Introduction to Geoinformatics</title>
   <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Introduction to Geoinformatics" />
+  <meta property="og:title" content="Lesson 8 Read and write data | Introduction to Geoinformatics" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="branding/Cover_epub.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UNIGIS-Salzburg/En_AppDev-R" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Introduction to Geoinformatics" />
+  <meta name="twitter:title" content="Lesson 8 Read and write data | Introduction to Geoinformatics" />
   
   <meta name="twitter:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="twitter:image" content="branding/Cover_epub.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="data-visualisation.html"/>
-
+<link rel="prev" href="selection-and-filtering.html"/>
+<link rel="next" href="data-visualisation.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -251,17 +251,174 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<div id="read-and-write-data" class="section level1">
+<h1><span class="header-section-number">Lesson 8</span> Read and write data</h1>
+<p>all R code parts are removed, because of an unsolved error message</p>
+<div id="summary" class="section level2">
+<h2><span class="header-section-number">8.1</span> Summary</h2>
+<p>Tidy-up your data</p>
+<ul>
+<li>Wide and long data</li>
+<li>Re-shape data</li>
+<li>Handle missing values</li>
+</ul>
+<p><strong>Next</strong>: Read and write data</p>
+<ul>
+<li>file formats</li>
+<li>read</li>
+<li>write</li>
+</ul>
+</div>
+<div id="text-file-formats" class="section level2">
+<h2><span class="header-section-number">8.2</span> Text file formats</h2>
+<p>A series of formats based on plain-text files</p>
+<p>For instance</p>
+<ul>
+<li>comma-separated values files <code>.csv</code></li>
+<li>semi-colon-separated values files <code>.csv</code></li>
+<li>tab-separated values files <code>.tsv</code></li>
+<li>other formats using custom delimiters</li>
+<li>fix-width files <code>.fwf</code></li>
+</ul>
+</div>
+<div id="comma-separated-values" class="section level2">
+<h2><span class="header-section-number">8.3</span> Comma Separated Values</h2>
+<p>The file <code>2011_OAC_supgrp_Leicester.csv</code> contains</p>
+<ul>
+<li>one row for each <a href="https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeography">Output Area (OA)</a> in Leicester</li>
+<li><a href="https://www.ons.gov.uk/methodology/geography/ukgeographies/censusgeography">Lower-Super Output Area (LSOA)</a> containing the OA</li>
+<li>code and name of the supergroup assigned to the OA by the <a href="http://geogale.github.io/2011OAC/">2011 Output Area Classification</a></li>
+<li>total population of the OA</li>
+</ul>
+<p>Extract showing only the first few rows</p>
+<pre><code>OA11CD,LSOA11CD,supgrpcode,supgrpname,Total_Population
+E00069517,E01013785,6,Suburbanites,313
+E00069514,E01013784,2,Cosmopolitans,323
+E00169516,E01013713,4,Multicultural Metropolitans,341
+E00169048,E01032862,4,Multicultural Metropolitans,345</code></pre>
+</div>
+<div id="readr" class="section level2">
+<h2><span class="header-section-number">8.4</span> readr</h2>
+<p>The <a href="https://readr.tidyverse.org/"><code>readr</code></a> (pronounced <em>read-er</em>) library is part of <a href="https://www.tidyverse.org/"><code>tidyverse</code></a></p>
+<p>Provides functions to read and write text files</p>
+<ul>
+<li><code>readr::read_csv</code>: comma-separated files <code>.csv</code></li>
+<li><code>readr::read_csv2</code>: semi-colon-separated files <code>.csv</code></li>
+<li><code>readr::read_tsv</code>: tab-separated files <code>.tsv</code></li>
+<li><code>readr::read_fwf</code>: fix-width files <code>.fwf</code></li>
+<li><code>readr::read_delim</code>: files using a custom delimiter</li>
+</ul>
+<p>and their <em>write</em> counterpart, such as</p>
+<ul>
+<li><code>readr::write_csv</code>: comma-separated files <code>.csv</code></li>
+</ul>
+</div>
+<div id="readrread_csv" class="section level2">
+<h2><span class="header-section-number">8.5</span> readr::read_csv</h2>
+<p>The <code>readr::read_csv</code> function of the <a href="https://readr.tidyverse.org/index.html"><code>readr</code></a> library reads a <em>csv</em> file from the path provided as the first argument</p>
+</div>
+<div id="read-options" class="section level2">
+<h2><span class="header-section-number">8.6</span> Read options</h2>
+<p>Read functions provide options about how to interpret a file contents</p>
+<ul>
+<li>For instance, <code>readr::read_csv</code></li>
+<li><code>col_names</code>:
+<ul>
+<li><code>TRUE</code> or <code>FALSE</code> whether top row is column names</li>
+<li>or a vector of column names</li>
+</ul></li>
+<li><code>col_types</code>:
+<ul>
+<li>a <code>cols()</code> specification or a string</li>
+</ul></li>
+<li><code>skip</code>: lines to skip before reading data</li>
+<li><code>n_max</code>: max number of record to read</li>
+</ul>
+</div>
+<div id="column-specifications" class="section level2">
+<h2><span class="header-section-number">8.7</span> Column specifications</h2>
+<ul>
+<li><code>col_logical()</code> or <code>l</code> as logic values</li>
+<li><code>col_integer()</code> or <code>i</code> as integer</li>
+<li><code>col_double()</code> or <code>d</code> as numeric (double)</li>
+<li><code>col_character()</code> or <code>c</code> as character</li>
+<li><code>col_factor(levels, ordered)</code> or <code>f</code> as factor</li>
+<li><code>col_date(format = &quot;&quot;)</code> or <code>D</code> as data type</li>
+<li><code>col_time(format = &quot;&quot;)</code> or <code>t</code> as time type</li>
+<li><code>col_datetime(format = &quot;&quot;)</code> or <code>T</code> as datetime</li>
+<li><code>col_number()</code> or <code>n</code> as numeric (dropping marks)</li>
+<li><code>col_skip()</code> or <code>_</code> or <code>-</code> don’t import</li>
+<li><code>col_guess()</code> or <code>?</code> use best type based on the input</li>
+</ul>
+</div>
+<div id="readrread_csv-1" class="section level2">
+<h2><span class="header-section-number">8.8</span> readr::read_csv</h2>
+<p>Using <code>readr::read_csv</code> as in the previous example with no further options will generate the following warning</p>
+</div>
+<div id="readrread_csv-2" class="section level2">
+<h2><span class="header-section-number">8.9</span> readr::read_csv</h2>
+</div>
+<div id="readrread_csv-3" class="section level2">
+<h2><span class="header-section-number">8.10</span> readr::read_csv</h2>
+</div>
+<div id="readrwrite_csv" class="section level2">
+<h2><span class="header-section-number">8.11</span> readr::write_csv</h2>
+<p>The function <code>write_csv</code> can be used to save a dataset to <code>csv</code></p>
+<p>Example:</p>
+<ol style="list-style-type: decimal">
+<li><strong>read</strong> the 2011 OAC dataset</li>
+<li><strong>select</strong> a few columns</li>
+<li><strong>filter</strong> only those OA in the supergroup <em>Suburbanites</em> (code <code>6</code>)</li>
+<li><strong>write</strong> the results to a file named <em>2011_OAC_supgrp_Leicester_supgrp6.csv</em></li>
+</ol>
+</div>
+<div id="readrwrite_tsv" class="section level2">
+<h2><span class="header-section-number">8.12</span> readr::write_tsv</h2>
+</div>
+<div id="other-data-imports" class="section level2">
+<h2><span class="header-section-number">8.13</span> Other data imports</h2>
+<p><a href="https://www.tidyverse.org/">Tidyverse</a> also imports <a href="https://www.tidyverse.org/packages/#import">other packages for reading data</a></p>
+<ul>
+<li>Tabular formats</li>
+<li><a href="https://readxl.tidyverse.org/"><code>readxl</code></a> for Excel (<code>.xls</code> and <code>.xlsx</code>)</li>
+<li><a href="https://haven.tidyverse.org/"><code>haven</code></a> for SPSS, Stata, and SAS data.</li>
+<li>Databases</li>
+<li><a href="https://cran.r-project.org/web/packages/DBI/"><code>DBI</code></a> for relational databases</li>
+<li>NoSQL</li>
+<li><a href="https://cran.r-project.org/web/packages/jsonlite/"><code>jsonlite</code></a> for JSON</li>
+<li><a href="https://cran.r-project.org/web/packages/xml2/"><code>xml2</code></a> for XML</li>
+<li>Web</li>
+<li><a href="https://cran.r-project.org/web/packages/httr/"><code>httr</code></a> for web APIs</li>
+</ul>
+<!--
+  - Specific backends require different packages, e.g. [`RPostgreSQL`](https://cran.r-project.org/web/packages/RPostgreSQL/)
+  - [`rvest`](https://cran.r-project.org/web/packages/rvest/) for web scraping.
+-->
+</div>
+<div id="summary-1" class="section level2">
+<h2><span class="header-section-number">8.14</span> Summary</h2>
+<p>Read and write data</p>
+<ul>
+<li>file formats</li>
+<li>read</li>
+<li>write</li>
+</ul>
+<p><strong>Next</strong>: Practical session</p>
+<ul>
+<li>Read and write data</li>
+<li>Tidy data</li>
+<li>Join operations</li>
+</ul>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="data-visualisation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="selection-and-filtering.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-visualisation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

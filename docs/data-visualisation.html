@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Introduction to Geoinformatics</title>
+  <title>Lesson 9 Data visualisation | Introduction to Geoinformatics</title>
   <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Introduction to Geoinformatics" />
+  <meta property="og:title" content="Lesson 9 Data visualisation | Introduction to Geoinformatics" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="branding/Cover_epub.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UNIGIS-Salzburg/En_AppDev-R" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Introduction to Geoinformatics" />
+  <meta name="twitter:title" content="Lesson 9 Data visualisation | Introduction to Geoinformatics" />
   
   <meta name="twitter:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="twitter:image" content="branding/Cover_epub.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="data-visualisation.html"/>
-
+<link rel="prev" href="read-and-write-data.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -251,17 +251,154 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<div id="data-visualisation" class="section level1">
+<h1><span class="header-section-number">Lesson 9</span> Data visualisation</h1>
+<p>all R code parts are removed, because of an unsolved error message</p>
+<div id="recap" class="section level2">
+<h2><span class="header-section-number">9.1</span> Recap</h2>
+<p><strong>Prev</strong>: Reproducibility</p>
+<ul>
+<li>221 Reproducibility</li>
+<li>222 R and Markdown</li>
+<li>223 Git</li>
+<li>224 Practical session</li>
+</ul>
+<p><strong>Now</strong>: Data visualisation</p>
+<ul>
+<li>Grammar of graphics</li>
+<li>ggplot2</li>
+</ul>
+</div>
+<div id="visual-variables" class="section level2">
+<h2><span class="header-section-number">9.2</span> Visual variables</h2>
+<p>A <strong>visual variable</strong> is an aspect of a <strong>mark</strong> that can be controlled to change its appearance.</p>
+<p>Visual variables include:</p>
+<ul>
+<li>Size</li>
+<li>Shape</li>
+<li>Orientation</li>
+<li>Colour (hue)</li>
+<li>Colour value (brightness)</li>
+<li>Texture</li>
+<li>Position (2 dimensions)</li>
+</ul>
+</div>
+<div id="grammar-of-graphics" class="section level2">
+<h2><span class="header-section-number">9.3</span> Grammar of graphics</h2>
+<p>Grammars provide rules for languages</p>
+<p><em>&quot;The grammar of graphics takes us beyond a limited set of charts (words) to an almost unlimited world of graphical forms (statements)&quot;</em> (Wilkinson, 2005)</p>
+<p>Statistical graphic specifications are expressed in six statements:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Data</strong> manipulation</li>
+<li><strong>Variable</strong> transformations (e.g., rank),</li>
+<li><strong>Scale</strong> transformations (e.g., log),</li>
+<li><strong>Coordinate system</strong> transformations (e.g., polar),</li>
+<li><strong>Element</strong>: mark (e.g., points) and visual variables (e.g., color)</li>
+<li><strong>Guides</strong> (axes, legends, etc.).</li>
+</ol>
+</div>
+<div id="ggplot2" class="section level2">
+<h2><span class="header-section-number">9.4</span> ggplot2</h2>
+<p>The <code>ggplot2</code> library offers a series of functions for creating graphics <strong>declaratively</strong>, based on the Grammar of Graphics.</p>
+<p>To create a graph in <code>ggplot2</code>:</p>
+<ul>
+<li>provide the data</li>
+<li>specify elements
+<ul>
+<li>which visual variables (<code>aes</code>)</li>
+<li>which marks (e.g., <code>geom_point</code>)</li>
+</ul></li>
+<li>apply transformations</li>
+<li>guides</li>
+</ul>
+</div>
+<div id="boxplots" class="section level2">
+<h2><span class="header-section-number">9.5</span> Boxplots</h2>
+<ul>
+<li><code>x</code> categorical variable</li>
+<li><code>y</code> variable to plot</li>
+<li><code>geom_boxplot</code></li>
+</ul>
+</div>
+<div id="jittered-points" class="section level2">
+<h2><span class="header-section-number">9.6</span> Jittered points</h2>
+<ul>
+<li><code>x</code> categorical variable</li>
+<li><code>y</code> variable to plot</li>
+<li><code>geom_jitter</code></li>
+</ul>
+</div>
+<div id="violin-plot" class="section level2">
+<h2><span class="header-section-number">9.7</span> Violin plot</h2>
+<ul>
+<li><code>x</code> categorical variable</li>
+<li><code>y</code> variable to plot</li>
+<li><code>geom_violin</code></li>
+</ul>
+</div>
+<div id="violin-plot-1" class="section level2">
+<h2><span class="header-section-number">9.8</span> Violin plot</h2>
+</div>
+<div id="lines" class="section level2">
+<h2><span class="header-section-number">9.9</span> Lines</h2>
+<ul>
+<li><code>x</code> e.g., a temporal variable</li>
+<li><code>y</code> variable to plot</li>
+<li><code>geom_line</code></li>
+</ul>
+</div>
+<div id="lines-1" class="section level2">
+<h2><span class="header-section-number">9.10</span> Lines</h2>
+</div>
+<div id="scatterplots" class="section level2">
+<h2><span class="header-section-number">9.11</span> Scatterplots</h2>
+<ul>
+<li><code>x</code> and <code>y</code> variable to plot</li>
+<li><code>geom_point</code></li>
+</ul>
+</div>
+<div id="overlapping-points" class="section level2">
+<h2><span class="header-section-number">9.12</span> Overlapping points</h2>
+<ul>
+<li><code>x</code> and <code>y</code> variable to plot</li>
+<li><code>geom_count</code> counts overlapping points and maps the count to size</li>
+</ul>
+</div>
+<div id="overlapping-points-1" class="section level2">
+<h2><span class="header-section-number">9.13</span> Overlapping points</h2>
+</div>
+<div id="bin-counts" class="section level2">
+<h2><span class="header-section-number">9.14</span> Bin counts</h2>
+<ul>
+<li><code>x</code> and <code>y</code> variable to plot</li>
+<li><code>geom_bin2d</code></li>
+</ul>
+</div>
+<div id="bin-counts-1" class="section level2">
+<h2><span class="header-section-number">9.15</span> Bin counts</h2>
+</div>
+<div id="summary" class="section level2">
+<h2><span class="header-section-number">9.16</span> Summary</h2>
+<p>Data visualisation</p>
+<ul>
+<li>Grammar of graphics</li>
+<li>ggplot2</li>
+</ul>
+<p><strong>Next</strong>: Descriptive statistics</p>
+<ul>
+<li>stat.desc</li>
+<li>dplyr::across</li>
+</ul>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="data-visualisation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="read-and-write-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
