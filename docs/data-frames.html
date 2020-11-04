@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Introduction to Geoinformatics</title>
+  <title>Lesson 6 Data frames | Introduction to Geoinformatics</title>
   <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introduction to Geoinformatics" />
+  <meta property="og:title" content="Lesson 6 Data frames | Introduction to Geoinformatics" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="branding/Cover_epub.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UNIGIS-Salzburg/En_AppDev-R" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduction to Geoinformatics" />
+  <meta name="twitter:title" content="Lesson 6 Data frames | Introduction to Geoinformatics" />
   
   <meta name="twitter:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="twitter:image" content="branding/Cover_epub.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
-
-<link rel="next" href="core-concepts.html"/>
+<link rel="prev" href="functions.html"/>
+<link rel="next" href="selection-and-filtering.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -217,234 +217,138 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Introduction to Geoinformatics</h1>
-<p class="author"><em>tbd</em></p>
-<p class="date"><em>04 November, 2020</em></p>
-</div>
-<div id="introduction-to-r" class="section level1">
-<h1><span class="header-section-number">Lesson 1</span> Introduction to R</h1>
-<div id="about-this-module" class="section level2">
-<h2><span class="header-section-number">1.1</span> About this module</h2>
-<p>This module will provide you with the fundamental skills in</p>
+<div id="data-frames" class="section level1">
+<h1><span class="header-section-number">Lesson 6</span> Data frames</h1>
+<div id="recap" class="section level2">
+<h2><span class="header-section-number">6.1</span> Recap</h2>
+<p><strong>Prev</strong>: R programming</p>
 <ul>
-<li>basic programming in R</li>
-<li>data wrangling</li>
+<li>111 Lecture: Data types</li>
+<li>112 Lecture: Control structures</li>
+<li>113 Lecture: Functions</li>
+<li>114 Practical session</li>
 </ul>
-<p><strong>Learning objectives</strong></p>
+<p><strong>Now</strong>: Data Frames</p>
 <ul>
-<li>xxx</li>
-<li>xxx</li>
-</ul>
-<p>Upon the completion of this lesson, you will ....</p>
-</div>
-<div id="r-programming-language" class="section level2">
-<h2><span class="header-section-number">1.2</span> R programming language</h2>
-<p>One of the most widely used programming languages and an effective tool for <em>(geospatial)</em> data science</p>
-<ul>
-<li>data wrangling</li>
-<li>statistical analysis</li>
-<li>machine learning</li>
-<li>data visualisation and maps</li>
-<li>processing spatial data</li>
-<li>geographic information analysis</li>
+<li>Data Frames</li>
+<li>Tibbles</li>
 </ul>
 </div>
-<div id="schedule" class="section level2">
-<h2><span class="header-section-number">1.3</span> Schedule</h2>
-<p>The lectures and practical sessions have been designed to follow the schedule below</p>
-<p>xxx</p>
-</div>
-<div id="reference-books" class="section level2">
-<h2><span class="header-section-number">1.4</span> Reference books</h2>
-<p>Suggested reading</p>
+<div id="lists-and-named-lists" class="section level2">
+<h2><span class="header-section-number">6.2</span> Lists and named lists</h2>
+<p><strong>List</strong></p>
 <ul>
-<li><em>Programming Skills for Data Science: Start Writing Code to Wrangle, Analyze, and Visualize Data with R</em> by Michael Freeman and Joel Ross, Addison-Wesley, 2019. See book <a href="https://www.pearson.com/us/higher-education/program/Freeman-Programming-Skills-for-Data-Science-Start-Writing-Code-to-Wrangle-Analyze-and-Visualize-Data-with-R/PGM2047488.html">webpage</a> and <a href="https://programming-for-data-science.github.io/">repository</a>.</li>
-<li><em>R for Data Science</em> by Garrett Grolemund and Hadley Wickham, O'Reilly Media, 2016. See <a href="https://r4ds.had.co.nz/">online book</a>.</li>
-<li><em>Discovering Statistics Using R</em> by Andy Field, Jeremy Miles and Zoë Field, SAGE Publications Ltd, 2012. See book <a href="https://www.discoveringstatistics.com/books/discovering-statistics-using-r/">webpage</a>.</li>
-<li><em>Machine Learning with R: Expert techniques for predictive modeling</em> by Brett Lantz, Packt Publishing, 2019. See book <a href="https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788295864">webpage</a>.</li>
+<li>can contain elements of different types</li>
+<li>whereas elements of vectors are all of the same type</li>
+<li>in <strong>named lists</strong>, each element has a name</li>
+<li>elements can be selected using the operator <code>$</code></li>
 </ul>
-<p>Further reading</p>
-<ul>
-<li><em>The Art of R Programming: A Tour of Statistical Software Design</em> by Norman Matloff, No Starch Press, 2011. See book <a href="https://nostarch.com/artofr.htm">webpage</a></li>
-<li><em>An Introduction to R for Spatial Analysis and Mapping</em> by Chris Brunsdon and Lex Comber, Sage, 2015. See book <a href="https://uk.sagepub.com/en-gb/eur/an-introduction-to-r-for-spatial-analysis-and-mapping/book241031">webpage</a></li>
-<li><em>Geocomputation with R</em> by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. See <a href="https://bookdown.org/robinlovelace/geocompr/">online book</a>.</li>
-</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">employee &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">employee_name =</span> <span class="st">&quot;Stef&quot;</span>, <span class="dt">start_year =</span> <span class="dv">2015</span>)
+employee[[<span class="dv">1</span>]]</code></pre></div>
+<pre><code>## [1] &quot;Stef&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">employee<span class="op">$</span>employee_name</code></pre></div>
+<pre><code>## [1] &quot;Stef&quot;</code></pre>
 </div>
-<div id="r" class="section level2">
-<h2><span class="header-section-number">1.5</span> R</h2>
-<p>Created in 1992 by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand</p>
+<div id="data-frames-1" class="section level2">
+<h2><span class="header-section-number">6.3</span> Data Frames</h2>
+<p>A <strong>data frame</strong> is equivalent to a <em>named list</em> where all elements are <em>vectors of the same length</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">employees &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">EmployeeName =</span> <span class="kw">c</span>(<span class="st">&quot;Maria&quot;</span>, <span class="st">&quot;Pete&quot;</span>, <span class="st">&quot;Sarah&quot;</span>),
+  <span class="dt">Age =</span> <span class="kw">c</span>(<span class="dv">47</span>, <span class="dv">34</span>, <span class="dv">32</span>),
+  <span class="dt">Role =</span> <span class="kw">c</span>(<span class="st">&quot;Professor&quot;</span>, <span class="st">&quot;Researcher&quot;</span>, <span class="st">&quot;Researcher&quot;</span>))
+employees</code></pre></div>
+<pre><code>##   EmployeeName Age       Role
+## 1        Maria  47  Professor
+## 2         Pete  34 Researcher
+## 3        Sarah  32 Researcher</code></pre>
+<p>Data frames are the most common way to represent tabular data in R. Matrices and lists can be converted to data frames.</p>
+<!--
+**Note:** As is common in R, the elements of an eventual too short column are recycled to match column lengths.
+-->
+</div>
+<div id="selection" class="section level2">
+<h2><span class="header-section-number">6.4</span> Selection</h2>
+<p>Selection is similar to vectors and lists.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">employees[<span class="dv">1</span>, <span class="dv">1</span>] <span class="co"># value selection</span></code></pre></div>
+<pre><code>## [1] Maria
+## Levels: Maria Pete Sarah</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">employees[<span class="dv">1</span>, ] <span class="co"># row selection</span></code></pre></div>
+<pre><code>##   EmployeeName Age      Role
+## 1        Maria  47 Professor</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">employees[, <span class="dv">1</span>] <span class="co"># column selection</span></code></pre></div>
+<pre><code>## [1] Maria Pete  Sarah
+## Levels: Maria Pete Sarah</code></pre>
+</div>
+<div id="selection-1" class="section level2">
+<h2><span class="header-section-number">6.5</span> Selection</h2>
+<p>Selection is similar to vectors and lists.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">employees<span class="op">$</span>EmployeeName <span class="co"># column selection, as for named lists</span></code></pre></div>
+<pre><code>## [1] Maria Pete  Sarah
+## Levels: Maria Pete Sarah</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">employees<span class="op">$</span>EmployeeName[<span class="dv">1</span>]</code></pre></div>
+<pre><code>## [1] Maria
+## Levels: Maria Pete Sarah</code></pre>
+</div>
+<div id="table-manipulation" class="section level2">
+<h2><span class="header-section-number">6.6</span> Table manipulation</h2>
 <ul>
-<li>Free, open-source implementation of <em>S</em>
+<li>Values can be assigned to cells</li>
+<li>using any selection method</li>
+<li>and the assignment operator <code>&lt;-</code></li>
+<li>New columns can be defined</li>
+<li>assigning a vector to a new name</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">employees<span class="op">$</span>Age[<span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">33</span> 
+employees<span class="op">$</span>Place &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Leicester&quot;</span>,<span class="st">&quot;Leicester&quot;</span>) 
+employees</code></pre></div>
+<pre><code>##   EmployeeName Age       Role     Place
+## 1        Maria  47  Professor Leicester
+## 2         Pete  34 Researcher Leicester
+## 3        Sarah  33 Researcher Leicester</code></pre>
+</div>
+<div id="column-processing" class="section level2">
+<h2><span class="header-section-number">6.7</span> Column processing</h2>
+<p>Operations can be performed on columns as they where vectors</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">10</span> <span class="op">-</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</code></pre></div>
+<pre><code>## [1] 9 8 7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use Sys.Date to retrieve the current year</span>
+current_year &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%Y&quot;</span>))
+<span class="co"># Calculate employee year of birth</span>
+employees<span class="op">$</span>Year_of_birth &lt;-<span class="st"> </span>current_year <span class="op">-</span><span class="st"> </span>employees<span class="op">$</span>Age
+employees</code></pre></div>
+<pre><code>##   EmployeeName Age       Role     Place Year_of_birth
+## 1        Maria  47  Professor Leicester          1973
+## 2         Pete  34 Researcher Leicester          1986
+## 3        Sarah  33 Researcher Leicester          1987</code></pre>
+</div>
+<div id="tibble" class="section level2">
+<h2><span class="header-section-number">6.8</span> tibble</h2>
+<p>A <a href="https://tibble.tidyverse.org/">tibble</a> is a modern reimagining of the data.frame within <code>tidyverse</code></p>
 <ul>
-<li>statistical programming language</li>
-<li>Bell Labs</li>
+<li>they do less
+<ul>
+<li>don’t change column names or types</li>
+<li>don’t do partial matching</li>
 </ul></li>
-<li>Functional programming language</li>
-<li>Supports (and commonly used as) procedural (i.e., imperative) programming</li>
-<li>Object-oriented</li>
-<li>Interpreted (not compiled)</li>
-</ul>
-</div>
-<div id="interpreting-values" class="section level2">
-<h2><span class="header-section-number">1.6</span> Interpreting values</h2>
-<p>When values and operations are inputted in the <em>Console</em>, the interpreter returns the results of its interpretation of the expression</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="st">&quot;String value&quot;</span></code></pre></div>
-<pre><code>## [1] &quot;String value&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># comments are ignored</span></code></pre></div>
-</div>
-<div id="basic-types" class="section level2">
-<h2><span class="header-section-number">1.7</span> Basic types</h2>
-<p>R provides three core data types</p>
+<li>complain more
 <ul>
-<li>numeric
-<ul>
-<li>both integer and real numbers</li>
-</ul></li>
-<li>character
-<ul>
-<li>i.e., text, also called <em>strings</em></li>
-</ul></li>
-<li>logical
-<ul>
-<li><code>TRUE</code> or <code>FALSE</code></li>
+<li>e.g. when referring to a column that does not exist</li>
 </ul></li>
 </ul>
-</div>
-<div id="numeric-operators" class="section level2">
-<h2><span class="header-section-number">1.8</span> Numeric operators</h2>
-<p>R provides a series of basic numeric operators</p>
-<table>
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Meaning</th>
-<th>Example</th>
-<th>Output</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>+</td>
-<td>Plus</td>
-<td><code>5 + 2</code></td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>-</td>
-<td>Minus</td>
-<td><code>5 - 2</code></td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td><code>*</code></td>
-<td>Product</td>
-<td><code>5 * 2</code></td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td>/</td>
-<td>Division</td>
-<td><code>5 / 2</code></td>
-<td>2.5</td>
-</tr>
-<tr class="odd">
-<td>%/%</td>
-<td>Integer division</td>
-<td><code>5 %/% 2</code></td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>%%</td>
-<td>Module</td>
-<td><code>5 %% 2</code></td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td>^</td>
-<td>Power</td>
-<td><code>5^2</code></td>
-<td>25</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
-<pre><code>## [1] 7</code></pre>
-</div>
-<div id="logical-operators" class="section level2">
-<h2><span class="header-section-number">1.9</span> Logical operators</h2>
-<p>R provides a series of basic logical operators to test</p>
-<table>
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Meaning</th>
-<th>Example</th>
-<th>Output</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>==</td>
-<td>Equal</td>
-<td><code>5 == 2</code></td>
-<td>FALSE</td>
-</tr>
-<tr class="even">
-<td>!=</td>
-<td>Not equal</td>
-<td><code>5 != 2</code></td>
-<td>TRUE</td>
-</tr>
-<tr class="odd">
-<td>&gt; (&gt;=)</td>
-<td>Greater (or equal)</td>
-<td><code>5 &gt; 2</code></td>
-<td>TRUE</td>
-</tr>
-<tr class="even">
-<td>&lt; (&lt;=)</td>
-<td>Less (or equal)</td>
-<td><code>5 &lt;= 2</code></td>
-<td>FALSE</td>
-</tr>
-<tr class="odd">
-<td>!</td>
-<td>Not</td>
-<td><code>!TRUE</code></td>
-<td>FALSE</td>
-</tr>
-<tr class="even">
-<td>&amp;</td>
-<td>And</td>
-<td><code>TRUE &amp; FALSE</code></td>
-<td>FALSE</td>
-</tr>
-<tr class="odd">
-<td>|</td>
-<td>Or</td>
-<td><code>TRUE | FALSE</code></td>
-<td>TRUE</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
+<p>That forces you to confront problems earlier, typically leading to cleaner, more expressive code.</p>
 </div>
 <div id="summary" class="section level2">
-<h2><span class="header-section-number">1.10</span> Summary</h2>
-<p>An introduction to R</p>
+<h2><span class="header-section-number">6.9</span> Summary</h2>
+<p>Data Frames</p>
 <ul>
-<li>Basic types</li>
-<li>Basic operators</li>
+<li>Data Frames</li>
+<li>Tibbles</li>
 </ul>
-<p><strong>Next</strong>: Core concepts</p>
+<p><strong>Next</strong>: Data selection and filtering</p>
 <ul>
-<li>Variables</li>
-<li>Functions</li>
-<li>Libraries</li>
+<li>dplyr</li>
+<li>dplyr::select</li>
+<li>dplyr::filter</li>
 </ul>
 
 </div>
@@ -454,8 +358,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-
-<a href="core-concepts.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="selection-and-filtering.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
