@@ -1,0 +1,37 @@
+--- 
+title: "Introduction to Geoinformatics"
+author: "tbd"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+knit: bookdown::render_book
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: refs.bib
+biblio-style: "apalike"
+link-citations: yes
+cover-image: "branding/Cover_epub.png"
+github-repo: "UNIGIS-Salzburg/En_AppDev-R"
+description: "BookDown materials for the UNIGIS module Application Development - Introduction to R."
+favicon: "branding/favicon.ico"
+csl: "branding/journal-of-geographical-systems.csl"
+---
+
+
+# First Heading 
+
+
+see Figure \@ref(fig:L0-everything-somewhere)
+
+```{r L0-everything-somewhere, echo = FALSE, fig.cap="Everything happens somewhere", fig.align='center'}
+knitr::include_graphics('images/everything_happens_somewhere.png')
+```
+
+**Learning objectives**
+
+- xxx
+- xxx
+
+Upon the completion of this lesson, you will .... 
+
+
+## xxx
