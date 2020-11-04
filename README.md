@@ -1,6 +1,6 @@
 # UNIGIS Salzburg: Application Development - Scripting with R
 
-These learning materials will be offered  in the UNIGIS distance-learning study programs as part of a module that introduces into Application Development. 
+These learning materials are designed for the UNIGIS distance-learning study programs as part of a module that introduces into Application Development. 
 
 The contents of this module are based on [granolarr](https://sdesabbata.github.io/granolarr/), a *geogGRaphic dAta scieNce, reprOducibLe teAching resouRce in R* by Stefano De Sabbata, University of Leicester. 
 
