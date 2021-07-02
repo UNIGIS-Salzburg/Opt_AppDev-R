@@ -1,0 +1,186 @@
+# Introduction to R
+
+
+## About this module
+
+This module will provide you with the fundamental skills in basic programming in R. 
+
+
+- data wrangling
+
+Upon the completion of this module, you will be able to load and preprocess data in R, write 
+
+**Learning objectives**
+
+- xxx
+- xxx
+
+
+
+
+
+## R programming language
+    
+R is a language that is applied in diverse fields of data science and analysis. Typical applications include...
+
+* data wrangling
+* statistical analysis
+* machine learning
+* data visualisation and maps
+* processing spatial data
+* geographic information analysis
+* and many more.
+
+Apart from its widespread use, there are a number of other reasons to learn R...
+
+* R is free and open source.
+* R has more comprehensive functionality than most proprietary solutions.
+* R is avaialble for Windows, May and Linux
+* R is a general-purpose programming language, so you can use it to automate analyses and create new custom functions that extend default features.
+* Because R is open source, it has a large user community, so it is easy to get help.
+
+R is a so called **high level programming language** or **scripting language**. This means that R code is not compiled into a computer readable format, but interpreted by an **interpreter.** An interpreter is a computer program that directly interprets and executes instructions written in a programming language.  
+
+In order to make sure that the interpreter can understand the program code, the programmer must stick to the grammar of the programming language; i.e. the interpreter expects commands to appear in a predefined order. This grammar is often regarded as **Syntax**.  
+
+In this lession we will focus on some key principles of the R syntax and logic. 
+
+## Installation and Setup
+
+Before you can run your code, you have to install R together with an **Integrated Development Environment IDE** on your machine: 
+
+1. Download R from [R Archive Network (CRAN.)](http://cran.r-project.org){target="_blank"} 
+2. Follow the instructions to and install the most up to date version on your machine (chose 'base' as well as 32-bit or 64-bit dependent on the bit-version of your operating system).
+
+The IDE is where your write, test and execute your R programs. We strongly recommend using **RStudio Desktop**, which is [freely available for download.](https://www.rstudio.com/){target="_blank"}
+
+```{block2, type = 'rmdtip'}
+If you need help, please turn to the discussion forum!
+```
+
+## Schedule
+
+The lectures and practical sessions have been designed to follow the schedule below
+
+xxx
+
+
+## Reference books
+
+Suggested reading
+
+
+- *Programming Skills for Data Science: Start Writing Code to Wrangle, Analyze, and Visualize Data with R* by Michael Freeman and Joel Ross, Addison-Wesley, 2019. See book [webpage](https://www.pearson.com/us/higher-education/program/Freeman-Programming-Skills-for-Data-Science-Start-Writing-Code-to-Wrangle-Analyze-and-Visualize-Data-with-R/PGM2047488.html) and [repository](https://programming-for-data-science.github.io/).
+- *R for Data Science* by Garrett Grolemund and Hadley Wickham, O'Reilly Media, 2016. See [online book](https://r4ds.had.co.nz/).
+- *Discovering Statistics Using R* by Andy Field, Jeremy Miles and Zoë Field, SAGE Publications Ltd, 2012. See book [webpage](https://www.discoveringstatistics.com/books/discovering-statistics-using-r/).
+- *Machine Learning with R: Expert techniques for predictive modeling* by Brett Lantz, Packt Publishing, 2019. See book [webpage](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788295864).
+
+Further reading
+
+- *The Art of R Programming: A Tour of Statistical Software Design* by Norman Matloff, No Starch Press, 2011. See book [webpage](https://nostarch.com/artofr.htm)
+- *An Introduction to R for Spatial Analysis and Mapping* by Chris Brunsdon and Lex Comber, Sage, 2015. See book [webpage](https://uk.sagepub.com/en-gb/eur/an-introduction-to-r-for-spatial-analysis-and-mapping/book241031)
+- *Geocomputation with R* by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. See [online book](https://bookdown.org/robinlovelace/geocompr/).
+
+
+
+## R
+
+Created in 1992 by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand
+
+- Free, open-source implementation of *S*
+    - statistical programming language 
+    - Bell Labs
+
+
+- Functional programming language
+- Supports (and commonly used as) procedural (i.e., imperative) programming
+- Object-oriented
+- Interpreted (not compiled)
+
+
+
+## Interpreting values
+
+When values and operations are inputted in the *Console*, the interpreter returns the results of its interpretation of the expression
+
+```{r, echo=TRUE}
+2
+"String value"
+# comments are ignored
+```
+
+
+
+## Basic types
+
+R provides three core data types
+
+- numeric 
+    - both integer and real numbers
+- character 
+    - i.e., text, also called *strings*
+- logical
+    - `TRUE` or `FALSE`
+
+
+## Numeric operators
+
+R provides a series of basic numeric operators
+
+
+
+|Operator|Meaning         |Example  |Output     |
+|--------|----------------|---------|-----------|
+|+       |Plus            |`5 + 2`  |`r 5 + 2`  |
+|-       |Minus           |`5 - 2`  |`r 5 - 2`  |
+|`*`     |Product         |`5 * 2`  |`r 5 * 2`  |
+|/       |Division        |`5 / 2`  |`r 5 / 2`  |
+|%/%     |Integer division|`5 %/% 2`|`r 5 %/% 2`|
+|%%      |Module          |`5 %% 2` |`r 5 %% 2` |
+|^       |Power           |`5^2`    |`r 5^2`    |
+
+
+
+```{r, echo=TRUE}
+5 + 2
+```
+
+
+
+## Logical operators
+
+
+R provides a series of basic logical operators to test
+
+
+
+|Operator|Meaning           |Example           |Output              |
+|--------|------------------|------------------|--------------------|
+|==      |Equal             |`5 == 2`          |`r 5 == 2`          |
+|!=      |Not equal         |`5 != 2`          |`r 5 != 2`          |
+|> (>=)  |Greater (or equal)|`5 > 2`           |`r 5 > 2`           |
+|< (<=)  |Less (or equal)   |`5 <= 2`          |`r 5 <= 2`          |
+|!       |Not               |`!TRUE`           |`r !TRUE`           |
+|&       |And               |`TRUE & FALSE`    |`r TRUE & FALSE`    |
+|\|      |Or                |`TRUE | FALSE`    |`r TRUE | FALSE`    |
+
+
+
+```{r, echo=TRUE}
+5 >= 2
+```
+
+
+
+## Summary
+
+An introduction to R
+
+- Basic types
+- Basic operators
+
+**Next**: Core concepts
+
+- Variables
+- Functions
+- Libraries
