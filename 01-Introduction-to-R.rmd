@@ -3,6 +3,8 @@
 
 ## About this module
 
+Stefano De Sabbata
+
 This module will provide you with the fundamental skills in basic programming in R. 
 
 
