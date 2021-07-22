@@ -312,20 +312,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>elements can be selected using the operator <code>$</code></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="data-frames.html#cb120-1"></a>employee &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">employee_name =</span> <span class="st">&quot;Stef&quot;</span>, <span class="dt">start_year =</span> <span class="dv">2015</span>)</span>
-<span id="cb120-2"><a href="data-frames.html#cb120-2"></a>employee[[<span class="dv">1</span>]]</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="data-frames.html#cb122-1"></a>employee &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">employee_name =</span> <span class="st">&quot;Stef&quot;</span>, <span class="dt">start_year =</span> <span class="dv">2015</span>)</span>
+<span id="cb122-2"><a href="data-frames.html#cb122-2"></a>employee[[<span class="dv">1</span>]]</span></code></pre></div>
 <pre><code>## [1] &quot;Stef&quot;</code></pre>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="data-frames.html#cb122-1"></a>employee<span class="op">$</span>employee_name</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="data-frames.html#cb124-1"></a>employee<span class="op">$</span>employee_name</span></code></pre></div>
 <pre><code>## [1] &quot;Stef&quot;</code></pre>
 </div>
 <div id="data-frames-1" class="section level2">
 <h2><span class="header-section-number">6.3</span> Data Frames</h2>
 <p>A <strong>data frame</strong> is equivalent to a <em>named list</em> where all elements are <em>vectors of the same length</em>.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="data-frames.html#cb124-1"></a>employees &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb124-2"><a href="data-frames.html#cb124-2"></a>  <span class="dt">EmployeeName =</span> <span class="kw">c</span>(<span class="st">&quot;Maria&quot;</span>, <span class="st">&quot;Pete&quot;</span>, <span class="st">&quot;Sarah&quot;</span>),</span>
-<span id="cb124-3"><a href="data-frames.html#cb124-3"></a>  <span class="dt">Age =</span> <span class="kw">c</span>(<span class="dv">47</span>, <span class="dv">34</span>, <span class="dv">32</span>),</span>
-<span id="cb124-4"><a href="data-frames.html#cb124-4"></a>  <span class="dt">Role =</span> <span class="kw">c</span>(<span class="st">&quot;Professor&quot;</span>, <span class="st">&quot;Researcher&quot;</span>, <span class="st">&quot;Researcher&quot;</span>))</span>
-<span id="cb124-5"><a href="data-frames.html#cb124-5"></a>employees</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="data-frames.html#cb126-1"></a>employees &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb126-2"><a href="data-frames.html#cb126-2"></a>  <span class="dt">EmployeeName =</span> <span class="kw">c</span>(<span class="st">&quot;Maria&quot;</span>, <span class="st">&quot;Pete&quot;</span>, <span class="st">&quot;Sarah&quot;</span>),</span>
+<span id="cb126-3"><a href="data-frames.html#cb126-3"></a>  <span class="dt">Age =</span> <span class="kw">c</span>(<span class="dv">47</span>, <span class="dv">34</span>, <span class="dv">32</span>),</span>
+<span id="cb126-4"><a href="data-frames.html#cb126-4"></a>  <span class="dt">Role =</span> <span class="kw">c</span>(<span class="st">&quot;Professor&quot;</span>, <span class="st">&quot;Researcher&quot;</span>, <span class="st">&quot;Researcher&quot;</span>))</span>
+<span id="cb126-5"><a href="data-frames.html#cb126-5"></a>employees</span></code></pre></div>
 <pre><code>##   EmployeeName Age       Role
 ## 1        Maria  47  Professor
 ## 2         Pete  34 Researcher
@@ -338,20 +338,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="selection-2" class="section level2">
 <h2><span class="header-section-number">6.4</span> Selection</h2>
 <p>Selection is similar to vectors and lists.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="data-frames.html#cb126-1"></a>employees[<span class="dv">1</span>, <span class="dv">1</span>] <span class="co"># value selection</span></span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="data-frames.html#cb128-1"></a>employees[<span class="dv">1</span>, <span class="dv">1</span>] <span class="co"># value selection</span></span></code></pre></div>
 <pre><code>## [1] &quot;Maria&quot;</code></pre>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="data-frames.html#cb128-1"></a>employees[<span class="dv">1</span>, ] <span class="co"># row selection</span></span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="data-frames.html#cb130-1"></a>employees[<span class="dv">1</span>, ] <span class="co"># row selection</span></span></code></pre></div>
 <pre><code>##   EmployeeName Age      Role
 ## 1        Maria  47 Professor</code></pre>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="data-frames.html#cb130-1"></a>employees[, <span class="dv">1</span>] <span class="co"># column selection</span></span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="data-frames.html#cb132-1"></a>employees[, <span class="dv">1</span>] <span class="co"># column selection</span></span></code></pre></div>
 <pre><code>## [1] &quot;Maria&quot; &quot;Pete&quot;  &quot;Sarah&quot;</code></pre>
 </div>
 <div id="selection-3" class="section level2">
 <h2><span class="header-section-number">6.5</span> Selection</h2>
 <p>Selection is similar to vectors and lists.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="data-frames.html#cb132-1"></a>employees<span class="op">$</span>EmployeeName <span class="co"># column selection, as for named lists</span></span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="data-frames.html#cb134-1"></a>employees<span class="op">$</span>EmployeeName <span class="co"># column selection, as for named lists</span></span></code></pre></div>
 <pre><code>## [1] &quot;Maria&quot; &quot;Pete&quot;  &quot;Sarah&quot;</code></pre>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="data-frames.html#cb134-1"></a>employees<span class="op">$</span>EmployeeName[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="data-frames.html#cb136-1"></a>employees<span class="op">$</span>EmployeeName[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;Maria&quot;</code></pre>
 </div>
 <div id="table-manipulation" class="section level2">
@@ -367,9 +367,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>assigning a vector to a new name</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="data-frames.html#cb136-1"></a>employees<span class="op">$</span>Age[<span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">33</span> </span>
-<span id="cb136-2"><a href="data-frames.html#cb136-2"></a>employees<span class="op">$</span>Place &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Leicester&quot;</span>,<span class="st">&quot;Leicester&quot;</span>) </span>
-<span id="cb136-3"><a href="data-frames.html#cb136-3"></a>employees</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="data-frames.html#cb138-1"></a>employees<span class="op">$</span>Age[<span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">33</span> </span>
+<span id="cb138-2"><a href="data-frames.html#cb138-2"></a>employees<span class="op">$</span>Place &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Leicester&quot;</span>,<span class="st">&quot;Leicester&quot;</span>) </span>
+<span id="cb138-3"><a href="data-frames.html#cb138-3"></a>employees</span></code></pre></div>
 <pre><code>##   EmployeeName Age       Role     Place
 ## 1        Maria  47  Professor Leicester
 ## 2         Pete  34 Researcher Leicester
@@ -378,13 +378,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="column-processing" class="section level2">
 <h2><span class="header-section-number">6.7</span> Column processing</h2>
 <p>Operations can be performed on columns as they where vectors</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="data-frames.html#cb138-1"></a><span class="dv">10</span> <span class="op">-</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="data-frames.html#cb140-1"></a><span class="dv">10</span> <span class="op">-</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 9 8 7</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="data-frames.html#cb140-1"></a><span class="co"># Use Sys.Date to retrieve the current year</span></span>
-<span id="cb140-2"><a href="data-frames.html#cb140-2"></a>current_year &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%Y&quot;</span>))</span>
-<span id="cb140-3"><a href="data-frames.html#cb140-3"></a><span class="co"># Calculate employee year of birth</span></span>
-<span id="cb140-4"><a href="data-frames.html#cb140-4"></a>employees<span class="op">$</span>Year_of_birth &lt;-<span class="st"> </span>current_year <span class="op">-</span><span class="st"> </span>employees<span class="op">$</span>Age</span>
-<span id="cb140-5"><a href="data-frames.html#cb140-5"></a>employees</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="data-frames.html#cb142-1"></a><span class="co"># Use Sys.Date to retrieve the current year</span></span>
+<span id="cb142-2"><a href="data-frames.html#cb142-2"></a>current_year &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%Y&quot;</span>))</span>
+<span id="cb142-3"><a href="data-frames.html#cb142-3"></a><span class="co"># Calculate employee year of birth</span></span>
+<span id="cb142-4"><a href="data-frames.html#cb142-4"></a>employees<span class="op">$</span>Year_of_birth &lt;-<span class="st"> </span>current_year <span class="op">-</span><span class="st"> </span>employees<span class="op">$</span>Age</span>
+<span id="cb142-5"><a href="data-frames.html#cb142-5"></a>employees</span></code></pre></div>
 <pre><code>##   EmployeeName Age       Role     Place Year_of_birth
 ## 1        Maria  47  Professor Leicester          1974
 ## 2         Pete  34 Researcher Leicester          1987

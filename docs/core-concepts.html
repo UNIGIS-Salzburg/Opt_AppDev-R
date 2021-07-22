@@ -392,12 +392,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="stringr" class="section level2">
 <h2><span class="header-section-number">2.8</span> stringr</h2>
 <p>R provides some basic functions to manipulate strings, but the <code>stringr</code> library provides a more consistent and well-defined set</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="core-concepts.html#cb23-1"></a><span class="kw">library</span>(stringr)</span>
-<span id="cb23-2"><a href="core-concepts.html#cb23-2"></a><span class="kw">str_length</span>(<span class="st">&quot;Leicester&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="core-concepts.html#cb23-1"></a><span class="kw">library</span>(stringr)</span></code></pre></div>
+<pre><code>## Warning: package &#39;stringr&#39; was built under R version 4.0.4</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="core-concepts.html#cb25-1"></a><span class="kw">str_length</span>(<span class="st">&quot;Leicester&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="core-concepts.html#cb25-1"></a><span class="kw">str_detect</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;e&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="core-concepts.html#cb27-1"></a><span class="kw">str_detect</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;e&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="core-concepts.html#cb27-1"></a><span class="kw">str_replace_all</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;e&quot;</span>, <span class="st">&quot;x&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="core-concepts.html#cb29-1"></a><span class="kw">str_replace_all</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;e&quot;</span>, <span class="st">&quot;x&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Lxicxstxr&quot;</code></pre>
 </div>
 <div id="summary-1" class="section level2">
