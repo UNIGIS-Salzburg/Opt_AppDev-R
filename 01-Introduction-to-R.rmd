@@ -3,23 +3,17 @@
 
 ## About this module
 
-Stefano De Sabbata
+This module will provide you with the fundamental skills in basic programming in R. We will start with some core concepts of programming that are the building blocks of programming in any language. This includes **Datatypes**, **Operators**, **Variables**, **Functions**, **Control Structures** and **Libraries**.
 
-This module will provide you with the fundamental skills in basic programming in R. 
+On this basis, we will explore more complex data types like **Data Frames** and **Tibbles** as well as methods to **Read and Write** spatial and non-spatial datasets. In many cases the available data will not be suitable for your analyses. You will learn how to **filter, query, subset, join and re-shape** data to fit your needs.
 
+After you have learned how to manipulate data, you will learn to perform **statistical analyses** (exploratory data analysis, comparing data, regression models) and how to **visualize results** by means of diagrams (e.g. box plots, scatterplots, line plots etc.) and maps.   
 
-- data wrangling
+Upon the completion of this module, you will have the fundamental skills in R programming as a basis for more advanced methods like Geospatial Data Analysis (is covered by the module "Räumliche Statistik" in the German MSc program) and Machine Learning.
 
-Upon the completion of this module, you will be able to load and preprocess data in R, write 
-
-**Learning objectives**
-
-- xxx
-- xxx
-
-
-
-
+```{block2, type = 'rmdtip'}
+This module is based on the teaching materials [granolarr](https://sdesabbata.github.io/granolarr/){target="_blank"} worked out by [Stefano de Sabbata](https://stefanodesabbata.com/){target="_blank"} at the [University of Leicester](https://le.ac.uk/){target="_blank"}. For more information take a look at the [Granolarr Lecture Pages](https://sdesabbata.github.io/granolarr/lectures_100/){target="_blank"}. The chapter **Machine Learning** is recommended as a follow up read for those who are willing to delve into more advanced applications of R. 
+```
 
 ## R programming language
     
@@ -52,7 +46,7 @@ In this lession we will focus on some key principles of the R syntax and logic.
 Before you can run your code, you have to install R together with an **Integrated Development Environment IDE** on your machine: 
 
 1. Download R from [R Archive Network (CRAN.)](http://cran.r-project.org){target="_blank"} 
-2. Follow the instructions to and install the most up to date version on your machine (chose 'base' as well as 32-bit or 64-bit dependent on the bit-version of your operating system).
+2. Follow the instructions and install the most up to date version on your machine (chose 'base' as well as 32-bit or 64-bit dependent on the bit-version of your operating system).
 
 The IDE is where your write, test and execute your R programs. We strongly recommend using **RStudio Desktop**, which is [freely available for download.](https://www.rstudio.com/){target="_blank"}
 
@@ -60,60 +54,39 @@ The IDE is where your write, test and execute your R programs. We strongly recom
 If you need help, please turn to the discussion forum!
 ```
 
-## Schedule
-
-The lectures and practical sessions have been designed to follow the schedule below
-
-xxx
-
-
-## Reference books
-
-Suggested reading
-
-
-- *Programming Skills for Data Science: Start Writing Code to Wrangle, Analyze, and Visualize Data with R* by Michael Freeman and Joel Ross, Addison-Wesley, 2019. See book [webpage](https://www.pearson.com/us/higher-education/program/Freeman-Programming-Skills-for-Data-Science-Start-Writing-Code-to-Wrangle-Analyze-and-Visualize-Data-with-R/PGM2047488.html) and [repository](https://programming-for-data-science.github.io/).
-- *R for Data Science* by Garrett Grolemund and Hadley Wickham, O'Reilly Media, 2016. See [online book](https://r4ds.had.co.nz/).
-- *Discovering Statistics Using R* by Andy Field, Jeremy Miles and Zoë Field, SAGE Publications Ltd, 2012. See book [webpage](https://www.discoveringstatistics.com/books/discovering-statistics-using-r/).
-- *Machine Learning with R: Expert techniques for predictive modeling* by Brett Lantz, Packt Publishing, 2019. See book [webpage](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788295864).
-
-Further reading
-
-- *The Art of R Programming: A Tour of Statistical Software Design* by Norman Matloff, No Starch Press, 2011. See book [webpage](https://nostarch.com/artofr.htm)
-- *An Introduction to R for Spatial Analysis and Mapping* by Chris Brunsdon and Lex Comber, Sage, 2015. See book [webpage](https://uk.sagepub.com/en-gb/eur/an-introduction-to-r-for-spatial-analysis-and-mapping/book241031)
-- *Geocomputation with R* by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. See [online book](https://bookdown.org/robinlovelace/geocompr/).
-
-
-
-## R
-
-Created in 1992 by Ross Ihaka and Robert Gentleman at the University of Auckland, New Zealand
-
-- Free, open-source implementation of *S*
-    - statistical programming language 
-    - Bell Labs
-
-
-- Functional programming language
-- Supports (and commonly used as) procedural (i.e., imperative) programming
-- Object-oriented
-- Interpreted (not compiled)
-
-
-
 ## Interpreting values
 
-When values and operations are inputted in the *Console*, the interpreter returns the results of its interpretation of the expression
+Now that you have installed RStudio and R on your machine, it is time to run some code in RStudio. When you open RStudio, you will find the **Console Window** (see Fig. \@ref(fig:L01-console)). When values and operations are inputted in the *Console*, the interpreter returns the results of its interpretation of the expression. 
 
-```{r, echo=TRUE}
-2
-"String value"
-# comments are ignored
+```{r L01-console, echo=FALSE, fig.cap="Console Window in RStudio", out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/Console.png')
 ```
 
+Type in a numeric value (e.g. 3) and press Enter. The interpreter returns a value in brackets and the input value. The value in brackets indicates that the input is composed of one single entity.
 
+```{block2, type = 'rmdexercise'}
 
-## Basic types
+What if you type in a text value (e.g. test) and press Enter?
+    
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+The interpreter returns an error, because this datatype is unknown. Text is commonly reffered to as **String** or **String of Characters**. When apostrophes (i.e. "Test") are added, the interpreter knows that this is a String.
+    
+</font></i>
+</p>
+</details>    
+
+```
+
+If you start your input with a hash symbol (#) the interpreter will consider that line as a comment. For instance, if you type in *# comments are ignored*, you will see that nothing is returned as an output. Comments are extremely important as they allow you to add explanations in plain language. Comments are fundamental to allow other people to under stand your code and it will save you time interpreting your own code.     
+
+## Simple data types
+
+In the previous section you have already see **numeric** and **character (string)** data types. **Logical** is a third simple data type provided with R.  
+
+```{block2, type = 'rmdtip'}
 
 R provides three core data types
 
@@ -123,6 +96,10 @@ R provides three core data types
     - i.e., text, also called *strings*
 - logical
     - `TRUE` or `FALSE`
+
+```
+
+
 
 
 ## Numeric operators
@@ -172,7 +149,21 @@ R provides a series of basic logical operators to test
 5 >= 2
 ```
 
+## Reference books
 
+Suggested reading
+
+
+- *Programming Skills for Data Science: Start Writing Code to Wrangle, Analyze, and Visualize Data with R* by Michael Freeman and Joel Ross, Addison-Wesley, 2019. See book [webpage](https://www.pearson.com/us/higher-education/program/Freeman-Programming-Skills-for-Data-Science-Start-Writing-Code-to-Wrangle-Analyze-and-Visualize-Data-with-R/PGM2047488.html) and [repository](https://programming-for-data-science.github.io/).
+- *R for Data Science* by Garrett Grolemund and Hadley Wickham, O'Reilly Media, 2016. See [online book](https://r4ds.had.co.nz/).
+- *Discovering Statistics Using R* by Andy Field, Jeremy Miles and Zoë Field, SAGE Publications Ltd, 2012. See book [webpage](https://www.discoveringstatistics.com/books/discovering-statistics-using-r/).
+- *Machine Learning with R: Expert techniques for predictive modeling* by Brett Lantz, Packt Publishing, 2019. See book [webpage](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788295864).
+
+Further reading
+
+- *The Art of R Programming: A Tour of Statistical Software Design* by Norman Matloff, No Starch Press, 2011. See book [webpage](https://nostarch.com/artofr.htm)
+- *An Introduction to R for Spatial Analysis and Mapping* by Chris Brunsdon and Lex Comber, Sage, 2015. See book [webpage](https://uk.sagepub.com/en-gb/eur/an-introduction-to-r-for-spatial-analysis-and-mapping/book241031)
+- *Geocomputation with R* by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. See [online book](https://bookdown.org/robinlovelace/geocompr/).
 
 ## Summary
 
