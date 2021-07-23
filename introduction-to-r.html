@@ -145,7 +145,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.6" data-path=""><a href="#numeric-operators"><i class="fa fa-check"></i><b>1.6</b> Numeric operators</a></li>
 <li class="chapter" data-level="1.7" data-path=""><a href="#logical-operators"><i class="fa fa-check"></i><b>1.7</b> Logical operators</a></li>
 <li class="chapter" data-level="1.8" data-path=""><a href="#reference-books"><i class="fa fa-check"></i><b>1.8</b> Reference books</a></li>
-<li class="chapter" data-level="1.9" data-path=""><a href="#summary"><i class="fa fa-check"></i><b>1.9</b> Summary</a></li>
 </ul></li>
 <li class="divider"></li>
 <li>UNIGIS Salzburg: Spatial Data Science</li>
@@ -268,10 +267,25 @@ Figure 1.1: Console Window in RStudio
 </ul>
 </div>
 
+<p>The type ‘logical’ encodes the values TRUE or FALSE. Together these three simple data types are the building blocks R uses to encode information.</p>
+
+<div class="rmdexercise">
+<p>If you type a simple numeric operation in the console (e.g. 2 + 4), the interpreter will return a result. This indicates that operations (e.g. mathematical calculations) can be carried on these types.</p>
+<p>Logical operations return values of type ‘logical’. What value is returned in the console when you type and execute the expression 2 &lt; 3?</p>
+<details closed>
+<summary><ins><strong>See solution!</strong></ins></summary>
+<p>
+<p><i><font color="grey"></p>
+<p>The interpreter returns ‘TRUE’, because 2 is less than 3.</p>
+</font></i>
+</p>
+</details>
+</div>
+
 </div>
 <div id="numeric-operators" class="section level2">
 <h2><span class="header-section-number">1.6</span> Numeric operators</h2>
-<p>R provides a series of basic numeric operators</p>
+<p>R provides a series of basic numeric operators.</p>
 <table>
 <thead>
 <tr class="header">
@@ -326,12 +340,26 @@ Figure 1.1: Console Window in RStudio
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
-<pre><code>## [1] 7</code></pre>
+<p>Whereas mathematical operators are self-explanatory, the operators ‘Module’ and ‘Integer disision’ may be new to some of you. In integer division, the dividend is divided by the divisor into an integer quotient:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="dv">5</span><span class="op">%/%</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+
+<div class="rmdexercise">
+<p>Execute 5 %% 2 to test the ‘Module’ operator.</p>
+<details closed>
+<summary><ins><strong>See solution!</strong></ins></summary>
+<p>
+<p><i><font color="grey"></p>
+<p>The ‘Module’ returns the remainder of the division, which is ‘1’ in the example above.</p>
+</font></i>
+</p>
+</details>
+</div>
+
 </div>
 <div id="logical-operators" class="section level2">
 <h2><span class="header-section-number">1.7</span> Logical operators</h2>
-<p>R provides a series of basic logical operators to test</p>
+<p>R also provides a series of basic logical operators to create logical expressions.</p>
 <table>
 <thead>
 <tr class="header">
@@ -386,8 +414,18 @@ Figure 1.1: Console Window in RStudio
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="dv">5</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
-<pre><code>## [1] TRUE</code></pre>
+<p>Logical expressions are typically used to execute code dependent on the occurrence of conditions.</p>
+
+<div class="rmdexercise">
+<p>What logical values are returned by the following expression:</p>
+<ul>
+<li><em>(3 != 5) | (3 == 4)</em></li>
+<li><em>(2 &gt;= 3) | (3 &lt; 7)</em></li>
+<li><em>(2 == 9) &amp; (2 &lt; 4)</em></li>
+</ul>
+<p>Type and execute (Enter button) in the RStudio console to validate your assumptions.</p>
+</div>
+
 </div>
 <div id="reference-books" class="section level2">
 <h2><span class="header-section-number">1.8</span> Reference books</h2>
@@ -403,20 +441,6 @@ Figure 1.1: Console Window in RStudio
 <li><em>The Art of R Programming: A Tour of Statistical Software Design</em> by Norman Matloff, No Starch Press, 2011. See book <a href="https://nostarch.com/artofr.htm">webpage</a></li>
 <li><em>An Introduction to R for Spatial Analysis and Mapping</em> by Chris Brunsdon and Lex Comber, Sage, 2015. See book <a href="https://uk.sagepub.com/en-gb/eur/an-introduction-to-r-for-spatial-analysis-and-mapping/book241031">webpage</a></li>
 <li><em>Geocomputation with R</em> by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. See <a href="https://bookdown.org/robinlovelace/geocompr/">online book</a>.</li>
-</ul>
-</div>
-<div id="summary" class="section level2">
-<h2><span class="header-section-number">1.9</span> Summary</h2>
-<p>An introduction to R</p>
-<ul>
-<li>Basic types</li>
-<li>Basic operators</li>
-</ul>
-<p><strong>Next</strong>: Core concepts</p>
-<ul>
-<li>Variables</li>
-<li>Functions</li>
-<li>Libraries</li>
 </ul>
 </div>
 </div>

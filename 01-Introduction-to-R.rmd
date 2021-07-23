@@ -99,14 +99,29 @@ R provides three core data types
 
 ```
 
+The type 'logical' encodes the values TRUE or FALSE. Together these three simple data types are the building blocks R uses to encode information. 
 
+```{block2, type = 'rmdexercise'}
 
+If you type a simple numeric operation in the console (e.g. 2 + 4), the interpreter will return a result. This indicates that operations (e.g. mathematical calculations) can be carried on these types.
+
+Logical operations return values of type 'logical'. What value is returned in the console when you type and execute the expression 2 < 3? 
+    
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+The interpreter returns 'TRUE', because 2 is less than 3.
+
+</font></i>
+</p>
+</details>    
+
+```
 
 ## Numeric operators
 
-R provides a series of basic numeric operators
-
-
+R provides a series of basic numeric operators.
 
 |Operator|Meaning         |Example  |Output     |
 |--------|----------------|---------|-----------|
@@ -118,20 +133,33 @@ R provides a series of basic numeric operators
 |%%      |Module          |`5 %% 2` |`r 5 %% 2` |
 |^       |Power           |`5^2`    |`r 5^2`    |
 
+Whereas mathematical operators are self-explanatory, the operators 'Module' and 'Integer disision' may be new to some of you. In integer division, the dividend is divided by the divisor into an integer quotient:
 
 
 ```{r, echo=TRUE}
-5 + 2
+5%/%2
 ```
 
 
+```{block2, type = 'rmdexercise'}
+
+Execute 5 %% 2 to test the 'Module' operator.
+    
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+The 'Module' returns the remainder of the division, which is '1' in the example above. 
+
+</font></i>
+</p>
+</details>    
+
+```
 
 ## Logical operators
 
-
-R provides a series of basic logical operators to test
-
-
+R also provides a series of basic logical operators to create logical expressions.
 
 |Operator|Meaning           |Example           |Output              |
 |--------|------------------|------------------|--------------------|
@@ -143,16 +171,23 @@ R provides a series of basic logical operators to test
 |&       |And               |`TRUE & FALSE`    |`r TRUE & FALSE`    |
 |\|      |Or                |`TRUE | FALSE`    |`r TRUE | FALSE`    |
 
+Logical expressions are typically used to execute code dependent on the occurrence of conditions. 
 
+```{block2, type = 'rmdexercise'}
 
-```{r, echo=TRUE}
-5 >= 2
+What logical values are returned by the following expressions:    
+
+* *(3 != 5) | (3 == 4)*
+* *(2 >= 3) | (3 < 7)*
+* *(2 == 9) & (2 < 4)*
+
+Type and execute (Enter button) in the RStudio console to validate your assumptions.  
+
 ```
 
 ## Reference books
 
 Suggested reading
-
 
 - *Programming Skills for Data Science: Start Writing Code to Wrangle, Analyze, and Visualize Data with R* by Michael Freeman and Joel Ross, Addison-Wesley, 2019. See book [webpage](https://www.pearson.com/us/higher-education/program/Freeman-Programming-Skills-for-Data-Science-Start-Writing-Code-to-Wrangle-Analyze-and-Visualize-Data-with-R/PGM2047488.html) and [repository](https://programming-for-data-science.github.io/).
 - *R for Data Science* by Garrett Grolemund and Hadley Wickham, O'Reilly Media, 2016. See [online book](https://r4ds.had.co.nz/).
@@ -164,16 +199,3 @@ Further reading
 - *The Art of R Programming: A Tour of Statistical Software Design* by Norman Matloff, No Starch Press, 2011. See book [webpage](https://nostarch.com/artofr.htm)
 - *An Introduction to R for Spatial Analysis and Mapping* by Chris Brunsdon and Lex Comber, Sage, 2015. See book [webpage](https://uk.sagepub.com/en-gb/eur/an-introduction-to-r-for-spatial-analysis-and-mapping/book241031)
 - *Geocomputation with R* by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. See [online book](https://bookdown.org/robinlovelace/geocompr/).
-
-## Summary
-
-An introduction to R
-
-- Basic types
-- Basic operators
-
-**Next**: Core concepts
-
-- Variables
-- Functions
-- Libraries
