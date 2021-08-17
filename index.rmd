@@ -1,6 +1,6 @@
 --- 
-title: "Introduction to Geoinformatics"
-author: "tbd"
+title: "Application Development with R"
+author: "Christian Neuwirth"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 knit: bookdown::render_book
 site: bookdown::bookdown_site

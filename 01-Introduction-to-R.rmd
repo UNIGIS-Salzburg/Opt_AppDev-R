@@ -9,7 +9,7 @@ On this basis, we will explore more complex data types like **Data Frames** and 
 
 After you have learned how to manipulate data, you will learn to perform **statistical analyses** (exploratory data analysis, comparing data, regression models) and how to **visualize results** by means of diagrams (e.g. box plots, scatterplots, line plots etc.) and maps.   
 
-Upon the completion of this module, you will have the fundamental skills in R programming as a basis for more advanced methods like Geospatial Data Analysis (is covered by the module "Räumliche Statistik" in the German MSc program) and Machine Learning.
+Upon the completion of this module, you will have the fundamental skills in R programming as a basis for more advanced methods like Geospatial Data Analysis (is covered by the module "Spatial Statistics" in the MSc program) and Machine Learning.
 
 ```{block2, type = 'rmdtip'}
 This module is based on the teaching materials [granolarr](https://sdesabbata.github.io/granolarr/){target="_blank"} worked out by [Stefano de Sabbata](https://stefanodesabbata.com/){target="_blank"} at the [University of Leicester](https://le.ac.uk/){target="_blank"}. For more information take a look at the [Granolarr Lecture Pages](https://sdesabbata.github.io/granolarr/lectures_100/){target="_blank"}. The chapter **Machine Learning** is recommended as a follow up read for those who are willing to delve into more advanced applications of R. 
@@ -43,7 +43,7 @@ In this lession we will focus on some key principles of the R syntax and logic.
 
 ## Installation and Setup
 
-Before you can run your code, you have to install R together with an **Integrated Development Environment IDE** on your machine: 
+Before you can run your code, you have to install R together with an **Integrated Development Environment (IDE)** on your machine: 
 
 1. Download R from [R Archive Network (CRAN.)](http://cran.r-project.org){target="_blank"} 
 2. Follow the instructions and install the most up to date version on your machine (chose 'base' as well as 32-bit or 64-bit dependent on the bit-version of your operating system).
@@ -80,7 +80,7 @@ The interpreter returns an error, because this datatype is unknown. Text is comm
 
 ```
 
-If you start your input with a hash symbol (#) the interpreter will consider that line as a comment. For instance, if you type in *# comments are ignored*, you will see that nothing is returned as an output. Comments are extremely important as they allow you to add explanations in plain language. Comments are fundamental to allow other people to under stand your code and it will save you time interpreting your own code.     
+If you start your input with a hash symbol (#) the interpreter will consider that line as a comment. For instance, if you type in *# comments are ignored*, you will see that nothing is returned as an output. Comments are extremely important as they allow you to add explanations in plain language. Comments are fundamental to allow other people to understand your code and it will save you time interpreting your own code.     
 
 ## Simple data types
 
@@ -103,7 +103,7 @@ The type 'logical' encodes the values TRUE or FALSE. Together these three simple
 
 ```{block2, type = 'rmdexercise'}
 
-If you type a simple numeric operation in the console (e.g. 2 + 4), the interpreter will return a result. This indicates that operations (e.g. mathematical calculations) can be carried on these types.
+If you type a simple numeric operation in the console (e.g. 2 + 4), the interpreter will return a result. This indicates that operations (e.g. mathematical calculations) can be carried out on these types.
 
 Logical operations return values of type 'logical'. What value is returned in the console when you type and execute the expression 2 < 3? 
     
@@ -133,7 +133,7 @@ R provides a series of basic numeric operators.
 |%%      |Module          |`5 %% 2` |`r 5 %% 2` |
 |^       |Power           |`5^2`    |`r 5^2`    |
 
-Whereas mathematical operators are self-explanatory, the operators 'Module' and 'Integer disision' may be new to some of you. In integer division, the dividend is divided by the divisor into an integer quotient:
+Whereas mathematical operators are self-explanatory, the operators 'Module' and 'Integer division' may be new to some of you. Integer division returns an integer quotient:
 
 
 ```{r, echo=TRUE}
