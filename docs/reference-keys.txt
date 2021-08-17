@@ -9,7 +9,6 @@ numeric-operators
 logical-operators
 reference-books
 core-concepts
-recap
 variables
 algorithms-and-functions
 functions
@@ -19,7 +18,7 @@ libraries
 stringr
 summary
 data-types
-recap-1
+recap
 vectors
 defining-vectors
 creating-vectors
@@ -36,9 +35,9 @@ arrays
 selection-1
 lists
 named-lists
-recap-2
+recap-1
 control-structures
-recap-3
+recap-2
 if
 else
 code-blocks
@@ -58,7 +57,7 @@ functions-and-control-structures
 scope
 summary-3
 data-frames
-recap-4
+recap-3
 lists-and-named-lists
 data-frames-1
 selection-2
@@ -68,7 +67,7 @@ column-processing
 tibble
 summary-4
 selection-and-filtering
-recap-5
+recap-4
 dplyr
 example-dataset
 selecting-table-columns
@@ -96,7 +95,7 @@ readrwrite_tsv
 other-data-imports
 summary-7
 data-visualisation
-recap-6
+recap-5
 visual-variables
 grammar-of-graphics
 ggplot2
@@ -112,3 +111,19 @@ overlapping-points-1
 bin-counts
 bin-counts-1
 summary-8
+examples
+matrices-1
+matrix-algebra
+matrix-algebra-1
+matrices-and-arrays-selection
+apply
+lapply
+lists-append
+example
+repeat
+while-vs-repeat
+functions-and-control-structures-1
+example-1
+what-is-debugging
+to-debug-a-function
+example-2

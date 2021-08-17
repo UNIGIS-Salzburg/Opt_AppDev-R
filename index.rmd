@@ -2,10 +2,17 @@
 title: "Application Development with R"
 author: "Christian Neuwirth"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
+
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
+
+#knit: bookdown::render_book
+#site: bookdown::bookdown_site
+#output: bookdown::gitbook
+#documentclass: book
+
 bibliography: refs.bib
 biblio-style: "apalike"
 link-citations: yes

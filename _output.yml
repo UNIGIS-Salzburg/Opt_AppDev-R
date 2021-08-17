@@ -6,9 +6,9 @@ bookdown::gitbook:
       collapse: section
       before: |
         <li><a href="https://unigis.at/en" target="_blank"><img alt="UNIGIS Salzburg" src="branding/UNIGIS_Salzburg_Schriftlogo_globe.png" width=100%></a></li>
-        <li><a href="./">Application Development - Scripting with R</a></li>
+        <li><a href="./">Application Development with R</a></li>
       after: |
-        <li>UNIGIS Salzburg: Spatial Data Science</li>
+        <li>Copyright © UNIGIS Salzburg.</li>
     download: ["pdf", "epub"]
 bookdown::epub_book: default
 bookdown::word_document2:

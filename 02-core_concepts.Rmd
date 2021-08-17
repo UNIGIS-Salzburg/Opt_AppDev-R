@@ -1,0 +1,188 @@
+# Core concepts
+
+```{block2, type = 'rmdtip'}
+In this lecture we will focuse on three fundamental concepts in programming:
+
+1) Variables
+2) Functions
+3) Libraries
+
+```
+
+
+## Variables
+
+Variables are used to  **store data**. Variables can be defined using an *identifier*, i.e a variable name (e.g., `a_variable`), on the left of an *assignment operator* `<-`, followed by the object to be linked to the identifier such as a *value* (e.g., `1`):
+
+```{r, echo=TRUE}
+a_variable <- 1
+```
+
+The value of the variable can be invoked by simply specifying the **identifier**.
+
+```{r, echo=TRUE}
+a_variable
+```
+
+```{block2, type = 'rmdtip'}
+
+In order to save your code, you can create an **R Script** in RStudio (File/New File/R Script). Select the code in the R Script Window and push 'Run' to execute the code.
+
+Note: The code is executed line by line in a sequential order!
+   
+```
+
+Variables allow you to save the result of any computations performed in the code and retrieve it later in the code for further analyses. For instance, you can declare a variable such as,
+
+```{r, echo=TRUE}
+a_variable <- 1
+```
+
+manipulate the value of the variable as
+
+```{r, echo=TRUE}
+a_variable <- a_variable + 10
+```
+
+and later in the code assign the value to a different variable
+
+```{r, echo=TRUE}
+another_variable <- a_variable
+```
+
+At this point the question may arise, why bother using variables instead of simply typing the numbers? The answer is that variables make your code reusable and safe you lots of time.
+
+Let us consider the following example: 
+  
+Meteorologists monitor water temperature gradients in the Pacific Ocean to better understand El Niño weather patterns and to forecast extreme weather conditions associated with it. In a given year the water temperature at location A is 22°C and 26°C at location B. We could simply calculate the difference by executing the arithmetic operation '26 - 22' in the console window of RStudio. However, temperatures are measured in real-time, i.e. we have to calculate temperature gradients over and over again.
+
+To speed up the process we could write code that does the calculation (temperature at location A - temperature at location B). This piece of code takes to variables (temperature at location A and B) as an input. As a result, we only need to update these to variables, the algorithm (simple subtraction in our example) is reusable. 
+
+Of course, gains in efficiency are minor given that the calculus is simple. In a more practical application, however, the algorithm is likely being composed of many lines of code that evaluate El Niño occurance risk based on sensor records.   
+
+```{block2, type = 'rmdexercise'}
+
+1) Create a new R script in RStudio (File/New File/R Script).
+2) Declare two variables (temp_A and temp_B) and assign arbitrary temperature values to it.
+3) Declare a third variable (diff) and assign the difference between the other variables as a value. 
+4) Run your script. 
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+temp_A <- 24
+
+temp_B <- 28
+
+diff <- temp_A - temp_B
+
+As a result you can see that something has changed in the panel on the top right, which is the **Environment Panel**. The Environment Panel shows that we now have three slots of memory with identifiers named diff, temp_A and temp_B  that have values of -4, 24 and 28. If we invoke the name of the identifier in the code (e.g. type *diff* and run), the value that is stored in that slot gets returned.
+    
+</font></i>
+</p>
+</details> 
+
+```
+
+## Algorithms and functions
+
+*An* **algorithm** *or effective procedure is a mechanical rule, or automatic method, or programme for performing some mathematical operation* (Cutland, 1980).
+
+A **program** is a specific set of instructions that implement an abstract algorithm.
+
+The definition of an algorithm (and thus a program) can consist of one or more **function**s
+
+- set of instructions that preform a task 
+- possibly using an input, possibly returning an output value
+
+Programming languages usually provide pre-defined functions that implement common algorithms (e.g., to find the square root of a number or to calculate a linear regression)
+
+
+
+## Functions
+
+Functions execute complex operations and can be invoked 
+
+- specifying the *function name*
+- the *arguments* (input values) between simple brackets
+    - each *argument* corresponds to a *parameter*
+    - sometimes the *parameter* name must be specified
+
+```{r, echo=TRUE}
+sqrt(2)
+round(1.414214, digits = 2)
+```
+
+
+
+## Functions and variables
+
+- functions can be used on the right side of `<-` 
+- variables and functions can be used as *arguments*
+
+```{r, echo=TRUE}
+sqrt_of_two <- sqrt(2)
+sqrt_of_two
+round(sqrt_of_two, digits = 2)
+round(sqrt(2), digits = 2)
+```
+
+
+
+## Naming
+
+When creating an identifier for a variable or function
+
+- R is a **case sensitive** language
+    - UPPER and lower case are not the same
+    - `a_variable` is different from `a_VARIABLE`
+- names can include
+    -  alphanumeric symbols
+    - `.` and `_`
+- names must start with
+    - a letter
+
+
+
+## Libraries
+
+Once a number of related, reusable functions are created
+
+- they can be collected and stored in **libraries** (a.k.a. *packages*)
+  - `install.packages` is a function that can be used to install libraries (i.e., downloads it on your computer)
+  - `library` is a function that *loads* a library (i.e., makes it available to a script)
+
+Libraries can be of any size and complexity, e.g.:
+
+- `base`: base R functions, including the `sqrt` function above
+- `rgdal`: implementation of the [GDAL (Geospatial Data Abstraction Library)](https://gdal.org/) functionalities
+
+
+## stringr
+
+R provides some basic functions to manipulate strings, but the `stringr` library provides a more consistent and well-defined set
+
+```{r, echo=TRUE}
+library(stringr)
+str_length("Leicester")
+str_detect("Leicester", "e")
+str_replace_all("Leicester", "e", "x")
+```
+
+
+
+
+## Summary
+
+Core concepts
+
+- Variables
+- Functions
+- Libraries
+
+**Next**: Tidyverse
+
+- Tidyverse libraries
+- *pipe* operator
+
