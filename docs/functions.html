@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 6 Data frames | Application Development with R</title>
+  <title>Lesson 5 Functions | Application Development with R</title>
   <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 6 Data frames | Application Development with R" />
+  <meta property="og:title" content="Lesson 5 Functions | Application Development with R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/branding/Cover_epub.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UNIGIS-Salzburg/En_AppDev-R" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 6 Data frames | Application Development with R" />
+  <meta name="twitter:title" content="Lesson 5 Functions | Application Development with R" />
   
   <meta name="twitter:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="twitter:image" content="/branding/Cover_epub.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="functions.html"/>
-<link rel="next" href="selection-and-filtering.html"/>
+<link rel="prev" href="control-structures.html"/>
+<link rel="next" href="data-frames.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -274,142 +274,198 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-frames" class="section level1">
-<h1><span class="header-section-number">Lesson 6</span> Data frames</h1>
-<div id="recap-3" class="section level2">
-<h2><span class="header-section-number">6.1</span> Recap</h2>
-<p><strong>Prev</strong>: R programming</p>
+<div id="functions" class="section level1">
+<h1><span class="header-section-number">Lesson 5</span> Functions</h1>
+<div id="summary-1" class="section level2">
+<h2><span class="header-section-number">5.1</span> Summary</h2>
+<p><strong>Prev</strong>:Control structures</p>
 <ul>
-<li>111 Lecture: Data types</li>
-<li>112 Lecture: Control structures</li>
-<li>113 Lecture: Functions</li>
-<li>114 Practical session</li>
+<li>Conditional statements</li>
+<li>Loops</li>
 </ul>
-<p><strong>Now</strong>: Data Frames</p>
+<p><strong>Now</strong>: Functions</p>
 <ul>
-<li>Data Frames</li>
-<li>Tibbles</li>
+<li>Defining functions</li>
+<li>Scope of a variable</li>
 </ul>
 </div>
-<div id="lists-and-named-lists" class="section level2">
-<h2><span class="header-section-number">6.2</span> Lists and named lists</h2>
-<p><strong>List</strong></p>
+<div id="defining-functions" class="section level2">
+<h2><span class="header-section-number">5.2</span> Defining functions</h2>
+<p>A function can be defined</p>
 <ul>
-<li>can contain elements of different types
+<li>using an <strong>identifier</strong> (e.g., <code>add_one</code>)</li>
+<li>on the left of an <strong>assignment operator</strong> <code>&lt;-</code></li>
+<li>followed by the corpus of the function</li>
+</ul>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="functions.html#cb107-1"></a>add_one &lt;-<span class="st"> </span><span class="cf">function</span> (input_value) {</span>
+<span id="cb107-2"><a href="functions.html#cb107-2"></a>  output_value &lt;-<span class="st"> </span>input_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb107-3"><a href="functions.html#cb107-3"></a>  output_value</span>
+<span id="cb107-4"><a href="functions.html#cb107-4"></a>  }</span></code></pre></div>
+</div>
+<div id="defining-functions-1" class="section level2">
+<h2><span class="header-section-number">5.3</span> Defining functions</h2>
+<p>The corpus</p>
 <ul>
-<li>whereas elements of vectors are all of the same type</li>
-</ul></li>
-<li>in <strong>named lists</strong>, each element has a name
+<li>starts with the reserved word <code>function</code></li>
+<li>followed by the <strong>parameter(s)</strong> (e.g., <code>input_value</code>) between simple brackets</li>
+<li>and the instruction(s) to be executed in a code block</li>
+<li>the value of the last statement is returned as output</li>
+</ul>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="functions.html#cb108-1"></a>add_one &lt;-<span class="st"> </span><span class="cf">function</span> (input_value) {</span>
+<span id="cb108-2"><a href="functions.html#cb108-2"></a>  output_value &lt;-<span class="st"> </span>input_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb108-3"><a href="functions.html#cb108-3"></a>  output_value</span>
+<span id="cb108-4"><a href="functions.html#cb108-4"></a>  }</span></code></pre></div>
+</div>
+<div id="defining-functions-2" class="section level2">
+<h2><span class="header-section-number">5.4</span> Defining functions</h2>
+<p>After being defined</p>
 <ul>
-<li>elements can be selected using the operator <code>$</code></li>
+<li>a function can be invoked by specifying
+<ul>
+<li>the <strong>identifier</strong></li>
+<li>the necessary <strong>parameter(s)</strong></li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="data-frames.html#cb120-1"></a>employee &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">employee_name =</span> <span class="st">&quot;Stef&quot;</span>, <span class="dt">start_year =</span> <span class="dv">2015</span>)</span>
-<span id="cb120-2"><a href="data-frames.html#cb120-2"></a>employee[[<span class="dv">1</span>]]</span></code></pre></div>
-<pre><code>## [1] &quot;Stef&quot;</code></pre>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="data-frames.html#cb122-1"></a>employee<span class="op">$</span>employee_name</span></code></pre></div>
-<pre><code>## [1] &quot;Stef&quot;</code></pre>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="functions.html#cb109-1"></a><span class="kw">add_one</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="functions.html#cb111-1"></a><span class="kw">add_one</span>(<span class="dv">1024</span>)</span></code></pre></div>
+<pre><code>## [1] 1025</code></pre>
 </div>
-<div id="data-frames-1" class="section level2">
-<h2><span class="header-section-number">6.3</span> Data Frames</h2>
-<p>A <strong>data frame</strong> is equivalent to a <em>named list</em> where all elements are <em>vectors of the same length</em>.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="data-frames.html#cb124-1"></a>employees &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb124-2"><a href="data-frames.html#cb124-2"></a>  <span class="dt">EmployeeName =</span> <span class="kw">c</span>(<span class="st">&quot;Maria&quot;</span>, <span class="st">&quot;Pete&quot;</span>, <span class="st">&quot;Sarah&quot;</span>),</span>
-<span id="cb124-3"><a href="data-frames.html#cb124-3"></a>  <span class="dt">Age =</span> <span class="kw">c</span>(<span class="dv">47</span>, <span class="dv">34</span>, <span class="dv">32</span>),</span>
-<span id="cb124-4"><a href="data-frames.html#cb124-4"></a>  <span class="dt">Role =</span> <span class="kw">c</span>(<span class="st">&quot;Professor&quot;</span>, <span class="st">&quot;Researcher&quot;</span>, <span class="st">&quot;Researcher&quot;</span>))</span>
-<span id="cb124-5"><a href="data-frames.html#cb124-5"></a>employees</span></code></pre></div>
-<pre><code>##   EmployeeName Age       Role
-## 1        Maria  47  Professor
-## 2         Pete  34 Researcher
-## 3        Sarah  32 Researcher</code></pre>
-<p>Data frames are the most common way to represent tabular data in R. Matrices and lists can be converted to data frames.</p>
+<div id="more-parameters" class="section level2">
+<h2><span class="header-section-number">5.5</span> More parameters</h2>
+<ul>
+<li>A function can be defined as having two or more <strong>parameters</strong>
+<ul>
+<li>by specifying more than one parameter name (separated by <strong>commas</strong>) in the function definition</li>
+</ul></li>
+<li>A function always take as input as many values as the number of parameters specified in the definition
+<ul>
+<li>otherwise an error is generated</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="functions.html#cb113-1"></a>area_rectangle &lt;-<span class="st"> </span><span class="cf">function</span> (hight, width) {</span>
+<span id="cb113-2"><a href="functions.html#cb113-2"></a>  area &lt;-<span class="st"> </span>hight <span class="op">*</span><span class="st"> </span>width</span>
+<span id="cb113-3"><a href="functions.html#cb113-3"></a>  area</span>
+<span id="cb113-4"><a href="functions.html#cb113-4"></a>}</span>
+<span id="cb113-5"><a href="functions.html#cb113-5"></a><span class="kw">area_rectangle</span>(<span class="dv">3</span>, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+</div>
+<div id="functions-and-control-structures" class="section level2">
+<h2><span class="header-section-number">5.6</span> Functions and control structures</h2>
+<p>Functions can contain both loops and conditional statements</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="functions.html#cb115-1"></a>factorial &lt;-<span class="st"> </span><span class="cf">function</span> (input_value) {</span>
+<span id="cb115-2"><a href="functions.html#cb115-2"></a>  result &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb115-3"><a href="functions.html#cb115-3"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>input_value) {</span>
+<span id="cb115-4"><a href="functions.html#cb115-4"></a>    <span class="kw">cat</span>(<span class="st">&quot;current:&quot;</span>, result, <span class="st">&quot; | i:&quot;</span>, i, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb115-5"><a href="functions.html#cb115-5"></a>    result &lt;-<span class="st"> </span>result <span class="op">*</span><span class="st"> </span>i</span>
+<span id="cb115-6"><a href="functions.html#cb115-6"></a>  }</span>
+<span id="cb115-7"><a href="functions.html#cb115-7"></a>  result</span>
+<span id="cb115-8"><a href="functions.html#cb115-8"></a>}</span>
+<span id="cb115-9"><a href="functions.html#cb115-9"></a><span class="kw">factorial</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## current: 1  | i: 1 
+## current: 1  | i: 2 
+## current: 2  | i: 3</code></pre>
+<pre><code>## [1] 6</code></pre>
 <!--
-**Note:** As is common in R, the elements of an eventual too short column are recycled to match column lengths.
+## Functions and control structures
+Factorial using `while`
+
+```r
+factorial <- function (input_value) {
+  result <- 1
+  while (input_value > 0) {
+    cat("current:", result, " | input:", input_value, "\n")
+    result <- result * input_value
+    input_value <- input_value - 1
+  }
+  result
+}
+factorial(3)
+```
+
+```
+## current: 1  | input: 3 
+## current: 3  | input: 2 
+## current: 6  | input: 1
+```
+
+```
+## [1] 6
+```
 -->
 </div>
-<div id="selection-2" class="section level2">
-<h2><span class="header-section-number">6.4</span> Selection</h2>
-<p>Selection is similar to vectors and lists.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="data-frames.html#cb126-1"></a>employees[<span class="dv">1</span>, <span class="dv">1</span>] <span class="co"># value selection</span></span></code></pre></div>
-<pre><code>## [1] &quot;Maria&quot;</code></pre>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="data-frames.html#cb128-1"></a>employees[<span class="dv">1</span>, ] <span class="co"># row selection</span></span></code></pre></div>
-<pre><code>##   EmployeeName Age      Role
-## 1        Maria  47 Professor</code></pre>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="data-frames.html#cb130-1"></a>employees[, <span class="dv">1</span>] <span class="co"># column selection</span></span></code></pre></div>
-<pre><code>## [1] &quot;Maria&quot; &quot;Pete&quot;  &quot;Sarah&quot;</code></pre>
+<div id="scope" class="section level2">
+<h2><span class="header-section-number">5.7</span> Scope</h2>
+<p>The <strong>scope of a variable</strong> is the part of code in which the variable is `<code>visible'' In R, variables have a **hierarchical** scope: - a variable defined in a script can be used referred to from within a definition of a function in the same script - a variable defined within a definition of a function will **not** be referable from outside the definition - scope does **not** apply to</code>if<code>or loop constructs ## Example In the case below -</code>x_value<code>is **global** to the function</code>times_x<code>-</code>new_value<code>and</code>input_value<code>are **local** to the function</code>times_x<code>- referring to</code>new_value<code>or</code>input_value<code>from outside the definition of</code>times_x` would result in an error</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="functions.html#cb118-1"></a>x_value &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb118-2"><a href="functions.html#cb118-2"></a>times_x &lt;-<span class="st"> </span><span class="cf">function</span> (input_value) {</span>
+<span id="cb118-3"><a href="functions.html#cb118-3"></a>  new_value &lt;-<span class="st"> </span>input_value <span class="op">*</span><span class="st"> </span>x_value</span>
+<span id="cb118-4"><a href="functions.html#cb118-4"></a>  new_value</span>
+<span id="cb118-5"><a href="functions.html#cb118-5"></a>}</span>
+<span id="cb118-6"><a href="functions.html#cb118-6"></a><span class="kw">times_x</span>(<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<!--
+Hint: try *debug* the function above and observe how the *local* environment is created and then discarded
+-->
+<!--
+# Debugging
+## What is debugging?
+- Hardly any reasonably sized function works first time!
+- Two broad kinds of problem
+    - The function crashes (i.e. throws up an error)
+    - The function doesn't crash  but returns the wrong answer
+    - Generally, the second kind of error is the worst
+- Prevention is better than cure, test the code as you write.
+- **Debugging** is the process of finding the problems in the code.
+- A typical approach
+    - `Step' through the function line by line.  Find out where a crash occurs,  if one does.
+    - Check the values of variables, and see if they are doing what they are supposed to.
+- R has tools to help with this.
+## To debug a function
+- Enter `debug( <<Function Name>> )`
+- For example: `debug(area.tri)`
+- Then just use the function - it goes into 'debug mode'.
+- Prompt becomes `Browse>`
+- Line of function about to be executed is listed
+- Pressing return executes it and goes to the next line
+- Typing in a variable name lists the value of that variable
+- Typing in any other command executes that command
+- Typing in `c` and the return runs to the end of a function/block
+- Typing in `Q` exits the function
+- R can `see' variables that are specific to the function
+- Enter `undebug(<<Function Name>>)` to return to normal
+## Example
+Debug the following example
+
+```r
+percentage_change <- function (before, after){
+  difference <- before - after
+  prop_change <- difference / before
+  perc_change <- prop_change * 100
+  perc_change
+```
+-->
 </div>
-<div id="selection-3" class="section level2">
-<h2><span class="header-section-number">6.5</span> Selection</h2>
-<p>Selection is similar to vectors and lists.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="data-frames.html#cb132-1"></a>employees<span class="op">$</span>EmployeeName <span class="co"># column selection, as for named lists</span></span></code></pre></div>
-<pre><code>## [1] &quot;Maria&quot; &quot;Pete&quot;  &quot;Sarah&quot;</code></pre>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="data-frames.html#cb134-1"></a>employees<span class="op">$</span>EmployeeName[<span class="dv">1</span>]</span></code></pre></div>
-<pre><code>## [1] &quot;Maria&quot;</code></pre>
-</div>
-<div id="table-manipulation" class="section level2">
-<h2><span class="header-section-number">6.6</span> Table manipulation</h2>
+<div id="summary-2" class="section level2">
+<h2><span class="header-section-number">5.8</span> Summary</h2>
+<p>Functions</p>
 <ul>
-<li>Values can be assigned to cells
-<ul>
-<li>using any selection method</li>
-<li>and the assignment operator <code>&lt;-</code></li>
-</ul></li>
-<li>New columns can be defined
-<ul>
-<li>assigning a vector to a new name</li>
-</ul></li>
+<li>Defining functions</li>
+<li>Scope of a variable</li>
 </ul>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="data-frames.html#cb136-1"></a>employees<span class="op">$</span>Age[<span class="dv">3</span>] &lt;-<span class="st"> </span><span class="dv">33</span> </span>
-<span id="cb136-2"><a href="data-frames.html#cb136-2"></a>employees<span class="op">$</span>Place &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Leicester&quot;</span>,<span class="st">&quot;Leicester&quot;</span>) </span>
-<span id="cb136-3"><a href="data-frames.html#cb136-3"></a>employees</span></code></pre></div>
-<pre><code>##   EmployeeName Age       Role     Place
-## 1        Maria  47  Professor Leicester
-## 2         Pete  34 Researcher Leicester
-## 3        Sarah  33 Researcher Leicester</code></pre>
-</div>
-<div id="column-processing" class="section level2">
-<h2><span class="header-section-number">6.7</span> Column processing</h2>
-<p>Operations can be performed on columns as they where vectors</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="data-frames.html#cb138-1"></a><span class="dv">10</span> <span class="op">-</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## [1] 9 8 7</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="data-frames.html#cb140-1"></a><span class="co"># Use Sys.Date to retrieve the current year</span></span>
-<span id="cb140-2"><a href="data-frames.html#cb140-2"></a>current_year &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span class="kw">format</span>(<span class="kw">Sys.Date</span>(), <span class="st">&quot;%Y&quot;</span>))</span>
-<span id="cb140-3"><a href="data-frames.html#cb140-3"></a><span class="co"># Calculate employee year of birth</span></span>
-<span id="cb140-4"><a href="data-frames.html#cb140-4"></a>employees<span class="op">$</span>Year_of_birth &lt;-<span class="st"> </span>current_year <span class="op">-</span><span class="st"> </span>employees<span class="op">$</span>Age</span>
-<span id="cb140-5"><a href="data-frames.html#cb140-5"></a>employees</span></code></pre></div>
-<pre><code>##   EmployeeName Age       Role     Place Year_of_birth
-## 1        Maria  47  Professor Leicester          1974
-## 2         Pete  34 Researcher Leicester          1987
-## 3        Sarah  33 Researcher Leicester          1988</code></pre>
-</div>
-<div id="tibble" class="section level2">
-<h2><span class="header-section-number">6.8</span> tibble</h2>
-<p>A <a href="https://tibble.tidyverse.org/">tibble</a> is a modern reimagining of the data.frame within <code>tidyverse</code></p>
+<p><strong>Next</strong>: Practical session</p>
 <ul>
-<li>they do less
+<li>Conditional statements</li>
+<li>Loops
 <ul>
-<li>don’t change column names or types</li>
-<li>don’t do partial matching</li>
+<li>While</li>
+<li>For</li>
 </ul></li>
-<li>complain more
+<li>Functions
 <ul>
-<li>e.g. when referring to a column that does not exist</li>
+<li>Loading functions from scripts</li>
 </ul></li>
-</ul>
-<p>That forces you to confront problems earlier, typically leading to cleaner, more expressive code.</p>
-</div>
-<div id="summary-3" class="section level2">
-<h2><span class="header-section-number">6.9</span> Summary</h2>
-<p>Data Frames</p>
-<ul>
-<li>Data Frames</li>
-<li>Tibbles</li>
-</ul>
-<p><strong>Next</strong>: Data selection and filtering</p>
-<ul>
-<li>dplyr</li>
-<li>dplyr::select</li>
-<li>dplyr::filter</li>
+<li>Debugging</li>
 </ul>
 
 </div>
@@ -419,8 +475,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="selection-and-filtering.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="control-structures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-frames.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

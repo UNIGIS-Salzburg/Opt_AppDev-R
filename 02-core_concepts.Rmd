@@ -1,7 +1,7 @@
 # Core concepts
 
 ```{block2, type = 'rmdtip'}
-In this lecture we will focuse on three fundamental concepts in programming:
+In this lecture we will focus on three fundamental concepts in programming:
 
 1) Variables
 2) Functions
@@ -12,7 +12,7 @@ In this lecture we will focuse on three fundamental concepts in programming:
 
 ## Variables
 
-Variables are used to  **store data**. Variables can be defined using an *identifier*, i.e a variable name (e.g., `a_variable`), on the left of an *assignment operator* `<-`, followed by the object to be linked to the identifier such as a *value* (e.g. `1`):
+Variables are used to  **store data**. Variables can be defined using an *identifier*, i.e. a variable name (e.g., `a_variable`), on the left of an *assignment operator* `<-`, followed by the object to be linked to the identifier such as a *value* (e.g. `1`):
 
 ```{r, echo=TRUE}
 a_variable <- 1
@@ -50,15 +50,15 @@ and later in the code assign the value to a different variable
 another_variable <- a_variable
 ```
 
-At this point the question may arise, why bother using variables instead of simply typing the numbers? The answer is that variables make your code reusable and safe you lots of time.
+At this point, the question may arise, why bother using variables instead of simply typing the numbers? The answer is that variables make your code reusable and safe you lots of time.
 
 Let us consider the following example: 
   
-Meteorologists monitor water temperature gradients in the Pacific Ocean to better understand El Niño weather patterns and to forecast extreme weather conditions associated with it. In a given year the water temperature at location A is 22°C and 26°C at location B. We could simply calculate the difference by executing the arithmetic operation '26 - 22' in the console window of RStudio. However, temperatures are measured in real-time, i.e. we have to calculate temperature gradients over and over again.
+Meteorologists monitor water temperature gradients in the Pacific Ocean to better understand El Niño weather patterns and to forecast extreme weather conditions associated with it. In a given year the water temperature at location A is 22°C and 26°C at location B. We could simply calculate the difference by executing the arithmetic operation '26 - 22' in the console window of RStudio. However, temperatures are measured in real-time, i.e. we have to calculate temperature gradients repeatedly.
 
-To speed up the process we could write code that does the calculation (temperature at location A - temperature at location B). This piece of code takes to variables (temperature at location A and B) as an input. As a result, we only need to update these two variables, the algorithm (simple subtraction in our example) is reusable. 
+To speed up the process we could write code that does the calculation (temperature at location A - temperature at location B). This piece of code takes to variables (temperature at location A and B) as an input. As a result, we only need to update these two variables; the algorithm (simple subtraction in our example) is reusable. 
 
-Of course, gains in efficiency are minor given that the calculus is simple. In a more practical application, however, the algorithm is likely being composed of many lines of code that evaluate El Niño occurance risk based on sensor records.   
+Of course, gains in efficiency are minor given that the calculus is simple. In a more practical application, however, the algorithm is likely being composed of many lines of code that evaluate El Niño occurrence risk based on sensor records.   
 
 ```{block2, type = 'rmdexercise'}
 
@@ -87,7 +87,7 @@ When executing the code in Rstudio, you should see that something has changed in
 
 ## Algorithms and functions
 
-*An* **algorithm** *or effective procedure is a mechanical rule, or automatic method, or programme for performing some mathematical operation* (Cutland, 1980).
+*An* **algorithm** *or effective procedure is a mechanical rule, or automatic method, or program for performing some mathematical operation* (Cutland, 1980).
 
 A **program** is a specific set of instructions that implement an abstract algorithm.
 
@@ -115,7 +115,7 @@ Each input value corresponds to a *parameter* that was specified in the definiti
 round(1.414214, digits = 2)
 ```
 
-Note that the name of the second parameter ('digits')needs to be specified. The parameter 'digits' indicates the number of digits we want to keep after the dot.
+Note that the name of the second parameter ('digits') needs to be specified. The parameter 'digits' indicates the number of digits we want to keep after the dot.
 
 The return value of a function can be stored in a variable:
 
@@ -161,12 +161,9 @@ In this case the intermediate step of storing the square root of '2' in a variab
 
 ```{block2, type = 'rmdtip'}
 Using functions as arguments in other functions is often discouraged as it makes code hard to understand. 
-```
 
-## Naming conventions
-
-When creating an identifier for a variable or function
-
+In order to improve readability of R code, it is recommended to consider naming conventions when creating identifiers for variables and functions: 
+  
 - R is a **case sensitive** language
     - UPPER and lower case are not the same
     - `a_variable` is different from `a_VARIABLE`
@@ -174,48 +171,71 @@ When creating an identifier for a variable or function
     -  alphanumeric symbols
     - `.` and `_`
 - names must start with
-    - a letter
-
-
+    - a letter  
+  
+  
+```
 
 ## Libraries
 
-Once a number of related, reusable functions are created
+Once a number of related, reusable functions are created, they can be collected and stored in **libraries** (a.k.a. *packages*). 
 
-- they can be collected and stored in **libraries** (a.k.a. *packages*)
-  - `install.packages` is a function that can be used to install libraries (i.e., downloads it on your computer)
-  - `library` is a function that *loads* a library (i.e., makes it available to a script)
+To date there are more than 10,000 R libraries available, which can be downloaded and installed by means of the function 'install.packages()'. After installing the library the function 'library()' is used to make it available to a script.  
 
 Libraries can be of any size and complexity, e.g.:
 
 - `base`: base R functions, including the `sqrt` function above
-- `rgdal`: implementation of the [GDAL (Geospatial Data Abstraction Library)](https://gdal.org/) functionalities
+- `rgdal`: implementation of the [GDAL (Geospatial Data Abstraction Library)](https://gdal.org/) functionalities.
 
-
-## stringr
-
-R provides some basic functions to manipulate strings, but the `stringr` library provides a more consistent and well-defined set
+R provides some basic functions to manipulate strings, but the `stringr` library provides a more consistent and well-defined set of functions. Assuming that the library has already been installed on your computer, you can load the library as
 
 ```{r, echo=TRUE}
 library(stringr)
-str_length("Leicester")
-str_detect("Leicester", "e")
-str_replace_all("Leicester", "e", "x")
 ```
 
+Otherwise, you can download and install the library by calling the function
 
+```{r, echo=TRUE}
+install.packages('stringr')  #Note: the function takes an argument of type string ('')
+```
 
+```{block2, type = 'rmdtip'}
 
-## Summary
+Alternatively, you can download and install libraries (a.k.a. packages) using the 'Install Packages Menu' in RStudio (Tools/Install Packages...). In the upper dropdown list you can choose between 'install from CRAN' and 'install from Package Archive file'. The large majority of libraries are available with [CRAN - Comprehensive R Archive Network](https://cran.r-project.org/){target="_blank"}, which is a collection of libraries and other R resources.
 
-Core concepts
+```
 
-- Variables
-- Functions
-- Libraries
+Once the library is installed and loaded, a new series of functions is available within your environment. For instance, 'str_length' returns the number of letters included in a string:
 
-**Next**: Tidyverse
+```{r, echo=TRUE}
+str_length("UNIGIS")
+```
 
-- Tidyverse libraries
-- *pipe* operator
+'str_detect()' does return 'TRUE', if the first argument (a string) contains the second argument (letter as type string). Otherwise, the function returns 'FALSE':
 
+```{r, echo=TRUE}
+str_detect("UNIGIS", "I")
+```
+
+The function 'str_replace_all' replaces all the instances of the first argument that are identical with the second argument by a third argument:  
+
+```{r, echo=TRUE}
+str_replace_all("UNIGIS", "I", 'X')
+```
+
+```{block2, type = 'rmdexercise'}
+
+List all the functions available with library 'stringr' using the built in function ['ls()'](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ls){target="_blank"} 
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+ls("package:stringr")
+    
+</font></i>
+</p>
+</details> 
+
+```
+ 
