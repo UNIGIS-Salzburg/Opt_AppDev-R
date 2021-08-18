@@ -309,7 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="variables" class="section level2">
 <h2><span class="header-section-number">2.1</span> Variables</h2>
-<p>Variables are used to <strong>store data</strong>. Variables can be defined using an <em>identifier</em>, i.e a variable name (e.g., <code>a_variable</code>), on the left of an <em>assignment operator</em> <code>&lt;-</code>, followed by the object to be linked to the identifier such as a <em>value</em> (e.g., <code>1</code>):</p>
+<p>Variables are used to <strong>store data</strong>. Variables can be defined using an <em>identifier</em>, i.e a variable name (e.g., <code>a_variable</code>), on the left of an <em>assignment operator</em> <code>&lt;-</code>, followed by the object to be linked to the identifier such as a <em>value</em> (e.g. <code>1</code>):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="core-concepts.html#cb1-1"></a>a_variable &lt;-<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <p>The value of the variable can be invoked by simply specifying the <strong>identifier</strong>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="core-concepts.html#cb2-1"></a>a_variable</span></code></pre></div>
@@ -329,7 +329,7 @@ Note: The code is executed line by line in a sequential order!
 <p>At this point the question may arise, why bother using variables instead of simply typing the numbers? The answer is that variables make your code reusable and safe you lots of time.</p>
 <p>Let us consider the following example:</p>
 <p>Meteorologists monitor water temperature gradients in the Pacific Ocean to better understand El Niño weather patterns and to forecast extreme weather conditions associated with it. In a given year the water temperature at location A is 22°C and 26°C at location B. We could simply calculate the difference by executing the arithmetic operation ‘26 - 22’ in the console window of RStudio. However, temperatures are measured in real-time, i.e. we have to calculate temperature gradients over and over again.</p>
-<p>To speed up the process we could write code that does the calculation (temperature at location A - temperature at location B). This piece of code takes to variables (temperature at location A and B) as an input. As a result, we only need to update these to variables, the algorithm (simple subtraction in our example) is reusable.</p>
+<p>To speed up the process we could write code that does the calculation (temperature at location A - temperature at location B). This piece of code takes to variables (temperature at location A and B) as an input. As a result, we only need to update these two variables, the algorithm (simple subtraction in our example) is reusable.</p>
 <p>Of course, gains in efficiency are minor given that the calculus is simple. In a more practical application, however, the algorithm is likely being composed of many lines of code that evaluate El Niño occurance risk based on sensor records.</p>
 
 <div class="rmdexercise">
@@ -346,7 +346,7 @@ Note: The code is executed line by line in a sequential order!
 <p>temp_A &lt;- 24</p>
 <p>temp_B &lt;- 28</p>
 <p>diff &lt;- temp_A - temp_B</p>
-<p>As a result you can see that something has changed in the panel on the top right, which is the <strong>Environment Panel</strong>. The Environment Panel shows that we now have three slots of memory with identifiers named diff, temp_A and temp_B that have values of -4, 24 and 28. If we invoke the name of the identifier in the code (e.g. type <em>diff</em> and run), the value that is stored in that slot gets returned.</p>
+<p>When executing the code in Rstudio, you should see that something has changed in the panel on the top right, which is the <strong>Environment Panel</strong>. The Environment Panel shows that we now have three slots of memory with identifiers named diff, temp_A and temp_B that have values of -4, 24 and 28. If we invoke the name of the identifier in the code (e.g. type <em>diff</em> and run), the value that is stored in that slot gets returned.</p>
 </font></i>
 </p>
 </details>
@@ -357,12 +357,53 @@ Note: The code is executed line by line in a sequential order!
 <h2><span class="header-section-number">2.2</span> Algorithms and functions</h2>
 <p><em>An</em> <strong>algorithm</strong> <em>or effective procedure is a mechanical rule, or automatic method, or programme for performing some mathematical operation</em> (Cutland, 1980).</p>
 <p>A <strong>program</strong> is a specific set of instructions that implement an abstract algorithm.</p>
-<p>The definition of an algorithm (and thus a program) can consist of one or more <strong>function</strong>s</p>
-<ul>
-<li>set of instructions that preform a task</li>
-<li>possibly using an input, possibly returning an output value</li>
-</ul>
-<p>Programming languages usually provide pre-defined functions that implement common algorithms (e.g., to find the square root of a number or to calculate a linear regression)</p>
+<p>The definition of an algorithm (and thus a program) can consist of one or more <strong>function</strong>s. Functions are a set of instructions that preform a task, i.e. functions help structuring code into functional units. These functional units are reusable in the code. Some of them receive values as inputs, some return output values.</p>
+<p>Programming languages usually provide pre-defined functions that implement common algorithms (e.g., to find the square root of a number or to calculate a linear regression).</p>
+<p>For instance, the pre-defined function ‘sqrt()’ calculates the square root of an input value. ‘sqrt()’ (as every function in R) is invoked by specifying the <em>function name</em> and the <em>arguments</em> (input values) between simple brackets:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="core-concepts.html#cb7-1"></a><span class="kw">sqrt</span>(<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1.414214</code></pre>
+<p>By calling the functions, we instruct</p>
+
+<div class="rmdtip">
+Each input value corresponds to a <em>parameter</em> that was specified in the definition of the function. Sometimes the <em>parameter</em> name must be specified. This will get clearer when you write your own functions later in the module.
+</div>
+
+<p>‘round()’ is another function that is predefined in R:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="core-concepts.html#cb9-1"></a><span class="kw">round</span>(<span class="fl">1.414214</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1.41</code></pre>
+<p>Note that the name of the second parameter (‘digits’)needs to be specified. The parameter ‘digits’ indicates the number of digits we want to keep after the dot.</p>
+<p>The return value of a function can be stored in a variable:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="core-concepts.html#cb11-1"></a>sqrt_of_two &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)</span>
+<span id="cb11-2"><a href="core-concepts.html#cb11-2"></a>sqrt_of_two</span></code></pre></div>
+<pre><code>## [1] 1.414214</code></pre>
+<p>The output value is stored in the memory slot with the identifier ‘sqrt_of_two’. We can use the identifier ‘sqrt_of_two’ as an argument in other functions as</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="core-concepts.html#cb13-1"></a>sqrt_of_two &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)</span>
+<span id="cb13-2"><a href="core-concepts.html#cb13-2"></a><span class="kw">round</span>(sqrt_of_two, <span class="dt">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 1.414</code></pre>
+<p>The first line calculates the square root of ‘2’ and stores it in a variable with identifier ‘sqrt_of_two’. The second line rounds the value stored in ‘sqrt_of_two’ to three digits after the dot.</p>
+
+<div class="rmdexercise">
+<p>Can you store the output of the ‘round()’ function in a second variable?</p>
+<details closed>
+<summary><ins><strong>See solution!</strong></ins></summary>
+<p>
+<p><i><font color="grey"></p>
+<p>sqrt_of_two &lt;- sqrt(2)</p>
+<p>rounded_sqrt_of_two &lt;- round(sqrt_of_two, digits = 3)</p>
+</font></i>
+</p>
+</details>
+</div>
+
+<p>Functions can also be used as arguments of functions. For instance, we can use the function ‘sqrt()’ as the first argument in function ‘round()’:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="core-concepts.html#cb15-1"></a><span class="kw">round</span>(<span class="kw">sqrt</span>(<span class="dv">2</span>), <span class="dt">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 1.414</code></pre>
+<p>In this case the intermediate step of storing the square root of ‘2’ in a variable was skipped.</p>
+
+<div class="rmdtip">
+Using functions as arguments in other functions is often discouraged as it makes code hard to understand.
+</div>
+
 </div>
 <div id="functions" class="section level2">
 <h2><span class="header-section-number">2.3</span> Functions</h2>
@@ -375,9 +416,9 @@ Note: The code is executed line by line in a sequential order!
 <li>sometimes the <em>parameter</em> name must be specified</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="core-concepts.html#cb7-1"></a><span class="kw">sqrt</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="core-concepts.html#cb17-1"></a><span class="kw">sqrt</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 1.414214</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="core-concepts.html#cb9-1"></a><span class="kw">round</span>(<span class="fl">1.414214</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="core-concepts.html#cb19-1"></a><span class="kw">round</span>(<span class="fl">1.414214</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 1.41</code></pre>
 </div>
 <div id="functions-and-variables" class="section level2">
@@ -386,12 +427,12 @@ Note: The code is executed line by line in a sequential order!
 <li>functions can be used on the right side of <code>&lt;-</code></li>
 <li>variables and functions can be used as <em>arguments</em></li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="core-concepts.html#cb11-1"></a>sqrt_of_two &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)</span>
-<span id="cb11-2"><a href="core-concepts.html#cb11-2"></a>sqrt_of_two</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="core-concepts.html#cb21-1"></a>sqrt_of_two &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)</span>
+<span id="cb21-2"><a href="core-concepts.html#cb21-2"></a>sqrt_of_two</span></code></pre></div>
 <pre><code>## [1] 1.414214</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="core-concepts.html#cb13-1"></a><span class="kw">round</span>(sqrt_of_two, <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="core-concepts.html#cb23-1"></a><span class="kw">round</span>(sqrt_of_two, <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 1.41</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="core-concepts.html#cb15-1"></a><span class="kw">round</span>(<span class="kw">sqrt</span>(<span class="dv">2</span>), <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="core-concepts.html#cb25-1"></a><span class="kw">round</span>(<span class="kw">sqrt</span>(<span class="dv">2</span>), <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 1.41</code></pre>
 </div>
 <div id="naming" class="section level2">
@@ -433,13 +474,13 @@ Note: The code is executed line by line in a sequential order!
 <div id="stringr" class="section level2">
 <h2><span class="header-section-number">2.7</span> stringr</h2>
 <p>R provides some basic functions to manipulate strings, but the <code>stringr</code> library provides a more consistent and well-defined set</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="core-concepts.html#cb17-1"></a><span class="kw">library</span>(stringr)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="core-concepts.html#cb27-1"></a><span class="kw">library</span>(stringr)</span></code></pre></div>
 <pre><code>## Warning: package &#39;stringr&#39; was built under R version 4.0.4</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="core-concepts.html#cb19-1"></a><span class="kw">str_length</span>(<span class="st">&quot;Leicester&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="core-concepts.html#cb29-1"></a><span class="kw">str_length</span>(<span class="st">&quot;Leicester&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="core-concepts.html#cb21-1"></a><span class="kw">str_detect</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;e&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="core-concepts.html#cb31-1"></a><span class="kw">str_detect</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;e&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="core-concepts.html#cb23-1"></a><span class="kw">str_replace_all</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;e&quot;</span>, <span class="st">&quot;x&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="core-concepts.html#cb33-1"></a><span class="kw">str_replace_all</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;e&quot;</span>, <span class="st">&quot;x&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Lxicxstxr&quot;</code></pre>
 </div>
 <div id="summary" class="section level2">
