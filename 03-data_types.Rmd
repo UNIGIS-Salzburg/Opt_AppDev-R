@@ -1,96 +1,112 @@
-# Data Types
+# Complex Data Types
 
-## Recap
+In this lecture I will introduce a series of more complex data types that are built on top of the already discussed simple data types 'numeric', 'character' (string) and 'logic' (see [Lecture 1](#intro) 'Simple data types').
 
-**Prev**: Introduction
+```{block2, type = 'rmdtip'}
+In this lecture you will get to know the following complex data types:
 
-- 101 Lecture: Introduction to R
-- 102 Lecture: Core concepts
-- 103 Lecture: Tidyverse
-- 104 Practical session
+1) Vector
+2) Matrice
+3) List
+4) Data Frame
 
-**Now**: Data types
+```
 
-- vectors
-- factors
-- matrices, arrays
-- lists
-
-
+Complex data types constrain the structure that a container (such as a variable) might take. 
 
 ## Vectors
-**Vectors** are ordered list of values.
 
-- Vectors can be of any data type
+A **Vectors** is an ordered list of values. Vectors can be of any simple type:
+
     - numeric
     - character
     - logic
-- All items in a vector have to be of the same type
-- Vectors can be of any length
 
+However all items in a vector have to be of the same type. A vector can be of any length.
 
-## Defining vectors
-
-A vector variable can be defined using 
-
-- an **identifier** (e.g., `a_vector`) 
-- on the left of an **assignment operator** `<-`
-- followed by the object to be linked to the identifier
-- in this case, the result returned by the function `c`
-- which creates a vector containing the provided elements
+Defining a **vector variable** is similar to the declaration of simple type variables, except that the vector is created by a return function named 'c()' that combines values into a vector: 
 
 ```{r, echo=TRUE}
+# Declare a vector variable of strings
 a_vector <- c("Birmingham", "Derby", "Leicester",
   "Lincoln", "Nottingham", "Wolverhampton")
 a_vector
 ```
 
-<!--
-Note that the second line of the answer provided by R in the console when asking to evaluate the variable starts with `[5]`, as the second line stats with the fifth element of the answer (i.e., the vector)
--->
+```{block2, type = 'rmdtip'}
 
-## Creating vectors
+Note that the second line of the answer provided by R in the console when asking to evaluate the variable starts with `[5]`, as the second line strats with the fifth element of the answer (i.e., the vector)
 
-- the operator `:`
-- the function `seq`
-- the function `rep`
+```
+
+There are also other functions to create vectors such as 'seq()':
 
 ```{r, echo=TRUE}
-4:7
-seq(1, 7, by = 0.5)
-seq(1, 10, length.out = 7)
-rep("Ciao", 4)
+#create vector of real numbers of interval 0.5 in a range between 1 and 7
+a_vector <- seq(1, 7, by = 0.5)
+a_vector
+```
+
+or 'rep()':
+
+```{r, echo=TRUE}
+#create vector with 4 identical character string values
+a_vector <- rep("Ciao", 4)
+a_vector
+```
+
+Alternatively, numeric vectors can be created by using the following syntax:
+
+```{r, echo=TRUE}
+#create a vector of integer numbers between 1 and 10
+a_vector <- (1:10)
+a_vector
 ```
 
 
-## Selection
+### Vector element selection
 
-Each element of a vector can be retrieved specifying the related **index** between square brackets, after the identifier of the vector. The first element of the vector has index 1.
+Each element of a vector can be retrieved specifying the related **index** between square brackets, after the identifier of the vector. The **first element** of the vector **has index 1**. The following, code retrieves a value of '5' which is the third element of the vector with identifier 'a_vector':
 
 ```{r, echo=TRUE}
+a_vector <- (3:8)
 a_vector[3]
 ```
 
-
-A vector of indexes can be used to retrieve more than one element.
+A vector of indexes can be used to retrieve more than one element:
 
 ```{r, echo=TRUE}
-a_vector[c(5, 3)]
+a_vector <- (3:8)
+a_vector[c(2, 4)]
 ```
 
+The values 4 and 6 are returned. These values have the indices 2 and 4 in vector 'a_vector'. Note that the vector containing the indices 2 and 4 is created on the fly (without variable assignment).
 
-<!--
-## Examples
-```{r, echo=TRUE}
+```{block2, type = 'rmdexercise'}
+
+Now try by yourself. Create a vector that looks like
+
 east_midlands_cities <- c("Derby", "Leicester", "Lincoln", "Nottingham")
+
+, select the last three cities out of the four cities in 'east_midlands_cities' by means of an vector of indices and assign the returned values to a new vector named 'selected_cities'.
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+east_midlands_cities <- c("Derby", "Leicester", "Lincoln", "Nottingham")
+
 my_indexes <- 2:4
-east_midlands_cities[my_indexes]
-selected_cities <- c(east_midlands_cities[1], east_midlands_cities[3:4])
+
+selected_cities <- c(east_midlands_cities[my_indexes])
+    
+</font></i>
+</p>
+</details> 
+
 ```
--->
 
-
-## Functions on vectors
+### Functions on vectors
 
 Functions can be used on a vector variable directly
 
@@ -358,17 +374,4 @@ various
 
 
 
-## Recap
-
-Data types
-
-- Vectors
-- Factors
-- Matrices, arrays
-- Lists
-
-**Next**: Control structures
-
-- Conditional statements
-- Loops
 

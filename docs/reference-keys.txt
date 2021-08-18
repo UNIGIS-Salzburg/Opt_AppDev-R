@@ -1,5 +1,5 @@
 fig:L01-console
-introduction-to-r
+intro
 about-this-module
 r-programming-language
 installation-and-setup
@@ -13,7 +13,6 @@ variables
 algorithms-and-functions
 libraries
 data-types
-recap
 vectors
 defining-vectors
 creating-vectors
@@ -30,9 +29,9 @@ arrays
 selection-1
 lists
 named-lists
-recap-1
+recap
 control-structures
-recap-2
+recap-1
 if
 else
 code-blocks
@@ -52,7 +51,7 @@ functions-and-control-structures
 scope
 summary-2
 data-frames
-recap-3
+recap-2
 lists-and-named-lists
 data-frames-1
 selection-2
@@ -62,7 +61,7 @@ column-processing
 tibble
 summary-3
 selection-and-filtering
-recap-4
+recap-3
 dplyr
 example-dataset
 selecting-table-columns
@@ -90,7 +89,7 @@ readrwrite_tsv
 other-data-imports
 summary-6
 data-visualisation
-recap-5
+recap-4
 visual-variables
 grammar-of-graphics
 ggplot2
@@ -106,3 +105,13 @@ overlapping-points-1
 bin-counts
 bin-counts-1
 summary-7
+complex-data-types
+example
+repeat
+while-vs-repeat
+functions-and-control-structures-1
+example-1
+what-is-debugging
+to-debug-a-function
+example-2
+vector-element-selection
