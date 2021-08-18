@@ -24,3 +24,6 @@ csl: "branding/journal-of-geographical-systems.csl"
 ---
 
 
+Projects (select one out of two projects, project should cover all relevant concepts: control structures, data types, functions, selection and filtering, read and write, visualization):
+1) total pandemic excess mortality, data: https://www.mortality.org/, select 10 countries, create map
+2) Climate Change, Open Weather API, temp. difference two periods, 100 locations, create map, Important: cover APIs in lecture 'read and write'
