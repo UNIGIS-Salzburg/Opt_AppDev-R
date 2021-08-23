@@ -1,14 +1,14 @@
 # Complex Data Types
 
-In this lecture I will introduce a series of more complex data types that are built on top of the already discussed simple data types 'numeric', 'character' (string) and 'logic' (see [Lecture 1](#intro) 'Simple data types').
+In this lession I will introduce a series of more complex data types that are built on top of the already discussed simple data types 'numeric', 'character' (string) and 'logical' (see [Lesson 1](#intro) 'Simple data types').
 
 ```{block2, type = 'rmdtip'}
-In this lecture you will get to know the following complex data types:
+In this lession, you will get to know the following complex data types:
 
-1) Vector
-2) Matrice and Array
-3) List
-4) Data Frame
+1) Vectors
+2) Matrices and Arrays
+3) Lists
+4) Data Frames
 
 ```
 
@@ -16,7 +16,7 @@ Complex data types constrain the structure that a container (such as a variable)
 
 ## Vectors
 
-A **Vectors** is an ordered list of values. Vectors can be of any simple type:
+A **Vector** is an ordered list of values. Vectors can be of any simple type:
 
     - numeric
     - character
@@ -35,7 +35,7 @@ a_vector
 
 ```{block2, type = 'rmdtip'}
 
-Note that the second line of the answer provided by R in the console when asking to evaluate the variable starts with `[5]`, as the second line strats with the fifth element of the answer (i.e., the vector)
+Note that the second line of the returned elements starts with `[5]`, as the second line starts with the fifth element of the vector.
 
 ```
 
@@ -66,7 +66,7 @@ a_vector
 
 ### Vector element selection
 
-Each element of a vector can be retrieved specifying the related **index** between square brackets, after the identifier of the vector. The **first element** of the vector **has index 1**. The following, code retrieves a value of '5' which is the third element of the vector with identifier 'a_vector':
+Each element of a vector can be retrieved specifying the related **index** between square brackets, after the identifier of the vector. The **first element** of the vector **has index 1**. The following, code retrieves a value of '5', which is the third element of the vector with identifier 'a_vector':
 
 ```{r, echo=TRUE}
 a_vector <- (3:8)
@@ -92,15 +92,15 @@ east_midlands_cities <- c("Derby", "Leicester", "Lincoln", "Nottingham")
 
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
-<p><i><font color="grey">
+<p><font color="grey">
   
-east_midlands_cities <- c("Derby", "Leicester", "Lincoln", "Nottingham")
+east_midlands_cities <- c('Derby', 'Leicester', 'Lincoln', 'Nottingham')
 
 my_indexes <- 2:4
 
 selected_cities <- c(east_midlands_cities[my_indexes])
     
-</font></i>
+</font>
 </p>
 </details> 
 
@@ -108,7 +108,7 @@ selected_cities <- c(east_midlands_cities[my_indexes])
 
 ### Functions on vectors
 
-In R, functions can be used on a vector variable in the same way they are used on simple variables. In this case the selected function will be applied to each element of the vector. The output will be a new vector containing the same number of elements as the input vector. 
+In R, functions can be used on a vector variable in the same way they are used on simple variables. In this case, the selected function will be applied to each element of the vector. The output will be a new vector containing the same number of elements as the input vector. 
 
 For instance, adding a number of ten to a vector of numbers between 1 and 5 will result in a vector of numbers between 11 and 15:
 
@@ -156,7 +156,7 @@ A **factor** is a data type similar to a vector. However, the values contained i
 
 ### Matrices
 
-So far you have learned about one dimensional data types. **Matrices** are collections of numbers arranged in a two-dimensional rectangular layout.
+So far, you have learned about one dimensional data types. **Matrices** are collections of numbers arranged in a two-dimensional rectangular layout.
 
 To create a matrix, two arguments should be provided to the function matrix. The first argument is a vector of values. The second specifies the number of rows and columns:
 
@@ -191,7 +191,7 @@ a3dim_array
 
 Subsetting of matrices and arrays works in a very similar way as seen for vectors. However, as these are multi-dimensional objects, one value (or index) needs to be specified for each one of the dimensions.
 
-In the example below we are subsetting the second row and the first and second column of the matrix:
+In the example, below we are subsetting the second row and the first and second column of the matrix:
 
 ```{r, echo=TRUE}
 a_matrix <- matrix(c(3, 5, 7, 4, 3, 1), c(3, 2))
@@ -229,7 +229,7 @@ a_matrix
 
 Variables of the type **list** can contain elements of different types (including vectors and matrices), whereas elements of vectors are all of the same type.
 
-In the following example I created a list containing the simple types 'character' and 'numeric integer': 
+In the following example, I created a list containing the simple types 'character' and 'numeric integer': 
 
 ```{r, echo=TRUE}
 employee <- list("Christian", 2017)
@@ -239,7 +239,7 @@ employee[[1]] # Note the double square brackets for selection
 
 In contrast to vectors, matrices or arrays, the selection of list elements requires the use of **double square brackets**. 
 
-A specific type of list is the so called named list. In **named lists** each element has a name, and elements can be selected using their name after the symbol `$`: 
+A specific type of list is the so called named list. In **named lists**, each element has a name, and elements can be selected using their name after the symbol `$`: 
 
 ```{r, echo=TRUE}
 employee <- list(employee_name = "Christian", start_year = 2017)
@@ -249,47 +249,118 @@ employee$employee_name
 
 ### Data Frame
 
-...data frame also $ for selection....
+**Data frames** are commonly used in R to encode tables of data. A data frame is equivalent to a named list where all elements are vectors of the same length. The code below creates a data frame named 'employees' that is composed of three vectors:
 
-## Functions on complex types 
-
-
-<!--
-## apply
-`apply` applies another function to each level of a set dimension of an array
 ```{r, echo=TRUE}
-apply(a3dim_array, 3, min) # apply on third dimension
-apply(a3dim_array, 1, min) # apply on first dimension
-apply(a3dim_array, 2, min) # apply on second dimension
+employees <- data.frame(
+  EmployeeName = c("Maria", "Pete", "Sarah"),
+  Age = c(47, 34, 32),
+  Role = c("Professor", "Researcher", "Researcher"))
 ```
--->
 
+You can retrieve the tabular structure of the data frame 'employees' by invoking the identifier in the code: 
 
-
-<!--
-## lapply
-With `lapply` take care that the function makes sense for *any* element in the list
 ```{r, echo=TRUE}
-various <- list(
-  "Some text",
-  matrix(c(6, 3, 1, 2), c(2, 2))
-)
-lapply(various, is.numeric)
+employees
 ```
-## Lists: append
-The function **append** can be used to append a new element at the end of a list.
-```{r, echo=TRUE, eval=FALSE}
-various <- list("Stefano", c(2015, 2016), "Lecturer",
-                matrix(c(6, 3, 1, 2), c(2, 2)))
-various <- append(various, list(c(7, 6, 9, 1))) 
-various
+
+Eventually data frames are tables. Each named element is a column of the table.
+
+```{block2, type = 'rmdexercise'}
+
+Given the precondition that data frames are composed of named lists where elements are **vectors**, is it possible to mix simple types in a vector/in a data frame column? 
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+Elements of a vector (data frame column) must be of the same type (charater, logical or numeric). In the example above, the column 'EmployeeName' contains only character strings, the column 'Age' contains only numeric etc.
+    
+</font></i>
+</p>
+</details> 
+
 ```
--->
+
+As the columns in a data frame have the same length, one element is present for each row of the table. Meaning the first element of vector 'EmployeeName' in data frame 'employees' is the Name of the first employee. The first element in vector 'Age' in data frame 'employees' is the age of the first employee etc.
+
+The selection of values from a data frame is similar to what we have seen for vectors and lists. However, you have to consider the two-dimensional shape of data frames. As such, you will generally need to specify two indices in order to retrieve values from a table.
+
+The following example retrieves the first element of the first column in data frame 'employees':
+
+```{r, echo=TRUE}
+employees[1, 1]
+```
+
+We can also retrieve entire rows...
+
+```{r, echo=TRUE}
+employees[1, ]
+```
+
+...and columns:
+
+```{r, echo=TRUE}
+employees[ ,1]
+```
+
+Alternatively, columns can be selected by means of dollar signs and columns names:
+
+```{r, echo=TRUE}
+employees$Age
+```
+
+This returns the vector 'Age'. Accordingly, we can use square brackets to retrieve elements of the vector: 
+
+```{r, echo=TRUE}
+employees$Age[1]
+```
+
+To further modify the data frame, we can change elements (e.g. change the age of 'Pete' from 34 to 33)...
+
+```{r, echo=TRUE}
+employees$Age[2] <- 33
+```
+
+...or insert new columns as vectors (new column name Place):
+
+```{r, echo=TRUE}
+employees$Place <- c("Salzburg", "Salzburg", "Salzburg")
+employees
+```
+
+```{block2, type = 'rmdexercise'}
+
+Operations can be performed on columns in the same way as on vectors. As an exercise, create a new variable, which stores the current year...
+
+*current_year <- as.integer(format(Sys.Date(), "%Y"))*
+
+...use the column 'Age' in data frame 'employees' to calculate the year of birth for every employee...  
+
+current_year - employees$Age
+  
+...and insert the year of birth as a new column.
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+#Use Sys.Date to retrieve the current year
+
+current_year <- as.integer(format(Sys.Date(), "%Y"))
+
+#Calculate employee year of birth
+
+employees<span>&#36;</span>Year_of_birth <- current_year - employees<span>&#36;</span>Age
+
+employees
+    
+</font></i>
+</p>
+</details> 
+
+```
 
 
-sapply
-
-
-tapply
 
 

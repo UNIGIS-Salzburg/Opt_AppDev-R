@@ -22,7 +22,6 @@ arrays
 selection
 list
 data-frame
-functions-on-complex-types
 control-structures
 recap
 if

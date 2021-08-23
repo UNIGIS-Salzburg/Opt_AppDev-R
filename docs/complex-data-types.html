@@ -164,7 +164,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2.4" data-path="complex-data-types.html"><a href="complex-data-types.html#list"><i class="fa fa-check"></i><b>3.2.4</b> List</a></li>
 <li class="chapter" data-level="3.2.5" data-path="complex-data-types.html"><a href="complex-data-types.html#data-frame"><i class="fa fa-check"></i><b>3.2.5</b> Data Frame</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="complex-data-types.html"><a href="complex-data-types.html#functions-on-complex-types"><i class="fa fa-check"></i><b>3.3</b> Functions on complex types</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="control-structures.html"><a href="control-structures.html"><i class="fa fa-check"></i><b>4</b> Control structures</a><ul>
 <li class="chapter" data-level="4.1" data-path="control-structures.html"><a href="control-structures.html#recap"><i class="fa fa-check"></i><b>4.1</b> Recap</a></li>
@@ -270,22 +269,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="complex-data-types" class="section level1">
 <h1><span class="header-section-number">Lesson 3</span> Complex Data Types</h1>
-<p>In this lecture I will introduce a series of more complex data types that are built on top of the already discussed simple data types ‘numeric’, ‘character’ (string) and ‘logic’ (see <a href="intro.html#intro">Lecture 1</a> ‘Simple data types’).</p>
+<p>In this lession I will introduce a series of more complex data types that are built on top of the already discussed simple data types ‘numeric’, ‘character’ (string) and ‘logical’ (see <a href="intro.html#intro">Lesson 1</a> ‘Simple data types’).</p>
 
 <div class="rmdtip">
-<p>In this lecture you will get to know the following complex data types:</p>
+<p>In this lession, you will get to know the following complex data types:</p>
 <ol style="list-style-type: decimal">
-<li>Vector</li>
-<li>Matrice and Array</li>
-<li>List</li>
-<li>Data Frame</li>
+<li>Vectors</li>
+<li>Matrices and Arrays</li>
+<li>Lists</li>
+<li>Data Frames</li>
 </ol>
 </div>
 
 <p>Complex data types constrain the structure that a container (such as a variable) might take.</p>
 <div id="vectors" class="section level2">
 <h2><span class="header-section-number">3.1</span> Vectors</h2>
-<p>A <strong>Vectors</strong> is an ordered list of values. Vectors can be of any simple type:</p>
+<p>A <strong>Vector</strong> is an ordered list of values. Vectors can be of any simple type:</p>
 <pre><code>- numeric
 - character
 - logic</code></pre>
@@ -299,7 +298,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [5] &quot;Nottingham&quot;    &quot;Wolverhampton&quot;</code></pre>
 
 <div class="rmdtip">
-<p>Note that the second line of the answer provided by R in the console when asking to evaluate the variable starts with <code>[5]</code>, as the second line strats with the fifth element of the answer (i.e., the vector)</p>
+<p>Note that the second line of the returned elements starts with <code>[5]</code>, as the second line starts with the fifth element of the vector.</p>
 </div>
 
 <p>There are also other functions to create vectors such as ‘seq()’:</p>
@@ -319,7 +318,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <div id="vector-element-selection" class="section level3">
 <h3><span class="header-section-number">3.1.1</span> Vector element selection</h3>
-<p>Each element of a vector can be retrieved specifying the related <strong>index</strong> between square brackets, after the identifier of the vector. The <strong>first element</strong> of the vector <strong>has index 1</strong>. The following, code retrieves a value of ‘5’ which is the third element of the vector with identifier ‘a_vector’:</p>
+<p>Each element of a vector can be retrieved specifying the related <strong>index</strong> between square brackets, after the identifier of the vector. The <strong>first element</strong> of the vector <strong>has index 1</strong>. The following, code retrieves a value of ‘5’, which is the third element of the vector with identifier ‘a_vector’:</p>
 <div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="complex-data-types.html#cb38-1"></a>a_vector &lt;-<span class="st"> </span>(<span class="dv">3</span><span class="op">:</span><span class="dv">8</span>)</span>
 <span id="cb38-2"><a href="complex-data-types.html#cb38-2"></a>a_vector[<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
@@ -336,11 +335,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <details closed>
 <summary><ins><strong>See solution!</strong></ins></summary>
 <p>
-<p><i><font color="grey"></p>
-<p>east_midlands_cities &lt;- c(“Derby”, “Leicester”, “Lincoln”, “Nottingham”)</p>
+<p><font color="grey"></p>
+<p>east_midlands_cities &lt;- c(‘Derby’, ‘Leicester’, ‘Lincoln’, ‘Nottingham’)</p>
 <p>my_indexes &lt;- 2:4</p>
 <p>selected_cities &lt;- c(east_midlands_cities[my_indexes])</p>
-</font></i>
+</font>
 </p>
 </details>
 </div>
@@ -348,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="functions-on-vectors" class="section level3">
 <h3><span class="header-section-number">3.1.2</span> Functions on vectors</h3>
-<p>In R, functions can be used on a vector variable in the same way they are used on simple variables. In this case the selected function will be applied to each element of the vector. The output will be a new vector containing the same number of elements as the input vector.</p>
+<p>In R, functions can be used on a vector variable in the same way they are used on simple variables. In this case, the selected function will be applied to each element of the vector. The output will be a new vector containing the same number of elements as the input vector.</p>
 <p>For instance, adding a number of ten to a vector of numbers between 1 and 5 will result in a vector of numbers between 11 and 15:</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="complex-data-types.html#cb42-1"></a>a_numeric_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
 <span id="cb42-2"><a href="complex-data-types.html#cb42-2"></a>a_numeric_vector &lt;-<span class="st"> </span>a_numeric_vector <span class="op">+</span><span class="st"> </span><span class="dv">10</span></span>
@@ -383,7 +382,7 @@ A <strong>factor</strong> is a data type similar to a vector. However, the value
 <h2><span class="header-section-number">3.2</span> Multi-dimensional data types</h2>
 <div id="matrices" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Matrices</h3>
-<p>So far you have learned about one dimensional data types. <strong>Matrices</strong> are collections of numbers arranged in a two-dimensional rectangular layout.</p>
+<p>So far, you have learned about one dimensional data types. <strong>Matrices</strong> are collections of numbers arranged in a two-dimensional rectangular layout.</p>
 <p>To create a matrix, two arguments should be provided to the function matrix. The first argument is a vector of values. The second specifies the number of rows and columns:</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="complex-data-types.html#cb52-1"></a>a_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span>
 <span id="cb52-2"><a href="complex-data-types.html#cb52-2"></a>a_matrix</span></code></pre></div>
@@ -436,7 +435,7 @@ A <strong>factor</strong> is a data type similar to a vector. However, the value
 <div id="selection" class="section level3">
 <h3><span class="header-section-number">3.2.3</span> Selection</h3>
 <p>Subsetting of matrices and arrays works in a very similar way as seen for vectors. However, as these are multi-dimensional objects, one value (or index) needs to be specified for each one of the dimensions.</p>
-<p>In the example below we are subsetting the second row and the first and second column of the matrix:</p>
+<p>In the example, below we are subsetting the second row and the first and second column of the matrix:</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="complex-data-types.html#cb62-1"></a>a_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span>
 <span id="cb62-2"><a href="complex-data-types.html#cb62-2"></a>a_matrix</span></code></pre></div>
 <pre><code>##      [,1] [,2]
@@ -467,7 +466,7 @@ A <strong>factor</strong> is a data type similar to a vector. However, the value
 <div id="list" class="section level3">
 <h3><span class="header-section-number">3.2.4</span> List</h3>
 <p>Variables of the type <strong>list</strong> can contain elements of different types (including vectors and matrices), whereas elements of vectors are all of the same type.</p>
-<p>In the following example I created a list containing the simple types ‘character’ and ‘numeric integer’:</p>
+<p>In the following example, I created a list containing the simple types ‘character’ and ‘numeric integer’:</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="complex-data-types.html#cb66-1"></a>employee &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Christian&quot;</span>, <span class="dv">2017</span>)</span>
 <span id="cb66-2"><a href="complex-data-types.html#cb66-2"></a>employee</span></code></pre></div>
 <pre><code>## [[1]]
@@ -478,7 +477,7 @@ A <strong>factor</strong> is a data type similar to a vector. However, the value
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="complex-data-types.html#cb68-1"></a>employee[[<span class="dv">1</span>]] <span class="co"># Note the double square brackets for selection</span></span></code></pre></div>
 <pre><code>## [1] &quot;Christian&quot;</code></pre>
 <p>In contrast to vectors, matrices or arrays, the selection of list elements requires the use of <strong>double square brackets</strong>.</p>
-<p>A specific type of list is the so called named list. In <strong>named lists</strong> each element has a name, and elements can be selected using their name after the symbol <code>$</code>:</p>
+<p>A specific type of list is the so called named list. In <strong>named lists</strong>, each element has a name, and elements can be selected using their name after the symbol <code>$</code>:</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="complex-data-types.html#cb70-1"></a>employee &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">employee_name =</span> <span class="st">&quot;Christian&quot;</span>, <span class="dt">start_year =</span> <span class="dv">2017</span>)</span>
 <span id="cb70-2"><a href="complex-data-types.html#cb70-2"></a>employee</span></code></pre></div>
 <pre><code>## $employee_name
@@ -491,71 +490,81 @@ A <strong>factor</strong> is a data type similar to a vector. However, the value
 </div>
 <div id="data-frame" class="section level3">
 <h3><span class="header-section-number">3.2.5</span> Data Frame</h3>
-<p>…data frame also $ for selection….</p>
+<p><strong>Data frames</strong> are commonly used in R to encode tables of data. A data frame is equivalent to a named list where all elements are vectors of the same length. The code below creates a data frame named ‘employees’ that is composed of three vectors:</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="complex-data-types.html#cb74-1"></a>employees &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb74-2"><a href="complex-data-types.html#cb74-2"></a>  <span class="dt">EmployeeName =</span> <span class="kw">c</span>(<span class="st">&quot;Maria&quot;</span>, <span class="st">&quot;Pete&quot;</span>, <span class="st">&quot;Sarah&quot;</span>),</span>
+<span id="cb74-3"><a href="complex-data-types.html#cb74-3"></a>  <span class="dt">Age =</span> <span class="kw">c</span>(<span class="dv">47</span>, <span class="dv">34</span>, <span class="dv">32</span>),</span>
+<span id="cb74-4"><a href="complex-data-types.html#cb74-4"></a>  <span class="dt">Role =</span> <span class="kw">c</span>(<span class="st">&quot;Professor&quot;</span>, <span class="st">&quot;Researcher&quot;</span>, <span class="st">&quot;Researcher&quot;</span>))</span></code></pre></div>
+<p>You can retrieve the tabular structure of the data frame ‘employees’ by invoking the identifier in the code:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="complex-data-types.html#cb75-1"></a>employees</span></code></pre></div>
+<pre><code>##   EmployeeName Age       Role
+## 1        Maria  47  Professor
+## 2         Pete  34 Researcher
+## 3        Sarah  32 Researcher</code></pre>
+<p>Eventually data frames are tables. Each named element is a column of the table.</p>
+
+<div class="rmdexercise">
+<p>Given the precondition that data frames are composed of named lists where elements are <strong>vectors</strong>, is it possible to mix simple types in a vector/in a data frame column?</p>
+<details closed>
+<summary><ins><strong>See solution!</strong></ins></summary>
+<p>
+<p><i><font color="grey"></p>
+<p>Elements of a vector (data frame column) must be of the same type (charater, logical or numeric). In the example above, the column ‘EmployeeName’ contains only character strings, the column ‘Age’ contains only numeric etc.</p>
+</font></i>
+</p>
+</details>
 </div>
+
+<p>As the columns in a data frame have the same length, one element is present for each row of the table. Meaning the first element of vector ‘EmployeeName’ in data frame ‘employees’ is the Name of the first employee. The first element in vector ‘Age’ in data frame ‘employees’ is the age of the first employee etc.</p>
+<p>The selection of values from a data frame is similar to what we have seen for vectors and lists. However, you have to consider the two-dimensional shape of data frames. As such, you will generally need to specify two indices in order to retrieve values from a table.</p>
+<p>The following example retrieves the first element of the first column in data frame ‘employees’:</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="complex-data-types.html#cb77-1"></a>employees[<span class="dv">1</span>, <span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Maria&quot;</code></pre>
+<p>We can also retrieve entire rows…</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="complex-data-types.html#cb79-1"></a>employees[<span class="dv">1</span>, ]</span></code></pre></div>
+<pre><code>##   EmployeeName Age      Role
+## 1        Maria  47 Professor</code></pre>
+<p>…and columns:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="complex-data-types.html#cb81-1"></a>employees[ ,<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Maria&quot; &quot;Pete&quot;  &quot;Sarah&quot;</code></pre>
+<p>Alternatively, columns can be selected by means of dollar signs and columns names:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="complex-data-types.html#cb83-1"></a>employees<span class="op">$</span>Age</span></code></pre></div>
+<pre><code>## [1] 47 34 32</code></pre>
+<p>This returns the vector ‘Age’. Accordingly, we can use square brackets to retrieve elements of the vector:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="complex-data-types.html#cb85-1"></a>employees<span class="op">$</span>Age[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 47</code></pre>
+<p>To further modify the data frame, we can change elements (e.g. change the age of ‘Pete’ from 34 to 33)…</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="complex-data-types.html#cb87-1"></a>employees<span class="op">$</span>Age[<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">33</span></span></code></pre></div>
+<p>…or insert new columns as vectors (new column name Place):</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="complex-data-types.html#cb88-1"></a>employees<span class="op">$</span>Place &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Salzburg&quot;</span>, <span class="st">&quot;Salzburg&quot;</span>, <span class="st">&quot;Salzburg&quot;</span>)</span>
+<span id="cb88-2"><a href="complex-data-types.html#cb88-2"></a>employees</span></code></pre></div>
+<pre><code>##   EmployeeName Age       Role    Place
+## 1        Maria  47  Professor Salzburg
+## 2         Pete  33 Researcher Salzburg
+## 3        Sarah  32 Researcher Salzburg</code></pre>
+
+<div class="rmdexercise">
+<p>Operations can be performed on columns in the same way as on vectors. As an exercise, create a new variable, which stores the current year…</p>
+<p><em>current_year &lt;- as.integer(format(Sys.Date(), “%Y”))</em></p>
+<p>…use the column ‘Age’ in data frame ‘employees’ to calculate the year of birth for every employee…</p>
+<p>current_year - employees$Age</p>
+<p>…and insert the year of birth as a new column.</p>
+<details closed>
+<summary><ins><strong>See solution!</strong></ins></summary>
+<p>
+<p><i><font color="grey"></p>
+<p>#Use Sys.Date to retrieve the current year</p>
+<p>current_year &lt;- as.integer(format(Sys.Date(), “%Y”))</p>
+<p>#Calculate employee year of birth</p>
+<p>employees<span>$</span>Year_of_birth &lt;- current_year - employees<span>$</span>Age</p>
+<p>employees</p>
+</font></i>
+</p>
+</details>
 </div>
-<div id="functions-on-complex-types" class="section level2">
-<h2><span class="header-section-number">3.3</span> Functions on complex types</h2>
-<!--
-## apply
-`apply` applies another function to each level of a set dimension of an array
 
-```r
-apply(a3dim_array, 3, min) # apply on third dimension
-```
 
-```
-## [1]  1 13
-```
-
-```r
-apply(a3dim_array, 1, min) # apply on first dimension
-```
-
-```
-## [1] 1 2 3 4
-```
-
-```r
-apply(a3dim_array, 2, min) # apply on second dimension
-```
-
-```
-## [1] 1 5 9
-```
--->
-<!--
-## lapply
-With `lapply` take care that the function makes sense for *any* element in the list
-
-```r
-various <- list(
-  "Some text",
-  matrix(c(6, 3, 1, 2), c(2, 2))
-)
-lapply(various, is.numeric)
-```
-
-```
-## [[1]]
-## [1] FALSE
-## 
-## [[2]]
-## [1] TRUE
-```
-## Lists: append
-The function **append** can be used to append a new element at the end of a list.
-
-```r
-various <- list("Stefano", c(2015, 2016), "Lecturer",
-                matrix(c(6, 3, 1, 2), c(2, 2)))
-various <- append(various, list(c(7, 6, 9, 1))) 
-various
-```
--->
-<p>sapply</p>
-<p>tapply</p>
-
+</div>
 </div>
 </div>
             </section>

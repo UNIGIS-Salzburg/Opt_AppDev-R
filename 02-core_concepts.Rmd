@@ -1,7 +1,7 @@
 # Core concepts
 
 ```{block2, type = 'rmdtip'}
-In this lecture we will focus on three fundamental concepts in programming:
+In this lesson we will focus on three fundamental concepts in programming:
 
 1) Variables
 2) Functions
