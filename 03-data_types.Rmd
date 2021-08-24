@@ -86,7 +86,7 @@ The values 4 and 6 are returned. These values have the indices 2 and 4 in vector
 
 Now try by yourself. Create a vector that looks like
 
-east_midlands_cities <- c("Derby", "Leicester", "Lincoln", "Nottingham")
+east_midlands_cities <- c(<span>&quot;</span>Derby<span>&quot;</span>, <span>&quot;</span>Leicester<span>&quot;</span>, <span>&quot;</span>Lincoln<span>&quot;</span>, <span>&quot;</span>Nottingham<span>&quot;</span>)
 
 , select the last three cities out of the four cities in 'east_midlands_cities' and assign the returned values to a new vector named 'selected_cities'.
 
@@ -94,15 +94,15 @@ east_midlands_cities <- c("Derby", "Leicester", "Lincoln", "Nottingham")
 <summary><ins>**See solution!**</ins></summary>
 <p><font color="grey">
   
-east_midlands_cities <- c('Derby', 'Leicester', 'Lincoln', 'Nottingham')
+east_midlands_cities <- c(<span>&quot;</span>Derby<span>&quot;</span>, <span>&quot;</span>Leicester<span>&quot;</span>, <span>&quot;</span>Lincoln<span>&quot;</span>, <span>&quot;</span>Nottingham<span>&quot;</span>)
 
 my_indexes <- 2:4
 
 selected_cities <- c(east_midlands_cities[my_indexes])
-    
+  
 </font>
 </p>
-</details> 
+</details>
 
 ```
 
@@ -333,7 +333,7 @@ employees
 
 Operations can be performed on columns in the same way as on vectors. As an exercise, create a new variable, which stores the current year...
 
-*current_year <- as.integer(format(Sys.Date(), "%Y"))*
+*current_year <- as.integer(format(Sys.Date(), <span>&quot;</span>%Y<span>&quot;</span>))*
 
 ...use the column 'Age' in data frame 'employees' to calculate the year of birth for every employee...  
 
@@ -347,7 +347,7 @@ current_year - employees$Age
   
 #Use Sys.Date to retrieve the current year
 
-current_year <- as.integer(format(Sys.Date(), "%Y"))
+current_year <- as.integer(format(Sys.Date(), <span>&quot;</span>%Y<span>&quot;</span>))
 
 #Calculate employee year of birth
 

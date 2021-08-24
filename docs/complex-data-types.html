@@ -330,13 +330,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div class="rmdexercise">
 <p>Now try by yourself. Create a vector that looks like</p>
-<p>east_midlands_cities &lt;- c(“Derby”, “Leicester”, “Lincoln”, “Nottingham”)</p>
+<p>east_midlands_cities &lt;- c(<span>"</span>Derby<span>"</span>, <span>"</span>Leicester<span>"</span>, <span>"</span>Lincoln<span>"</span>, <span>"</span>Nottingham<span>"</span>)</p>
 <p>, select the last three cities out of the four cities in ‘east_midlands_cities’ and assign the returned values to a new vector named ‘selected_cities’.</p>
 <details closed>
 <summary><ins><strong>See solution!</strong></ins></summary>
 <p>
 <p><font color="grey"></p>
-<p>east_midlands_cities &lt;- c(‘Derby’, ‘Leicester’, ‘Lincoln’, ‘Nottingham’)</p>
+<p>east_midlands_cities &lt;- c(<span>"</span>Derby<span>"</span>, <span>"</span>Leicester<span>"</span>, <span>"</span>Lincoln<span>"</span>, <span>"</span>Nottingham<span>"</span>)</p>
 <p>my_indexes &lt;- 2:4</p>
 <p>selected_cities &lt;- c(east_midlands_cities[my_indexes])</p>
 </font>
@@ -545,7 +545,7 @@ A <strong>factor</strong> is a data type similar to a vector. However, the value
 
 <div class="rmdexercise">
 <p>Operations can be performed on columns in the same way as on vectors. As an exercise, create a new variable, which stores the current year…</p>
-<p><em>current_year &lt;- as.integer(format(Sys.Date(), “%Y”))</em></p>
+<p><em>current_year &lt;- as.integer(format(Sys.Date(), <span>"</span>%Y<span>"</span>))</em></p>
 <p>…use the column ‘Age’ in data frame ‘employees’ to calculate the year of birth for every employee…</p>
 <p>current_year - employees$Age</p>
 <p>…and insert the year of birth as a new column.</p>
@@ -554,7 +554,7 @@ A <strong>factor</strong> is a data type similar to a vector. However, the value
 <p>
 <p><i><font color="grey"></p>
 <p>#Use Sys.Date to retrieve the current year</p>
-<p>current_year &lt;- as.integer(format(Sys.Date(), “%Y”))</p>
+<p>current_year &lt;- as.integer(format(Sys.Date(), <span>"</span>%Y<span>"</span>))</p>
 <p>#Calculate employee year of birth</p>
 <p>employees<span>$</span>Year_of_birth &lt;- current_year - employees<span>$</span>Age</p>
 <p>employees</p>
