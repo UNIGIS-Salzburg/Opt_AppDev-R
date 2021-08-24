@@ -72,7 +72,7 @@ What if you type in a text value (e.g. test) and press Enter?
 <summary><ins>**See solution!**</ins></summary>
 <p><i><font color="grey">
   
-The interpreter returns an error, because this datatype is unknown. Text is commonly reffered to as **String** or **String of Characters**. When apostrophes (i.e. "Test") are added, the interpreter knows that this is a String.
+The interpreter returns an error, because this datatype is unknown. Text is commonly reffered to as **String** or **String of Characters**. When apostrophes (i.e. <span>&quot;</span>Test<span>&quot;</span>) are added, the interpreter knows that this is a String.
     
 </font></i>
 </p>
