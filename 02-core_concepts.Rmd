@@ -231,7 +231,7 @@ List all the functions available with library 'stringr' using the built in funct
 <summary><ins>**See solution!**</ins></summary>
 <p><i><font color="grey">
   
-ls("package:stringr")
+ls(<span>&quot;</span>package:stringr<span>&quot;</span>)
     
 </font></i>
 </p>
