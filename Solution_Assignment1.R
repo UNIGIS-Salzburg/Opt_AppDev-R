@@ -7,10 +7,10 @@ library(tidyverse)
 # Read data from comma-separated csv
 access_mortality_data <- read.csv("C:/Users/b1045498/Downloads/stmf_v01.csv", header = TRUE, sep = ";")
 
-# Select specific columns, 'CountryCode', 'Year', 'Week', 'DTotal' and rows of 10 countries, Important: select sex = both
-access_mortality_data_SelectedCountries <- access_mortality_data %>% dplyr::select(CountryCode, Year, Week, DTotal, Sex) %>% dplyr::filter(CountryCode == "AUT" 
+# Select specific columns, 'CountryCode', 'Year', 'DTotal' and rows of 10 countries, Important: select sex = both
+access_mortality_data_SelectedCountries <- access_mortality_data %>% dplyr::filter(Sex == "b") %>% dplyr::select(CountryCode, Year, DTotal) %>% dplyr::filter(CountryCode == "AUT" 
 | CountryCode == "CZE" | CountryCode == "CZE" | CountryCode == "SWE" | CountryCode == "POL" | CountryCode == "SVN" | CountryCode == "SVK" | CountryCode == "BEL"
-| CountryCode == "ITA" | CountryCode == "FIN") %>% dplyr::filter(Sex == "b")
+| CountryCode == "ITA" | CountryCode == "FIN") 
 
 # exclude year 2021, group by country and year, sum groups 
 sum_d_ctry_yr <- access_mortality_data_SelectedCountries %>% dplyr::filter(!Year == 2021) %>% dplyr::group_by(CountryCode, Year) %>% dplyr::summarise(sum(DTotal))
@@ -38,6 +38,6 @@ z_score <- final_tab %>% dplyr::mutate(z = (d2020 - mean) / std)
 
 # visualize in a map, Desktop GIS or use R (Geocomputation with R: https://geocompr.robinlovelace.net/adv-map.html, R Graph Gallery: https://www.r-graph-gallery.com/choropleth-map.html)
 
-print(sum_d_ctry_yr,n=nrow(sum_d_ctry_yr))
+print(final_tab,n=nrow(final_tab))
 print(z_score,n=nrow(z_score))
 
