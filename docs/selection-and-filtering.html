@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 7 Selection and filtering | Application Development with R</title>
+  <title>Lesson 6 Selection and filtering | Application Development with R</title>
   <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 7 Selection and filtering | Application Development with R" />
+  <meta property="og:title" content="Lesson 6 Selection and filtering | Application Development with R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/branding/Cover_epub.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UNIGIS-Salzburg/En_AppDev-R" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 7 Selection and filtering | Application Development with R" />
+  <meta name="twitter:title" content="Lesson 6 Selection and filtering | Application Development with R" />
   
   <meta name="twitter:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="twitter:image" content="/branding/Cover_epub.png" />
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="data-frames.html"/>
+<link rel="prev" href="functions.html"/>
 <link rel="next" href="read-and-write-data.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -187,64 +187,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.7" data-path="functions.html"><a href="functions.html#scope"><i class="fa fa-check"></i><b>5.7</b> Scope</a></li>
 <li class="chapter" data-level="5.8" data-path="functions.html"><a href="functions.html#summary-2"><i class="fa fa-check"></i><b>5.8</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>6</b> Data frames</a><ul>
-<li class="chapter" data-level="6.1" data-path="data-frames.html"><a href="data-frames.html#recap-1"><i class="fa fa-check"></i><b>6.1</b> Recap</a></li>
-<li class="chapter" data-level="6.2" data-path="data-frames.html"><a href="data-frames.html#lists-and-named-lists"><i class="fa fa-check"></i><b>6.2</b> Lists and named lists</a></li>
-<li class="chapter" data-level="6.3" data-path="data-frames.html"><a href="data-frames.html#data-frames-1"><i class="fa fa-check"></i><b>6.3</b> Data Frames</a></li>
-<li class="chapter" data-level="6.4" data-path="data-frames.html"><a href="data-frames.html#selection-1"><i class="fa fa-check"></i><b>6.4</b> Selection</a></li>
-<li class="chapter" data-level="6.5" data-path="data-frames.html"><a href="data-frames.html#selection-2"><i class="fa fa-check"></i><b>6.5</b> Selection</a></li>
-<li class="chapter" data-level="6.6" data-path="data-frames.html"><a href="data-frames.html#table-manipulation"><i class="fa fa-check"></i><b>6.6</b> Table manipulation</a></li>
-<li class="chapter" data-level="6.7" data-path="data-frames.html"><a href="data-frames.html#column-processing"><i class="fa fa-check"></i><b>6.7</b> Column processing</a></li>
-<li class="chapter" data-level="6.8" data-path="data-frames.html"><a href="data-frames.html#tibble"><i class="fa fa-check"></i><b>6.8</b> tibble</a></li>
-<li class="chapter" data-level="6.9" data-path="data-frames.html"><a href="data-frames.html#summary-3"><i class="fa fa-check"></i><b>6.9</b> Summary</a></li>
+<li class="chapter" data-level="6" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html"><i class="fa fa-check"></i><b>6</b> Selection and filtering</a><ul>
+<li class="chapter" data-level="6.1" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#recap-1"><i class="fa fa-check"></i><b>6.1</b> Recap</a></li>
+<li class="chapter" data-level="6.2" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#dplyr"><i class="fa fa-check"></i><b>6.2</b> dplyr</a></li>
+<li class="chapter" data-level="6.3" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#example-dataset"><i class="fa fa-check"></i><b>6.3</b> Example dataset</a></li>
+<li class="chapter" data-level="6.4" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#selecting-table-columns"><i class="fa fa-check"></i><b>6.4</b> Selecting table columns</a></li>
+<li class="chapter" data-level="6.5" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#dplyrselect"><i class="fa fa-check"></i><b>6.5</b> dplyr::select</a></li>
+<li class="chapter" data-level="6.6" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#dplyrselect-1"><i class="fa fa-check"></i><b>6.6</b> dplyr::select</a></li>
+<li class="chapter" data-level="6.7" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#logical-filtering"><i class="fa fa-check"></i><b>6.7</b> Logical filtering</a></li>
+<li class="chapter" data-level="6.8" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#conditional-filtering"><i class="fa fa-check"></i><b>6.8</b> Conditional filtering</a></li>
+<li class="chapter" data-level="6.9" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#filtering-data-frames"><i class="fa fa-check"></i><b>6.9</b> Filtering data frames</a></li>
+<li class="chapter" data-level="6.10" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#dplyrfilter"><i class="fa fa-check"></i><b>6.10</b> dplyr::filter</a></li>
+<li class="chapter" data-level="6.11" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#select-and-filter"><i class="fa fa-check"></i><b>6.11</b> Select and filter</a></li>
+<li class="chapter" data-level="6.12" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#summary-3"><i class="fa fa-check"></i><b>6.12</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html"><i class="fa fa-check"></i><b>7</b> Selection and filtering</a><ul>
-<li class="chapter" data-level="7.1" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#recap-2"><i class="fa fa-check"></i><b>7.1</b> Recap</a></li>
-<li class="chapter" data-level="7.2" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#dplyr"><i class="fa fa-check"></i><b>7.2</b> dplyr</a></li>
-<li class="chapter" data-level="7.3" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#example-dataset"><i class="fa fa-check"></i><b>7.3</b> Example dataset</a></li>
-<li class="chapter" data-level="7.4" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#selecting-table-columns"><i class="fa fa-check"></i><b>7.4</b> Selecting table columns</a></li>
-<li class="chapter" data-level="7.5" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#dplyrselect"><i class="fa fa-check"></i><b>7.5</b> dplyr::select</a></li>
-<li class="chapter" data-level="7.6" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#dplyrselect-1"><i class="fa fa-check"></i><b>7.6</b> dplyr::select</a></li>
-<li class="chapter" data-level="7.7" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#logical-filtering"><i class="fa fa-check"></i><b>7.7</b> Logical filtering</a></li>
-<li class="chapter" data-level="7.8" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#conditional-filtering"><i class="fa fa-check"></i><b>7.8</b> Conditional filtering</a></li>
-<li class="chapter" data-level="7.9" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#filtering-data-frames"><i class="fa fa-check"></i><b>7.9</b> Filtering data frames</a></li>
-<li class="chapter" data-level="7.10" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#dplyrfilter"><i class="fa fa-check"></i><b>7.10</b> dplyr::filter</a></li>
-<li class="chapter" data-level="7.11" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#select-and-filter"><i class="fa fa-check"></i><b>7.11</b> Select and filter</a></li>
-<li class="chapter" data-level="7.12" data-path="selection-and-filtering.html"><a href="selection-and-filtering.html#summary-4"><i class="fa fa-check"></i><b>7.12</b> Summary</a></li>
+<li class="chapter" data-level="7" data-path="read-and-write-data.html"><a href="read-and-write-data.html"><i class="fa fa-check"></i><b>7</b> Read and write data</a><ul>
+<li class="chapter" data-level="7.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#summary-4"><i class="fa fa-check"></i><b>7.1</b> Summary</a></li>
+<li class="chapter" data-level="7.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#text-file-formats"><i class="fa fa-check"></i><b>7.2</b> Text file formats</a></li>
+<li class="chapter" data-level="7.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#comma-separated-values"><i class="fa fa-check"></i><b>7.3</b> Comma Separated Values</a></li>
+<li class="chapter" data-level="7.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#readr"><i class="fa fa-check"></i><b>7.4</b> readr</a></li>
+<li class="chapter" data-level="7.5" data-path="read-and-write-data.html"><a href="read-and-write-data.html#readrread_csv"><i class="fa fa-check"></i><b>7.5</b> readr::read_csv</a></li>
+<li class="chapter" data-level="7.6" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-options"><i class="fa fa-check"></i><b>7.6</b> Read options</a></li>
+<li class="chapter" data-level="7.7" data-path="read-and-write-data.html"><a href="read-and-write-data.html#column-specifications"><i class="fa fa-check"></i><b>7.7</b> Column specifications</a></li>
+<li class="chapter" data-level="7.8" data-path="read-and-write-data.html"><a href="read-and-write-data.html#readrread_csv-1"><i class="fa fa-check"></i><b>7.8</b> readr::read_csv</a></li>
+<li class="chapter" data-level="7.9" data-path="read-and-write-data.html"><a href="read-and-write-data.html#readrread_csv-2"><i class="fa fa-check"></i><b>7.9</b> readr::read_csv</a></li>
+<li class="chapter" data-level="7.10" data-path="read-and-write-data.html"><a href="read-and-write-data.html#readrread_csv-3"><i class="fa fa-check"></i><b>7.10</b> readr::read_csv</a></li>
+<li class="chapter" data-level="7.11" data-path="read-and-write-data.html"><a href="read-and-write-data.html#readrwrite_csv"><i class="fa fa-check"></i><b>7.11</b> readr::write_csv</a></li>
+<li class="chapter" data-level="7.12" data-path="read-and-write-data.html"><a href="read-and-write-data.html#readrwrite_tsv"><i class="fa fa-check"></i><b>7.12</b> readr::write_tsv</a></li>
+<li class="chapter" data-level="7.13" data-path="read-and-write-data.html"><a href="read-and-write-data.html#other-data-imports"><i class="fa fa-check"></i><b>7.13</b> Other data imports</a></li>
+<li class="chapter" data-level="7.14" data-path="read-and-write-data.html"><a href="read-and-write-data.html#summary-5"><i class="fa fa-check"></i><b>7.14</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="read-and-write-data.html"><a href="read-and-write-data.html"><i class="fa fa-check"></i><b>8</b> Read and write data</a><ul>
-<li class="chapter" data-level="8.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#summary-5"><i class="fa fa-check"></i><b>8.1</b> Summary</a></li>
-<li class="chapter" data-level="8.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#text-file-formats"><i class="fa fa-check"></i><b>8.2</b> Text file formats</a></li>
-<li class="chapter" data-level="8.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#comma-separated-values"><i class="fa fa-check"></i><b>8.3</b> Comma Separated Values</a></li>
-<li class="chapter" data-level="8.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#readr"><i class="fa fa-check"></i><b>8.4</b> readr</a></li>
-<li class="chapter" data-level="8.5" data-path="read-and-write-data.html"><a href="read-and-write-data.html#readrread_csv"><i class="fa fa-check"></i><b>8.5</b> readr::read_csv</a></li>
-<li class="chapter" data-level="8.6" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-options"><i class="fa fa-check"></i><b>8.6</b> Read options</a></li>
-<li class="chapter" data-level="8.7" data-path="read-and-write-data.html"><a href="read-and-write-data.html#column-specifications"><i class="fa fa-check"></i><b>8.7</b> Column specifications</a></li>
-<li class="chapter" data-level="8.8" data-path="read-and-write-data.html"><a href="read-and-write-data.html#readrread_csv-1"><i class="fa fa-check"></i><b>8.8</b> readr::read_csv</a></li>
-<li class="chapter" data-level="8.9" data-path="read-and-write-data.html"><a href="read-and-write-data.html#readrread_csv-2"><i class="fa fa-check"></i><b>8.9</b> readr::read_csv</a></li>
-<li class="chapter" data-level="8.10" data-path="read-and-write-data.html"><a href="read-and-write-data.html#readrread_csv-3"><i class="fa fa-check"></i><b>8.10</b> readr::read_csv</a></li>
-<li class="chapter" data-level="8.11" data-path="read-and-write-data.html"><a href="read-and-write-data.html#readrwrite_csv"><i class="fa fa-check"></i><b>8.11</b> readr::write_csv</a></li>
-<li class="chapter" data-level="8.12" data-path="read-and-write-data.html"><a href="read-and-write-data.html#readrwrite_tsv"><i class="fa fa-check"></i><b>8.12</b> readr::write_tsv</a></li>
-<li class="chapter" data-level="8.13" data-path="read-and-write-data.html"><a href="read-and-write-data.html#other-data-imports"><i class="fa fa-check"></i><b>8.13</b> Other data imports</a></li>
-<li class="chapter" data-level="8.14" data-path="read-and-write-data.html"><a href="read-and-write-data.html#summary-6"><i class="fa fa-check"></i><b>8.14</b> Summary</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>9</b> Data visualisation</a><ul>
-<li class="chapter" data-level="9.1" data-path="data-visualisation.html"><a href="data-visualisation.html#recap-3"><i class="fa fa-check"></i><b>9.1</b> Recap</a></li>
-<li class="chapter" data-level="9.2" data-path="data-visualisation.html"><a href="data-visualisation.html#visual-variables"><i class="fa fa-check"></i><b>9.2</b> Visual variables</a></li>
-<li class="chapter" data-level="9.3" data-path="data-visualisation.html"><a href="data-visualisation.html#grammar-of-graphics"><i class="fa fa-check"></i><b>9.3</b> Grammar of graphics</a></li>
-<li class="chapter" data-level="9.4" data-path="data-visualisation.html"><a href="data-visualisation.html#ggplot2"><i class="fa fa-check"></i><b>9.4</b> ggplot2</a></li>
-<li class="chapter" data-level="9.5" data-path="data-visualisation.html"><a href="data-visualisation.html#boxplots"><i class="fa fa-check"></i><b>9.5</b> Boxplots</a></li>
-<li class="chapter" data-level="9.6" data-path="data-visualisation.html"><a href="data-visualisation.html#jittered-points"><i class="fa fa-check"></i><b>9.6</b> Jittered points</a></li>
-<li class="chapter" data-level="9.7" data-path="data-visualisation.html"><a href="data-visualisation.html#violin-plot"><i class="fa fa-check"></i><b>9.7</b> Violin plot</a></li>
-<li class="chapter" data-level="9.8" data-path="data-visualisation.html"><a href="data-visualisation.html#violin-plot-1"><i class="fa fa-check"></i><b>9.8</b> Violin plot</a></li>
-<li class="chapter" data-level="9.9" data-path="data-visualisation.html"><a href="data-visualisation.html#lines"><i class="fa fa-check"></i><b>9.9</b> Lines</a></li>
-<li class="chapter" data-level="9.10" data-path="data-visualisation.html"><a href="data-visualisation.html#lines-1"><i class="fa fa-check"></i><b>9.10</b> Lines</a></li>
-<li class="chapter" data-level="9.11" data-path="data-visualisation.html"><a href="data-visualisation.html#scatterplots"><i class="fa fa-check"></i><b>9.11</b> Scatterplots</a></li>
-<li class="chapter" data-level="9.12" data-path="data-visualisation.html"><a href="data-visualisation.html#overlapping-points"><i class="fa fa-check"></i><b>9.12</b> Overlapping points</a></li>
-<li class="chapter" data-level="9.13" data-path="data-visualisation.html"><a href="data-visualisation.html#overlapping-points-1"><i class="fa fa-check"></i><b>9.13</b> Overlapping points</a></li>
-<li class="chapter" data-level="9.14" data-path="data-visualisation.html"><a href="data-visualisation.html#bin-counts"><i class="fa fa-check"></i><b>9.14</b> Bin counts</a></li>
-<li class="chapter" data-level="9.15" data-path="data-visualisation.html"><a href="data-visualisation.html#bin-counts-1"><i class="fa fa-check"></i><b>9.15</b> Bin counts</a></li>
-<li class="chapter" data-level="9.16" data-path="data-visualisation.html"><a href="data-visualisation.html#summary-7"><i class="fa fa-check"></i><b>9.16</b> Summary</a></li>
+<li class="chapter" data-level="8" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>8</b> Data visualisation</a><ul>
+<li class="chapter" data-level="8.1" data-path="data-visualisation.html"><a href="data-visualisation.html#recap-2"><i class="fa fa-check"></i><b>8.1</b> Recap</a></li>
+<li class="chapter" data-level="8.2" data-path="data-visualisation.html"><a href="data-visualisation.html#visual-variables"><i class="fa fa-check"></i><b>8.2</b> Visual variables</a></li>
+<li class="chapter" data-level="8.3" data-path="data-visualisation.html"><a href="data-visualisation.html#grammar-of-graphics"><i class="fa fa-check"></i><b>8.3</b> Grammar of graphics</a></li>
+<li class="chapter" data-level="8.4" data-path="data-visualisation.html"><a href="data-visualisation.html#ggplot2"><i class="fa fa-check"></i><b>8.4</b> ggplot2</a></li>
+<li class="chapter" data-level="8.5" data-path="data-visualisation.html"><a href="data-visualisation.html#boxplots"><i class="fa fa-check"></i><b>8.5</b> Boxplots</a></li>
+<li class="chapter" data-level="8.6" data-path="data-visualisation.html"><a href="data-visualisation.html#jittered-points"><i class="fa fa-check"></i><b>8.6</b> Jittered points</a></li>
+<li class="chapter" data-level="8.7" data-path="data-visualisation.html"><a href="data-visualisation.html#violin-plot"><i class="fa fa-check"></i><b>8.7</b> Violin plot</a></li>
+<li class="chapter" data-level="8.8" data-path="data-visualisation.html"><a href="data-visualisation.html#violin-plot-1"><i class="fa fa-check"></i><b>8.8</b> Violin plot</a></li>
+<li class="chapter" data-level="8.9" data-path="data-visualisation.html"><a href="data-visualisation.html#lines"><i class="fa fa-check"></i><b>8.9</b> Lines</a></li>
+<li class="chapter" data-level="8.10" data-path="data-visualisation.html"><a href="data-visualisation.html#lines-1"><i class="fa fa-check"></i><b>8.10</b> Lines</a></li>
+<li class="chapter" data-level="8.11" data-path="data-visualisation.html"><a href="data-visualisation.html#scatterplots"><i class="fa fa-check"></i><b>8.11</b> Scatterplots</a></li>
+<li class="chapter" data-level="8.12" data-path="data-visualisation.html"><a href="data-visualisation.html#overlapping-points"><i class="fa fa-check"></i><b>8.12</b> Overlapping points</a></li>
+<li class="chapter" data-level="8.13" data-path="data-visualisation.html"><a href="data-visualisation.html#overlapping-points-1"><i class="fa fa-check"></i><b>8.13</b> Overlapping points</a></li>
+<li class="chapter" data-level="8.14" data-path="data-visualisation.html"><a href="data-visualisation.html#bin-counts"><i class="fa fa-check"></i><b>8.14</b> Bin counts</a></li>
+<li class="chapter" data-level="8.15" data-path="data-visualisation.html"><a href="data-visualisation.html#bin-counts-1"><i class="fa fa-check"></i><b>8.15</b> Bin counts</a></li>
+<li class="chapter" data-level="8.16" data-path="data-visualisation.html"><a href="data-visualisation.html#summary-6"><i class="fa fa-check"></i><b>8.16</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -268,10 +257,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="selection-and-filtering" class="section level1">
-<h1><span class="header-section-number">Lesson 7</span> Selection and filtering</h1>
+<h1><span class="header-section-number">Lesson 6</span> Selection and filtering</h1>
 <p>all R code parts are removed, because of an unsolved error message</p>
-<div id="recap-2" class="section level2">
-<h2><span class="header-section-number">7.1</span> Recap</h2>
+<div id="recap-1" class="section level2">
+<h2><span class="header-section-number">6.1</span> Recap</h2>
 <p><strong>Prev</strong>: Data Frames</p>
 <ul>
 <li>Data Frames</li>
@@ -285,7 +274,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="dplyr" class="section level2">
-<h2><span class="header-section-number">7.2</span> dplyr</h2>
+<h2><span class="header-section-number">6.2</span> dplyr</h2>
 <p>The <code>dplyr</code> (pronounced <em>dee-ply-er</em>) library is part of <code>tidyverse</code> and it offers a grammar for data manipulation</p>
 <ul>
 <li><code>select</code>: select specific columns</li>
@@ -298,21 +287,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="example-dataset" class="section level2">
-<h2><span class="header-section-number">7.3</span> Example dataset</h2>
+<h2><span class="header-section-number">6.3</span> Example dataset</h2>
 </div>
 <div id="selecting-table-columns" class="section level2">
-<h2><span class="header-section-number">7.4</span> Selecting table columns</h2>
+<h2><span class="header-section-number">6.4</span> Selecting table columns</h2>
 </div>
 <div id="dplyrselect" class="section level2">
-<h2><span class="header-section-number">7.5</span> dplyr::select</h2>
+<h2><span class="header-section-number">6.5</span> dplyr::select</h2>
 <p><code>select</code> can be used to specify which columns to retain</p>
 </div>
 <div id="dplyrselect-1" class="section level2">
-<h2><span class="header-section-number">7.6</span> dplyr::select</h2>
+<h2><span class="header-section-number">6.6</span> dplyr::select</h2>
 <p>… or whichones to drop, using - in front of the column name</p>
 </div>
 <div id="logical-filtering" class="section level2">
-<h2><span class="header-section-number">7.7</span> Logical filtering</h2>
+<h2><span class="header-section-number">6.7</span> Logical filtering</h2>
 <p>Conditional statements can be used to filter a vector</p>
 <ul>
 <li>i.e. to retain only certain values</li>
@@ -320,22 +309,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="conditional-filtering" class="section level2">
-<h2><span class="header-section-number">7.8</span> Conditional filtering</h2>
+<h2><span class="header-section-number">6.8</span> Conditional filtering</h2>
 <p>As a conditional expression results in a logic vector…</p>
 <p>… conditional expressions can be used for filtering</p>
 </div>
 <div id="filtering-data-frames" class="section level2">
-<h2><span class="header-section-number">7.9</span> Filtering data frames</h2>
+<h2><span class="header-section-number">6.9</span> Filtering data frames</h2>
 <p>The same approach can be applied to <strong>data frames</strong> and <strong>tibbles</strong></p>
 </div>
 <div id="dplyrfilter" class="section level2">
-<h2><span class="header-section-number">7.10</span> dplyr::filter</h2>
+<h2><span class="header-section-number">6.10</span> dplyr::filter</h2>
 </div>
 <div id="select-and-filter" class="section level2">
-<h2><span class="header-section-number">7.11</span> Select and filter</h2>
+<h2><span class="header-section-number">6.11</span> Select and filter</h2>
 </div>
-<div id="summary-4" class="section level2">
-<h2><span class="header-section-number">7.12</span> Summary</h2>
+<div id="summary-3" class="section level2">
+<h2><span class="header-section-number">6.12</span> Summary</h2>
 <p>Data selection and filtering</p>
 <ul>
 <li>dplyr</li>
@@ -350,7 +339,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="data-frames.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="read-and-write-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
