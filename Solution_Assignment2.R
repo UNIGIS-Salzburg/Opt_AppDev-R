@@ -1,3 +1,6 @@
+#Required skills: 1) read csv data, 2) pipe operator %>%, 3) data wrangling: dplyr filter select group_by, mutate and summarise 
+# 4) joins: dplyr inner_join, join multiple tables with pipe operator, 5) rename columns in df, 6) print all rows of df
+
 # total pandemic excess mortality, data: https://www.mortality.org/, select 10 countries, create map
 
 # besser lesbarer code mit dplyer pipe syntax: https://statistik-dresden.de/archives/15679
