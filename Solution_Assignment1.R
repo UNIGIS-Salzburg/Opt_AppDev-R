@@ -1,7 +1,7 @@
 # required skills: 1) get typeof() vector etc., 2) how to execute code in RStudio?, execute parts of the code
 # 3) return functions, also multiple return values, 4) while loops, 5) system time and system sleep
-# 6) retrieve date by API, 7) ggplot visualization - line plot, 8) append to vector
-# 9) scope of a variable
+# 6) retrieve date by API, 7) ggplot visualization, 8) append to vector
+
 
 library(httr)
 library(jsonlite)
