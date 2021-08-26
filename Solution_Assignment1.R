@@ -1,43 +1,54 @@
-# total pandemic excess mortality, data: https://www.mortality.org/, select 10 countries, create map
+library(httr)
+library(jsonlite)
+library(lubridate)
+library(ggplot2)
 
-# besser lesbarer code mit dplyer pipe syntax: https://statistik-dresden.de/archives/15679
+#functions retrieves current weather data at location lat/lon
+weather_retrieve <- function(lat_num, lon_num, key_string){
+  
+  base <- "http://api.openweathermap.org/data/2.5/weather"
+  lat <- toString(lat_num)    
+  lon <- toString(lon_num)
+  apiKey <- key_string
+  
+  call <- paste(base, "?lat=", lat, "&lon=" , lon, "&appid=", apiKey, sep="")
+  
+  get_UVI <- GET(call)
+  get_UVI_text <- content(get_UVI, "text")
+  get_UVI_json <- fromJSON(get_UVI_text, flatten = TRUE)
+  get_UVI_df <- as.data.frame(get_UVI_json)
+  
+  return_vals <- list("time" = as_datetime(get_UVI_df$dt, tz = "MET"), "temp" = get_UVI_df$main.temp - 273.15) # append time and temperature in a list
+  
+  return_vals  #return time and temperature
 
-library(tidyverse)
+}
 
-# Read data from comma-separated csv
-access_mortality_data <- read.csv("C:/Users/b1045498/Downloads/stmf_v01.csv", header = TRUE, sep = ";")
+time_plus <- Sys.time() + 600
 
-# Select specific columns, 'CountryCode', 'Year', 'DTotal' and rows of 10 countries, Important: select sex = both
-access_mortality_data_SelectedCountries <- access_mortality_data %>% dplyr::filter(Sex == "b") %>% dplyr::select(CountryCode, Year, DTotal) %>% dplyr::filter(CountryCode == "AUT" 
-| CountryCode == "CZE" | CountryCode == "CZE" | CountryCode == "SWE" | CountryCode == "POL" | CountryCode == "SVN" | CountryCode == "SVK" | CountryCode == "BEL"
-| CountryCode == "ITA" | CountryCode == "FIN") 
+# retrieve data as long as current time < time_plus
+while (Sys.time() < time_plus){
+  
+  time_vec <- c(time_vec, weather_retrieve(47.8, 13.033, "3f87141421b32590d50416aae5ca780c")[1]) #retrieve time element from function return
+  temp_vec <- c(time_vec, weather_retrieve(47.8, 13.033, "3f87141421b32590d50416aae5ca780c")[2]) #retrieve temperature element from function return
+  
+  Sys.sleep(60) # interrupt 60 sec
+  
+}
 
-# exclude year 2021, group by country and year, sum groups 
-sum_d_ctry_yr <- access_mortality_data_SelectedCountries %>% dplyr::filter(!Year == 2021) %>% dplyr::group_by(CountryCode, Year) %>% dplyr::summarise(sum(DTotal))
+result_df <- data.frame(time_vec, temp_vec)
 
-# standard deviation per country (5 years: 2015-2020)
-std_ctry <- sum_d_ctry_yr %>% dplyr::filter(Year > 2015) %>% dplyr::group_by(CountryCode) %>% dplyr::summarise(sd(`sum(DTotal)`))
+print(result_df)
 
-# mean per country (5 years: 2015-2020)
-mean_ctry <- sum_d_ctry_yr %>% dplyr::filter(Year > 2015) %>% dplyr::group_by(CountryCode) %>% dplyr::summarise(mean(`sum(DTotal)`))
 
-# total death 2020 per country
-total2020_ctry <- sum_d_ctry_yr %>% dplyr::filter(Year == 2020)
+#p <- ggplot(data=dat1, aes(x=time, y=total_bill, group=sex)) +
+#  geom_line() +
+#  geom_point()
 
-# join tables standard deviation, mean and total death 2020
-final_tab <- dplyr::inner_join(std_ctry, mean_ctry, by = c("CountryCode" = "CountryCode")) %>% dplyr::inner_join(total2020_ctry, by = c("CountryCode" = "CountryCode"))
 
-# give table columns meaningful names
-names(final_tab)[1] = "country"
-names(final_tab)[2] = "std"
-names(final_tab)[3] = "mean"
-names(final_tab)[5] = "d2020"
+#print(Sys.time())
 
-# calculate z score
-z_score <- final_tab %>% dplyr::mutate(z = (d2020 - mean) / std)
 
-# visualize in a map, Desktop GIS or use R (Geocomputation with R: https://geocompr.robinlovelace.net/adv-map.html, R Graph Gallery: https://www.r-graph-gallery.com/choropleth-map.html)
 
-print(final_tab,n=nrow(final_tab))
-print(z_score,n=nrow(z_score))
+print(time_plus)
 
