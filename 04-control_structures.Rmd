@@ -1,39 +1,61 @@
 # Control structures
 
-## Recap
 
-**Prev**: Data types
+```{block2, type = 'rmdtip'}
 
-- Vectors
-- Factors
-- Matrices and arrays
-- Lists
+In this lesson you will get to know control structures as a significant structural element of code. Control structures allow our code to adapt its behavior depending on the value of the current variables in the environment. 
 
-**Now**: Control structures
+We distinguish between two types of control structures:
 
-- Conditional statements
-- Loops
+1) **Conditional statements** which allow to execute instructions only if a certain condition is satisfied.
 
+2) **Loops** which allow to repeat one or more instructions multiple times. Loops are commonly used to apply the same operation on a series of values that are stored in sequences such as vectors or lists.
 
+```
 
 ## If
 
-Format: **if** (*condition*) *statement*
+The most fundamental conditional statement in R is the structure 'if', which is used to execute one or more instructions only if a certain condition is is TRUE.
 
-- *condition*: expression returning a logic value (`TRUE` or `FALSE`)
-- *statement*: any valid R statement
-- *statement* only executed if *condition* is `TRUE`
-
+In order to include an if-structure in your code, you need to use the following syntax:
 
 ```{r, echo=TRUE}
 a_value <- -7
 if (a_value < 0) cat("Negative")
-a_value <- 8
-if (a_value < 0) cat("Negative")
 ```
 
+The **statement** 'cat("Negative")' gets executed and the text "negative" is printed out, because the **condition** (a_value < 0) is TRUE.   
+
+```{block2, type = 'rmdtip'}
+
+The function [cat()](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/cat){target="_blank"} concatenates and prints string inputs ("Negative" in the example above). Alternatively, you can use the function 'print()' to write variable values to the console window. 
+
+These functions are highly useful to inspect whether variables take on expected values!
+
+```
+
+Note that every conditional statement (e.g. 'a_value < 0') returns a logical value that is either TRUE or FALSE. 
+
+```{block2, type = 'rmdexercise'}
+
+Remove the negative sign from the conditional statement in the code above. 
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+The condition yields FALSE. The statement does not get executed. 
+    
+</font></i>
+</p>
+</details>  
+
+```
 
 ## Else
+
+In many cases we want the interpreter to do something if the condition is satisfied or do something *else*, if the condition is not satisfied.
+
 Format: **if** (*condition*) *statement1* **else** *statement2*
 
 - *condition*: expression returning a logic value (`TRUE` or `FALSE`)
