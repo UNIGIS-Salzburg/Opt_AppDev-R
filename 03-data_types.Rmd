@@ -284,6 +284,14 @@ Elements of a vector (data frame column) must be of the same type (charater, log
 
 As the columns in a data frame have the same length, one element is present for each row of the table. Meaning the first element of vector 'EmployeeName' in data frame 'employees' is the Name of the first employee. The first element in vector 'Age' in data frame 'employees' is the age of the first employee etc.
 
+```{block2, type = 'rmdtip'}
+
+You can rename the columns of a data frame by means of a function called 'names()':
+
+**names(name of data frame)[column index as number] = "new column name"**
+ 
+```
+
 The selection of values from a data frame is similar to what we have seen for vectors and lists. However, you have to consider the two-dimensional shape of data frames. As such, you will generally need to specify two indices in order to retrieve values from a table.
 
 The following example retrieves the first element of the first column in data frame 'employees':
