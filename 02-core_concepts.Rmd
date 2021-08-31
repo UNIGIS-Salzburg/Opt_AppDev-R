@@ -1,4 +1,4 @@
-# Core concepts
+# Core concepts{#core}
 
 ```{block2, type = 'rmdtip'}
 In this lesson we will focus on three fundamental concepts in programming:

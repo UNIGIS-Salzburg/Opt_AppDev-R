@@ -95,3 +95,5 @@ example-1
 what-is-debugging
 to-debug-a-function
 example-2
+reserved-words
+core
