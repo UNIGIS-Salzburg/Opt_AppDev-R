@@ -1,96 +1,145 @@
-# Selection and filtering
+# Data wrangling
 
-all R code parts are removed, because of an unsolved error message
+```{block2, type = 'rmdtip'}
+In most instances the structure of the available data will not meet the specific requirements to perform the analyses you are interested in. Data analysts typically spend the majority of their time cleaning, filtering, restructuring data as well as harmonizing and joining data from different sources.
+
+This lesson introduces to the most common data wrangling operations by means of the dplyr library (part of the Tidyverse libraries), which it offers a grammar for data manipulation.
+```
+
+## Preparation
+
+If not yet installed on your machine, install the libraries `tidyverse` as well as `nycflights13` (see Libraries in lesson [core Concepts](#core)).
+
+The code below, loads the data frame `flights` from the library `nycflights13` into the variable `flights_from_nyc`. We will use this data frame throughout this lesson. 
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(nycflights13)
+flights_from_nyc <- nycflights13::flights
+
+```
+
+The operator `::` is used to indicate that the data frame `flights` is situated within the library `nycflights13`. You can use `::`, if you know exactly which library contains the object or function desired. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names. 
+
+Add both lines above as well as the code snippets provided in the upcoming examples to a new R script file. 
+
+## Data manipulation
+
+Firstly, inspect the data frame `flights_from_nyc` by writing it to the console. The library `dplyr` provides a number of functions to investigate basic characteristics of inputs. For instance, the function `count()` can be used to count the number of rows of a data frame. The code below provides `flights_from_nyc` as input to the function. 
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(tidyverse)
+library(knitr)
+
+flights_from_nyc %>%
+  dplyr::count() %>%
+  knitr::kable()
+```
+
+In the code example above, we use the so called **pipe operator** `%>%`, which is included in `tidyverse`, as well as a function named `kable()` of library `knitr` to render the output.
+
+```{block2, type = 'rmdtip'}
+The pipe operator allows us to link a sequence of analysis steps. In the example above the data frame `flights_from_nyc` is passed into function `count()` and the output is pased into function `kable()` to render the result_df
+
+The pipe operator is a powerful tool to simplify your code. See [this video](https://www.youtube.com/watch?v=sohARFx6aTo){target="_blank"} to learn more about it.
+```
+
+The function `count()` can also be used to count the number rows of a table that have the same value for a given column, usually representing a category.
+
+In the example below, the column name origin is provided as an argument to the function count, so rows representing flights from the same origin are counted together – EWR is the Newark Liberty International Airport, JFK is the John F. Kennedy International Airport, and LGA is LaGuardia Airport.
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+flights_from_nyc %>%
+  dplyr::count(origin) %>%
+  knitr::kable()
+
+```
+
+As you can see, the code above is formatted in a way similar to a code block, although it is not a code block. The code goes to a new line after every `%>%`, and space is added at the beginning of new lines. That is very common in R programming (especially when functions have many parameters) as it makes the code more readable.
+
+### Summarise
+
+To carry out more complex aggregations, the function `summarise(`) can be used in combination with the function `group_by()` to summarise the values of the rows of a data frame. Rows having the same value for a selected column (in the example below, the same origin) are grouped together, then values are aggregated based on the defined function (using one or more columns in the calculation).
+
+In the example below, the function `sum()` is applied to the column distance to calculate distance_traveled_from (the total distance travelled by flights starting from each airport).
+
+```{r, echo=TRUE}
+flights_from_nyc %>%
+  dplyr::group_by(origin) %>%
+  dplyr::summarise(
+    mean_distance_traveled_from = mean(distance)
+  ) %>%
+  knitr::kable()
+```
+
+### Select and filter
+
+The function `select()` can be used to select some **columns** to output. For instance in the code below, the function `select()` is used to select the columns `origin`, `dest`, and `dep_delay`, in combination with the function `slice_head`, which can be used to include only the first `n` rows (5 in the example below) to output.
+
+```{r, echo=TRUE}
+flights_from_nyc %>%
+  dplyr::select(origin, dest, dep_delay) %>%
+  dplyr::slice_head(n = 5) %>%
+  knitr::kable()
+```
+
+The function `filter()` can instead be used to filter **rows** based on a specified condition. In the example below, the output of the `filter` step only includes the rows where the value of `month` is `11` (i.e., the eleventh month, November).
+
+```{r, echo=TRUE}
+flights_from_nyc %>%
+  dplyr::select(origin, dest, year, month, day, dep_delay) %>%
+  dplyr::filter(month == 11) %>%
+  dplyr::slice_head(n = 5) %>%
+  knitr::kable()
+```
+
+Notice how `filter` is used in combination with `select`. All functions in the `dplyr` library can be combined, in any other order that makes logical sense. However, if the `select` step didn’t include `month`, that same column couldn’t have been used in the `filter` step.
+
+### Mutate
+
+The function `mutate()` can be used to add a new column to an output table. The `mutate` step in the code below adds a new column `air_time_hours` to the table obtained through the pipe, that is the flight air time in hours, dividing the flight air time in minutes by `60`.
+
+```{r, echo=TRUE}
+flights_from_nyc %>%
+  dplyr::select(flight, origin, dest, air_time) %>%
+  dplyr::mutate(
+    air_time_hours = air_time / 60
+  ) %>%
+  dplyr::slice_head(n = 5) %>%
+  knitr::kable()
+```
+
+### Arrange
+
+The function `arrange()` can be used to sort a tibble by ascending order of the values in the specified column. If the operator `-` is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.
+
+```{r, echo=TRUE}
+flights_from_nyc %>%
+  dplyr::select(origin, dest, air_time) %>%
+  dplyr::arrange(-air_time) %>%
+  dplyr::slice_head(n = 5) %>%
+  knitr::kable()
+```
+
+In the examples above, we have used `slice_head` to present only the first `n` (in the examples 5) rows in a table, based on the existing order. 
+
+### Exercise: data manipulation
 
 
-## Recap
+## Join
 
-**Prev**: Data Frames
+### Table join
 
-- Data Frames
-- Tibbles
-
-**Now**: Data selection and filtering
-
-- dplyr
-- dplyr::select
-- dplyr::filter
+### Spatial join
 
 
 
-## dplyr
-
-The `dplyr` (pronounced *dee-ply-er*) library is part of `tidyverse` and it offers a grammar for data manipulation
-
-- `select`: select specific columns
-- `filter`: select specific rows
-- `arrange`: arrange rows in a particular order
-- `summarise`: calculate aggregated values (e.g., mean, max, etc)
-- `group_by`: group data based on common column values
-- `mutate`: add columns
-- `join`: merge tables (`tibbles` or `data.frames`)
+### Exercise: join
 
 
 
-
-## Example dataset
-
-
-
-## Selecting table columns
-
-
-
-## dplyr::select
-
-`select` can be used to specify which columns to retain
-
-
-
-## dplyr::select
-
-... or whichones to drop, using - in front of the column name
-
-
-## Logical filtering
-
-Conditional statements can be used to filter a vector
-
-- i.e. to retain only certain values
-- where the specified value is `TRUE`
-
-
-
-## Conditional filtering
-
-As a conditional expression results in a logic vector...
-
-
-... conditional expressions can be used for filtering
-
-
-
-## Filtering data frames
-
-The same approach can be applied to **data frames** and **tibbles**
-
-
-
-## dplyr::filter
-
-
-
-## Select and filter
-
-
-
-## Summary
-
-Data selection and filtering
-
-- dplyr
-- dplyr::select
-- dplyr::filter
 
 
 

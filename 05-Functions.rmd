@@ -8,7 +8,7 @@ Moreover, you will get to know the difference between variables with global and 
 
 ## Defining functions
 
-The syntax for defining a function does not look to different from the syntax that we have been using to define a variable or to create a conditional statement. We start by defining an identifier (e.g. add_one) on the left of an assignment operator (`<-`). This is the so-called **corpus of the function.**   
+The syntax for defining a function does not look too different from the syntax that we have been using to define a variable or to create a conditional statement. We start by defining an identifier (e.g. add_one) on the left of an assignment operator (`<-`). This is the so-called **corpus of the function.**   
 
 The corpus starts with the reserved word 'function' followed by the **parameter(s)** (e.g. `input_value` in the example below) between simple brackets and the instruction(s) to be executed in a code block. The value of the last statement is returned as output:
 
@@ -130,7 +130,7 @@ times_x(2)
 ```
 
 ```{block2, type = 'rmdexercise'}
-Referring to external global variables in a function is possible, but can be dangerous. At the time of execution, one cannot be sure what the value of the global variable is. For instance, other processes might have changed its value, which affects the behavior of the function. In order to fix this problem, define the variable 'x_value' as a defoult attribute of function 'times_x'. 
+Referring to external global variables in a function is possible, but can be dangerous. At the time of execution, one cannot be sure what the value of the global variable is. For instance, other processes might have changed its value, which affects the behavior of the function. In order to fix this problem, define the variable 'x_value' as a default attribute of function 'times_x'. 
 
 <details closed>
 <summary><ins>**See solution!**</ins></summary>

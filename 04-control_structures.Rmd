@@ -153,6 +153,27 @@ for (city in cities) {
 
 In the first iteration of the for-loop the text string "Derby" is assigned to the iterator 'city'. The function 'cat()' uses the iterator value as an input. In the second iteration, the text string "Leicester" is assigned to the iterator 'city' ... etc.
 
+The code block below illustrates another example. 
+
+```{r, echo=TRUE}
+cities <- c("Derby", "Leicester", "Lincoln", "Nottingham")
+letter_cnt <- c()
+for (city in cities) {
+  letter_cnt <- c(letter_cnt, nchar(city))
+}
+print(letter_cnt)
+```
+
+The for-loop iterates over the elements in vector 'cities'. The base function 'nchar()' counts the number of letters of every city name and appends the count to a new vector 'letter_cnt'.
+
+```{block2, type = 'rmdtip'}
+
+Note that with every iteration a new value is appended to the right side of the vector. The syntax for appending elements to a vector in R is...
+
+*name vector <- c(name vector, element to append)*
+
+```
+
 There are some cases in which, for some reason, you just want to execute a certain sequence of steps a pre-defined number of times. In such cases, it is common practice to create a vector of integers on the spot. In the following example the for-loop is executed 3 times as it iterates over a vector composed of the three elements 1, 2, and 3 (vector is created on the spot by 1:3):  
 
 ```{r, echo=TRUE}
