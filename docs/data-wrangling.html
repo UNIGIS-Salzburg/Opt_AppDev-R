@@ -192,9 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.5" data-path="data-wrangling.html"><a href="data-wrangling.html#exercise-data-manipulation"><i class="fa fa-check"></i><b>6.2.5</b> Exercise: data manipulation</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="data-wrangling.html"><a href="data-wrangling.html#join"><i class="fa fa-check"></i><b>6.3</b> Join</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="data-wrangling.html"><a href="data-wrangling.html#table-join"><i class="fa fa-check"></i><b>6.3.1</b> Table join</a></li>
-<li class="chapter" data-level="6.3.2" data-path="data-wrangling.html"><a href="data-wrangling.html#spatial-join"><i class="fa fa-check"></i><b>6.3.2</b> Spatial join</a></li>
-<li class="chapter" data-level="6.3.3" data-path="data-wrangling.html"><a href="data-wrangling.html#exercise-join"><i class="fa fa-check"></i><b>6.3.3</b> Exercise: join</a></li>
+<li class="chapter" data-level="6.3.1" data-path="data-wrangling.html"><a href="data-wrangling.html#exercise-join"><i class="fa fa-check"></i><b>6.3.1</b> Exercise: join</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="read-and-write-data.html"><a href="read-and-write-data.html"><i class="fa fa-check"></i><b>7</b> Read and write data</a><ul>
@@ -524,7 +522,7 @@ The pipe operator is a powerful tool to simplify your code. See <a href="https:/
 </div>
 <div id="arrange" class="section level3">
 <h3><span class="header-section-number">6.2.4</span> Arrange</h3>
-<p>The function <code>arrange()</code> can be used to sort a tibble by ascending order of the values in the specified column. If the operator <code>-</code> is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.</p>
+<p>The function <code>arrange()</code> can be used to sort a <a href="https://tibble.tidyverse.org/" target="_blank">tibble</a> by ascending order of the values in the specified column. If the operator <code>-</code> is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="data-wrangling.html#cb8-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
 <span id="cb8-2"><a href="data-wrangling.html#cb8-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(origin, dest, air_time) <span class="op">%&gt;%</span></span>
 <span id="cb8-3"><a href="data-wrangling.html#cb8-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="op">-</span>air_time) <span class="op">%&gt;%</span></span>
@@ -570,18 +568,470 @@ The pipe operator is a powerful tool to simplify your code. See <a href="https:/
 </div>
 <div id="exercise-data-manipulation" class="section level3">
 <h3><span class="header-section-number">6.2.5</span> Exercise: data manipulation</h3>
+
+<div class="rmdexercise">
+<p>The Food and Agriculture Organization (FAO) is a specialized agency of the United Nations that leads international efforts to defeat hunger. On their <a href="http://www.fao.org/home/en/" target="_blank">Website</a> they provide comprehensive datasets on global crop and livestock production. Your task in this exercise is to create a table that shows national African sorghum production in 2019.</p>
+</div>
+
+<ol style="list-style-type: decimal">
+<li>Create an RScript and install or load the libraries <code>tidyverse</code> and <code>knitr</code>, if not done yet.</li>
+<li>Bulk download <a href="http://www.fao.org/faostat/en/#data/QCL" target="_blank">African Crop and Livestock Production</a> data as CSV.</li>
+</ol>
+<div class="figure" style="text-align: center"><span id="fig:L06-faodata"></span>
+<img src="images/FAODataAfrica.png" alt="FAO Data Download" width="100%" />
+<p class="caption">
+Figure 6.1: FAO Data Download
+</p>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>Read data from comma-separated CSV into your Script.</li>
+</ol>
+<pre echo="FALSE"><code>fao_data &lt;- read.csv(directory as string, header = TRUE, sep = &quot;,&quot;)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Use the pipe operator to perform the following operations:
+<ol style="list-style-type: lower-alpha">
+<li>Select columns Area, Item, Element, Unit and Y2019</li>
+<li>Filter rows that contain sorghum production (Item == “Sorghum” &amp; Element == “Production”)</li>
+<li>Group rows by country (group_by)</li>
+<li>Summarise yield in 2019 per country (Y2019)</li>
+<li>Sort the table based on yield in descending order (arrange)</li>
+<li>remove rows including <code>No Data</code> by means of function <code>drop_na()</code></li>
+<li>render the table using the function <code>kable()</code> of <code>library knitr</code></li>
+</ol></li>
+</ol>
+<p>See <a href="Solution_Exercise_DataWrangling1.R" target="_blank">my solution</a>!</p>
 </div>
 </div>
 <div id="join" class="section level2">
 <h2><span class="header-section-number">6.3</span> Join</h2>
-<div id="table-join" class="section level3">
-<h3><span class="header-section-number">6.3.1</span> Table join</h3>
+<p>A join operation combines two tables into one by matching rows that have the same values in the specified column. This operation is usually executed on columns containing identifiers, which are matched through different tables containing different data about the same real-world entities. For instance, the <strong>table below</strong> presents the telephone prefixes for two cities. That information can be combined with the data present in the <strong>second table below</strong> through a join operation on the columns containing the city names. As the two tables do not contain all the same cities, if a full join operation is executed, some cells have no values assigned.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="data-wrangling.html#cb10-1"></a>city_telephone_prexix &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb10-2"><a href="data-wrangling.html#cb10-2"></a>    <span class="dt">city =</span> <span class="kw">c</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Birmingham&quot;</span>, <span class="st">&quot;London&quot;</span>),</span>
+<span id="cb10-3"><a href="data-wrangling.html#cb10-3"></a>    <span class="dt">telephon_prefix =</span> <span class="kw">c</span>(<span class="st">&quot;0116&quot;</span>, <span class="st">&quot;0121&quot;</span>, <span class="st">&quot;0171&quot;</span>)</span>
+<span id="cb10-4"><a href="data-wrangling.html#cb10-4"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb10-5"><a href="data-wrangling.html#cb10-5"></a><span class="st">  </span>tibble<span class="op">::</span><span class="kw">as_tibble</span>()</span>
+<span id="cb10-6"><a href="data-wrangling.html#cb10-6"></a></span>
+<span id="cb10-7"><a href="data-wrangling.html#cb10-7"></a>city_telephone_prexix <span class="op">%&gt;%</span></span>
+<span id="cb10-8"><a href="data-wrangling.html#cb10-8"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="left">0116</td>
+</tr>
+<tr class="even">
+<td align="left">Birmingham</td>
+<td align="left">0121</td>
+</tr>
+<tr class="odd">
+<td align="left">London</td>
+<td align="left">0171</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data-wrangling.html#cb11-1"></a>city_info_wide &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb11-2"><a href="data-wrangling.html#cb11-2"></a>    <span class="dt">city =</span> <span class="kw">c</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>),</span>
+<span id="cb11-3"><a href="data-wrangling.html#cb11-3"></a>    <span class="dt">population =</span> <span class="kw">c</span>(<span class="dv">329839</span>, <span class="dv">321500</span>),</span>
+<span id="cb11-4"><a href="data-wrangling.html#cb11-4"></a>    <span class="dt">area =</span> <span class="kw">c</span>(<span class="fl">73.3</span>, <span class="fl">74.6</span>),</span>
+<span id="cb11-5"><a href="data-wrangling.html#cb11-5"></a>    <span class="dt">density =</span> <span class="kw">c</span>(<span class="dv">4500</span>, <span class="dv">4412</span>)</span>
+<span id="cb11-6"><a href="data-wrangling.html#cb11-6"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb11-7"><a href="data-wrangling.html#cb11-7"></a><span class="st">  </span>tibble<span class="op">::</span><span class="kw">as_tibble</span>()</span>
+<span id="cb11-8"><a href="data-wrangling.html#cb11-8"></a></span>
+<span id="cb11-9"><a href="data-wrangling.html#cb11-9"></a>city_info_wide <span class="op">%&gt;%</span></span>
+<span id="cb11-10"><a href="data-wrangling.html#cb11-10"></a><span class="st"> </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+</tr>
+<tr class="even">
+<td align="left">Nottingham</td>
+<td align="right">321500</td>
+<td align="right">74.6</td>
+<td align="right">4412</td>
+</tr>
+</tbody>
+</table>
+
+<div class="rmdtip">
+Note that data frames in the code above are converted to so called <a href="https://tibble.tidyverse.org/" target="_blank">tibbles</a>, which is another tabular format. This step is needed as the function <code>kable()</code> takes <code>tibbles</code> as an input.
 </div>
-<div id="spatial-join" class="section level3">
-<h3><span class="header-section-number">6.3.2</span> Spatial join</h3>
+
+<p>The <code>dplyr</code> library offers different types of join operations, which correspond to the different <code>SQL</code> joins illustrated in the image below.</p>
+<div class="figure" style="text-align: center"><span id="fig:L06-joins"></span>
+<img src="images/joins.png" alt="Join types" width="70%" />
+<p class="caption">
+Figure 6.2: Join types
+</p>
 </div>
+<p>Please take your time to understand the example below and check out the <a href="https://www.rdocumentation.org/packages/dplyr/versions/0.7.8/topics/join" target="_blank">related <code>dplyr</code> help pages</a> before continuing. The first four examples execute the exact same <em>full join</em> operation using three different syntaxes: with or without using the pipe operator, and specifying the <code>by</code> argument or not. Note that all those approaches to writing the join are valid and produce the same result. The choice about which approach to use will depend on the code you are writing. In particular, you might find it useful to use the syntax that uses the pipe operator when the join operation is itself only one stem in a series of data manipulation steps. Using the <code>by</code> argument is usually advisable unless you are certain that you aim to join two tables with all and exactly the column that have the same names in the two table.</p>
+<p>Note how the result of the join operations is <em>not</em> saved to a variable. The function <code>knitr::kable</code> is added after each join operation through a pipe <code>%&gt;%</code> to display the resulting table in a nice format.</p>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="data-wrangling.html#cb12-1"></a><span class="co"># Option 1: without using the pipe operator</span></span>
+<span id="cb12-2"><a href="data-wrangling.html#cb12-2"></a><span class="co"># full join verb</span></span>
+<span id="cb12-3"><a href="data-wrangling.html#cb12-3"></a>dplyr<span class="op">::</span><span class="kw">full_join</span>(</span>
+<span id="cb12-4"><a href="data-wrangling.html#cb12-4"></a>    <span class="co"># left table</span></span>
+<span id="cb12-5"><a href="data-wrangling.html#cb12-5"></a>    city_info_wide,</span>
+<span id="cb12-6"><a href="data-wrangling.html#cb12-6"></a>    <span class="co"># right table</span></span>
+<span id="cb12-7"><a href="data-wrangling.html#cb12-7"></a>    city_telephone_prexix,</span>
+<span id="cb12-8"><a href="data-wrangling.html#cb12-8"></a>    <span class="co"># columns to match</span></span>
+<span id="cb12-9"><a href="data-wrangling.html#cb12-9"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span> =<span class="st"> &quot;city&quot;</span>)</span>
+<span id="cb12-10"><a href="data-wrangling.html#cb12-10"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb12-11"><a href="data-wrangling.html#cb12-11"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+<td align="left">0116</td>
+</tr>
+<tr class="even">
+<td align="left">Nottingham</td>
+<td align="right">321500</td>
+<td align="right">74.6</td>
+<td align="right">4412</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Birmingham</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0121</td>
+</tr>
+<tr class="even">
+<td align="left">London</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0171</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="data-wrangling.html#cb13-1"></a><span class="co"># Option 2: without using the pipe operator</span></span>
+<span id="cb13-2"><a href="data-wrangling.html#cb13-2"></a><span class="co">#   and without using the argument &quot;by&quot;</span></span>
+<span id="cb13-3"><a href="data-wrangling.html#cb13-3"></a><span class="co">#   as columns have the same name</span></span>
+<span id="cb13-4"><a href="data-wrangling.html#cb13-4"></a><span class="co">#   in the two tables.</span></span>
+<span id="cb13-5"><a href="data-wrangling.html#cb13-5"></a><span class="co"># Same result as Option 1</span></span>
+<span id="cb13-6"><a href="data-wrangling.html#cb13-6"></a><span class="co"># full join verb</span></span>
+<span id="cb13-7"><a href="data-wrangling.html#cb13-7"></a>dplyr<span class="op">::</span><span class="kw">full_join</span>(</span>
+<span id="cb13-8"><a href="data-wrangling.html#cb13-8"></a>    <span class="co"># left table</span></span>
+<span id="cb13-9"><a href="data-wrangling.html#cb13-9"></a>    city_info_wide,</span>
+<span id="cb13-10"><a href="data-wrangling.html#cb13-10"></a>    <span class="co"># right table</span></span>
+<span id="cb13-11"><a href="data-wrangling.html#cb13-11"></a>    city_telephone_prexix</span>
+<span id="cb13-12"><a href="data-wrangling.html#cb13-12"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb13-13"><a href="data-wrangling.html#cb13-13"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+<td align="left">0116</td>
+</tr>
+<tr class="even">
+<td align="left">Nottingham</td>
+<td align="right">321500</td>
+<td align="right">74.6</td>
+<td align="right">4412</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Birmingham</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0121</td>
+</tr>
+<tr class="even">
+<td align="left">London</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0171</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-wrangling.html#cb14-1"></a><span class="co"># Option 3: using the pipe operator</span></span>
+<span id="cb14-2"><a href="data-wrangling.html#cb14-2"></a><span class="co">#   and without using the argument &quot;by&quot;</span></span>
+<span id="cb14-3"><a href="data-wrangling.html#cb14-3"></a><span class="co">#   as columns have the same name</span></span>
+<span id="cb14-4"><a href="data-wrangling.html#cb14-4"></a><span class="co">#   in the two tables.</span></span>
+<span id="cb14-5"><a href="data-wrangling.html#cb14-5"></a><span class="co"># Same result as Option 1 and 2</span></span>
+<span id="cb14-6"><a href="data-wrangling.html#cb14-6"></a><span class="co"># left table</span></span>
+<span id="cb14-7"><a href="data-wrangling.html#cb14-7"></a>city_info_wide <span class="op">%&gt;%</span></span>
+<span id="cb14-8"><a href="data-wrangling.html#cb14-8"></a><span class="st">  </span><span class="co"># full join verb</span></span>
+<span id="cb14-9"><a href="data-wrangling.html#cb14-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">full_join</span>(</span>
+<span id="cb14-10"><a href="data-wrangling.html#cb14-10"></a>    <span class="co"># right table</span></span>
+<span id="cb14-11"><a href="data-wrangling.html#cb14-11"></a>    city_telephone_prexix</span>
+<span id="cb14-12"><a href="data-wrangling.html#cb14-12"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb14-13"><a href="data-wrangling.html#cb14-13"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+<td align="left">0116</td>
+</tr>
+<tr class="even">
+<td align="left">Nottingham</td>
+<td align="right">321500</td>
+<td align="right">74.6</td>
+<td align="right">4412</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Birmingham</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0121</td>
+</tr>
+<tr class="even">
+<td align="left">London</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0171</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="data-wrangling.html#cb15-1"></a><span class="co"># Option 4: using the pipe operator</span></span>
+<span id="cb15-2"><a href="data-wrangling.html#cb15-2"></a><span class="co">#   and using the argument &quot;by&quot;.</span></span>
+<span id="cb15-3"><a href="data-wrangling.html#cb15-3"></a><span class="co"># Same result as Option 1, 2 and 3</span></span>
+<span id="cb15-4"><a href="data-wrangling.html#cb15-4"></a><span class="co"># left table</span></span>
+<span id="cb15-5"><a href="data-wrangling.html#cb15-5"></a>city_info_wide <span class="op">%&gt;%</span></span>
+<span id="cb15-6"><a href="data-wrangling.html#cb15-6"></a><span class="st">  </span><span class="co"># full join verb</span></span>
+<span id="cb15-7"><a href="data-wrangling.html#cb15-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">full_join</span>(</span>
+<span id="cb15-8"><a href="data-wrangling.html#cb15-8"></a>    <span class="co"># right table</span></span>
+<span id="cb15-9"><a href="data-wrangling.html#cb15-9"></a>    city_telephone_prexix,</span>
+<span id="cb15-10"><a href="data-wrangling.html#cb15-10"></a>    <span class="co"># columns to match</span></span>
+<span id="cb15-11"><a href="data-wrangling.html#cb15-11"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span> =<span class="st"> &quot;city&quot;</span>)</span>
+<span id="cb15-12"><a href="data-wrangling.html#cb15-12"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb15-13"><a href="data-wrangling.html#cb15-13"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+<td align="left">0116</td>
+</tr>
+<tr class="even">
+<td align="left">Nottingham</td>
+<td align="right">321500</td>
+<td align="right">74.6</td>
+<td align="right">4412</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Birmingham</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0121</td>
+</tr>
+<tr class="even">
+<td align="left">London</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0171</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="data-wrangling.html#cb16-1"></a><span class="co"># Left join</span></span>
+<span id="cb16-2"><a href="data-wrangling.html#cb16-2"></a><span class="co"># Using syntax similar to Option 1 above</span></span>
+<span id="cb16-3"><a href="data-wrangling.html#cb16-3"></a><span class="co"># left join</span></span>
+<span id="cb16-4"><a href="data-wrangling.html#cb16-4"></a>dplyr<span class="op">::</span><span class="kw">left_join</span>(</span>
+<span id="cb16-5"><a href="data-wrangling.html#cb16-5"></a>    <span class="co"># left table</span></span>
+<span id="cb16-6"><a href="data-wrangling.html#cb16-6"></a>    city_info_wide, </span>
+<span id="cb16-7"><a href="data-wrangling.html#cb16-7"></a>    <span class="co"># right table</span></span>
+<span id="cb16-8"><a href="data-wrangling.html#cb16-8"></a>    city_telephone_prexix,</span>
+<span id="cb16-9"><a href="data-wrangling.html#cb16-9"></a>    <span class="co"># columns to match</span></span>
+<span id="cb16-10"><a href="data-wrangling.html#cb16-10"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span> =<span class="st"> &quot;city&quot;</span>)</span>
+<span id="cb16-11"><a href="data-wrangling.html#cb16-11"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb16-12"><a href="data-wrangling.html#cb16-12"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+<td align="left">0116</td>
+</tr>
+<tr class="even">
+<td align="left">Nottingham</td>
+<td align="right">321500</td>
+<td align="right">74.6</td>
+<td align="right">4412</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="data-wrangling.html#cb17-1"></a><span class="co"># Right join</span></span>
+<span id="cb17-2"><a href="data-wrangling.html#cb17-2"></a><span class="co"># Using syntax similar to Option 2 above</span></span>
+<span id="cb17-3"><a href="data-wrangling.html#cb17-3"></a><span class="co"># right join verb</span></span>
+<span id="cb17-4"><a href="data-wrangling.html#cb17-4"></a>dplyr<span class="op">::</span><span class="kw">right_join</span>(</span>
+<span id="cb17-5"><a href="data-wrangling.html#cb17-5"></a>    <span class="co"># left table</span></span>
+<span id="cb17-6"><a href="data-wrangling.html#cb17-6"></a>    city_info_wide, </span>
+<span id="cb17-7"><a href="data-wrangling.html#cb17-7"></a>    <span class="co"># right table</span></span>
+<span id="cb17-8"><a href="data-wrangling.html#cb17-8"></a>    city_telephone_prexix</span>
+<span id="cb17-9"><a href="data-wrangling.html#cb17-9"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb17-10"><a href="data-wrangling.html#cb17-10"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+<td align="left">0116</td>
+</tr>
+<tr class="even">
+<td align="left">Birmingham</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0121</td>
+</tr>
+<tr class="odd">
+<td align="left">London</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0171</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-wrangling.html#cb18-1"></a><span class="co"># Inner join</span></span>
+<span id="cb18-2"><a href="data-wrangling.html#cb18-2"></a><span class="co"># Using syntax similar to Option 3 above</span></span>
+<span id="cb18-3"><a href="data-wrangling.html#cb18-3"></a><span class="co"># left table</span></span>
+<span id="cb18-4"><a href="data-wrangling.html#cb18-4"></a>city_info_wide <span class="op">%&gt;%</span></span>
+<span id="cb18-5"><a href="data-wrangling.html#cb18-5"></a><span class="st">  </span><span class="co"># inner join</span></span>
+<span id="cb18-6"><a href="data-wrangling.html#cb18-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">inner_join</span>(</span>
+<span id="cb18-7"><a href="data-wrangling.html#cb18-7"></a>    <span class="co"># right table</span></span>
+<span id="cb18-8"><a href="data-wrangling.html#cb18-8"></a>    city_telephone_prexix</span>
+<span id="cb18-9"><a href="data-wrangling.html#cb18-9"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb18-10"><a href="data-wrangling.html#cb18-10"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+<td align="left">0116</td>
+</tr>
+</tbody>
+</table>
 <div id="exercise-join" class="section level3">
-<h3><span class="header-section-number">6.3.3</span> Exercise: join</h3>
+<h3><span class="header-section-number">6.3.1</span> Exercise: join</h3>
+
+<div class="rmdexercise">
+<p>In the previous exercise we have created a table that shows national African sorghum production in 2019. In this exercise we will join crop production statistics with a table that contains national boundaries and visualize sorghum production quantities in a simple map.</p>
+</div>
+
+<ol style="list-style-type: decimal">
+<li>Create an RScript and install and load the libraries <code>tidyverse</code>, <code>knitr</code>, <code>ggplot2</code> and <code>maps</code>, if not done yet.</li>
+<li>Copy the <a href="Solution_Exercise_DataWrangling1.R" target="_blank">code from the previous exercise</a> into your new RScript. Note that the result of the pipe operations is <em>not</em> saved to a variable. Save it to a variable.</li>
+<li>Use the <code>ggplot2</code> function <code>map_data</code> to convert the built in sample dataset <code>world</code> (comes with library <code>maps</code>) to a data frame</li>
+</ol>
+<pre echo="FALSE"><code>world_ctry &lt;- map_data(&quot;world&quot;) </code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Inspect the structure of this data frame. Every row represents a node (defined by long/lat) of a polygon feature.</li>
+<li>Join tables (geographic features and sorghum production statistics) based on country names. Make sure to chose a join method that allows for retaining all the geographic features.</li>
+</ol>
+<p><a href="Solution_Exercise_DataWrangling2.R" target="_blank">My exercise solution</a> creates a simple output map. In a subsequent lesson we will cover visualization methods in more detail.</p>
 
 </div>
 </div>

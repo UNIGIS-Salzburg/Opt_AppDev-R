@@ -80,3 +80,6 @@ overlapping-points-1
 bin-counts
 bin-counts-1
 summary-2
+join-1
+fig:L06-faodata
+fig:L06-joins
