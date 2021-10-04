@@ -264,20 +264,20 @@ This lesson introduces to the most common data wrangling operations by means of 
 <h2><span class="header-section-number">6.1</span> Preparation</h2>
 <p>If not yet installed on your machine, install the libraries <code>tidyverse</code> as well as <code>nycflights13</code> (see Libraries in lesson <a href="core.html#core">core Concepts</a>).</p>
 <p>The code below, loads the data frame <code>flights</code> from the library <code>nycflights13</code> into the variable <code>flights_from_nyc</code>. We will use this data frame throughout this lesson.</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data-wrangling.html#cb123-1"></a><span class="kw">library</span>(nycflights13)</span>
-<span id="cb123-2"><a href="data-wrangling.html#cb123-2"></a>flights_from_nyc &lt;-<span class="st"> </span>nycflights13<span class="op">::</span>flights</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-wrangling.html#cb1-1"></a><span class="kw">library</span>(nycflights13)</span>
+<span id="cb1-2"><a href="data-wrangling.html#cb1-2"></a>flights_from_nyc &lt;-<span class="st"> </span>nycflights13<span class="op">::</span>flights</span></code></pre></div>
 <p>The operator <code>::</code> is used to indicate that the data frame <code>flights</code> is situated within the library <code>nycflights13</code>. You can use <code>::</code>, if you know exactly which library contains the object or function desired. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names.</p>
 <p>Add both lines above as well as the code snippets provided in the upcoming examples to a new R script file.</p>
 </div>
 <div id="data-manipulation" class="section level2">
 <h2><span class="header-section-number">6.2</span> Data manipulation</h2>
 <p>Firstly, inspect the data frame <code>flights_from_nyc</code> by writing it to the console. The library <code>dplyr</code> provides a number of functions to investigate basic characteristics of inputs. For instance, the function <code>count()</code> can be used to count the number of rows of a data frame. The code below provides <code>flights_from_nyc</code> as input to the function.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="data-wrangling.html#cb124-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb124-2"><a href="data-wrangling.html#cb124-2"></a><span class="kw">library</span>(knitr)</span>
-<span id="cb124-3"><a href="data-wrangling.html#cb124-3"></a></span>
-<span id="cb124-4"><a href="data-wrangling.html#cb124-4"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
-<span id="cb124-5"><a href="data-wrangling.html#cb124-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
-<span id="cb124-6"><a href="data-wrangling.html#cb124-6"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data-wrangling.html#cb2-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="data-wrangling.html#cb2-2"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb2-3"><a href="data-wrangling.html#cb2-3"></a></span>
+<span id="cb2-4"><a href="data-wrangling.html#cb2-4"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
+<span id="cb2-5"><a href="data-wrangling.html#cb2-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
+<span id="cb2-6"><a href="data-wrangling.html#cb2-6"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -299,9 +299,9 @@ The pipe operator is a powerful tool to simplify your code. See <a href="https:/
 
 <p>The function <code>count()</code> can also be used to count the number rows of a table that have the same value for a given column, usually representing a category.</p>
 <p>In the example below, the column name origin is provided as an argument to the function count, so rows representing flights from the same origin are counted together – EWR is the Newark Liberty International Airport, JFK is the John F. Kennedy International Airport, and LGA is LaGuardia Airport.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="data-wrangling.html#cb125-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
-<span id="cb125-2"><a href="data-wrangling.html#cb125-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>(origin) <span class="op">%&gt;%</span></span>
-<span id="cb125-3"><a href="data-wrangling.html#cb125-3"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-wrangling.html#cb3-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
+<span id="cb3-2"><a href="data-wrangling.html#cb3-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>(origin) <span class="op">%&gt;%</span></span>
+<span id="cb3-3"><a href="data-wrangling.html#cb3-3"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -329,12 +329,12 @@ The pipe operator is a powerful tool to simplify your code. See <a href="https:/
 <h3><span class="header-section-number">6.2.1</span> Summarise</h3>
 <p>To carry out more complex aggregations, the function <code>summarise(</code>) can be used in combination with the function <code>group_by()</code> to summarise the values of the rows of a data frame. Rows having the same value for a selected column (in the example below, the same origin) are grouped together, then values are aggregated based on the defined function (using one or more columns in the calculation).</p>
 <p>In the example below, the function <code>sum()</code> is applied to the column distance to calculate distance_traveled_from (the total distance travelled by flights starting from each airport).</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="data-wrangling.html#cb126-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
-<span id="cb126-2"><a href="data-wrangling.html#cb126-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span></span>
-<span id="cb126-3"><a href="data-wrangling.html#cb126-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(</span>
-<span id="cb126-4"><a href="data-wrangling.html#cb126-4"></a>    <span class="dt">mean_distance_traveled_from =</span> <span class="kw">mean</span>(distance)</span>
-<span id="cb126-5"><a href="data-wrangling.html#cb126-5"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb126-6"><a href="data-wrangling.html#cb126-6"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-wrangling.html#cb4-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
+<span id="cb4-2"><a href="data-wrangling.html#cb4-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span></span>
+<span id="cb4-3"><a href="data-wrangling.html#cb4-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(</span>
+<span id="cb4-4"><a href="data-wrangling.html#cb4-4"></a>    <span class="dt">mean_distance_traveled_from =</span> <span class="kw">mean</span>(distance)</span>
+<span id="cb4-5"><a href="data-wrangling.html#cb4-5"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb4-6"><a href="data-wrangling.html#cb4-6"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -361,10 +361,10 @@ The pipe operator is a powerful tool to simplify your code. See <a href="https:/
 <div id="select-and-filter" class="section level3">
 <h3><span class="header-section-number">6.2.2</span> Select and filter</h3>
 <p>The function <code>select()</code> can be used to select some <strong>columns</strong> to output. For instance in the code below, the function <code>select()</code> is used to select the columns <code>origin</code>, <code>dest</code>, and <code>dep_delay</code>, in combination with the function <code>slice_head</code>, which can be used to include only the first <code>n</code> rows (5 in the example below) to output.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data-wrangling.html#cb127-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
-<span id="cb127-2"><a href="data-wrangling.html#cb127-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(origin, dest, dep_delay) <span class="op">%&gt;%</span></span>
-<span id="cb127-3"><a href="data-wrangling.html#cb127-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
-<span id="cb127-4"><a href="data-wrangling.html#cb127-4"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="data-wrangling.html#cb5-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
+<span id="cb5-2"><a href="data-wrangling.html#cb5-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(origin, dest, dep_delay) <span class="op">%&gt;%</span></span>
+<span id="cb5-3"><a href="data-wrangling.html#cb5-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
+<span id="cb5-4"><a href="data-wrangling.html#cb5-4"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -402,11 +402,11 @@ The pipe operator is a powerful tool to simplify your code. See <a href="https:/
 </tbody>
 </table>
 <p>The function <code>filter()</code> can instead be used to filter <strong>rows</strong> based on a specified condition. In the example below, the output of the <code>filter</code> step only includes the rows where the value of <code>month</code> is <code>11</code> (i.e., the eleventh month, November).</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="data-wrangling.html#cb128-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
-<span id="cb128-2"><a href="data-wrangling.html#cb128-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(origin, dest, year, month, day, dep_delay) <span class="op">%&gt;%</span></span>
-<span id="cb128-3"><a href="data-wrangling.html#cb128-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(month <span class="op">==</span><span class="st"> </span><span class="dv">11</span>) <span class="op">%&gt;%</span></span>
-<span id="cb128-4"><a href="data-wrangling.html#cb128-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
-<span id="cb128-5"><a href="data-wrangling.html#cb128-5"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-wrangling.html#cb6-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
+<span id="cb6-2"><a href="data-wrangling.html#cb6-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(origin, dest, year, month, day, dep_delay) <span class="op">%&gt;%</span></span>
+<span id="cb6-3"><a href="data-wrangling.html#cb6-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(month <span class="op">==</span><span class="st"> </span><span class="dv">11</span>) <span class="op">%&gt;%</span></span>
+<span id="cb6-4"><a href="data-wrangling.html#cb6-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
+<span id="cb6-5"><a href="data-wrangling.html#cb6-5"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -466,13 +466,13 @@ The pipe operator is a powerful tool to simplify your code. See <a href="https:/
 <div id="mutate" class="section level3">
 <h3><span class="header-section-number">6.2.3</span> Mutate</h3>
 <p>The function <code>mutate()</code> can be used to add a new column to an output table. The <code>mutate</code> step in the code below adds a new column <code>air_time_hours</code> to the table obtained through the pipe, that is the flight air time in hours, dividing the flight air time in minutes by <code>60</code>.</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="data-wrangling.html#cb129-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
-<span id="cb129-2"><a href="data-wrangling.html#cb129-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(flight, origin, dest, air_time) <span class="op">%&gt;%</span></span>
-<span id="cb129-3"><a href="data-wrangling.html#cb129-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(</span>
-<span id="cb129-4"><a href="data-wrangling.html#cb129-4"></a>    <span class="dt">air_time_hours =</span> air_time <span class="op">/</span><span class="st"> </span><span class="dv">60</span></span>
-<span id="cb129-5"><a href="data-wrangling.html#cb129-5"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb129-6"><a href="data-wrangling.html#cb129-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
-<span id="cb129-7"><a href="data-wrangling.html#cb129-7"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="data-wrangling.html#cb7-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
+<span id="cb7-2"><a href="data-wrangling.html#cb7-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(flight, origin, dest, air_time) <span class="op">%&gt;%</span></span>
+<span id="cb7-3"><a href="data-wrangling.html#cb7-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(</span>
+<span id="cb7-4"><a href="data-wrangling.html#cb7-4"></a>    <span class="dt">air_time_hours =</span> air_time <span class="op">/</span><span class="st"> </span><span class="dv">60</span></span>
+<span id="cb7-5"><a href="data-wrangling.html#cb7-5"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb7-6"><a href="data-wrangling.html#cb7-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
+<span id="cb7-7"><a href="data-wrangling.html#cb7-7"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -525,11 +525,11 @@ The pipe operator is a powerful tool to simplify your code. See <a href="https:/
 <div id="arrange" class="section level3">
 <h3><span class="header-section-number">6.2.4</span> Arrange</h3>
 <p>The function <code>arrange()</code> can be used to sort a tibble by ascending order of the values in the specified column. If the operator <code>-</code> is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="data-wrangling.html#cb130-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
-<span id="cb130-2"><a href="data-wrangling.html#cb130-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(origin, dest, air_time) <span class="op">%&gt;%</span></span>
-<span id="cb130-3"><a href="data-wrangling.html#cb130-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="op">-</span>air_time) <span class="op">%&gt;%</span></span>
-<span id="cb130-4"><a href="data-wrangling.html#cb130-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
-<span id="cb130-5"><a href="data-wrangling.html#cb130-5"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="data-wrangling.html#cb8-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
+<span id="cb8-2"><a href="data-wrangling.html#cb8-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(origin, dest, air_time) <span class="op">%&gt;%</span></span>
+<span id="cb8-3"><a href="data-wrangling.html#cb8-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="op">-</span>air_time) <span class="op">%&gt;%</span></span>
+<span id="cb8-4"><a href="data-wrangling.html#cb8-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
+<span id="cb8-5"><a href="data-wrangling.html#cb8-5"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
