@@ -329,6 +329,3 @@ world_ctry <- map_data("world")
 5. Join tables (left table: geographic features, right table: sorghum production statistics) based on country names. Make sure to chose a join method that allows for retaining all the geographic features. 
 
 [My exercise solution](Solution_Exercise_DataWrangling2.R){target="_blank"} creates a simple output map. In a subsequent lesson we will cover visualization methods in more detail.  
-
-
-
