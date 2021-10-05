@@ -325,8 +325,8 @@ In the previous exercise we have created a table that shows national African sor
 world_ctry <- map_data("world") 
 ```
 
-4. Inspect the structure of this data frame. Every row represents a node (defined by long/lat) of a polygon feature.
-5. Join tables (geographic features and sorghum production statistics) based on country names. Make sure to chose a join method that allows for retaining all the geographic features. 
+4. Inspect the structure of this data frame. Every row represents a node (defined by long/lat) of a polygon feature (national boundaries).
+5. Join tables (left table: geographic features, right table: sorghum production statistics) based on country names. Make sure to chose a join method that allows for retaining all the geographic features. 
 
 [My exercise solution](Solution_Exercise_DataWrangling2.R){target="_blank"} creates a simple output map. In a subsequent lesson we will cover visualization methods in more detail.  
 
