@@ -18,6 +18,8 @@ Tidy-up your data
 - write
 
 
+## Read/write tabular data
+
 
 ## Text file formats
 
@@ -164,16 +166,12 @@ Example:
 
 
 
-## Summary
+## Read/write spatial data
 
-Read and write data
+retires 2023: https://cran.r-project.org/web/packages/maptools/index.html
+maptools und readShapePoints
 
-- file formats
-- read
-- write
+GDAL: https://cran.r-project.org/web/packages/sf/vignettes/sf2.html
 
-**Next**: Practical session
+aspace retired. https://rdrr.io/cran/aspace/
 
-- Read and write data
-- Tidy data
-- Join operations
