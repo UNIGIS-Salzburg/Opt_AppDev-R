@@ -119,8 +119,7 @@ See [my solution](Solution_Miniexercise_plot.R){target="_blank"}!
 
 ```
 
-## Read and write raster data
-
+Similar R functions are also available for raster data (see package [raster: Geographic Data Analysis and Modeling](https://cran.r-project.org/web/packages/raster/raster.pdf){target="_blank"}) 
 
 ## Data API
 
