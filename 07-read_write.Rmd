@@ -4,26 +4,15 @@ In the exercise 'data manipulation' we have **read** data from a CSV file into o
 
 ```{block2, type = 'rmdtip'}
 
-In this lesson you will learn to read and write different spatial and tabular file formats. 
-
-For instance
-
-- comma-separated values files `.csv`
-- semi-colon-separated values files `.csv`
-- tab-separated values files `.tsv`
-- other formats using custom delimiters
-- fix-width files `.fwf`
+In this lesson you will learn to read and write plain-text and spatial vector file formats. Moreover, we will retrieve online data by means of a data API.
 
 ```
 
 ## Read/write tabular data
 
+A series of formats are based on plain-text files.
 
-## Text file formats
-
-A series of formats based on plain-text files
-
-For instance
+For instance...
 
 - comma-separated values files `.csv`
 - semi-colon-separated values files `.csv`
@@ -31,7 +20,29 @@ For instance
 - other formats using custom delimiters
 - fix-width files `.fwf`
 
+The [`readr` library](https://readr.tidyverse.org/){target="_blank"} (also part of Tidyverse) provides a series of functions that can be used to load from and save to such data formats. For instance, the `read_csv` function reads a comma delimited (CSV) file from the path provided as the first argument. 
 
+The code example below reads a CSV file that contains global fishery statistics provided by the [World Bank](https://datacatalog.worldbank.org/dataset/world-development-indicators){target="_blank"} and queries Norwegian entries. The function `writes_csv`  writes these entries to a new CSV file.  
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(tidyverse)
+
+fishery_data <- readr::read_csv("data/capture-fisheries-vs-aquaculture.csv")
+#print(fishery_data)
+
+#print(typeof(fishery_data$))
+
+fishery_data %>%
+  dplyr::filter(Entity == "Norway") %>%
+  readr::write_csv("data/capture-fisheries-vs-aquaculture-noraway.csv", append=FALSE) %>%
+  
+  dplyr::slice_head(n = 3) %>%
+  knitr::kable()
+  
+```
+
+In order to run the script, [download the CSV file](data/capture-fisheries-vs-aquaculture.csv){target="_blank"}. Then copy and run the code in a new R-script.
 
 ## Comma Separated Values
 
