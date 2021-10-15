@@ -86,3 +86,7 @@ fig:L06-joins
 fig:L07-bigmac
 readwrite-tabular-data
 readwrite-spatial-data
+read-and-write-tabular-data
+read-and-write-vector-data
+read-and-write-raster-data
+data-api
