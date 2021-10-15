@@ -1,28 +1,25 @@
 # Data visualisation
 
-all R code parts are removed, because of an unsolved error message
+R has a very rich set of graphical functions. The [R Graph Gallery](https://www.r-graph-gallery.com/){target="_blank"} provides a large number of examples (including code).  
 
+```{block2, type = 'rmdtip'}
+In this exercise we will conduct some simple statistical analyses and visualize results by means of...
 
-## Recap
-
-**Prev**: Reproducibility
-
-- 221 Reproducibility
-- 222 R and Markdown
-- 223 Git
-- 224 Practical session
-
-**Now**: Data visualisation
-
-- Grammar of graphics
-- ggplot2
-
+* Histogramms  / Bar plots
+* Box plots
+* Scatter plots
+* Line plots
+```
 
 ## Visual variables
 
-A **visual variable** is an aspect of a **mark** that can be controlled to change its appearance. 
+A **visual variable** is an aspect of a **mark** that can be controlled to change its appearance. For instance, we can specify different colors to represent a qualitative attribute in a line plot (see Figure \@ref(fig:L07-bigmac)).
 
-Visual variables include: 
+```{r L07-bigmac, echo=FALSE, fig.cap="Visual variable volor", out.width='100%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/LinePlotBigMac.png')
+```
+
+Other visual variables are: 
 
 - Size
 - Shape 
@@ -31,7 +28,6 @@ Visual variables include:
 - Colour value (brightness)
 - Texture
 - Position (2 dimensions)
-
 
 ## Grammar of graphics
 

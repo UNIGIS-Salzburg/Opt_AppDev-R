@@ -1,22 +1,20 @@
 # Read and write data
 
-all R code parts are removed, because of an unsolved error message
+In the exercise 'data manipulation' we have **read** data from a CSV file into our script. Similarly we can also **write** code outputs to file.   
 
+```{block2, type = 'rmdtip'}
 
-## Summary
+In this lesson you will learn to read and write different spatial and tabular file formats. 
 
-Tidy-up your data
+For instance
 
-- Wide and long data
-- Re-shape data
-- Handle missing values
+- comma-separated values files `.csv`
+- semi-colon-separated values files `.csv`
+- tab-separated values files `.tsv`
+- other formats using custom delimiters
+- fix-width files `.fwf`
 
-**Next**: Read and write data
-
-- file formats
-- read
-- write
-
+```
 
 ## Read/write tabular data
 

@@ -83,3 +83,6 @@ summary-2
 join-1
 fig:L06-faodata
 fig:L06-joins
+fig:L07-bigmac
+readwrite-tabular-data
+readwrite-spatial-data
