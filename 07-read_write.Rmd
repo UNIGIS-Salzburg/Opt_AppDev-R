@@ -119,7 +119,9 @@ See [my solution](Solution_Miniexercise_plot.R){target="_blank"}!
 
 ```
 
+```{block2, type = 'rmdtip'}
 Similar R functions are also available for raster data (see package [raster: Geographic Data Analysis and Modeling](https://cran.r-project.org/web/packages/raster/raster.pdf){target="_blank"}) 
+```
 
 ## Data API
 
