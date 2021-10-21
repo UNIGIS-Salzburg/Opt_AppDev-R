@@ -1,1 +1,6 @@
 # References {-}
+
+https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html
+https://sdesabbata.github.io/granolarr
+https://sdesabbata.github.io/r-for-geographic-data-science/
+https://geocompr.robinlovelace.net/

@@ -125,13 +125,103 @@ Similar R functions are also available for raster data (see package [raster: Geo
 
 ## Data API
 
-tidyverse library httr?
+> API is the acronym for Application Programming Interface, which is a software intermediary that allows two applications to talk to each other.
 
+By means of an API we can read, write and modify information on the web. The following video briefly introduces the technology behind it.
+
+```{r APIvideo, echo=FALSE, fig.align='center', fig.cap="Video (3:13 min): REST API concepts and examples."}
+
+knitr::include_url("https://www.youtube.com/embed/7YcW25PHnAA?end=194")
+
+``` 
+
+The most important take away messages are:
+
+1) With a REST API web data is accessible through a URL (Client-Server call via HTTP protocol)
+2) The HTTP **Get** Method delivers data (a Response) - i.e. is used to read data, the HTTP **Post** Method is used to create new REST API resources (write data).
+3) URL Parameters are used to filter specific data from a response.
+4) Typically, APIs can return data in a number of different formats. 
+5) JSON is a very popular format for transferring web data.
+6) The two primary elements that make up JSON are keys and values.
+
+The [library `httr`](https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html){target="_blank"} (also part of [Tidyverse](https://www.tidyverse.org/packages/#import){target="_blank"}) offers functions to programmatically implement API calls in an R script. We will make use of this library to let our R script interact with the [APIs](https://openweathermap.org/api){target="_blank"} offered by [OpenWeather Map](https://openweathermap.org/){target="_blank"} that contain historical and real-time weather data for retrieval. In the upcoming example we will make a call to the [Current Weather API](https://openweathermap.org/current){target="_blank"}, which is one out of currenty [10 free APIs](https://openweathermap.org/price){target="_blank"} provided by OpenWeather Map.
+
+For accessing the data, we need to create a URL that is composed of a references to the data source (base) and parameters to filter the desired data subset (lat and lon). The parameters are concatenated by means of a '&' symbol, a question mark '?' needs to be placed between reference URL and parameters: 
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(httr)
+
+base <- "http://api.openweathermap.org/data/2.5/weather"
+lat <- "47.81"    
+lon <- "13.03"
+apiKey <- "3f87141421b32590d50416aae5ca780c"
+  
+call <- paste(base, "?lat=", lat, "&lon=" , lon, "&appid=", apiKey, sep="")
+
+print(call)
+  
+get <- GET(call)
+
+```
+
+In the code above, the function `paste()` assembles base URL and parameters. The URL (of type string) is then passed as an argument to function `GET()` that executes the HTTP Get method. 
+
+```{block2, type = 'rmdtip'}
+Note: The OpenWeather API requires an API Key to be passed as a parameter in the call. Get your [personal Key](https://openweathermap.org/appid){target="_blank"} to implement your own API requests. 
+
+```
+
+Per default, the `GET()` function returns a response object. Printing a response object gives you some useful information: the actual url used (after any redirects), the http status, the file (content) type, the size, and if it’s a text file, the first few lines of output.
+
+You can pull out important parts of the response with various helper functions such as `status_code()` and `content()`:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+status_code(get)
+
+str(content(get))
+
+```
+
+The Current Weather API call returned a number of real-time weather variables such as temperature, air pressure or humidity for the location of Salzburg. Current weather data may alternatively be retrieved by City ID or City Name (see the [documentation](https://openweathermap.org/current){target="_blank"} to get an overview of available API parameters).
+
+```{block2, type = 'rmdexercise'}
+
+Inspect the response object by means of a function called `headers()`. What methods are allowed when accessing the Current Weather API?
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+Only GET and POST methods are allowed.
+
+Other APIs allow to update existing REST API resources (PUT method) or to delete a REST API resource (DELETE method). 
+    
+</font></i>
+</p>
+</details>   
+  
+```
+
+In order to facilitate subsequent analyses and data visualization, we can convert the content of the return object to a `data frame` by means of function `fromJSON()` that is part of the library `library(jsonlite)`:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(jsonlite)
+
+get_text <- content(get, "text")
+get_json <- fromJSON(get_text, flatten = TRUE)
+get_df <- as.data.frame(get_json)
+
+```
+
+```{block2, type = 'rmdexercise'}
+Copy the code snippets above to a new R-Script. **Make sure to replace the key in the code example by your own API key!** If you need help, please turn to the discussion forum.
+```
 
 ```{block2, type = 'rmdtip'}
 
 [Tidyverse](https://www.tidyverse.org/packages/){target="_blank"} also provides other packages for reading data such as [DBI](https://cran.r-project.org/web/packages/DBI/){target="_blank"} for relational databases [jsonlite](https://cran.r-project.org/web/packages/jsonlite/){target="_blank"} for JSON and [xml2](https://cran.r-project.org/web/packages/xml2/){target="_blank"} for XML. 
 
 ```
-
-
