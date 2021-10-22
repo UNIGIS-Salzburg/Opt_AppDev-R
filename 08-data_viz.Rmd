@@ -48,9 +48,23 @@ The basic concept behind the grammar of graphics is described in an [article](ht
 
 As already announced above, functions in the `ggplot2` library are structured according to the Grammar of Graphics. To create a graph in `ggplot2`, we need to provide input data, specify visual variables by means of an aesthetics element (`aes()`), specify the geometry of marks (e.g., `geom_point`) and apply transformations (axis spacing) and themes (background theme of the graph).
 
-In the code example below, the first argument in `ggplot2` is the data input (a data frame). In the second argument, we map the data onto the x-axis and y-axis with the aesthetics argument `aes()`.
+In the code example below, the first argument in `ggplot2` is the [data](data/Aberdeen City.csv){target="_blank"} input (a data frame). In the second argument, we map the data onto the x-axis and y-axis with the aesthetics argument `aes()`.
 
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
+library(ggplot2)
+
+aberdeen_2011OAC <- read_csv("data/Aberdeen_City.csv")
+
+leicester_2011OAC %>%
+  ggplot2::ggplot(
+    aes(
+      x = u011
+    )
+  ) +
+  ggplot2::geom_histogram(binwidth = 5) +
+  ggplot2::theme_bw()
+```
 
 `ggplot2` plots are objects which means that you can assign them. If we would display the plot now then we wouldn’t see anything yet because we have not specified the geometric element yet.
 

@@ -138,7 +138,7 @@
 </ul></li>
 <li class="chapter" data-level="8" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>8</b> Data visualisation</a><ul>
 <li class="chapter" data-level="8.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>8.1</b> The Grammar of graphics</a></li>
-<li class="chapter" data-level="8.2" data-path="data-visualisation.html"><a href="data-visualisation.html#ggplot2"><i class="fa fa-check"></i><b>8.2</b> ggplot2</a></li>
+<li class="chapter" data-level="8.2" data-path="data-visualisation.html"><a href="data-visualisation.html#visualization-of-distributions"><i class="fa fa-check"></i><b>8.2</b> Visualization of distributions</a></li>
 <li class="chapter" data-level="8.3" data-path="data-visualisation.html"><a href="data-visualisation.html#boxplots"><i class="fa fa-check"></i><b>8.3</b> Boxplots</a></li>
 <li class="chapter" data-level="8.4" data-path="data-visualisation.html"><a href="data-visualisation.html#jittered-points"><i class="fa fa-check"></i><b>8.4</b> Jittered points</a></li>
 <li class="chapter" data-level="8.5" data-path="data-visualisation.html"><a href="data-visualisation.html#violin-plot"><i class="fa fa-check"></i><b>8.5</b> Violin plot</a></li>
@@ -207,7 +207,7 @@ In this lesson you will get to know the <a href="https://ggplot2.tidyverse.org/"
 </ul>
 <p>For instance, in Figure <a href="data-visualisation.html#fig:L07-colsize">8.1</a> variables ‘Gdp per capita’ and ‘Life Expectancy’ are mapped onto the x and y axes, variables ‘national population’ and ‘world regions’ are mapped onto visual variables size and color.</p>
 <div class="figure" style="text-align: center"><span id="fig:L07-colsize"></span>
-<img src="images/VisualVar.png" alt="Visual variables color and size" width="80%" />
+<img src="images/VisualVar.png" alt="Visual variables color and size" width="90%" />
 <p class="caption">
 Figure 8.1: Visual variables color and size
 </p>
@@ -219,20 +219,12 @@ The basic concept behind the grammar of graphics is described in an <a href="htt
 </div>
 
 </div>
-<div id="ggplot2" class="section level2">
-<h2><span class="header-section-number">8.2</span> ggplot2</h2>
-<p>The <code>ggplot2</code> library offers a series of functions for creating graphics <strong>declaratively</strong>, based on the Grammar of Graphics.</p>
-<p>To create a graph in <code>ggplot2</code>:</p>
-<ul>
-<li>provide the data</li>
-<li>specify elements
-<ul>
-<li>which visual variables (<code>aes</code>)</li>
-<li>which marks (e.g., <code>geom_point</code>)</li>
-</ul></li>
-<li>apply transformations</li>
-<li>guides</li>
-</ul>
+<div id="visualization-of-distributions" class="section level2">
+<h2><span class="header-section-number">8.2</span> Visualization of distributions</h2>
+<p>As already announced above, functions in the <code>ggplot2</code> library are structured according to the Grammar of Graphics. To create a graph in <code>ggplot2</code>, we need to provide input data, specify visual variables by means of an aesthetics element (<code>aes()</code>), specify the geometry of marks (e.g., <code>geom_point</code>) and apply transformations (axis spacing) and themes (background theme of the graph).</p>
+<p>In the code example below, the first argument in <code>ggplot2</code> is the <a href="data/Aberdeen%20City.csv" target="_blank">data</a> input (a data frame). In the second argument, we map the data onto the x-axis and y-axis with the aesthetics argument <code>aes()</code>.</p>
+<p><code>ggplot2</code> plots are objects which means that you can assign them. If we would display the plot now then we wouldn’t see anything yet because we have not specified the geometric element yet.</p>
+<p>object oriented programming tip…</p>
 </div>
 <div id="boxplots" class="section level2">
 <h2><span class="header-section-number">8.3</span> Boxplots</h2>

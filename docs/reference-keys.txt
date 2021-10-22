@@ -93,3 +93,4 @@ data-api
 fig:APIvideo
 fig:L07-colsize
 the-grammar-of-graphics
+visualization-of-distributions
