@@ -3,23 +3,26 @@
 R has a very rich set of graphical functions. The [R Graph Gallery](https://www.r-graph-gallery.com/){target="_blank"} provides a large number of examples (including code).  
 
 ```{block2, type = 'rmdtip'}
-In this exercise we will conduct some simple statistical analyses and visualize results by means of...
-
-* Histogramms  / Bar plots
-* Box plots
-* Scatter plots
-* Line plots
+In this lesson you will get to know the [`ggplot2` library](https://ggplot2.tidyverse.org/){target="_blank"}, which is the most popular library for creating graphics in R. You will learn to create standard graphs such as histograms, boxplots or scatterplots. Furthermore, map making in R will be introduced. 
 ```
 
-## Visual variables
+## The Grammar of graphics
 
-A **visual variable** is an aspect of a **mark** that can be controlled to change its appearance. For instance, we can specify different colors to represent a qualitative attribute in a line plot (see Figure \@ref(fig:L07-bigmac)).
+The [ggplot2 library](https://ggplot2.tidyverse.org/){target="_blank"} is part of [Tidyverse](https://www.tidyverse.org/){target="_blank"} and offers a series of functions for creating graphics declaratively, based on the concepts outlined in the Grammar of Graphics by Leland Wilkinson.
 
-```{r L07-bigmac, echo=FALSE, fig.cap="Visual variable volor", out.width='100%', fig.asp=.75, fig.align='center'}
-knitr::include_graphics('images/LinePlotBigMac.png')
-```
+The grammar of graphics is a schema that enables us to concisely describe the components of a graphic. These components are called **layers of grammatical elements.** Overall the grammar comprises seven layers:
 
-Other visual variables are: 
+1) Data - The data element is the dataset itself.
+2) Aesthetics - This layer defines how variables are mapped onto scales (see description below).
+3) Geometries - This element determines how our data is being displayed (bars, points, lines)
+4) Facets - Facetting splits the data into subset and displays the same graph for every subset.
+5) Statistics - These are statistics derived from the data (add mean, median, quartile).
+6) Coordinates - This element determines the transformation of axes (e.g. change spacing of displayed data)
+7) Themes - This element determines the graphics background.
+
+The **aestethics layer** offers a number of different options to map data onto visual variables. A **visual variable** is an aspect of a **mark** that can be controlled to change its appearance.
+
+Visual variables are: 
 
 - Size
 - Shape 
@@ -27,36 +30,33 @@ Other visual variables are:
 - Colour (hue)
 - Colour value (brightness)
 - Texture
-- Position (2 dimensions)
+- Position (map variable to x or y axis) 
 
-## Grammar of graphics
+For instance, in Figure \@ref(fig:L07-colsize) variables 'Gdp per capita' and  'Life Expectancy' are mapped onto the x and y axes, variables 'national population' and 'world regions' are mapped onto visual variables size and color.
 
-Grammars provide rules for languages
+```{r L07-colsize, echo=FALSE, fig.cap="Visual variables color and size", out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/VisualVar.png')
+```
 
-*"The grammar of graphics takes us beyond a limited set of charts (words) to an almost unlimited world of graphical forms (statements)"* (Wilkinson, 2005)
+In order to make that concepts clearer, a number of examples will me presented in upcoming sections.
 
-Statistical graphic specifications are expressed in six statements:
+```{block2, type = 'rmdtip'}
+The basic concept behind the grammar of graphics is described in an [article](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf){target="_blank"} by Hadley Wickham.  
+```
 
-1. **Data** manipulation 
-2. **Variable** transformations (e.g., rank),
-3. **Scale** transformations (e.g., log),
-4. **Coordinate system** transformations (e.g., polar),
-5. **Element**: mark (e.g., points) and visual variables (e.g., color)
-6. **Guides** (axes, legends, etc.).
+## Visualization of distributions
+
+As already announced above, functions in the `ggplot2` library are structured according to the Grammar of Graphics. To create a graph in `ggplot2`, we need to provide input data, specify visual variables by means of an aesthetics element (`aes()`), specify the geometry of marks (e.g., `geom_point`) and apply transformations (axis spacing) and themes (background theme of the graph).
+
+In the code example below, the first argument in `ggplot2` is the data input (a data frame). In the second argument, we map the data onto the x-axis and y-axis with the aesthetics argument `aes()`.
 
 
-## ggplot2
 
-The `ggplot2` library offers a series of functions for creating graphics **declaratively**, based on the Grammar of Graphics. 
+`ggplot2` plots are objects which means that you can assign them. If we would display the plot now then we wouldn’t see anything yet because we have not specified the geometric element yet.
 
-To create a graph in `ggplot2`:
+object oriented programming tip...
 
-- provide the data
-- specify elements
-    - which visual variables (`aes`)
-    - which marks (e.g., `geom_point`)
-- apply transformations
-- guides
+
 
 
 

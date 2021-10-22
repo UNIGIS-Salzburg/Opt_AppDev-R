@@ -4,3 +4,6 @@ https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html
 https://sdesabbata.github.io/granolarr
 https://sdesabbata.github.io/r-for-geographic-data-science/
 https://geocompr.robinlovelace.net/
+https://thatdatatho.com/grammar-of-graphics-ggplot2/
+https://ggplot2.tidyverse.org/
+https://www.springer.com/de/book/9780387245447

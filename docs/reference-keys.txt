@@ -91,3 +91,5 @@ read-and-write-vector-data
 read-and-write-raster-data
 data-api
 fig:APIvideo
+fig:L07-colsize
+the-grammar-of-graphics

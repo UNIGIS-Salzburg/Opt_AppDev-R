@@ -1,6 +1,6 @@
 # required skills: 1) get typeof() vector etc., 2) how to execute code in RStudio?, execute parts of the code
 # 3) return functions, also multiple return values (ok), 4) while loops (ok), 5) system time and system sleep
-# 6) retrieve date by API, 7) ggplot visualization, 8) append to vector (ok)
+# 6) retrieve data by API (ok), 7) ggplot visualization, 8) append to vector (ok)
 
 
 library(httr)
