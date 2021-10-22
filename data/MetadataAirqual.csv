@@ -1,0 +1,27 @@
+Code;Description
+PM10kont;fine dust
+PM25kont;fine dust
+GSTR;global radiation
+HGT;heating degree days
+CO;carbon monoxide
+LichtMag;light magnitude
+LichtMagT;light magnitude daily mean
+LUFTD0;air pressure 0m
+TEMP;air temperature
+LichMAu00;moonrise
+LichMPhas;lunar phase
+LichMUn00;moonset
+O3;ozone
+PM1kont;PM1kont Grimm
+RM;rainfall quantity
+RF;relative humidity
+SO2;sulfur dioxide
+H2S;hydrogen sulfide
+SONNE;sunshine duration
+NO2;nitrogen dioxide
+NO;nitrogen monoxide
+STRB;radiation balance
+UVB;ultraviolet Str. B
+BOE;wind gust
+WIV;wind speed
+WIR;wind direction

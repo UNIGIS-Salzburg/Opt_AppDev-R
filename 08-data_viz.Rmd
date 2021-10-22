@@ -48,31 +48,103 @@ The basic concept behind the grammar of graphics is described in an [article](ht
 
 As already announced above, functions in the `ggplot2` library are structured according to the Grammar of Graphics. To create a graph in `ggplot2`, we need to provide input data, specify visual variables by means of an aesthetics element (`aes()`), specify the geometry of marks (e.g., `geom_point`) and apply transformations (axis spacing) and themes (background theme of the graph).
 
-In the code example below, the first argument in `ggplot2` is the [data](data/Aberdeen City.csv){target="_blank"} input (a data frame). In the second argument, we map the data onto the x-axis and y-axis with the aesthetics argument `aes()`.
+We start the analysis with a simple histogram, to explore the distribution of air quality [data](data/AirQualityUpperAut.csv){target="_blank"} that has been measured at different locations in Upper Austria.
+
+```{block2, type = 'rmdtip'}
+
+The data includes the following **variables**
+
+- **time** of measurement
+- ID of the measuring **station**
+- measured meteorological [**component**](data/MetadataAirqual.xlsx){target="_blank"}
+- [**meantype**](data/MetadataAirqual2.xlsx){target="_blank"}
+- **unit** of measurement
+- measurement **value**
+  
+```
+
+The following code renders the first five lines of the dataset:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
-library(ggplot2)
+library(tidyverse)
+library(knitr)
 
-aberdeen_2011OAC <- read_csv("data/Aberdeen_City.csv")
+#read csv data, Note: Semicolon seperated CSVs can be loaded by function 'read_delim()'
+airquality <- read_delim("data/AirQualityUpperAut.csv", delim = ";")
 
-leicester_2011OAC %>%
-  ggplot2::ggplot(
-    aes(
-      x = u011
-    )
-  ) +
-  ggplot2::geom_histogram(binwidth = 5) +
-  ggplot2::theme_bw()
+airquality %>%
+  dplyr::slice_head(n = 5) %>%
+  knitr::kable()
+
 ```
 
-`ggplot2` plots are objects which means that you can assign them. If we would display the plot now then we wouldn’t see anything yet because we have not specified the geometric element yet.
+The code below filters the airquality datset by measurement component and temporal resolution. Then the data subset is passed as a first argument to function `ggplot()`. In the second argument, we map the variable 'value' onto the x-axis with the aesthetics argument `aes()`. `geom_histogram()` specifies the geometry of the plot and `theme_bw()` is used to add a [background theme](https://ggplot2.tidyverse.org/reference/ggtheme.html){target="_blank"}.
 
-object oriented programming tip...
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
+#filter NO2 measurements with temporal resolution 30min (HMW)
+airquality %>%
+  dplyr::filter(component == "NO2" & meantype == "HMW") %>%
 
+  #create plot  
+  ggplot2::ggplot(.,    #the dot '.' represents the piped value 
+    aes(            
+      x = value         #map variable 'value' onto x-axis
+    )
+  ) +
+  ggplot2::geom_histogram() +    #define geometry
+  ggplot2::theme_bw()            #define theme
 
+```
 
+If we aim to distinguish between measurements of respective measurement stations, we can map the variable 'station' onto visual variable color:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+airquality %>%
+  dplyr::filter(component == "NO2" & meantype == "HMW") %>%
+  dplyr::filter(station == "S125" | station == "S431" | station == "S270") %>%    #select 3 stations
+
+  ggplot2::ggplot(.,    
+    aes(            
+      x = value, 
+      fill = station
+      
+    )
+  ) +
+  
+  ggplot2::xlab("NO2 [mg/m^3]") +
+  ggplot2::ylab("Count") +
+  scale_fill_manual(name = "Measurement stations", values = c("grey20", "grey50", "grey80")) +
+  ggplot2::geom_histogram() +   
+  ggplot2::theme_bw()            
+
+```
+
+This is implemented by adding an attribute `fill = station` to the aesthetics element (`aes()`). `ggplot2` offers a number of [functions](https://ggplot2.tidyverse.org/reference/aes_colour_fill_alpha.html){target="_blank"} to specify your own set of mappings from levels in the data to aesthetic values. In the example above the function `scale_fill_manual()` is used to map the three levels S125, S270 and S431 to the [predefined ggplot colors](http://sape.inf.usi.ch/quick-reference/ggplot2/colour){target="_blank"} grey20, grey50 and grey80. Instead of ggplot colors, you can also use [hex color codes](https://htmlcolorcodes.com/){target="_blank"}.
+
+```{block2, type = 'rmdexercise'}
+
+Note that plot components are [added](https://ggplot2.tidyverse.org/reference/gg-add.html){target="_blank"} by means of a plus '+' sign. It allows you to start simple, then get more and more complex.
+
+So far we have added two axis labels. Create a new R-Script, download the [input data](data/AirQualityUpperAut.csv){target="_blank"}, recreate the histogram and add a title to the plot (see [documentation](https://ggplot2.tidyverse.org/reference/labs.html){target="_blank"}).    
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+
+Insert title:  
+    
+ggplot2::ggtitle("Nitrogen dioxide concentration")
+    
+</font></i>
+</p>
+</details>                                                                           
+                                                                           
+
+  
+```
 
 ## Boxplots
 
