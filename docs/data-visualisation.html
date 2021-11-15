@@ -254,7 +254,7 @@ In this lesson you will get to know the <a href="https://ggplot2.tidyverse.org/"
 <li>Aesthetics - This layer defines how variables are mapped onto scales (see description below).</li>
 <li>Geometries - This element determines how our data is being displayed (bars, points, lines)</li>
 <li>Facets - Facetting splits the data into subset and displays the same graph for every subset.</li>
-<li>Statistics - These are statistics derived from the data (add mean, median, quartile).</li>
+<li>Statistics - These are statistics derived from the data (add mean, median, quartile, etc.).</li>
 <li>Coordinates - This element determines the transformation of axes (e.g. change spacing of displayed data)</li>
 <li>Themes - This element determines the graphics background.</li>
 </ol>
@@ -269,7 +269,7 @@ In this lesson you will get to know the <a href="https://ggplot2.tidyverse.org/"
 <li>Texture</li>
 <li>Position (map variable to x or y axis)</li>
 </ul>
-<p>For instance, in Figure <a href="data-visualisation.html#fig:L07-colsize">8.1</a> variables ‘Gdp per capita’ and ‘Life Expectancy’ are mapped onto the x and y axes, variables ‘national population’ and ‘world regions’ are mapped onto visual variables size and color.</p>
+<p>For instance, in Figure <a href="data-visualisation.html#fig:L07-colsize">8.1</a> variables ‘Gdp per capita’ and ‘Life Expectancy’ are mapped onto the x and y axes (visual variable <strong>position</strong>), variables ‘national population’ and ‘world regions’ are mapped onto visual variables <strong>size</strong> and <strong>color</strong>.</p>
 <div class="figure" style="text-align: center"><span id="fig:L07-colsize"></span>
 <img src="images/VisualVar.png" alt="Visual variables color and size" width="90%" />
 <p class="caption">
@@ -299,7 +299,7 @@ The basic concept behind the grammar of graphics is described in an <a href="htt
 <li><p>measurement <strong>value</strong></p>
 </div></li>
 </ul>
-<p>The following code renders the first five lines of the dataset:</p>
+<p>The following code renders the first five lines of the dataset in a <code>knitr</code> table:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-visualisation.html#cb1-1"></a><span class="kw">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="data-visualisation.html#cb1-2"></a><span class="kw">library</span>(knitr)</span>
 <span id="cb1-3"><a href="data-visualisation.html#cb1-3"></a></span>
@@ -400,7 +400,7 @@ The basic concept behind the grammar of graphics is described in an <a href="htt
 
 <div class="rmdexercise">
 <p>Note that plot components are <a href="https://ggplot2.tidyverse.org/reference/gg-add.html" target="_blank">added</a> by means of a plus ‘+’ sign. It allows you to start simple, then get more and more complex.</p>
-<p>So far we have added two axis labels. Create a new R-Script, download the <a href="data/AirQualityUpperAut.csv" target="_blank">input data</a>, recreate the histogram and add a title to the plot (see <a href="https://ggplot2.tidyverse.org/reference/labs.html" target="_blank">documentation</a>).</p>
+<p>So far we have added two axis labels. Create a new R-Script, download the <a href="data/AirQualityUpperAut.csv" target="_blank">input data</a>, recreate the histogram and insert one additional line of code to add a plot title (see <a href="https://ggplot2.tidyverse.org/reference/labs.html" target="_blank">documentation</a>).</p>
 <details closed>
 <summary><ins><strong>See solution!</strong></ins></summary>
 <p>
@@ -415,11 +415,39 @@ The basic concept behind the grammar of graphics is described in an <a href="htt
 </div>
 <div id="boxplots" class="section level2">
 <h2><span class="header-section-number">8.3</span> Boxplots</h2>
-<ul>
-<li><code>x</code> categorical variable</li>
-<li><code>y</code> variable to plot</li>
-<li><code>geom_boxplot</code></li>
-</ul>
+<p>The same basic syntax is used to create other types of plots like bar plots (use geometry <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" target="_blank"><code>geom_bar()</code></a> or <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" target="_blank"><code>geom_col()</code></a>), line plots (use geometry <a href="https://ggplot2.tidyverse.org/reference/geom_path.html" target="_blank"><code>geom_line()</code></a>) and many <a href="https://ggplot2.tidyverse.org/reference/index.html" target="_blank">others</a>.</p>
+<p>For instance, if we replace <code>geom_histogram()</code> by <code>geom_boxplot()</code>, the value distribution of NO2 measurements is visualized by means of a box plot:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-visualisation.html#cb4-1"></a><span class="co">#filter NO2 measurements with temporal resolution 30min (HMW)</span></span>
+<span id="cb4-2"><a href="data-visualisation.html#cb4-2"></a>airquality <span class="op">%&gt;%</span></span>
+<span id="cb4-3"><a href="data-visualisation.html#cb4-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(component <span class="op">==</span><span class="st"> &quot;NO2&quot;</span> <span class="op">&amp;</span><span class="st"> </span>meantype <span class="op">==</span><span class="st"> &quot;HMW&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb4-4"><a href="data-visualisation.html#cb4-4"></a></span>
+<span id="cb4-5"><a href="data-visualisation.html#cb4-5"></a><span class="st">  </span><span class="co">#create plot  </span></span>
+<span id="cb4-6"><a href="data-visualisation.html#cb4-6"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(.,    <span class="co">#the dot &#39;.&#39; represents the piped value </span></span>
+<span id="cb4-7"><a href="data-visualisation.html#cb4-7"></a>    <span class="kw">aes</span>(            </span>
+<span id="cb4-8"><a href="data-visualisation.html#cb4-8"></a>      <span class="dt">x =</span> value         <span class="co">#map variable &#39;value&#39; onto x-axis</span></span>
+<span id="cb4-9"><a href="data-visualisation.html#cb4-9"></a>    )</span>
+<span id="cb4-10"><a href="data-visualisation.html#cb4-10"></a>  ) <span class="op">+</span></span>
+<span id="cb4-11"><a href="data-visualisation.html#cb4-11"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">xlab</span>(<span class="st">&quot;NO2 [mg/m^3]&quot;</span>) <span class="op">+</span></span>
+<span id="cb4-12"><a href="data-visualisation.html#cb4-12"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st">    </span><span class="co">#define geometry</span></span>
+<span id="cb4-13"><a href="data-visualisation.html#cb4-13"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme</span>(</span>
+<span id="cb4-14"><a href="data-visualisation.html#cb4-14"></a>    <span class="dt">axis.text.y =</span> <span class="kw">element_blank</span>(),    <span class="co">#remove text and ticks from y axis</span></span>
+<span id="cb4-15"><a href="data-visualisation.html#cb4-15"></a>    <span class="dt">axis.ticks.y =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb4-16"><a href="data-visualisation.html#cb4-16"></a>  )</span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Note that the last two lines remove text and tick marks from the y-axis of the plot.</p>
+
+<div class="rmdtip">
+<p>Just as historamms, box plots are used to inspect distributions in data. The <a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html" target="_blank">interpretation</a>, however, does require some additional information.</p>
+<p>The lower and upper edge of the box (the so called lower and upper <strong>hinges</strong>) correspond to the first and third <a href="https://www.statisticshowto.com/probability-and-statistics/statistics-definitions/what-are-quartiles/" target="_blank">quartiles</a>. The vertical line that seperates the box, indicates the <strong>median</strong> value (second quartile).</p>
+<p>The upper <strong>whisker</strong> extends from the hinge to the largest value no further than 1.5 * IQR from the hinge (where IQR is the inter-quartile range, or distance between the first and third quartiles). The lower whisker extends from the hinge to the smallest value at most 1.5 * IQR of the hinge. Data beyond the end of the whiskers are called “outlying” points and are plotted individually.</p>
+</div>
+
+
+<div class="rmdexercise">
+<p>In our histogram examples, we have mapped the variable ‘station’ onto visual variable color to seperately visualize measurements of different stations. Try to apply the same approach to render mesurements of stations S125, S270 and S431 seperately in a box plot.</p>
+See <a href="Solution_Exercise_boxplots.R" target="_blank">my solution</a>!
+</div>
+
 </div>
 <div id="jittered-points" class="section level2">
 <h2><span class="header-section-number">8.4</span> Jittered points</h2>

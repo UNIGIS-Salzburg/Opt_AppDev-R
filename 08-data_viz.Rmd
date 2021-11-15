@@ -16,7 +16,7 @@ The grammar of graphics is a schema that enables us to concisely describe the co
 2) Aesthetics - This layer defines how variables are mapped onto scales (see description below).
 3) Geometries - This element determines how our data is being displayed (bars, points, lines)
 4) Facets - Facetting splits the data into subset and displays the same graph for every subset.
-5) Statistics - These are statistics derived from the data (add mean, median, quartile).
+5) Statistics - These are statistics derived from the data (add mean, median, quartile, etc.).
 6) Coordinates - This element determines the transformation of axes (e.g. change spacing of displayed data)
 7) Themes - This element determines the graphics background.
 
@@ -32,7 +32,7 @@ Visual variables are:
 - Texture
 - Position (map variable to x or y axis) 
 
-For instance, in Figure \@ref(fig:L07-colsize) variables 'Gdp per capita' and  'Life Expectancy' are mapped onto the x and y axes, variables 'national population' and 'world regions' are mapped onto visual variables size and color.
+For instance, in Figure \@ref(fig:L07-colsize) variables 'Gdp per capita' and  'Life Expectancy' are mapped onto the x and y axes (visual variable **position**), variables 'national population' and 'world regions' are mapped onto visual variables **size** and **color**.
 
 ```{r L07-colsize, echo=FALSE, fig.cap="Visual variables color and size", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/VisualVar.png')
@@ -63,7 +63,7 @@ The data includes the following **variables**
   
 ```
 
-The following code renders the first five lines of the dataset:
+The following code renders the first five lines of the dataset in a `knitr` table:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
@@ -128,7 +128,7 @@ This is implemented by adding an attribute `fill = station` to the aesthetics el
 
 Note that plot components are [added](https://ggplot2.tidyverse.org/reference/gg-add.html){target="_blank"} by means of a plus '+' sign. It allows you to start simple, then get more and more complex.
 
-So far we have added two axis labels. Create a new R-Script, download the [input data](data/AirQualityUpperAut.csv){target="_blank"}, recreate the histogram and add a title to the plot (see [documentation](https://ggplot2.tidyverse.org/reference/labs.html){target="_blank"}).    
+So far we have added two axis labels. Create a new R-Script, download the [input data](data/AirQualityUpperAut.csv){target="_blank"}, recreate the histogram and insert one additional line of code to add a plot title (see [documentation](https://ggplot2.tidyverse.org/reference/labs.html){target="_blank"}).    
 
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
@@ -148,14 +148,49 @@ ggplot2::ggtitle("Nitrogen dioxide concentration")
 
 ## Boxplots
 
-- `x` categorical variable
-- `y` variable to plot
-- `geom_boxplot`
+The same basic syntax is used to create other types of plots like bar plots (use geometry [`geom_bar()`](https://ggplot2.tidyverse.org/reference/geom_bar.html){target="_blank"} or [`geom_col()`](https://ggplot2.tidyverse.org/reference/geom_bar.html){target="_blank"}), line plots (use geometry [`geom_line()`](https://ggplot2.tidyverse.org/reference/geom_path.html){target="_blank"}) and many [others](https://ggplot2.tidyverse.org/reference/index.html){target="_blank"}.
 
+For instance, if we replace `geom_histogram()` by `geom_boxplot()`, the value distribution of NO2 measurements is visualized by means of a box plot:   
 
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
+#filter NO2 measurements with temporal resolution 30min (HMW)
+airquality %>%
+  dplyr::filter(component == "NO2" & meantype == "HMW") %>%
 
+  #create plot  
+  ggplot2::ggplot(.,    #the dot '.' represents the piped value 
+    aes(            
+      x = value         #map variable 'value' onto x-axis
+    )
+  ) +
+  ggplot2::xlab("NO2 [mg/m^3]") +
+  ggplot2::geom_boxplot() +    #define geometry
+  ggplot2::theme(
+    axis.text.y = element_blank(),    #remove text and ticks from y axis
+    axis.ticks.y = element_blank()
+  )
 
+```
+
+Note that the last two lines remove text and tick marks from the y-axis of the plot.
+
+```{block2, type = 'rmdtip'}
+
+Just as historamms, box plots are used to inspect distributions in data. The [interpretation](https://ggplot2.tidyverse.org/reference/geom_boxplot.html){target="_blank"}, however, does require some additional information.  
+
+The lower and upper edge of the box (the so called lower and upper **hinges**) correspond to the first and third [quartiles](https://www.statisticshowto.com/probability-and-statistics/statistics-definitions/what-are-quartiles/){target="_blank"}. The vertical line that seperates the box, indicates the **median** value (second quartile). 
+
+The upper **whisker** extends from the hinge to the largest value no further than 1.5 * IQR from the hinge (where IQR is the inter-quartile range, or distance between the first and third quartiles). The lower whisker extends from the hinge to the smallest value at most 1.5 * IQR of the hinge. Data beyond the end of the whiskers are called "outlying" points and are plotted individually.
+
+```
+
+```{block2, type = 'rmdexercise'}
+
+In our histogram examples, we have mapped the variable ‘station’ onto visual variable color to seperately visualize measurements of different stations. Try to apply the same approach to render mesurements of stations S125, S270 and S431 seperately in a box plot. 
+                                                                        
+See [my solution](Solution_Exercise_boxplots.R){target="_blank"}!                                                                           
+```
 
 ## Jittered points
 
