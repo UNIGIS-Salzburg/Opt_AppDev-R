@@ -132,18 +132,16 @@ So far we have added two axis labels. Create a new R-Script, download the [input
 
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
-<p><i><font color="grey">
+<p><font color="grey">
 
 Insert title:  
     
 ggplot2::ggtitle("Nitrogen dioxide concentration")
     
-</font></i>
+</font>
 </p>
-</details>                                                                           
-                                                                           
+</details>
 
-  
 ```
 
 ## Boxplots
@@ -194,10 +192,75 @@ See [my solution](Solution_Exercise_boxplots.R){target="_blank"}!
 
 ## Scatterplots
 
-- `x` and `y` variable to plot
-- `geom_point`
+While boxplots and histograms reveal distributions in data, scatterplots are used to illustrate relationships between variables. 
 
+In the following example, air temperature (TEMP) and relative humidity (RF) measured in a 30min interval by station ‘S108‘ are filtered from data table ‘airquality‘. Then the two tables are joined by their common field ‘time‘. The joined table is used as data input to render a scatterplot with temperature on the x-axis and relative humidity on the y-axis.   
 
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+#half-hourly temperature measurement of station S108 to data frame
+temp_tab <- airquality %>%
+  dplyr::filter(component == "TEMP" & meantype == "HMW" & station == "S108") 
+
+#half-hourly relative humidity measurement of station S108 to data frame
+humidity_tab <- airquality %>%
+  dplyr::filter(component == "RF" & meantype == "HMW" & station == "S108") 
+
+#join humidity and temperature tables by common field 'time'
+temp_tab %>%
+  dplyr::inner_join(
+  # right table
+  humidity_tab,
+  # columns to match
+  by = c("time" = "time")
+  ) %>%
+  
+  dplyr::select(time, value.x, value.y) %>%   #select relevant columns from joined table
+
+  #create plot  
+  ggplot2::ggplot(.,    
+    aes(            
+      x = value.x,      
+      y = value.y
+    )
+  ) +
+  ggplot2::xlab("air temperature [°C]") +
+  ggplot2::ylab("relative humidity [%]") +
+  ggplot2::geom_point(color="blue")  +                                      #define geometry scatterplot, with point color blue
+  ggplot2::geom_smooth(method=lm , color="red", fill="#69b3a2", se=TRUE) +  #with linear trend and confidence interval
+  ggplot2::theme_minimal()               
+
+```
+
+The plot reveals a trend between the two variables temperature and humidity. Relative humidity tends to increase as temperature decreases and vice versa. In [this video](https://www.youtube.com/watch?v=saojnBSBUuk){target="_blank"} you can find an explanation for the inverse proportional relationship between relative humidity and air temperature.
+
+Obviously, due to other predictors such as windspeed, evaporation etc., this relationship is not perfectly linear, however, it can be closely approximated by means of a linear regression line. Deviations from the linear model are indicated by a 95% confidence interval.  
+
+```{block2, type = 'rmdexercise'}
+
+Copy and run the code example from above in a new R-Script. Note that the air quality data as well as the `tidyverse` library must be loaded to run the code in a standalone R-script file. 
+
+[Complete Script!](Solution_Scatterplot.R){target="_blank"}
+
+Go through the code example line by line and answer the following questions:
+  
+1) How many measurements (records) are included in the scatterplot?
+2) What is value.x and value.y?
+3) We have used  the function `geom_smooth()` to fit a linear regresison model (method = lm). What is the purpose of argument `se`?   
+
+<details closed>
+<summary><ins>**See answers!**</ins></summary>
+<p><font color="grey">
+
+1) Measurements between 21.10.2021 14:00 and 22.10.2021 12:00, half-hourly interval -> 45 records (see envoronment tab in RStudio)
+2) temperature and humidity values in the data frame tables `humidity_tab` and `temp_tab` are both denoted `value`. In order to avoid ambiguities, the join functions renames columns.
+3) The argument defines whether confidence bounds are diplayed (`se` is TRUE by default).
+    
+</font>
+</p>
+</details> 
+
+```
 
 ## Map visualization
 

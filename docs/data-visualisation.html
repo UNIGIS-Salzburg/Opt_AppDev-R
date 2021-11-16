@@ -201,20 +201,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#data-api"><i class="fa fa-check"></i><b>7.3</b> Data API</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>8</b> Data visualisation</a><ul>
-<li class="chapter" data-level="8.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>8.1</b> The Grammar of graphics</a></li>
+<li class="chapter" data-level="8.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>8.1</b> The Grammar of Graphics</a></li>
 <li class="chapter" data-level="8.2" data-path="data-visualisation.html"><a href="data-visualisation.html#visualization-of-distributions"><i class="fa fa-check"></i><b>8.2</b> Visualization of distributions</a></li>
 <li class="chapter" data-level="8.3" data-path="data-visualisation.html"><a href="data-visualisation.html#boxplots"><i class="fa fa-check"></i><b>8.3</b> Boxplots</a></li>
-<li class="chapter" data-level="8.4" data-path="data-visualisation.html"><a href="data-visualisation.html#jittered-points"><i class="fa fa-check"></i><b>8.4</b> Jittered points</a></li>
-<li class="chapter" data-level="8.5" data-path="data-visualisation.html"><a href="data-visualisation.html#violin-plot"><i class="fa fa-check"></i><b>8.5</b> Violin plot</a></li>
-<li class="chapter" data-level="8.6" data-path="data-visualisation.html"><a href="data-visualisation.html#violin-plot-1"><i class="fa fa-check"></i><b>8.6</b> Violin plot</a></li>
-<li class="chapter" data-level="8.7" data-path="data-visualisation.html"><a href="data-visualisation.html#lines"><i class="fa fa-check"></i><b>8.7</b> Lines</a></li>
-<li class="chapter" data-level="8.8" data-path="data-visualisation.html"><a href="data-visualisation.html#lines-1"><i class="fa fa-check"></i><b>8.8</b> Lines</a></li>
-<li class="chapter" data-level="8.9" data-path="data-visualisation.html"><a href="data-visualisation.html#scatterplots"><i class="fa fa-check"></i><b>8.9</b> Scatterplots</a></li>
-<li class="chapter" data-level="8.10" data-path="data-visualisation.html"><a href="data-visualisation.html#overlapping-points"><i class="fa fa-check"></i><b>8.10</b> Overlapping points</a></li>
-<li class="chapter" data-level="8.11" data-path="data-visualisation.html"><a href="data-visualisation.html#overlapping-points-1"><i class="fa fa-check"></i><b>8.11</b> Overlapping points</a></li>
-<li class="chapter" data-level="8.12" data-path="data-visualisation.html"><a href="data-visualisation.html#bin-counts"><i class="fa fa-check"></i><b>8.12</b> Bin counts</a></li>
-<li class="chapter" data-level="8.13" data-path="data-visualisation.html"><a href="data-visualisation.html#bin-counts-1"><i class="fa fa-check"></i><b>8.13</b> Bin counts</a></li>
-<li class="chapter" data-level="8.14" data-path="data-visualisation.html"><a href="data-visualisation.html#summary"><i class="fa fa-check"></i><b>8.14</b> Summary</a></li>
+<li class="chapter" data-level="8.4" data-path="data-visualisation.html"><a href="data-visualisation.html#scatterplots"><i class="fa fa-check"></i><b>8.4</b> Scatterplots</a></li>
+<li class="chapter" data-level="8.5" data-path="data-visualisation.html"><a href="data-visualisation.html#map-visualization"><i class="fa fa-check"></i><b>8.5</b> Map visualization</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -246,7 +237,7 @@ In this lesson you will get to know the <a href="https://ggplot2.tidyverse.org/"
 </div>
 
 <div id="the-grammar-of-graphics" class="section level2">
-<h2><span class="header-section-number">8.1</span> The Grammar of graphics</h2>
+<h2><span class="header-section-number">8.1</span> The Grammar of Graphics</h2>
 <p>The <a href="https://ggplot2.tidyverse.org/" target="_blank">ggplot2 library</a> is part of <a href="https://www.tidyverse.org/" target="_blank">Tidyverse</a> and offers a series of functions for creating graphics declaratively, based on the concepts outlined in the Grammar of Graphics by Leland Wilkinson.</p>
 <p>The grammar of graphics is a schema that enables us to concisely describe the components of a graphic. These components are called <strong>layers of grammatical elements.</strong> Overall the grammar comprises seven layers:</p>
 <ol style="list-style-type: decimal">
@@ -300,15 +291,15 @@ The basic concept behind the grammar of graphics is described in an <a href="htt
 </div></li>
 </ul>
 <p>The following code renders the first five lines of the dataset in a <code>knitr</code> table:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-visualisation.html#cb1-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="data-visualisation.html#cb1-2"></a><span class="kw">library</span>(knitr)</span>
-<span id="cb1-3"><a href="data-visualisation.html#cb1-3"></a></span>
-<span id="cb1-4"><a href="data-visualisation.html#cb1-4"></a><span class="co">#read csv data, Note: Semicolon seperated CSVs can be loaded by function &#39;read_delim()&#39;</span></span>
-<span id="cb1-5"><a href="data-visualisation.html#cb1-5"></a>airquality &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;data/AirQualityUpperAut.csv&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot;;&quot;</span>)</span>
-<span id="cb1-6"><a href="data-visualisation.html#cb1-6"></a></span>
-<span id="cb1-7"><a href="data-visualisation.html#cb1-7"></a>airquality <span class="op">%&gt;%</span></span>
-<span id="cb1-8"><a href="data-visualisation.html#cb1-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
-<span id="cb1-9"><a href="data-visualisation.html#cb1-9"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="data-visualisation.html#cb158-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb158-2"><a href="data-visualisation.html#cb158-2"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb158-3"><a href="data-visualisation.html#cb158-3"></a></span>
+<span id="cb158-4"><a href="data-visualisation.html#cb158-4"></a><span class="co">#read csv data, Note: Semicolon seperated CSVs can be loaded by function &#39;read_delim()&#39;</span></span>
+<span id="cb158-5"><a href="data-visualisation.html#cb158-5"></a>airquality &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;data/AirQualityUpperAut.csv&quot;</span>, <span class="dt">delim =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb158-6"><a href="data-visualisation.html#cb158-6"></a></span>
+<span id="cb158-7"><a href="data-visualisation.html#cb158-7"></a>airquality <span class="op">%&gt;%</span></span>
+<span id="cb158-8"><a href="data-visualisation.html#cb158-8"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
+<span id="cb158-9"><a href="data-visualisation.html#cb158-9"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -364,38 +355,38 @@ The basic concept behind the grammar of graphics is described in an <a href="htt
 </tbody>
 </table>
 <p>The code below filters the airquality datset by measurement component and temporal resolution. Then the data subset is passed as a first argument to function <code>ggplot()</code>. In the second argument, we map the variable ‘value’ onto the x-axis with the aesthetics argument <code>aes()</code>. <code>geom_histogram()</code> specifies the geometry of the plot and <code>theme_bw()</code> is used to add a <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" target="_blank">background theme</a>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data-visualisation.html#cb2-1"></a><span class="co">#filter NO2 measurements with temporal resolution 30min (HMW)</span></span>
-<span id="cb2-2"><a href="data-visualisation.html#cb2-2"></a>airquality <span class="op">%&gt;%</span></span>
-<span id="cb2-3"><a href="data-visualisation.html#cb2-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(component <span class="op">==</span><span class="st"> &quot;NO2&quot;</span> <span class="op">&amp;</span><span class="st"> </span>meantype <span class="op">==</span><span class="st"> &quot;HMW&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb2-4"><a href="data-visualisation.html#cb2-4"></a></span>
-<span id="cb2-5"><a href="data-visualisation.html#cb2-5"></a><span class="st">  </span><span class="co">#create plot  </span></span>
-<span id="cb2-6"><a href="data-visualisation.html#cb2-6"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(.,    <span class="co">#the dot &#39;.&#39; represents the piped value </span></span>
-<span id="cb2-7"><a href="data-visualisation.html#cb2-7"></a>    <span class="kw">aes</span>(            </span>
-<span id="cb2-8"><a href="data-visualisation.html#cb2-8"></a>      <span class="dt">x =</span> value         <span class="co">#map variable &#39;value&#39; onto x-axis</span></span>
-<span id="cb2-9"><a href="data-visualisation.html#cb2-9"></a>    )</span>
-<span id="cb2-10"><a href="data-visualisation.html#cb2-10"></a>  ) <span class="op">+</span></span>
-<span id="cb2-11"><a href="data-visualisation.html#cb2-11"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st">    </span><span class="co">#define geometry</span></span>
-<span id="cb2-12"><a href="data-visualisation.html#cb2-12"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme_bw</span>()            <span class="co">#define theme</span></span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="data-visualisation.html#cb159-1"></a><span class="co">#filter NO2 measurements with temporal resolution 30min (HMW)</span></span>
+<span id="cb159-2"><a href="data-visualisation.html#cb159-2"></a>airquality <span class="op">%&gt;%</span></span>
+<span id="cb159-3"><a href="data-visualisation.html#cb159-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(component <span class="op">==</span><span class="st"> &quot;NO2&quot;</span> <span class="op">&amp;</span><span class="st"> </span>meantype <span class="op">==</span><span class="st"> &quot;HMW&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb159-4"><a href="data-visualisation.html#cb159-4"></a></span>
+<span id="cb159-5"><a href="data-visualisation.html#cb159-5"></a><span class="st">  </span><span class="co">#create plot  </span></span>
+<span id="cb159-6"><a href="data-visualisation.html#cb159-6"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(.,    <span class="co">#the dot &#39;.&#39; represents the piped value </span></span>
+<span id="cb159-7"><a href="data-visualisation.html#cb159-7"></a>    <span class="kw">aes</span>(            </span>
+<span id="cb159-8"><a href="data-visualisation.html#cb159-8"></a>      <span class="dt">x =</span> value         <span class="co">#map variable &#39;value&#39; onto x-axis</span></span>
+<span id="cb159-9"><a href="data-visualisation.html#cb159-9"></a>    )</span>
+<span id="cb159-10"><a href="data-visualisation.html#cb159-10"></a>  ) <span class="op">+</span></span>
+<span id="cb159-11"><a href="data-visualisation.html#cb159-11"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st">    </span><span class="co">#define geometry</span></span>
+<span id="cb159-12"><a href="data-visualisation.html#cb159-12"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme_bw</span>()            <span class="co">#define theme</span></span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
 <p>If we aim to distinguish between measurements of respective measurement stations, we can map the variable ‘station’ onto visual variable color:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-visualisation.html#cb3-1"></a>airquality <span class="op">%&gt;%</span></span>
-<span id="cb3-2"><a href="data-visualisation.html#cb3-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(component <span class="op">==</span><span class="st"> &quot;NO2&quot;</span> <span class="op">&amp;</span><span class="st"> </span>meantype <span class="op">==</span><span class="st"> &quot;HMW&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb3-3"><a href="data-visualisation.html#cb3-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(station <span class="op">==</span><span class="st"> &quot;S125&quot;</span> <span class="op">|</span><span class="st"> </span>station <span class="op">==</span><span class="st"> &quot;S431&quot;</span> <span class="op">|</span><span class="st"> </span>station <span class="op">==</span><span class="st"> &quot;S270&quot;</span>) <span class="op">%&gt;%</span><span class="st">    </span><span class="co">#select 3 stations</span></span>
-<span id="cb3-4"><a href="data-visualisation.html#cb3-4"></a></span>
-<span id="cb3-5"><a href="data-visualisation.html#cb3-5"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(.,    </span>
-<span id="cb3-6"><a href="data-visualisation.html#cb3-6"></a>    <span class="kw">aes</span>(            </span>
-<span id="cb3-7"><a href="data-visualisation.html#cb3-7"></a>      <span class="dt">x =</span> value, </span>
-<span id="cb3-8"><a href="data-visualisation.html#cb3-8"></a>      <span class="dt">fill =</span> station</span>
-<span id="cb3-9"><a href="data-visualisation.html#cb3-9"></a>      </span>
-<span id="cb3-10"><a href="data-visualisation.html#cb3-10"></a>    )</span>
-<span id="cb3-11"><a href="data-visualisation.html#cb3-11"></a>  ) <span class="op">+</span></span>
-<span id="cb3-12"><a href="data-visualisation.html#cb3-12"></a><span class="st">  </span></span>
-<span id="cb3-13"><a href="data-visualisation.html#cb3-13"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">xlab</span>(<span class="st">&quot;NO2 [mg/m^3]&quot;</span>) <span class="op">+</span></span>
-<span id="cb3-14"><a href="data-visualisation.html#cb3-14"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ylab</span>(<span class="st">&quot;Count&quot;</span>) <span class="op">+</span></span>
-<span id="cb3-15"><a href="data-visualisation.html#cb3-15"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Measurement stations&quot;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;grey20&quot;</span>, <span class="st">&quot;grey50&quot;</span>, <span class="st">&quot;grey80&quot;</span>)) <span class="op">+</span></span>
-<span id="cb3-16"><a href="data-visualisation.html#cb3-16"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st">   </span></span>
-<span id="cb3-17"><a href="data-visualisation.html#cb3-17"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme_bw</span>()            </span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-visualisation.html#cb160-1"></a>airquality <span class="op">%&gt;%</span></span>
+<span id="cb160-2"><a href="data-visualisation.html#cb160-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(component <span class="op">==</span><span class="st"> &quot;NO2&quot;</span> <span class="op">&amp;</span><span class="st"> </span>meantype <span class="op">==</span><span class="st"> &quot;HMW&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb160-3"><a href="data-visualisation.html#cb160-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(station <span class="op">==</span><span class="st"> &quot;S125&quot;</span> <span class="op">|</span><span class="st"> </span>station <span class="op">==</span><span class="st"> &quot;S431&quot;</span> <span class="op">|</span><span class="st"> </span>station <span class="op">==</span><span class="st"> &quot;S270&quot;</span>) <span class="op">%&gt;%</span><span class="st">    </span><span class="co">#select 3 stations</span></span>
+<span id="cb160-4"><a href="data-visualisation.html#cb160-4"></a></span>
+<span id="cb160-5"><a href="data-visualisation.html#cb160-5"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(.,    </span>
+<span id="cb160-6"><a href="data-visualisation.html#cb160-6"></a>    <span class="kw">aes</span>(            </span>
+<span id="cb160-7"><a href="data-visualisation.html#cb160-7"></a>      <span class="dt">x =</span> value, </span>
+<span id="cb160-8"><a href="data-visualisation.html#cb160-8"></a>      <span class="dt">fill =</span> station</span>
+<span id="cb160-9"><a href="data-visualisation.html#cb160-9"></a>      </span>
+<span id="cb160-10"><a href="data-visualisation.html#cb160-10"></a>    )</span>
+<span id="cb160-11"><a href="data-visualisation.html#cb160-11"></a>  ) <span class="op">+</span></span>
+<span id="cb160-12"><a href="data-visualisation.html#cb160-12"></a><span class="st">  </span></span>
+<span id="cb160-13"><a href="data-visualisation.html#cb160-13"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">xlab</span>(<span class="st">&quot;NO2 [mg/m^3]&quot;</span>) <span class="op">+</span></span>
+<span id="cb160-14"><a href="data-visualisation.html#cb160-14"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ylab</span>(<span class="st">&quot;Count&quot;</span>) <span class="op">+</span></span>
+<span id="cb160-15"><a href="data-visualisation.html#cb160-15"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">name =</span> <span class="st">&quot;Measurement stations&quot;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;grey20&quot;</span>, <span class="st">&quot;grey50&quot;</span>, <span class="st">&quot;grey80&quot;</span>)) <span class="op">+</span></span>
+<span id="cb160-16"><a href="data-visualisation.html#cb160-16"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st">   </span></span>
+<span id="cb160-17"><a href="data-visualisation.html#cb160-17"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme_bw</span>()            </span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
 <p>This is implemented by adding an attribute <code>fill = station</code> to the aesthetics element (<code>aes()</code>). <code>ggplot2</code> offers a number of <a href="https://ggplot2.tidyverse.org/reference/aes_colour_fill_alpha.html" target="_blank">functions</a> to specify your own set of mappings from levels in the data to aesthetic values. In the example above the function <code>scale_fill_manual()</code> is used to map the three levels S125, S270 and S431 to the <a href="http://sape.inf.usi.ch/quick-reference/ggplot2/colour" target="_blank">predefined ggplot colors</a> grey20, grey50 and grey80. Instead of ggplot colors, you can also use <a href="https://htmlcolorcodes.com/" target="_blank">hex color codes</a>.</p>
 
 <div class="rmdexercise">
@@ -404,10 +395,10 @@ The basic concept behind the grammar of graphics is described in an <a href="htt
 <details closed>
 <summary><ins><strong>See solution!</strong></ins></summary>
 <p>
-<p><i><font color="grey"></p>
+<p><font color="grey"></p>
 <p>Insert title:</p>
 <p>ggplot2::ggtitle(“Nitrogen dioxide concentration”)</p>
-</font></i>
+</font>
 </p>
 </details>
 </div>
@@ -417,23 +408,23 @@ The basic concept behind the grammar of graphics is described in an <a href="htt
 <h2><span class="header-section-number">8.3</span> Boxplots</h2>
 <p>The same basic syntax is used to create other types of plots like bar plots (use geometry <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" target="_blank"><code>geom_bar()</code></a> or <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" target="_blank"><code>geom_col()</code></a>), line plots (use geometry <a href="https://ggplot2.tidyverse.org/reference/geom_path.html" target="_blank"><code>geom_line()</code></a>) and many <a href="https://ggplot2.tidyverse.org/reference/index.html" target="_blank">others</a>.</p>
 <p>For instance, if we replace <code>geom_histogram()</code> by <code>geom_boxplot()</code>, the value distribution of NO2 measurements is visualized by means of a box plot:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-visualisation.html#cb4-1"></a><span class="co">#filter NO2 measurements with temporal resolution 30min (HMW)</span></span>
-<span id="cb4-2"><a href="data-visualisation.html#cb4-2"></a>airquality <span class="op">%&gt;%</span></span>
-<span id="cb4-3"><a href="data-visualisation.html#cb4-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(component <span class="op">==</span><span class="st"> &quot;NO2&quot;</span> <span class="op">&amp;</span><span class="st"> </span>meantype <span class="op">==</span><span class="st"> &quot;HMW&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb4-4"><a href="data-visualisation.html#cb4-4"></a></span>
-<span id="cb4-5"><a href="data-visualisation.html#cb4-5"></a><span class="st">  </span><span class="co">#create plot  </span></span>
-<span id="cb4-6"><a href="data-visualisation.html#cb4-6"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(.,    <span class="co">#the dot &#39;.&#39; represents the piped value </span></span>
-<span id="cb4-7"><a href="data-visualisation.html#cb4-7"></a>    <span class="kw">aes</span>(            </span>
-<span id="cb4-8"><a href="data-visualisation.html#cb4-8"></a>      <span class="dt">x =</span> value         <span class="co">#map variable &#39;value&#39; onto x-axis</span></span>
-<span id="cb4-9"><a href="data-visualisation.html#cb4-9"></a>    )</span>
-<span id="cb4-10"><a href="data-visualisation.html#cb4-10"></a>  ) <span class="op">+</span></span>
-<span id="cb4-11"><a href="data-visualisation.html#cb4-11"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">xlab</span>(<span class="st">&quot;NO2 [mg/m^3]&quot;</span>) <span class="op">+</span></span>
-<span id="cb4-12"><a href="data-visualisation.html#cb4-12"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st">    </span><span class="co">#define geometry</span></span>
-<span id="cb4-13"><a href="data-visualisation.html#cb4-13"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme</span>(</span>
-<span id="cb4-14"><a href="data-visualisation.html#cb4-14"></a>    <span class="dt">axis.text.y =</span> <span class="kw">element_blank</span>(),    <span class="co">#remove text and ticks from y axis</span></span>
-<span id="cb4-15"><a href="data-visualisation.html#cb4-15"></a>    <span class="dt">axis.ticks.y =</span> <span class="kw">element_blank</span>()</span>
-<span id="cb4-16"><a href="data-visualisation.html#cb4-16"></a>  )</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="data-visualisation.html#cb161-1"></a><span class="co">#filter NO2 measurements with temporal resolution 30min (HMW)</span></span>
+<span id="cb161-2"><a href="data-visualisation.html#cb161-2"></a>airquality <span class="op">%&gt;%</span></span>
+<span id="cb161-3"><a href="data-visualisation.html#cb161-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(component <span class="op">==</span><span class="st"> &quot;NO2&quot;</span> <span class="op">&amp;</span><span class="st"> </span>meantype <span class="op">==</span><span class="st"> &quot;HMW&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb161-4"><a href="data-visualisation.html#cb161-4"></a></span>
+<span id="cb161-5"><a href="data-visualisation.html#cb161-5"></a><span class="st">  </span><span class="co">#create plot  </span></span>
+<span id="cb161-6"><a href="data-visualisation.html#cb161-6"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(.,    <span class="co">#the dot &#39;.&#39; represents the piped value </span></span>
+<span id="cb161-7"><a href="data-visualisation.html#cb161-7"></a>    <span class="kw">aes</span>(            </span>
+<span id="cb161-8"><a href="data-visualisation.html#cb161-8"></a>      <span class="dt">x =</span> value         <span class="co">#map variable &#39;value&#39; onto x-axis</span></span>
+<span id="cb161-9"><a href="data-visualisation.html#cb161-9"></a>    )</span>
+<span id="cb161-10"><a href="data-visualisation.html#cb161-10"></a>  ) <span class="op">+</span></span>
+<span id="cb161-11"><a href="data-visualisation.html#cb161-11"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">xlab</span>(<span class="st">&quot;NO2 [mg/m^3]&quot;</span>) <span class="op">+</span></span>
+<span id="cb161-12"><a href="data-visualisation.html#cb161-12"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st">    </span><span class="co">#define geometry</span></span>
+<span id="cb161-13"><a href="data-visualisation.html#cb161-13"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme</span>(</span>
+<span id="cb161-14"><a href="data-visualisation.html#cb161-14"></a>    <span class="dt">axis.text.y =</span> <span class="kw">element_blank</span>(),    <span class="co">#remove text and ticks from y axis</span></span>
+<span id="cb161-15"><a href="data-visualisation.html#cb161-15"></a>    <span class="dt">axis.ticks.y =</span> <span class="kw">element_blank</span>()</span>
+<span id="cb161-16"><a href="data-visualisation.html#cb161-16"></a>  )</span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
 <p>Note that the last two lines remove text and tick marks from the y-axis of the plot.</p>
 
 <div class="rmdtip">
@@ -449,75 +440,71 @@ See <a href="Solution_Exercise_boxplots.R" target="_blank">my solution</a>!
 </div>
 
 </div>
-<div id="jittered-points" class="section level2">
-<h2><span class="header-section-number">8.4</span> Jittered points</h2>
-<ul>
-<li><code>x</code> categorical variable</li>
-<li><code>y</code> variable to plot</li>
-<li><code>geom_jitter</code></li>
-</ul>
-</div>
-<div id="violin-plot" class="section level2">
-<h2><span class="header-section-number">8.5</span> Violin plot</h2>
-<ul>
-<li><code>x</code> categorical variable</li>
-<li><code>y</code> variable to plot</li>
-<li><code>geom_violin</code></li>
-</ul>
-</div>
-<div id="violin-plot-1" class="section level2">
-<h2><span class="header-section-number">8.6</span> Violin plot</h2>
-</div>
-<div id="lines" class="section level2">
-<h2><span class="header-section-number">8.7</span> Lines</h2>
-<ul>
-<li><code>x</code> e.g., a temporal variable</li>
-<li><code>y</code> variable to plot</li>
-<li><code>geom_line</code></li>
-</ul>
-</div>
-<div id="lines-1" class="section level2">
-<h2><span class="header-section-number">8.8</span> Lines</h2>
-</div>
 <div id="scatterplots" class="section level2">
-<h2><span class="header-section-number">8.9</span> Scatterplots</h2>
-<ul>
-<li><code>x</code> and <code>y</code> variable to plot</li>
-<li><code>geom_point</code></li>
-</ul>
+<h2><span class="header-section-number">8.4</span> Scatterplots</h2>
+<p>While boxplots and histograms reveal distributions in data, scatterplots are used to illustrate relationships between variables.</p>
+<p>In the following example, air temperature (TEMP) and relative humidity (RF) measured in a 30min interval by station ‘S108‘ are filtered from data table ‘airquality‘. Then the two tables are joined by their common field ‘time‘. The joined table is used as data input to render a scatterplot with temperature on the x-axis and relative humidity on the y-axis.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="data-visualisation.html#cb162-1"></a><span class="co">#half-hourly temperature measurement of station S108 to data frame</span></span>
+<span id="cb162-2"><a href="data-visualisation.html#cb162-2"></a>temp_tab &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span></span>
+<span id="cb162-3"><a href="data-visualisation.html#cb162-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(component <span class="op">==</span><span class="st"> &quot;TEMP&quot;</span> <span class="op">&amp;</span><span class="st"> </span>meantype <span class="op">==</span><span class="st"> &quot;HMW&quot;</span> <span class="op">&amp;</span><span class="st"> </span>station <span class="op">==</span><span class="st"> &quot;S108&quot;</span>) </span>
+<span id="cb162-4"><a href="data-visualisation.html#cb162-4"></a></span>
+<span id="cb162-5"><a href="data-visualisation.html#cb162-5"></a><span class="co">#half-hourly relative humidity measurement of station S108 to data frame</span></span>
+<span id="cb162-6"><a href="data-visualisation.html#cb162-6"></a>humidity_tab &lt;-<span class="st"> </span>airquality <span class="op">%&gt;%</span></span>
+<span id="cb162-7"><a href="data-visualisation.html#cb162-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(component <span class="op">==</span><span class="st"> &quot;RF&quot;</span> <span class="op">&amp;</span><span class="st"> </span>meantype <span class="op">==</span><span class="st"> &quot;HMW&quot;</span> <span class="op">&amp;</span><span class="st"> </span>station <span class="op">==</span><span class="st"> &quot;S108&quot;</span>) </span>
+<span id="cb162-8"><a href="data-visualisation.html#cb162-8"></a></span>
+<span id="cb162-9"><a href="data-visualisation.html#cb162-9"></a><span class="co">#join humidity and temperature tables by common field &#39;time&#39;</span></span>
+<span id="cb162-10"><a href="data-visualisation.html#cb162-10"></a>temp_tab <span class="op">%&gt;%</span></span>
+<span id="cb162-11"><a href="data-visualisation.html#cb162-11"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">inner_join</span>(</span>
+<span id="cb162-12"><a href="data-visualisation.html#cb162-12"></a>  <span class="co"># right table</span></span>
+<span id="cb162-13"><a href="data-visualisation.html#cb162-13"></a>  humidity_tab,</span>
+<span id="cb162-14"><a href="data-visualisation.html#cb162-14"></a>  <span class="co"># columns to match</span></span>
+<span id="cb162-15"><a href="data-visualisation.html#cb162-15"></a>  <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;time&quot;</span> =<span class="st"> &quot;time&quot;</span>)</span>
+<span id="cb162-16"><a href="data-visualisation.html#cb162-16"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb162-17"><a href="data-visualisation.html#cb162-17"></a><span class="st">  </span></span>
+<span id="cb162-18"><a href="data-visualisation.html#cb162-18"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(time, value.x, value.y) <span class="op">%&gt;%</span><span class="st">   </span><span class="co">#select relevant columns from joined table</span></span>
+<span id="cb162-19"><a href="data-visualisation.html#cb162-19"></a></span>
+<span id="cb162-20"><a href="data-visualisation.html#cb162-20"></a><span class="st">  </span><span class="co">#create plot  </span></span>
+<span id="cb162-21"><a href="data-visualisation.html#cb162-21"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ggplot</span>(.,    </span>
+<span id="cb162-22"><a href="data-visualisation.html#cb162-22"></a>    <span class="kw">aes</span>(            </span>
+<span id="cb162-23"><a href="data-visualisation.html#cb162-23"></a>      <span class="dt">x =</span> value.x,      </span>
+<span id="cb162-24"><a href="data-visualisation.html#cb162-24"></a>      <span class="dt">y =</span> value.y</span>
+<span id="cb162-25"><a href="data-visualisation.html#cb162-25"></a>    )</span>
+<span id="cb162-26"><a href="data-visualisation.html#cb162-26"></a>  ) <span class="op">+</span></span>
+<span id="cb162-27"><a href="data-visualisation.html#cb162-27"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">xlab</span>(<span class="st">&quot;air temperature [°C]&quot;</span>) <span class="op">+</span></span>
+<span id="cb162-28"><a href="data-visualisation.html#cb162-28"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">ylab</span>(<span class="st">&quot;relative humidity [%]&quot;</span>) <span class="op">+</span></span>
+<span id="cb162-29"><a href="data-visualisation.html#cb162-29"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&quot;blue&quot;</span>)  <span class="op">+</span><span class="st">                                      </span><span class="co">#define geometry scatterplot, with point color blue</span></span>
+<span id="cb162-30"><a href="data-visualisation.html#cb162-30"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_smooth</span>(<span class="dt">method=</span>lm , <span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;#69b3a2&quot;</span>, <span class="dt">se=</span><span class="ot">TRUE</span>) <span class="op">+</span><span class="st">  </span><span class="co">#with linear trend and confidence interval</span></span>
+<span id="cb162-31"><a href="data-visualisation.html#cb162-31"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme_minimal</span>()               </span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
+<p>The plot reveals a trend between the two variables temperature and humidity. Relative humidity tends to increase as temperature decreases and vice versa. In <a href="https://www.youtube.com/watch?v=saojnBSBUuk" target="_blank">this video</a> you can find an explanation for the inverse proportional relationship between relative humidity and air temperature.</p>
+<p>Obviously, due to other predictors such as windspeed, evaporation etc., this relationship is not perfectly linear, however, it can be closely approximated by means of a linear regression line. Deviations from the linear model are indicated by a 95% confidence interval.</p>
+
+<div class="rmdexercise">
+<p>Copy and run the code example from above in a new R-Script. Note that the air quality data as well as the <code>tidyverse</code> library must be loaded to run the code in a standalone R-script file.</p>
+<p><a href="Solution_Scatterplot.R" target="_blank">Complete Script!</a></p>
+<p>Go through the code example line by line and answer the following questions:</p>
+<ol style="list-style-type: decimal">
+<li>How many measurements (records) are included in the scatterplot?</li>
+<li>What is value.x and value.y?</li>
+<li>We have used the function <code>geom_smooth()</code> to fit a linear regresison model (method = lm). What is the purpose of argument <code>se</code>?</li>
+</ol>
+<details closed>
+<summary><ins><strong>See answers!</strong></ins></summary>
+<p>
+<p><font color="grey"></p>
+<ol style="list-style-type: decimal">
+<li>Measurements between 21.10.2021 14:00 and 22.10.2021 12:00, half-hourly interval -&gt; 45 records (see envoronment tab in RStudio)</li>
+<li>temperature and humidity values in the data frame tables <code>humidity_tab</code> and <code>temp_tab</code> are both denoted <code>value</code>. In order to avoid ambiguities, the join functions renames columns.</li>
+<li>The argument defines whether confidence bounds are diplayed (<code>se</code> is TRUE by default).</li>
+</ol>
+</font>
+</p>
+</details>
 </div>
-<div id="overlapping-points" class="section level2">
-<h2><span class="header-section-number">8.10</span> Overlapping points</h2>
-<ul>
-<li><code>x</code> and <code>y</code> variable to plot</li>
-<li><code>geom_count</code> counts overlapping points and maps the count to size</li>
-</ul>
+
 </div>
-<div id="overlapping-points-1" class="section level2">
-<h2><span class="header-section-number">8.11</span> Overlapping points</h2>
-</div>
-<div id="bin-counts" class="section level2">
-<h2><span class="header-section-number">8.12</span> Bin counts</h2>
-<ul>
-<li><code>x</code> and <code>y</code> variable to plot</li>
-<li><code>geom_bin2d</code></li>
-</ul>
-</div>
-<div id="bin-counts-1" class="section level2">
-<h2><span class="header-section-number">8.13</span> Bin counts</h2>
-</div>
-<div id="summary" class="section level2">
-<h2><span class="header-section-number">8.14</span> Summary</h2>
-<p>Data visualisation</p>
-<ul>
-<li>Grammar of graphics</li>
-<li>ggplot2</li>
-</ul>
-<p><strong>Next</strong>: Descriptive statistics</p>
-<ul>
-<li>stat.desc</li>
-<li>dplyr::across</li>
-</ul>
+<div id="map-visualization" class="section level2">
+<h2><span class="header-section-number">8.5</span> Map visualization</h2>
 
 </div>
 </div>
