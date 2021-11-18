@@ -3,14 +3,12 @@ library(maps)    #new
 library(tidyverse)
 library(knitr)
 
-fao_data <- read.csv("enter file directory", header = TRUE, sep = ",")
+fao_data <- read.csv("C:/Users/b1045498/Downloads/Production_Crops_Livestock_E_Africa (3)/Production_Crops_Livestock_E_Africa_NOFLAG.csv", header = TRUE, sep = ",")   #enter file directory
 
 sorghum_production <- fao_data %>% 
   dplyr::select(Area, Item, Element, Unit, Y2019) %>%                  
   dplyr::filter(Item == "Sorghum", Element == "Production") %>%   
-  dplyr::group_by(Area) %>%                                        
-  dplyr::summarise(yield_2019 = sum(Y2019)) %>%
-  dplyr::arrange(-yield_2019)  
+  dplyr::arrange(-Y2019)  
 
 #create data frame from maps dataset 'world'
 world_ctry <- map_data("world") 
@@ -26,7 +24,7 @@ africa_sorghum_production <- world_ctry %>%
   )
 
 ggplot(africa_sorghum_production, aes(x = long, y = lat)) +
-  geom_polygon(aes( group = group, fill = yield_2019)) +
+  geom_polygon(aes( group = group, fill = Y2019)) +
   scale_fill_gradient(
     low = "white",
     high = "red",

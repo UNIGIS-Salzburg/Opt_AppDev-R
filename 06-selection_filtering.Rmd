@@ -134,13 +134,13 @@ The Food and Agriculture Organization (FAO) is a specialized agency of the Unite
 ```
 
 1. Create an RScript and install or load the libraries `tidyverse` and `knitr`, if not done yet.
-2. Bulk download [African Crop and Livestock Production](http://www.fao.org/faostat/en/#data/QCL){target="_blank"} data as CSV.
+2. Bulk download [African Crop and Livestock Production](http://www.fao.org/faostat/en/#data/QCL){target="_blank"} data as CSV:
 
 ```{r L06-faodata, echo=FALSE, fig.cap="FAO Data Download", out.width='100%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/FAODataAfrica.png')
 ```
 
-3. Read data from comma-separated CSV into your Script.
+3. Read data from comma-separated CSV ("Production_Crops_Livestock_E_Africa_NOFLAG.csv") into your Script.
 
 ```{echo=FALSE}
 fao_data <- read.csv(directory as string, header = TRUE, sep = ",")
@@ -149,11 +149,9 @@ fao_data <- read.csv(directory as string, header = TRUE, sep = ",")
 4. Use the pipe operator to perform the following operations:
     a) Select columns Area, Item, Element, Unit and Y2019
     b) Filter rows that contain sorghum production (Item == "Sorghum" & Element == "Production")
-    c) Group rows by country (group_by)
-    d) Summarise yield in 2019 per country (Y2019)
     c) Sort the table based on yield in descending order (arrange)
-    f) remove rows including `No Data` by means of function `drop_na()`
-    g) render the table using the function `kable()` of `library knitr`
+    d) remove rows including `No Data` by means of function `drop_na()`
+    e) render the table using the function `kable()` of `library knitr`
   
 See [my solution](Solution_Exercise_DataWrangling1.R){target="_blank"}!
 
