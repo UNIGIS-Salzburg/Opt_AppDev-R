@@ -264,5 +264,94 @@ Go through the code example line by line and answer the following questions:
 
 ## Map visualization
 
+we read in shape data by sf and created simple map layouts in lesson read and write data
+also in exercise 6.3.1. we created a simpe map
+
+base map: geom_sf function, which simply adds a geometry stored in a sf object
+source: https://r-spatial.org/r/2018/10/25/ggplot2-sf.html
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+library(sf)
+library("ggplot2")
+
+nc <- sf::st_read("data/nc.shp")
+
+ggplot(data = nc)+
+    geom_sf() +
+    xlab("Longitude") + ylab("Latitude") +
+    ggtitle("World map", subtitle = paste0("(", length(unique(nc$NAME)), " counties)"))
 
 
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+ggplot(data = nc) + 
+    geom_sf(color = "black", fill = "lightgreen")
+
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+ggplot(data = nc) +
+    geom_sf(aes(fill = AREA)) +
+    scale_fill_viridis_c(option = "plasma", trans = "sqrt")
+
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+ggplot(data = nc) +
+    geom_sf() +
+    coord_sf(crs = "+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs ")
+
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+library("ggspatial")
+ggplot(data = nc) +
+    geom_sf() +
+    annotation_scale(location = "bl", width_hint = 0.5) +
+    annotation_north_arrow(location = "bl", which_north = "true", 
+        pad_x = unit(0.75, "in"), pad_y = unit(0.5, "in"),
+        style = north_arrow_fancy_orienteering) +
+    coord_sf(xlim = c(-102.15, -74.12), ylim = c(7.65, 33.97))
+
+```
+
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+
+nc_points<- st_centroid(nc)
+nc_points <- cbind(nc, st_coordinates(st_centroid(nc$geometry)))
+
+ggplot(data = nc) +
+geom_sf() +
+geom_text(data= nc_points,aes(x=X, y=Y, label=NAME),
+    color = "darkblue", fontface = "bold", check_overlap = FALSE) +
+annotate(geom = "text", x = -90, y = 26, label = "Gulf of Mexico", 
+    fontface = "italic", color = "grey22", size = 6) +
+coord_sf(xlim = c(-102.15, -74.12), ylim = c(7.65, 33.97), expand = FALSE)
+
+```
+
+
+create final appealing map: north arrow, scale bar, legend, annotations
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+
+```
+
+adding additional layers:
+https://r-spatial.org/r/2018/10/25/ggplot2-sf-2.html
+
+save map:
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+ggsave("data/map.pdf")
+ggsave("data/map_web.png", width = 6, height = 6, dpi = "screen")
+```

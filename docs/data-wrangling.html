@@ -240,20 +240,20 @@ This lesson introduces to the most common data wrangling operations by means of 
 <h2><span class="header-section-number">6.1</span> Preparation</h2>
 <p>If not yet installed on your machine, install the libraries <code>tidyverse</code> as well as <code>nycflights13</code> (see Libraries in lesson <a href="core.html#core">core Concepts</a>).</p>
 <p>The code below, loads the data frame <code>flights</code> from the library <code>nycflights13</code> into the variable <code>flights_from_nyc</code>. We will use this data frame throughout this lesson.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-wrangling.html#cb1-1"></a><span class="kw">library</span>(nycflights13)</span>
-<span id="cb1-2"><a href="data-wrangling.html#cb1-2"></a>flights_from_nyc &lt;-<span class="st"> </span>nycflights13<span class="op">::</span>flights</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data-wrangling.html#cb123-1"></a><span class="kw">library</span>(nycflights13)</span>
+<span id="cb123-2"><a href="data-wrangling.html#cb123-2"></a>flights_from_nyc &lt;-<span class="st"> </span>nycflights13<span class="op">::</span>flights</span></code></pre></div>
 <p>The operator <code>::</code> is used to indicate that the data frame <code>flights</code> is situated within the library <code>nycflights13</code>. You can use <code>::</code>, if you know exactly which library contains the object or function desired. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names.</p>
 <p>Add both lines above as well as the code snippets provided in the upcoming examples to a new R script file.</p>
 </div>
 <div id="data-manipulation" class="section level2">
 <h2><span class="header-section-number">6.2</span> Data manipulation</h2>
 <p>Firstly, inspect the data frame <code>flights_from_nyc</code> by writing it to the console. The library <code>dplyr</code> provides a number of functions to investigate basic characteristics of inputs. For instance, the function <code>count()</code> can be used to count the number of rows of a data frame. The code below provides <code>flights_from_nyc</code> as input to the function.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data-wrangling.html#cb2-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb2-2"><a href="data-wrangling.html#cb2-2"></a><span class="kw">library</span>(knitr)</span>
-<span id="cb2-3"><a href="data-wrangling.html#cb2-3"></a></span>
-<span id="cb2-4"><a href="data-wrangling.html#cb2-4"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
-<span id="cb2-5"><a href="data-wrangling.html#cb2-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
-<span id="cb2-6"><a href="data-wrangling.html#cb2-6"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="data-wrangling.html#cb124-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb124-2"><a href="data-wrangling.html#cb124-2"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb124-3"><a href="data-wrangling.html#cb124-3"></a></span>
+<span id="cb124-4"><a href="data-wrangling.html#cb124-4"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
+<span id="cb124-5"><a href="data-wrangling.html#cb124-5"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>() <span class="op">%&gt;%</span></span>
+<span id="cb124-6"><a href="data-wrangling.html#cb124-6"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -275,9 +275,9 @@ The pipe operator is a powerful tool to simplify your code. See <a href="https:/
 
 <p>The function <code>count()</code> can also be used to count the number rows of a table that have the same value for a given column, usually representing a category.</p>
 <p>In the example below, the column name origin is provided as an argument to the function count, so rows representing flights from the same origin are counted together – EWR is the Newark Liberty International Airport, JFK is the John F. Kennedy International Airport, and LGA is LaGuardia Airport.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-wrangling.html#cb3-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
-<span id="cb3-2"><a href="data-wrangling.html#cb3-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>(origin) <span class="op">%&gt;%</span></span>
-<span id="cb3-3"><a href="data-wrangling.html#cb3-3"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="data-wrangling.html#cb125-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
+<span id="cb125-2"><a href="data-wrangling.html#cb125-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>(origin) <span class="op">%&gt;%</span></span>
+<span id="cb125-3"><a href="data-wrangling.html#cb125-3"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -305,12 +305,12 @@ The pipe operator is a powerful tool to simplify your code. See <a href="https:/
 <h3><span class="header-section-number">6.2.1</span> Summarise</h3>
 <p>To carry out more complex aggregations, the function <code>summarise(</code>) can be used in combination with the function <code>group_by()</code> to summarise the values of the rows of a data frame. Rows having the same value for a selected column (in the example below, the same origin) are grouped together, then values are aggregated based on the defined function (using one or more columns in the calculation).</p>
 <p>In the example below, the function <code>sum()</code> is applied to the column distance to calculate distance_traveled_from (the total distance travelled by flights starting from each airport).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-wrangling.html#cb4-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
-<span id="cb4-2"><a href="data-wrangling.html#cb4-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span></span>
-<span id="cb4-3"><a href="data-wrangling.html#cb4-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(</span>
-<span id="cb4-4"><a href="data-wrangling.html#cb4-4"></a>    <span class="dt">mean_distance_traveled_from =</span> <span class="kw">mean</span>(distance)</span>
-<span id="cb4-5"><a href="data-wrangling.html#cb4-5"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb4-6"><a href="data-wrangling.html#cb4-6"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="data-wrangling.html#cb126-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
+<span id="cb126-2"><a href="data-wrangling.html#cb126-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span></span>
+<span id="cb126-3"><a href="data-wrangling.html#cb126-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(</span>
+<span id="cb126-4"><a href="data-wrangling.html#cb126-4"></a>    <span class="dt">mean_distance_traveled_from =</span> <span class="kw">mean</span>(distance)</span>
+<span id="cb126-5"><a href="data-wrangling.html#cb126-5"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb126-6"><a href="data-wrangling.html#cb126-6"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -337,10 +337,10 @@ The pipe operator is a powerful tool to simplify your code. See <a href="https:/
 <div id="select-and-filter" class="section level3">
 <h3><span class="header-section-number">6.2.2</span> Select and filter</h3>
 <p>The function <code>select()</code> can be used to select some <strong>columns</strong> to output. For instance in the code below, the function <code>select()</code> is used to select the columns <code>origin</code>, <code>dest</code>, and <code>dep_delay</code>, in combination with the function <code>slice_head</code>, which can be used to include only the first <code>n</code> rows (5 in the example below) to output.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="data-wrangling.html#cb5-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
-<span id="cb5-2"><a href="data-wrangling.html#cb5-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(origin, dest, dep_delay) <span class="op">%&gt;%</span></span>
-<span id="cb5-3"><a href="data-wrangling.html#cb5-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
-<span id="cb5-4"><a href="data-wrangling.html#cb5-4"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="data-wrangling.html#cb127-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
+<span id="cb127-2"><a href="data-wrangling.html#cb127-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(origin, dest, dep_delay) <span class="op">%&gt;%</span></span>
+<span id="cb127-3"><a href="data-wrangling.html#cb127-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
+<span id="cb127-4"><a href="data-wrangling.html#cb127-4"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -378,11 +378,11 @@ The pipe operator is a powerful tool to simplify your code. See <a href="https:/
 </tbody>
 </table>
 <p>The function <code>filter()</code> can instead be used to filter <strong>rows</strong> based on a specified condition. In the example below, the output of the <code>filter</code> step only includes the rows where the value of <code>month</code> is <code>11</code> (i.e., the eleventh month, November).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-wrangling.html#cb6-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
-<span id="cb6-2"><a href="data-wrangling.html#cb6-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(origin, dest, year, month, day, dep_delay) <span class="op">%&gt;%</span></span>
-<span id="cb6-3"><a href="data-wrangling.html#cb6-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(month <span class="op">==</span><span class="st"> </span><span class="dv">11</span>) <span class="op">%&gt;%</span></span>
-<span id="cb6-4"><a href="data-wrangling.html#cb6-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
-<span id="cb6-5"><a href="data-wrangling.html#cb6-5"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="data-wrangling.html#cb128-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
+<span id="cb128-2"><a href="data-wrangling.html#cb128-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(origin, dest, year, month, day, dep_delay) <span class="op">%&gt;%</span></span>
+<span id="cb128-3"><a href="data-wrangling.html#cb128-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(month <span class="op">==</span><span class="st"> </span><span class="dv">11</span>) <span class="op">%&gt;%</span></span>
+<span id="cb128-4"><a href="data-wrangling.html#cb128-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
+<span id="cb128-5"><a href="data-wrangling.html#cb128-5"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -442,13 +442,13 @@ The pipe operator is a powerful tool to simplify your code. See <a href="https:/
 <div id="mutate" class="section level3">
 <h3><span class="header-section-number">6.2.3</span> Mutate</h3>
 <p>The function <code>mutate()</code> can be used to add a new column to an output table. The <code>mutate</code> step in the code below adds a new column <code>air_time_hours</code> to the table obtained through the pipe, that is the flight air time in hours, dividing the flight air time in minutes by <code>60</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="data-wrangling.html#cb7-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
-<span id="cb7-2"><a href="data-wrangling.html#cb7-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(flight, origin, dest, air_time) <span class="op">%&gt;%</span></span>
-<span id="cb7-3"><a href="data-wrangling.html#cb7-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(</span>
-<span id="cb7-4"><a href="data-wrangling.html#cb7-4"></a>    <span class="dt">air_time_hours =</span> air_time <span class="op">/</span><span class="st"> </span><span class="dv">60</span></span>
-<span id="cb7-5"><a href="data-wrangling.html#cb7-5"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb7-6"><a href="data-wrangling.html#cb7-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
-<span id="cb7-7"><a href="data-wrangling.html#cb7-7"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="data-wrangling.html#cb129-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
+<span id="cb129-2"><a href="data-wrangling.html#cb129-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(flight, origin, dest, air_time) <span class="op">%&gt;%</span></span>
+<span id="cb129-3"><a href="data-wrangling.html#cb129-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(</span>
+<span id="cb129-4"><a href="data-wrangling.html#cb129-4"></a>    <span class="dt">air_time_hours =</span> air_time <span class="op">/</span><span class="st"> </span><span class="dv">60</span></span>
+<span id="cb129-5"><a href="data-wrangling.html#cb129-5"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb129-6"><a href="data-wrangling.html#cb129-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
+<span id="cb129-7"><a href="data-wrangling.html#cb129-7"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -501,11 +501,11 @@ The pipe operator is a powerful tool to simplify your code. See <a href="https:/
 <div id="arrange" class="section level3">
 <h3><span class="header-section-number">6.2.4</span> Arrange</h3>
 <p>The function <code>arrange()</code> can be used to sort a <a href="https://tibble.tidyverse.org/" target="_blank">tibble</a> by ascending order of the values in the specified column. If the operator <code>-</code> is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="data-wrangling.html#cb8-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
-<span id="cb8-2"><a href="data-wrangling.html#cb8-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(origin, dest, air_time) <span class="op">%&gt;%</span></span>
-<span id="cb8-3"><a href="data-wrangling.html#cb8-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="op">-</span>air_time) <span class="op">%&gt;%</span></span>
-<span id="cb8-4"><a href="data-wrangling.html#cb8-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
-<span id="cb8-5"><a href="data-wrangling.html#cb8-5"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="data-wrangling.html#cb130-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
+<span id="cb130-2"><a href="data-wrangling.html#cb130-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(origin, dest, air_time) <span class="op">%&gt;%</span></span>
+<span id="cb130-3"><a href="data-wrangling.html#cb130-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="op">-</span>air_time) <span class="op">%&gt;%</span></span>
+<span id="cb130-4"><a href="data-wrangling.html#cb130-4"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span></span>
+<span id="cb130-5"><a href="data-wrangling.html#cb130-5"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -581,14 +581,14 @@ Figure 6.1: FAO Data Download
 <div id="join" class="section level2">
 <h2><span class="header-section-number">6.3</span> Join</h2>
 <p>A join operation combines two tables into one by matching rows that have the same values in the specified column. This operation is usually executed on columns containing identifiers, which are matched through different tables containing different data about the same real-world entities. For instance, the <strong>table below</strong> presents the telephone prefixes for two cities. That information can be combined with the data present in the <strong>second table below</strong> through a join operation on the columns containing the city names. As the two tables do not contain all the same cities, if a full join operation is executed, some cells have no values assigned.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="data-wrangling.html#cb10-1"></a>city_telephone_prexix &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb10-2"><a href="data-wrangling.html#cb10-2"></a>    <span class="dt">city =</span> <span class="kw">c</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Birmingham&quot;</span>, <span class="st">&quot;London&quot;</span>),</span>
-<span id="cb10-3"><a href="data-wrangling.html#cb10-3"></a>    <span class="dt">telephon_prefix =</span> <span class="kw">c</span>(<span class="st">&quot;0116&quot;</span>, <span class="st">&quot;0121&quot;</span>, <span class="st">&quot;0171&quot;</span>)</span>
-<span id="cb10-4"><a href="data-wrangling.html#cb10-4"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb10-5"><a href="data-wrangling.html#cb10-5"></a><span class="st">  </span>tibble<span class="op">::</span><span class="kw">as_tibble</span>()</span>
-<span id="cb10-6"><a href="data-wrangling.html#cb10-6"></a></span>
-<span id="cb10-7"><a href="data-wrangling.html#cb10-7"></a>city_telephone_prexix <span class="op">%&gt;%</span></span>
-<span id="cb10-8"><a href="data-wrangling.html#cb10-8"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="data-wrangling.html#cb132-1"></a>city_telephone_prexix &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb132-2"><a href="data-wrangling.html#cb132-2"></a>    <span class="dt">city =</span> <span class="kw">c</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Birmingham&quot;</span>, <span class="st">&quot;London&quot;</span>),</span>
+<span id="cb132-3"><a href="data-wrangling.html#cb132-3"></a>    <span class="dt">telephon_prefix =</span> <span class="kw">c</span>(<span class="st">&quot;0116&quot;</span>, <span class="st">&quot;0121&quot;</span>, <span class="st">&quot;0171&quot;</span>)</span>
+<span id="cb132-4"><a href="data-wrangling.html#cb132-4"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb132-5"><a href="data-wrangling.html#cb132-5"></a><span class="st">  </span>tibble<span class="op">::</span><span class="kw">as_tibble</span>()</span>
+<span id="cb132-6"><a href="data-wrangling.html#cb132-6"></a></span>
+<span id="cb132-7"><a href="data-wrangling.html#cb132-7"></a>city_telephone_prexix <span class="op">%&gt;%</span></span>
+<span id="cb132-8"><a href="data-wrangling.html#cb132-8"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -611,16 +611,16 @@ Figure 6.1: FAO Data Download
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data-wrangling.html#cb11-1"></a>city_info_wide &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb11-2"><a href="data-wrangling.html#cb11-2"></a>    <span class="dt">city =</span> <span class="kw">c</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>),</span>
-<span id="cb11-3"><a href="data-wrangling.html#cb11-3"></a>    <span class="dt">population =</span> <span class="kw">c</span>(<span class="dv">329839</span>, <span class="dv">321500</span>),</span>
-<span id="cb11-4"><a href="data-wrangling.html#cb11-4"></a>    <span class="dt">area =</span> <span class="kw">c</span>(<span class="fl">73.3</span>, <span class="fl">74.6</span>),</span>
-<span id="cb11-5"><a href="data-wrangling.html#cb11-5"></a>    <span class="dt">density =</span> <span class="kw">c</span>(<span class="dv">4500</span>, <span class="dv">4412</span>)</span>
-<span id="cb11-6"><a href="data-wrangling.html#cb11-6"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb11-7"><a href="data-wrangling.html#cb11-7"></a><span class="st">  </span>tibble<span class="op">::</span><span class="kw">as_tibble</span>()</span>
-<span id="cb11-8"><a href="data-wrangling.html#cb11-8"></a></span>
-<span id="cb11-9"><a href="data-wrangling.html#cb11-9"></a>city_info_wide <span class="op">%&gt;%</span></span>
-<span id="cb11-10"><a href="data-wrangling.html#cb11-10"></a><span class="st"> </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="data-wrangling.html#cb133-1"></a>city_info_wide &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb133-2"><a href="data-wrangling.html#cb133-2"></a>    <span class="dt">city =</span> <span class="kw">c</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>),</span>
+<span id="cb133-3"><a href="data-wrangling.html#cb133-3"></a>    <span class="dt">population =</span> <span class="kw">c</span>(<span class="dv">329839</span>, <span class="dv">321500</span>),</span>
+<span id="cb133-4"><a href="data-wrangling.html#cb133-4"></a>    <span class="dt">area =</span> <span class="kw">c</span>(<span class="fl">73.3</span>, <span class="fl">74.6</span>),</span>
+<span id="cb133-5"><a href="data-wrangling.html#cb133-5"></a>    <span class="dt">density =</span> <span class="kw">c</span>(<span class="dv">4500</span>, <span class="dv">4412</span>)</span>
+<span id="cb133-6"><a href="data-wrangling.html#cb133-6"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb133-7"><a href="data-wrangling.html#cb133-7"></a><span class="st">  </span>tibble<span class="op">::</span><span class="kw">as_tibble</span>()</span>
+<span id="cb133-8"><a href="data-wrangling.html#cb133-8"></a></span>
+<span id="cb133-9"><a href="data-wrangling.html#cb133-9"></a>city_info_wide <span class="op">%&gt;%</span></span>
+<span id="cb133-10"><a href="data-wrangling.html#cb133-10"></a><span class="st"> </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -660,17 +660,17 @@ Figure 6.2: Join types
 <p>Please take your time to understand the example below and check out the <a href="https://www.rdocumentation.org/packages/dplyr/versions/0.7.8/topics/join" target="_blank">related <code>dplyr</code> help pages</a> before continuing. The first four examples execute the exact same <em>full join</em> operation using three different syntaxes: with or without using the pipe operator, and specifying the <code>by</code> argument or not. Note that all those approaches to writing the join are valid and produce the same result. The choice about which approach to use will depend on the code you are writing. In particular, you might find it useful to use the syntax that uses the pipe operator when the join operation is itself only one stem in a series of data manipulation steps. Using the <code>by</code> argument is usually advisable unless you are certain that you aim to join two tables with all and exactly the column that have the same names in the two table.</p>
 <p>Note how the result of the join operations is <em>not</em> saved to a variable. The function <code>knitr::kable</code> is added after each join operation through a pipe <code>%&gt;%</code> to display the resulting table in a nice format.</p>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="data-wrangling.html#cb12-1"></a><span class="co"># Option 1: without using the pipe operator</span></span>
-<span id="cb12-2"><a href="data-wrangling.html#cb12-2"></a><span class="co"># full join verb</span></span>
-<span id="cb12-3"><a href="data-wrangling.html#cb12-3"></a>dplyr<span class="op">::</span><span class="kw">full_join</span>(</span>
-<span id="cb12-4"><a href="data-wrangling.html#cb12-4"></a>    <span class="co"># left table</span></span>
-<span id="cb12-5"><a href="data-wrangling.html#cb12-5"></a>    city_info_wide,</span>
-<span id="cb12-6"><a href="data-wrangling.html#cb12-6"></a>    <span class="co"># right table</span></span>
-<span id="cb12-7"><a href="data-wrangling.html#cb12-7"></a>    city_telephone_prexix,</span>
-<span id="cb12-8"><a href="data-wrangling.html#cb12-8"></a>    <span class="co"># columns to match</span></span>
-<span id="cb12-9"><a href="data-wrangling.html#cb12-9"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span> =<span class="st"> &quot;city&quot;</span>)</span>
-<span id="cb12-10"><a href="data-wrangling.html#cb12-10"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb12-11"><a href="data-wrangling.html#cb12-11"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="data-wrangling.html#cb134-1"></a><span class="co"># Option 1: without using the pipe operator</span></span>
+<span id="cb134-2"><a href="data-wrangling.html#cb134-2"></a><span class="co"># full join verb</span></span>
+<span id="cb134-3"><a href="data-wrangling.html#cb134-3"></a>dplyr<span class="op">::</span><span class="kw">full_join</span>(</span>
+<span id="cb134-4"><a href="data-wrangling.html#cb134-4"></a>    <span class="co"># left table</span></span>
+<span id="cb134-5"><a href="data-wrangling.html#cb134-5"></a>    city_info_wide,</span>
+<span id="cb134-6"><a href="data-wrangling.html#cb134-6"></a>    <span class="co"># right table</span></span>
+<span id="cb134-7"><a href="data-wrangling.html#cb134-7"></a>    city_telephone_prexix,</span>
+<span id="cb134-8"><a href="data-wrangling.html#cb134-8"></a>    <span class="co"># columns to match</span></span>
+<span id="cb134-9"><a href="data-wrangling.html#cb134-9"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span> =<span class="st"> &quot;city&quot;</span>)</span>
+<span id="cb134-10"><a href="data-wrangling.html#cb134-10"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb134-11"><a href="data-wrangling.html#cb134-11"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -712,128 +712,19 @@ Figure 6.2: Join types
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="data-wrangling.html#cb13-1"></a><span class="co"># Option 2: without using the pipe operator</span></span>
-<span id="cb13-2"><a href="data-wrangling.html#cb13-2"></a><span class="co">#   and without using the argument &quot;by&quot;</span></span>
-<span id="cb13-3"><a href="data-wrangling.html#cb13-3"></a><span class="co">#   as columns have the same name</span></span>
-<span id="cb13-4"><a href="data-wrangling.html#cb13-4"></a><span class="co">#   in the two tables.</span></span>
-<span id="cb13-5"><a href="data-wrangling.html#cb13-5"></a><span class="co"># Same result as Option 1</span></span>
-<span id="cb13-6"><a href="data-wrangling.html#cb13-6"></a><span class="co"># full join verb</span></span>
-<span id="cb13-7"><a href="data-wrangling.html#cb13-7"></a>dplyr<span class="op">::</span><span class="kw">full_join</span>(</span>
-<span id="cb13-8"><a href="data-wrangling.html#cb13-8"></a>    <span class="co"># left table</span></span>
-<span id="cb13-9"><a href="data-wrangling.html#cb13-9"></a>    city_info_wide,</span>
-<span id="cb13-10"><a href="data-wrangling.html#cb13-10"></a>    <span class="co"># right table</span></span>
-<span id="cb13-11"><a href="data-wrangling.html#cb13-11"></a>    city_telephone_prexix</span>
-<span id="cb13-12"><a href="data-wrangling.html#cb13-12"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb13-13"><a href="data-wrangling.html#cb13-13"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
-<table>
-<thead>
-<tr class="header">
-<th align="left">city</th>
-<th align="right">population</th>
-<th align="right">area</th>
-<th align="right">density</th>
-<th align="left">telephon_prefix</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Leicester</td>
-<td align="right">329839</td>
-<td align="right">73.3</td>
-<td align="right">4500</td>
-<td align="left">0116</td>
-</tr>
-<tr class="even">
-<td align="left">Nottingham</td>
-<td align="right">321500</td>
-<td align="right">74.6</td>
-<td align="right">4412</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">Birmingham</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">0121</td>
-</tr>
-<tr class="even">
-<td align="left">London</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">0171</td>
-</tr>
-</tbody>
-</table>
-<div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-wrangling.html#cb14-1"></a><span class="co"># Option 3: using the pipe operator</span></span>
-<span id="cb14-2"><a href="data-wrangling.html#cb14-2"></a><span class="co">#   and without using the argument &quot;by&quot;</span></span>
-<span id="cb14-3"><a href="data-wrangling.html#cb14-3"></a><span class="co">#   as columns have the same name</span></span>
-<span id="cb14-4"><a href="data-wrangling.html#cb14-4"></a><span class="co">#   in the two tables.</span></span>
-<span id="cb14-5"><a href="data-wrangling.html#cb14-5"></a><span class="co"># Same result as Option 1 and 2</span></span>
-<span id="cb14-6"><a href="data-wrangling.html#cb14-6"></a><span class="co"># left table</span></span>
-<span id="cb14-7"><a href="data-wrangling.html#cb14-7"></a>city_info_wide <span class="op">%&gt;%</span></span>
-<span id="cb14-8"><a href="data-wrangling.html#cb14-8"></a><span class="st">  </span><span class="co"># full join verb</span></span>
-<span id="cb14-9"><a href="data-wrangling.html#cb14-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">full_join</span>(</span>
-<span id="cb14-10"><a href="data-wrangling.html#cb14-10"></a>    <span class="co"># right table</span></span>
-<span id="cb14-11"><a href="data-wrangling.html#cb14-11"></a>    city_telephone_prexix</span>
-<span id="cb14-12"><a href="data-wrangling.html#cb14-12"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb14-13"><a href="data-wrangling.html#cb14-13"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
-<table>
-<thead>
-<tr class="header">
-<th align="left">city</th>
-<th align="right">population</th>
-<th align="right">area</th>
-<th align="right">density</th>
-<th align="left">telephon_prefix</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Leicester</td>
-<td align="right">329839</td>
-<td align="right">73.3</td>
-<td align="right">4500</td>
-<td align="left">0116</td>
-</tr>
-<tr class="even">
-<td align="left">Nottingham</td>
-<td align="right">321500</td>
-<td align="right">74.6</td>
-<td align="right">4412</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">Birmingham</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">0121</td>
-</tr>
-<tr class="even">
-<td align="left">London</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">0171</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="data-wrangling.html#cb15-1"></a><span class="co"># Option 4: using the pipe operator</span></span>
-<span id="cb15-2"><a href="data-wrangling.html#cb15-2"></a><span class="co">#   and using the argument &quot;by&quot;.</span></span>
-<span id="cb15-3"><a href="data-wrangling.html#cb15-3"></a><span class="co"># Same result as Option 1, 2 and 3</span></span>
-<span id="cb15-4"><a href="data-wrangling.html#cb15-4"></a><span class="co"># left table</span></span>
-<span id="cb15-5"><a href="data-wrangling.html#cb15-5"></a>city_info_wide <span class="op">%&gt;%</span></span>
-<span id="cb15-6"><a href="data-wrangling.html#cb15-6"></a><span class="st">  </span><span class="co"># full join verb</span></span>
-<span id="cb15-7"><a href="data-wrangling.html#cb15-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">full_join</span>(</span>
-<span id="cb15-8"><a href="data-wrangling.html#cb15-8"></a>    <span class="co"># right table</span></span>
-<span id="cb15-9"><a href="data-wrangling.html#cb15-9"></a>    city_telephone_prexix,</span>
-<span id="cb15-10"><a href="data-wrangling.html#cb15-10"></a>    <span class="co"># columns to match</span></span>
-<span id="cb15-11"><a href="data-wrangling.html#cb15-11"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span> =<span class="st"> &quot;city&quot;</span>)</span>
-<span id="cb15-12"><a href="data-wrangling.html#cb15-12"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb15-13"><a href="data-wrangling.html#cb15-13"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="data-wrangling.html#cb135-1"></a><span class="co"># Option 2: without using the pipe operator</span></span>
+<span id="cb135-2"><a href="data-wrangling.html#cb135-2"></a><span class="co">#   and without using the argument &quot;by&quot;</span></span>
+<span id="cb135-3"><a href="data-wrangling.html#cb135-3"></a><span class="co">#   as columns have the same name</span></span>
+<span id="cb135-4"><a href="data-wrangling.html#cb135-4"></a><span class="co">#   in the two tables.</span></span>
+<span id="cb135-5"><a href="data-wrangling.html#cb135-5"></a><span class="co"># Same result as Option 1</span></span>
+<span id="cb135-6"><a href="data-wrangling.html#cb135-6"></a><span class="co"># full join verb</span></span>
+<span id="cb135-7"><a href="data-wrangling.html#cb135-7"></a>dplyr<span class="op">::</span><span class="kw">full_join</span>(</span>
+<span id="cb135-8"><a href="data-wrangling.html#cb135-8"></a>    <span class="co"># left table</span></span>
+<span id="cb135-9"><a href="data-wrangling.html#cb135-9"></a>    city_info_wide,</span>
+<span id="cb135-10"><a href="data-wrangling.html#cb135-10"></a>    <span class="co"># right table</span></span>
+<span id="cb135-11"><a href="data-wrangling.html#cb135-11"></a>    city_telephone_prexix</span>
+<span id="cb135-12"><a href="data-wrangling.html#cb135-12"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb135-13"><a href="data-wrangling.html#cb135-13"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -876,18 +767,127 @@ Figure 6.2: Join types
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="data-wrangling.html#cb16-1"></a><span class="co"># Left join</span></span>
-<span id="cb16-2"><a href="data-wrangling.html#cb16-2"></a><span class="co"># Using syntax similar to Option 1 above</span></span>
-<span id="cb16-3"><a href="data-wrangling.html#cb16-3"></a><span class="co"># left join</span></span>
-<span id="cb16-4"><a href="data-wrangling.html#cb16-4"></a>dplyr<span class="op">::</span><span class="kw">left_join</span>(</span>
-<span id="cb16-5"><a href="data-wrangling.html#cb16-5"></a>    <span class="co"># left table</span></span>
-<span id="cb16-6"><a href="data-wrangling.html#cb16-6"></a>    city_info_wide, </span>
-<span id="cb16-7"><a href="data-wrangling.html#cb16-7"></a>    <span class="co"># right table</span></span>
-<span id="cb16-8"><a href="data-wrangling.html#cb16-8"></a>    city_telephone_prexix,</span>
-<span id="cb16-9"><a href="data-wrangling.html#cb16-9"></a>    <span class="co"># columns to match</span></span>
-<span id="cb16-10"><a href="data-wrangling.html#cb16-10"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span> =<span class="st"> &quot;city&quot;</span>)</span>
-<span id="cb16-11"><a href="data-wrangling.html#cb16-11"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb16-12"><a href="data-wrangling.html#cb16-12"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="data-wrangling.html#cb136-1"></a><span class="co"># Option 3: using the pipe operator</span></span>
+<span id="cb136-2"><a href="data-wrangling.html#cb136-2"></a><span class="co">#   and without using the argument &quot;by&quot;</span></span>
+<span id="cb136-3"><a href="data-wrangling.html#cb136-3"></a><span class="co">#   as columns have the same name</span></span>
+<span id="cb136-4"><a href="data-wrangling.html#cb136-4"></a><span class="co">#   in the two tables.</span></span>
+<span id="cb136-5"><a href="data-wrangling.html#cb136-5"></a><span class="co"># Same result as Option 1 and 2</span></span>
+<span id="cb136-6"><a href="data-wrangling.html#cb136-6"></a><span class="co"># left table</span></span>
+<span id="cb136-7"><a href="data-wrangling.html#cb136-7"></a>city_info_wide <span class="op">%&gt;%</span></span>
+<span id="cb136-8"><a href="data-wrangling.html#cb136-8"></a><span class="st">  </span><span class="co"># full join verb</span></span>
+<span id="cb136-9"><a href="data-wrangling.html#cb136-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">full_join</span>(</span>
+<span id="cb136-10"><a href="data-wrangling.html#cb136-10"></a>    <span class="co"># right table</span></span>
+<span id="cb136-11"><a href="data-wrangling.html#cb136-11"></a>    city_telephone_prexix</span>
+<span id="cb136-12"><a href="data-wrangling.html#cb136-12"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb136-13"><a href="data-wrangling.html#cb136-13"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+<td align="left">0116</td>
+</tr>
+<tr class="even">
+<td align="left">Nottingham</td>
+<td align="right">321500</td>
+<td align="right">74.6</td>
+<td align="right">4412</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Birmingham</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0121</td>
+</tr>
+<tr class="even">
+<td align="left">London</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0171</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="data-wrangling.html#cb137-1"></a><span class="co"># Option 4: using the pipe operator</span></span>
+<span id="cb137-2"><a href="data-wrangling.html#cb137-2"></a><span class="co">#   and using the argument &quot;by&quot;.</span></span>
+<span id="cb137-3"><a href="data-wrangling.html#cb137-3"></a><span class="co"># Same result as Option 1, 2 and 3</span></span>
+<span id="cb137-4"><a href="data-wrangling.html#cb137-4"></a><span class="co"># left table</span></span>
+<span id="cb137-5"><a href="data-wrangling.html#cb137-5"></a>city_info_wide <span class="op">%&gt;%</span></span>
+<span id="cb137-6"><a href="data-wrangling.html#cb137-6"></a><span class="st">  </span><span class="co"># full join verb</span></span>
+<span id="cb137-7"><a href="data-wrangling.html#cb137-7"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">full_join</span>(</span>
+<span id="cb137-8"><a href="data-wrangling.html#cb137-8"></a>    <span class="co"># right table</span></span>
+<span id="cb137-9"><a href="data-wrangling.html#cb137-9"></a>    city_telephone_prexix,</span>
+<span id="cb137-10"><a href="data-wrangling.html#cb137-10"></a>    <span class="co"># columns to match</span></span>
+<span id="cb137-11"><a href="data-wrangling.html#cb137-11"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span> =<span class="st"> &quot;city&quot;</span>)</span>
+<span id="cb137-12"><a href="data-wrangling.html#cb137-12"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb137-13"><a href="data-wrangling.html#cb137-13"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+<td align="left">0116</td>
+</tr>
+<tr class="even">
+<td align="left">Nottingham</td>
+<td align="right">321500</td>
+<td align="right">74.6</td>
+<td align="right">4412</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Birmingham</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0121</td>
+</tr>
+<tr class="even">
+<td align="left">London</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0171</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="data-wrangling.html#cb138-1"></a><span class="co"># Left join</span></span>
+<span id="cb138-2"><a href="data-wrangling.html#cb138-2"></a><span class="co"># Using syntax similar to Option 1 above</span></span>
+<span id="cb138-3"><a href="data-wrangling.html#cb138-3"></a><span class="co"># left join</span></span>
+<span id="cb138-4"><a href="data-wrangling.html#cb138-4"></a>dplyr<span class="op">::</span><span class="kw">left_join</span>(</span>
+<span id="cb138-5"><a href="data-wrangling.html#cb138-5"></a>    <span class="co"># left table</span></span>
+<span id="cb138-6"><a href="data-wrangling.html#cb138-6"></a>    city_info_wide, </span>
+<span id="cb138-7"><a href="data-wrangling.html#cb138-7"></a>    <span class="co"># right table</span></span>
+<span id="cb138-8"><a href="data-wrangling.html#cb138-8"></a>    city_telephone_prexix,</span>
+<span id="cb138-9"><a href="data-wrangling.html#cb138-9"></a>    <span class="co"># columns to match</span></span>
+<span id="cb138-10"><a href="data-wrangling.html#cb138-10"></a>    <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;city&quot;</span> =<span class="st"> &quot;city&quot;</span>)</span>
+<span id="cb138-11"><a href="data-wrangling.html#cb138-11"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb138-12"><a href="data-wrangling.html#cb138-12"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -915,16 +915,16 @@ Figure 6.2: Join types
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="data-wrangling.html#cb17-1"></a><span class="co"># Right join</span></span>
-<span id="cb17-2"><a href="data-wrangling.html#cb17-2"></a><span class="co"># Using syntax similar to Option 2 above</span></span>
-<span id="cb17-3"><a href="data-wrangling.html#cb17-3"></a><span class="co"># right join verb</span></span>
-<span id="cb17-4"><a href="data-wrangling.html#cb17-4"></a>dplyr<span class="op">::</span><span class="kw">right_join</span>(</span>
-<span id="cb17-5"><a href="data-wrangling.html#cb17-5"></a>    <span class="co"># left table</span></span>
-<span id="cb17-6"><a href="data-wrangling.html#cb17-6"></a>    city_info_wide, </span>
-<span id="cb17-7"><a href="data-wrangling.html#cb17-7"></a>    <span class="co"># right table</span></span>
-<span id="cb17-8"><a href="data-wrangling.html#cb17-8"></a>    city_telephone_prexix</span>
-<span id="cb17-9"><a href="data-wrangling.html#cb17-9"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb17-10"><a href="data-wrangling.html#cb17-10"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="data-wrangling.html#cb139-1"></a><span class="co"># Right join</span></span>
+<span id="cb139-2"><a href="data-wrangling.html#cb139-2"></a><span class="co"># Using syntax similar to Option 2 above</span></span>
+<span id="cb139-3"><a href="data-wrangling.html#cb139-3"></a><span class="co"># right join verb</span></span>
+<span id="cb139-4"><a href="data-wrangling.html#cb139-4"></a>dplyr<span class="op">::</span><span class="kw">right_join</span>(</span>
+<span id="cb139-5"><a href="data-wrangling.html#cb139-5"></a>    <span class="co"># left table</span></span>
+<span id="cb139-6"><a href="data-wrangling.html#cb139-6"></a>    city_info_wide, </span>
+<span id="cb139-7"><a href="data-wrangling.html#cb139-7"></a>    <span class="co"># right table</span></span>
+<span id="cb139-8"><a href="data-wrangling.html#cb139-8"></a>    city_telephone_prexix</span>
+<span id="cb139-9"><a href="data-wrangling.html#cb139-9"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb139-10"><a href="data-wrangling.html#cb139-10"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -960,16 +960,16 @@ Figure 6.2: Join types
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-wrangling.html#cb18-1"></a><span class="co"># Inner join</span></span>
-<span id="cb18-2"><a href="data-wrangling.html#cb18-2"></a><span class="co"># Using syntax similar to Option 3 above</span></span>
-<span id="cb18-3"><a href="data-wrangling.html#cb18-3"></a><span class="co"># left table</span></span>
-<span id="cb18-4"><a href="data-wrangling.html#cb18-4"></a>city_info_wide <span class="op">%&gt;%</span></span>
-<span id="cb18-5"><a href="data-wrangling.html#cb18-5"></a><span class="st">  </span><span class="co"># inner join</span></span>
-<span id="cb18-6"><a href="data-wrangling.html#cb18-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">inner_join</span>(</span>
-<span id="cb18-7"><a href="data-wrangling.html#cb18-7"></a>    <span class="co"># right table</span></span>
-<span id="cb18-8"><a href="data-wrangling.html#cb18-8"></a>    city_telephone_prexix</span>
-<span id="cb18-9"><a href="data-wrangling.html#cb18-9"></a>  ) <span class="op">%&gt;%</span></span>
-<span id="cb18-10"><a href="data-wrangling.html#cb18-10"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="data-wrangling.html#cb140-1"></a><span class="co"># Inner join</span></span>
+<span id="cb140-2"><a href="data-wrangling.html#cb140-2"></a><span class="co"># Using syntax similar to Option 3 above</span></span>
+<span id="cb140-3"><a href="data-wrangling.html#cb140-3"></a><span class="co"># left table</span></span>
+<span id="cb140-4"><a href="data-wrangling.html#cb140-4"></a>city_info_wide <span class="op">%&gt;%</span></span>
+<span id="cb140-5"><a href="data-wrangling.html#cb140-5"></a><span class="st">  </span><span class="co"># inner join</span></span>
+<span id="cb140-6"><a href="data-wrangling.html#cb140-6"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">inner_join</span>(</span>
+<span id="cb140-7"><a href="data-wrangling.html#cb140-7"></a>    <span class="co"># right table</span></span>
+<span id="cb140-8"><a href="data-wrangling.html#cb140-8"></a>    city_telephone_prexix</span>
+<span id="cb140-9"><a href="data-wrangling.html#cb140-9"></a>  ) <span class="op">%&gt;%</span></span>
+<span id="cb140-10"><a href="data-wrangling.html#cb140-10"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
