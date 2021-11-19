@@ -306,7 +306,7 @@ ggplot(data = nc) +
 
 ggplot(data = nc) +
     geom_sf() +
-    coord_sf(crs = "+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs ")
+    coord_sf(crs = st_crs(32618))
 
 ```
 
@@ -317,9 +317,8 @@ ggplot(data = nc) +
     geom_sf() +
     annotation_scale(location = "bl", width_hint = 0.5) +
     annotation_north_arrow(location = "bl", which_north = "true", 
-        pad_x = unit(0.75, "in"), pad_y = unit(0.5, "in"),
-        style = north_arrow_fancy_orienteering) +
-    coord_sf(xlim = c(-102.15, -74.12), ylim = c(7.65, 33.97))
+        pad_x = unit(0.8, "cm"), pad_y = unit(0.8, "cm"),
+        style = north_arrow_fancy_orienteering)
 
 ```
 
@@ -333,25 +332,42 @@ nc_points <- cbind(nc, st_coordinates(st_centroid(nc$geometry)))
 ggplot(data = nc) +
 geom_sf() +
 geom_text(data= nc_points,aes(x=X, y=Y, label=NAME),
-    color = "darkblue", fontface = "bold", check_overlap = FALSE) +
-annotate(geom = "text", x = -90, y = 26, label = "Gulf of Mexico", 
-    fontface = "italic", color = "grey22", size = 6) +
-coord_sf(xlim = c(-102.15, -74.12), ylim = c(7.65, 33.97), expand = FALSE)
+    color = "darkblue", fontface = "bold", check_overlap = FALSE, size = 3) +
+annotate(geom = "text", x = -76.5, y = 34.3, label = "Atlantic Ocean", 
+    fontface = "italic", color = "grey22", size = 5) +
+coord_sf(xlim = c(-78.9, -75.5), ylim = c(34, 34.85), expand = FALSE) 
 
 ```
 
 
 create final appealing map: north arrow, scale bar, legend, annotations
-```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 6}
 
+us_states <- sf::st_read("data/us-states.shp")
+us_states_points <- st_centroid(us_states)
+us_states_points <- cbind(us_states, st_coordinates(st_centroid(us_states$geometry)))
+
+ggplot(data = nc) +
+  geom_sf(data = us_states, fill= "antiquewhite1") +
+  geom_sf(aes(fill = AREA)) +
+  geom_label(data= us_states_points,aes(x=X, y=Y, label=NAME),
+            color = "black", fontface = "bold", check_overlap = FALSE, size = 3) +
+  annotation_scale(location = "br", width_hint = 0.5) +
+  annotation_north_arrow(location = "bl", which_north = "true", 
+                         pad_x = unit(11, "cm"), pad_y = unit(0.8, "cm"),
+                         style = north_arrow_fancy_orienteering) + 
+  scale_fill_viridis_c(trans = "sqrt", alpha = .4) +
+  coord_sf(xlim = c(-84.9, -70), ylim = c(24.5, 37), expand = FALSE) +
+  xlab("Longitude") + ylab("Latitude") +
+  ggtitle("US Southeast", subtitle = "(Detail: North Carolina)") +
+  annotate(geom = "text", x = -76.5, y = 30.5, label = "Atlantic Ocean", 
+           fontface = "italic", color = "grey22", size = 6) +
+  theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
+       size = 0.1), panel.background = element_rect(fill = "aliceblue"))
 
 ```
 
-adding additional layers:
-https://r-spatial.org/r/2018/10/25/ggplot2-sf-2.html
-
-save map:
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 ggsave("data/map.pdf")
-ggsave("data/map_web.png", width = 6, height = 6, dpi = "screen")
+ggsave("data/map_web.png", width = 10, height = 10, dpi = "screen")
 ```
