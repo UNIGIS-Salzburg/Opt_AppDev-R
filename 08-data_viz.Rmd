@@ -270,7 +270,7 @@ In order to replicate the code examples below, you will have to install and load
 
 First, let us start with creating a single-layer base map:
 
-```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide', fig.height = 2.5}
 
 library(sf)
 library("ggplot2")
@@ -285,20 +285,20 @@ ggplot(data = nc)+
 
 ```
 
-We first load the North Carolina shapefile as an `sf()` object and then assign the the data to the `ggplot()` graph. The `geom_sf` function adds a geometry stored in a sf object. Other map components such as title and axis labels are added by means of a plus sign. Note that `length(unique(nc$NAME))` returns the count of table rows, which corresponds to the number of geometries/counties. Geometry count and string "counties" are concatenated by function `paste0()`.
+In the code above, we first load the North Carolina shapefile as an `sf()` object and then assign the the data to the `ggplot()` graph. The `geom_sf` function adds a geometry stored in a sf object. Other map components such as title and axis labels are added by means of a plus sign. Note that `length(unique(nc$NAME))` returns the count of table rows, which corresponds to the number of geometries/counties. Geometry count and string "counties" are concatenated by function `paste0()`.
 
-The geometry element `geom_sf` provides a number of arguments to customize the appearence of vector features.
+The geometry element `geom_sf` provides a number of arguments to customize the appearance of vector features:
 
-```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
 
 ggplot(data = nc) + 
     geom_sf(color = "black", fill = "lightgreen")
 
 ```
 
-Data can be mapped onto visual variables in the same way as with diagram plots. In the example below, the variable AREA is mapped onto visual variable fill color:
+Data can also be mapped onto visual variables in the same way as with diagram plots. In the example below, the variable AREA is mapped onto visual variable fill color:
 
-```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
 
 ggplot(data = nc) +
     geom_sf(aes(fill = AREA)) +
@@ -306,9 +306,9 @@ ggplot(data = nc) +
 
 ```
 
-The function `coord_sf()` allows to deal with the coordinate system, which includes both projection and extent of the map: 
+The function `coord_sf()` allows to deal with the coordinate system, which includes both projection and extent of the map. By default, the map will use the coordinate system of the first layer or if the layer has no coordinate system, fall back on the geographic coordinate system WGS84. Using the argument crs, it is possible to override this setting, and project on the fly to any projection that has an [EPSG code](https://epsg.io/){target="_blank"}. For instance, we may change the coordinate system to EPSG 32618, which corresponds to WGS 84 / UTM zone 18N: 
 
-```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
 
 ggplot(data = nc) +
     geom_sf() +
@@ -316,28 +316,57 @@ ggplot(data = nc) +
 
 ```
 
+The extent of the map can also be set in `coord_sf`, in practice allowing to “zoom” in the area of interest, provided by limits on the x-axis (xlim), and on the y-axis (ylim). The limits are automatically expanded by a fraction to ensure that data and axes don’t overlap; it can also be turned off to exactly match the limits provided with expand = FALSE:
 
-
-
-```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
 
 library("ggspatial")
 ggplot(data = nc) +
     geom_sf() +
-    annotation_scale(location = "bl", width_hint = 0.5) +
+    coord_sf(xlim = c(-78.9, -75.5), ylim = c(34, 34.85), expand = FALSE) +
+    annotation_scale(location = "br", width_hint = 0.5) +
     annotation_north_arrow(location = "bl", which_north = "true", 
-        pad_x = unit(0.8, "cm"), pad_y = unit(0.8, "cm"),
-        style = north_arrow_fancy_orienteering)
+        pad_x = unit(14.5, "cm"), pad_y = unit(0.8, "cm"),
+        style = north_arrow_fancy_orienteering) 
+    
 
 ```
 
+Note that scale bar and north arrow are available with package `ggspatial`.
 
-```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+In the following example, we will assign labels to vector features. The function `geom_text()` can be used to add a layer of text to a map using geographic coordinates. The North Carolina dataset contains county names as column (column: NAME). In order to define label positions, we take the centroids of the county polygons (function `st_centroid()`), derive X and Y coordinates from centroids (function `st_coordinates()`), merge the new X and Y columns with the columns of `nc` and assign the output to a new variable identifier `nc_points`:    
 
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
 
-nc_points<- st_centroid(nc)
 nc_points <- cbind(nc, st_coordinates(st_centroid(nc$geometry)))
 
+```
+
+```{block2, type = 'rmdexercise'}
+
+I have used a standard syntax to create variabe `nc_points`. Convert the code to pipe operator syntax.
+
+By the way, pipe operators are available with library `magrittr`, which is part of `tidyverse`. So make sure to load `tidyverse` in your script.
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><font color="grey">
+
+st_centroid(nc$geometry) %>%
+  st_coordinates() %>%
+  cbind(nc, .)
+
+Note that the reading direction of pipe syntax code is from left to right (more intuitive), whereas standard syntax (nested functions) is read from right to left.
+    
+</font>
+</p>
+</details>
+
+```
+
+After deriving centroid coordinates from `nc` geometries, we call the new variable `nc_points` in function `geom_text` and map X and Y columns (centroid coordinates) onto visual variables x and y (position in graph) and also map column NAME onto visual variable label. Moreover, we can insert individual text annotations manually by means of function `annotate()`:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
 ggplot(data = nc) +
 geom_sf() +
 geom_text(data= nc_points,aes(x=X, y=Y, label=NAME),
@@ -348,9 +377,9 @@ coord_sf(xlim = c(-78.9, -75.5), ylim = c(34, 34.85), expand = FALSE)
 
 ```
 
+In a final example, the methods introduced so far are combined to create a more comprehensive map visualization: 
 
-create final appealing map: north arrow, scale bar, legend, annotations
-```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 6}
+```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide', fig.height = 6}
 
 us_states <- sf::st_read("data/us-states.shp")
 us_states_points <- st_centroid(us_states)
@@ -360,7 +389,7 @@ ggplot(data = nc) +
   geom_sf(data = us_states, fill= "antiquewhite1") +
   geom_sf(aes(fill = AREA)) +
   geom_label(data= us_states_points,aes(x=X, y=Y, label=NAME),
-            color = "black", fontface = "bold", check_overlap = FALSE, size = 3) +
+            color = "black", fontface = "bold", check_overlap = FALSE, size = 3, nudge_x = 0.5) +
   annotation_scale(location = "br", width_hint = 0.5) +
   annotation_north_arrow(location = "bl", which_north = "true", 
                          pad_x = unit(11, "cm"), pad_y = unit(0.8, "cm"),
@@ -375,6 +404,10 @@ ggplot(data = nc) +
        size = 0.1), panel.background = element_rect(fill = "aliceblue"))
 
 ```
+
+The function `geom_sf()` is used to add US state polygons as an additional layer. The function `geom_label()` is used as an alternative to function `geom_text()`. Note that `nudge_x` of function `geom_label()` is introduced offset labels horizontally.
+
+Eventually, we save a PDF version of the map, which keeps the best quality, and a PNG version of it for web purposes:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 ggsave("data/map.pdf")
