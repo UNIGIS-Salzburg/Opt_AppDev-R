@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 5 Functions | Application Development with R</title>
+  <title>Lesson 9 References | Application Development with R</title>
   <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 5 Functions | Application Development with R" />
+  <meta property="og:title" content="Lesson 9 References | Application Development with R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/branding/Cover_epub.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="UNIGIS-Salzburg/En_AppDev-R" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 5 Functions | Application Development with R" />
+  <meta name="twitter:title" content="Lesson 9 References | Application Development with R" />
   
   <meta name="twitter:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="twitter:image" content="/branding/Cover_epub.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="control-structures.html"/>
-<link rel="next" href="data-wrangling.html"/>
+<link rel="prev" href="data-visualisation.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -207,6 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4" data-path="data-visualisation.html"><a href="data-visualisation.html#scatterplots"><i class="fa fa-check"></i><b>8.4</b> Scatterplots</a></li>
 <li class="chapter" data-level="8.5" data-path="data-visualisation.html"><a href="data-visualisation.html#map-visualization"><i class="fa fa-check"></i><b>8.5</b> Map visualization</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
 <li class="divider"></li>
 <li>Copyright © UNIGIS Salzburg.</li>
 
@@ -227,140 +228,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="functions" class="section level1">
-<h1><span class="header-section-number">Lesson 5</span> Functions</h1>
+<div id="references-1" class="section level1">
+<h1><span class="header-section-number">Lesson 9</span> References</h1>
 
-<div class="rmdtip">
-<p>In the past few lessons, we have been using functions without looking at them in much detail (e.g. functions like ‘str_starts()’ or ‘cat()’). In this lesson, we are going to look inside those functions to see how functions work and how to create custom functions.</p>
-Moreover, you will get to know the difference between variables with global and variables with local scope.
-</div>
-
-<div id="defining-functions" class="section level2">
-<h2><span class="header-section-number">5.1</span> Defining functions</h2>
-<p>The syntax for defining a function does not look too different from the syntax that we have been using to define a variable or to create a conditional statement. We start by defining an identifier (e.g. add_one) on the left of an assignment operator (<code>&lt;-</code>). This is the so-called <strong>corpus of the function.</strong></p>
-<p>The corpus starts with the reserved word ‘function’ followed by the <strong>parameter(s)</strong> (e.g. <code>input_value</code> in the example below) between simple brackets and the instruction(s) to be executed in a code block. The value of the last statement is returned as output:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="functions.html#cb108-1"></a>add_one &lt;-<span class="st"> </span><span class="cf">function</span> (input_value) {</span>
-<span id="cb108-2"><a href="functions.html#cb108-2"></a>  output_value &lt;-<span class="st"> </span>input_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb108-3"><a href="functions.html#cb108-3"></a>  output_value</span>
-<span id="cb108-4"><a href="functions.html#cb108-4"></a>  }</span></code></pre></div>
-<p>After being defined, a function can be invoked by specifying the <strong>identifier</strong> and necessary parameters. The function above takes a single numeric value as an input and returns that value incremented by +1. So if we invoke the function with an input value ‘3’, the function returns 4:</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="functions.html#cb109-1"></a><span class="kw">add_one</span>(<span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## [1] 4</code></pre>
-</div>
-<div id="more-parameters" class="section level2">
-<h2><span class="header-section-number">5.2</span> More parameters</h2>
-<p>A function can be defined as having two or more <strong>parameters</strong> by specifying more than one parameter name (separated by <strong>commas</strong>) in the function definition.</p>
-<blockquote>
-<p>A function always take as input as many values as the number of parameters specified in the definition, otherwise an error is generated</p>
-</blockquote>
-<p>The function ‘area_rectangle’ includes two parameters (height and width), calculates an area value by multiplying the inputs and returns the area as a single numeric value:</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="functions.html#cb111-1"></a>area_rectangle &lt;-<span class="st"> </span><span class="cf">function</span> (height, width) {</span>
-<span id="cb111-2"><a href="functions.html#cb111-2"></a>  area &lt;-<span class="st"> </span>height <span class="op">*</span><span class="st"> </span>width</span>
-<span id="cb111-3"><a href="functions.html#cb111-3"></a>  area</span>
-<span id="cb111-4"><a href="functions.html#cb111-4"></a>}</span>
-<span id="cb111-5"><a href="functions.html#cb111-5"></a><span class="kw">area_rectangle</span>(<span class="dv">3</span>, <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 6</code></pre>
-
-<div class="rmdexercise">
-<p>In a few cases, it makes sense to define default parameters in a function. Create a new R script, copy the function definition above and change the parameter definition ‘function (height, width)’ to ‘function (height, width = 3)’. Now invoke the function by only specifying one input value. The function should return a value ‘YOUR INPUT * 3’. If you call the same function by specifying two values as inputs, the default value ‘width=3’ is overwritten.</p>
-</div>
-
-</div>
-<div id="more-return-values" class="section level2">
-<h2><span class="header-section-number">5.3</span> More return values</h2>
-<p>In order to let a function return multiple values, you can append return values to a list and return the list. The following functions ‘rectangle_metrics’ calculates area and perimeter of a rectangle based on two inputs (rectangle height and width) and writes the two outputs to a new list ‘return_vals’:</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="functions.html#cb113-1"></a>rectangle_metrics &lt;-<span class="st"> </span><span class="cf">function</span> (height, width) {</span>
-<span id="cb113-2"><a href="functions.html#cb113-2"></a>  area &lt;-<span class="st"> </span>height <span class="op">*</span><span class="st"> </span>width</span>
-<span id="cb113-3"><a href="functions.html#cb113-3"></a>  perimeter &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span>height <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>width</span>
-<span id="cb113-4"><a href="functions.html#cb113-4"></a>  </span>
-<span id="cb113-5"><a href="functions.html#cb113-5"></a>  return_vals &lt;-<span class="st"> </span><span class="kw">list</span>(area, perimeter)</span>
-<span id="cb113-6"><a href="functions.html#cb113-6"></a>  </span>
-<span id="cb113-7"><a href="functions.html#cb113-7"></a>  return_vals</span>
-<span id="cb113-8"><a href="functions.html#cb113-8"></a>  </span>
-<span id="cb113-9"><a href="functions.html#cb113-9"></a>}</span></code></pre></div>
-<p>We can retrieve the two return values by specifying their list indexes [[1]] and [[2]]:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="functions.html#cb114-1"></a><span class="kw">cat</span>(<span class="st">&quot;This is the first return value - area: &quot;</span>, <span class="kw">rectangle_metrics</span>(<span class="dv">3</span>, <span class="dv">2</span>)[[<span class="dv">1</span>]])</span></code></pre></div>
-<pre><code>## This is the first return value - area:  6</code></pre>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="functions.html#cb116-1"></a><span class="kw">cat</span>(<span class="st">&quot;This is the second return value - perimeter: &quot;</span>, <span class="kw">rectangle_metrics</span>(<span class="dv">3</span>, <span class="dv">2</span>)[[<span class="dv">2</span>]])</span></code></pre></div>
-<pre><code>## This is the second return value - perimeter:  10</code></pre>
-
-<div class="rmdtip">
-If you execute one of the functions above in a new R Script, you will see that the function appears in the Environment Window of RStudio in the same way as when we define a variable. When the function is invoked by using its identifier, the R interpreter will retrieve the respective function from the memory and execute it.
-</div>
-
-</div>
-<div id="functions-and-control-structures" class="section level2">
-<h2><span class="header-section-number">5.4</span> Functions and control structures</h2>
-<p>In the last lesson, you have learned that loops can contain conditional statements and that conditional statement can contain loops. In the same way, the corpus of a function can contain both loops and conditional statements.</p>
-<p>The following code shows an example of a function that is using a loop to calculate the factorial of a number. A factorial of a number is simply the product of all the numbers less than or equal to that number (e.g. factorial of 3 = 1 * 2 * 3 = 6).</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="functions.html#cb118-1"></a>factorial &lt;-<span class="st"> </span><span class="cf">function</span> (input_value) {</span>
-<span id="cb118-2"><a href="functions.html#cb118-2"></a>  result &lt;-<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb118-3"><a href="functions.html#cb118-3"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>input_value) {</span>
-<span id="cb118-4"><a href="functions.html#cb118-4"></a>    <span class="kw">cat</span>(<span class="st">&quot;current:&quot;</span>, result, <span class="st">&quot; | i:&quot;</span>, i, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb118-5"><a href="functions.html#cb118-5"></a>    result &lt;-<span class="st"> </span>result <span class="op">*</span><span class="st"> </span>i</span>
-<span id="cb118-6"><a href="functions.html#cb118-6"></a>  }</span>
-<span id="cb118-7"><a href="functions.html#cb118-7"></a>  result</span>
-<span id="cb118-8"><a href="functions.html#cb118-8"></a>}</span>
-<span id="cb118-9"><a href="functions.html#cb118-9"></a><span class="kw">factorial</span>(<span class="dv">3</span>)</span></code></pre></div>
-<pre><code>## current: 1  | i: 1 
-## current: 1  | i: 2 
-## current: 2  | i: 3</code></pre>
-<pre><code>## [1] 6</code></pre>
-<p>The function takes a single numeric value as an input, defines a variable named ‘result’ that is equal to ‘1’ and then creates a loop over all the numbers from 1 (variable ‘result’) to the ‘input value’. In the loop, the current value of result is multiplied by the value of the iterator ‘i’.</p>
-
-<div class="rmdtip">
-Although it is technically feasible, you would normally not define a function within conditional statements or within a loop.
-</div>
-
-</div>
-<div id="scope" class="section level2">
-<h2><span class="header-section-number">5.5</span> Scope</h2>
-<p>Parameters of a function effectively are internal variables of the function. They work as a bridge between the overall environment in which you are working and the internal environment, which is only known to the function. They receive the value(s) provided as arguments. When you call the function and make those values available within the function itself. The distinction between the overall environment (global) that we have seen so far and a sort of internal environment (local) of the function brings us to the concept of scope.</p>
-<blockquote>
-<p>The <strong>scope of a variable</strong> is the part of code in which the variable is ‘visible’.</p>
-</blockquote>
-<p>You have learned that a variable is saved in the memory. You can ‘see’ the variable, which means that you can use the identifier to invoke the variable in the code.</p>
-<p>When you define a function, the corpus of the function is the scope of the variables that are defined in this function. That means you can make use of these variable within the function, but you cannot invoke these variables outside of the function (variables are not ‘seen’ outside the function).</p>
-<p>In R, the scope of variables is defined as follows:</p>
-<ul>
-<li>a variable defined in a script (global) can be referred to from within a definition of a function in the same script</li>
-<li>a variable defined within a definition of a function (local) will <strong>not</strong> be referable from outside the definition</li>
-<li>scope does <strong>not</strong> apply to <code>if</code> or loop constructs, meaning that variables defined within a loop or control structure are referable from everywhere in the code.</li>
-</ul>
-<p>Let us take an example. In the case below, <code>x_value</code> is <strong>global</strong> to the function <code>times_x</code>. <code>new_value</code> and <code>input_value</code> are <strong>local</strong> to the function <code>times_x</code>. Referring to <code>new_value</code> or <code>input_value</code> from outside the definition of <code>times_x</code> would result in an error. However, we can refer to <code>x_value</code> from inside function <code>times_x</code>:</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="functions.html#cb121-1"></a>x_value &lt;-<span class="st"> </span><span class="dv">10</span></span>
-<span id="cb121-2"><a href="functions.html#cb121-2"></a>times_x &lt;-<span class="st"> </span><span class="cf">function</span> (input_value) {</span>
-<span id="cb121-3"><a href="functions.html#cb121-3"></a>  new_value &lt;-<span class="st"> </span>input_value <span class="op">*</span><span class="st"> </span>x_value</span>
-<span id="cb121-4"><a href="functions.html#cb121-4"></a>  new_value</span>
-<span id="cb121-5"><a href="functions.html#cb121-5"></a>}</span>
-<span id="cb121-6"><a href="functions.html#cb121-6"></a><span class="kw">times_x</span>(<span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 20</code></pre>
-
-<div class="rmdexercise">
-<p>Referring to external global variables in a function is possible, but can be dangerous. At the time of execution, one cannot be sure what the value of the global variable is. For instance, other processes might have changed its value, which affects the behavior of the function. In order to fix this problem, define the variable ‘x_value’ as a default attribute of function ‘times_x’.</p>
-<details closed>
-<summary><ins><strong>See solution!</strong></ins></summary>
-<p>
-<p><i><font color="grey"></p>
-<p>times_x &lt;- function (input_value, x_value = 10) {</p>
-<p>new_value &lt;- input_value * x_value</p>
-<p>new_value</p>
-<p>}</p>
-</font></i>
-</p>
-</details>
-</div>
-
-
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="control-structures.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-wrangling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-visualisation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -11,7 +11,7 @@ interpreting-values
 simple-data-types
 numeric-operators
 logical-operators
-reference-books
+references
 core
 variables
 algorithms-and-functions
