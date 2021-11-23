@@ -7,3 +7,4 @@ https://geocompr.robinlovelace.net/
 https://thatdatatho.com/grammar-of-graphics-ggplot2/
 https://ggplot2.tidyverse.org/
 https://www.springer.com/de/book/9780387245447
+source: https://r-spatial.org/r/2018/10/25/ggplot2-sf.html

@@ -505,10 +505,9 @@ See <a href="Solution_Exercise_boxplots.R" target="_blank">my solution</a>!
 </div>
 <div id="map-visualization" class="section level2">
 <h2><span class="header-section-number">8.5</span> Map visualization</h2>
-<p>we read in shape data by sf and created simple map layouts in lesson read and write data
-also in exercise 6.3.1. we created a simpe map</p>
-<p>base map: geom_sf function, which simply adds a geometry stored in a sf object
-source: <a href="https://r-spatial.org/r/2018/10/25/ggplot2-sf.html" class="uri">https://r-spatial.org/r/2018/10/25/ggplot2-sf.html</a></p>
+<p>In the previous lesson you have already learned how to read vector data and create simple map layouts by means of the <code>plot()</code> function. In this concluding section, we will use the <code>ggplot()</code> library to create more complex map layouts.</p>
+<p>In order to replicate the code examples below, you will have to install and load the libraries <code>sf()</code> (remember: sf stands for simple features and is used to read and write vector data) and <code>ggplot()</code>. Also download the <a href="data/nc.shp" target="_blank">North Carolina</a> and <a href="data/us-states.shp" target="_blank">US States</a> sample datasets.</p>
+<p>base map: geom_sf function, which simply adds a geometry stored in a sf object</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data-visualisation.html#cb6-1"></a><span class="kw">library</span>(sf)</span>
 <span id="cb6-2"><a href="data-visualisation.html#cb6-2"></a><span class="kw">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
 <span id="cb6-3"><a href="data-visualisation.html#cb6-3"></a></span>

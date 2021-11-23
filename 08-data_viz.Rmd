@@ -264,11 +264,11 @@ Go through the code example line by line and answer the following questions:
 
 ## Map visualization
 
-we read in shape data by sf and created simple map layouts in lesson read and write data
-also in exercise 6.3.1. we created a simpe map
+In the previous lesson you have already learned how to read vector data and create simple map layouts by means of the `plot()` function. In this concluding section, we will use the `ggplot()` library to create more complex map layouts.
 
-base map: geom_sf function, which simply adds a geometry stored in a sf object
-source: https://r-spatial.org/r/2018/10/25/ggplot2-sf.html
+In order to replicate the code examples below, you will have to install and load the libraries `sf()` (remember: sf stands for simple features and is used to read and write vector data) and `ggplot()`. Also download the [North Carolina](data/nc.shp){target="_blank"} and [US States](data/us-states.shp){target="_blank"} sample datasets.
+
+First, let us start with creating a single-layer base map:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
@@ -280,11 +280,14 @@ nc <- sf::st_read("data/nc.shp")
 ggplot(data = nc)+
     geom_sf() +
     xlab("Longitude") + ylab("Latitude") +
-    ggtitle("World map", subtitle = paste0("(", length(unique(nc$NAME)), " counties)"))
+    ggtitle("North Carolina", subtitle = paste0("(", length(unique(nc$NAME)), " counties)"))
 
 
 ```
 
+We first load the North Carolina shapefile as an `sf()` object and then assign the the data to the `ggplot()` graph. The `geom_sf` function adds a geometry stored in a sf object. Other map components such as title and axis labels are added by means of a plus sign. Note that `length(unique(nc$NAME))` returns the count of table rows, which corresponds to the number of geometries/counties. Geometry count and string "counties" are concatenated by function `paste0()`.
+
+The geometry element `geom_sf` provides a number of arguments to customize the appearence of vector features.
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
@@ -293,6 +296,7 @@ ggplot(data = nc) +
 
 ```
 
+Data can be mapped onto visual variables in the same way as with diagram plots. In the example below, the variable AREA is mapped onto visual variable fill color:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
@@ -302,6 +306,8 @@ ggplot(data = nc) +
 
 ```
 
+The function `coord_sf()` allows to deal with the coordinate system, which includes both projection and extent of the map: 
+
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
 ggplot(data = nc) +
@@ -309,6 +315,9 @@ ggplot(data = nc) +
     coord_sf(crs = st_crs(32618))
 
 ```
+
+
+
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
