@@ -7,12 +7,12 @@ This module will provide you with the fundamental skills in basic programming in
 
 On this basis, we will explore more complex data types like **Data Frames** and **Tibbles** as well as methods to **Read and Write** spatial and non-spatial datasets. In many cases the available data will not be suitable for your analyses. You will learn how to **filter, query, subset, join and re-shape** data to fit your needs.
 
-After you have learned how to manipulate data, you will learn to perform **statistical analyses** (exploratory data analysis, comparing data, regression models) and how to **visualize results** by means of diagrams (e.g. box plots, scatterplots, line plots etc.) and maps.   
+After you have learned how to manipulate data, you will get to know methods to **visualize** data by means of diagrams (e.g. box plots, scatterplots, line plots etc.) and maps.   
 
 Upon the completion of this module, you will have the fundamental skills in R programming as a basis for more advanced methods like Geospatial Data Analysis (is covered by the module "Spatial Statistics" in the MSc program) and Machine Learning.
 
 ```{block2, type = 'rmdtip'}
-This module is based on the teaching materials [granolarr](https://sdesabbata.github.io/granolarr/){target="_blank"} worked out by [Stefano de Sabbata](https://stefanodesabbata.com/){target="_blank"} at the [University of Leicester](https://le.ac.uk/){target="_blank"}. For more information take a look at the [Granolarr Lecture Pages](https://sdesabbata.github.io/granolarr/lectures_100/){target="_blank"}. The chapter **Machine Learning** is recommended as a follow up read for those who are willing to delve into more advanced applications of R. 
+This module is partly based on the teaching materials [granolarr](https://sdesabbata.github.io/granolarr/){target="_blank"} worked out by [Stefano de Sabbata](https://stefanodesabbata.com/){target="_blank"} at the [University of Leicester](https://le.ac.uk/){target="_blank"}. For more information take a look at the [Granolarr Lecture Pages](https://sdesabbata.github.io/granolarr/lectures_100/){target="_blank"} or at the more comprehensive [Bookdown Version](https://sdesabbata.github.io/granolarr/lectures/bookdown/){target="_blank"}. The chapters on **Statistical Analysis* and **Machine Learning** are recommended as a follow up read for those who are willing to delve into more advanced applications of R. 
 ```
 
 ## R programming language
@@ -31,15 +31,15 @@ Apart from its widespread use, there are a number of other reasons to learn R...
 
 * R is free and open source.
 * R has more comprehensive functionality than most proprietary solutions.
-* R is avaialble for Windows, May and Linux
+* R is available for Windows, May and Linux
 * R is a general-purpose programming language, so you can use it to automate analyses and create new custom functions that extend default features.
 * Because R is open source, it has a large user community, so it is easy to get help.
 
-R is a so called **high level programming language** or **scripting language**. This means that R code is not compiled into a computer readable format, but interpreted by an **interpreter.** An interpreter is a computer program that directly interprets and executes instructions written in a programming language.  
+R is a so-called **high level programming language** or **scripting language**. This means that R code is not compiled into a computer readable format, but interpreted by an **interpreter.** An interpreter is a computer program that directly interprets and executes instructions written in a programming language.  
 
 In order to make sure that the interpreter can understand the program code, the programmer must stick to the grammar of the programming language; i.e. the interpreter expects commands to appear in a predefined order. This grammar is often regarded as **Syntax**.  
 
-In this lession we will focus on some key principles of the R syntax and logic. 
+In this lesson we will focus on some key principles of the R syntax and logic. 
 
 ## Installation and Setup
 
@@ -186,6 +186,8 @@ Type and execute (Enter button) in the RStudio console to validate your assumpti
 ```
 
 ## References
+
+Apart from [Stefano de Sabbata's](https://stefanodesabbata.com/){target="_blank"} teaching materials, a number of other sources are use in this module. Most of them are freely available online:
 
 - Granolarr - A geographic data science reproducible teaching resource in R by Stefano de Sabbata. see [Online Book](https://sdesabbata.github.io/granolarr/){target="_blank"} 
 - R for Geographic Data Science by Stefano de Sabbata. [see Online Book](https://sdesabbata.github.io/r-for-geographic-data-science/){target="_blank"} 
