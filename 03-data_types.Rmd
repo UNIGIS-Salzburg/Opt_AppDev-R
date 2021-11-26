@@ -12,8 +12,6 @@ In this lession, you will get to know the following complex data types:
 
 ```
 
-Complex data types constrain the structure that a container (such as a variable) might take. 
-
 ## Vectors
 
 A **Vector** is an ordered list of values. Vectors can be of any simple type:
@@ -108,7 +106,7 @@ selected_cities <- c(east_midlands_cities[my_indexes])
 
 ### Functions on vectors
 
-In R, functions can be used on a vector variable in the same way they are used on simple variables. In this case, the selected function will be applied to each element of the vector. The output will be a new vector containing the same number of elements as the input vector. 
+In R, functions can be used on a vector variable in the same way they are used on simple variables. In this case, the function will be applied to each element of the vector. The output will be a new vector containing the same number of elements as the input vector. 
 
 For instance, adding a number of ten to a vector of numbers between 1 and 5 will result in a vector of numbers between 11 and 15:
 
@@ -149,7 +147,7 @@ all(a_numeric_vector >= 3)
 ```
 
 ```{block2, type = 'rmdtip'}
-A **factor** is a data type similar to a vector. However, the values contained in a factor can only be selected from a set of **levels**. Factors will not be covered in the module. For more information on this data type turn to Stefano de Sabbatas video on ['Data Types (see min 9:30)'.](https://sdesabbata.github.io/granolarr/lectures_110/){target="_blank"}
+A **factor** is a data type similar to a vector. However, the values contained in a factor can only be selected from a set of **levels**. Factors will not be covered in the module. For more information on this data type turn to the online tutorial [Programming with R](https://swcarpentry.github.io/r-novice-inflammation/12-supp-factors/index.html){target="_blank"}
 ```
 
 ## Multi-dimensional data types
@@ -176,6 +174,8 @@ z <- x*y
 z
 ```
 
+In the example above, variables x and y are initiated as matrices. The product of x and y is returned in variable z.  
+
 A more comprehensive list of matrix algebra operations is provided by [Quick-R](https://www.statmethods.net/advstats/matrix.html){target="_blank"}. 
 
 ### Arrays
@@ -191,7 +191,7 @@ a3dim_array
 
 Subsetting of matrices and arrays works in a very similar way as seen for vectors. However, as these are multi-dimensional objects, one value (or index) needs to be specified for each one of the dimensions.
 
-In the example, below we are subsetting the second row and the first and second column of the matrix:
+In the example, below we are subsetting the second row and the first and second column of `a_matrix`:
 
 ```{r, echo=TRUE}
 a_matrix <- matrix(c(3, 5, 7, 4, 3, 1), c(3, 2))
@@ -352,7 +352,14 @@ current_year - employees$Age
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
 <p><i><font color="grey">
-  
+
+#Instantiate data frame employees
+
+employees <- data.frame(
+  EmployeeName = c(<span>&#34;</span>Maria<span>&#36;</span>, "Pete", "Sarah"),
+  Age = c(47, 34, 32),
+  Role = c("Professor", "Researcher", "Researcher"))  
+    
 #Use Sys.Date to retrieve the current year
 
 current_year <- as.integer(format(Sys.Date(), <span>&quot;</span>%Y<span>&quot;</span>))
