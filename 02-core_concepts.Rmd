@@ -26,7 +26,7 @@ a_variable
 
 ```{block2, type = 'rmdtip'}
 
-In order to save your code, you can create an **R Script** in RStudio (File/New File/R Script). Select the code in the R Script Window and push 'Run' to execute the code.
+In order to save your code, you can create an **R Script** in RStudio (File/New File/R Script). Select the code in the R Script Window and push 'Run' to execute the code.  
 
 Note: The code is executed line by line in a sequential order!
    
@@ -91,7 +91,7 @@ When executing the code in Rstudio, you should see that something has changed in
 
 A **program** is a specific set of instructions that implement an abstract algorithm.
 
-The definition of an algorithm (and thus a program) can consist of one or more **function**s. Functions are a set of instructions that preform a task, i.e. functions help structuring code into functional units. These functional units are reusable in the code. Some of them receive values as inputs, some return output values.  
+The definition of an algorithm (and thus a program) can consist of one or more **functions**. Functions are a set of instructions that preform a task, i.e. functions help structuring code into functional units. These functional units are reusable in the code. Some of them receive values as inputs, some return output values.  
 
 Programming languages usually provide pre-defined functions that implement common algorithms (e.g., to find the square root of a number or to calculate a linear regression).
 
@@ -100,8 +100,6 @@ For instance, the pre-defined function 'sqrt()' calculates the square root of an
 ```{r, echo=TRUE}
 sqrt(2)
 ```
-
-By calling the functions, we instruct
 
 ```{block2, type = 'rmdtip'}
 
@@ -162,7 +160,7 @@ In this case the intermediate step of storing the square root of '2' in a variab
 ```{block2, type = 'rmdtip'}
 Using functions as arguments in other functions is often discouraged as it makes code hard to understand. 
 
-In order to improve readability of R code, it is recommended to consider naming conventions when creating identifiers for variables and functions: 
+Moreover, in order to improve readability of R code, it is recommended to consider naming conventions when creating identifiers for variables and functions: 
   
 - R is a **case sensitive** language
     - UPPER and lower case are not the same
@@ -185,17 +183,17 @@ To date there are more than 10,000 R libraries available, which can be downloade
 Libraries can be of any size and complexity, e.g.:
 
 - `base`: base R functions, including the `sqrt` function above
-- `rgdal`: implementation of the [GDAL (Geospatial Data Abstraction Library)](https://gdal.org/) functionalities.
+- `rgdal`: implementation of the [GDAL (Geospatial Data Abstraction Library)](https://gdal.org/){target="_blank"} functionalities.
 
-R provides some basic functions to manipulate strings, but the `stringr` library provides a more consistent and well-defined set of functions. Assuming that the library has already been installed on your computer, you can load the library as
+The use of libraries in R can be illustrate by means of the `stringr` library, which provides a consistent and well-defined set of functions for manipulating strings. Assuming that the library has already been installed on your computer, you can load the library as
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
 library(stringr)
 ```
 
 Otherwise, you can download and install the library by calling the function
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
 install.packages('stringr')  #Note: the function takes an argument of type string ('')
 ```
 
@@ -205,7 +203,7 @@ Alternatively, you can download and install libraries (a.k.a. packages) using th
 
 ```
 
-Once the library is installed and loaded, a new series of functions is available within your environment. For instance, 'str_length' returns the number of letters included in a string:
+Once the library is installed and loaded, a new series of functions is available within your environment. For instance, the function 'str_length' returns the number of letters included in a string:
 
 ```{r, echo=TRUE}
 str_length("UNIGIS")
@@ -223,19 +221,11 @@ The function 'str_replace_all' replaces all the instances of the first argument 
 str_replace_all("UNIGIS", "I", 'X')
 ```
 
-```{block2, type = 'rmdexercise'}
+```{block2, type = 'rmdtip'}
 
-List all the functions available with library 'stringr' using the built in function ['ls()'](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ls){target="_blank"} 
-
-<details closed>
-<summary><ins>**See solution!**</ins></summary>
-<p><i><font color="grey">
+You may list all the functions available with library 'stringr' using the built in function ['ls()'](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ls){target="_blank"}:
   
 ls(<span>&quot;</span>package:stringr<span>&quot;</span>)
-    
-</font></i>
-</p>
-</details> 
 
 ```
  

@@ -242,9 +242,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="variables" class="section level2">
 <h2><span class="header-section-number">2.1</span> Variables</h2>
 <p>Variables are used to <strong>store data</strong>. Variables can be defined using an <em>identifier</em>, i.e. a variable name (e.g., <code>a_variable</code>), on the left of an <em>assignment operator</em> <code>&lt;-</code>, followed by the object to be linked to the identifier such as a <em>value</em> (e.g. <code>1</code>):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="core.html#cb3-1"></a>a_variable &lt;-<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="core.html#cb1-1"></a>a_variable &lt;-<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <p>The value of the variable can be invoked by simply specifying the <strong>identifier</strong>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="core.html#cb4-1"></a>a_variable</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="core.html#cb2-1"></a>a_variable</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 
 <div class="rmdtip">
@@ -253,11 +253,11 @@ Note: The code is executed line by line in a sequential order!
 </div>
 
 <p>Variables allow you to save the result of any computations performed in the code and retrieve it later in the code for further analyses. For instance, you can declare a variable such as,</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="core.html#cb6-1"></a>a_variable &lt;-<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="core.html#cb4-1"></a>a_variable &lt;-<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <p>manipulate the value of the variable as</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="core.html#cb7-1"></a>a_variable &lt;-<span class="st"> </span>a_variable <span class="op">+</span><span class="st"> </span><span class="dv">10</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="core.html#cb5-1"></a>a_variable &lt;-<span class="st"> </span>a_variable <span class="op">+</span><span class="st"> </span><span class="dv">10</span></span></code></pre></div>
 <p>and later in the code assign the value to a different variable</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="core.html#cb8-1"></a>another_variable &lt;-<span class="st"> </span>a_variable</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="core.html#cb6-1"></a>another_variable &lt;-<span class="st"> </span>a_variable</span></code></pre></div>
 <p>At this point, the question may arise, why bother using variables instead of simply typing the numbers? The answer is that variables make your code reusable and safe you lots of time.</p>
 <p>Let us consider the following example:</p>
 <p>Meteorologists monitor water temperature gradients in the Pacific Ocean to better understand El Niño weather patterns and to forecast extreme weather conditions associated with it. In a given year the water temperature at location A is 22°C and 26°C at location B. We could simply calculate the difference by executing the arithmetic operation ‘26 - 22’ in the console window of RStudio. However, temperatures are measured in real-time, i.e. we have to calculate temperature gradients repeatedly.</p>
@@ -289,28 +289,27 @@ Note: The code is executed line by line in a sequential order!
 <h2><span class="header-section-number">2.2</span> Algorithms and functions</h2>
 <p><em>An</em> <strong>algorithm</strong> <em>or effective procedure is a mechanical rule, or automatic method, or program for performing some mathematical operation</em> (Cutland, 1980).</p>
 <p>A <strong>program</strong> is a specific set of instructions that implement an abstract algorithm.</p>
-<p>The definition of an algorithm (and thus a program) can consist of one or more <strong>function</strong>s. Functions are a set of instructions that preform a task, i.e. functions help structuring code into functional units. These functional units are reusable in the code. Some of them receive values as inputs, some return output values.</p>
+<p>The definition of an algorithm (and thus a program) can consist of one or more <strong>functions</strong>. Functions are a set of instructions that preform a task, i.e. functions help structuring code into functional units. These functional units are reusable in the code. Some of them receive values as inputs, some return output values.</p>
 <p>Programming languages usually provide pre-defined functions that implement common algorithms (e.g., to find the square root of a number or to calculate a linear regression).</p>
 <p>For instance, the pre-defined function ‘sqrt()’ calculates the square root of an input value. ‘sqrt()’ (as every function in R) is invoked by specifying the <em>function name</em> and the <em>arguments</em> (input values) between simple brackets:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="core.html#cb9-1"></a><span class="kw">sqrt</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="core.html#cb7-1"></a><span class="kw">sqrt</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 1.414214</code></pre>
-<p>By calling the functions, we instruct</p>
 
 <div class="rmdtip">
 Each input value corresponds to a <em>parameter</em> that was specified in the definition of the function. Sometimes the <em>parameter</em> name must be specified. This will get clearer when you write your own functions later in the module.
 </div>
 
 <p>‘round()’ is another function that is predefined in R:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="core.html#cb11-1"></a><span class="kw">round</span>(<span class="fl">1.414214</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="core.html#cb9-1"></a><span class="kw">round</span>(<span class="fl">1.414214</span>, <span class="dt">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 1.41</code></pre>
 <p>Note that the name of the second parameter (‘digits’) needs to be specified. The parameter ‘digits’ indicates the number of digits we want to keep after the dot.</p>
 <p>The return value of a function can be stored in a variable:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="core.html#cb13-1"></a>sqrt_of_two &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)</span>
-<span id="cb13-2"><a href="core.html#cb13-2"></a>sqrt_of_two</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="core.html#cb11-1"></a>sqrt_of_two &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)</span>
+<span id="cb11-2"><a href="core.html#cb11-2"></a>sqrt_of_two</span></code></pre></div>
 <pre><code>## [1] 1.414214</code></pre>
 <p>The output value is stored in the memory slot with the identifier ‘sqrt_of_two’. We can use the identifier ‘sqrt_of_two’ as an argument in other functions as</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="core.html#cb15-1"></a>sqrt_of_two &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)</span>
-<span id="cb15-2"><a href="core.html#cb15-2"></a><span class="kw">round</span>(sqrt_of_two, <span class="dt">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="core.html#cb13-1"></a>sqrt_of_two &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">2</span>)</span>
+<span id="cb13-2"><a href="core.html#cb13-2"></a><span class="kw">round</span>(sqrt_of_two, <span class="dt">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 1.414</code></pre>
 <p>The first line calculates the square root of ‘2’ and stores it in a variable with identifier ‘sqrt_of_two’. The second line rounds the value stored in ‘sqrt_of_two’ to three digits after the dot.</p>
 
@@ -328,13 +327,13 @@ Each input value corresponds to a <em>parameter</em> that was specified in the d
 </div>
 
 <p>Functions can also be used as arguments of functions. For instance, we can use the function ‘sqrt()’ as the first argument in function ‘round()’:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="core.html#cb17-1"></a><span class="kw">round</span>(<span class="kw">sqrt</span>(<span class="dv">2</span>), <span class="dt">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="core.html#cb15-1"></a><span class="kw">round</span>(<span class="kw">sqrt</span>(<span class="dv">2</span>), <span class="dt">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 1.414</code></pre>
 <p>In this case the intermediate step of storing the square root of ‘2’ in a variable was skipped.</p>
 
 <div class="rmdtip">
 <p>Using functions as arguments in other functions is often discouraged as it makes code hard to understand.</p>
-<p>In order to improve readability of R code, it is recommended to consider naming conventions when creating identifiers for variables and functions:</p>
+<p>Moreover, in order to improve readability of R code, it is recommended to consider naming conventions when creating identifiers for variables and functions:</p>
 <ul>
 <li>R is a <strong>case sensitive</strong> language
 <ul>
@@ -360,39 +359,30 @@ Each input value corresponds to a <em>parameter</em> that was specified in the d
 <p>Libraries can be of any size and complexity, e.g.:</p>
 <ul>
 <li><code>base</code>: base R functions, including the <code>sqrt</code> function above</li>
-<li><code>rgdal</code>: implementation of the <a href="https://gdal.org/">GDAL (Geospatial Data Abstraction Library)</a> functionalities.</li>
+<li><code>rgdal</code>: implementation of the <a href="https://gdal.org/" target="_blank">GDAL (Geospatial Data Abstraction Library)</a> functionalities.</li>
 </ul>
-<p>R provides some basic functions to manipulate strings, but the <code>stringr</code> library provides a more consistent and well-defined set of functions. Assuming that the library has already been installed on your computer, you can load the library as</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="core.html#cb19-1"></a><span class="kw">library</span>(stringr)</span></code></pre></div>
-<pre><code>## Warning: package &#39;stringr&#39; was built under R version 4.0.5</code></pre>
+<p>The use of libraries in R can be illustrate by means of the <code>stringr</code> library, which provides a consistent and well-defined set of functions for manipulating strings. Assuming that the library has already been installed on your computer, you can load the library as</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="core.html#cb17-1"></a><span class="kw">library</span>(stringr)</span></code></pre></div>
 <p>Otherwise, you can download and install the library by calling the function</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="core.html#cb21-1"></a><span class="kw">install.packages</span>(<span class="st">&#39;stringr&#39;</span>)  <span class="co">#Note: the function takes an argument of type string (&#39;&#39;)</span></span></code></pre></div>
-<pre><code>## Warning: package &#39;stringr&#39; is in use and will not be installed</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="core.html#cb18-1"></a><span class="kw">install.packages</span>(<span class="st">&#39;stringr&#39;</span>)  <span class="co">#Note: the function takes an argument of type string (&#39;&#39;)</span></span></code></pre></div>
 
 <div class="rmdtip">
 <p>Alternatively, you can download and install libraries (a.k.a. packages) using the ‘Install Packages Menu’ in RStudio (Tools/Install Packages…). In the upper dropdown list you can choose between ‘install from CRAN’ and ‘install from Package Archive file’. The large majority of libraries are available with <a href="https://cran.r-project.org/" target="_blank">CRAN - Comprehensive R Archive Network</a>, which is a collection of libraries and other R resources.</p>
 </div>
 
-<p>Once the library is installed and loaded, a new series of functions is available within your environment. For instance, ‘str_length’ returns the number of letters included in a string:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="core.html#cb23-1"></a><span class="kw">str_length</span>(<span class="st">&quot;UNIGIS&quot;</span>)</span></code></pre></div>
+<p>Once the library is installed and loaded, a new series of functions is available within your environment. For instance, the function ‘str_length’ returns the number of letters included in a string:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="core.html#cb19-1"></a><span class="kw">str_length</span>(<span class="st">&quot;UNIGIS&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <p>‘str_detect()’ does return ‘TRUE’, if the first argument (a string) contains the second argument (letter as type string). Otherwise, the function returns ‘FALSE’:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="core.html#cb25-1"></a><span class="kw">str_detect</span>(<span class="st">&quot;UNIGIS&quot;</span>, <span class="st">&quot;I&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="core.html#cb21-1"></a><span class="kw">str_detect</span>(<span class="st">&quot;UNIGIS&quot;</span>, <span class="st">&quot;I&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>The function ‘str_replace_all’ replaces all the instances of the first argument that are identical with the second argument by a third argument:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="core.html#cb27-1"></a><span class="kw">str_replace_all</span>(<span class="st">&quot;UNIGIS&quot;</span>, <span class="st">&quot;I&quot;</span>, <span class="st">&#39;X&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="core.html#cb23-1"></a><span class="kw">str_replace_all</span>(<span class="st">&quot;UNIGIS&quot;</span>, <span class="st">&quot;I&quot;</span>, <span class="st">&#39;X&#39;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;UNXGXS&quot;</code></pre>
 
-<div class="rmdexercise">
-<p>List all the functions available with library ‘stringr’ using the built in function <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ls" target="_blank">‘ls()’</a></p>
-<details closed>
-<summary><ins><strong>See solution!</strong></ins></summary>
-<p>
-<p><i><font color="grey"></p>
+<div class="rmdtip">
+<p>You may list all the functions available with library ‘stringr’ using the built in function <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ls" target="_blank">‘ls()’</a>:</p>
 <p>ls(<span>"</span>package:stringr<span>"</span>)</p>
-</font></i>
-</p>
-</details>
 </div>
 
 
