@@ -1,9 +1,9 @@
 # Complex Data Types
 
-In this lession I will introduce a series of more complex data types that are built on top of the already discussed simple data types 'numeric', 'character' (string) and 'logical' (see [Lesson 1](#intro) 'Simple data types').
+In this lesson I will introduce a series of more complex data types that are built on top of the already discussed simple data types 'numeric', 'character' (string) and 'logical' (see [Lesson 1](#intro) 'Simple data types').
 
 ```{block2, type = 'rmdtip'}
-In this lession, you will get to know the following complex data types:
+In this lesson, you will get to know the following complex data types:
 
 1) Vectors
 2) Matrices and Arrays
@@ -274,7 +274,7 @@ Given the precondition that data frames are composed of named lists where elemen
 <summary><ins>**See solution!**</ins></summary>
 <p><i><font color="grey">
   
-Elements of a vector (data frame column) must be of the same type (charater, logical or numeric). In the example above, the column 'EmployeeName' contains only character strings, the column 'Age' contains only numeric etc.
+Elements of a vector (data frame column) must be of the same type (character, logical or numeric). In the example above, the column 'EmployeeName' contains only character strings, the column 'Age' contains only numeric etc.
     
 </font></i>
 </p>
@@ -356,9 +356,9 @@ current_year - employees$Age
 #Instantiate data frame employees
 
 employees <- data.frame(
-  EmployeeName = c(<span>&#34;</span>Maria<span>&#36;</span>, "Pete", "Sarah"),
+  EmployeeName = c(<span>&quot;</span>Maria<span>&quot;</span>, <span>&quot;</span>Pete<span>&quot;</span>, <span>&quot;</span>Sarah<span>&quot;</span>),
   Age = c(47, 34, 32),
-  Role = c("Professor", "Researcher", "Researcher"))  
+  Role = c(<span>&quot;</span>Professor<span>&quot;</span>, <span>&quot;</span>Researcher<span>&quot;</span>, <span>&quot;</span>Researcher<span>&quot;</span>))  
     
 #Use Sys.Date to retrieve the current year
 

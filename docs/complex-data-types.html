@@ -229,10 +229,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="complex-data-types" class="section level1">
 <h1><span class="header-section-number">Lesson 3</span> Complex Data Types</h1>
-<p>In this lession I will introduce a series of more complex data types that are built on top of the already discussed simple data types ‘numeric’, ‘character’ (string) and ‘logical’ (see <a href="intro.html#intro">Lesson 1</a> ‘Simple data types’).</p>
+<p>In this lesson I will introduce a series of more complex data types that are built on top of the already discussed simple data types ‘numeric’, ‘character’ (string) and ‘logical’ (see <a href="intro.html#intro">Lesson 1</a> ‘Simple data types’).</p>
 
 <div class="rmdtip">
-<p>In this lession, you will get to know the following complex data types:</p>
+<p>In this lesson, you will get to know the following complex data types:</p>
 <ol style="list-style-type: decimal">
 <li>Vectors</li>
 <li>Matrices and Arrays</li>
@@ -469,7 +469,7 @@ A <strong>factor</strong> is a data type similar to a vector. However, the value
 <summary><ins><strong>See solution!</strong></ins></summary>
 <p>
 <p><i><font color="grey"></p>
-<p>Elements of a vector (data frame column) must be of the same type (charater, logical or numeric). In the example above, the column ‘EmployeeName’ contains only character strings, the column ‘Age’ contains only numeric etc.</p>
+<p>Elements of a vector (data frame column) must be of the same type (character, logical or numeric). In the example above, the column ‘EmployeeName’ contains only character strings, the column ‘Age’ contains only numeric etc.</p>
 </font></i>
 </p>
 </details>
@@ -521,9 +521,9 @@ A <strong>factor</strong> is a data type similar to a vector. However, the value
 <p><i><font color="grey"></p>
 <p>#Instantiate data frame employees</p>
 <p>employees &lt;- data.frame(
-EmployeeName = c(<span>“Maria”</span>, “Pete”, “Sarah”),
+EmployeeName = c(<span>"</span>Maria<span>"</span>, <span>"</span>Pete<span>"</span>, <span>"</span>Sarah<span>"</span>),
 Age = c(47, 34, 32),
-Role = c(“Professor”, “Researcher”, “Researcher”))</p>
+Role = c(<span>"</span>Professor<span>"</span>, <span>"</span>Researcher<span>"</span>, <span>"</span>Researcher<span>"</span>))</p>
 <p>#Use Sys.Date to retrieve the current year</p>
 <p>current_year &lt;- as.integer(format(Sys.Date(), <span>"</span>%Y<span>"</span>))</p>
 <p>#Calculate employee year of birth</p>
