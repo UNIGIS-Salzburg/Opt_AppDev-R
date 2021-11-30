@@ -237,7 +237,7 @@ Moreover, you will get to know the difference between variables with global and 
 
 <div id="defining-functions" class="section level2">
 <h2><span class="header-section-number">5.1</span> Defining functions</h2>
-<p>The syntax for defining a function does not look too different from the syntax that we have been using to define a variable or to create a conditional statement. We start by defining an identifier (e.g. add_one) on the left of an assignment operator (<code>&lt;-</code>). This is the so-called <strong>corpus of the function.</strong></p>
+<p>The syntax for defining a function does not look too different from the syntax that we have been using to define a variable or to create a conditional statement. We start by defining an identifier (e.g. add_one) on the left of an assignment operator (<code>&lt;-</code>). This is followed by the so-called <strong>corpus of the function.</strong></p>
 <p>The corpus starts with the reserved word ‘function’ followed by the <strong>parameter(s)</strong> (e.g. <code>input_value</code> in the example below) between simple brackets and the instruction(s) to be executed in a code block. The value of the last statement is returned as output:</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="functions.html#cb106-1"></a>add_one &lt;-<span class="st"> </span><span class="cf">function</span> (input_value) {</span>
 <span id="cb106-2"><a href="functions.html#cb106-2"></a>  output_value &lt;-<span class="st"> </span>input_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
@@ -251,7 +251,7 @@ Moreover, you will get to know the difference between variables with global and 
 <h2><span class="header-section-number">5.2</span> More parameters</h2>
 <p>A function can be defined as having two or more <strong>parameters</strong> by specifying more than one parameter name (separated by <strong>commas</strong>) in the function definition.</p>
 <blockquote>
-<p>A function always take as input as many values as the number of parameters specified in the definition, otherwise an error is generated</p>
+<p>A function always takes as input as many values as the number of parameters specified in the definition, otherwise an error is generated</p>
 </blockquote>
 <p>The function ‘area_rectangle’ includes two parameters (height and width), calculates an area value by multiplying the inputs and returns the area as a single numeric value:</p>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="functions.html#cb109-1"></a>area_rectangle &lt;-<span class="st"> </span><span class="cf">function</span> (height, width) {</span>

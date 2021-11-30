@@ -8,7 +8,7 @@ Moreover, you will get to know the difference between variables with global and 
 
 ## Defining functions
 
-The syntax for defining a function does not look too different from the syntax that we have been using to define a variable or to create a conditional statement. We start by defining an identifier (e.g. add_one) on the left of an assignment operator (`<-`). This is the so-called **corpus of the function.**   
+The syntax for defining a function does not look too different from the syntax that we have been using to define a variable or to create a conditional statement. We start by defining an identifier (e.g. add_one) on the left of an assignment operator (`<-`). This is followed by the so-called **corpus of the function.**   
 
 The corpus starts with the reserved word 'function' followed by the **parameter(s)** (e.g. `input_value` in the example below) between simple brackets and the instruction(s) to be executed in a code block. The value of the last statement is returned as output:
 
@@ -29,7 +29,7 @@ add_one(3)
 
 A function can be defined as having two or more **parameters** by specifying  more than one parameter name (separated by **commas**) in the function definition. 
 
-> A function always take as input as many values as the number of parameters specified in the definition, otherwise an error is generated
+> A function always takes as input as many values as the number of parameters specified in the definition, otherwise an error is generated
 
 The function 'area_rectangle' includes two parameters (height and width), calculates an area value by multiplying the inputs and returns the area as a single numeric value:  
 
