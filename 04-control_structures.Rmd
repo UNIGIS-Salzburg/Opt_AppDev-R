@@ -7,7 +7,7 @@ In this lesson, you will get to know control structures as a significant structu
 
 We distinguish between two types of control structures:
 
-1) **Conditional statements**, which allow to execute instructions only if a certain condition is satisfied.
+1) **Conditional statements**, which allow executing instructions only if a certain condition is satisfied.
 
 2) **Loops**, which allow to repeat one or more instructions multiple times. Loops are commonly used to apply the same operation on a series of values that are stored in sequences such as vectors or lists.
 
