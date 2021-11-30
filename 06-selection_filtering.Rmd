@@ -3,14 +3,14 @@
 ```{block2, type = 'rmdtip'}
 In most instances the structure of the available data will not meet the specific requirements to perform the analyses you are interested in. Data analysts typically spend the majority of their time cleaning, filtering, restructuring data as well as harmonizing and joining data from different sources.
 
-This lesson introduces to the most common data wrangling operations by means of the dplyr library (part of the Tidyverse libraries), which it offers a grammar for data manipulation.
+This lesson introduces to the most common data wrangling operations by means of the dplyr library (part of the Tidyverse libraries), which offers a grammar for data manipulation.
 ```
 
 ## Preparation
 
 If not yet installed on your machine, install the libraries `tidyverse` as well as `nycflights13` (see Libraries in lesson [core Concepts](#core)).
 
-The code below, loads the data frame `flights` from the library `nycflights13` into the variable `flights_from_nyc`. We will use this data frame throughout this lesson. 
+The code below, loads the data frame `flights` from the library `nycflights13` into the variable `flights_from_nyc`. We will use this data frame in this lesson. 
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -19,13 +19,21 @@ flights_from_nyc <- nycflights13::flights
 
 ```
 
-The operator `::` is used to indicate that the data frame `flights` is situated within the library `nycflights13`. You can use `::`, if you know exactly which library contains the object or function desired. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names. 
+The operator `::` is used to indicate that the data frame `flights` is situated within the library `nycflights13`. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names. 
 
-Add both lines above as well as the code snippets provided in the upcoming examples to a new R script file. 
+In order to run the following data wrangling examples on your machine, add both lines above as well as the code snippets provided in the upcoming examples to a new R script file.
+
+```{block2, type = 'rmdtip'}
+
+Once you have loaded the flights table, open the **Environment Tab** in RStudio and double-click variable `flights_from_nyc` to inspect the variable contents.
+
+Alternatively, you may inspect the data frame `flights_from_nyc` by writing it to the console.
+
+```
 
 ## Data manipulation
 
-Firstly, inspect the data frame `flights_from_nyc` by writing it to the console. The library `dplyr` provides a number of functions to investigate basic characteristics of inputs. For instance, the function `count()` can be used to count the number of rows of a data frame. The code below provides `flights_from_nyc` as input to the function. 
+The library `dplyr` provides a number of functions to investigate basic characteristics of inputs. For instance, the function `count()` can be used to count the number of rows of a data frame. The code below provides `flights_from_nyc` as input to the function. 
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -40,12 +48,12 @@ flights_from_nyc %>%
 In the code example above, we use the so called **pipe operator** `%>%`, which is included in `tidyverse`, as well as a function named `kable()` of library `knitr` to render the output.
 
 ```{block2, type = 'rmdtip'}
-The pipe operator allows us to link a sequence of analysis steps. In the example above the data frame `flights_from_nyc` is passed into function `count()` and the output is pased into function `kable()` to render the result_df
+The pipe operator allows us to link a sequence of analysis steps. In the example above the data frame `flights_from_nyc` is passed into function `count()` and the output is passed into function `kable()` to render the result_df
 
 The pipe operator is a powerful tool to simplify your code. See [this video](https://www.youtube.com/watch?v=sohARFx6aTo){target="_blank"} to learn more about it.
 ```
 
-The function `count()` can also be used to count the number rows of a table that have the same value for a given column, usually representing a category.
+The function `count()` can also be used to count the number of rows of a table that has the same value for a given column, usually representing a category.
 
 In the example below, the column name origin is provided as an argument to the function count, so rows representing flights from the same origin are counted together – EWR is the Newark Liberty International Airport, JFK is the John F. Kennedy International Airport, and LGA is LaGuardia Airport.
 
@@ -76,7 +84,7 @@ flights_from_nyc %>%
 
 ### Select and filter
 
-The function `select()` can be used to select some **columns** to output. For instance in the code below, the function `select()` is used to select the columns `origin`, `dest`, and `dep_delay`, in combination with the function `slice_head`, which can be used to include only the first `n` rows (5 in the example below) to output.
+The function `select()` can be used to select a subset of **columns**. For instance in the code below, the function `select()` is used to select the columns `origin`, `dest`, and `dep_delay`. The function `slice_head` is used to include only the first `n` rows in the output.
 
 ```{r, echo=TRUE}
 flights_from_nyc %>%
@@ -113,7 +121,7 @@ flights_from_nyc %>%
 
 ### Arrange
 
-The function `arrange()` can be used to sort a [tibble](https://tibble.tidyverse.org/){target="_blank"} by ascending order of the values in the specified column. If the operator `-` is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.
+The function `arrange()` sorts a [tibble](https://tibble.tidyverse.org/){target="_blank"} by ascending order of the values in the specified column. If the operator `-` is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.
 
 ```{r, echo=TRUE}
 flights_from_nyc %>%
@@ -123,7 +131,7 @@ flights_from_nyc %>%
   knitr::kable()
 ```
 
-In the examples above, we have used `slice_head` to present only the first `n` (in the examples 5) rows in a table, based on the existing order. 
+In the examples above, we have used `slice_head` to present only the first `n` rows in a table, based on the existing order. 
 
 ### Exercise: data manipulation
 
@@ -193,7 +201,7 @@ The `dplyr` library offers different types of join operations, which correspond 
 knitr::include_graphics('images/joins.png')
 ```
 
-Please take your time to understand the example below and check out the [related `dplyr` help pages](https://www.rdocumentation.org/packages/dplyr/versions/0.7.8/topics/join){target="_blank"} before continuing. The first four examples execute the exact same *full join* operation using three different syntaxes: with or without using the pipe operator, and specifying the `by` argument or not. Note that all those approaches to writing the join are valid and produce the same result. The choice about which approach to use will depend on the code you are writing. In particular, you might find it useful to use the syntax that uses the pipe operator when the join operation is itself only one stem in a series of data manipulation steps. Using the `by` argument is usually advisable unless you are certain that you aim to join two tables with all and exactly the column that have the same names in the two table.
+Please take your time to understand the examples below and check out the [related `dplyr` help pages](https://www.rdocumentation.org/packages/dplyr/versions/0.7.8/topics/join){target="_blank"} before continuing. The first four examples execute the exact same *full join* operation using three different syntaxes: with or without using the pipe operator and specifying the `by` argument or not. Note that all those approaches to writing the join are valid and produce the same result. The choice about which approach to use will depend on the code you are writing. In particular, you might find it useful to use the syntax that uses the pipe operator when the join operation is itself only one stem in a series of data manipulation steps. Using the `by` argument is usually advisable unless you are certain that you aim to join two tables with all and exactly the column that have the same names in the two table.
 
 Note how the result of the join operations is *not* saved to a variable. The function `knitr::kable` is added after each join operation through a pipe `%>%` to display the resulting table in a nice format.
 
@@ -317,13 +325,13 @@ In the previous exercise we have created a table that shows national African sor
 
 1. Create an RScript and install and load the libraries `tidyverse`, `knitr`, `ggplot2` and `maps`, if not done yet.
 2. Copy the [code from the previous exercise](Solution_Exercise_DataWrangling1.R){target="_blank"} into your new RScript. Note that the result of the pipe operations is *not* saved to a variable. Save it to a variable. 
-3. Use the `ggplot2` function `map_data` to convert the built in sample dataset `world` (comes with library `maps`) to a data frame
+3. Use the `ggplot2` function `map_data` to convert the built in sample dataset `world` (comes with library `maps`) to a data frame:
 
 ```{echo=FALSE}
 world_ctry <- map_data("world") 
 ```
 
 4. Inspect the structure of this data frame. Every row represents a node (defined by long/lat) of a polygon feature (national boundaries).
-5. Join tables (left table: geographic features, right table: sorghum production statistics) based on country names. Make sure to chose a join method that allows for retaining all the geographic features. 
+5. Join tables (left table: geographic features, right table: sorghum production statistics) based on country names. Make sure to choose a join method (`full_join`, `inner_join`, `left_join` or `right_join`) that allows for retaining all the geographic features. 
 
 [My exercise solution](Solution_Exercise_DataWrangling2.R){target="_blank"} creates a simple output map. In a subsequent lesson we will cover visualization methods in more detail.  

@@ -3,7 +3,7 @@ library(maps)    #new
 library(tidyverse)
 library(knitr)
 
-fao_data <- read.csv("C:/Users/b1045498/Downloads/Production_Crops_Livestock_E_Africa (3)/Production_Crops_Livestock_E_Africa_NOFLAG.csv", header = TRUE, sep = ",")   #enter file directory
+fao_data <- read.csv("enter file directory", header = TRUE, sep = ",")   #enter file directory
 
 sorghum_production <- fao_data %>% 
   dplyr::select(Area, Item, Element, Unit, Y2019) %>%                  

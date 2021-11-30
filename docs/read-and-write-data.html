@@ -326,7 +326,7 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 ## Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
 ## Geodetic CRS:  NAD27</code></pre>
 <div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="read-and-write-data.html#cb143-1"></a><span class="kw">plot</span>(nc)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
 <p>The library <code>sf</code> represents features as records in a data frame or tibble with a geometry list-column. The example below renders three features (rows) of variable nc including the geometry column as well as the attributes <code>AREA</code> (feature area) and <code>NAME</code> (name of county):</p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="read-and-write-data.html#cb144-1"></a>nc <span class="op">%&gt;%</span></span>
 <span id="cb144-2"><a href="read-and-write-data.html#cb144-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(AREA, NAME, geometry) <span class="op">%&gt;%</span></span>
@@ -361,7 +361,7 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 <p><code>sf</code> also includes a number of operations to manipulate the geometry of features such as <code>st_simplify</code>:</p>
 <div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="read-and-write-data.html#cb145-1"></a>sf<span class="op">::</span><span class="kw">st_simplify</span>(nc) <span class="op">%&gt;%</span></span>
 <span id="cb145-2"><a href="read-and-write-data.html#cb145-2"></a><span class="st">  </span><span class="kw">plot</span>(., <span class="dt">max.plot =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
 
 <div class="rmdtip">
 <p>You may have recognized that a dot (.) is used as a parameter in the function <code>plot()</code>. The dot represents the piped value. In the example above the dot is used to define the simplified geometry of nc as first parameter of function <code>plot()</code> and <code>max.plot = 1</code> as the second.</p>
@@ -376,7 +376,7 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 ## Writing layer `nc-centroids&#39; to data source 
 ##   `data/nc-centroids.shp&#39; using driver `ESRI Shapefile&#39;
 ## Writing 100 features with 0 fields and geometry type Point.</code></pre>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
 
 <div class="rmdtip">
 The online book <a href="https://geocompr.robinlovelace.net/geometric-operations.html" target="_blank">Geocomputation with R</a> offers a more comprehensive explanation of available geometric, attribute and spatial data operations. For a quick overview you may turn to the <a href="https://github.com/rstudio/cheatsheets/blob/master/sf.pdf" target="_blank">sf cheatsheets</a>.
@@ -448,28 +448,27 @@ Figure 7.1: Video (3:13 min): REST API concepts and examples.
 ##   ..$ lat: num 47.8
 ##  $ weather   :List of 1
 ##   ..$ :List of 4
-##   .. ..$ id         : int 600
-##   .. ..$ main       : chr &quot;Snow&quot;
-##   .. ..$ description: chr &quot;light snow&quot;
-##   .. ..$ icon       : chr &quot;13d&quot;
+##   .. ..$ id         : int 500
+##   .. ..$ main       : chr &quot;Rain&quot;
+##   .. ..$ description: chr &quot;light rain&quot;
+##   .. ..$ icon       : chr &quot;10d&quot;
 ##  $ base      : chr &quot;stations&quot;
 ##  $ main      :List of 6
 ##   ..$ temp      : num 274
 ##   ..$ feels_like: num 269
 ##   ..$ temp_min  : num 270
 ##   ..$ temp_max  : num 278
-##   ..$ pressure  : int 1010
-##   ..$ humidity  : int 92
-##  $ visibility: int 7000
-##  $ wind      :List of 3
+##   ..$ pressure  : int 1009
+##   ..$ humidity  : int 99
+##  $ visibility: int 10000
+##  $ wind      :List of 2
 ##   ..$ speed: num 5.66
-##   ..$ deg  : int 210
-##   ..$ gust : num 10.8
-##  $ snow      :List of 1
-##   ..$ 1h: num 0.41
+##   ..$ deg  : int 190
+##  $ rain      :List of 1
+##   ..$ 1h: num 0.38
 ##  $ clouds    :List of 1
 ##   ..$ all: int 75
-##  $ dt        : int 1638272612
+##  $ dt        : int 1638280348
 ##  $ sys       :List of 5
 ##   ..$ type   : int 1
 ##   ..$ id     : int 6877
