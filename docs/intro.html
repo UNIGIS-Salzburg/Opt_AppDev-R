@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Application Development with R</title>
   <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Application Development with R" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,8 @@
   <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
 
 <link rel="next" href="core.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -230,7 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Application Development with R</h1>
 <p class="author"><em>Christian Neuwirth</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>26 November, 2021</em></p>
+<p class="date"><em>30 November, 2021</em></p>
 </div>
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">Lesson 1</span> Introduction to R</h1>
@@ -262,13 +262,13 @@ This module is partly based on the teaching materials <a href="https://sdesabbat
 <ul>
 <li>R is free and open source.</li>
 <li>R has more comprehensive functionality than most proprietary solutions.</li>
-<li>R is avaialble for Windows, May and Linux</li>
+<li>R is available for Windows, May and Linux</li>
 <li>R is a general-purpose programming language, so you can use it to automate analyses and create new custom functions that extend default features.</li>
 <li>Because R is open source, it has a large user community, so it is easy to get help.</li>
 </ul>
-<p>R is a so called <strong>high level programming language</strong> or <strong>scripting language</strong>. This means that R code is not compiled into a computer readable format, but interpreted by an <strong>interpreter.</strong> An interpreter is a computer program that directly interprets and executes instructions written in a programming language.</p>
+<p>R is a so-called <strong>high level programming language</strong> or <strong>scripting language</strong>. This means that R code is not compiled into a computer readable format, but interpreted by an <strong>interpreter.</strong> An interpreter is a computer program that directly interprets and executes instructions written in a programming language.</p>
 <p>In order to make sure that the interpreter can understand the program code, the programmer must stick to the grammar of the programming language; i.e. the interpreter expects commands to appear in a predefined order. This grammar is often regarded as <strong>Syntax</strong>.</p>
-<p>In this lession we will focus on some key principles of the R syntax and logic.</p>
+<p>In this lesson we will focus on some key principles of the R syntax and logic.</p>
 </div>
 <div id="installation-and-setup" class="section level2">
 <h2><span class="header-section-number">1.3</span> Installation and Setup</h2>
@@ -287,7 +287,7 @@ If you need help, please turn to the discussion forum!
 <div id="interpreting-values" class="section level2">
 <h2><span class="header-section-number">1.4</span> Interpreting values</h2>
 <p>Now that you have installed RStudio and R on your machine, it is time to run some code in RStudio. When you open RStudio, you will find the <strong>Console Window</strong> (see Fig. <a href="intro.html#fig:L01-console">1.1</a>). When values and operations are inputted in the <em>Console</em>, the interpreter returns the results of its interpretation of the expression.</p>
-<div class="figure" style="text-align: center"><span id="fig:L01-console"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L01-console"></span>
 <img src="images/Console.png" alt="Console Window in RStudio" width="90%" />
 <p class="caption">
 Figure 1.1: Console Window in RStudio
@@ -493,7 +493,7 @@ Figure 1.1: Console Window in RStudio
 </div>
 <div id="references" class="section level2">
 <h2><span class="header-section-number">1.8</span> References</h2>
-<p>Apart from <a href="https://stefanodesabbata.com/" target="_blank">Stefano de Sabbata’s</a> teaching materials, a variety of other sources are use in this module. Most of them are freely available online:</p>
+<p>Apart from <a href="https://stefanodesabbata.com/" target="_blank">Stefano de Sabbata’s</a> teaching materials, a number of other sources are use in this module. Most of them are freely available online:</p>
 <ul>
 <li>Granolarr - A geographic data science reproducible teaching resource in R by Stefano de Sabbata. see <a href="https://sdesabbata.github.io/granolarr/" target="_blank">Online Book</a></li>
 <li>R for Geographic Data Science by Stefano de Sabbata. <a href="https://sdesabbata.github.io/r-for-geographic-data-science/" target="_blank">see Online Book</a></li>
@@ -521,7 +521,6 @@ Figure 1.1: Console Window in RStudio
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -561,6 +560,10 @@ gitbook.start({
 "text": null
 },
 "download": ["UNIGIS-AppDev-R.pdf", "UNIGIS-AppDev-R.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Lesson 4 Control structures | Application Development with R</title>
   <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Lesson 4 Control structures | Application Development with R" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,8 @@
   <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="complex-data-types.html"/>
 <link rel="next" href="functions.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -243,10 +243,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.1</span> If</h2>
 <p>The most fundamental conditional statement in R is the structure ‘if’, which is used to execute one or more instructions only if a certain condition is TRUE.</p>
 <p>In order to include an if-structure in your code, you need to use the following syntax:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="control-structures.html#cb90-1"></a>a_value &lt;-<span class="st"> </span><span class="dv">-7</span></span>
-<span id="cb90-2"><a href="control-structures.html#cb90-2"></a><span class="cf">if</span> (a_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
-<span id="cb90-3"><a href="control-structures.html#cb90-3"></a>  <span class="kw">cat</span>(<span class="st">&quot;Negative&quot;</span>)</span>
-<span id="cb90-4"><a href="control-structures.html#cb90-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="control-structures.html#cb88-1"></a>a_value &lt;-<span class="st"> </span><span class="dv">-7</span></span>
+<span id="cb88-2"><a href="control-structures.html#cb88-2"></a><span class="cf">if</span> (a_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb88-3"><a href="control-structures.html#cb88-3"></a>  <span class="kw">cat</span>(<span class="st">&quot;Negative&quot;</span>)</span>
+<span id="cb88-4"><a href="control-structures.html#cb88-4"></a>}</span></code></pre></div>
 <pre><code>## Negative</code></pre>
 <p>The <strong>statement</strong> ‘cat(“Negative”)’ gets executed and the text “negative” is printed out, because the <strong>condition</strong> (a_value &lt; 0) is TRUE.</p>
 
@@ -273,12 +273,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="else" class="section level2">
 <h2><span class="header-section-number">4.2</span> Else</h2>
 <p>In many cases, we want the interpreter to do something if the condition is satisfied or do something <em>else</em>, if the condition is not satisfied. In this case, we can use ‘if’ together with ‘else’:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="control-structures.html#cb92-1"></a>a_value &lt;-<span class="st"> </span><span class="dv">-7</span></span>
-<span id="cb92-2"><a href="control-structures.html#cb92-2"></a><span class="cf">if</span> (a_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>){</span>
-<span id="cb92-3"><a href="control-structures.html#cb92-3"></a>  <span class="kw">cat</span>(<span class="st">&quot;Negative&quot;</span>)</span>
-<span id="cb92-4"><a href="control-structures.html#cb92-4"></a>} <span class="cf">else</span> {</span>
-<span id="cb92-5"><a href="control-structures.html#cb92-5"></a>  <span class="kw">cat</span>(<span class="st">&quot;Positive&quot;</span>)</span>
-<span id="cb92-6"><a href="control-structures.html#cb92-6"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="control-structures.html#cb90-1"></a>a_value &lt;-<span class="st"> </span><span class="dv">-7</span></span>
+<span id="cb90-2"><a href="control-structures.html#cb90-2"></a><span class="cf">if</span> (a_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>){</span>
+<span id="cb90-3"><a href="control-structures.html#cb90-3"></a>  <span class="kw">cat</span>(<span class="st">&quot;Negative&quot;</span>)</span>
+<span id="cb90-4"><a href="control-structures.html#cb90-4"></a>} <span class="cf">else</span> {</span>
+<span id="cb90-5"><a href="control-structures.html#cb90-5"></a>  <span class="kw">cat</span>(<span class="st">&quot;Positive&quot;</span>)</span>
+<span id="cb90-6"><a href="control-structures.html#cb90-6"></a>}</span></code></pre></div>
 <pre><code>## Negative</code></pre>
 <p>In the example above, the <strong>condition</strong> ‘a_value &lt; 0’ is TRUE, <strong>statement 1</strong> ‘cat(“Negative”)’ gets executed and <strong>statement 2</strong> ‘cat(“Positive”)’ is ignored. If you change ‘a_value’ to a positive value, the interpreter will ignore statement 1 and execute statement 2.</p>
 
@@ -290,13 +290,13 @@ Note that statement 1 and statement 2 are in curly brackets! The indentation of 
 <div id="code-blocks" class="section level2">
 <h2><span class="header-section-number">4.3</span> Code blocks</h2>
 <p>Conditional structures have a wide range of applications. Almost everything what a computer does requires an input. Each time you click a button the computer responds accordingly. The code that dictates the response typically has an if-else control structure or something very similar that tells the computer what to do depending on the input it got. Obviously in most cases the response won’t be defined by a single instruction, but a code block that is composed of multiple instructions. <strong>Code blocks</strong> allow encapsulating <strong>several</strong> statements in a single group. The condition in the following example yields TRUE and the code block is executed:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="control-structures.html#cb94-1"></a>first_value &lt;-<span class="st"> </span><span class="dv">8</span></span>
-<span id="cb94-2"><a href="control-structures.html#cb94-2"></a>second_value &lt;-<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb94-3"><a href="control-structures.html#cb94-3"></a><span class="cf">if</span> (first_value <span class="op">&gt;</span><span class="st"> </span>second_value) {</span>
-<span id="cb94-4"><a href="control-structures.html#cb94-4"></a>  <span class="kw">cat</span>(<span class="st">&quot;First is greater than second</span><span class="ch">\n</span><span class="st">&quot;</span>) </span>
-<span id="cb94-5"><a href="control-structures.html#cb94-5"></a>  difference &lt;-<span class="st"> </span>first_value <span class="op">-</span><span class="st"> </span>second_value</span>
-<span id="cb94-6"><a href="control-structures.html#cb94-6"></a>  <span class="kw">cat</span>(<span class="st">&quot;Their difference is &quot;</span>, difference)</span>
-<span id="cb94-7"><a href="control-structures.html#cb94-7"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="control-structures.html#cb92-1"></a>first_value &lt;-<span class="st"> </span><span class="dv">8</span></span>
+<span id="cb92-2"><a href="control-structures.html#cb92-2"></a>second_value &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb92-3"><a href="control-structures.html#cb92-3"></a><span class="cf">if</span> (first_value <span class="op">&gt;</span><span class="st"> </span>second_value) {</span>
+<span id="cb92-4"><a href="control-structures.html#cb92-4"></a>  <span class="kw">cat</span>(<span class="st">&quot;First is greater than second</span><span class="ch">\n</span><span class="st">&quot;</span>) </span>
+<span id="cb92-5"><a href="control-structures.html#cb92-5"></a>  difference &lt;-<span class="st"> </span>first_value <span class="op">-</span><span class="st"> </span>second_value</span>
+<span id="cb92-6"><a href="control-structures.html#cb92-6"></a>  <span class="kw">cat</span>(<span class="st">&quot;Their difference is &quot;</span>, difference)</span>
+<span id="cb92-7"><a href="control-structures.html#cb92-7"></a>}</span></code></pre></div>
 <pre><code>## First is greater than second
 ## Their difference is  3</code></pre>
 <p>The line ‘cat(“First is greater than second”)’ prints a text (string) and inserts a line break. The next line calculates the difference between first and second value. The third line in the code block concatenates two inputs (“Their difference is” and variable ‘difference’) and prints them to the console window.</p>
@@ -324,11 +324,11 @@ Note that statement 1 and statement 2 are in curly brackets! The indentation of 
 <div id="while" class="section level3">
 <h3><span class="header-section-number">4.4.1</span> While</h3>
 <p>The <em>while</em> construct can be defined using the <code>while</code> reserved word, followed by a condition between simple brackets, and a code block. The instructions in the code block are re-executed as long as the result of the evaluation of the condition is <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="control-structures.html#cb96-1"></a>current_value &lt;-<span class="st"> </span><span class="dv">0</span></span>
-<span id="cb96-2"><a href="control-structures.html#cb96-2"></a><span class="cf">while</span> (current_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>) {</span>
-<span id="cb96-3"><a href="control-structures.html#cb96-3"></a>  <span class="kw">cat</span>(<span class="st">&quot;Current value is&quot;</span>, current_value, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb96-4"><a href="control-structures.html#cb96-4"></a>  current_value &lt;-<span class="st"> </span>current_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb96-5"><a href="control-structures.html#cb96-5"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="control-structures.html#cb94-1"></a>current_value &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb94-2"><a href="control-structures.html#cb94-2"></a><span class="cf">while</span> (current_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>) {</span>
+<span id="cb94-3"><a href="control-structures.html#cb94-3"></a>  <span class="kw">cat</span>(<span class="st">&quot;Current value is&quot;</span>, current_value, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb94-4"><a href="control-structures.html#cb94-4"></a>  current_value &lt;-<span class="st"> </span>current_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb94-5"><a href="control-structures.html#cb94-5"></a>}</span></code></pre></div>
 <pre><code>## Current value is 0 
 ## Current value is 1 
 ## Current value is 2</code></pre>
@@ -357,22 +357,22 @@ Note that statement 1 and statement 2 are in curly brackets! The indentation of 
 <div id="for" class="section level3">
 <h3><span class="header-section-number">4.4.2</span> For</h3>
 <p>The <em>for</em> construct can be defined using the <code>for</code> reserved word, followed by the definition of an <strong>iterator</strong>. The iterator is a variable, which is temporarily assigned with the current element of a vector, as the construct iterates through all elements of the vector. This definition is followed by a code block, whose instructions are re-executed once for each element of the vector.</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="control-structures.html#cb98-1"></a>cities &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Derby&quot;</span>, <span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Lincoln&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>)</span>
-<span id="cb98-2"><a href="control-structures.html#cb98-2"></a><span class="cf">for</span> (city <span class="cf">in</span> cities) {</span>
-<span id="cb98-3"><a href="control-structures.html#cb98-3"></a>  <span class="kw">cat</span>(<span class="st">&quot;Do you live in&quot;</span>, city, <span class="st">&quot;?</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb98-4"><a href="control-structures.html#cb98-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="control-structures.html#cb96-1"></a>cities &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Derby&quot;</span>, <span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Lincoln&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>)</span>
+<span id="cb96-2"><a href="control-structures.html#cb96-2"></a><span class="cf">for</span> (city <span class="cf">in</span> cities) {</span>
+<span id="cb96-3"><a href="control-structures.html#cb96-3"></a>  <span class="kw">cat</span>(<span class="st">&quot;Do you live in&quot;</span>, city, <span class="st">&quot;?</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb96-4"><a href="control-structures.html#cb96-4"></a>}</span></code></pre></div>
 <pre><code>## Do you live in Derby ?
 ## Do you live in Leicester ?
 ## Do you live in Lincoln ?
 ## Do you live in Nottingham ?</code></pre>
 <p>In the first iteration of the for-loop the text string “Derby” is assigned to the iterator ‘city’. The function ‘cat()’ uses the iterator value as an input. In the second iteration, the text string “Leicester” is assigned to the iterator ‘city’ … etc.</p>
 <p>The code block below illustrates another example.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="control-structures.html#cb100-1"></a>cities &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Derby&quot;</span>, <span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Lincoln&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>)</span>
-<span id="cb100-2"><a href="control-structures.html#cb100-2"></a>letter_cnt &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
-<span id="cb100-3"><a href="control-structures.html#cb100-3"></a><span class="cf">for</span> (city <span class="cf">in</span> cities) {</span>
-<span id="cb100-4"><a href="control-structures.html#cb100-4"></a>  letter_cnt &lt;-<span class="st"> </span><span class="kw">c</span>(letter_cnt, <span class="kw">nchar</span>(city))</span>
-<span id="cb100-5"><a href="control-structures.html#cb100-5"></a>}</span>
-<span id="cb100-6"><a href="control-structures.html#cb100-6"></a><span class="kw">print</span>(letter_cnt)</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="control-structures.html#cb98-1"></a>cities &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Derby&quot;</span>, <span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Lincoln&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>)</span>
+<span id="cb98-2"><a href="control-structures.html#cb98-2"></a>letter_cnt &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb98-3"><a href="control-structures.html#cb98-3"></a><span class="cf">for</span> (city <span class="cf">in</span> cities) {</span>
+<span id="cb98-4"><a href="control-structures.html#cb98-4"></a>  letter_cnt &lt;-<span class="st"> </span><span class="kw">c</span>(letter_cnt, <span class="kw">nchar</span>(city))</span>
+<span id="cb98-5"><a href="control-structures.html#cb98-5"></a>}</span>
+<span id="cb98-6"><a href="control-structures.html#cb98-6"></a><span class="kw">print</span>(letter_cnt)</span></code></pre></div>
 <pre><code>## [1]  5  9  7 10</code></pre>
 <p>The for-loop iterates over the elements in vector ‘cities’. The base function ‘nchar()’ counts the number of letters of every city name and appends the count to a new vector ‘letter_cnt’.</p>
 
@@ -382,10 +382,10 @@ Note that statement 1 and statement 2 are in curly brackets! The indentation of 
 </div>
 
 <p>There are some cases in which, for some reason, you just want to execute a certain sequence of steps a pre-defined number of times. In such cases, it is common practice to create a vector of integers on the spot. In the following example the for-loop is executed 3 times as it iterates over a vector composed of the three elements 1, 2, and 3 (vector is created on the spot by 1:3):</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="control-structures.html#cb102-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) {</span>
-<span id="cb102-2"><a href="control-structures.html#cb102-2"></a>  <span class="kw">cat</span>(<span class="st">&quot;This is exectuion number&quot;</span>, i, <span class="st">&quot;:</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb102-3"><a href="control-structures.html#cb102-3"></a>  <span class="kw">cat</span>(<span class="st">&quot;    See you later!</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb102-4"><a href="control-structures.html#cb102-4"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="control-structures.html#cb100-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) {</span>
+<span id="cb100-2"><a href="control-structures.html#cb100-2"></a>  <span class="kw">cat</span>(<span class="st">&quot;This is exectuion number&quot;</span>, i, <span class="st">&quot;:</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb100-3"><a href="control-structures.html#cb100-3"></a>  <span class="kw">cat</span>(<span class="st">&quot;    See you later!</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb100-4"><a href="control-structures.html#cb100-4"></a>}</span></code></pre></div>
 <pre><code>## This is exectuion number 1 :
 ##     See you later!
 ## This is exectuion number 2 :
@@ -412,14 +412,14 @@ Note that statement 1 and statement 2 are in curly brackets! The indentation of 
 <h2><span class="header-section-number">4.5</span> Loops with conditional statements</h2>
 <p>Now that we have seen both types of control structures, <strong>conditional statements</strong> and <strong>loops</strong>, we can combine these structures. R, as most other programming languages, allows you to include conditional statements within a loop or a loop within a conditional statement.</p>
 <p>A simple example is this bit of code that defines a countdown:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="control-structures.html#cb104-1"></a><span class="co">#Example: countdown!</span></span>
-<span id="cb104-2"><a href="control-structures.html#cb104-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">3</span><span class="op">:</span><span class="dv">0</span>) {</span>
-<span id="cb104-3"><a href="control-structures.html#cb104-3"></a>  <span class="cf">if</span> (i <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</span>
-<span id="cb104-4"><a href="control-structures.html#cb104-4"></a>    <span class="kw">cat</span>(<span class="st">&quot;Go!</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb104-5"><a href="control-structures.html#cb104-5"></a>  } <span class="cf">else</span> {</span>
-<span id="cb104-6"><a href="control-structures.html#cb104-6"></a>    <span class="kw">cat</span>(i, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb104-7"><a href="control-structures.html#cb104-7"></a>  }</span>
-<span id="cb104-8"><a href="control-structures.html#cb104-8"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="control-structures.html#cb102-1"></a><span class="co">#Example: countdown!</span></span>
+<span id="cb102-2"><a href="control-structures.html#cb102-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">3</span><span class="op">:</span><span class="dv">0</span>) {</span>
+<span id="cb102-3"><a href="control-structures.html#cb102-3"></a>  <span class="cf">if</span> (i <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb102-4"><a href="control-structures.html#cb102-4"></a>    <span class="kw">cat</span>(<span class="st">&quot;Go!</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb102-5"><a href="control-structures.html#cb102-5"></a>  } <span class="cf">else</span> {</span>
+<span id="cb102-6"><a href="control-structures.html#cb102-6"></a>    <span class="kw">cat</span>(i, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb102-7"><a href="control-structures.html#cb102-7"></a>  }</span>
+<span id="cb102-8"><a href="control-structures.html#cb102-8"></a>}</span></code></pre></div>
 <pre><code>## 3 
 ## 2 
 ## 1 
@@ -429,18 +429,18 @@ Note that statement 1 and statement 2 are in curly brackets! The indentation of 
 <summary><ins><strong>See another example!</strong></ins></summary>
 <p>
 <p><i><font color="grey"></p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="control-structures.html#cb106-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb106-2"><a href="control-structures.html#cb106-2"></a></span>
-<span id="cb106-3"><a href="control-structures.html#cb106-3"></a>cities &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Salzburg&quot;</span>, <span class="st">&quot;Linz&quot;</span>, <span class="st">&quot;Wien&quot;</span>, <span class="st">&quot;Eisenstadt&quot;</span>, <span class="st">&quot;Innsbruck&quot;</span>, <span class="st">&quot;Graz&quot;</span>)</span>
-<span id="cb106-4"><a href="control-structures.html#cb106-4"></a></span>
-<span id="cb106-5"><a href="control-structures.html#cb106-5"></a><span class="cf">for</span> (city <span class="cf">in</span> cities){</span>
-<span id="cb106-6"><a href="control-structures.html#cb106-6"></a>  <span class="cf">if</span> (<span class="kw">str_starts</span>(city, <span class="st">&quot;S&quot;</span>)){</span>
-<span id="cb106-7"><a href="control-structures.html#cb106-7"></a>    <span class="kw">print</span>(<span class="st">&quot;City name starts with S&quot;</span>)</span>
-<span id="cb106-8"><a href="control-structures.html#cb106-8"></a>  } <span class="cf">else</span>{</span>
-<span id="cb106-9"><a href="control-structures.html#cb106-9"></a>    <span class="kw">print</span>(<span class="st">&quot;City name starts with other letter&quot;</span>)</span>
-<span id="cb106-10"><a href="control-structures.html#cb106-10"></a>  }</span>
-<span id="cb106-11"><a href="control-structures.html#cb106-11"></a>  </span>
-<span id="cb106-12"><a href="control-structures.html#cb106-12"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="control-structures.html#cb104-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb104-2"><a href="control-structures.html#cb104-2"></a></span>
+<span id="cb104-3"><a href="control-structures.html#cb104-3"></a>cities &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Salzburg&quot;</span>, <span class="st">&quot;Linz&quot;</span>, <span class="st">&quot;Wien&quot;</span>, <span class="st">&quot;Eisenstadt&quot;</span>, <span class="st">&quot;Innsbruck&quot;</span>, <span class="st">&quot;Graz&quot;</span>)</span>
+<span id="cb104-4"><a href="control-structures.html#cb104-4"></a></span>
+<span id="cb104-5"><a href="control-structures.html#cb104-5"></a><span class="cf">for</span> (city <span class="cf">in</span> cities){</span>
+<span id="cb104-6"><a href="control-structures.html#cb104-6"></a>  <span class="cf">if</span> (<span class="kw">str_starts</span>(city, <span class="st">&quot;S&quot;</span>)){</span>
+<span id="cb104-7"><a href="control-structures.html#cb104-7"></a>    <span class="kw">print</span>(<span class="st">&quot;City name starts with S&quot;</span>)</span>
+<span id="cb104-8"><a href="control-structures.html#cb104-8"></a>  } <span class="cf">else</span>{</span>
+<span id="cb104-9"><a href="control-structures.html#cb104-9"></a>    <span class="kw">print</span>(<span class="st">&quot;City name starts with other letter&quot;</span>)</span>
+<span id="cb104-10"><a href="control-structures.html#cb104-10"></a>  }</span>
+<span id="cb104-11"><a href="control-structures.html#cb104-11"></a>  </span>
+<span id="cb104-12"><a href="control-structures.html#cb104-12"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;City name starts with S&quot;
 ## [1] &quot;City name starts with other letter&quot;
 ## [1] &quot;City name starts with other letter&quot;
@@ -465,7 +465,6 @@ Note that statement 1 and statement 2 are in curly brackets! The indentation of 
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -505,6 +504,10 @@ gitbook.start({
 "text": null
 },
 "download": ["UNIGIS-AppDev-R.pdf", "UNIGIS-AppDev-R.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

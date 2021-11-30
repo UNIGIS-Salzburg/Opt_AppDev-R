@@ -70,7 +70,7 @@ if (a_value < 0){
 In the example above, the **condition** 'a_value < 0' is TRUE, **statement 1** 'cat("Negative")' gets executed and **statement 2** 'cat("Positive")' is ignored. If you change 'a_value' to a positive value, the interpreter will ignore statement 1 and execute statement 2.
 
 ```{block2, type = 'rmdtip'}
-Note that statement 1 and statement 2 are in curly brackets! The indentation of statements is good programming practice, however has does not affect the functioning of the code.
+Note that statement 1 and statement 2 are in curly brackets! The indentation of statements is good programming practice, however does not affect the functioning of the code.
 ```
 
 ## Code blocks

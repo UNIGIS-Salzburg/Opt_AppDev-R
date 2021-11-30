@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Lesson 7 Read and write data | Application Development with R</title>
   <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Lesson 7 Read and write data | Application Development with R" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,8 @@
   <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="data-wrangling.html"/>
 <link rel="next" href="data-visualisation.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -248,19 +248,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>The <a href="https://readr.tidyverse.org/" target="_blank"><code>readr</code> library</a> (also part of <a href="https://www.tidyverse.org/packages/#import" target="_blank">Tidyverse</a>) provides a series of functions that can be used to load from and save to such data formats. For instance, the <code>read_csv</code> function reads a comma delimited (CSV) file from the path provided as the first argument.</p>
 <p>The code example below reads a CSV file that contains global fishery statistics provided by the <a href="https://datacatalog.worldbank.org/dataset/world-development-indicators" target="_blank">World Bank</a> and queries Norwegian entries. The function <code>writes_csv</code> writes these entries to a new CSV file.</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="read-and-write-data.html#cb142-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb142-2"><a href="read-and-write-data.html#cb142-2"></a></span>
-<span id="cb142-3"><a href="read-and-write-data.html#cb142-3"></a>fishery_data &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/capture-fisheries-vs-aquaculture.csv&quot;</span>)</span>
-<span id="cb142-4"><a href="read-and-write-data.html#cb142-4"></a><span class="co">#print(fishery_data)</span></span>
-<span id="cb142-5"><a href="read-and-write-data.html#cb142-5"></a></span>
-<span id="cb142-6"><a href="read-and-write-data.html#cb142-6"></a><span class="co">#print(typeof(fishery_data$))</span></span>
-<span id="cb142-7"><a href="read-and-write-data.html#cb142-7"></a></span>
-<span id="cb142-8"><a href="read-and-write-data.html#cb142-8"></a>fishery_data <span class="op">%&gt;%</span></span>
-<span id="cb142-9"><a href="read-and-write-data.html#cb142-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(Entity <span class="op">==</span><span class="st"> &quot;Norway&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb142-10"><a href="read-and-write-data.html#cb142-10"></a><span class="st">  </span>readr<span class="op">::</span><span class="kw">write_csv</span>(<span class="st">&quot;data/capture-fisheries-vs-aquaculture-noraway.csv&quot;</span>, <span class="dt">append=</span><span class="ot">FALSE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb142-11"><a href="read-and-write-data.html#cb142-11"></a><span class="st">  </span></span>
-<span id="cb142-12"><a href="read-and-write-data.html#cb142-12"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></span>
-<span id="cb142-13"><a href="read-and-write-data.html#cb142-13"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="read-and-write-data.html#cb140-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb140-2"><a href="read-and-write-data.html#cb140-2"></a></span>
+<span id="cb140-3"><a href="read-and-write-data.html#cb140-3"></a>fishery_data &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&quot;data/capture-fisheries-vs-aquaculture.csv&quot;</span>)</span>
+<span id="cb140-4"><a href="read-and-write-data.html#cb140-4"></a><span class="co">#print(fishery_data)</span></span>
+<span id="cb140-5"><a href="read-and-write-data.html#cb140-5"></a></span>
+<span id="cb140-6"><a href="read-and-write-data.html#cb140-6"></a><span class="co">#print(typeof(fishery_data$))</span></span>
+<span id="cb140-7"><a href="read-and-write-data.html#cb140-7"></a></span>
+<span id="cb140-8"><a href="read-and-write-data.html#cb140-8"></a>fishery_data <span class="op">%&gt;%</span></span>
+<span id="cb140-9"><a href="read-and-write-data.html#cb140-9"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(Entity <span class="op">==</span><span class="st"> &quot;Norway&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb140-10"><a href="read-and-write-data.html#cb140-10"></a><span class="st">  </span>readr<span class="op">::</span><span class="kw">write_csv</span>(<span class="st">&quot;data/capture-fisheries-vs-aquaculture-noraway.csv&quot;</span>, <span class="dt">append=</span><span class="ot">FALSE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb140-11"><a href="read-and-write-data.html#cb140-11"></a><span class="st">  </span></span>
+<span id="cb140-12"><a href="read-and-write-data.html#cb140-12"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></span>
+<span id="cb140-13"><a href="read-and-write-data.html#cb140-13"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <colgroup>
 <col width="7%" />
@@ -315,9 +315,9 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 <p>Simple features is a widely supported data model that underlies data structures in many GIS applications including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other set-ups, for example importing from and exporting to spatial databases.</p>
 <p>In order to load vector data in an R-Script, we can use the function <code>st_read()</code>. In the code block below, a shapefile (<a href="https://r-spatial.github.io/sf/reference/nc.html" target="_blank">North Carolina sample data</a>) is loaded and assigned to a variable nc.</p>
 <p>The next line creates a basic map in <code>sf</code> by means of <code>plot()</code>. By default this creates a multi-panel plot, one sub-plot for each variable of the object.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="read-and-write-data.html#cb143-1"></a><span class="kw">library</span>(sf)</span>
-<span id="cb143-2"><a href="read-and-write-data.html#cb143-2"></a></span>
-<span id="cb143-3"><a href="read-and-write-data.html#cb143-3"></a>nc &lt;-<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_read</span>(<span class="st">&quot;data/nc.shp&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="read-and-write-data.html#cb141-1"></a><span class="kw">library</span>(sf)</span>
+<span id="cb141-2"><a href="read-and-write-data.html#cb141-2"></a></span>
+<span id="cb141-3"><a href="read-and-write-data.html#cb141-3"></a>nc &lt;-<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_read</span>(<span class="st">&quot;data/nc.shp&quot;</span>)</span></code></pre></div>
 <pre><code>## Reading layer `nc&#39; from data source 
 ##   `C:\Users\b1045498\Downloads\Opt_AppDev-R\data\nc.shp&#39; using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 100 features and 14 fields
@@ -325,13 +325,13 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 ## Dimension:     XY
 ## Bounding box:  xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
 ## Geodetic CRS:  NAD27</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="read-and-write-data.html#cb145-1"></a><span class="kw">plot</span>(nc)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="read-and-write-data.html#cb143-1"></a><span class="kw">plot</span>(nc)</span></code></pre></div>
 <p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
 <p>The library <code>sf</code> represents features as records in a data frame or tibble with a geometry list-column. The example below renders three features (rows) of variable nc including the geometry column as well as the attributes <code>AREA</code> (feature area) and <code>NAME</code> (name of county):</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="read-and-write-data.html#cb146-1"></a>nc <span class="op">%&gt;%</span></span>
-<span id="cb146-2"><a href="read-and-write-data.html#cb146-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(AREA, NAME, geometry) <span class="op">%&gt;%</span></span>
-<span id="cb146-3"><a href="read-and-write-data.html#cb146-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></span>
-<span id="cb146-4"><a href="read-and-write-data.html#cb146-4"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="read-and-write-data.html#cb144-1"></a>nc <span class="op">%&gt;%</span></span>
+<span id="cb144-2"><a href="read-and-write-data.html#cb144-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(AREA, NAME, geometry) <span class="op">%&gt;%</span></span>
+<span id="cb144-3"><a href="read-and-write-data.html#cb144-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">slice_head</span>(<span class="dt">n =</span> <span class="dv">3</span>) <span class="op">%&gt;%</span></span>
+<span id="cb144-4"><a href="read-and-write-data.html#cb144-4"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -359,8 +359,8 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 </tbody>
 </table>
 <p><code>sf</code> also includes a number of operations to manipulate the geometry of features such as <code>st_simplify</code>:</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="read-and-write-data.html#cb147-1"></a>sf<span class="op">::</span><span class="kw">st_simplify</span>(nc) <span class="op">%&gt;%</span></span>
-<span id="cb147-2"><a href="read-and-write-data.html#cb147-2"></a><span class="st">  </span><span class="kw">plot</span>(., <span class="dt">max.plot =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="read-and-write-data.html#cb145-1"></a>sf<span class="op">::</span><span class="kw">st_simplify</span>(nc) <span class="op">%&gt;%</span></span>
+<span id="cb145-2"><a href="read-and-write-data.html#cb145-2"></a><span class="st">  </span><span class="kw">plot</span>(., <span class="dt">max.plot =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
 
 <div class="rmdtip">
@@ -368,10 +368,10 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 </div>
 
 <p>In the next example, the <code>st_geometry()</code> retrieves the geometry attribute from variable nc, function <code>st_centroid()</code> calculates the controid of the polygon geometry (counties) and function <code>st_write</code> writes the centroid point geometry to file.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="read-and-write-data.html#cb148-1"></a>sf<span class="op">::</span><span class="kw">st_geometry</span>(nc) <span class="op">%&gt;%</span></span>
-<span id="cb148-2"><a href="read-and-write-data.html#cb148-2"></a><span class="st">  </span>sf<span class="op">::</span><span class="kw">st_centroid</span>() <span class="op">%&gt;%</span></span>
-<span id="cb148-3"><a href="read-and-write-data.html#cb148-3"></a><span class="st">  </span>sf<span class="op">::</span><span class="kw">st_write</span>(<span class="st">&quot;data/nc-centroids.shp&quot;</span>, <span class="dt">delete_dsn =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb148-4"><a href="read-and-write-data.html#cb148-4"></a><span class="st">  </span><span class="kw">plot</span>(<span class="dt">pch =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="read-and-write-data.html#cb146-1"></a>sf<span class="op">::</span><span class="kw">st_geometry</span>(nc) <span class="op">%&gt;%</span></span>
+<span id="cb146-2"><a href="read-and-write-data.html#cb146-2"></a><span class="st">  </span>sf<span class="op">::</span><span class="kw">st_centroid</span>() <span class="op">%&gt;%</span></span>
+<span id="cb146-3"><a href="read-and-write-data.html#cb146-3"></a><span class="st">  </span>sf<span class="op">::</span><span class="kw">st_write</span>(<span class="st">&quot;data/nc-centroids.shp&quot;</span>, <span class="dt">delete_dsn =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb146-4"><a href="read-and-write-data.html#cb146-4"></a><span class="st">  </span><span class="kw">plot</span>(<span class="dt">pch =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>) </span></code></pre></div>
 <pre><code>## Deleting source `data/nc-centroids.shp&#39; using driver `ESRI Shapefile&#39;
 ## Writing layer `nc-centroids&#39; to data source 
 ##   `data/nc-centroids.shp&#39; using driver `ESRI Shapefile&#39;
@@ -401,7 +401,7 @@ Similar R functions are also available for raster data (see package <a href="htt
 <p>API is the acronym for Application Programming Interface, which is a software intermediary that allows two applications to talk to each other.</p>
 </blockquote>
 <p>By means of an API we can read, write and modify information on the web. The following video briefly introduces the technology behind it.</p>
-<div class="figure" style="text-align: center"><span id="fig:APIvideo"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:APIvideo"></span>
 <iframe src="https://www.youtube.com/embed/7YcW25PHnAA?end=194" width="672" height="400px" data-external="1">
 </iframe>
 <p class="caption">
@@ -419,18 +419,18 @@ Figure 7.1: Video (3:13 min): REST API concepts and examples.
 </ol>
 <p>The <a href="https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html" target="_blank">library <code>httr</code></a> (also part of <a href="https://www.tidyverse.org/packages/#import" target="_blank">Tidyverse</a>) offers functions to programmatically implement API calls in an R script. We will make use of this library to let our R script interact with the <a href="https://openweathermap.org/api" target="_blank">APIs</a> offered by <a href="https://openweathermap.org/" target="_blank">OpenWeather Map</a> that contain historical and real-time weather data for retrieval. In the upcoming example we will make a call to the <a href="https://openweathermap.org/current" target="_blank">Current Weather API</a>, which is one out of currenty <a href="https://openweathermap.org/price" target="_blank">10 free APIs</a> provided by OpenWeather Map.</p>
 <p>For accessing the data, we need to create a URL that is composed of a references to the data source (base) and parameters to filter the desired data subset (lat and lon). The parameters are concatenated by means of a ‘&amp;’ symbol, a question mark ‘?’ needs to be placed between reference URL and parameters:</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="read-and-write-data.html#cb150-1"></a><span class="kw">library</span>(httr)</span>
-<span id="cb150-2"><a href="read-and-write-data.html#cb150-2"></a></span>
-<span id="cb150-3"><a href="read-and-write-data.html#cb150-3"></a>base &lt;-<span class="st"> &quot;http://api.openweathermap.org/data/2.5/weather&quot;</span></span>
-<span id="cb150-4"><a href="read-and-write-data.html#cb150-4"></a>lat &lt;-<span class="st"> &quot;47.81&quot;</span>    </span>
-<span id="cb150-5"><a href="read-and-write-data.html#cb150-5"></a>lon &lt;-<span class="st"> &quot;13.03&quot;</span></span>
-<span id="cb150-6"><a href="read-and-write-data.html#cb150-6"></a>apiKey &lt;-<span class="st"> &quot;3f87141421b32590d50416aae5ca780c&quot;</span></span>
-<span id="cb150-7"><a href="read-and-write-data.html#cb150-7"></a>  </span>
-<span id="cb150-8"><a href="read-and-write-data.html#cb150-8"></a>call &lt;-<span class="st"> </span><span class="kw">paste</span>(base, <span class="st">&quot;?lat=&quot;</span>, lat, <span class="st">&quot;&amp;lon=&quot;</span> , lon, <span class="st">&quot;&amp;appid=&quot;</span>, apiKey, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb150-9"><a href="read-and-write-data.html#cb150-9"></a></span>
-<span id="cb150-10"><a href="read-and-write-data.html#cb150-10"></a><span class="kw">print</span>(call)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="read-and-write-data.html#cb148-1"></a><span class="kw">library</span>(httr)</span>
+<span id="cb148-2"><a href="read-and-write-data.html#cb148-2"></a></span>
+<span id="cb148-3"><a href="read-and-write-data.html#cb148-3"></a>base &lt;-<span class="st"> &quot;http://api.openweathermap.org/data/2.5/weather&quot;</span></span>
+<span id="cb148-4"><a href="read-and-write-data.html#cb148-4"></a>lat &lt;-<span class="st"> &quot;47.81&quot;</span>    </span>
+<span id="cb148-5"><a href="read-and-write-data.html#cb148-5"></a>lon &lt;-<span class="st"> &quot;13.03&quot;</span></span>
+<span id="cb148-6"><a href="read-and-write-data.html#cb148-6"></a>apiKey &lt;-<span class="st"> &quot;3f87141421b32590d50416aae5ca780c&quot;</span></span>
+<span id="cb148-7"><a href="read-and-write-data.html#cb148-7"></a>  </span>
+<span id="cb148-8"><a href="read-and-write-data.html#cb148-8"></a>call &lt;-<span class="st"> </span><span class="kw">paste</span>(base, <span class="st">&quot;?lat=&quot;</span>, lat, <span class="st">&quot;&amp;lon=&quot;</span> , lon, <span class="st">&quot;&amp;appid=&quot;</span>, apiKey, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb148-9"><a href="read-and-write-data.html#cb148-9"></a></span>
+<span id="cb148-10"><a href="read-and-write-data.html#cb148-10"></a><span class="kw">print</span>(call)</span></code></pre></div>
 <pre><code>## [1] &quot;http://api.openweathermap.org/data/2.5/weather?lat=47.81&amp;lon=13.03&amp;appid=3f87141421b32590d50416aae5ca780c&quot;</code></pre>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="read-and-write-data.html#cb152-1"></a>get &lt;-<span class="st"> </span><span class="kw">GET</span>(call)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="read-and-write-data.html#cb150-1"></a>get &lt;-<span class="st"> </span><span class="kw">GET</span>(call)</span></code></pre></div>
 <p>In the code above, the function <code>paste()</code> assembles base URL and parameters. The URL (of type string) is then passed as an argument to function <code>GET()</code> that executes the HTTP Get method.</p>
 
 <div class="rmdtip">
@@ -439,9 +439,9 @@ Figure 7.1: Video (3:13 min): REST API concepts and examples.
 
 <p>Per default, the <code>GET()</code> function returns a response object. Printing a response object gives you some useful information: the actual url used (after any redirects), the http status, the file (content) type, the size, and if it’s a text file, the first few lines of output.</p>
 <p>You can pull out important parts of the response with various helper functions such as <code>status_code()</code> and <code>content()</code>:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="read-and-write-data.html#cb153-1"></a><span class="kw">status_code</span>(get)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="read-and-write-data.html#cb151-1"></a><span class="kw">status_code</span>(get)</span></code></pre></div>
 <pre><code>## [1] 200</code></pre>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="read-and-write-data.html#cb155-1"></a><span class="kw">str</span>(<span class="kw">content</span>(get))</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="read-and-write-data.html#cb153-1"></a><span class="kw">str</span>(<span class="kw">content</span>(get))</span></code></pre></div>
 <pre><code>## List of 14
 ##  $ coord     :List of 2
 ##   ..$ lon: num 13
@@ -454,27 +454,27 @@ Figure 7.1: Video (3:13 min): REST API concepts and examples.
 ##   .. ..$ icon       : chr &quot;13d&quot;
 ##  $ base      : chr &quot;stations&quot;
 ##  $ main      :List of 6
-##   ..$ temp      : num 273
-##   ..$ feels_like: num 270
+##   ..$ temp      : num 274
+##   ..$ feels_like: num 269
 ##   ..$ temp_min  : num 270
-##   ..$ temp_max  : num 277
-##   ..$ pressure  : int 1000
-##   ..$ humidity  : int 97
-##  $ visibility: int 8000
+##   ..$ temp_max  : num 278
+##   ..$ pressure  : int 1011
+##   ..$ humidity  : int 92
+##  $ visibility: int 9000
 ##  $ wind      :List of 2
-##   ..$ speed: num 2.57
-##   ..$ deg  : int 340
+##   ..$ speed: num 5.66
+##   ..$ deg  : int 210
 ##  $ snow      :List of 1
-##   ..$ 1h: num 0.77
+##   ..$ 1h: num 0.71
 ##  $ clouds    :List of 1
 ##   ..$ all: int 75
-##  $ dt        : int 1637926615
+##  $ dt        : int 1638270668
 ##  $ sys       :List of 5
 ##   ..$ type   : int 1
 ##   ..$ id     : int 6877
 ##   ..$ country: chr &quot;AT&quot;
-##   ..$ sunrise: int 1637908178
-##   ..$ sunset : int 1637940070
+##   ..$ sunrise: int 1638254092
+##   ..$ sunset : int 1638285520
 ##  $ timezone  : int 3600
 ##  $ id        : int 2766824
 ##  $ name      : chr &quot;Salzburg&quot;
@@ -495,11 +495,11 @@ Figure 7.1: Video (3:13 min): REST API concepts and examples.
 </div>
 
 <p>In order to facilitate subsequent analyses and data visualization, we can convert the content of the return object to a <code>data frame</code> by means of function <code>fromJSON()</code> that is part of the library <code>library(jsonlite)</code>:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="read-and-write-data.html#cb157-1"></a><span class="kw">library</span>(jsonlite)</span>
-<span id="cb157-2"><a href="read-and-write-data.html#cb157-2"></a></span>
-<span id="cb157-3"><a href="read-and-write-data.html#cb157-3"></a>get_text &lt;-<span class="st"> </span><span class="kw">content</span>(get, <span class="st">&quot;text&quot;</span>)</span>
-<span id="cb157-4"><a href="read-and-write-data.html#cb157-4"></a>get_json &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(get_text, <span class="dt">flatten =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb157-5"><a href="read-and-write-data.html#cb157-5"></a>get_df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(get_json)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="read-and-write-data.html#cb155-1"></a><span class="kw">library</span>(jsonlite)</span>
+<span id="cb155-2"><a href="read-and-write-data.html#cb155-2"></a></span>
+<span id="cb155-3"><a href="read-and-write-data.html#cb155-3"></a>get_text &lt;-<span class="st"> </span><span class="kw">content</span>(get, <span class="st">&quot;text&quot;</span>)</span>
+<span id="cb155-4"><a href="read-and-write-data.html#cb155-4"></a>get_json &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(get_text, <span class="dt">flatten =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb155-5"><a href="read-and-write-data.html#cb155-5"></a>get_df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(get_json)</span></code></pre></div>
 
 <div class="rmdexercise">
 Copy the code snippets above to a new R-Script. <strong>Make sure to replace the key in the code example by your own API key!</strong> If you need help, please turn to the discussion forum.
@@ -523,7 +523,6 @@ Copy the code snippets above to a new R-Script. <strong>Make sure to replace the
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -563,6 +562,10 @@ gitbook.start({
 "text": null
 },
 "download": ["UNIGIS-AppDev-R.pdf", "UNIGIS-AppDev-R.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
