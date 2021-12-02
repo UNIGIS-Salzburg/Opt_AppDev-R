@@ -3,12 +3,12 @@
 R has a very rich set of graphical functions. The [R Graph Gallery](https://www.r-graph-gallery.com/){target="_blank"} provides a large number of examples (including code).  
 
 ```{block2, type = 'rmdtip'}
-In this lesson you will get to know the [`ggplot2` library](https://ggplot2.tidyverse.org/){target="_blank"}, which is the most popular library for creating graphics in R. You will learn to create standard graphs such as histograms, boxplots or scatterplots. Furthermore, map making in R will be introduced. 
+In this lesson you will get to know the [`ggplot2` library](https://ggplot2.tidyverse.org/){target="_blank"}, which is the most popular library for creating graphics in R. You will learn to create standard graphs such as histograms, boxplots or scatterplots as well as maps by means of [`ggplot2` library](https://ggplot2.tidyverse.org/){target="_blank"}. 
 ```
 
 ## The Grammar of Graphics
 
-The [ggplot2 library](https://ggplot2.tidyverse.org/){target="_blank"} is part of [Tidyverse](https://www.tidyverse.org/){target="_blank"} and offers a series of functions for creating graphics declaratively, based on the concepts outlined in the Grammar of Graphics by Leland Wilkinson.
+The [ggplot2 library](https://ggplot2.tidyverse.org/){target="_blank"} is part of [Tidyverse](https://www.tidyverse.org/){target="_blank"} and offers a series of functions for creating graphics declaratively, based on the concepts outlined in the Grammar of Graphics by [Leland Wilkinson](https://en.wikipedia.org/wiki/Leland_Wilkinson){target="_blank"}.
 
 The grammar of graphics is a schema that enables us to concisely describe the components of a graphic. These components are called **layers of grammatical elements.** Overall the grammar comprises seven layers:
 
