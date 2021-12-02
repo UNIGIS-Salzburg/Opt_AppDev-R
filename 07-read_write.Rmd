@@ -1,6 +1,6 @@
 # Read and write data
 
-In the exercise 'data manipulation' we have **read** data from a CSV file into our script. Similarly we can also **write** code outputs to file.   
+In previous exercises we have **read** data from a CSV file into our script. Similarly we can also **write** code outputs to file.   
 
 ```{block2, type = 'rmdtip'}
 
@@ -58,7 +58,7 @@ In order to load vector data in an R-Script, we can use the function `st_read()`
 
 The next line creates a basic map in `sf` by means of `plot()`. By default this creates a multi-panel plot, one sub-plot for each variable of the object. 
 
-```{r, echo=TRUE, message=FALSE, warning = FALSE}
+```{r, echo=TRUE, message=FALSE, warning = FALSE, results='hide'}
 
 library(sf)
 
@@ -94,9 +94,9 @@ You may have recognized that a dot (.) is used as a parameter in the function `p
 
 ```
 
-In the next example, the `st_geometry()` retrieves the geometry attribute from variable nc, function `st_centroid()` calculates the controid of the polygon geometry (counties) and function `st_write` writes the centroid point geometry to file. 
+In the next example, the `st_geometry()` retrieves the geometry attribute from variable nc, function `st_centroid()` calculates the centroid of the polygon geometry (counties) and function `st_write` writes the centroid point geometry to file. 
 
-```{r, echo=TRUE, message=FALSE, warning = FALSE}
+```{r, echo=TRUE, message=FALSE, warning = FALSE, results='hide'}
 
 sf::st_geometry(nc) %>%
   sf::st_centroid() %>%
@@ -106,7 +106,7 @@ sf::st_geometry(nc) %>%
 ```
 
 ```{block2, type = 'rmdtip'}
-The online book [Geocomputation with R](https://geocompr.robinlovelace.net/geometric-operations.html){target="_blank"} offers a more comprehensive explanation of available geometric, attribute and spatial data operations. For a quick overview you may turn to the [sf cheatsheets](https://github.com/rstudio/cheatsheets/blob/master/sf.pdf){target="_blank"}. 
+The online book [Geocomputation with R](https://geocompr.robinlovelace.net/geometric-operations.html){target="_blank"} offers a more comprehensive explanation of available geometric, attribute and spatial data operations. For a quick overview, you may turn to the [sf cheatsheets](https://github.com/rstudio/cheatsheets/blob/master/sf.pdf){target="_blank"}. 
 ```
 
 In order to test the code on your machine, [download](data/nc-centroids.shp){target="_blank"} the North Carolina dataset and install the libraries `sf` and `Rcpp` before you run the code in an R-Script.   
@@ -144,7 +144,7 @@ The most important take away messages are:
 5) JSON is a very popular format for transferring web data.
 6) The two primary elements that make up JSON are keys and values.
 
-The [library `httr`](https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html){target="_blank"} (also part of [Tidyverse](https://www.tidyverse.org/packages/#import){target="_blank"}) offers functions to programmatically implement API calls in an R script. We will make use of this library to let our R script interact with the [APIs](https://openweathermap.org/api){target="_blank"} offered by [OpenWeather Map](https://openweathermap.org/){target="_blank"} that contain historical and real-time weather data for retrieval. In the upcoming example we will make a call to the [Current Weather API](https://openweathermap.org/current){target="_blank"}, which is one out of currenty [10 free APIs](https://openweathermap.org/price){target="_blank"} provided by OpenWeather Map.
+The [library `httr`](https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html){target="_blank"} (also part of [Tidyverse](https://www.tidyverse.org/packages/#import){target="_blank"}) offers functions to programmatically implement API calls in an R script. We will make use of this library to let our R script interact with the [APIs](https://openweathermap.org/api){target="_blank"} offered by [OpenWeather Map](https://openweathermap.org/){target="_blank"} that contain historical and real-time weather data for retrieval. In the upcoming example we will make a call to the [Current Weather API](https://openweathermap.org/current){target="_blank"}, which is one out of currently [10 free APIs](https://openweathermap.org/price){target="_blank"} provided by OpenWeather Map.
 
 For accessing the data, we need to create a URL that is composed of a references to the data source (base) and parameters to filter the desired data subset (lat and lon). The parameters are concatenated by means of a '&' symbol, a question mark '?' needs to be placed between reference URL and parameters: 
 

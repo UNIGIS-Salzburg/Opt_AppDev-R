@@ -442,39 +442,37 @@ Figure 7.1: Video (3:13 min): REST API concepts and examples.
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="read-and-write-data.html#cb151-1"></a><span class="kw">status_code</span>(get)</span></code></pre></div>
 <pre><code>## [1] 200</code></pre>
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="read-and-write-data.html#cb153-1"></a><span class="kw">str</span>(<span class="kw">content</span>(get))</span></code></pre></div>
-<pre><code>## List of 14
+<pre><code>## List of 13
 ##  $ coord     :List of 2
 ##   ..$ lon: num 13
 ##   ..$ lat: num 47.8
 ##  $ weather   :List of 1
 ##   ..$ :List of 4
-##   .. ..$ id         : int 500
-##   .. ..$ main       : chr &quot;Rain&quot;
-##   .. ..$ description: chr &quot;light rain&quot;
-##   .. ..$ icon       : chr &quot;10d&quot;
+##   .. ..$ id         : int 803
+##   .. ..$ main       : chr &quot;Clouds&quot;
+##   .. ..$ description: chr &quot;broken clouds&quot;
+##   .. ..$ icon       : chr &quot;04d&quot;
 ##  $ base      : chr &quot;stations&quot;
 ##  $ main      :List of 6
-##   ..$ temp      : num 274
-##   ..$ feels_like: num 269
-##   ..$ temp_min  : num 270
-##   ..$ temp_max  : num 278
-##   ..$ pressure  : int 1009
-##   ..$ humidity  : int 99
+##   ..$ temp      : num 278
+##   ..$ feels_like: num 277
+##   ..$ temp_min  : num 277
+##   ..$ temp_max  : num 279
+##   ..$ pressure  : int 999
+##   ..$ humidity  : int 94
 ##  $ visibility: int 10000
 ##  $ wind      :List of 2
-##   ..$ speed: num 5.66
-##   ..$ deg  : int 190
-##  $ rain      :List of 1
-##   ..$ 1h: num 0.38
+##   ..$ speed: num 1.54
+##   ..$ deg  : int 0
 ##  $ clouds    :List of 1
 ##   ..$ all: int 75
-##  $ dt        : int 1638280348
+##  $ dt        : int 1638455449
 ##  $ sys       :List of 5
 ##   ..$ type   : int 1
 ##   ..$ id     : int 6877
 ##   ..$ country: chr &quot;AT&quot;
-##   ..$ sunrise: int 1638254092
-##   ..$ sunset : int 1638285520
+##   ..$ sunrise: int 1638427041
+##   ..$ sunset : int 1638458261
 ##  $ timezone  : int 3600
 ##  $ id        : int 2766824
 ##  $ name      : chr &quot;Salzburg&quot;
