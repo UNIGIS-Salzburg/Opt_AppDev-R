@@ -1,0 +1,19 @@
+.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.2;
+}
+pre code {
+  white-space: inherit;
+}
+
+.table_small {
+  width:50%;
+}

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 4 Control structures | Application Development with R</title>
+  <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 4 Control structures | Application Development with R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/branding/Cover_epub.png" />
+  <meta property="og:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
+  <meta name="github-repo" content="UNIGIS-Salzburg/En_AppDev-R" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 4 Control structures | Application Development with R" />
+  
+  <meta name="twitter:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
+  <meta name="twitter:image" content="/branding/Cover_epub.png" />
+
+<meta name="author" content="Christian Neuwirth" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="complex-data-types.html"/>
+<link rel="next" href="functions.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://unigis.at/en" target="_blank"><img alt="UNIGIS Salzburg" src="branding/UNIGIS_Salzburg_Schriftlogo_globe.png" width=100%></a></li>
+<li><a href="./">Application Development with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#about-this-module"><i class="fa fa-check"></i><b>1.1</b> About this module</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#r-programming-language"><i class="fa fa-check"></i><b>1.2</b> R programming language</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#installation-and-setup"><i class="fa fa-check"></i><b>1.3</b> Installation and Setup</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#interpreting-values"><i class="fa fa-check"></i><b>1.4</b> Interpreting values</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#simple-data-types"><i class="fa fa-check"></i><b>1.5</b> Simple data types</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#numeric-operators"><i class="fa fa-check"></i><b>1.6</b> Numeric operators</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#logical-operators"><i class="fa fa-check"></i><b>1.7</b> Logical operators</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#references"><i class="fa fa-check"></i><b>1.8</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="core.html"><a href="core.html"><i class="fa fa-check"></i><b>2</b> Core concepts</a><ul>
+<li class="chapter" data-level="2.1" data-path="core.html"><a href="core.html#variables"><i class="fa fa-check"></i><b>2.1</b> Variables</a></li>
+<li class="chapter" data-level="2.2" data-path="core.html"><a href="core.html#algorithms-and-functions"><i class="fa fa-check"></i><b>2.2</b> Algorithms and functions</a></li>
+<li class="chapter" data-level="2.3" data-path="core.html"><a href="core.html#libraries"><i class="fa fa-check"></i><b>2.3</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="complex-data-types.html"><a href="complex-data-types.html"><i class="fa fa-check"></i><b>3</b> Complex Data Types</a><ul>
+<li class="chapter" data-level="3.1" data-path="complex-data-types.html"><a href="complex-data-types.html#vectors"><i class="fa fa-check"></i><b>3.1</b> Vectors</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="complex-data-types.html"><a href="complex-data-types.html#vector-element-selection"><i class="fa fa-check"></i><b>3.1.1</b> Vector element selection</a></li>
+<li class="chapter" data-level="3.1.2" data-path="complex-data-types.html"><a href="complex-data-types.html#functions-on-vectors"><i class="fa fa-check"></i><b>3.1.2</b> Functions on vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="complex-data-types.html"><a href="complex-data-types.html#multi-dimensional-data-types"><i class="fa fa-check"></i><b>3.2</b> Multi-dimensional data types</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="complex-data-types.html"><a href="complex-data-types.html#matrices"><i class="fa fa-check"></i><b>3.2.1</b> Matrices</a></li>
+<li class="chapter" data-level="3.2.2" data-path="complex-data-types.html"><a href="complex-data-types.html#arrays"><i class="fa fa-check"></i><b>3.2.2</b> Arrays</a></li>
+<li class="chapter" data-level="3.2.3" data-path="complex-data-types.html"><a href="complex-data-types.html#selection"><i class="fa fa-check"></i><b>3.2.3</b> Selection</a></li>
+<li class="chapter" data-level="3.2.4" data-path="complex-data-types.html"><a href="complex-data-types.html#list"><i class="fa fa-check"></i><b>3.2.4</b> List</a></li>
+<li class="chapter" data-level="3.2.5" data-path="complex-data-types.html"><a href="complex-data-types.html#data-frame"><i class="fa fa-check"></i><b>3.2.5</b> Data Frame</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="control-structures.html"><a href="control-structures.html"><i class="fa fa-check"></i><b>4</b> Control structures</a><ul>
+<li class="chapter" data-level="4.1" data-path="control-structures.html"><a href="control-structures.html#if"><i class="fa fa-check"></i><b>4.1</b> If</a></li>
+<li class="chapter" data-level="4.2" data-path="control-structures.html"><a href="control-structures.html#else"><i class="fa fa-check"></i><b>4.2</b> Else</a></li>
+<li class="chapter" data-level="4.3" data-path="control-structures.html"><a href="control-structures.html#code-blocks"><i class="fa fa-check"></i><b>4.3</b> Code blocks</a></li>
+<li class="chapter" data-level="4.4" data-path="control-structures.html"><a href="control-structures.html#loops"><i class="fa fa-check"></i><b>4.4</b> Loops</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="control-structures.html"><a href="control-structures.html#while"><i class="fa fa-check"></i><b>4.4.1</b> While</a></li>
+<li class="chapter" data-level="4.4.2" data-path="control-structures.html"><a href="control-structures.html#for"><i class="fa fa-check"></i><b>4.4.2</b> For</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="control-structures.html"><a href="control-structures.html#loops-with-conditional-statements"><i class="fa fa-check"></i><b>4.5</b> Loops with conditional statements</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a><ul>
+<li class="chapter" data-level="5.1" data-path="functions.html"><a href="functions.html#defining-functions"><i class="fa fa-check"></i><b>5.1</b> Defining functions</a></li>
+<li class="chapter" data-level="5.2" data-path="functions.html"><a href="functions.html#more-parameters"><i class="fa fa-check"></i><b>5.2</b> More parameters</a></li>
+<li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#more-return-values"><i class="fa fa-check"></i><b>5.3</b> More return values</a></li>
+<li class="chapter" data-level="5.4" data-path="functions.html"><a href="functions.html#functions-and-control-structures"><i class="fa fa-check"></i><b>5.4</b> Functions and control structures</a></li>
+<li class="chapter" data-level="5.5" data-path="functions.html"><a href="functions.html#scope"><i class="fa fa-check"></i><b>5.5</b> Scope</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i><b>6</b> Data wrangling</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-wrangling.html"><a href="data-wrangling.html#preparation"><i class="fa fa-check"></i><b>6.1</b> Preparation</a></li>
+<li class="chapter" data-level="6.2" data-path="data-wrangling.html"><a href="data-wrangling.html#data-manipulation"><i class="fa fa-check"></i><b>6.2</b> Data manipulation</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="data-wrangling.html"><a href="data-wrangling.html#summarise"><i class="fa fa-check"></i><b>6.2.1</b> Summarise</a></li>
+<li class="chapter" data-level="6.2.2" data-path="data-wrangling.html"><a href="data-wrangling.html#select-and-filter"><i class="fa fa-check"></i><b>6.2.2</b> Select and filter</a></li>
+<li class="chapter" data-level="6.2.3" data-path="data-wrangling.html"><a href="data-wrangling.html#mutate"><i class="fa fa-check"></i><b>6.2.3</b> Mutate</a></li>
+<li class="chapter" data-level="6.2.4" data-path="data-wrangling.html"><a href="data-wrangling.html#arrange"><i class="fa fa-check"></i><b>6.2.4</b> Arrange</a></li>
+<li class="chapter" data-level="6.2.5" data-path="data-wrangling.html"><a href="data-wrangling.html#exercise-data-manipulation"><i class="fa fa-check"></i><b>6.2.5</b> Exercise: data manipulation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="data-wrangling.html"><a href="data-wrangling.html#join"><i class="fa fa-check"></i><b>6.3</b> Join</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="data-wrangling.html"><a href="data-wrangling.html#exercise-join"><i class="fa fa-check"></i><b>6.3.1</b> Exercise: join</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="read-and-write-data.html"><a href="read-and-write-data.html"><i class="fa fa-check"></i><b>7</b> Read and write data</a><ul>
+<li class="chapter" data-level="7.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-tabular-data"><i class="fa fa-check"></i><b>7.1</b> Read and write tabular data</a></li>
+<li class="chapter" data-level="7.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-vector-data"><i class="fa fa-check"></i><b>7.2</b> Read and write vector data</a></li>
+<li class="chapter" data-level="7.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#data-api"><i class="fa fa-check"></i><b>7.3</b> Data API</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>8</b> Data visualization</a><ul>
+<li class="chapter" data-level="8.1" data-path="data-visualization.html"><a href="data-visualization.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>8.1</b> The Grammar of Graphics</a></li>
+<li class="chapter" data-level="8.2" data-path="data-visualization.html"><a href="data-visualization.html#visualization-of-distributions"><i class="fa fa-check"></i><b>8.2</b> Visualization of distributions</a></li>
+<li class="chapter" data-level="8.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>8.3</b> Boxplots</a></li>
+<li class="chapter" data-level="8.4" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i><b>8.4</b> Scatterplots</a></li>
+<li class="chapter" data-level="8.5" data-path="data-visualization.html"><a href="data-visualization.html#map-visualization"><i class="fa fa-check"></i><b>8.5</b> Map visualization</a></li>
+</ul></li>
+<li class="divider"></li>
+<li>Copyright © UNIGIS Salzburg.</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Application Development with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="control-structures" class="section level1">
+<h1><span class="header-section-number">Lesson 4</span> Control structures</h1>
+
+<div class="rmdtip">
+<p>In this lesson, you will get to know control structures as a significant structural element of code. Control structures allow our code to adapt its behavior depending on the value of the current variables in the environment.</p>
+<p>We distinguish between two types of control structures:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Conditional statements</strong>, which allow executing instructions only if a certain condition is satisfied.</p></li>
+<li><p><strong>Loops</strong>, which allow to repeat one or more instructions multiple times. Loops are commonly used to apply the same operation on a series of values that are stored in sequences such as vectors or lists.</p></li>
+</ol>
+</div>
+
+<div id="if" class="section level2">
+<h2><span class="header-section-number">4.1</span> If</h2>
+<p>The most fundamental conditional statement in R is the structure ‘if’, which is used to execute one or more instructions only if a certain condition is TRUE.</p>
+<p>In order to include an if-structure in your code, you need to use the following syntax:</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="control-structures.html#cb88-1"></a>a_value &lt;-<span class="st"> </span><span class="dv">-7</span></span>
+<span id="cb88-2"><a href="control-structures.html#cb88-2"></a><span class="cf">if</span> (a_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb88-3"><a href="control-structures.html#cb88-3"></a>  <span class="kw">cat</span>(<span class="st">&quot;Negative&quot;</span>)</span>
+<span id="cb88-4"><a href="control-structures.html#cb88-4"></a>}</span></code></pre></div>
+<pre><code>## Negative</code></pre>
+<p>The <strong>statement</strong> ‘cat(“Negative”)’ gets executed and the text “negative” is printed out, because the <strong>condition</strong> (a_value &lt; 0) is TRUE.</p>
+
+<div class="rmdtip">
+<p>The function <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/cat" target="_blank">cat()</a> concatenates and prints string inputs (“Negative” in the example above). Alternatively, you can use the function ‘print()’ to write variable values to the console window.</p>
+<p>These functions are highly useful to inspect whether variables take on expected values!</p>
+</div>
+
+<p>Note that every conditional statement (e.g. ‘a_value &lt; 0’) returns a logical value that is either TRUE or FALSE.</p>
+
+<div class="rmdexercise">
+<p>Remove the negative sign from the conditional statement in the code above.</p>
+<details closed>
+<summary><ins><strong>See solution!</strong></ins></summary>
+<p>
+<p><i><font color="grey"></p>
+<p>The condition yields FALSE. The statement is not executed.</p>
+</font></i>
+</p>
+</details>
+</div>
+
+</div>
+<div id="else" class="section level2">
+<h2><span class="header-section-number">4.2</span> Else</h2>
+<p>In many cases, we want the interpreter to do something if the condition is satisfied or do something <em>else</em>, if the condition is not satisfied. In this case, we can use ‘if’ together with ‘else’:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="control-structures.html#cb90-1"></a>a_value &lt;-<span class="st"> </span><span class="dv">-7</span></span>
+<span id="cb90-2"><a href="control-structures.html#cb90-2"></a><span class="cf">if</span> (a_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>){</span>
+<span id="cb90-3"><a href="control-structures.html#cb90-3"></a>  <span class="kw">cat</span>(<span class="st">&quot;Negative&quot;</span>)</span>
+<span id="cb90-4"><a href="control-structures.html#cb90-4"></a>} <span class="cf">else</span> {</span>
+<span id="cb90-5"><a href="control-structures.html#cb90-5"></a>  <span class="kw">cat</span>(<span class="st">&quot;Positive&quot;</span>)</span>
+<span id="cb90-6"><a href="control-structures.html#cb90-6"></a>}</span></code></pre></div>
+<pre><code>## Negative</code></pre>
+<p>In the example above, the <strong>condition</strong> ‘a_value &lt; 0’ is TRUE, <strong>statement 1</strong> ‘cat(“Negative”)’ gets executed and <strong>statement 2</strong> ‘cat(“Positive”)’ is ignored. If you change ‘a_value’ to a positive value, the interpreter will ignore statement 1 and execute statement 2.</p>
+
+<div class="rmdtip">
+Note that statement 1 and statement 2 are in curly brackets! The indentation of statements is good programming practice, however does not affect the functioning of the code.
+</div>
+
+</div>
+<div id="code-blocks" class="section level2">
+<h2><span class="header-section-number">4.3</span> Code blocks</h2>
+<p>Conditional structures have a wide range of applications. Almost everything what a computer does requires an input. Each time you click a button the computer responds accordingly. The code that dictates the response typically has an if-else control structure or something very similar that tells the computer what to do depending on the input it got. Obviously in most cases the response won’t be defined by a single instruction, but a code block that is composed of multiple instructions. <strong>Code blocks</strong> allow encapsulating <strong>several</strong> statements in a single group. The condition in the following example yields TRUE and the code block is executed:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="control-structures.html#cb92-1"></a>first_value &lt;-<span class="st"> </span><span class="dv">8</span></span>
+<span id="cb92-2"><a href="control-structures.html#cb92-2"></a>second_value &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb92-3"><a href="control-structures.html#cb92-3"></a><span class="cf">if</span> (first_value <span class="op">&gt;</span><span class="st"> </span>second_value) {</span>
+<span id="cb92-4"><a href="control-structures.html#cb92-4"></a>  <span class="kw">cat</span>(<span class="st">&quot;First is greater than second</span><span class="ch">\n</span><span class="st">&quot;</span>) </span>
+<span id="cb92-5"><a href="control-structures.html#cb92-5"></a>  difference &lt;-<span class="st"> </span>first_value <span class="op">-</span><span class="st"> </span>second_value</span>
+<span id="cb92-6"><a href="control-structures.html#cb92-6"></a>  <span class="kw">cat</span>(<span class="st">&quot;Their difference is &quot;</span>, difference)</span>
+<span id="cb92-7"><a href="control-structures.html#cb92-7"></a>}</span></code></pre></div>
+<pre><code>## First is greater than second
+## Their difference is  3</code></pre>
+<p>The line ‘cat(“First is greater than second”)’ prints a text (string) and inserts a line break. The next line calculates the difference between first and second value. The third line in the code block concatenates two inputs (“Their difference is” and variable ‘difference’) and prints them to the console window.</p>
+
+<div class="rmdtip">
+‘if’ and ‘else’ are so called <strong>reserved words</strong>, meaning they cannot be used as variable names.
+</div>
+
+</div>
+<div id="loops" class="section level2">
+<h2><span class="header-section-number">4.4</span> Loops</h2>
+<p>The second family of control structures that we a going to discuss in this lesson are loops. Loops are a fundamental component of (procedural) programming. They allow repeating one or more instructions multiple times.</p>
+<p>There are two main types of loops:</p>
+<ul>
+<li><strong>conditional</strong> loops are executed as long as a defined condition holds true
+<ul>
+<li>construct <code>while</code></li>
+<li>construct <code>repeat</code></li>
+</ul></li>
+<li><strong>deterministic</strong> loops are executed a pre-determined number of times
+<ul>
+<li>construct <code>for</code></li>
+</ul></li>
+</ul>
+<div id="while" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> While</h3>
+<p>The <em>while</em> construct can be defined using the <code>while</code> reserved word, followed by a condition between simple brackets, and a code block. The instructions in the code block are re-executed as long as the result of the evaluation of the condition is <code>TRUE</code>.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="control-structures.html#cb94-1"></a>current_value &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb94-2"><a href="control-structures.html#cb94-2"></a><span class="cf">while</span> (current_value <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>) {</span>
+<span id="cb94-3"><a href="control-structures.html#cb94-3"></a>  <span class="kw">cat</span>(<span class="st">&quot;Current value is&quot;</span>, current_value, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb94-4"><a href="control-structures.html#cb94-4"></a>  current_value &lt;-<span class="st"> </span>current_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb94-5"><a href="control-structures.html#cb94-5"></a>}</span></code></pre></div>
+<pre><code>## Current value is 0 
+## Current value is 1 
+## Current value is 2</code></pre>
+
+<div class="rmdexercise">
+<p>Go through the example above and try to verbalize the consecutive steps.</p>
+<details closed>
+<summary><ins><strong>See solution!</strong></ins></summary>
+<p>
+<p><i><font color="grey"></p>
+<ol style="list-style-type: decimal">
+<li>The variable ‘current_value’ takes on a value of zero.</li>
+<li>The condition of the while-loop returns TRUE.</li>
+<li>The ‘cat()’ function is executed and prints a text as well as ‘current_value’.</li>
+<li>The variable ‘current_value’ is incremented by +1.</li>
+<li>The condition of the while-loop returns TRUE (current_value = 1), the code block is executed again (see 3 and 4).</li>
+<li>current_value = 2, the code block is executed again (see 3 and 4).</li>
+<li>current_value = 3, the condition returns FALSE, the loops ends.</li>
+</ol>
+</font></i>
+</p>
+</details>
+</div>
+
+</div>
+<div id="for" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> For</h3>
+<p>The <em>for</em> construct can be defined using the <code>for</code> reserved word, followed by the definition of an <strong>iterator</strong>. The iterator is a variable, which is temporarily assigned with the current element of a vector, as the construct iterates through all elements of the vector. This definition is followed by a code block, whose instructions are re-executed once for each element of the vector.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="control-structures.html#cb96-1"></a>cities &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Derby&quot;</span>, <span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Lincoln&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>)</span>
+<span id="cb96-2"><a href="control-structures.html#cb96-2"></a><span class="cf">for</span> (city <span class="cf">in</span> cities) {</span>
+<span id="cb96-3"><a href="control-structures.html#cb96-3"></a>  <span class="kw">cat</span>(<span class="st">&quot;Do you live in&quot;</span>, city, <span class="st">&quot;?</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb96-4"><a href="control-structures.html#cb96-4"></a>}</span></code></pre></div>
+<pre><code>## Do you live in Derby ?
+## Do you live in Leicester ?
+## Do you live in Lincoln ?
+## Do you live in Nottingham ?</code></pre>
+<p>In the first iteration of the for-loop the text string “Derby” is assigned to the iterator ‘city’. The function ‘cat()’ uses the iterator value as an input. In the second iteration, the text string “Leicester” is assigned to the iterator ‘city’ … etc.</p>
+<p>The code block below illustrates another example.</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="control-structures.html#cb98-1"></a>cities &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Derby&quot;</span>, <span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Lincoln&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>)</span>
+<span id="cb98-2"><a href="control-structures.html#cb98-2"></a>letter_cnt &lt;-<span class="st"> </span><span class="kw">c</span>()</span>
+<span id="cb98-3"><a href="control-structures.html#cb98-3"></a><span class="cf">for</span> (city <span class="cf">in</span> cities) {</span>
+<span id="cb98-4"><a href="control-structures.html#cb98-4"></a>  letter_cnt &lt;-<span class="st"> </span><span class="kw">c</span>(letter_cnt, <span class="kw">nchar</span>(city))</span>
+<span id="cb98-5"><a href="control-structures.html#cb98-5"></a>}</span>
+<span id="cb98-6"><a href="control-structures.html#cb98-6"></a><span class="kw">print</span>(letter_cnt)</span></code></pre></div>
+<pre><code>## [1]  5  9  7 10</code></pre>
+<p>The for-loop iterates over the elements in vector ‘cities’. The base function ‘nchar()’ counts the number of letters of every city name and appends the count to a new vector ‘letter_cnt’.</p>
+
+<div class="rmdtip">
+<p>Note that with every iteration a new value is appended to the right side of the vector. The syntax for appending elements to a vector in R is…</p>
+<p><em>name vector &lt;- c(name vector, element to append)</em></p>
+</div>
+
+<p>There are some cases in which, for some reason, you just want to execute a certain sequence of steps a pre-defined number of times. In such cases, it is common practice to create a vector of integers on the spot. In the following example the for-loop is executed 3 times as it iterates over a vector composed of the three elements 1, 2, and 3 (vector is created on the spot by 1:3):</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="control-structures.html#cb100-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) {</span>
+<span id="cb100-2"><a href="control-structures.html#cb100-2"></a>  <span class="kw">cat</span>(<span class="st">&quot;This is exectuion number&quot;</span>, i, <span class="st">&quot;:</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb100-3"><a href="control-structures.html#cb100-3"></a>  <span class="kw">cat</span>(<span class="st">&quot;    See you later!</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb100-4"><a href="control-structures.html#cb100-4"></a>}</span></code></pre></div>
+<pre><code>## This is exectuion number 1 :
+##     See you later!
+## This is exectuion number 2 :
+##     See you later!
+## This is exectuion number 3 :
+##     See you later!</code></pre>
+
+<div class="rmdexercise">
+<p>Replace the vector 1:3 by a vector 3:5. What is different?</p>
+<details closed>
+<summary><ins><strong>See solution!</strong></ins></summary>
+<p>
+<p><i><font color="grey"></p>
+<p>The for-loop is still executed 3 times.</p>
+<p>However, the iterator ‘i’ returns the values 3, 4, and 5.</p>
+</font></i>
+</p>
+</details>
+</div>
+
+</div>
+</div>
+<div id="loops-with-conditional-statements" class="section level2">
+<h2><span class="header-section-number">4.5</span> Loops with conditional statements</h2>
+<p>Now that we have seen both types of control structures, <strong>conditional statements</strong> and <strong>loops</strong>, we can combine these structures. R, as most other programming languages, allows you to include conditional statements within a loop or a loop within a conditional statement.</p>
+<p>A simple example is this bit of code that defines a countdown:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="control-structures.html#cb102-1"></a><span class="co">#Example: countdown!</span></span>
+<span id="cb102-2"><a href="control-structures.html#cb102-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">3</span><span class="op">:</span><span class="dv">0</span>) {</span>
+<span id="cb102-3"><a href="control-structures.html#cb102-3"></a>  <span class="cf">if</span> (i <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb102-4"><a href="control-structures.html#cb102-4"></a>    <span class="kw">cat</span>(<span class="st">&quot;Go!</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb102-5"><a href="control-structures.html#cb102-5"></a>  } <span class="cf">else</span> {</span>
+<span id="cb102-6"><a href="control-structures.html#cb102-6"></a>    <span class="kw">cat</span>(i, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb102-7"><a href="control-structures.html#cb102-7"></a>  }</span>
+<span id="cb102-8"><a href="control-structures.html#cb102-8"></a>}</span></code></pre></div>
+<pre><code>## 3 
+## 2 
+## 1 
+## Go!</code></pre>
+<p>The deterministic loop runs 4 time on the values 3, 2, 1, and 0. If the iterator ‘i’ takes on a value of 0 the print “Go!” otherwise print the current value of the iterator ‘i’. The result will be 3, 2, 1, Go!</p>
+<details closed>
+<summary><ins><strong>See another example!</strong></ins></summary>
+<p>
+<p><i><font color="grey"></p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="control-structures.html#cb104-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb104-2"><a href="control-structures.html#cb104-2"></a></span>
+<span id="cb104-3"><a href="control-structures.html#cb104-3"></a>cities &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Salzburg&quot;</span>, <span class="st">&quot;Linz&quot;</span>, <span class="st">&quot;Wien&quot;</span>, <span class="st">&quot;Eisenstadt&quot;</span>, <span class="st">&quot;Innsbruck&quot;</span>, <span class="st">&quot;Graz&quot;</span>)</span>
+<span id="cb104-4"><a href="control-structures.html#cb104-4"></a></span>
+<span id="cb104-5"><a href="control-structures.html#cb104-5"></a><span class="cf">for</span> (city <span class="cf">in</span> cities){</span>
+<span id="cb104-6"><a href="control-structures.html#cb104-6"></a>  <span class="cf">if</span> (<span class="kw">str_starts</span>(city, <span class="st">&quot;S&quot;</span>)){</span>
+<span id="cb104-7"><a href="control-structures.html#cb104-7"></a>    <span class="kw">print</span>(<span class="st">&quot;City name starts with S&quot;</span>)</span>
+<span id="cb104-8"><a href="control-structures.html#cb104-8"></a>  } <span class="cf">else</span>{</span>
+<span id="cb104-9"><a href="control-structures.html#cb104-9"></a>    <span class="kw">print</span>(<span class="st">&quot;City name starts with other letter&quot;</span>)</span>
+<span id="cb104-10"><a href="control-structures.html#cb104-10"></a>  }</span>
+<span id="cb104-11"><a href="control-structures.html#cb104-11"></a>  </span>
+<span id="cb104-12"><a href="control-structures.html#cb104-12"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;City name starts with S&quot;
+## [1] &quot;City name starts with other letter&quot;
+## [1] &quot;City name starts with other letter&quot;
+## [1] &quot;City name starts with other letter&quot;
+## [1] &quot;City name starts with other letter&quot;
+## [1] &quot;City name starts with other letter&quot;</code></pre>
+<p>We need to load the library ‘tidyverse’ to make use of the function ‘str_starts()’. You may have to install ‘tidyverse’ (see Libraries in lesson <a href="core.html#core">core Concepts</a>).</p>
+<p>‘cities’ is a vector of strings that includes the names of some Austrian federal capitals. The for-loop iterates over these vector elements. The function ‘str_starts’ takes the value of the iterator ‘city’ as well as a string “S” as inputs. If the city starts with letter S, the function returns TRUE and “City name starts with S” is printed to the console window, otherwise the function returns FALSE and “City name starts with other letter” is printed.</p>
+</font></i>
+</p>
+</details>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="complex-data-types.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["UNIGIS-AppDev-R.pdf", "UNIGIS-AppDev-R.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

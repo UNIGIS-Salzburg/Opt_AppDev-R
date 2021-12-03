@@ -1,0 +1,231 @@
+# Core concepts{#core}
+
+```{block2, type = 'rmdtip'}
+In this lesson, we will focus on three fundamental concepts in programming:
+
+1) Variables
+2) Functions
+3) Libraries
+
+```
+
+
+## Variables
+
+Variables are used to  **store data**. Variables can be defined using an *identifier*, i.e. a variable name (e.g., `a_variable`), on the left of an *assignment operator* `<-`, followed by the object to be linked to the identifier such as a *value* (e.g. `1`):
+
+```{r, echo=TRUE}
+a_variable <- 1
+```
+
+The value of the variable can be invoked by simply specifying the **identifier**.
+
+```{r, echo=TRUE}
+a_variable
+```
+
+```{block2, type = 'rmdtip'}
+
+In order to save your code, you can create an **R Script** in RStudio (File/New File/R Script). Select the code in the R Script Window and push 'Run' to execute the code.  
+
+Note: The code is executed line by line in a sequential order!
+   
+```
+
+Variables allow you to save the result of any computations performed in the code and retrieve it later in the code for further analyses. For instance, you can declare a variable such as,
+
+```{r, echo=TRUE}
+a_variable <- 1
+```
+
+manipulate the value of the variable as
+
+```{r, echo=TRUE}
+a_variable <- a_variable + 10
+```
+
+and later in the code assign the value to a different variable
+
+```{r, echo=TRUE}
+another_variable <- a_variable
+```
+
+At this point, the question may arise, why bother using variables instead of simply typing the numbers? The answer is that variables make your code reusable and safe you lots of time.
+
+Let us consider the following example: 
+  
+Meteorologists monitor water temperature gradients in the Pacific Ocean to better understand El Niño weather patterns and to forecast extreme weather conditions associated with it. In a given year the water temperature at location A is 22°C and 26°C at location B. We could simply calculate the difference by executing the arithmetic operation '26 - 22' in the console window of RStudio. However, temperatures are measured in real-time, i.e. we have to calculate temperature gradients repeatedly.
+
+To speed up the process we could write code that does the calculation (temperature at location A - temperature at location B). This piece of code takes to variables (temperature at location A and B) as an input. As a result, we only need to update these two variables; the algorithm (simple subtraction in our example) is reusable. 
+
+Of course, gains in efficiency are minor given that the calculus is simple. In a more practical application, however, the algorithm is likely being composed of many lines of code that evaluate El Niño occurrence risk based on sensor records.   
+
+```{block2, type = 'rmdexercise'}
+
+1) Create a new R script in RStudio (File/New File/R Script).
+2) Declare two variables (temp_A and temp_B) and assign arbitrary temperature values to it.
+3) Declare a third variable (diff) and assign the difference between the other variables as a value. 
+4) Run your script. 
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+temp_A <- 24
+
+temp_B <- 28
+
+diff <- temp_A - temp_B
+
+When executing the code in Rstudio, you should see that something has changed in the panel on the top right, which is the **Environment Panel**. The Environment Panel shows that we now have three slots of memory with identifiers named diff, temp_A and temp_B  that have values of -4, 24 and 28. If we invoke the name of the identifier in the code (e.g. type *diff* and run), the value that is stored in that slot gets returned.
+    
+</font></i>
+</p>
+</details> 
+
+```
+
+## Algorithms and functions
+
+*An* **algorithm** *or effective procedure is a mechanical rule, or automatic method, or program for performing some mathematical operation* (Cutland, 1980).
+
+A **program** is a specific set of instructions that implement an abstract algorithm.
+
+The definition of an algorithm (and thus a program) can consist of one or more **functions**. Functions are a set of instructions that preform a task, i.e. functions help structuring code into functional units. These functional units are reusable in the code. Some of them receive values as inputs, some return output values.  
+
+Programming languages usually provide pre-defined functions that implement common algorithms (e.g., to find the square root of a number or to calculate a linear regression).
+
+For instance, the pre-defined function 'sqrt()' calculates the square root of an input value. 'sqrt()' (as every function in R) is invoked by specifying the *function name* and the *arguments* (input values) between simple brackets:
+
+```{r, echo=TRUE}
+sqrt(2)
+```
+
+```{block2, type = 'rmdtip'}
+
+Each input value corresponds to a *parameter* that was specified in the definition of the function. Sometimes the *parameter* name must be specified. This will get clearer when you write your own functions later in the module.
+   
+```
+
+'round()' is another function that is predefined in R: 
+
+```{r, echo=TRUE}
+round(1.414214, digits = 2)
+```
+
+Note that the name of the second parameter ('digits') needs to be specified. The parameter 'digits' indicates the number of digits we want to keep after the dot.
+
+The return value of a function can be stored in a variable:
+
+```{r, echo=TRUE}
+sqrt_of_two <- sqrt(2)
+sqrt_of_two
+```
+
+The output value is stored in the memory slot with the identifier 'sqrt_of_two'. We can use the identifier 'sqrt_of_two' as an argument in other functions as
+
+```{r, echo=TRUE}
+sqrt_of_two <- sqrt(2)
+round(sqrt_of_two, digits = 3)
+```
+
+The first line calculates the square root of '2' and stores it in a variable with identifier 'sqrt_of_two'. The second line rounds the value stored in 'sqrt_of_two' to three digits after the dot. 
+
+```{block2, type = 'rmdexercise'}
+
+Can you store the output of the 'round()' function in a second variable?  
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+sqrt_of_two <- sqrt(2)
+
+rounded_sqrt_of_two <- round(sqrt_of_two, digits = 3)
+    
+</font></i>
+</p>
+</details> 
+
+```
+
+Functions can also be used as arguments of functions. For instance, we can use the function 'sqrt()' as the first argument in function 'round()':
+
+```{r, echo=TRUE}
+round(sqrt(2), digits = 3)
+```
+
+In this case the intermediate step of storing the square root of '2' in a variable was skipped.
+
+```{block2, type = 'rmdtip'}
+Using functions as arguments in other functions is often discouraged as it makes code hard to understand. 
+
+Moreover, in order to improve readability of R code, it is recommended to consider naming conventions when creating identifiers for variables and functions: 
+  
+- R is a **case sensitive** language
+    - UPPER and lower case are not the same
+    - `a_variable` is different from `a_VARIABLE`
+- names can include
+    -  alphanumeric symbols
+    - `.` and `_`
+- names must start with
+    - a letter  
+  
+  
+```
+
+## Libraries
+
+Once a number of related, reusable functions are created, they can be collected and stored in **libraries** (a.k.a. *packages*). 
+
+To date there are more than 10,000 R libraries available, which can be downloaded and installed by means of the function 'install.packages()'. After installing the library the function 'library()' is used to make it available to a script.  
+
+Libraries can be of any size and complexity, e.g.:
+
+- `base`: base R functions, including the `sqrt` function above
+- `rgdal`: implementation of the [GDAL (Geospatial Data Abstraction Library)](https://gdal.org/){target="_blank"} functionalities.
+
+The use of libraries in R can be illustrate by means of the `stringr` library, which provides a consistent and well-defined set of functions for manipulating strings. Assuming that the library has already been installed on your computer, you can load the library as
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(stringr)
+```
+
+Otherwise, you can download and install the library by calling the function
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+install.packages('stringr')  #Note: the function takes an argument of type string ('')
+```
+
+```{block2, type = 'rmdtip'}
+
+Alternatively, you can download and install libraries (a.k.a. packages) using the 'Install Packages Menu' in RStudio (Tools/Install Packages...). In the upper dropdown list you can choose between 'install from CRAN' and 'install from Package Archive file'. The large majority of libraries are available with [CRAN - Comprehensive R Archive Network](https://cran.r-project.org/){target="_blank"}, which is a collection of libraries and other R resources.
+
+```
+
+Once the library is installed and loaded, a new series of functions is available within your environment. For instance, the function 'str_length' returns the number of letters included in a string:
+
+```{r, echo=TRUE}
+str_length("UNIGIS")
+```
+
+'str_detect()' does return 'TRUE', if the first argument (a string) contains the second argument (letter as type string). Otherwise, the function returns 'FALSE':
+
+```{r, echo=TRUE}
+str_detect("UNIGIS", "I")
+```
+
+The function 'str_replace_all' replaces all the instances of the first argument that are identical with the second argument by a third argument:  
+
+```{r, echo=TRUE}
+str_replace_all("UNIGIS", "I", 'X')
+```
+
+```{block2, type = 'rmdtip'}
+
+You may list all the functions available with library 'stringr' using the built in function ['ls()'](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ls){target="_blank"}:
+  
+ls(<span>&quot;</span>package:stringr<span>&quot;</span>)
+
+```
+ 

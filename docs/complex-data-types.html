@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 3 Complex Data Types | Application Development with R</title>
+  <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 3 Complex Data Types | Application Development with R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/branding/Cover_epub.png" />
+  <meta property="og:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
+  <meta name="github-repo" content="UNIGIS-Salzburg/En_AppDev-R" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 3 Complex Data Types | Application Development with R" />
+  
+  <meta name="twitter:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
+  <meta name="twitter:image" content="/branding/Cover_epub.png" />
+
+<meta name="author" content="Christian Neuwirth" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="core.html"/>
+<link rel="next" href="control-structures.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://unigis.at/en" target="_blank"><img alt="UNIGIS Salzburg" src="branding/UNIGIS_Salzburg_Schriftlogo_globe.png" width=100%></a></li>
+<li><a href="./">Application Development with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#about-this-module"><i class="fa fa-check"></i><b>1.1</b> About this module</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#r-programming-language"><i class="fa fa-check"></i><b>1.2</b> R programming language</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#installation-and-setup"><i class="fa fa-check"></i><b>1.3</b> Installation and Setup</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#interpreting-values"><i class="fa fa-check"></i><b>1.4</b> Interpreting values</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#simple-data-types"><i class="fa fa-check"></i><b>1.5</b> Simple data types</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#numeric-operators"><i class="fa fa-check"></i><b>1.6</b> Numeric operators</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#logical-operators"><i class="fa fa-check"></i><b>1.7</b> Logical operators</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#references"><i class="fa fa-check"></i><b>1.8</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="core.html"><a href="core.html"><i class="fa fa-check"></i><b>2</b> Core concepts</a><ul>
+<li class="chapter" data-level="2.1" data-path="core.html"><a href="core.html#variables"><i class="fa fa-check"></i><b>2.1</b> Variables</a></li>
+<li class="chapter" data-level="2.2" data-path="core.html"><a href="core.html#algorithms-and-functions"><i class="fa fa-check"></i><b>2.2</b> Algorithms and functions</a></li>
+<li class="chapter" data-level="2.3" data-path="core.html"><a href="core.html#libraries"><i class="fa fa-check"></i><b>2.3</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="complex-data-types.html"><a href="complex-data-types.html"><i class="fa fa-check"></i><b>3</b> Complex Data Types</a><ul>
+<li class="chapter" data-level="3.1" data-path="complex-data-types.html"><a href="complex-data-types.html#vectors"><i class="fa fa-check"></i><b>3.1</b> Vectors</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="complex-data-types.html"><a href="complex-data-types.html#vector-element-selection"><i class="fa fa-check"></i><b>3.1.1</b> Vector element selection</a></li>
+<li class="chapter" data-level="3.1.2" data-path="complex-data-types.html"><a href="complex-data-types.html#functions-on-vectors"><i class="fa fa-check"></i><b>3.1.2</b> Functions on vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="complex-data-types.html"><a href="complex-data-types.html#multi-dimensional-data-types"><i class="fa fa-check"></i><b>3.2</b> Multi-dimensional data types</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="complex-data-types.html"><a href="complex-data-types.html#matrices"><i class="fa fa-check"></i><b>3.2.1</b> Matrices</a></li>
+<li class="chapter" data-level="3.2.2" data-path="complex-data-types.html"><a href="complex-data-types.html#arrays"><i class="fa fa-check"></i><b>3.2.2</b> Arrays</a></li>
+<li class="chapter" data-level="3.2.3" data-path="complex-data-types.html"><a href="complex-data-types.html#selection"><i class="fa fa-check"></i><b>3.2.3</b> Selection</a></li>
+<li class="chapter" data-level="3.2.4" data-path="complex-data-types.html"><a href="complex-data-types.html#list"><i class="fa fa-check"></i><b>3.2.4</b> List</a></li>
+<li class="chapter" data-level="3.2.5" data-path="complex-data-types.html"><a href="complex-data-types.html#data-frame"><i class="fa fa-check"></i><b>3.2.5</b> Data Frame</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="control-structures.html"><a href="control-structures.html"><i class="fa fa-check"></i><b>4</b> Control structures</a><ul>
+<li class="chapter" data-level="4.1" data-path="control-structures.html"><a href="control-structures.html#if"><i class="fa fa-check"></i><b>4.1</b> If</a></li>
+<li class="chapter" data-level="4.2" data-path="control-structures.html"><a href="control-structures.html#else"><i class="fa fa-check"></i><b>4.2</b> Else</a></li>
+<li class="chapter" data-level="4.3" data-path="control-structures.html"><a href="control-structures.html#code-blocks"><i class="fa fa-check"></i><b>4.3</b> Code blocks</a></li>
+<li class="chapter" data-level="4.4" data-path="control-structures.html"><a href="control-structures.html#loops"><i class="fa fa-check"></i><b>4.4</b> Loops</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="control-structures.html"><a href="control-structures.html#while"><i class="fa fa-check"></i><b>4.4.1</b> While</a></li>
+<li class="chapter" data-level="4.4.2" data-path="control-structures.html"><a href="control-structures.html#for"><i class="fa fa-check"></i><b>4.4.2</b> For</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="control-structures.html"><a href="control-structures.html#loops-with-conditional-statements"><i class="fa fa-check"></i><b>4.5</b> Loops with conditional statements</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>5</b> Functions</a><ul>
+<li class="chapter" data-level="5.1" data-path="functions.html"><a href="functions.html#defining-functions"><i class="fa fa-check"></i><b>5.1</b> Defining functions</a></li>
+<li class="chapter" data-level="5.2" data-path="functions.html"><a href="functions.html#more-parameters"><i class="fa fa-check"></i><b>5.2</b> More parameters</a></li>
+<li class="chapter" data-level="5.3" data-path="functions.html"><a href="functions.html#more-return-values"><i class="fa fa-check"></i><b>5.3</b> More return values</a></li>
+<li class="chapter" data-level="5.4" data-path="functions.html"><a href="functions.html#functions-and-control-structures"><i class="fa fa-check"></i><b>5.4</b> Functions and control structures</a></li>
+<li class="chapter" data-level="5.5" data-path="functions.html"><a href="functions.html#scope"><i class="fa fa-check"></i><b>5.5</b> Scope</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i><b>6</b> Data wrangling</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-wrangling.html"><a href="data-wrangling.html#preparation"><i class="fa fa-check"></i><b>6.1</b> Preparation</a></li>
+<li class="chapter" data-level="6.2" data-path="data-wrangling.html"><a href="data-wrangling.html#data-manipulation"><i class="fa fa-check"></i><b>6.2</b> Data manipulation</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="data-wrangling.html"><a href="data-wrangling.html#summarise"><i class="fa fa-check"></i><b>6.2.1</b> Summarise</a></li>
+<li class="chapter" data-level="6.2.2" data-path="data-wrangling.html"><a href="data-wrangling.html#select-and-filter"><i class="fa fa-check"></i><b>6.2.2</b> Select and filter</a></li>
+<li class="chapter" data-level="6.2.3" data-path="data-wrangling.html"><a href="data-wrangling.html#mutate"><i class="fa fa-check"></i><b>6.2.3</b> Mutate</a></li>
+<li class="chapter" data-level="6.2.4" data-path="data-wrangling.html"><a href="data-wrangling.html#arrange"><i class="fa fa-check"></i><b>6.2.4</b> Arrange</a></li>
+<li class="chapter" data-level="6.2.5" data-path="data-wrangling.html"><a href="data-wrangling.html#exercise-data-manipulation"><i class="fa fa-check"></i><b>6.2.5</b> Exercise: data manipulation</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="data-wrangling.html"><a href="data-wrangling.html#join"><i class="fa fa-check"></i><b>6.3</b> Join</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="data-wrangling.html"><a href="data-wrangling.html#exercise-join"><i class="fa fa-check"></i><b>6.3.1</b> Exercise: join</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="read-and-write-data.html"><a href="read-and-write-data.html"><i class="fa fa-check"></i><b>7</b> Read and write data</a><ul>
+<li class="chapter" data-level="7.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-tabular-data"><i class="fa fa-check"></i><b>7.1</b> Read and write tabular data</a></li>
+<li class="chapter" data-level="7.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-vector-data"><i class="fa fa-check"></i><b>7.2</b> Read and write vector data</a></li>
+<li class="chapter" data-level="7.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#data-api"><i class="fa fa-check"></i><b>7.3</b> Data API</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>8</b> Data visualization</a><ul>
+<li class="chapter" data-level="8.1" data-path="data-visualization.html"><a href="data-visualization.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>8.1</b> The Grammar of Graphics</a></li>
+<li class="chapter" data-level="8.2" data-path="data-visualization.html"><a href="data-visualization.html#visualization-of-distributions"><i class="fa fa-check"></i><b>8.2</b> Visualization of distributions</a></li>
+<li class="chapter" data-level="8.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>8.3</b> Boxplots</a></li>
+<li class="chapter" data-level="8.4" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i><b>8.4</b> Scatterplots</a></li>
+<li class="chapter" data-level="8.5" data-path="data-visualization.html"><a href="data-visualization.html#map-visualization"><i class="fa fa-check"></i><b>8.5</b> Map visualization</a></li>
+</ul></li>
+<li class="divider"></li>
+<li>Copyright © UNIGIS Salzburg.</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Application Development with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="complex-data-types" class="section level1">
+<h1><span class="header-section-number">Lesson 3</span> Complex Data Types</h1>
+<p>In this lesson I will introduce a series of more complex data types that are built on top of the already discussed simple data types ‘numeric’, ‘character’ (string) and ‘logical’ (see <a href="intro.html#intro">Lesson 1</a> ‘Simple data types’).</p>
+
+<div class="rmdtip">
+<p>In this lesson, you will get to know the following complex data types:</p>
+<ol style="list-style-type: decimal">
+<li>Vectors</li>
+<li>Matrices and Arrays</li>
+<li>Lists</li>
+<li>Data Frames</li>
+</ol>
+</div>
+
+<div id="vectors" class="section level2">
+<h2><span class="header-section-number">3.1</span> Vectors</h2>
+<p>A <strong>Vector</strong> is an ordered list of values. Vectors can be of any simple type:</p>
+<pre><code>- numeric
+- character
+- logic</code></pre>
+<p>However all items in a vector have to be of the same type. A vector can be of any length.</p>
+<p>Defining a <strong>vector variable</strong> is similar to the declaration of simple type variables, except that the vector is created by a return function named ‘c()’ that combines values into a vector:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="complex-data-types.html#cb28-1"></a><span class="co"># Declare a vector variable of strings</span></span>
+<span id="cb28-2"><a href="complex-data-types.html#cb28-2"></a>a_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Birmingham&quot;</span>, <span class="st">&quot;Derby&quot;</span>, <span class="st">&quot;Leicester&quot;</span>,</span>
+<span id="cb28-3"><a href="complex-data-types.html#cb28-3"></a>  <span class="st">&quot;Lincoln&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>, <span class="st">&quot;Wolverhampton&quot;</span>)</span>
+<span id="cb28-4"><a href="complex-data-types.html#cb28-4"></a>a_vector</span></code></pre></div>
+<pre><code>## [1] &quot;Birmingham&quot;    &quot;Derby&quot;         &quot;Leicester&quot;     &quot;Lincoln&quot;      
+## [5] &quot;Nottingham&quot;    &quot;Wolverhampton&quot;</code></pre>
+
+<div class="rmdtip">
+<p>Note that the second line of the returned elements starts with <code>[5]</code>, as the second line starts with the fifth element of the vector.</p>
+</div>
+
+<p>There are also other functions to create vectors such as ‘seq()’:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="complex-data-types.html#cb30-1"></a><span class="co">#create vector of real numbers of interval 0.5 in a range between 1 and 7</span></span>
+<span id="cb30-2"><a href="complex-data-types.html#cb30-2"></a>a_vector &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">7</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)</span>
+<span id="cb30-3"><a href="complex-data-types.html#cb30-3"></a>a_vector</span></code></pre></div>
+<pre><code>##  [1] 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0 5.5 6.0 6.5 7.0</code></pre>
+<p>or ‘rep()’:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="complex-data-types.html#cb32-1"></a><span class="co">#create vector with 4 identical character string values</span></span>
+<span id="cb32-2"><a href="complex-data-types.html#cb32-2"></a>a_vector &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="st">&quot;Ciao&quot;</span>, <span class="dv">4</span>)</span>
+<span id="cb32-3"><a href="complex-data-types.html#cb32-3"></a>a_vector</span></code></pre></div>
+<pre><code>## [1] &quot;Ciao&quot; &quot;Ciao&quot; &quot;Ciao&quot; &quot;Ciao&quot;</code></pre>
+<p>Alternatively, numeric vectors can be created by using the following syntax:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="complex-data-types.html#cb34-1"></a><span class="co">#create a vector of integer numbers between 1 and 10</span></span>
+<span id="cb34-2"><a href="complex-data-types.html#cb34-2"></a>a_vector &lt;-<span class="st"> </span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
+<span id="cb34-3"><a href="complex-data-types.html#cb34-3"></a>a_vector</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div id="vector-element-selection" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Vector element selection</h3>
+<p>Each element of a vector can be retrieved specifying the related <strong>index</strong> between square brackets, after the identifier of the vector. The <strong>first element</strong> of the vector <strong>has index 1</strong>. The following, code retrieves a value of ‘5’, which is the third element of the vector with identifier ‘a_vector’:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="complex-data-types.html#cb36-1"></a>a_vector &lt;-<span class="st"> </span>(<span class="dv">3</span><span class="op">:</span><span class="dv">8</span>)</span>
+<span id="cb36-2"><a href="complex-data-types.html#cb36-2"></a>a_vector[<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<p>A vector of indexes can be used to retrieve more than one element:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="complex-data-types.html#cb38-1"></a>a_vector &lt;-<span class="st"> </span>(<span class="dv">3</span><span class="op">:</span><span class="dv">8</span>)</span>
+<span id="cb38-2"><a href="complex-data-types.html#cb38-2"></a>a_vector[<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>)]</span></code></pre></div>
+<pre><code>## [1] 4 6</code></pre>
+<p>The values 4 and 6 are returned. These values have the indices 2 and 4 in vector ‘a_vector’. Note that the vector containing the indices 2 and 4 is created on the fly (without assigning the return value to a variable).</p>
+
+<div class="rmdexercise">
+<p>Now try by yourself. Create a vector that looks like</p>
+<p>east_midlands_cities &lt;- c(<span>"</span>Derby<span>"</span>, <span>"</span>Leicester<span>"</span>, <span>"</span>Lincoln<span>"</span>, <span>"</span>Nottingham<span>"</span>)</p>
+<p>, select the last three cities out of the four cities in ‘east_midlands_cities’ and assign the returned values to a new vector named ‘selected_cities’.</p>
+<details closed>
+<summary><ins><strong>See solution!</strong></ins></summary>
+<p>
+<p><font color="grey"></p>
+<p>east_midlands_cities &lt;- c(<span>"</span>Derby<span>"</span>, <span>"</span>Leicester<span>"</span>, <span>"</span>Lincoln<span>"</span>, <span>"</span>Nottingham<span>"</span>)</p>
+<p>my_indexes &lt;- 2:4</p>
+<p>selected_cities &lt;- c(east_midlands_cities[my_indexes])</p>
+</font>
+</p>
+</details>
+</div>
+
+</div>
+<div id="functions-on-vectors" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Functions on vectors</h3>
+<p>In R, functions can be used on a vector variable in the same way they are used on simple variables. In this case, the function will be applied to each element of the vector. The output will be a new vector containing the same number of elements as the input vector.</p>
+<p>For instance, adding a number of ten to a vector of numbers between 1 and 5 will result in a vector of numbers between 11 and 15:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="complex-data-types.html#cb40-1"></a>a_numeric_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
+<span id="cb40-2"><a href="complex-data-types.html#cb40-2"></a>a_numeric_vector &lt;-<span class="st"> </span>a_numeric_vector <span class="op">+</span><span class="st"> </span><span class="dv">10</span></span>
+<span id="cb40-3"><a href="complex-data-types.html#cb40-3"></a>a_numeric_vector</span></code></pre></div>
+<pre><code>## [1] 11 12 13 14 15</code></pre>
+<p>Accordingly, an sqrt() function applied to the same vector will return a vector containing the square root of every element as a result:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="complex-data-types.html#cb42-1"></a>a_numeric_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
+<span id="cb42-2"><a href="complex-data-types.html#cb42-2"></a>a_numeric_vector &lt;-<span class="st"> </span><span class="kw">sqrt</span>(a_numeric_vector)</span>
+<span id="cb42-3"><a href="complex-data-types.html#cb42-3"></a>a_numeric_vector</span></code></pre></div>
+<pre><code>## [1] 1.000000 1.414214 1.732051 2.000000 2.236068</code></pre>
+<p>We can also produce a vector of type ‘logical’ by using a condition:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="complex-data-types.html#cb44-1"></a>a_numeric_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
+<span id="cb44-2"><a href="complex-data-types.html#cb44-2"></a>a_numeric_vector &lt;-<span class="st"> </span>a_numeric_vector <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span></span>
+<span id="cb44-3"><a href="complex-data-types.html#cb44-3"></a>a_numeric_vector</span></code></pre></div>
+<pre><code>## [1] FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
+<p>While the condition in the example above returns an evaluation of the conditional statement for every element, the function ‘any’ and ‘all’ are <strong>overall expressions</strong>. The function ‘any()’ returns TRUE, if any of the elements satisfy the condition:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="complex-data-types.html#cb46-1"></a>a_numeric_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
+<span id="cb46-2"><a href="complex-data-types.html#cb46-2"></a><span class="kw">any</span>(a_numeric_vector <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>The function ‘all’ returns TRUE, if all of the elements satisfy the condition:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="complex-data-types.html#cb48-1"></a>a_numeric_vector &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></span>
+<span id="cb48-2"><a href="complex-data-types.html#cb48-2"></a><span class="kw">all</span>(a_numeric_vector <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+
+<div class="rmdtip">
+A <strong>factor</strong> is a data type similar to a vector. However, the values contained in a factor can only be selected from a set of <strong>levels</strong>. Factors will not be covered in the module. For more information on this data type turn to the online tutorial <a href="https://swcarpentry.github.io/r-novice-inflammation/12-supp-factors/index.html" target="_blank">Programming with R</a>
+</div>
+
+</div>
+</div>
+<div id="multi-dimensional-data-types" class="section level2">
+<h2><span class="header-section-number">3.2</span> Multi-dimensional data types</h2>
+<div id="matrices" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Matrices</h3>
+<p>So far, you have learned about one dimensional data types. <strong>Matrices</strong> are collections of numbers arranged in a two-dimensional rectangular layout.</p>
+<p>To create a matrix, two arguments should be provided to the function matrix. The first argument is a vector of values. The second specifies the number of rows and columns:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="complex-data-types.html#cb50-1"></a>a_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb50-2"><a href="complex-data-types.html#cb50-2"></a>a_matrix</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    3    4
+## [2,]    5    3
+## [3,]    7    1</code></pre>
+<p>R offers a large number of operators and functions for matrix algebra. For instance, standard mathematical operators are applicable:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="complex-data-types.html#cb52-1"></a>x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb52-2"><a href="complex-data-types.html#cb52-2"></a>x</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    3    4
+## [2,]    5    3
+## [3,]    7    1</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="complex-data-types.html#cb54-1"></a>y &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb54-2"><a href="complex-data-types.html#cb54-2"></a>y</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="complex-data-types.html#cb56-1"></a>z &lt;-<span class="st"> </span>x<span class="op">*</span>y</span>
+<span id="cb56-2"><a href="complex-data-types.html#cb56-2"></a>z</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    3   16
+## [2,]   10   15
+## [3,]   21    6</code></pre>
+<p>In the example above, variables x and y are initiated as matrices. The product of x and y is returned in variable z.</p>
+<p>A more comprehensive list of matrix algebra operations is provided by <a href="https://www.statmethods.net/advstats/matrix.html" target="_blank">Quick-R</a>.</p>
+</div>
+<div id="arrays" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Arrays</h3>
+<p>Variables of the type <strong>array</strong> are higher-dimensional matrices. Just like matrices, to create an array two arguments are required. The first argument is a vector containing the values. The second argument is a vector specifying the depth of each dimension. The following code returns a 3-dimensional array:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="complex-data-types.html#cb58-1"></a>a3dim_array &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">24</span>, <span class="dt">dim=</span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb58-2"><a href="complex-data-types.html#cb58-2"></a>a3dim_array</span></code></pre></div>
+<pre><code>## , , 1
+## 
+##      [,1] [,2] [,3]
+## [1,]    1    5    9
+## [2,]    2    6   10
+## [3,]    3    7   11
+## [4,]    4    8   12
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3]
+## [1,]   13   17   21
+## [2,]   14   18   22
+## [3,]   15   19   23
+## [4,]   16   20   24</code></pre>
+</div>
+<div id="selection" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Selection</h3>
+<p>Subsetting of matrices and arrays works in a very similar way as seen for vectors. However, as these are multi-dimensional objects, one value (or index) needs to be specified for each one of the dimensions.</p>
+<p>In the example, below we are subsetting the second row and the first and second column of <code>a_matrix</code>:</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="complex-data-types.html#cb60-1"></a>a_matrix &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>), <span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb60-2"><a href="complex-data-types.html#cb60-2"></a>a_matrix</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    3    4
+## [2,]    5    3
+## [3,]    7    1</code></pre>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="complex-data-types.html#cb62-1"></a>a_matrix[<span class="dv">2</span>, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)]</span></code></pre></div>
+<pre><code>## [1] 5 3</code></pre>
+
+<div class="rmdexercise">
+<p>As an exercise, create an arbitrary 3-dimensional array, retrieve 2 elements from it and write those elements to a new vector variable. Then retrieve 4 elements from the 3-dimensional array and write it to a new matrix variable.</p>
+<details closed>
+<summary><ins><strong>See solution!</strong></ins></summary>
+<p>
+<p><i><font color="grey"></p>
+<p>a3dim_array &lt;- array(1:24, dim=c(4, 3, 2))</p>
+<p>a3dim_array</p>
+<p>a_vector &lt;- a3dim_array[3, c(1, 2), 2]</p>
+<p>a_vector</p>
+<p>a_matrix &lt;- a3dim_array[c(3, 4), c(1, 2), 2]</p>
+<p>a_matrix</p>
+</font></i>
+</p>
+</details>
+</div>
+
+</div>
+<div id="list" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> List</h3>
+<p>Variables of the type <strong>list</strong> can contain elements of different types (including vectors and matrices), whereas elements of vectors are all of the same type.</p>
+<p>In the following example, I created a list containing the simple types ‘character’ and ‘numeric integer’:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="complex-data-types.html#cb64-1"></a>employee &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Christian&quot;</span>, <span class="dv">2017</span>)</span>
+<span id="cb64-2"><a href="complex-data-types.html#cb64-2"></a>employee</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] &quot;Christian&quot;
+## 
+## [[2]]
+## [1] 2017</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="complex-data-types.html#cb66-1"></a>employee[[<span class="dv">1</span>]] <span class="co"># Note the double square brackets for selection</span></span></code></pre></div>
+<pre><code>## [1] &quot;Christian&quot;</code></pre>
+<p>In contrast to vectors, matrices or arrays, the selection of list elements requires the use of <strong>double square brackets</strong>.</p>
+<p>A specific type of list is the so called named list. In <strong>named lists</strong>, each element has a name, and elements can be selected using their name after the symbol <code>$</code>:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="complex-data-types.html#cb68-1"></a>employee &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">employee_name =</span> <span class="st">&quot;Christian&quot;</span>, <span class="dt">start_year =</span> <span class="dv">2017</span>)</span>
+<span id="cb68-2"><a href="complex-data-types.html#cb68-2"></a>employee</span></code></pre></div>
+<pre><code>## $employee_name
+## [1] &quot;Christian&quot;
+## 
+## $start_year
+## [1] 2017</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="complex-data-types.html#cb70-1"></a>employee<span class="op">$</span>employee_name</span></code></pre></div>
+<pre><code>## [1] &quot;Christian&quot;</code></pre>
+</div>
+<div id="data-frame" class="section level3">
+<h3><span class="header-section-number">3.2.5</span> Data Frame</h3>
+<p><strong>Data frames</strong> are commonly used in R to encode tables of data. A data frame is equivalent to a named list where all elements are vectors of the same length. The code below creates a data frame named ‘employees’ that is composed of three vectors:</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="complex-data-types.html#cb72-1"></a>employees &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb72-2"><a href="complex-data-types.html#cb72-2"></a>  <span class="dt">EmployeeName =</span> <span class="kw">c</span>(<span class="st">&quot;Maria&quot;</span>, <span class="st">&quot;Pete&quot;</span>, <span class="st">&quot;Sarah&quot;</span>),</span>
+<span id="cb72-3"><a href="complex-data-types.html#cb72-3"></a>  <span class="dt">Age =</span> <span class="kw">c</span>(<span class="dv">47</span>, <span class="dv">34</span>, <span class="dv">32</span>),</span>
+<span id="cb72-4"><a href="complex-data-types.html#cb72-4"></a>  <span class="dt">Role =</span> <span class="kw">c</span>(<span class="st">&quot;Professor&quot;</span>, <span class="st">&quot;Researcher&quot;</span>, <span class="st">&quot;Researcher&quot;</span>))</span></code></pre></div>
+<p>You can retrieve the tabular structure of the data frame ‘employees’ by invoking the identifier in the code:</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="complex-data-types.html#cb73-1"></a>employees</span></code></pre></div>
+<pre><code>##   EmployeeName Age       Role
+## 1        Maria  47  Professor
+## 2         Pete  34 Researcher
+## 3        Sarah  32 Researcher</code></pre>
+<p>Eventually data frames are tables. Each named element is a column of the table.</p>
+
+<div class="rmdexercise">
+<p>Given the precondition that data frames are composed of named lists where elements are <strong>vectors</strong>, is it possible to mix simple types in a vector/in a data frame column?</p>
+<details closed>
+<summary><ins><strong>See solution!</strong></ins></summary>
+<p>
+<p><i><font color="grey"></p>
+<p>Elements of a vector (data frame column) must be of the same type (character, logical or numeric). In the example above, the column ‘EmployeeName’ contains only character strings, the column ‘Age’ contains only numeric etc.</p>
+</font></i>
+</p>
+</details>
+</div>
+
+<p>As the columns in a data frame have the same length, one element is present for each row of the table. Meaning the first element of vector ‘EmployeeName’ in data frame ‘employees’ is the Name of the first employee. The first element in vector ‘Age’ in data frame ‘employees’ is the age of the first employee etc.</p>
+
+<div class="rmdtip">
+<p>You can rename the columns of a data frame by means of a function called ‘names()’:</p>
+<strong>names(name of data frame)[column index as number] = “new column name”</strong>
+</div>
+
+<p>The selection of values from a data frame is similar to what we have seen for vectors and lists. However, you have to consider the two-dimensional shape of data frames. As such, you will generally need to specify two indices in order to retrieve values from a table.</p>
+<p>The following example retrieves the first element of the first column in data frame ‘employees’:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="complex-data-types.html#cb75-1"></a>employees[<span class="dv">1</span>, <span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Maria&quot;</code></pre>
+<p>We can also retrieve entire rows…</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="complex-data-types.html#cb77-1"></a>employees[<span class="dv">1</span>, ]</span></code></pre></div>
+<pre><code>##   EmployeeName Age      Role
+## 1        Maria  47 Professor</code></pre>
+<p>…and columns:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="complex-data-types.html#cb79-1"></a>employees[ ,<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;Maria&quot; &quot;Pete&quot;  &quot;Sarah&quot;</code></pre>
+<p>Alternatively, columns can be selected by means of dollar signs and columns names:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="complex-data-types.html#cb81-1"></a>employees<span class="op">$</span>Age</span></code></pre></div>
+<pre><code>## [1] 47 34 32</code></pre>
+<p>This returns the vector ‘Age’. Accordingly, we can use square brackets to retrieve elements of the vector:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="complex-data-types.html#cb83-1"></a>employees<span class="op">$</span>Age[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 47</code></pre>
+<p>To further modify the data frame, we can change elements (e.g. change the age of ‘Pete’ from 34 to 33)…</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="complex-data-types.html#cb85-1"></a>employees<span class="op">$</span>Age[<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">33</span></span></code></pre></div>
+<p>…or insert new columns as vectors (new column name Place):</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="complex-data-types.html#cb86-1"></a>employees<span class="op">$</span>Place &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Salzburg&quot;</span>, <span class="st">&quot;Salzburg&quot;</span>, <span class="st">&quot;Salzburg&quot;</span>)</span>
+<span id="cb86-2"><a href="complex-data-types.html#cb86-2"></a>employees</span></code></pre></div>
+<pre><code>##   EmployeeName Age       Role    Place
+## 1        Maria  47  Professor Salzburg
+## 2         Pete  33 Researcher Salzburg
+## 3        Sarah  32 Researcher Salzburg</code></pre>
+
+<div class="rmdexercise">
+<p>Operations can be performed on columns in the same way as on vectors. As an exercise, create a new variable, which stores the current year…</p>
+<p><em>current_year &lt;- as.integer(format(Sys.Date(), <span>"</span>%Y<span>"</span>))</em></p>
+<p>…use the column ‘Age’ in data frame ‘employees’ to calculate the year of birth for every employee…</p>
+<p>current_year - employees$Age</p>
+<p>…and insert the year of birth as a new column.</p>
+<details closed>
+<summary><ins><strong>See solution!</strong></ins></summary>
+<p>
+<p><i><font color="grey"></p>
+<p>#Instantiate data frame employees</p>
+<p>employees &lt;- data.frame(
+EmployeeName = c(<span>"</span>Maria<span>"</span>, <span>"</span>Pete<span>"</span>, <span>"</span>Sarah<span>"</span>),
+Age = c(47, 34, 32),
+Role = c(<span>"</span>Professor<span>"</span>, <span>"</span>Researcher<span>"</span>, <span>"</span>Researcher<span>"</span>))</p>
+<p>#Use Sys.Date to retrieve the current year</p>
+<p>current_year &lt;- as.integer(format(Sys.Date(), <span>"</span>%Y<span>"</span>))</p>
+<p>#Calculate employee year of birth</p>
+<p>employees<span>$</span>Year_of_birth &lt;- current_year - employees<span>$</span>Age</p>
+<p>employees</p>
+</font></i>
+</p>
+</details>
+</div>
+
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="core.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="control-structures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["UNIGIS-AppDev-R.pdf", "UNIGIS-AppDev-R.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
