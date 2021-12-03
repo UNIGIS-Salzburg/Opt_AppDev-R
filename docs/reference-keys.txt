@@ -54,7 +54,7 @@ read-and-write-data
 read-and-write-tabular-data
 read-and-write-vector-data
 data-api
-data-visualisation
+data-visualization
 the-grammar-of-graphics
 visualization-of-distributions
 boxplots

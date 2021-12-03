@@ -31,7 +31,7 @@
   
   <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="data-wrangling.html"/>
-<link rel="next" href="data-visualisation.html"/>
+<link rel="next" href="data-visualization.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -200,12 +200,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-vector-data"><i class="fa fa-check"></i><b>7.2</b> Read and write vector data</a></li>
 <li class="chapter" data-level="7.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#data-api"><i class="fa fa-check"></i><b>7.3</b> Data API</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="data-visualisation.html"><a href="data-visualisation.html"><i class="fa fa-check"></i><b>8</b> Data visualisation</a><ul>
-<li class="chapter" data-level="8.1" data-path="data-visualisation.html"><a href="data-visualisation.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>8.1</b> The Grammar of Graphics</a></li>
-<li class="chapter" data-level="8.2" data-path="data-visualisation.html"><a href="data-visualisation.html#visualization-of-distributions"><i class="fa fa-check"></i><b>8.2</b> Visualization of distributions</a></li>
-<li class="chapter" data-level="8.3" data-path="data-visualisation.html"><a href="data-visualisation.html#boxplots"><i class="fa fa-check"></i><b>8.3</b> Boxplots</a></li>
-<li class="chapter" data-level="8.4" data-path="data-visualisation.html"><a href="data-visualisation.html#scatterplots"><i class="fa fa-check"></i><b>8.4</b> Scatterplots</a></li>
-<li class="chapter" data-level="8.5" data-path="data-visualisation.html"><a href="data-visualisation.html#map-visualization"><i class="fa fa-check"></i><b>8.5</b> Map visualization</a></li>
+<li class="chapter" data-level="8" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>8</b> Data visualization</a><ul>
+<li class="chapter" data-level="8.1" data-path="data-visualization.html"><a href="data-visualization.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>8.1</b> The Grammar of Graphics</a></li>
+<li class="chapter" data-level="8.2" data-path="data-visualization.html"><a href="data-visualization.html#visualization-of-distributions"><i class="fa fa-check"></i><b>8.2</b> Visualization of distributions</a></li>
+<li class="chapter" data-level="8.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>8.3</b> Boxplots</a></li>
+<li class="chapter" data-level="8.4" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i><b>8.4</b> Scatterplots</a></li>
+<li class="chapter" data-level="8.5" data-path="data-visualization.html"><a href="data-visualization.html#map-visualization"><i class="fa fa-check"></i><b>8.5</b> Map visualization</a></li>
 </ul></li>
 <li class="divider"></li>
 <li>Copyright © UNIGIS Salzburg.</li>
@@ -438,31 +438,31 @@ Figure 7.1: Video (3:13 min): REST API concepts and examples.
 ##   ..$ lat: num 47.8
 ##  $ weather   :List of 1
 ##   ..$ :List of 4
-##   .. ..$ id         : int 803
+##   .. ..$ id         : int 802
 ##   .. ..$ main       : chr &quot;Clouds&quot;
-##   .. ..$ description: chr &quot;broken clouds&quot;
-##   .. ..$ icon       : chr &quot;04d&quot;
+##   .. ..$ description: chr &quot;scattered clouds&quot;
+##   .. ..$ icon       : chr &quot;03d&quot;
 ##  $ base      : chr &quot;stations&quot;
 ##  $ main      :List of 6
-##   ..$ temp      : num 278
-##   ..$ feels_like: num 276
-##   ..$ temp_min  : num 275
-##   ..$ temp_max  : num 279
-##   ..$ pressure  : int 999
-##   ..$ humidity  : int 92
+##   ..$ temp      : num 274
+##   ..$ feels_like: num 270
+##   ..$ temp_min  : num 270
+##   ..$ temp_max  : num 277
+##   ..$ pressure  : int 1015
+##   ..$ humidity  : int 90
 ##  $ visibility: int 10000
 ##  $ wind      :List of 2
-##   ..$ speed: num 2.06
-##   ..$ deg  : int 130
+##   ..$ speed: num 4.12
+##   ..$ deg  : int 320
 ##  $ clouds    :List of 1
-##   ..$ all: int 75
-##  $ dt        : int 1638456950
+##   ..$ all: int 40
+##  $ dt        : int 1638539280
 ##  $ sys       :List of 5
 ##   ..$ type   : int 1
 ##   ..$ id     : int 6877
 ##   ..$ country: chr &quot;AT&quot;
-##   ..$ sunrise: int 1638427041
-##   ..$ sunset : int 1638458261
+##   ..$ sunrise: int 1638513512
+##   ..$ sunset : int 1638544635
 ##  $ timezone  : int 3600
 ##  $ id        : int 2766824
 ##  $ name      : chr &quot;Salzburg&quot;
@@ -507,7 +507,7 @@ Copy the code snippets above to a new R-Script. <strong>Make sure to replace the
         </div>
       </div>
 <a href="data-wrangling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-visualisation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

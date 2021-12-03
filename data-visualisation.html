@@ -170,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>R has a very rich set of graphical functions. The <a href="https://www.r-graph-gallery.com/" target="_blank">R Graph Gallery</a> provides a large number of examples (including code).</p>
 
 <div class="rmdtip">
-In this lesson you will get to know the <a href="https://ggplot2.tidyverse.org/" target="_blank"><code>ggplot2</code> library</a>, which is the most popular library for creating graphics in R. You will learn to create standard graphs such as histograms, boxplots or scatterplots as well as maps by means of <a href="https://ggplot2.tidyverse.org/" target="_blank"><code>ggplot2</code> library</a>.
+In this lesson you will get to know the <a href="https://ggplot2.tidyverse.org/" target="_blank"><code>ggplot2</code> library</a>, which is the most popular library for creating graphics in R. You will learn to create standard graphs such as histograms, boxplots or scatterplots as well as maps by means of the <a href="https://ggplot2.tidyverse.org/" target="_blank"><code>ggplot2</code> library</a>.
 </div>
 
 <div id="the-grammar-of-graphics" class="section level2">
@@ -180,7 +180,7 @@ In this lesson you will get to know the <a href="https://ggplot2.tidyverse.org/"
 <ol style="list-style-type: decimal">
 <li>Data - The data element is the dataset itself.</li>
 <li>Aesthetics - This layer defines how variables are mapped onto scales (see description below).</li>
-<li>Geometries - This element determines how our data is being displayed (bars, points, lines)</li>
+<li>Geometries - This element determines how our data is being displayed (e.g. bars, points, lines etc.)</li>
 <li>Facets - Facetting splits the data into subset and displays the same graph for every subset.</li>
 <li>Statistics - These are statistics derived from the data (add mean, median, quartile, etc.).</li>
 <li>Coordinates - This element determines the transformation of axes (e.g. change spacing of displayed data)</li>
@@ -324,7 +324,7 @@ The basic concept behind the grammar of graphics is described in an <a href="htt
 <span id="cb3-16"><a href="#cb3-16"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st">   </span></span>
 <span id="cb3-17"><a href="#cb3-17"></a><span class="st">  </span>ggplot2<span class="op">::</span><span class="kw">theme_bw</span>()            </span></code></pre></div>
 <p><img src="08-data_viz_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<p>This is implemented by adding an attribute <code>fill = station</code> to the aesthetics element (<code>aes()</code>). <code>ggplot2</code> offers a number of <a href="https://ggplot2.tidyverse.org/reference/aes_colour_fill_alpha.html" target="_blank">functions</a> to specify your own set of mappings from levels in the data to aesthetic values. In the example above the function <code>scale_fill_manual()</code> is used to map the three levels S125, S270 and S431 to the <a href="http://sape.inf.usi.ch/quick-reference/ggplot2/colour" target="_blank">predefined ggplot colors</a> grey20, grey50 and grey80. Instead of ggplot colors, you can also use <a href="https://htmlcolorcodes.com/" target="_blank">hex color codes</a>.</p>
+<p>This is implemented by adding an attribute <code>fill = station</code> to the aesthetics element (<code>aes()</code>). <code>ggplot2</code> offers a number of <a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" target="_blank">functions</a> to specify your own set of mappings from levels in the data to aesthetic values. In the example above the function <code>scale_fill_manual()</code> is used to map the three levels S125, S270 and S431 to the fill <a href="http://sape.inf.usi.ch/quick-reference/ggplot2/colour" target="_blank">colors</a> grey20, grey50 and grey80. Instead of ggplot colors, you can also use <a href="https://htmlcolorcodes.com/" target="_blank">hex color codes</a>.</p>
 
 <div class="rmdexercise">
 <p>Note that plot components are <a href="https://ggplot2.tidyverse.org/reference/gg-add.html" target="_blank">added</a> by means of a plus ‘+’ sign. It allows you to start simple, then get more and more complex.</p>
@@ -343,7 +343,7 @@ The basic concept behind the grammar of graphics is described in an <a href="htt
 </div>
 <div id="boxplots" class="section level2">
 <h2><span class="header-section-number">1.3</span> Boxplots</h2>
-<p>The same basic syntax is used to create other types of plots like bar plots (use geometry <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" target="_blank"><code>geom_bar()</code></a> or <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" target="_blank"><code>geom_col()</code></a>), line plots (use geometry <a href="https://ggplot2.tidyverse.org/reference/geom_path.html" target="_blank"><code>geom_line()</code></a>) and many <a href="https://ggplot2.tidyverse.org/reference/index.html" target="_blank">others</a>.</p>
+<p>The same basic syntax is used to create other types of plots like bar plots (use geometry <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" target="_blank"><code>geom_bar()</code></a> or <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" target="_blank"><code>geom_col()</code></a>, line plots (use geometry <a href="https://ggplot2.tidyverse.org/reference/geom_path.html" target="_blank"><code>geom_line()</code></a>) and many <a href="https://ggplot2.tidyverse.org/reference/index.html" target="_blank">others</a>.</p>
 <p>For instance, if we replace <code>geom_histogram()</code> by <code>geom_boxplot()</code>, the value distribution of NO2 measurements is visualized by means of a box plot:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#filter NO2 measurements with temporal resolution 30min (HMW)</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>airquality <span class="op">%&gt;%</span></span>
