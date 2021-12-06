@@ -10,4 +10,4 @@ In this module, the granolarr materials will be adapted and extended to fit the 
 ToDos:
 
 * describe tibbles (output of dplyr) in more detail
-* long and wide table formats (see data wrangling de sabbata)
+* add long and wide table formats (see data wrangling de sabbata)
