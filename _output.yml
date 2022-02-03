@@ -9,11 +9,11 @@ bookdown::gitbook:
         <li><a href="./">Application Development with R</a></li>
       after: |
         <li>Copyright © UNIGIS Salzburg.</li>
-    download: ["pdf", "epub"]
-bookdown::epub_book: default
-bookdown::word_document2:
-  reference_docx: Template-word.dotx
-  toc: true
-  toc_depth: 2
+#download: ["pdf", "epub"]
+#bookdown::epub_book: default
+#bookdown::word_document2:
+#  reference_docx: Template-word.dotx
+#  toc: true
+#  toc_depth: 2
 
   
