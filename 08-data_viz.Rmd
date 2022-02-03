@@ -413,3 +413,9 @@ Eventually, we save a PDF version of the map, which keeps the best quality, and 
 ggsave("data/map.pdf")
 ggsave("data/map_web.png", width = 10, height = 10, dpi = "screen")
 ```
+
+```{block2, type = 'rmdtip'}
+
+Take a look at the [ggplot Cheatsheet](https://www.rstudio.com/resources/cheatsheets/){target="_blank"} which shows the most important ggplot operations at a glance.
+
+```

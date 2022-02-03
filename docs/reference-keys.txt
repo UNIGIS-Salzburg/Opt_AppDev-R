@@ -1,3 +1,4 @@
+fig:RStudioVideo
 fig:L01-console
 fig:L06-faodata
 fig:L06-joins
