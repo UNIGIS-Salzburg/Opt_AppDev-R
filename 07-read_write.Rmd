@@ -225,3 +225,9 @@ Copy the code snippets above to a new R-Script. **Make sure to replace the key i
 [Tidyverse](https://www.tidyverse.org/packages/){target="_blank"} also provides other packages for reading data such as [DBI](https://cran.r-project.org/web/packages/DBI/){target="_blank"} for relational databases [jsonlite](https://cran.r-project.org/web/packages/jsonlite/){target="_blank"} for JSON and [xml2](https://cran.r-project.org/web/packages/xml2/){target="_blank"} for XML. 
 
 ```
+
+```{block2, type = 'rmdtip'}
+
+The lessons so far have covered some fundamental concepts of R programming. The [Base R Cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf){target="_blank"} contains a concise summary of most important operations at a glance.
+
+```

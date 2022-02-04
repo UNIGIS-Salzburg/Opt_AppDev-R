@@ -320,7 +320,7 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 <span id="cb141-3"><a href="read-and-write-data.html#cb141-3"></a>nc &lt;-<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_read</span>(<span class="st">&quot;data/nc.shp&quot;</span>)</span>
 <span id="cb141-4"><a href="read-and-write-data.html#cb141-4"></a></span>
 <span id="cb141-5"><a href="read-and-write-data.html#cb141-5"></a><span class="kw">plot</span>(nc)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
 <p>The library <code>sf</code> represents features as records in a data frame or tibble with a geometry list-column. The example below renders three features (rows) of variable nc including the geometry column as well as the attributes <code>AREA</code> (feature area) and <code>NAME</code> (name of county):</p>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="read-and-write-data.html#cb142-1"></a>nc <span class="op">%&gt;%</span></span>
 <span id="cb142-2"><a href="read-and-write-data.html#cb142-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(AREA, NAME, geometry) <span class="op">%&gt;%</span></span>
@@ -355,7 +355,7 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 <p><code>sf</code> also includes a number of operations to manipulate the geometry of features such as <code>st_simplify</code>:</p>
 <div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="read-and-write-data.html#cb143-1"></a>sf<span class="op">::</span><span class="kw">st_simplify</span>(nc) <span class="op">%&gt;%</span></span>
 <span id="cb143-2"><a href="read-and-write-data.html#cb143-2"></a><span class="st">  </span><span class="kw">plot</span>(., <span class="dt">max.plot =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-123-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
 
 <div class="rmdtip">
 <p>You may have recognized that a dot (.) is used as a parameter in the function <code>plot()</code>. The dot represents the piped value. In the example above the dot is used to define the simplified geometry of nc as first parameter of function <code>plot()</code> and <code>max.plot = 1</code> as the second.</p>
@@ -366,7 +366,7 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 <span id="cb144-2"><a href="read-and-write-data.html#cb144-2"></a><span class="st">  </span>sf<span class="op">::</span><span class="kw">st_centroid</span>() <span class="op">%&gt;%</span></span>
 <span id="cb144-3"><a href="read-and-write-data.html#cb144-3"></a><span class="st">  </span>sf<span class="op">::</span><span class="kw">st_write</span>(<span class="st">&quot;data/nc-centroids.shp&quot;</span>, <span class="dt">delete_dsn =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
 <span id="cb144-4"><a href="read-and-write-data.html#cb144-4"></a><span class="st">  </span><span class="kw">plot</span>(<span class="dt">pch =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>) </span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
 
 <div class="rmdtip">
 The online book <a href="https://geocompr.robinlovelace.net/geometric-operations.html" target="_blank">Geocomputation with R</a> offers a more comprehensive explanation of available geometric, attribute and spatial data operations. For a quick overview, you may turn to the <a href="https://github.com/rstudio/cheatsheets/blob/master/sf.pdf" target="_blank">sf cheatsheets</a>.
@@ -438,31 +438,31 @@ Figure 7.1: Video (3:13 min): REST API concepts and examples.
 ##   ..$ lat: num 47.8
 ##  $ weather   :List of 1
 ##   ..$ :List of 4
-##   .. ..$ id         : int 801
+##   .. ..$ id         : int 802
 ##   .. ..$ main       : chr &quot;Clouds&quot;
-##   .. ..$ description: chr &quot;few clouds&quot;
-##   .. ..$ icon       : chr &quot;02d&quot;
+##   .. ..$ description: chr &quot;scattered clouds&quot;
+##   .. ..$ icon       : chr &quot;03d&quot;
 ##  $ base      : chr &quot;stations&quot;
 ##  $ main      :List of 6
-##   ..$ temp      : num 274
-##   ..$ feels_like: num 272
-##   ..$ temp_min  : num 270
-##   ..$ temp_max  : num 277
-##   ..$ pressure  : int 1015
-##   ..$ humidity  : int 86
+##   ..$ temp      : num 280
+##   ..$ feels_like: num 276
+##   ..$ temp_min  : num 275
+##   ..$ temp_max  : num 283
+##   ..$ pressure  : int 1022
+##   ..$ humidity  : int 90
 ##  $ visibility: int 10000
 ##  $ wind      :List of 2
-##   ..$ speed: num 2.06
-##   ..$ deg  : int 300
+##   ..$ speed: num 5.66
+##   ..$ deg  : int 140
 ##  $ clouds    :List of 1
-##   ..$ all: int 20
-##  $ dt        : int 1638541204
+##   ..$ all: int 40
+##  $ dt        : int 1643884828
 ##  $ sys       :List of 5
 ##   ..$ type   : int 1
 ##   ..$ id     : int 6877
 ##   ..$ country: chr &quot;AT&quot;
-##   ..$ sunrise: int 1638513512
-##   ..$ sunset : int 1638544636
+##   ..$ sunrise: int 1643869964
+##   ..$ sunset : int 1643904634
 ##  $ timezone  : int 3600
 ##  $ id        : int 2766824
 ##  $ name      : chr &quot;Salzburg&quot;
@@ -496,6 +496,11 @@ Copy the code snippets above to a new R-Script. <strong>Make sure to replace the
 
 <div class="rmdtip">
 <p><a href="https://www.tidyverse.org/packages/" target="_blank">Tidyverse</a> also provides other packages for reading data such as <a href="https://cran.r-project.org/web/packages/DBI/" target="_blank">DBI</a> for relational databases <a href="https://cran.r-project.org/web/packages/jsonlite/" target="_blank">jsonlite</a> for JSON and <a href="https://cran.r-project.org/web/packages/xml2/" target="_blank">xml2</a> for XML.</p>
+</div>
+
+
+<div class="rmdtip">
+<p>The lessons so far have covered some fundamental concepts of R programming. The <a href="https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf" target="_blank">Base R Cheatsheet</a> contains a concise summary of most important operations at a glance.</p>
 </div>
 
 
@@ -549,7 +554,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["UNIGIS-AppDev-R.pdf", "UNIGIS-AppDev-R.epub"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null
