@@ -65,7 +65,7 @@ Of course, gains in efficiency are minor given that the calculus is simple. In a
 1) Create a new R script in RStudio (File/New File/R Script).
 2) Declare two variables (temp_A and temp_B) and assign arbitrary temperature values to it.
 3) Declare a third variable (diff) and assign the difference between the other variables as a value. 
-4) Run your script. 
+4) Run your script (select your code and click Run). 
 
 <details closed>
 <summary><ins>**See solution!**</ins></summary>

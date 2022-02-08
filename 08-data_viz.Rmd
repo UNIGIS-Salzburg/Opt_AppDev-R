@@ -79,7 +79,7 @@ airquality %>%
 
 ```
 
-The code below filters the airquality dataset by measurement component and temporal resolution. Then the data subset is passed as a first argument to function `ggplot()`. In the second argument, we map the variable 'value' onto the x-axis with the aesthetics argument `aes()`. `geom_histogram()` specifies the geometry of the plot and `theme_bw()` is used to add a [background theme](https://ggplot2.tidyverse.org/reference/ggtheme.html){target="_blank"}.
+The code below filters the airquality dataset by measurement component and temporal resolution. Then the data subset is passed as a first argument to function `ggplot()`. In the second argument, we map the variable `value` onto the x-axis with the aesthetics argument `aes()`. `geom_histogram()` specifies the geometry of the plot and `theme_bw()` is used to add a [background theme](https://ggplot2.tidyverse.org/reference/ggtheme.html){target="_blank"}.
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 

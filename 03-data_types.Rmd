@@ -64,7 +64,7 @@ a_vector
 
 ### Vector element selection
 
-Each element of a vector can be retrieved specifying the related **index** between square brackets, after the identifier of the vector. The **first element** of the vector **has index 1**. The following, code retrieves a value of '5', which is the third element of the vector with identifier 'a_vector':
+Each element of a vector can be retrieved by specifying the related **index** between square brackets, after the identifier of the vector. The **first element** of the vector **has index 1**. The following, code retrieves a value of '5', which is the third element of the vector with identifier 'a_vector':
 
 ```{r, echo=TRUE}
 a_vector <- (3:8)

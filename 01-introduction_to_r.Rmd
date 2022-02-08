@@ -12,7 +12,7 @@ After you have learned how to manipulate data, you will get to know methods to *
 Upon the completion of this module, you will have the fundamental skills in R programming as a basis for more advanced methods like Geospatial Data Analysis (is covered by the module "Spatial Statistics" in the MSc program) and Machine Learning.
 
 ```{block2, type = 'rmdtip'}
-This module is partly based on the teaching materials [granolarr](https://sdesabbata.github.io/granolarr/){target="_blank"} worked out by [Stefano de Sabbata](https://stefanodesabbata.com/){target="_blank"} at the [University of Leicester](https://le.ac.uk/){target="_blank"}. For more information take a look at the [Granolarr Lecture Pages](https://sdesabbata.github.io/granolarr/lectures_100/){target="_blank"} or at the more comprehensive [Bookdown Version](https://sdesabbata.github.io/granolarr/lectures/bookdown/){target="_blank"}. The chapters on **Statistical Analysis* and **Machine Learning** are recommended as a follow up read for those who are willing to delve into more advanced applications of R. 
+This module is partly based on the teaching materials [granolarr](https://sdesabbata.github.io/granolarr/){target="_blank"} worked out by [Stefano de Sabbata](https://stefanodesabbata.com/){target="_blank"} at the [University of Leicester](https://le.ac.uk/){target="_blank"}. For more information take a look at the [Granolarr Lecture Pages](https://sdesabbata.github.io/granolarr/lectures_100/){target="_blank"} or at the more comprehensive [Bookdown Version](https://sdesabbata.github.io/granolarr/lectures/bookdown/){target="_blank"}. The chapters on **Statistical Analysis** and **Machine Learning** are recommended as a follow up read for those who are willing to delve into more advanced applications of R. 
 ```
 
 ## R programming language
@@ -48,7 +48,7 @@ Before you can run your code, you have to install R together with an **Integrate
 1. Download R from [R Archive Network (CRAN.)](http://cran.r-project.org){target="_blank"} 
 2. Follow the instructions and install the most up to date version on your machine (chose 'base' as well as 32-bit or 64-bit dependent on the bit-version of your operating system).
 
-The IDE is where your write, test and execute your R programs. We strongly recommend using **RStudio Desktop**, which is [freely available for download.](https://www.rstudio.com/){target="_blank"}
+The IDE is where you write, test and execute your R programs. I strongly recommend using **RStudio Desktop**, which is [freely available for download.](https://www.rstudio.com/){target="_blank"}
 
 The following video gives a brief overview of key functions of RStudio.
 
@@ -59,7 +59,7 @@ knitr::include_url("https://www.youtube.com/embed/FIrsOBy5k58")
 ``` 
 
 ```{block2, type = 'rmdtip'}
-If you need help, please turn to the discussion forum!
+In case you are facing any technical issues, please turn to the discussion forum!
 ```
 
 ## Interpreting values
@@ -88,7 +88,7 @@ The interpreter returns an error, because this datatype is unknown. Text is comm
 
 ```
 
-If you start your input with a hash symbol (#) the interpreter will consider that line as a comment. For instance, if you type in *# comments are ignored*, you will see that nothing is returned as an output. Comments are extremely important as they allow you to add explanations in plain language. Comments are fundamental to allow other people to understand your code and it will save you time interpreting your own code.     
+If you start your input with a hash symbol (#) the interpreter will consider that line as a comment. For instance, if you type in **# Test Test Test**, you will see that nothing is returned as an output. Comments are extremely important as they allow you to add explanations in plain language. Comments are fundamental to allow other people to understand your code and it will save you time interpreting your own code.     
 
 ## Simple data types
 
@@ -119,7 +119,7 @@ Logical operations return values of type 'logical'. What value is returned in th
 <summary><ins>**See solution!**</ins></summary>
 <p><i><font color="grey">
   
-The interpreter returns 'TRUE', because 2 is less than 3.
+The interpreter returns 'TRUE', because it is 'true' that 2 is less than 3.
 
 </font></i>
 </p>
