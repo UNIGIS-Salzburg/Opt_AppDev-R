@@ -4,13 +4,15 @@
 In most instances the structure of the available data will not meet the specific requirements to perform the analyses you are interested in. Data analysts typically spend the majority of their time cleaning, filtering, restructuring data as well as harmonizing and joining data from different sources.
 
 This lesson introduces to the most common data wrangling operations by means of the dplyr library (part of the Tidyverse libraries), which offers a grammar for data manipulation.
+
+You will also get to know [tibbles](https://tibble.tidyverse.org/){target="_blank"} as a new complex data type. Tibbles are basically a lightweight version of data frames (see [Tibbles in R for Data Science](https://r4ds.had.co.nz/tibbles.html){target="_blank"}). 
 ```
 
 ## Preparation
 
 If not yet installed on your machine, install the libraries `tidyverse` as well as `nycflights13` (see Libraries in lesson [core Concepts](#core)).
 
-The code below, loads the data frame `flights` from the library `nycflights13` into the variable `flights_from_nyc`. We will use this data frame in this lesson. 
+The code below, loads a sample dataset (a [tibble](https://tibble.tidyverse.org/){target="_blank"}) from the library `nycflights13` into the variable `flights_from_nyc`. We will use this sample data in this lesson. 
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -19,7 +21,7 @@ flights_from_nyc <- nycflights13::flights
 
 ```
 
-The operator `::` is used to indicate that the data frame `flights` is situated within the library `nycflights13`. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names. 
+The operator `::` is used to indicate that the function `flights` (that returns our sample dataset) is situated within the library `nycflights13`. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names. 
 
 In order to run the following data wrangling examples on your machine, add both lines above as well as the code snippets provided in the upcoming examples to a new R script file.
 
@@ -27,13 +29,13 @@ In order to run the following data wrangling examples on your machine, add both 
 
 Once you have loaded the flights table, open the **Environment Tab** in RStudio and double-click variable `flights_from_nyc` to inspect the variable contents.
 
-Alternatively, you may inspect the data frame `flights_from_nyc` by writing it to the console.
+Alternatively, you may inspect `flights_from_nyc` by writing it to the console.
 
 ```
 
 ## Data manipulation
 
-The library `dplyr` provides a number of functions to investigate basic characteristics of inputs. For instance, the function `count()` can be used to count the number of rows of a data frame. The code below provides `flights_from_nyc` as input to the function. 
+The library `dplyr` provides a number of functions to investigate basic characteristics of inputs. For instance, the function `count()` can be used to count the number of rows of a data frame or tibble. The code below uses `flights_from_nyc` as input to the function. 
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -48,14 +50,14 @@ flights_from_nyc %>%
 In the code example above, we use the so called **pipe operator** `%>%`, which is included in `tidyverse`, as well as a function named `kable()` of library `knitr` to render the output.
 
 ```{block2, type = 'rmdtip'}
-The pipe operator allows us to link a sequence of analysis steps. In the example above the data frame `flights_from_nyc` is passed into function `count()` and the output is passed into function `kable()` to render the result_df
+The pipe operator allows us to link a sequence of analysis steps. In the example above, `flights_from_nyc` is passed into function `count()` and the output is passed into function `kable()` to render the result_df
 
 The pipe operator is a powerful tool to simplify your code. See [this video](https://www.youtube.com/watch?v=sohARFx6aTo){target="_blank"} to learn more about it.
 ```
 
 The function `count()` can also be used to count the number of rows of a table that has the same value for a given column, usually representing a category.
 
-In the example below, the column name origin is provided as an argument to the function count, so rows representing flights from the same origin are counted together – EWR is the Newark Liberty International Airport, JFK is the John F. Kennedy International Airport, and LGA is LaGuardia Airport.
+In the example below, the column name `origin` is provided as an argument to the function `count()`, so rows representing flights from the same origin are counted together – EWR is the Newark Liberty International Airport, JFK is the John F. Kennedy International Airport, and LGA is LaGuardia Airport.
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -69,9 +71,9 @@ As you can see, the code above is formatted in a way similar to a code block, al
 
 ### Summarise
 
-To carry out more complex aggregations, the function `summarise(`) can be used in combination with the function `group_by()` to summarise the values of the rows of a data frame. Rows having the same value for a selected column (in the example below, the same origin) are grouped together, then values are aggregated based on the defined function (using one or more columns in the calculation).
+To carry out more complex aggregations, the function `summarise(`) can be used in combination with the function `group_by()` to summarise the values of the rows of a data frame or tibble. Rows having the same value for a selected column (in the example below, the same `origin`) are grouped together, then values are aggregated based on the defined function (using one or more columns in the calculation).
 
-In the example below, the function `sum()` is applied to the column distance to calculate distance_traveled_from (the total distance travelled by flights starting from each airport).
+In the example below, the function `sum()` is applied to the column `distance` to calculate a new column `mean_distance_traveled_from` (the mean distance travelled by flights starting from each airport).
 
 ```{r, echo=TRUE}
 flights_from_nyc %>%
@@ -121,7 +123,7 @@ flights_from_nyc %>%
 
 ### Arrange
 
-The function `arrange()` sorts a [tibble](https://tibble.tidyverse.org/){target="_blank"} by ascending order of the values in the specified column. If the operator `-` is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.
+The function `arrange()` sorts a tibble or data frame by ascending order of the values in the specified column. If a negative sign is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.
 
 ```{r, echo=TRUE}
 flights_from_nyc %>%
@@ -165,7 +167,7 @@ See [my solution](Solution_Exercise_DataWrangling1.R){target="_blank"}!
 
 ## Join
 
-A join operation combines two tables into one by matching rows that have the same values in the specified column. This operation is usually executed on columns containing identifiers, which are matched through different tables containing different data about the same real-world entities. For instance, the **table below** presents the telephone prefixes for two cities. That information can be combined with the data present in the **second table below** through a join operation on the columns containing the city names. As the two tables do not contain all the same cities, if a full join operation is executed, some cells have no values assigned.
+A join operation combines two tables into one by matching rows that have the same values in the specified column. This operation is usually executed on columns containing identifiers, which are matched through different tables containing different data about the same real-world entities. For instance, the **table below** (data frame `city_telephone_prexix`) presents the telephone prefixes for two cities. That information can be combined with the data present in the **second table below** (data frame `city_info_wide`) through a join operation on the columns containing the city names. As the two tables do not contain all the same cities, if a full join operation is executed, some cells have no values assigned.
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
 city_telephone_prexix <- data.frame(
@@ -192,7 +194,7 @@ city_info_wide %>%
 ```
 
 ```{block2, type = 'rmdtip'}
-Note that data frames in the code above are converted to so called [tibbles](https://tibble.tidyverse.org/){target="_blank"}, which is another tabular format. This step is needed as the function `kable()` takes `tibbles` as an input. 
+Note that data frames in the code above are converted to [tibbles](https://tibble.tidyverse.org/){target="_blank"}. This step is needed as the function `kable()` takes `tibbles` as an input. 
 ```
 
 The `dplyr` library offers different types of join operations, which correspond to the different `SQL` joins illustrated in the image below. 

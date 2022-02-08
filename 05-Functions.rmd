@@ -151,3 +151,8 @@ times_x <- function (input_value, x_value = 10) {
 
 ```
 
+```{block2, type = 'rmdtip'}
+
+The lessons so far have covered some fundamental concepts of R programming. The [Base R Cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf){target="_blank"} contains a concise summary of most important operations at a glance.
+
+```

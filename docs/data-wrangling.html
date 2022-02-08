@@ -232,27 +232,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div class="rmdtip">
 <p>In most instances the structure of the available data will not meet the specific requirements to perform the analyses you are interested in. Data analysts typically spend the majority of their time cleaning, filtering, restructuring data as well as harmonizing and joining data from different sources.</p>
-This lesson introduces to the most common data wrangling operations by means of the dplyr library (part of the Tidyverse libraries), which offers a grammar for data manipulation.
+<p>This lesson introduces to the most common data wrangling operations by means of the dplyr library (part of the Tidyverse libraries), which offers a grammar for data manipulation.</p>
+You will also get to know <a href="https://tibble.tidyverse.org/" target="_blank">tibbles</a> as a new complex data type. Tibbles are basically a lightweight version of data frames (see <a href="https://r4ds.had.co.nz/tibbles.html" target="_blank">Tibbles in R for Data Science</a>).
 </div>
 
 <div id="preparation" class="section level2">
 <h2><span class="header-section-number">6.1</span> Preparation</h2>
 <p>If not yet installed on your machine, install the libraries <code>tidyverse</code> as well as <code>nycflights13</code> (see Libraries in lesson <a href="core.html#core">core Concepts</a>).</p>
-<p>The code below, loads the data frame <code>flights</code> from the library <code>nycflights13</code> into the variable <code>flights_from_nyc</code>. We will use this data frame in this lesson.</p>
+<p>The code below, loads a sample dataset (a <a href="https://tibble.tidyverse.org/" target="_blank">tibble</a>) from the library <code>nycflights13</code> into the variable <code>flights_from_nyc</code>. We will use this sample data in this lesson.</p>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="data-wrangling.html#cb121-1"></a><span class="kw">library</span>(nycflights13)</span>
 <span id="cb121-2"><a href="data-wrangling.html#cb121-2"></a>flights_from_nyc &lt;-<span class="st"> </span>nycflights13<span class="op">::</span>flights</span></code></pre></div>
-<p>The operator <code>::</code> is used to indicate that the data frame <code>flights</code> is situated within the library <code>nycflights13</code>. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names.</p>
+<p>The operator <code>::</code> is used to indicate that the function <code>flights</code> (that returns our sample dataset) is situated within the library <code>nycflights13</code>. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names.</p>
 <p>In order to run the following data wrangling examples on your machine, add both lines above as well as the code snippets provided in the upcoming examples to a new R script file.</p>
 
 <div class="rmdtip">
 <p>Once you have loaded the flights table, open the <strong>Environment Tab</strong> in RStudio and double-click variable <code>flights_from_nyc</code> to inspect the variable contents.</p>
-<p>Alternatively, you may inspect the data frame <code>flights_from_nyc</code> by writing it to the console.</p>
+<p>Alternatively, you may inspect <code>flights_from_nyc</code> by writing it to the console.</p>
 </div>
 
 </div>
 <div id="data-manipulation" class="section level2">
 <h2><span class="header-section-number">6.2</span> Data manipulation</h2>
-<p>The library <code>dplyr</code> provides a number of functions to investigate basic characteristics of inputs. For instance, the function <code>count()</code> can be used to count the number of rows of a data frame. The code below provides <code>flights_from_nyc</code> as input to the function.</p>
+<p>The library <code>dplyr</code> provides a number of functions to investigate basic characteristics of inputs. For instance, the function <code>count()</code> can be used to count the number of rows of a data frame or tibble. The code below uses <code>flights_from_nyc</code> as input to the function.</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="data-wrangling.html#cb122-1"></a><span class="kw">library</span>(tidyverse)</span>
 <span id="cb122-2"><a href="data-wrangling.html#cb122-2"></a><span class="kw">library</span>(knitr)</span>
 <span id="cb122-3"><a href="data-wrangling.html#cb122-3"></a></span>
@@ -274,12 +275,12 @@ This lesson introduces to the most common data wrangling operations by means of 
 <p>In the code example above, we use the so called <strong>pipe operator</strong> <code>%&gt;%</code>, which is included in <code>tidyverse</code>, as well as a function named <code>kable()</code> of library <code>knitr</code> to render the output.</p>
 
 <div class="rmdtip">
-<p>The pipe operator allows us to link a sequence of analysis steps. In the example above the data frame <code>flights_from_nyc</code> is passed into function <code>count()</code> and the output is passed into function <code>kable()</code> to render the result_df</p>
+<p>The pipe operator allows us to link a sequence of analysis steps. In the example above, <code>flights_from_nyc</code> is passed into function <code>count()</code> and the output is passed into function <code>kable()</code> to render the result_df</p>
 The pipe operator is a powerful tool to simplify your code. See <a href="https://www.youtube.com/watch?v=sohARFx6aTo" target="_blank">this video</a> to learn more about it.
 </div>
 
 <p>The function <code>count()</code> can also be used to count the number of rows of a table that has the same value for a given column, usually representing a category.</p>
-<p>In the example below, the column name origin is provided as an argument to the function count, so rows representing flights from the same origin are counted together – EWR is the Newark Liberty International Airport, JFK is the John F. Kennedy International Airport, and LGA is LaGuardia Airport.</p>
+<p>In the example below, the column name <code>origin</code> is provided as an argument to the function <code>count()</code>, so rows representing flights from the same origin are counted together – EWR is the Newark Liberty International Airport, JFK is the John F. Kennedy International Airport, and LGA is LaGuardia Airport.</p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="data-wrangling.html#cb123-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
 <span id="cb123-2"><a href="data-wrangling.html#cb123-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">count</span>(origin) <span class="op">%&gt;%</span></span>
 <span id="cb123-3"><a href="data-wrangling.html#cb123-3"></a><span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>()</span></code></pre></div>
@@ -308,8 +309,8 @@ The pipe operator is a powerful tool to simplify your code. See <a href="https:/
 <p>As you can see, the code above is formatted in a way similar to a code block, although it is not a code block. The code goes to a new line after every <code>%&gt;%</code>, and space is added at the beginning of new lines. That is very common in R programming (especially when functions have many parameters) as it makes the code more readable.</p>
 <div id="summarise" class="section level3">
 <h3><span class="header-section-number">6.2.1</span> Summarise</h3>
-<p>To carry out more complex aggregations, the function <code>summarise(</code>) can be used in combination with the function <code>group_by()</code> to summarise the values of the rows of a data frame. Rows having the same value for a selected column (in the example below, the same origin) are grouped together, then values are aggregated based on the defined function (using one or more columns in the calculation).</p>
-<p>In the example below, the function <code>sum()</code> is applied to the column distance to calculate distance_traveled_from (the total distance travelled by flights starting from each airport).</p>
+<p>To carry out more complex aggregations, the function <code>summarise(</code>) can be used in combination with the function <code>group_by()</code> to summarise the values of the rows of a data frame or tibble. Rows having the same value for a selected column (in the example below, the same <code>origin</code>) are grouped together, then values are aggregated based on the defined function (using one or more columns in the calculation).</p>
+<p>In the example below, the function <code>sum()</code> is applied to the column <code>distance</code> to calculate a new column <code>mean_distance_traveled_from</code> (the mean distance travelled by flights starting from each airport).</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="data-wrangling.html#cb124-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
 <span id="cb124-2"><a href="data-wrangling.html#cb124-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(origin) <span class="op">%&gt;%</span></span>
 <span id="cb124-3"><a href="data-wrangling.html#cb124-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(</span>
@@ -505,7 +506,7 @@ The pipe operator is a powerful tool to simplify your code. See <a href="https:/
 </div>
 <div id="arrange" class="section level3">
 <h3><span class="header-section-number">6.2.4</span> Arrange</h3>
-<p>The function <code>arrange()</code> sorts a <a href="https://tibble.tidyverse.org/" target="_blank">tibble</a> by ascending order of the values in the specified column. If the operator <code>-</code> is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.</p>
+<p>The function <code>arrange()</code> sorts a tibble or data frame by ascending order of the values in the specified column. If a negative sign is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="data-wrangling.html#cb128-1"></a>flights_from_nyc <span class="op">%&gt;%</span></span>
 <span id="cb128-2"><a href="data-wrangling.html#cb128-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(origin, dest, air_time) <span class="op">%&gt;%</span></span>
 <span id="cb128-3"><a href="data-wrangling.html#cb128-3"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(<span class="op">-</span>air_time) <span class="op">%&gt;%</span></span>
@@ -585,7 +586,7 @@ Figure 6.1: FAO Data Download
 </div>
 <div id="join" class="section level2">
 <h2><span class="header-section-number">6.3</span> Join</h2>
-<p>A join operation combines two tables into one by matching rows that have the same values in the specified column. This operation is usually executed on columns containing identifiers, which are matched through different tables containing different data about the same real-world entities. For instance, the <strong>table below</strong> presents the telephone prefixes for two cities. That information can be combined with the data present in the <strong>second table below</strong> through a join operation on the columns containing the city names. As the two tables do not contain all the same cities, if a full join operation is executed, some cells have no values assigned.</p>
+<p>A join operation combines two tables into one by matching rows that have the same values in the specified column. This operation is usually executed on columns containing identifiers, which are matched through different tables containing different data about the same real-world entities. For instance, the <strong>table below</strong> (data frame <code>city_telephone_prexix</code>) presents the telephone prefixes for two cities. That information can be combined with the data present in the <strong>second table below</strong> (data frame <code>city_info_wide</code>) through a join operation on the columns containing the city names. As the two tables do not contain all the same cities, if a full join operation is executed, some cells have no values assigned.</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="data-wrangling.html#cb130-1"></a>city_telephone_prexix &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
 <span id="cb130-2"><a href="data-wrangling.html#cb130-2"></a>    <span class="dt">city =</span> <span class="kw">c</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Birmingham&quot;</span>, <span class="st">&quot;London&quot;</span>),</span>
 <span id="cb130-3"><a href="data-wrangling.html#cb130-3"></a>    <span class="dt">telephon_prefix =</span> <span class="kw">c</span>(<span class="st">&quot;0116&quot;</span>, <span class="st">&quot;0121&quot;</span>, <span class="st">&quot;0171&quot;</span>)</span>
@@ -652,7 +653,7 @@ Figure 6.1: FAO Data Download
 </table>
 
 <div class="rmdtip">
-Note that data frames in the code above are converted to so called <a href="https://tibble.tidyverse.org/" target="_blank">tibbles</a>, which is another tabular format. This step is needed as the function <code>kable()</code> takes <code>tibbles</code> as an input.
+Note that data frames in the code above are converted to <a href="https://tibble.tidyverse.org/" target="_blank">tibbles</a>. This step is needed as the function <code>kable()</code> takes <code>tibbles</code> as an input.
 </div>
 
 <p>The <code>dplyr</code> library offers different types of join operations, which correspond to the different <code>SQL</code> joins illustrated in the image below.</p>
