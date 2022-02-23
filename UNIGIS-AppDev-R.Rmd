@@ -1,0 +1,2285 @@
+--- 
+title: "Application Development with R"
+author: "Christian Neuwirth"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+
+knit: bookdown::render_book
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+
+#knit: bookdown::render_book
+#site: bookdown::bookdown_site
+#output: bookdown::gitbook
+#documentclass: book
+
+bibliography: refs.bib
+biblio-style: "apalike"
+link-citations: yes
+cover-image: "branding/Cover_epub.png"
+github-repo: "UNIGIS-Salzburg/En_AppDev-R"
+description: "BookDown materials for the UNIGIS module Application Development - Introduction to R."
+favicon: "branding/favicon.ico"
+csl: "branding/journal-of-geographical-systems.csl"
+---
+
+
+Projects (select one out of two projects, project should cover all relevant concepts: control structures, data types, functions, selection and filtering, read and write, visualization):
+1) total pandemic excess mortality, data: https://www.mortality.org/, select 10 countries, create map
+2) Climate Change, Open Weather API, temp. difference two periods, 100 locations, create map, Important: cover APIs in lecture 'read and write'
+
+<!--chapter:end:index.Rmd-->
+
+# Introduction to R {#intro}
+
+
+## About this module
+
+This module will provide you with the fundamental skills in basic programming in R. We will start with some core concepts of programming that are the building blocks of programming in any language. This includes **Datatypes**, **Operators**, **Variables**, **Functions**, **Control Structures** and **Libraries**.
+
+On this basis, we will explore more complex data types like **Data Frames** and **Tibbles** as well as methods to **Read and Write** spatial and non-spatial datasets. In many cases the available data will not be suitable for your analyses. You will learn how to **filter, query, subset, join and re-shape** data to fit your needs.
+
+After you have learned how to manipulate data, you will get to know methods to **visualize** data by means of diagrams (e.g. box plots, scatterplots, line plots etc.) and maps.   
+
+Upon the completion of this module, you will have the fundamental skills in R programming as a basis for more advanced methods like Geospatial Data Analysis (is covered by the module "Spatial Statistics" in the MSc program) and Machine Learning.
+
+```{block2, type = 'rmdtip'}
+This module is partly based on the teaching materials [granolarr](https://sdesabbata.github.io/granolarr/){target="_blank"} worked out by [Stefano de Sabbata](https://stefanodesabbata.com/){target="_blank"} at the [University of Leicester](https://le.ac.uk/){target="_blank"}. For more information take a look at the [Granolarr Lecture Pages](https://sdesabbata.github.io/granolarr/lectures_100/){target="_blank"} or at the more comprehensive [Bookdown Version](https://sdesabbata.github.io/granolarr/lectures/bookdown/){target="_blank"}. The chapters on **Statistical Analysis** and **Machine Learning** are recommended as a follow up read for those who are willing to delve into more advanced applications of R. 
+```
+
+## R programming language
+    
+R is a language that is applied in diverse fields of data science and analysis. Typical applications include...
+
+* data wrangling
+* statistical analysis
+* machine learning
+* data visualisation and maps
+* processing spatial data
+* geographic information analysis
+* and many more.
+
+Apart from its widespread use, there are a number of other reasons to learn R...
+
+* R is free and open source.
+* R has more comprehensive functionality than most proprietary solutions.
+* R is available for Windows, Mac OS and Linux
+* R is a general-purpose programming language, so you can use it to automate analyses and create new custom functions that extend default features.
+* Because R is open source, it has a large user community, so it is easy to get help.
+
+R is a so-called **high level programming language** or **scripting language**. This means that R code is not compiled into a computer readable format, but interpreted by an **interpreter.** An interpreter is a computer program that directly interprets and executes instructions written in a programming language.  
+
+In order to make sure that the interpreter can understand the program code, the programmer must stick to the grammar of the programming language; i.e. the interpreter expects commands to appear in a predefined order. This grammar is often regarded as **Syntax**.  
+
+In this lesson we will focus on some key principles of the R syntax and logic. 
+
+## Installation and Setup
+
+Before you can run your code, you have to install R together with an **Integrated Development Environment (IDE)** on your machine: 
+
+1. Download R from [R Archive Network (CRAN.)](http://cran.r-project.org){target="_blank"} 
+2. Follow the instructions and install the most up to date version on your machine (chose 'base' as well as 32-bit or 64-bit dependent on the bit-version of your operating system).
+
+The IDE is where you write, test and execute your R programs. I strongly recommend using **RStudio Desktop**, which is [freely available for download.](https://www.rstudio.com/){target="_blank"}
+
+The following video gives a brief overview of key functions of RStudio.
+
+```{r RStudioVideo, echo=FALSE, fig.align='center', fig.cap="Video (6:09 min): RStudio for the Total Beginner."}
+
+knitr::include_url("https://www.youtube.com/embed/FIrsOBy5k58")
+
+``` 
+
+```{block2, type = 'rmdtip'}
+In case you are facing any technical issues, please turn to the discussion forum!
+```
+
+## Interpreting values
+
+Now that you have installed RStudio and R on your machine, it is time to run some code in RStudio. When you open RStudio, you will find the **Console Window** (see Fig. \@ref(fig:L01-console)). When values and operations are inputted in the *Console*, the interpreter returns the results of its interpretation of the expression. 
+
+```{r L01-console, echo=FALSE, fig.cap="Console Window in RStudio", out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/Console.png')
+```
+
+Type in a numeric value (e.g. 3) and press Enter. The interpreter returns a value in brackets and the input value. The value in brackets indicates that the input is composed of one single entity.
+
+```{block2, type = 'rmdexercise'}
+
+What if you type in a text value (e.g. test) and press Enter?
+    
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+The interpreter returns an error, because this datatype is unknown. Text is commonly reffered to as **String** or **String of Characters**. When apostrophes (i.e. <span>&quot;</span>Test<span>&quot;</span>) are added, the interpreter knows that this is a String.
+    
+</font></i>
+</p>
+</details>    
+
+```
+
+If you start your input with a hash symbol (#) the interpreter will consider that line as a comment. For instance, if you type in **# Test Test Test**, you will see that nothing is returned as an output. Comments are extremely important as they allow you to add explanations in plain language. Comments are fundamental to allow other people to understand your code and it will save you time interpreting your own code.     
+
+## Simple data types
+
+In the previous section you have already see **numeric** and **character (string)** data types. **Logical** is a third simple data type provided with R.  
+
+```{block2, type = 'rmdtip'}
+
+R provides three core data types
+
+- numeric 
+    - both integer and real numbers
+- character 
+    - i.e., text, also called *strings*
+- logical
+    - `TRUE` or `FALSE`
+
+```
+
+The type 'logical' encodes the values TRUE or FALSE. Together these three simple data types are the building blocks R uses to encode information. 
+
+```{block2, type = 'rmdexercise'}
+
+If you type a simple numeric operation in the console (e.g. 2 + 4), the interpreter will return a result. This indicates that operations (e.g. mathematical calculations) can be carried out on these types.
+
+Logical operations return values of type 'logical'. What value is returned in the console when you type and execute the expression 2 < 3? 
+    
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+The interpreter returns 'TRUE', because it is 'true' that 2 is less than 3.
+
+</font></i>
+</p>
+</details>    
+
+```
+
+## Numeric operators
+
+R provides a series of basic numeric operators.
+
+|Operator|Meaning         |Example  |Output     |
+|--------|----------------|---------|-----------|
+|+       |Plus            |`5 + 2`  |`r 5 + 2`  |
+|-       |Minus           |`5 - 2`  |`r 5 - 2`  |
+|`*`     |Product         |`5 * 2`  |`r 5 * 2`  |
+|/       |Division        |`5 / 2`  |`r 5 / 2`  |
+|%/%     |Integer division|`5 %/% 2`|`r 5 %/% 2`|
+|%%      |Module          |`5 %% 2` |`r 5 %% 2` |
+|^       |Power           |`5^2`    |`r 5^2`    |
+
+Whereas mathematical operators are self-explanatory, the operators 'Module' and 'Integer division' may be new to some of you. Integer division returns an integer quotient:
+
+
+```{r, echo=TRUE}
+5%/%2
+```
+
+
+```{block2, type = 'rmdexercise'}
+
+Execute 5 %% 2 to test the 'Module' operator.
+    
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+The 'Module' returns the remainder of the division, which is '1' in the example above. 
+
+</font></i>
+</p>
+</details>    
+
+```
+
+## Logical operators
+
+R also provides a series of basic logical operators to create logical expressions.
+
+|Operator|Meaning           |Example           |Output              |
+|--------|------------------|------------------|--------------------|
+|==      |Equal             |`5 == 2`          |`r 5 == 2`          |
+|!=      |Not equal         |`5 != 2`          |`r 5 != 2`          |
+|> (>=)  |Greater (or equal)|`5 > 2`           |`r 5 > 2`           |
+|< (<=)  |Less (or equal)   |`5 <= 2`          |`r 5 <= 2`          |
+|!       |Not               |`!TRUE`           |`r !TRUE`           |
+|&       |And               |`TRUE & FALSE`    |`r TRUE & FALSE`    |
+|\|      |Or                |`TRUE | FALSE`    |`r TRUE | FALSE`    |
+
+Logical expressions are typically used to execute code dependent on the occurrence of conditions. 
+
+```{block2, type = 'rmdexercise'}
+
+What logical values are returned by the following expressions:    
+
+* *(3 != 5) | (3 == 4)*
+* *(2 >= 3) | (3 < 7)*
+* *(2 == 9) & (2 < 4)*
+
+Type and execute (Enter button) in the RStudio console to validate your assumptions.  
+
+```
+
+## References
+
+Apart from [Stefano de Sabbata's](https://stefanodesabbata.com/){target="_blank"} teaching materials, a number of other sources are use in this module. Most of them are freely available online:
+
+- Granolarr - A geographic data science reproducible teaching resource in R by Stefano de Sabbata. see [Online Book](https://sdesabbata.github.io/granolarr/){target="_blank"} 
+- R for Geographic Data Science by Stefano de Sabbata. [see Online Book](https://sdesabbata.github.io/r-for-geographic-data-science/){target="_blank"} 
+- The Grammar Of Graphics – All You Need to Know About ggplot2 and Pokemons by Pascal Schmidt. see [Online Tutorial](https://thatdatatho.com/grammar-of-graphics-ggplot2/){target="_blank"}
+- ggplot2 - Overview. see [Online Documentation](https://ggplot2.tidyverse.org/){target="_blank"}
+- Getting started with httr - httr quickstart guide. [Online Tutorial](https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html){target="_blank"}
+- *Programming Skills for Data Science: Start Writing Code to Wrangle, Analyze, and Visualize Data with R* by Michael Freeman and Joel Ross, Addison-Wesley, 2019. See book [webpage](https://www.pearson.com/us/higher-education/program/Freeman-Programming-Skills-for-Data-Science-Start-Writing-Code-to-Wrangle-Analyze-and-Visualize-Data-with-R/PGM2047488.html){target="_blank"} and [repository](https://programming-for-data-science.github.io/){target="_blank"}.
+- *R for Data Science* by Garrett Grolemund and Hadley Wickham, O'Reilly Media, 2016. See [online book](https://r4ds.had.co.nz/){target="_blank"}.
+- *Discovering Statistics Using R* by Andy Field, Jeremy Miles and Zoë Field, SAGE Publications Ltd, 2012. See book [webpage](https://www.discoveringstatistics.com/books/discovering-statistics-using-r/){target="_blank"}.
+- *Machine Learning with R: Expert techniques for predictive modeling* by Brett Lantz, Packt Publishing, 2019. See book [webpage](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788295864){target="_blank"}.
+- *The Art of R Programming: A Tour of Statistical Software Design* by Norman Matloff, No Starch Press, 2011. See book [webpage](https://nostarch.com/artofr.htm){target="_blank"}
+- *An Introduction to R for Spatial Analysis and Mapping* by Chris Brunsdon and Lex Comber, Sage, 2015. See book [webpage](https://us.sagepub.com/en-us/nam/an-introduction-to-r-for-spatial-analysis-and-mapping/book258267){target="_blank"}
+- *Geocomputation with R* by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. See [online book](https://bookdown.org/robinlovelace/geocompr/){target="_blank"}.
+
+<!--chapter:end:01-introduction_to_r.Rmd-->
+
+# Core concepts{#core}
+
+```{block2, type = 'rmdtip'}
+In this lesson, we will focus on three fundamental concepts in programming:
+
+1) Variables
+2) Functions
+3) Libraries
+
+```
+
+
+## Variables
+
+Variables are used to  **store data**. Variables can be defined using an *identifier*, i.e. a variable name (e.g., `a_variable`), on the left of an *assignment operator* `<-`, followed by the object to be linked to the identifier such as a *value* (e.g. `1`):
+
+```{r, echo=TRUE}
+a_variable <- 1
+```
+
+The value of the variable can be invoked by simply specifying the **identifier**.
+
+```{r, echo=TRUE}
+a_variable
+```
+
+```{block2, type = 'rmdtip'}
+
+In order to save your code, you can create an **R Script** in RStudio (File/New File/R Script). Select the code in the R Script Window and push 'Run' to execute the code.  
+
+Note: The code is executed line by line in a sequential order!
+   
+```
+
+Variables allow you to save the result of any computations performed in the code and retrieve it later in the code for further analyses. For instance, you can declare a variable such as,
+
+```{r, echo=TRUE}
+a_variable <- 1
+```
+
+manipulate the value of the variable as
+
+```{r, echo=TRUE}
+a_variable <- a_variable + 10
+```
+
+and later in the code assign the value to a different variable
+
+```{r, echo=TRUE}
+another_variable <- a_variable
+```
+
+At this point, the question may arise, why bother using variables instead of simply typing the numbers? The answer is that variables make your code reusable and safe you lots of time.
+
+Let us consider the following example: 
+  
+Meteorologists monitor water temperature gradients in the Pacific Ocean to better understand El Niño weather patterns and to forecast extreme weather conditions associated with it. In a given year the water temperature at location A is 22°C and 26°C at location B. We could simply calculate the difference by executing the arithmetic operation '26 - 22' in the console window of RStudio. However, temperatures are measured in real-time, i.e. we have to calculate temperature gradients repeatedly.
+
+To speed up the process we could write code that does the calculation (temperature at location A - temperature at location B). This piece of code takes to variables (temperature at location A and B) as an input. As a result, we only need to update these two variables; the algorithm (simple subtraction in our example) is reusable. 
+
+Of course, gains in efficiency are minor given that the calculus is simple. In a more practical application, however, the algorithm is likely being composed of many lines of code that evaluate El Niño occurrence risk based on sensor records.   
+
+```{block2, type = 'rmdexercise'}
+
+1) Create a new R script in RStudio (File/New File/R Script).
+2) Declare two variables (temp_A and temp_B) and assign arbitrary temperature values to it.
+3) Declare a third variable (diff) and assign the difference between the other variables as a value. 
+4) Run your script (select your code and click Run). 
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+temp_A <- 24
+
+temp_B <- 28
+
+diff <- temp_A - temp_B
+
+When executing the code in Rstudio, you should see that something has changed in the panel on the top right, which is the **Environment Panel**. The Environment Panel shows that we now have three slots of memory with identifiers named diff, temp_A and temp_B  that have values of -4, 24 and 28. If we invoke the name of the identifier in the code (e.g. type *diff* and run), the value that is stored in that slot gets returned.
+    
+</font></i>
+</p>
+</details> 
+
+```
+
+## Algorithms and functions
+
+*An* **algorithm** *or effective procedure is a mechanical rule, or automatic method, or program for performing some mathematical operation* (Cutland, 1980).
+
+A **program** is a specific set of instructions that implement an abstract algorithm.
+
+The definition of an algorithm (and thus a program) can consist of one or more **functions**. Functions are a set of instructions that preform a task, i.e. functions help structuring code into functional units. These functional units are reusable in the code. Some of them receive values as inputs, some return output values.  
+
+Programming languages usually provide pre-defined functions that implement common algorithms (e.g., to find the square root of a number or to calculate a linear regression).
+
+For instance, the pre-defined function 'sqrt()' calculates the square root of an input value. 'sqrt()' (as every function in R) is invoked by specifying the *function name* and the *arguments* (input values) between simple brackets:
+
+```{r, echo=TRUE}
+sqrt(2)
+```
+
+```{block2, type = 'rmdtip'}
+
+Each input value corresponds to a *parameter* that was specified in the definition of the function. Sometimes the *parameter* name must be specified. This will get clearer when you write your own functions later in the module.
+   
+```
+
+'round()' is another function that is predefined in R: 
+
+```{r, echo=TRUE}
+round(1.414214, digits = 2)
+```
+
+Note that the name of the second parameter ('digits') needs to be specified. The parameter 'digits' indicates the number of digits we want to keep after the dot.
+
+The return value of a function can be stored in a variable:
+
+```{r, echo=TRUE}
+sqrt_of_two <- sqrt(2)
+sqrt_of_two
+```
+
+The output value is stored in the memory slot with the identifier 'sqrt_of_two'. We can use the identifier 'sqrt_of_two' as an argument in other functions as
+
+```{r, echo=TRUE}
+sqrt_of_two <- sqrt(2)
+round(sqrt_of_two, digits = 3)
+```
+
+The first line calculates the square root of '2' and stores it in a variable with identifier 'sqrt_of_two'. The second line rounds the value stored in 'sqrt_of_two' to three digits after the dot. 
+
+```{block2, type = 'rmdexercise'}
+
+Can you store the output of the 'round()' function in a second variable?  
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+sqrt_of_two <- sqrt(2)
+
+rounded_sqrt_of_two <- round(sqrt_of_two, digits = 3)
+    
+</font></i>
+</p>
+</details> 
+
+```
+
+Functions can also be used as arguments of functions. For instance, we can use the function 'sqrt()' as the first argument in function 'round()':
+
+```{r, echo=TRUE}
+round(sqrt(2), digits = 3)
+```
+
+In this case the intermediate step of storing the square root of '2' in a variable was skipped.
+
+```{block2, type = 'rmdtip'}
+Using functions as arguments in other functions is often discouraged as it makes code hard to understand. 
+
+Moreover, in order to improve readability of R code, it is recommended to consider naming conventions when creating identifiers for variables and functions: 
+  
+- R is a **case sensitive** language
+    - UPPER and lower case are not the same
+    - `a_variable` is different from `a_VARIABLE`
+- names can include
+    -  alphanumeric symbols
+    - `.` and `_`
+- names must start with
+    - a letter  
+  
+  
+```
+
+## Libraries
+
+Once a number of related, reusable functions are created, they can be collected and stored in **libraries** (a.k.a. *packages*). 
+
+To date there are more than 10,000 R libraries available, which can be downloaded and installed by means of the function 'install.packages()'. After installing the library the function 'library()' is used to make it available to a script.  
+
+Libraries can be of any size and complexity, e.g.:
+
+- `base`: base R functions, including the `sqrt` function above
+- `rgdal`: implementation of the [GDAL (Geospatial Data Abstraction Library)](https://gdal.org/){target="_blank"} functionalities.
+
+The use of libraries in R can be illustrate by means of the `stringr` library, which provides a consistent and well-defined set of functions for manipulating strings. Assuming that the library has already been installed on your computer, you can load the library as
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(stringr)
+```
+
+Otherwise, you can download and install the library by calling the function
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+install.packages('stringr')  #Note: the function takes an argument of type string ('')
+```
+
+```{block2, type = 'rmdtip'}
+
+Alternatively, you can download and install libraries (a.k.a. packages) using the 'Install Packages Menu' in RStudio (Tools/Install Packages...). In the upper dropdown list you can choose between 'install from CRAN' and 'install from Package Archive file'. The large majority of libraries are available with [CRAN - Comprehensive R Archive Network](https://cran.r-project.org/){target="_blank"}, which is a collection of libraries and other R resources.
+
+```
+
+Once the library is installed and loaded, a new series of functions is available within your environment. For instance, the function 'str_length' returns the number of letters included in a string:
+
+```{r, echo=TRUE}
+str_length("UNIGIS")
+```
+
+'str_detect()' does return 'TRUE', if the first argument (a string) contains the second argument (letter as type string). Otherwise, the function returns 'FALSE':
+
+```{r, echo=TRUE}
+str_detect("UNIGIS", "I")
+```
+
+The function 'str_replace_all' replaces all the instances of the first argument that are identical with the second argument by a third argument:  
+
+```{r, echo=TRUE}
+str_replace_all("UNIGIS", "I", 'X')
+```
+
+```{block2, type = 'rmdtip'}
+
+You may list all the functions available with library 'stringr' using the built in function ['ls()'](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ls){target="_blank"}:
+  
+ls(<span>&quot;</span>package:stringr<span>&quot;</span>)
+
+```
+ 
+
+<!--chapter:end:02-core_concepts.Rmd-->
+
+# Complex Data Types
+
+In this lesson I will introduce a series of more complex data types that are built on top of the already discussed simple data types 'numeric', 'character' (string) and 'logical' (see [Lesson 1](#intro) 'Simple data types').
+
+```{block2, type = 'rmdtip'}
+In this lesson, you will get to know the following complex data types:
+
+1) Vectors
+2) Matrices and Arrays
+3) Lists
+4) Data Frames
+
+```
+
+## Vectors
+
+A **Vector** is an ordered list of values. Vectors can be of any simple type:
+
+    - numeric
+    - character
+    - logic
+
+However all items in a vector have to be of the same type. A vector can be of any length.
+
+Defining a **vector variable** is similar to the declaration of simple type variables, except that the vector is created by a return function named 'c()' that combines values into a vector: 
+
+```{r, echo=TRUE}
+# Declare a vector variable of strings
+a_vector <- c("Birmingham", "Derby", "Leicester",
+  "Lincoln", "Nottingham", "Wolverhampton")
+a_vector
+```
+
+```{block2, type = 'rmdtip'}
+
+Note that the second line of the returned elements starts with `[5]`, as the second line starts with the fifth element of the vector.
+
+```
+
+There are also other functions to create vectors such as 'seq()':
+
+```{r, echo=TRUE}
+#create vector of real numbers of interval 0.5 in a range between 1 and 7
+a_vector <- seq(1, 7, by = 0.5)
+a_vector
+```
+
+or 'rep()':
+
+```{r, echo=TRUE}
+#create vector with 4 identical character string values
+a_vector <- rep("Ciao", 4)
+a_vector
+```
+
+Alternatively, numeric vectors can be created by using the following syntax:
+
+```{r, echo=TRUE}
+#create a vector of integer numbers between 1 and 10
+a_vector <- (1:10)
+a_vector
+```
+
+
+### Vector element selection
+
+Each element of a vector can be retrieved by specifying the related **index** between square brackets, after the identifier of the vector. The **first element** of the vector **has index 1**. The following, code retrieves a value of '5', which is the third element of the vector with identifier 'a_vector':
+
+```{r, echo=TRUE}
+a_vector <- (3:8)
+a_vector[3]
+```
+
+A vector of indexes can be used to retrieve more than one element:
+
+```{r, echo=TRUE}
+a_vector <- (3:8)
+a_vector[c(2, 4)]
+```
+
+The values 4 and 6 are returned. These values have the indices 2 and 4 in vector 'a_vector'. Note that the vector containing the indices 2 and 4 is created on the fly (without assigning the return value to a variable).
+
+```{block2, type = 'rmdexercise'}
+
+Now try by yourself. Create a vector that looks like
+
+east_midlands_cities <- c(<span>&quot;</span>Derby<span>&quot;</span>, <span>&quot;</span>Leicester<span>&quot;</span>, <span>&quot;</span>Lincoln<span>&quot;</span>, <span>&quot;</span>Nottingham<span>&quot;</span>)
+
+, select the last three cities out of the four cities in 'east_midlands_cities' and assign the returned values to a new vector named 'selected_cities'.
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><font color="grey">
+  
+east_midlands_cities <- c(<span>&quot;</span>Derby<span>&quot;</span>, <span>&quot;</span>Leicester<span>&quot;</span>, <span>&quot;</span>Lincoln<span>&quot;</span>, <span>&quot;</span>Nottingham<span>&quot;</span>)
+
+my_indexes <- 2:4
+
+selected_cities <- c(east_midlands_cities[my_indexes])
+  
+</font>
+</p>
+</details>
+
+```
+
+### Functions on vectors
+
+In R, functions can be used on a vector variable in the same way they are used on simple variables. In this case, the function will be applied to each element of the vector. The output will be a new vector containing the same number of elements as the input vector. 
+
+For instance, adding a number of ten to a vector of numbers between 1 and 5 will result in a vector of numbers between 11 and 15:
+
+```{r, echo=TRUE}
+a_numeric_vector <- 1:5
+a_numeric_vector <- a_numeric_vector + 10
+a_numeric_vector
+```
+
+Accordingly, an sqrt() function applied to the same vector will return a vector containing the square root of every element as a result: 
+
+```{r, echo=TRUE}
+a_numeric_vector <- 1:5
+a_numeric_vector <- sqrt(a_numeric_vector)
+a_numeric_vector
+```
+
+We can also produce a vector of type 'logical' by using a condition:
+
+```{r, echo=TRUE}
+a_numeric_vector <- 1:5
+a_numeric_vector <- a_numeric_vector >= 3
+a_numeric_vector
+```
+
+While the condition in the example above returns an evaluation of the conditional statement for every element, the function 'any' and 'all' are **overall expressions**. The function 'any()' returns TRUE, if any of the elements satisfy the condition:
+
+```{r, echo=TRUE}
+a_numeric_vector <- 1:5
+any(a_numeric_vector >= 3)
+```
+
+The function 'all' returns TRUE, if all of the elements satisfy the condition:
+
+```{r, echo=TRUE}
+a_numeric_vector <- 1:5
+all(a_numeric_vector >= 3)
+```
+
+```{block2, type = 'rmdtip'}
+A **factor** is a data type similar to a vector. However, the values contained in a factor can only be selected from a set of **levels**. Factors will not be covered in the module. For more information on this data type turn to the online tutorial [Programming with R](https://swcarpentry.github.io/r-novice-inflammation/12-supp-factors/index.html){target="_blank"}
+```
+
+## Multi-dimensional data types
+
+### Matrices
+
+So far, you have learned about one dimensional data types. **Matrices** are collections of numbers arranged in a two-dimensional rectangular layout.
+
+To create a matrix, two arguments should be provided to the function matrix. The first argument is a vector of values. The second specifies the number of rows and columns:
+
+```{r, echo=TRUE}
+a_matrix <- matrix(c(3, 5, 7, 4, 3, 1), c(3, 2))
+a_matrix
+```
+
+R offers a large number of operators and functions for matrix algebra. For instance, standard mathematical operators are applicable:
+
+```{r, echo=TRUE}
+x <- matrix(c(3, 5, 7, 4, 3, 1), c(3, 2))
+x
+y <- matrix(c(1, 2, 3, 4, 5, 6), c(3, 2))
+y
+z <- x*y
+z
+```
+
+In the example above, variables x and y are initiated as matrices. The product of x and y is returned in variable z.  
+
+A more comprehensive list of matrix algebra operations is provided by [Quick-R](https://www.statmethods.net/advstats/matrix.html){target="_blank"}. 
+
+### Arrays
+
+Variables of the type **array** are higher-dimensional matrices. Just like matrices, to create an array two arguments are required. The first argument is a vector containing the values. The second argument is a vector specifying the depth of each dimension. The following code returns a 3-dimensional array: 
+
+```{r, echo=TRUE}
+a3dim_array <- array(1:24, dim=c(4, 3, 2))
+a3dim_array
+```
+
+### Selection
+
+Subsetting of matrices and arrays works in a very similar way as seen for vectors. However, as these are multi-dimensional objects, one value (or index) needs to be specified for each one of the dimensions.
+
+In the example, below we are subsetting the second row and the first and second column of `a_matrix`:
+
+```{r, echo=TRUE}
+a_matrix <- matrix(c(3, 5, 7, 4, 3, 1), c(3, 2))
+a_matrix
+a_matrix[2, c(1, 2)]
+```
+
+```{block2, type = 'rmdexercise'}
+
+As an exercise, create an arbitrary 3-dimensional array, retrieve 2 elements from it and write those elements to a new vector variable. Then retrieve 4 elements from the 3-dimensional array and write it to a new matrix variable.
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+a3dim_array <- array(1:24, dim=c(4, 3, 2))
+
+a3dim_array
+
+a_vector <- a3dim_array[3, c(1, 2), 2]
+
+a_vector
+
+a_matrix <- a3dim_array[c(3, 4), c(1, 2), 2]
+
+a_matrix
+    
+</font></i>
+</p>
+</details> 
+
+```
+
+### List
+
+Variables of the type **list** can contain elements of different types (including vectors and matrices), whereas elements of vectors are all of the same type.
+
+In the following example, I created a list containing the simple types 'character' and 'numeric integer': 
+
+```{r, echo=TRUE}
+employee <- list("Christian", 2017)
+employee
+employee[[1]] # Note the double square brackets for selection
+```
+
+In contrast to vectors, matrices or arrays, the selection of list elements requires the use of **double square brackets**. 
+
+A specific type of list is the so called named list. In **named lists**, each element has a name, and elements can be selected using their name after the symbol `$`: 
+
+```{r, echo=TRUE}
+employee <- list(employee_name = "Christian", start_year = 2017)
+employee
+employee$employee_name
+```
+
+### Data Frame
+
+**Data frames** are commonly used in R to encode tables of data. A data frame is equivalent to a named list where all elements are vectors of the same length. The code below creates a data frame named 'employees' that is composed of three vectors:
+
+```{r, echo=TRUE}
+employees <- data.frame(
+  EmployeeName = c("Maria", "Pete", "Sarah"),
+  Age = c(47, 34, 32),
+  Role = c("Professor", "Researcher", "Researcher"))
+```
+
+You can retrieve the tabular structure of the data frame 'employees' by invoking the identifier in the code: 
+
+```{r, echo=TRUE}
+employees
+```
+
+Eventually data frames are tables. Each named element is a column of the table.
+
+```{block2, type = 'rmdexercise'}
+
+Given the precondition that data frames are composed of named lists where elements are **vectors**, is it possible to mix simple types in a vector/in a data frame column? 
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+Elements of a vector (data frame column) must be of the same type (character, logical or numeric). In the example above, the column 'EmployeeName' contains only character strings, the column 'Age' contains only numeric etc.
+    
+</font></i>
+</p>
+</details> 
+
+```
+
+As the columns in a data frame have the same length, one element is present for each row of the table. Meaning the first element of vector 'EmployeeName' in data frame 'employees' is the Name of the first employee. The first element in vector 'Age' in data frame 'employees' is the age of the first employee etc.
+
+```{block2, type = 'rmdtip'}
+
+You can rename the columns of a data frame by means of a function called 'names()':
+
+**names(name of data frame)[column index as number] = "new column name"**
+ 
+```
+
+The selection of values from a data frame is similar to what we have seen for vectors and lists. However, you have to consider the two-dimensional shape of data frames. As such, you will generally need to specify two indices in order to retrieve values from a table.
+
+The following example retrieves the first element of the first column in data frame 'employees':
+
+```{r, echo=TRUE}
+employees[1, 1]
+```
+
+We can also retrieve entire rows...
+
+```{r, echo=TRUE}
+employees[1, ]
+```
+
+...and columns:
+
+```{r, echo=TRUE}
+employees[ ,1]
+```
+
+Alternatively, columns can be selected by means of dollar signs and columns names:
+
+```{r, echo=TRUE}
+employees$Age
+```
+
+This returns the vector 'Age'. Accordingly, we can use square brackets to retrieve elements of the vector: 
+
+```{r, echo=TRUE}
+employees$Age[1]
+```
+
+To further modify the data frame, we can change elements (e.g. change the age of 'Pete' from 34 to 33)...
+
+```{r, echo=TRUE}
+employees$Age[2] <- 33
+```
+
+...or insert new columns as vectors (new column name Place):
+
+```{r, echo=TRUE}
+employees$Place <- c("Salzburg", "Salzburg", "Salzburg")
+employees
+```
+
+```{block2, type = 'rmdexercise'}
+
+Operations can be performed on columns in the same way as on vectors. As an exercise, create a new variable, which stores the current year...
+
+*current_year <- as.integer(format(Sys.Date(), <span>&quot;</span>%Y<span>&quot;</span>))*
+
+...use the column 'Age' in data frame 'employees' to calculate the year of birth for every employee...  
+
+current_year - employees$Age
+  
+...and insert the year of birth as a new column.
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+
+#Instantiate data frame employees
+
+employees <- data.frame(
+  EmployeeName = c(<span>&quot;</span>Maria<span>&quot;</span>, <span>&quot;</span>Pete<span>&quot;</span>, <span>&quot;</span>Sarah<span>&quot;</span>),
+  Age = c(47, 34, 32),
+  Role = c(<span>&quot;</span>Professor<span>&quot;</span>, <span>&quot;</span>Researcher<span>&quot;</span>, <span>&quot;</span>Researcher<span>&quot;</span>))  
+    
+#Use Sys.Date to retrieve the current year
+
+current_year <- as.integer(format(Sys.Date(), <span>&quot;</span>%Y<span>&quot;</span>))
+
+#Calculate employee year of birth
+
+employees<span>&#36;</span>Year_of_birth <- current_year - employees<span>&#36;</span>Age
+
+employees
+    
+</font></i>
+</p>
+</details> 
+
+```
+
+
+
+
+
+<!--chapter:end:03-data_types.Rmd-->
+
+# Control structures
+
+
+```{block2, type = 'rmdtip'}
+
+In this lesson, you will get to know control structures as a significant structural element of code. Control structures allow our code to adapt its behavior depending on the value of the current variables in the environment. 
+
+We distinguish between two types of control structures:
+
+1) **Conditional statements**, which allow executing instructions only if a certain condition is satisfied.
+
+2) **Loops**, which allow to repeat one or more instructions multiple times. Loops are commonly used to apply the same operation on a series of values that are stored in sequences such as vectors or lists.
+
+```
+
+## If
+
+The most fundamental conditional statement in R is the structure 'if', which is used to execute one or more instructions only if a certain condition is TRUE.
+
+In order to include an if-structure in your code, you need to use the following syntax:
+
+```{r, echo=TRUE}
+a_value <- -7
+if (a_value < 0) {
+  cat("Negative")
+}
+```
+
+The **statement** 'cat("Negative")' gets executed and the text "negative" is printed out, because the **condition** (a_value < 0) is TRUE.   
+
+```{block2, type = 'rmdtip'}
+
+The function [cat()](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/cat){target="_blank"} concatenates and prints string inputs ("Negative" in the example above). Alternatively, you can use the function 'print()' to write variable values to the console window. 
+
+These functions are highly useful to inspect whether variables take on expected values!
+
+```
+
+Note that every conditional statement (e.g. 'a_value < 0') returns a logical value that is either TRUE or FALSE. 
+
+```{block2, type = 'rmdexercise'}
+
+Remove the negative sign from the conditional statement in the code above. 
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+The condition yields FALSE. The statement is not executed. 
+    
+</font></i>
+</p>
+</details>  
+
+```
+
+## Else
+
+In many cases, we want the interpreter to do something if the condition is satisfied or do something *else*, if the condition is not satisfied. In this case, we can use 'if' together with 'else':
+
+```{r, echo=TRUE}
+a_value <- -7
+if (a_value < 0){
+  cat("Negative")
+} else {
+  cat("Positive")
+}
+```
+
+In the example above, the **condition** 'a_value < 0' is TRUE, **statement 1** 'cat("Negative")' gets executed and **statement 2** 'cat("Positive")' is ignored. If you change 'a_value' to a positive value, the interpreter will ignore statement 1 and execute statement 2.
+
+```{block2, type = 'rmdtip'}
+Note that statement 1 and statement 2 are in curly brackets! The indentation of statements is good programming practice, however does not affect the functioning of the code.
+```
+
+## Code blocks
+
+Conditional structures have a wide range of applications. Almost everything what a computer does requires an input. Each time you click a button the computer responds accordingly. The code that dictates the response typically has an if-else control structure or something very similar that tells the computer what to do depending on the input it got. Obviously in most cases the response won't be defined by a single instruction, but a code block that is composed of multiple instructions. **Code blocks** allow encapsulating **several** statements in a single group. The condition in the following example yields TRUE and the code block is executed:
+
+```{r, echo=TRUE}
+first_value <- 8
+second_value <- 5
+if (first_value > second_value) {
+  cat("First is greater than second\n") 
+  difference <- first_value - second_value
+  cat("Their difference is ", difference)
+}
+```
+
+The line 'cat("First is greater than second\n")' prints a text (string) and inserts a line break. The next line calculates the difference between first and second value. The third line in the code block concatenates two inputs ("Their difference is " and variable 'difference') and prints them to the console window.
+
+```{block2, type = 'rmdtip'}
+'if' and 'else' are so called **reserved words**, meaning they cannot be used as variable names. 
+```
+
+## Loops
+
+The second family of control structures that we a going to discuss in this lesson are loops. Loops are a fundamental component of (procedural) programming. They allow repeating one or more instructions multiple times.
+
+There are two main types of loops:
+
+- **conditional** loops are executed as long as a defined condition holds true
+    - construct `while`
+    - construct `repeat`
+- **deterministic** loops are executed a pre-determined number of times
+    - construct `for`
+
+
+### While
+
+The *while* construct can be defined using the `while` reserved word, followed by a condition between simple brackets, and a code block. The instructions in the code block are re-executed as long as the result of the evaluation of the condition is `TRUE`.
+
+```{r, echo=TRUE}
+current_value <- 0
+while (current_value < 3) {
+  cat("Current value is", current_value, "\n")
+  current_value <- current_value + 1
+}
+```
+
+```{block2, type = 'rmdexercise'}
+
+Go through the example above and try to verbalize the consecutive steps. 
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+1. The variable 'current_value' takes on a value of zero.
+2. The condition of the while-loop returns TRUE.
+3. The 'cat()' function is executed and prints a text as well as 'current_value'.
+4. The variable 'current_value' is incremented by +1.
+5. The condition of the while-loop returns TRUE (current_value = 1), the code block is executed again (see 3 and 4).
+6. current_value = 2, the code block is executed again (see 3 and 4).
+7. current_value = 3, the condition returns FALSE, the loops ends.
+
+</font></i>
+</p>
+</details>  
+
+```
+
+### For
+
+The *for* construct can be defined using the `for` reserved word, followed by the definition of an **iterator**. The iterator is a variable, which is temporarily assigned with the current element of a vector, as the construct iterates through all elements of the vector. This definition is followed by a code block, whose instructions are re-executed once for each element of the vector.
+
+```{r, echo=TRUE}
+cities <- c("Derby", "Leicester", "Lincoln", "Nottingham")
+for (city in cities) {
+  cat("Do you live in", city, "?\n")
+}
+```
+
+In the first iteration of the for-loop the text string "Derby" is assigned to the iterator 'city'. The function 'cat()' uses the iterator value as an input. In the second iteration, the text string "Leicester" is assigned to the iterator 'city' ... etc.
+
+The code block below illustrates another example. 
+
+```{r, echo=TRUE}
+cities <- c("Derby", "Leicester", "Lincoln", "Nottingham")
+letter_cnt <- c()
+for (city in cities) {
+  letter_cnt <- c(letter_cnt, nchar(city))
+}
+print(letter_cnt)
+```
+
+The for-loop iterates over the elements in vector 'cities'. The base function 'nchar()' counts the number of letters of every city name and appends the count to a new vector 'letter_cnt'.
+
+```{block2, type = 'rmdtip'}
+
+Note that with every iteration a new value is appended to the right side of the vector. The syntax for appending elements to a vector in R is...
+
+*name vector <- c(name vector, element to append)*
+
+```
+
+There are some cases in which, for some reason, you just want to execute a certain sequence of steps a pre-defined number of times. In such cases, it is common practice to create a vector of integers on the spot. In the following example the for-loop is executed 3 times as it iterates over a vector composed of the three elements 1, 2, and 3 (vector is created on the spot by 1:3):  
+
+```{r, echo=TRUE}
+for (i in 1:3) {
+  cat("This is exectuion number", i, ":\n")
+  cat("    See you later!\n")
+}
+```
+
+```{block2, type = 'rmdexercise'}
+
+
+Replace the vector 1:3 by a vector 3:5. What is different?
+
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+
+The for-loop is still executed 3 times. 
+  
+However, the iterator 'i' returns the values 3, 4, and 5.
+
+</font></i>
+</p>
+</details>  
+
+```
+
+## Loops with conditional statements
+
+Now that we have seen both types of control structures, **conditional statements** and **loops**, we can combine these structures. R, as most other programming languages, allows you to include conditional statements within a loop or a loop within a conditional statement.
+
+A simple example is this bit of code that defines a countdown:
+
+```{r, echo=TRUE}
+#Example: countdown!
+for (i in 3:0) {
+  if (i == 0) {
+    cat("Go!\n")
+  } else {
+    cat(i, "\n")
+  }
+}
+```
+
+The deterministic loop runs 4 time on the values 3, 2, 1, and 0. If the iterator 'i' takes on a value of 0 the print "Go!" otherwise print the current value of the iterator 'i'. The result will be 3, 2, 1, Go!
+
+<details closed>
+<summary><ins>**See another example!**</ins></summary>
+<p><i><font color="grey">
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(tidyverse)
+
+cities <- c("Salzburg", "Linz", "Wien", "Eisenstadt", "Innsbruck", "Graz")
+
+for (city in cities){
+  if (str_starts(city, "S")){
+    print("City name starts with S")
+  } else{
+    print("City name starts with other letter")
+  }
+  
+}
+
+```
+
+We need to load the library 'tidyverse' to make use of the function 'str_starts()'. You may have to install 'tidyverse' (see Libraries in lesson [core Concepts](#core)). 
+
+'cities' is a vector of strings that includes the names of some Austrian federal capitals. The for-loop iterates over these vector elements. The function 'str_starts' takes the value of the iterator 'city' as well as a string "S" as inputs. If the city starts with letter S, the function returns TRUE and "City name starts with S" is printed to the console window, otherwise the function returns FALSE and "City name starts with other letter" is printed. 
+
+</font></i>
+</p>
+</details> 
+
+
+<!--chapter:end:04-control_structures.Rmd-->
+
+# Functions
+
+```{block2, type = 'rmdtip'}
+In the past few lessons, we have been using functions without looking at them in much detail (e.g. functions like 'str_starts()' or 'cat()'). In this lesson, we are going to look inside those functions to see how functions work and how to create custom functions.
+
+Moreover, you will get to know the difference between variables with global and variables with local scope.
+```
+
+## Defining functions
+
+The syntax for defining a function does not look too different from the syntax that we have been using to define a variable or to create a conditional statement. We start by defining an identifier (e.g. add_one) on the left of an assignment operator (`<-`). This is followed by the so-called **corpus of the function.**   
+
+The corpus starts with the reserved word 'function' followed by the **parameter(s)** (e.g. `input_value` in the example below) between simple brackets and the instruction(s) to be executed in a code block. The value of the last statement is returned as output:
+
+```{r, echo=TRUE}
+add_one <- function (input_value) {
+  output_value <- input_value + 1
+  output_value
+  }
+```
+
+After being defined, a function can be invoked by specifying the **identifier** and necessary parameters. The function above takes a single numeric value as an input and returns that value incremented by +1. So if we invoke the function with an input value '3', the function returns 4: 
+
+```{r, echo=TRUE}
+add_one(3)
+```
+
+## More parameters
+
+A function can be defined as having two or more **parameters** by specifying  more than one parameter name (separated by **commas**) in the function definition. 
+
+> A function always takes as input as many values as the number of parameters specified in the definition, otherwise an error is generated
+
+The function 'area_rectangle' includes two parameters (height and width), calculates an area value by multiplying the inputs and returns the area as a single numeric value:  
+
+```{r, echo=TRUE}
+area_rectangle <- function (height, width) {
+  area <- height * width
+  area
+}
+area_rectangle(3, 2)
+```
+
+```{block2, type = 'rmdexercise'}
+
+In a few cases, it makes sense to define default parameters in a function. Create a new R script, copy the function definition above and change the parameter definition 'function (height, width)' to 'function (height, width = 3)'. Now invoke the function by only specifying one input value. The function should return a value 'YOUR INPUT * 3'. If you call the same function by specifying two values as inputs, the default value 'width=3' is overwritten. 
+
+```
+
+## More return values
+
+In order to let a function return multiple values, you can append return values to a list and return the list. The following functions 'rectangle_metrics' calculates area and perimeter of a rectangle based on two inputs (rectangle height and width) and writes the two outputs to a new list 'return_vals': 
+
+```{r, echo=TRUE}
+rectangle_metrics <- function (height, width) {
+  area <- height * width
+  perimeter <- 2*height + 2*width
+  
+  return_vals <- list(area, perimeter)
+  
+  return_vals
+  
+}
+
+```
+
+We can retrieve the two return values by specifying their list indexes [[1]] and [[2]]:
+
+```{r, echo=TRUE}
+
+cat("This is the first return value - area: ", rectangle_metrics(3, 2)[[1]])
+
+cat("This is the second return value - perimeter: ", rectangle_metrics(3, 2)[[2]])
+
+```
+
+```{block2, type = 'rmdtip'}
+If you execute one of the functions above in a new R Script, you will see that the function appears in the Environment Window of RStudio in the same way as when we define a variable. When the function is invoked by using its identifier, the R interpreter will retrieve the respective function from the memory and execute it. 
+```
+
+## Functions and control structures
+
+In the last lesson, you have learned that loops can contain conditional statements and that conditional statement can contain loops. In the same way, the corpus of a function can contain both loops and conditional statements.
+
+The following code shows an example of a function that is using a loop to calculate the factorial of a number. A factorial of a number is simply the product of all the numbers less than or equal to that number (e.g. factorial of 3 = 1 * 2 * 3 = 6).
+
+```{r, echo=TRUE}
+factorial <- function (input_value) {
+  result <- 1
+  for (i in 1:input_value) {
+    cat("current:", result, " | i:", i, "\n")
+    result <- result * i
+  }
+  result
+}
+factorial(3)
+```
+
+The function takes a single numeric value as an input, defines a variable named 'result' that is equal to '1' and then creates a loop over all the numbers from 1 (variable 'result') to the 'input value'. In the loop, the current value of result is multiplied by the value of the iterator 'i'.  
+
+```{block2, type = 'rmdtip'}
+Although it is technically feasible, you would normally not define a function within conditional statements or within a loop.
+```
+
+## Scope
+
+Parameters of a function effectively are internal variables of the function. They work as a bridge between the overall environment in which you are working and the internal environment, which is only known to the function. They receive the value(s) provided as arguments. When you call the function and make those values available within the function itself. The distinction between the overall environment (global) that we have seen so far and a sort of internal environment (local) of the function brings us to the concept of scope. 
+
+> The **scope of a variable** is the part of code in which the variable is 'visible'.
+
+You have learned that a variable is saved in the memory. You can 'see' the variable, which means that you can use the identifier to invoke the variable in the code. 
+
+When you define a function, the corpus of the function is the scope of the variables that are defined in this function. That means you can make use of these variable within the function, but you cannot invoke these variables outside of the function (variables are not 'seen' outside the function).
+
+In R, the scope of variables is defined as follows:
+
+- a variable defined in a script (global) can be referred to from within a definition of a function in the same script
+- a variable defined within a definition of a function (local) will **not** be referable from outside the definition
+- scope does **not** apply to `if` or loop constructs, meaning that variables defined within a loop or control structure are referable from everywhere in the code.
+
+Let us take an example. In the case below, `x_value` is **global** to the function `times_x`. `new_value` and `input_value` are **local** to the function `times_x`. Referring to `new_value` or `input_value` from outside the definition of `times_x` would result in an error. However, we can refer to `x_value` from inside function `times_x`:
+
+```{r, echo=TRUE}
+x_value <- 10
+times_x <- function (input_value) {
+  new_value <- input_value * x_value
+  new_value
+}
+times_x(2)
+```
+
+```{block2, type = 'rmdexercise'}
+Referring to external global variables in a function is possible, but can be dangerous. At the time of execution, one cannot be sure what the value of the global variable is. For instance, other processes might have changed its value, which affects the behavior of the function. In order to fix this problem, define the variable 'x_value' as a default attribute of function 'times_x'. 
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+
+times_x <- function (input_value, x_value = 10) {
+  
+  new_value <- input_value * x_value
+  
+  new_value
+  
+}
+    
+</font></i>
+</p>
+</details> 
+
+
+```
+
+```{block2, type = 'rmdtip'}
+
+The lessons so far have covered some fundamental concepts of R programming. The [Base R Cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf){target="_blank"} contains a concise summary of most important operations at a glance.
+
+```
+
+<!--chapter:end:05-Functions.rmd-->
+
+# Data wrangling
+
+```{block2, type = 'rmdtip'}
+In most instances the structure of the available data will not meet the specific requirements to perform the analyses you are interested in. Data analysts typically spend the majority of their time cleaning, filtering, restructuring data as well as harmonizing and joining data from different sources.
+
+This lesson introduces to the most common data wrangling operations by means of the dplyr library (part of the Tidyverse libraries), which offers a grammar for data manipulation.
+
+You will also get to know [tibbles](https://tibble.tidyverse.org/){target="_blank"} as a new complex data type. Tibbles are basically a lightweight version of data frames (see [Tibbles in R for Data Science](https://r4ds.had.co.nz/tibbles.html){target="_blank"}). 
+```
+
+## Preparation
+
+If not yet installed on your machine, install the libraries `tidyverse` as well as `nycflights13` (see Libraries in lesson [core Concepts](#core)).
+
+The code below, loads a sample dataset (a [tibble](https://tibble.tidyverse.org/){target="_blank"}) from the library `nycflights13` into the variable `flights_from_nyc`. We will use this sample data in this lesson. 
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(nycflights13)
+flights_from_nyc <- nycflights13::flights
+
+```
+
+The operator `::` is used to indicate that the function `flights` (that returns our sample dataset) is situated within the library `nycflights13`. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names. 
+
+In order to run the following data wrangling examples on your machine, add both lines above as well as the code snippets provided in the upcoming examples to a new R script file.
+
+```{block2, type = 'rmdtip'}
+
+Once you have loaded the flights table, open the **Environment Tab** in RStudio and double-click variable `flights_from_nyc` to inspect the variable contents.
+
+Alternatively, you may inspect `flights_from_nyc` by writing it to the console.
+
+```
+
+## Data manipulation
+
+The library `dplyr` provides a number of functions to investigate basic characteristics of inputs. For instance, the function `count()` can be used to count the number of rows of a data frame or tibble. The code below uses `flights_from_nyc` as input to the function. 
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(tidyverse)
+library(knitr)
+
+flights_from_nyc %>%
+  dplyr::count() %>%
+  knitr::kable()
+```
+
+In the code example above, we use the so called **pipe operator** `%>%`, which is included in `tidyverse`, as well as a function named `kable()` of library `knitr` to render the output.
+
+```{block2, type = 'rmdtip'}
+The pipe operator allows us to link a sequence of analysis steps. In the example above, `flights_from_nyc` is passed into function `count()` and the output is passed into function `kable()` to render the result_df
+
+The pipe operator is a powerful tool to simplify your code. See [this video](https://www.youtube.com/watch?v=sohARFx6aTo){target="_blank"} to learn more about it.
+```
+
+The function `count()` can also be used to count the number of rows of a table that has the same value for a given column, usually representing a category.
+
+In the example below, the column name `origin` is provided as an argument to the function `count()`, so rows representing flights from the same origin are counted together – EWR is the Newark Liberty International Airport, JFK is the John F. Kennedy International Airport, and LGA is LaGuardia Airport.
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+flights_from_nyc %>%
+  dplyr::count(origin) %>%
+  knitr::kable()
+
+```
+
+As you can see, the code above is formatted in a way similar to a code block, although it is not a code block. The code goes to a new line after every `%>%`, and space is added at the beginning of new lines. That is very common in R programming (especially when functions have many parameters) as it makes the code more readable.
+
+### Summarise
+
+To carry out more complex aggregations, the function `summarise(`) can be used in combination with the function `group_by()` to summarise the values of the rows of a data frame or tibble. Rows having the same value for a selected column (in the example below, the same `origin`) are grouped together, then values are aggregated based on the defined function (using one or more columns in the calculation).
+
+In the example below, the function `sum()` is applied to the column `distance` to calculate a new column `mean_distance_traveled_from` (the mean distance travelled by flights starting from each airport).
+
+```{r, echo=TRUE}
+flights_from_nyc %>%
+  dplyr::group_by(origin) %>%
+  dplyr::summarise(
+    mean_distance_traveled_from = mean(distance)
+  ) %>%
+  knitr::kable()
+```
+
+### Select and filter
+
+The function `select()` can be used to select a subset of **columns**. For instance in the code below, the function `select()` is used to select the columns `origin`, `dest`, and `dep_delay`. The function `slice_head` is used to include only the first `n` rows in the output.
+
+```{r, echo=TRUE}
+flights_from_nyc %>%
+  dplyr::select(origin, dest, dep_delay) %>%
+  dplyr::slice_head(n = 5) %>%
+  knitr::kable()
+```
+
+The function `filter()` can instead be used to filter **rows** based on a specified condition. In the example below, the output of the `filter` step only includes the rows where the value of `month` is `11` (i.e., the eleventh month, November).
+
+```{r, echo=TRUE}
+flights_from_nyc %>%
+  dplyr::select(origin, dest, year, month, day, dep_delay) %>%
+  dplyr::filter(month == 11) %>%
+  dplyr::slice_head(n = 5) %>%
+  knitr::kable()
+```
+
+Notice how `filter` is used in combination with `select`. All functions in the `dplyr` library can be combined, in any other order that makes logical sense. However, if the `select` step didn’t include `month`, that same column couldn’t have been used in the `filter` step.
+
+### Mutate
+
+The function `mutate()` can be used to add a new column to an output table. The `mutate` step in the code below adds a new column `air_time_hours` to the table obtained through the pipe, that is the flight air time in hours, dividing the flight air time in minutes by `60`.
+
+```{r, echo=TRUE}
+flights_from_nyc %>%
+  dplyr::select(flight, origin, dest, air_time) %>%
+  dplyr::mutate(
+    air_time_hours = air_time / 60
+  ) %>%
+  dplyr::slice_head(n = 5) %>%
+  knitr::kable()
+```
+
+### Arrange
+
+The function `arrange()` sorts a tibble or data frame by ascending order of the values in the specified column. If a negative sign is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.
+
+```{r, echo=TRUE}
+flights_from_nyc %>%
+  dplyr::select(origin, dest, air_time) %>%
+  dplyr::arrange(-air_time) %>%
+  dplyr::slice_head(n = 5) %>%
+  knitr::kable()
+```
+
+In the examples above, we have used `slice_head` to present only the first `n` rows in a table, based on the existing order. 
+
+### Exercise: data manipulation
+
+```{block2, type = 'rmdexercise'}
+
+The Food and Agriculture Organization (FAO) is a specialized agency of the United Nations that leads international efforts to defeat hunger. On their [Website](http://www.fao.org/home/en/){target="_blank"} they provide comprehensive datasets on global crop and livestock production. Your task in this exercise is to create a table that shows national African sorghum production in 2019. 
+
+```
+
+1. Create an RScript and install or load the libraries `tidyverse` and `knitr`, if not done yet.
+2. Bulk download [African Crop and Livestock Production](http://www.fao.org/faostat/en/#data/QCL){target="_blank"} data as CSV:
+
+```{r L06-faodata, echo=FALSE, fig.cap="FAO Data Download", out.width='100%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/FAODataAfrica.png')
+```
+
+3. Read data from comma-separated CSV ("Production_Crops_Livestock_E_Africa_NOFLAG.csv") into your Script.
+
+```{echo=FALSE}
+fao_data <- read.csv(directory as string, header = TRUE, sep = ",")
+```
+
+4. Use the pipe operator to perform the following operations:
+    a) Select columns Area, Item, Element, Unit and Y2019
+    b) Filter rows that contain sorghum production (Item == "Sorghum" & Element == "Production")
+    c) Sort the table based on yield in descending order (arrange)
+    d) remove rows including `No Data` by means of function `drop_na()`
+    e) render the table using the function `kable()` of `library knitr`
+  
+See [my solution](Solution_Exercise_DataWrangling1.R){target="_blank"}!
+
+## Join
+
+A join operation combines two tables into one by matching rows that have the same values in the specified column. This operation is usually executed on columns containing identifiers, which are matched through different tables containing different data about the same real-world entities. For instance, the **table below** (data frame `city_telephone_prexix`) presents the telephone prefixes for two cities. That information can be combined with the data present in the **second table below** (data frame `city_info_wide`) through a join operation on the columns containing the city names. As the two tables do not contain all the same cities, if a full join operation is executed, some cells have no values assigned.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+city_telephone_prexix <- data.frame(
+    city = c("Leicester", "Birmingham", "London"),
+    telephon_prefix = c("0116", "0121", "0171")
+  ) %>%
+  tibble::as_tibble()
+
+city_telephone_prexix %>%
+  knitr::kable()
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+city_info_wide <- data.frame(
+    city = c("Leicester", "Nottingham"),
+    population = c(329839, 321500),
+    area = c(73.3, 74.6),
+    density = c(4500, 4412)
+  ) %>%
+  tibble::as_tibble()
+
+city_info_wide %>%
+ knitr::kable()
+```
+
+```{block2, type = 'rmdtip'}
+Note that data frames in the code above are converted to [tibbles](https://tibble.tidyverse.org/){target="_blank"}. This step is needed as the function `kable()` takes `tibbles` as an input. 
+```
+
+The `dplyr` library offers different types of join operations, which correspond to the different `SQL` joins illustrated in the image below. 
+
+```{r L06-joins, echo=FALSE, fig.cap="Join types", out.width='70%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/joins.png')
+```
+
+Please take your time to understand the examples below and check out the [related `dplyr` help pages](https://www.rdocumentation.org/packages/dplyr/versions/0.7.8/topics/join){target="_blank"} before continuing. The first four examples execute the exact same *full join* operation using three different syntaxes: with or without using the pipe operator and specifying the `by` argument or not. Note that all those approaches to writing the join are valid and produce the same result. The choice about which approach to use will depend on the code you are writing. In particular, you might find it useful to use the syntax that uses the pipe operator when the join operation is itself only one stem in a series of data manipulation steps. Using the `by` argument is usually advisable unless you are certain that you aim to join two tables with all and exactly the column that have the same names in the two table.
+
+Note how the result of the join operations is *not* saved to a variable. The function `knitr::kable` is added after each join operation through a pipe `%>%` to display the resulting table in a nice format.
+
+\newpage
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Option 1: without using the pipe operator
+# full join verb
+dplyr::full_join(
+    # left table
+    city_info_wide,
+    # right table
+    city_telephone_prexix,
+    # columns to match
+    by = c("city" = "city")
+  ) %>%
+  knitr::kable()
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Option 2: without using the pipe operator
+#   and without using the argument "by"
+#   as columns have the same name
+#   in the two tables.
+# Same result as Option 1
+# full join verb
+dplyr::full_join(
+    # left table
+    city_info_wide,
+    # right table
+    city_telephone_prexix
+  ) %>%
+  knitr::kable()
+```
+
+\newpage
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Option 3: using the pipe operator
+#   and without using the argument "by"
+#   as columns have the same name
+#   in the two tables.
+# Same result as Option 1 and 2
+# left table
+city_info_wide %>%
+  # full join verb
+  dplyr::full_join(
+    # right table
+    city_telephone_prexix
+  ) %>%
+  knitr::kable()
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Option 4: using the pipe operator
+#   and using the argument "by".
+# Same result as Option 1, 2 and 3
+# left table
+city_info_wide %>%
+  # full join verb
+  dplyr::full_join(
+    # right table
+    city_telephone_prexix,
+    # columns to match
+    by = c("city" = "city")
+  ) %>%
+  knitr::kable()
+```
+
+\newpage
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Left join
+# Using syntax similar to Option 1 above
+# left join
+dplyr::left_join(
+    # left table
+    city_info_wide, 
+    # right table
+    city_telephone_prexix,
+    # columns to match
+    by = c("city" = "city")
+  ) %>%
+  kable()
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Right join
+# Using syntax similar to Option 2 above
+# right join verb
+dplyr::right_join(
+    # left table
+    city_info_wide, 
+    # right table
+    city_telephone_prexix
+  ) %>%
+  kable()
+```
+
+\newpage
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Inner join
+# Using syntax similar to Option 3 above
+# left table
+city_info_wide %>%
+  # inner join
+  dplyr::inner_join(
+    # right table
+    city_telephone_prexix
+  ) %>%
+  kable()
+```
+### Exercise: join
+
+```{block2, type = 'rmdexercise'}
+
+In the previous exercise we have created a table that shows national African sorghum production in 2019. In this exercise we will join crop production statistics with a table that contains national boundaries and visualize sorghum production quantities in a simple map. 
+
+```
+
+1. Create an RScript and install and load the libraries `tidyverse`, `knitr`, `ggplot2` and `maps`, if not done yet.
+2. Copy the [code from the previous exercise](Solution_Exercise_DataWrangling1.R){target="_blank"} into your new RScript. Note that the result of the pipe operations is *not* saved to a variable. Save it to a variable. 
+3. Use the `ggplot2` function `map_data` to convert the built in sample dataset `world` (comes with library `maps`) to a data frame:
+
+```{echo=FALSE}
+world_ctry <- map_data("world") 
+```
+
+4. Inspect the structure of this data frame. Every row represents a node (defined by long/lat) of a polygon feature (national boundaries).
+5. Join tables (left table: geographic features, right table: sorghum production statistics) based on country names. Make sure to choose a join method (`full_join`, `inner_join`, `left_join` or `right_join`) that allows for retaining all the geographic features. 
+
+[My exercise solution](Solution_Exercise_DataWrangling2.R){target="_blank"} creates a simple output map. In a subsequent lesson we will cover visualization methods in more detail.  
+
+```{block2, type = 'rmdtip'}
+
+Take a look at the [dplyr Cheatsheet](https://www.rstudio.com/resources/cheatsheets/){target="_blank"} which shows the most important dplyr operations at a glance.
+
+```
+
+<!--chapter:end:06-selection_filtering.Rmd-->
+
+# Read and write data
+
+In previous exercises we have **read** data from a CSV file into our script. Similarly we can also **write** code outputs to file.   
+
+```{block2, type = 'rmdtip'}
+
+In this lesson you will learn to read and write plain-text and spatial vector file formats. Moreover, we will retrieve online data by means of a data API.
+
+```
+
+## Read and write tabular data
+
+A series of formats are based on plain-text files.
+
+For instance...
+
+- comma-separated values files `.csv`
+- semi-colon-separated values files `.csv`
+- tab-separated values files `.tsv`
+- other formats using custom delimiters
+- fix-width files `.fwf`
+
+The [`readr` library](https://readr.tidyverse.org/){target="_blank"} (also part of [Tidyverse](https://www.tidyverse.org/packages/#import){target="_blank"}) provides a series of functions that can be used to load from and save to such data formats. For instance, the `read_csv` function reads a comma delimited (CSV) file from the path provided as the first argument. 
+
+The code example below reads a CSV file that contains global fishery statistics provided by the [World Bank](https://datacatalog.worldbank.org/dataset/world-development-indicators){target="_blank"} and queries Norwegian entries. The function `writes_csv`  writes these entries to a new CSV file.  
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(tidyverse)
+
+fishery_data <- readr::read_csv("data/capture-fisheries-vs-aquaculture.csv")
+#print(fishery_data)
+
+#print(typeof(fishery_data$))
+
+fishery_data %>%
+  dplyr::filter(Entity == "Norway") %>%
+  readr::write_csv("data/capture-fisheries-vs-aquaculture-noraway.csv", append=FALSE) %>%
+  
+  dplyr::slice_head(n = 3) %>%
+  knitr::kable()
+  
+```
+
+In order to run the script, [download the CSV file](data/capture-fisheries-vs-aquaculture.csv){target="_blank"}. Then copy and run the code in a new R-script.
+
+```{block2, type = 'rmdtip'}
+Other important packages for reading tabular data are [readxl](https://readxl.tidyverse.org/){target="_blank"} for Excel (.xls and .xlsx) and [haven](https://haven.tidyverse.org/){target="_blank"} for SPSS, Stata and SAS data.  
+```
+
+## Read and write vector data
+
+The library `sf` makes it easy to read and write vector datasets such as shapefiles. The name (sf stands for **simple features**) already implies that `sf` supports simple feature access via R.
+
+Simple features is a widely supported data model that underlies data structures in many GIS applications including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other set-ups, for example importing from and exporting to spatial databases.
+
+In order to load vector data in an R-Script, we can use the function `st_read()`. In the code block below, a shapefile ([North Carolina sample data](https://r-spatial.github.io/sf/reference/nc.html){target="_blank"}) is loaded and assigned to a variable nc. 
+
+The next line creates a basic map in `sf` by means of `plot()`. By default this creates a multi-panel plot, one sub-plot for each variable of the object. 
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE, results='hide'}
+
+library(sf)
+
+nc <- sf::st_read("data/nc.shp")
+
+plot(nc)
+
+```
+
+The library `sf` represents features as records in a data frame or tibble with a geometry list-column. The example below renders three features (rows) of variable nc including the geometry column as well as the attributes `AREA` (feature area) and `NAME` (name of county):  
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+nc %>%
+  dplyr::select(AREA, NAME, geometry) %>%
+  dplyr::slice_head(n = 3) %>%
+  knitr::kable()
+
+```
+
+`sf` also includes a number of operations to manipulate the geometry of features such as `st_simplify`:  
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+sf::st_simplify(nc) %>%
+  plot(., max.plot = 1)
+
+```
+
+```{block2, type = 'rmdtip'}
+
+You may have recognized that a dot (.) is used as a parameter in the function `plot()`. The dot represents the piped value. In the example above the dot is used to define the simplified geometry of nc as first parameter of function `plot()` and `max.plot = 1` as the second.  
+
+```
+
+In the next example, the `st_geometry()` retrieves the geometry attribute from variable nc, function `st_centroid()` calculates the centroid of the polygon geometry (counties) and function `st_write` writes the centroid point geometry to file. 
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE, results='hide'}
+
+sf::st_geometry(nc) %>%
+  sf::st_centroid() %>%
+  sf::st_write("data/nc-centroids.shp", delete_dsn = TRUE) %>%
+  plot(pch = 3, col = 'red') 
+  
+```
+
+```{block2, type = 'rmdtip'}
+The online book [Geocomputation with R](https://geocompr.robinlovelace.net/geometric-operations.html){target="_blank"} offers a more comprehensive explanation of available geometric, attribute and spatial data operations. For a quick overview, you may turn to the [sf cheatsheets](https://github.com/rstudio/cheatsheets/blob/master/sf.pdf){target="_blank"}. 
+```
+
+In order to test the code on your machine, [download](data/nc-centroids.shp){target="_blank"} the North Carolina dataset and install the libraries `sf` and `Rcpp` before you run the code in an R-Script.   
+
+```{block2, type = 'rmdexercise'}
+
+The `plot()` function offers a large number of arguments that can be used to customize your map. Replace 'Area' in the map above by a more meaningful map title. Turn to the [documentation](https://r-spatial.github.io/sf/reference/plot.html){target="_blank"} for more information.    
+
+See [my solution](Solution_Miniexercise_plot.R){target="_blank"}!
+
+```
+
+```{block2, type = 'rmdtip'}
+Similar R functions are also available for raster data (see package [raster: Geographic Data Analysis and Modeling](https://cran.r-project.org/web/packages/raster/raster.pdf){target="_blank"}) 
+```
+
+## Data API
+
+> API is the acronym for Application Programming Interface, which is a software intermediary that allows two applications to talk to each other.
+
+By means of an API we can read, write and modify information on the web. The following video briefly introduces the technology behind it.
+
+```{r APIvideo, echo=FALSE, fig.align='center', fig.cap="Video (3:13 min): REST API concepts and examples."}
+
+knitr::include_url("https://www.youtube.com/embed/7YcW25PHnAA?end=194")
+
+``` 
+
+The most important take away messages are:
+
+1) With a REST API web data is accessible through a URL (Client-Server call via HTTP protocol)
+2) The HTTP **Get** Method delivers data (a Response) - i.e. is used to read data, the HTTP **Post** Method is used to create new REST API resources (write data).
+3) URL Parameters are used to filter specific data from a response.
+4) Typically, APIs can return data in a number of different formats. 
+5) JSON is a very popular format for transferring web data.
+6) The two primary elements that make up JSON are keys and values.
+
+The [library `httr`](https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html){target="_blank"} (also part of [Tidyverse](https://www.tidyverse.org/packages/#import){target="_blank"}) offers functions to programmatically implement API calls in an R script. We will make use of this library to let our R script interact with the [APIs](https://openweathermap.org/api){target="_blank"} offered by [OpenWeather Map](https://openweathermap.org/){target="_blank"} that contain historical and real-time weather data for retrieval. In the upcoming example we will make a call to the [Current Weather API](https://openweathermap.org/current){target="_blank"}, which is one out of currently [10 free APIs](https://openweathermap.org/price){target="_blank"} provided by OpenWeather Map.
+
+For accessing the data, we need to create a URL that is composed of a references to the data source (base) and parameters to filter the desired data subset (lat and lon). The parameters are concatenated by means of a '&' symbol, a question mark '?' needs to be placed between reference URL and parameters: 
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(httr)
+
+base <- "http://api.openweathermap.org/data/2.5/weather"
+lat <- "47.81"    
+lon <- "13.03"
+apiKey <- "3f87141421b32590d50416aae5ca780c"
+  
+call <- paste(base, "?lat=", lat, "&lon=" , lon, "&appid=", apiKey, sep="")
+
+print(call)
+  
+get <- GET(call)
+
+```
+
+In the code above, the function `paste()` assembles base URL and parameters. The URL (of type string) is then passed as an argument to function `GET()` that executes the HTTP Get method. 
+
+```{block2, type = 'rmdtip'}
+Note: The OpenWeather API requires an API Key to be passed as a parameter in the call. Get your [personal Key](https://openweathermap.org/appid){target="_blank"} to implement your own API requests. 
+
+```
+
+Per default, the `GET()` function returns a response object. Printing a response object gives you some useful information: the actual url used (after any redirects), the http status, the file (content) type, the size, and if it’s a text file, the first few lines of output.
+
+You can pull out important parts of the response with various helper functions such as `status_code()` and `content()`:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+status_code(get)
+
+str(content(get))
+
+```
+
+The Current Weather API call returned a number of real-time weather variables such as temperature, air pressure or humidity for the location of Salzburg. Current weather data may alternatively be retrieved by City ID or City Name (see the [documentation](https://openweathermap.org/current){target="_blank"} to get an overview of available API parameters).
+
+```{block2, type = 'rmdexercise'}
+
+Inspect the response object by means of a function called `headers()`. What methods are allowed when accessing the Current Weather API?
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+Only GET and POST methods are allowed.
+
+Other APIs allow to update existing REST API resources (PUT method) or to delete a REST API resource (DELETE method). 
+    
+</font></i>
+</p>
+</details>   
+  
+```
+
+In order to facilitate subsequent analyses and data visualization, we can convert the content of the return object to a `data frame` by means of function `fromJSON()` that is part of the library `library(jsonlite)`:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(jsonlite)
+
+get_text <- content(get, "text")
+get_json <- fromJSON(get_text, flatten = TRUE)
+get_df <- as.data.frame(get_json)
+
+```
+
+```{block2, type = 'rmdexercise'}
+Copy the code snippets above to a new R-Script. **Make sure to replace the key in the code example by your own API key!** If you need help, please turn to the discussion forum.
+```
+
+```{block2, type = 'rmdtip'}
+
+[Tidyverse](https://www.tidyverse.org/packages/){target="_blank"} also provides other packages for reading data such as [DBI](https://cran.r-project.org/web/packages/DBI/){target="_blank"} for relational databases [jsonlite](https://cran.r-project.org/web/packages/jsonlite/){target="_blank"} for JSON and [xml2](https://cran.r-project.org/web/packages/xml2/){target="_blank"} for XML. 
+
+```
+
+
+
+<!--chapter:end:07-read_write.Rmd-->
+
+# Data visualization
+
+R has a very rich set of graphical functions. The [R Graph Gallery](https://www.r-graph-gallery.com/){target="_blank"} provides a large number of examples (including code).  
+
+```{block2, type = 'rmdtip'}
+In this lesson you will get to know the [`ggplot2` library](https://ggplot2.tidyverse.org/){target="_blank"}, which is the most popular library for creating graphics in R. You will learn to create standard graphs such as histograms, boxplots or scatterplots as well as maps by means of the [`ggplot2` library](https://ggplot2.tidyverse.org/){target="_blank"}. 
+```
+
+## The Grammar of Graphics
+
+The [ggplot2 library](https://ggplot2.tidyverse.org/){target="_blank"} is part of [Tidyverse](https://www.tidyverse.org/){target="_blank"} and offers a series of functions for creating graphics declaratively, based on the concepts outlined in the Grammar of Graphics by [Leland Wilkinson](https://en.wikipedia.org/wiki/Leland_Wilkinson){target="_blank"}.
+
+The grammar of graphics is a schema that enables us to concisely describe the components of a graphic. These components are called **layers of grammatical elements.** Overall, the grammar comprises seven layers:
+
+1) Data - The data element is the dataset itself.
+2) Aesthetics - This layer defines how variables are mapped onto scales (see description below).
+3) Geometries - This element determines how our data is being displayed (e.g. bars, points, lines etc.)
+4) Facets - Faceting splits the data into subset and displays the same graph for every subset.
+5) Statistics - These are statistics derived from the data (add mean, median, quartile, etc.).
+6) Coordinates - This element determines the transformation of axes (e.g. change spacing of displayed data)
+7) Themes - This element determines the graphics background.
+
+The **aesthetics layer** offers a number of different options to map data onto visual variables. A **visual variable** is an aspect of a **mark** that can be controlled to change its appearance.
+
+Visual variables are: 
+
+- Size
+- Shape 
+- Orientation
+- Colour (hue)
+- Colour value (brightness)
+- Texture
+- Position (map variable to x or y axis) 
+
+For instance, in Figure \@ref(fig:L07-colsize) variables 'Gdp per capita' and  'Life Expectancy' are mapped onto the x and y axes (visual variable **position**), variables 'national population' and 'world regions' are mapped onto visual variables **size** and **color**.
+
+```{r L07-colsize, echo=FALSE, fig.cap="Visual variables color and size", out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/VisualVar.png')
+```
+
+In order to make that concept clearer, a number of examples will be presented in upcoming sections.
+
+```{block2, type = 'rmdtip'}
+The basic concept behind the grammar of graphics is described in an [article](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf){target="_blank"} by Hadley Wickham.  
+```
+
+## Visualization of distributions
+
+As already announced above, functions in the `ggplot2` library are structured according to the Grammar of Graphics. To create a graph in `ggplot2`, we need to provide input data, specify visual variables by means of an aesthetics element (`aes()`), specify the geometry of marks (e.g., `geom_point`) and apply transformations (axis spacing) and themes (background theme of the graph).
+
+We start the analysis with a simple histogram, to explore the distribution of air quality [data](data/AirQualityUpperAut.csv){target="_blank"} that has been measured at different locations in Upper Austria.
+
+```{block2, type = 'rmdtip'}
+
+The data includes the following **variables**
+
+- **time** of measurement
+- ID of the measuring **station**
+- measured meteorological [**component**](data/MetadataAirqual.xlsx){target="_blank"}
+- [**meantype**](data/MetadataAirqual2.xlsx){target="_blank"}
+- **unit** of measurement
+- measurement **value**
+  
+```
+
+The following code renders the first five lines of the dataset in a `knitr` table:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+library(tidyverse)
+library(knitr)
+
+#read csv data, Note: Semicolon seperated CSVs can be loaded by function 'read_delim()'
+airquality <- read_delim("data/AirQualityUpperAut.csv", delim = ";")
+
+airquality %>%
+  dplyr::slice_head(n = 5) %>%
+  knitr::kable()
+
+```
+
+The code below filters the airquality dataset by measurement component and temporal resolution. Then the data subset is passed as a first argument to function `ggplot()`. In the second argument, we map the variable `value` onto the x-axis with the aesthetics argument `aes()`. `geom_histogram()` specifies the geometry of the plot and `theme_bw()` is used to add a [background theme](https://ggplot2.tidyverse.org/reference/ggtheme.html){target="_blank"}.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+#filter NO2 measurements with temporal resolution 30min (HMW)
+airquality %>%
+  dplyr::filter(component == "NO2" & meantype == "HMW") %>%
+
+  #create plot  
+  ggplot2::ggplot(.,    #the dot '.' represents the piped value 
+    aes(            
+      x = value         #map variable 'value' onto x-axis
+    )
+  ) +
+  ggplot2::geom_histogram() +    #define geometry
+  ggplot2::theme_bw()            #define theme
+
+```
+
+If we aim to distinguish between measurements of respective measurement stations, we can map the variable 'station' onto visual variable color:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+airquality %>%
+  dplyr::filter(component == "NO2" & meantype == "HMW") %>%
+  dplyr::filter(station == "S125" | station == "S431" | station == "S270") %>%    #select 3 stations
+
+  ggplot2::ggplot(.,    
+    aes(            
+      x = value, 
+      fill = station
+      
+    )
+  ) +
+  
+  ggplot2::xlab("NO2 [mg/m^3]") +
+  ggplot2::ylab("Count") +
+  scale_fill_manual(name = "Measurement stations", values = c("grey20", "grey50", "grey80")) +
+  ggplot2::geom_histogram() +   
+  ggplot2::theme_bw()            
+
+```
+
+This is implemented by adding an attribute `fill = station` to the aesthetics element (`aes()`). `ggplot2` offers a number of [functions](https://ggplot2.tidyverse.org/reference/scale_manual.html){target="_blank"} to specify your own set of mappings from levels in the data to aesthetic values. In the example above the function `scale_fill_manual()` is used to map the three levels S125, S270 and S431 to the fill [colors](http://sape.inf.usi.ch/quick-reference/ggplot2/colour){target="_blank"} grey20, grey50 and grey80. Instead of ggplot colors, you can also use [hex color codes](https://htmlcolorcodes.com/){target="_blank"}.
+
+```{block2, type = 'rmdexercise'}
+
+Note that plot components are [added](https://ggplot2.tidyverse.org/reference/gg-add.html){target="_blank"} by means of a plus '+' sign. It allows you to start simple, and then get more and more complex.
+
+So far, we have added two axis labels. Create a new R-Script, download the [input data](data/AirQualityUpperAut.csv){target="_blank"}, recreate the histogram and insert one additional line of code to add a plot title (see [documentation](https://ggplot2.tidyverse.org/reference/labs.html){target="_blank"}).    
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><font color="grey">
+
+Insert title:  
+    
+ggplot2::ggtitle("Nitrogen dioxide concentration")
+    
+</font>
+</p>
+</details>
+
+```
+
+## Boxplots
+
+The same basic syntax is used to create other types of plots like bar plots (use geometry [`geom_bar()`](https://ggplot2.tidyverse.org/reference/geom_bar.html){target="_blank"} or [`geom_col()`](https://ggplot2.tidyverse.org/reference/geom_bar.html){target="_blank"}, line plots (use geometry [`geom_line()`](https://ggplot2.tidyverse.org/reference/geom_path.html){target="_blank"}) and many [others](https://ggplot2.tidyverse.org/reference/index.html){target="_blank"}.
+
+For instance, if we replace `geom_histogram()` by `geom_boxplot()`, the value distribution of NO2 measurements is visualized by means of a box plot:   
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+#filter NO2 measurements with temporal resolution 30min (HMW)
+airquality %>%
+  dplyr::filter(component == "NO2" & meantype == "HMW") %>%
+
+  #create plot  
+  ggplot2::ggplot(.,    #the dot '.' represents the piped value 
+    aes(            
+      x = value         #map variable 'value' onto x-axis
+    )
+  ) +
+  ggplot2::xlab("NO2 [mg/m^3]") +
+  ggplot2::geom_boxplot() +    #define geometry
+  ggplot2::theme(
+    axis.text.y = element_blank(),    #remove text and ticks from y axis
+    axis.ticks.y = element_blank()
+  )
+
+```
+
+Note that the last two lines remove text and tick marks from the y-axis of the plot.
+
+```{block2, type = 'rmdtip'}
+
+Just as histograms, box plots are used to inspect distributions in data. The [interpretation](https://ggplot2.tidyverse.org/reference/geom_boxplot.html){target="_blank"}, however, does require some additional information.  
+
+The lower and upper edge of the box (the so-called lower and upper **hinges**) correspond to the first and third [quartiles](https://www.statisticshowto.com/probability-and-statistics/statistics-definitions/what-are-quartiles/){target="_blank"}. The vertical line that separates the box indicates the **median** value (second quartile). 
+
+The upper **whisker** extends from the hinge to the largest value no further than 1.5 * IQR from the hinge (where IQR is the inter-quartile range, or distance between the first and third quartiles). The lower whisker extends from the hinge to the smallest value at most 1.5 * IQR of the hinge. Data beyond the end of the whiskers are called "outlying" points and are plotted individually.
+
+```
+
+```{block2, type = 'rmdexercise'}
+
+In our histogram examples, we have mapped the variable ‘station’ onto visual variable color to separately visualize measurements of different stations. Try to apply the same approach to render measurements of stations S125, S270 and S431 separately in a box plot. 
+                                                                        
+See [my solution](Solution_Exercise_boxplots.R){target="_blank"}!                                                                           
+```
+
+## Scatterplots
+
+While boxplots and histograms reveal distributions in data, scatterplots are used to illustrate relationships between variables. 
+
+In the following example, air temperature (TEMP) and relative humidity (RF) measured in a 30min interval by station ‘S108‘ are filtered from data table ‘airquality‘. Then the two tables are joined by their common field ‘time‘. The joined table is used as data input to render a scatterplot with temperature on the x-axis and relative humidity on the y-axis.   
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+#half-hourly temperature measurement of station S108 to data frame
+temp_tab <- airquality %>%
+  dplyr::filter(component == "TEMP" & meantype == "HMW" & station == "S108") 
+
+#half-hourly relative humidity measurement of station S108 to data frame
+humidity_tab <- airquality %>%
+  dplyr::filter(component == "RF" & meantype == "HMW" & station == "S108") 
+
+#join humidity and temperature tables by common field 'time'
+temp_tab %>%
+  dplyr::inner_join(
+  # right table
+  humidity_tab,
+  # columns to match
+  by = c("time" = "time")
+  ) %>%
+  
+  dplyr::select(time, value.x, value.y) %>%   #select relevant columns from joined table
+
+  #create plot  
+  ggplot2::ggplot(.,    
+    aes(            
+      x = value.x,      
+      y = value.y
+    )
+  ) +
+  ggplot2::xlab("air temperature [°C]") +
+  ggplot2::ylab("relative humidity [%]") +
+  ggplot2::geom_point(color="blue")  +                                      #define geometry scatterplot, with point color blue
+  ggplot2::geom_smooth(method=lm , color="red", fill="#69b3a2", se=TRUE) +  #with linear trend and confidence interval
+  ggplot2::theme_minimal()               
+
+```
+
+The plot reveals a trend between the two variables temperature and humidity. Relative humidity tends to increase as temperature decreases and vice versa. In [this video](https://www.youtube.com/watch?v=saojnBSBUuk){target="_blank"} you can find an explanation for the inverse proportional relationship between relative humidity and air temperature.
+
+Obviously, due to other predictors such as windspeed, evaporation etc., this relationship is not perfectly linear, however, it can be closely approximated by means of a linear regression line. Deviations from the linear model are indicated by a 95% confidence interval.  
+
+```{block2, type = 'rmdexercise'}
+
+Copy and run the code example from above in a new R-Script. Note that the air quality data as well as the `tidyverse` library must be loaded to run the code in a standalone R-script file. 
+
+[Complete Script!](Solution_Scatterplot.R){target="_blank"}
+
+Go through the code example line by line and answer the following questions:
+  
+1) How many measurements (records) are included in the scatterplot?
+2) What is value.x and value.y?
+3) We have used  the function `geom_smooth()` to fit a linear regression model (method = lm). What is the purpose of argument `se`?   
+
+<details closed>
+<summary><ins>**See answers!**</ins></summary>
+<p><font color="grey">
+
+1) Measurements between 21.10.2021 14:00 and 22.10.2021 12:00, half-hourly interval -> 45 records (see environment tab in RStudio)
+2) Temperature and humidity values in the data frame tables `humidity_tab` and `temp_tab` are both denoted `value`. In order to avoid ambiguities, the join function renames columns.
+3) The argument defines whether confidence bounds are displayed (`se` is TRUE by default).
+    
+</font>
+</p>
+</details> 
+
+```
+
+## Map visualization
+
+In the previous lesson you have already learned how to read vector data and create simple map layouts by means of the `plot()` function. In this concluding section, we will use the `ggplot()` library to create more complex map layouts.
+
+In order to replicate the code examples below, you will have to install and load the libraries `sf()` (remember: sf stands for simple features and is used to read and write vector data) and `ggplot()`. Also download the [North Carolina](data/nc.shp){target="_blank"} and [US States](data/us-states.shp){target="_blank"} sample datasets.
+
+First, let us start with creating a single-layer base map:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide', fig.height = 2.5}
+
+library(sf)
+library("ggplot2")
+
+nc <- sf::st_read("data/nc.shp")
+
+ggplot(data = nc)+
+    geom_sf() +
+    xlab("Longitude") + ylab("Latitude") +
+    ggtitle("North Carolina", subtitle = paste0("(", length(unique(nc$NAME)), " counties)"))
+
+
+```
+
+In the code above, we first load the North Carolina shapefile as an `sf()` object and then assign the data to the `ggplot()` graph. The `geom_sf` function adds a geometry stored in a sf object. Other map components such as title and axis labels are added by means of a plus sign. Note that `length(unique(nc$NAME))` returns the count of table rows, which corresponds to the number of geometries/counties. Geometry count and string "counties" are concatenated by function `paste0()`.
+
+The geometry element `geom_sf` provides a number of arguments to customize the appearance of vector features:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
+
+ggplot(data = nc) + 
+    geom_sf(color = "black", fill = "lightgreen")
+
+```
+
+Data can also be mapped onto visual variables in the same way as with diagram plots. In the example below, the variable AREA is mapped onto visual variable fill color:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
+
+ggplot(data = nc) +
+    geom_sf(aes(fill = AREA)) +
+    scale_fill_viridis_c(option = "plasma", trans = "sqrt")
+
+```
+
+The function `coord_sf()` allows to deal with the coordinate system, which includes both projection and extent of the map. By default, the map will use the coordinate system of the first layer or if the layer has no coordinate system, fall back on the geographic coordinate system WGS84. Using the argument crs, it is possible to override this setting, and project on the fly to any projection that has an [EPSG code](https://epsg.io/){target="_blank"}. For instance, we may change the coordinate system to EPSG 32618, which corresponds to WGS 84 / UTM zone 18N: 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
+
+ggplot(data = nc) +
+    geom_sf() +
+    coord_sf(crs = st_crs(32618))
+
+```
+
+The extent of the map can also be set in `coord_sf`, in practice allowing to “zoom” in the area of interest, provided by limits on the x-axis (xlim), and on the y-axis (ylim). The limits are automatically expanded by a fraction to ensure that data and axes do not overlap; it can also be turned off to exactly match the limits provided with expand = FALSE:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
+
+library("ggspatial")
+ggplot(data = nc) +
+    geom_sf() +
+    coord_sf(xlim = c(-78.9, -75.5), ylim = c(34, 34.85), expand = FALSE) +
+    annotation_scale(location = "br", width_hint = 0.5) +
+    annotation_north_arrow(location = "bl", which_north = "true", 
+        pad_x = unit(14.5, "cm"), pad_y = unit(0.8, "cm"),
+        style = north_arrow_fancy_orienteering) 
+    
+
+```
+
+Note that scale bar and north arrow are available with package `ggspatial`.
+
+In the following example, we will assign labels to vector features. The function `geom_text()` can be used to add a layer of text to a map using geographic coordinates. The North Carolina dataset contains county names as column (column: NAME). In order to define label positions, we take the centroids of the county polygons (function `st_centroid()`), derive X and Y coordinates from centroids (function `st_coordinates()`), merge the new X and Y columns with the columns of `nc` and assign the output to a new variable identifier `nc_points`:    
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
+
+nc_points <- cbind(nc, st_coordinates(st_centroid(nc$geometry)))
+
+```
+
+```{block2, type = 'rmdexercise'}
+
+I have used a standard syntax to create variabe `nc_points`. Convert the code to pipe operator syntax.
+
+By the way, pipe operators are available with library `magrittr`, which is part of `tidyverse`. So make sure to load `tidyverse` in your script.
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><font color="grey">
+
+st_centroid(nc$geometry) %>%
+  st_coordinates() %>%
+  cbind(nc, .)
+
+Note that the reading direction of pipe syntax code is from left to right (more intuitive), whereas standard syntax (nested functions) is read from right to left.
+    
+</font>
+</p>
+</details>
+
+```
+
+After deriving centroid coordinates from `nc` geometries, we call the new variable `nc_points` in function `geom_text` and map X and Y columns (centroid coordinates) onto visual variables x and y (position in graph) and also map column NAME onto visual variable label. Moreover, we can insert individual text annotations manually by means of function `annotate()`:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
+ggplot(data = nc) +
+geom_sf() +
+geom_text(data= nc_points,aes(x=X, y=Y, label=NAME),
+    color = "darkblue", fontface = "bold", check_overlap = FALSE, size = 3) +
+annotate(geom = "text", x = -76.5, y = 34.3, label = "Atlantic Ocean", 
+    fontface = "italic", color = "grey22", size = 5) +
+coord_sf(xlim = c(-78.9, -75.5), ylim = c(34, 34.85), expand = FALSE) 
+
+```
+
+In a final example, the methods introduced so far are combined to create a more comprehensive map visualization: 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide', fig.height = 6}
+
+us_states <- sf::st_read("data/us-states.shp")
+us_states_points <- st_centroid(us_states)
+us_states_points <- cbind(us_states, st_coordinates(st_centroid(us_states$geometry)))
+
+ggplot(data = nc) +
+  geom_sf(data = us_states, fill= "antiquewhite1") +
+  geom_sf(aes(fill = AREA)) +
+  geom_label(data= us_states_points,aes(x=X, y=Y, label=NAME),
+            color = "black", fontface = "bold", check_overlap = FALSE, size = 3, nudge_x = 0.5) +
+  annotation_scale(location = "br", width_hint = 0.5) +
+  annotation_north_arrow(location = "bl", which_north = "true", 
+                         pad_x = unit(11, "cm"), pad_y = unit(0.8, "cm"),
+                         style = north_arrow_fancy_orienteering) + 
+  scale_fill_viridis_c(trans = "sqrt", alpha = .4) +
+  coord_sf(xlim = c(-84.9, -70), ylim = c(24.5, 37), expand = FALSE) +
+  xlab("Longitude") + ylab("Latitude") +
+  ggtitle("US Southeast", subtitle = "(Detail: North Carolina)") +
+  annotate(geom = "text", x = -76.5, y = 30.5, label = "Atlantic Ocean", 
+           fontface = "italic", color = "grey22", size = 6) +
+  theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
+       size = 0.1), panel.background = element_rect(fill = "aliceblue"))
+
+```
+
+The function `geom_sf()` is used to add US state polygons as an additional layer. The function `geom_label()` is used as an alternative to function `geom_text()`. Note that `nudge_x` of function `geom_label()` is introduced to offset labels horizontally.
+
+Eventually, we save a PDF version of the map, which keeps the best quality, and a PNG version of it for web purposes:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+ggsave("data/map.pdf")
+ggsave("data/map_web.png", width = 10, height = 10, dpi = "screen")
+```
+
+```{block2, type = 'rmdtip'}
+
+Take a look at the [ggplot Cheatsheet](https://www.rstudio.com/resources/cheatsheets/){target="_blank"} which shows the most important ggplot operations at a glance.
+
+```
+
+<!--chapter:end:08-data_viz.Rmd-->
+
