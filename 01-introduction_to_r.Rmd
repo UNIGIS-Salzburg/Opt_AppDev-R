@@ -54,7 +54,14 @@ The following video gives a brief overview of key functions of RStudio.
 
 ```{r RStudioVideo, echo=FALSE, fig.align='center', fig.cap="Video (6:09 min): RStudio for the Total Beginner."}
 
-knitr::include_url("https://www.youtube.com/embed/FIrsOBy5k58")
+if (knitr::is_html_output(excludes='epub')) {
+    knitr::include_url("https://www.youtube.com/embed/FIrsOBy5k58")
+} else {
+    knitr::include_graphics('http://img.youtube.com/vi/FIrsOBy5k58/mqdefault.jpg')
+  }
+
+
+#knitr::include_url("https://www.youtube.com/embed/FIrsOBy5k58")
 
 ``` 
 
