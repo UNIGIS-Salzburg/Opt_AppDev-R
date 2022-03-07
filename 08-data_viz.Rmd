@@ -266,7 +266,7 @@ Go through the code example line by line and answer the following questions:
 
 In the previous lesson you have already learned how to read vector data and create simple map layouts by means of the `plot()` function. In this concluding section, we will use the `ggplot()` library to create more complex map layouts.
 
-In order to replicate the code examples below, you will have to install and load the libraries `sf()` (remember: sf stands for simple features and is used to read and write vector data) and `ggplot()`. Also download the [North Carolina](data/nc.shp){target="_blank"} and [US States](data/us-states.shp){target="_blank"} sample datasets.
+In order to replicate the code examples below, you will have to install and load the libraries `sf()` (remember: sf stands for simple features and is used to read and write vector data) and `ggplot()`. Also download the [North Carolina](data/nc.zip){target="_blank"} and [US States](data/us-states.zip){target="_blank"} sample datasets.
 
 First, let us start with creating a single-layer base map:
 
