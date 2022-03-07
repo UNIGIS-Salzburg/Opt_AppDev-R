@@ -1,0 +1,421 @@
+# Data visualization
+
+R has a very rich set of graphical functions. The [R Graph Gallery](https://www.r-graph-gallery.com/){target="_blank"} provides a large number of examples (including code).  
+
+```{block2, type = 'rmdtip'}
+In this lesson you will get to know the [`ggplot2` library](https://ggplot2.tidyverse.org/){target="_blank"}, which is the most popular library for creating graphics in R. You will learn to create standard graphs such as histograms, boxplots or scatterplots as well as maps by means of the [`ggplot2` library](https://ggplot2.tidyverse.org/){target="_blank"}. 
+```
+
+## The Grammar of Graphics
+
+The [ggplot2 library](https://ggplot2.tidyverse.org/){target="_blank"} is part of [Tidyverse](https://www.tidyverse.org/){target="_blank"} and offers a series of functions for creating graphics declaratively, based on the concepts outlined in the Grammar of Graphics by [Leland Wilkinson](https://en.wikipedia.org/wiki/Leland_Wilkinson){target="_blank"}.
+
+The grammar of graphics is a schema that enables us to concisely describe the components of a graphic. These components are called **layers of grammatical elements.** Overall, the grammar comprises seven layers:
+
+1) Data - The data element is the dataset itself.
+2) Aesthetics - This layer defines how variables are mapped onto scales (see description below).
+3) Geometries - This element determines how our data is being displayed (e.g. bars, points, lines etc.)
+4) Facets - Faceting splits the data into subset and displays the same graph for every subset.
+5) Statistics - These are statistics derived from the data (add mean, median, quartile, etc.).
+6) Coordinates - This element determines the transformation of axes (e.g. change spacing of displayed data)
+7) Themes - This element determines the graphics background.
+
+The **aesthetics layer** offers a number of different options to map data onto visual variables. A **visual variable** is an aspect of a **mark** that can be controlled to change its appearance.
+
+Visual variables are: 
+
+- Size
+- Shape 
+- Orientation
+- Colour (hue)
+- Colour value (brightness)
+- Texture
+- Position (map variable to x or y axis) 
+
+For instance, in Figure \@ref(fig:L07-colsize) variables 'Gdp per capita' and  'Life Expectancy' are mapped onto the x and y axes (visual variable **position**), variables 'national population' and 'world regions' are mapped onto visual variables **size** and **color**.
+
+```{r L07-colsize, echo=FALSE, fig.cap="Visual variables color and size", out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/VisualVar.png')
+```
+
+In order to make that concept clearer, a number of examples will be presented in upcoming sections.
+
+```{block2, type = 'rmdtip'}
+The basic concept behind the grammar of graphics is described in an [article](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf){target="_blank"} by Hadley Wickham.  
+```
+
+## Visualization of distributions
+
+As already announced above, functions in the `ggplot2` library are structured according to the Grammar of Graphics. To create a graph in `ggplot2`, we need to provide input data, specify visual variables by means of an aesthetics element (`aes()`), specify the geometry of marks (e.g., `geom_point`) and apply transformations (axis spacing) and themes (background theme of the graph).
+
+We start the analysis with a simple histogram, to explore the distribution of air quality [data](data/AirQualityUpperAut.csv){target="_blank"} that has been measured at different locations in Upper Austria.
+
+```{block2, type = 'rmdtip'}
+
+The data includes the following **variables**
+
+- **time** of measurement
+- ID of the measuring **station**
+- measured meteorological [**component**](data/MetadataAirqual.xlsx){target="_blank"}
+- [**meantype**](data/MetadataAirqual2.xlsx){target="_blank"}
+- **unit** of measurement
+- measurement **value**
+  
+```
+
+The following code renders the first five lines of the dataset in a `knitr` table:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+library(tidyverse)
+library(knitr)
+
+#read csv data, Note: Semicolon seperated CSVs can be loaded by function 'read_delim()'
+airquality <- read_delim("data/AirQualityUpperAut.csv", delim = ";")
+
+airquality %>%
+  dplyr::slice_head(n = 5) %>%
+  knitr::kable()
+
+```
+
+The code below filters the airquality dataset by measurement component and temporal resolution. Then the data subset is passed as a first argument to function `ggplot()`. In the second argument, we map the variable `value` onto the x-axis with the aesthetics argument `aes()`. `geom_histogram()` specifies the geometry of the plot and `theme_bw()` is used to add a [background theme](https://ggplot2.tidyverse.org/reference/ggtheme.html){target="_blank"}.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+#filter NO2 measurements with temporal resolution 30min (HMW)
+airquality %>%
+  dplyr::filter(component == "NO2" & meantype == "HMW") %>%
+
+  #create plot  
+  ggplot2::ggplot(.,    #the dot '.' represents the piped value 
+    aes(            
+      x = value         #map variable 'value' onto x-axis
+    )
+  ) +
+  ggplot2::geom_histogram() +    #define geometry
+  ggplot2::theme_bw()            #define theme
+
+```
+
+If we aim to distinguish between measurements of respective measurement stations, we can map the variable 'station' onto visual variable color:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+airquality %>%
+  dplyr::filter(component == "NO2" & meantype == "HMW") %>%
+  dplyr::filter(station == "S125" | station == "S431" | station == "S270") %>%    #select 3 stations
+
+  ggplot2::ggplot(.,    
+    aes(            
+      x = value, 
+      fill = station
+      
+    )
+  ) +
+  
+  ggplot2::xlab("NO2 [mg/m^3]") +
+  ggplot2::ylab("Count") +
+  scale_fill_manual(name = "Measurement stations", values = c("grey20", "grey50", "grey80")) +
+  ggplot2::geom_histogram() +   
+  ggplot2::theme_bw()            
+
+```
+
+This is implemented by adding an attribute `fill = station` to the aesthetics element (`aes()`). `ggplot2` offers a number of [functions](https://ggplot2.tidyverse.org/reference/scale_manual.html){target="_blank"} to specify your own set of mappings from levels in the data to aesthetic values. In the example above the function `scale_fill_manual()` is used to map the three levels S125, S270 and S431 to the fill [colors](http://sape.inf.usi.ch/quick-reference/ggplot2/colour){target="_blank"} grey20, grey50 and grey80. Instead of ggplot colors, you can also use [hex color codes](https://htmlcolorcodes.com/){target="_blank"}.
+
+```{block2, type = 'rmdexercise'}
+
+Note that plot components are [added](https://ggplot2.tidyverse.org/reference/gg-add.html){target="_blank"} by means of a plus '+' sign. It allows you to start simple, and then get more and more complex.
+
+So far, we have added two axis labels. Create a new R-Script, download the [input data](data/AirQualityUpperAut.csv){target="_blank"}, recreate the histogram and insert one additional line of code to add a plot title (see [documentation](https://ggplot2.tidyverse.org/reference/labs.html){target="_blank"}).    
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><font color="grey">
+
+Insert title:  
+    
+ggplot2::ggtitle("Nitrogen dioxide concentration")
+    
+</font>
+</p>
+</details>
+
+```
+
+## Boxplots
+
+The same basic syntax is used to create other types of plots like bar plots (use geometry [`geom_bar()`](https://ggplot2.tidyverse.org/reference/geom_bar.html){target="_blank"} or [`geom_col()`](https://ggplot2.tidyverse.org/reference/geom_bar.html){target="_blank"}, line plots (use geometry [`geom_line()`](https://ggplot2.tidyverse.org/reference/geom_path.html){target="_blank"}) and many [others](https://ggplot2.tidyverse.org/reference/index.html){target="_blank"}.
+
+For instance, if we replace `geom_histogram()` by `geom_boxplot()`, the value distribution of NO2 measurements is visualized by means of a box plot:   
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+#filter NO2 measurements with temporal resolution 30min (HMW)
+airquality %>%
+  dplyr::filter(component == "NO2" & meantype == "HMW") %>%
+
+  #create plot  
+  ggplot2::ggplot(.,    #the dot '.' represents the piped value 
+    aes(            
+      x = value         #map variable 'value' onto x-axis
+    )
+  ) +
+  ggplot2::xlab("NO2 [mg/m^3]") +
+  ggplot2::geom_boxplot() +    #define geometry
+  ggplot2::theme(
+    axis.text.y = element_blank(),    #remove text and ticks from y axis
+    axis.ticks.y = element_blank()
+  )
+
+```
+
+Note that the last two lines remove text and tick marks from the y-axis of the plot.
+
+```{block2, type = 'rmdtip'}
+
+Just as histograms, box plots are used to inspect distributions in data. The [interpretation](https://ggplot2.tidyverse.org/reference/geom_boxplot.html){target="_blank"}, however, does require some additional information.  
+
+The lower and upper edge of the box (the so-called lower and upper **hinges**) correspond to the first and third [quartiles](https://www.statisticshowto.com/probability-and-statistics/statistics-definitions/what-are-quartiles/){target="_blank"}. The vertical line that separates the box indicates the **median** value (second quartile). 
+
+The upper **whisker** extends from the hinge to the largest value no further than 1.5 * IQR from the hinge (where IQR is the inter-quartile range, or distance between the first and third quartiles). The lower whisker extends from the hinge to the smallest value at most 1.5 * IQR of the hinge. Data beyond the end of the whiskers are called "outlying" points and are plotted individually.
+
+```
+
+```{block2, type = 'rmdexercise'}
+
+In our histogram examples, we have mapped the variable ‘station’ onto visual variable color to separately visualize measurements of different stations. Try to apply the same approach to render measurements of stations S125, S270 and S431 separately in a box plot. 
+                                                                        
+See [my solution](Solution_Exercise_boxplots.R){target="_blank"}!                                                                           
+```
+
+## Scatterplots
+
+While boxplots and histograms reveal distributions in data, scatterplots are used to illustrate relationships between variables. 
+
+In the following example, air temperature (TEMP) and relative humidity (RF) measured in a 30min interval by station ‘S108‘ are filtered from data table ‘airquality‘. Then the two tables are joined by their common field ‘time‘. The joined table is used as data input to render a scatterplot with temperature on the x-axis and relative humidity on the y-axis.   
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+
+#half-hourly temperature measurement of station S108 to data frame
+temp_tab <- airquality %>%
+  dplyr::filter(component == "TEMP" & meantype == "HMW" & station == "S108") 
+
+#half-hourly relative humidity measurement of station S108 to data frame
+humidity_tab <- airquality %>%
+  dplyr::filter(component == "RF" & meantype == "HMW" & station == "S108") 
+
+#join humidity and temperature tables by common field 'time'
+temp_tab %>%
+  dplyr::inner_join(
+  # right table
+  humidity_tab,
+  # columns to match
+  by = c("time" = "time")
+  ) %>%
+  
+  dplyr::select(time, value.x, value.y) %>%   #select relevant columns from joined table
+
+  #create plot  
+  ggplot2::ggplot(.,    
+    aes(            
+      x = value.x,      
+      y = value.y
+    )
+  ) +
+  ggplot2::xlab("air temperature [°C]") +
+  ggplot2::ylab("relative humidity [%]") +
+  ggplot2::geom_point(color="blue")  +                                      #define geometry scatterplot, with point color blue
+  ggplot2::geom_smooth(method=lm , color="red", fill="#69b3a2", se=TRUE) +  #with linear trend and confidence interval
+  ggplot2::theme_minimal()               
+
+```
+
+The plot reveals a trend between the two variables temperature and humidity. Relative humidity tends to increase as temperature decreases and vice versa. In [this video](https://www.youtube.com/watch?v=saojnBSBUuk){target="_blank"} you can find an explanation for the inverse proportional relationship between relative humidity and air temperature.
+
+Obviously, due to other predictors such as windspeed, evaporation etc., this relationship is not perfectly linear, however, it can be closely approximated by means of a linear regression line. Deviations from the linear model are indicated by a 95% confidence interval.  
+
+```{block2, type = 'rmdexercise'}
+
+Copy and run the code example from above in a new R-Script. Note that the air quality data as well as the `tidyverse` library must be loaded to run the code in a standalone R-script file. 
+
+[Complete Script!](Solution_Scatterplot.R){target="_blank"}
+
+Go through the code example line by line and answer the following questions:
+  
+1) How many measurements (records) are included in the scatterplot?
+2) What is value.x and value.y?
+3) We have used  the function `geom_smooth()` to fit a linear regression model (method = lm). What is the purpose of argument `se`?   
+
+<details closed>
+<summary><ins>**See answers!**</ins></summary>
+<p><font color="grey">
+
+1) Measurements between 21.10.2021 14:00 and 22.10.2021 12:00, half-hourly interval -> 45 records (see environment tab in RStudio)
+2) Temperature and humidity values in the data frame tables `humidity_tab` and `temp_tab` are both denoted `value`. In order to avoid ambiguities, the join function renames columns.
+3) The argument defines whether confidence bounds are displayed (`se` is TRUE by default).
+    
+</font>
+</p>
+</details> 
+
+```
+
+## Map visualization
+
+In the previous lesson you have already learned how to read vector data and create simple map layouts by means of the `plot()` function. In this concluding section, we will use the `ggplot()` library to create more complex map layouts.
+
+In order to replicate the code examples below, you will have to install and load the libraries `sf()` (remember: sf stands for simple features and is used to read and write vector data) and `ggplot()`. Also download the [North Carolina](data/nc.zip){target="_blank"} and [US States](data/us-states.zip){target="_blank"} sample datasets.
+
+First, let us start with creating a single-layer base map:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide', fig.height = 2.5}
+
+library(sf)
+library("ggplot2")
+
+nc <- sf::st_read("data/nc.shp")
+
+ggplot(data = nc)+
+    geom_sf() +
+    xlab("Longitude") + ylab("Latitude") +
+    ggtitle("North Carolina", subtitle = paste0("(", length(unique(nc$NAME)), " counties)"))
+
+
+```
+
+In the code above, we first load the North Carolina shapefile as an `sf()` object and then assign the data to the `ggplot()` graph. The `geom_sf` function adds a geometry stored in a sf object. Other map components such as title and axis labels are added by means of a plus sign. Note that `length(unique(nc$NAME))` returns the count of table rows, which corresponds to the number of geometries/counties. Geometry count and string "counties" are concatenated by function `paste0()`.
+
+The geometry element `geom_sf` provides a number of arguments to customize the appearance of vector features:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
+
+ggplot(data = nc) + 
+    geom_sf(color = "black", fill = "lightgreen")
+
+```
+
+Data can also be mapped onto visual variables in the same way as with diagram plots. In the example below, the variable AREA is mapped onto visual variable fill color:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
+
+ggplot(data = nc) +
+    geom_sf(aes(fill = AREA)) +
+    scale_fill_viridis_c(option = "plasma", trans = "sqrt")
+
+```
+
+The function `coord_sf()` allows to deal with the coordinate system, which includes both projection and extent of the map. By default, the map will use the coordinate system of the first layer or if the layer has no coordinate system, fall back on the geographic coordinate system WGS84. Using the argument crs, it is possible to override this setting, and project on the fly to any projection that has an [EPSG code](https://epsg.io/){target="_blank"}. For instance, we may change the coordinate system to EPSG 32618, which corresponds to WGS 84 / UTM zone 18N: 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
+
+ggplot(data = nc) +
+    geom_sf() +
+    coord_sf(crs = st_crs(32618))
+
+```
+
+The extent of the map can also be set in `coord_sf`, in practice allowing to “zoom” in the area of interest, provided by limits on the x-axis (xlim), and on the y-axis (ylim). The limits are automatically expanded by a fraction to ensure that data and axes do not overlap; it can also be turned off to exactly match the limits provided with expand = FALSE:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
+
+library("ggspatial")
+ggplot(data = nc) +
+    geom_sf() +
+    coord_sf(xlim = c(-78.9, -75.5), ylim = c(34, 34.85), expand = FALSE) +
+    annotation_scale(location = "br", width_hint = 0.5) +
+    annotation_north_arrow(location = "bl", which_north = "true", 
+        pad_x = unit(14.5, "cm"), pad_y = unit(0.8, "cm"),
+        style = north_arrow_fancy_orienteering) 
+    
+
+```
+
+Note that scale bar and north arrow are available with package `ggspatial`.
+
+In the following example, we will assign labels to vector features. The function `geom_text()` can be used to add a layer of text to a map using geographic coordinates. The North Carolina dataset contains county names as column (column: NAME). In order to define label positions, we take the centroids of the county polygons (function `st_centroid()`), derive X and Y coordinates from centroids (function `st_coordinates()`), merge the new X and Y columns with the columns of `nc` and assign the output to a new variable identifier `nc_points`:    
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
+
+nc_points <- cbind(nc, st_coordinates(st_centroid(nc$geometry)))
+
+```
+
+```{block2, type = 'rmdexercise'}
+
+I have used a standard syntax to create variabe `nc_points`. Convert the code to pipe operator syntax.
+
+By the way, pipe operators are available with library `magrittr`, which is part of `tidyverse`. So make sure to load `tidyverse` in your script.
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><font color="grey">
+
+st_centroid(nc$geometry) %>%
+  st_coordinates() %>%
+  cbind(nc, .)
+
+Note that the reading direction of pipe syntax code is from left to right (more intuitive), whereas standard syntax (nested functions) is read from right to left.
+    
+</font>
+</p>
+</details>
+
+```
+
+After deriving centroid coordinates from `nc` geometries, we call the new variable `nc_points` in function `geom_text` and map X and Y columns (centroid coordinates) onto visual variables x and y (position in graph) and also map column NAME onto visual variable label. Moreover, we can insert individual text annotations manually by means of function `annotate()`:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
+ggplot(data = nc) +
+geom_sf() +
+geom_text(data= nc_points,aes(x=X, y=Y, label=NAME),
+    color = "darkblue", fontface = "bold", check_overlap = FALSE, size = 3) +
+annotate(geom = "text", x = -76.5, y = 34.3, label = "Atlantic Ocean", 
+    fontface = "italic", color = "grey22", size = 5) +
+coord_sf(xlim = c(-78.9, -75.5), ylim = c(34, 34.85), expand = FALSE) 
+
+```
+
+In a final example, the methods introduced so far are combined to create a more comprehensive map visualization: 
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide', fig.height = 6}
+
+us_states <- sf::st_read("data/us-states.shp")
+us_states_points <- st_centroid(us_states)
+us_states_points <- cbind(us_states, st_coordinates(st_centroid(us_states$geometry)))
+
+ggplot(data = nc) +
+  geom_sf(data = us_states, fill= "antiquewhite1") +
+  geom_sf(aes(fill = AREA)) +
+  geom_label(data= us_states_points,aes(x=X, y=Y, label=NAME),
+            color = "black", fontface = "bold", check_overlap = FALSE, size = 3, nudge_x = 0.5) +
+  annotation_scale(location = "br", width_hint = 0.5) +
+  annotation_north_arrow(location = "bl", which_north = "true", 
+                         pad_x = unit(11, "cm"), pad_y = unit(0.8, "cm"),
+                         style = north_arrow_fancy_orienteering) + 
+  scale_fill_viridis_c(trans = "sqrt", alpha = .4) +
+  coord_sf(xlim = c(-84.9, -70), ylim = c(24.5, 37), expand = FALSE) +
+  xlab("Longitude") + ylab("Latitude") +
+  ggtitle("US Southeast", subtitle = "(Detail: North Carolina)") +
+  annotate(geom = "text", x = -76.5, y = 30.5, label = "Atlantic Ocean", 
+           fontface = "italic", color = "grey22", size = 6) +
+  theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
+       size = 0.1), panel.background = element_rect(fill = "aliceblue"))
+
+```
+
+The function `geom_sf()` is used to add US state polygons as an additional layer. The function `geom_label()` is used as an alternative to function `geom_text()`. Note that `nudge_x` of function `geom_label()` is introduced to offset labels horizontally.
+
+Eventually, we save a PDF version of the map, which keeps the best quality, and a PNG version of it for web purposes:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+ggsave("data/map.pdf")
+ggsave("data/map_web.png", width = 10, height = 10, dpi = "screen")
+```
+
+```{block2, type = 'rmdtip'}
+
+Take a look at the [ggplot Cheatsheet](https://www.rstudio.com/resources/cheatsheets/){target="_blank"} which shows the most important ggplot operations at a glance.
+
+```

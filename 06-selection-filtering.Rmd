@@ -1,0 +1,345 @@
+# Data wrangling
+
+```{block2, type = 'rmdtip'}
+In most instances the structure of the available data will not meet the specific requirements to perform the analyses you are interested in. Data analysts typically spend the majority of their time cleaning, filtering, restructuring data as well as harmonizing and joining data from different sources.
+
+This lesson introduces to the most common data wrangling operations by means of the dplyr library (part of the Tidyverse libraries), which offers a grammar for data manipulation.
+
+You will also get to know [tibbles](https://tibble.tidyverse.org/){target="_blank"} as a new complex data type. Tibbles are basically a lightweight version of data frames (see [Tibbles in R for Data Science](https://r4ds.had.co.nz/tibbles.html){target="_blank"}). 
+```
+
+## Preparation
+
+If not yet installed on your machine, install the libraries `tidyverse` as well as `nycflights13` (see Libraries in lesson [core Concepts](#core)).
+
+The code below, loads a sample dataset (a [tibble](https://tibble.tidyverse.org/){target="_blank"}) from the library `nycflights13` into the variable `flights_from_nyc`. We will use this sample data in this lesson. 
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(nycflights13)
+flights_from_nyc <- nycflights13::flights
+
+```
+
+The operator `::` is used to indicate that the function `flights` (that returns our sample dataset) is situated within the library `nycflights13`. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names. 
+
+In order to run the following data wrangling examples on your machine, add both lines above as well as the code snippets provided in the upcoming examples to a new R script file.
+
+```{block2, type = 'rmdtip'}
+
+Once you have loaded the flights table, open the **Environment Tab** in RStudio and double-click variable `flights_from_nyc` to inspect the variable contents.
+
+Alternatively, you may inspect `flights_from_nyc` by writing it to the console.
+
+```
+
+## Data manipulation
+
+The library `dplyr` provides a number of functions to investigate basic characteristics of inputs. For instance, the function `count()` can be used to count the number of rows of a data frame or tibble. The code below uses `flights_from_nyc` as input to the function. 
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(tidyverse)
+library(knitr)
+
+flights_from_nyc %>%
+  dplyr::count() %>%
+  knitr::kable()
+```
+
+In the code example above, we use the so called **pipe operator** `%>%`, which is included in `tidyverse`, as well as a function named `kable()` of library `knitr` to render the output.
+
+```{block2, type = 'rmdtip'}
+The pipe operator allows us to link a sequence of analysis steps. In the example above, `flights_from_nyc` is passed into function `count()` and the output is passed into function `kable()` to render the result_df
+
+The pipe operator is a powerful tool to simplify your code. See [this video](https://www.youtube.com/watch?v=sohARFx6aTo){target="_blank"} to learn more about it.
+```
+
+The function `count()` can also be used to count the number of rows of a table that has the same value for a given column, usually representing a category.
+
+In the example below, the column name `origin` is provided as an argument to the function `count()`, so rows representing flights from the same origin are counted together – EWR is the Newark Liberty International Airport, JFK is the John F. Kennedy International Airport, and LGA is LaGuardia Airport.
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+flights_from_nyc %>%
+  dplyr::count(origin) %>%
+  knitr::kable()
+
+```
+
+As you can see, the code above is formatted in a way similar to a code block, although it is not a code block. The code goes to a new line after every `%>%`, and space is added at the beginning of new lines. That is very common in R programming (especially when functions have many parameters) as it makes the code more readable.
+
+### Summarise
+
+To carry out more complex aggregations, the function `summarise(`) can be used in combination with the function `group_by()` to summarise the values of the rows of a data frame or tibble. Rows having the same value for a selected column (in the example below, the same `origin`) are grouped together, then values are aggregated based on the defined function (using one or more columns in the calculation).
+
+In the example below, the function `sum()` is applied to the column `distance` to calculate a new column `mean_distance_traveled_from` (the mean distance travelled by flights starting from each airport).
+
+```{r, echo=TRUE}
+flights_from_nyc %>%
+  dplyr::group_by(origin) %>%
+  dplyr::summarise(
+    mean_distance_traveled_from = mean(distance)
+  ) %>%
+  knitr::kable()
+```
+
+### Select and filter
+
+The function `select()` can be used to select a subset of **columns**. For instance in the code below, the function `select()` is used to select the columns `origin`, `dest`, and `dep_delay`. The function `slice_head` is used to include only the first `n` rows in the output.
+
+```{r, echo=TRUE}
+flights_from_nyc %>%
+  dplyr::select(origin, dest, dep_delay) %>%
+  dplyr::slice_head(n = 5) %>%
+  knitr::kable()
+```
+
+The function `filter()` can instead be used to filter **rows** based on a specified condition. In the example below, the output of the `filter` step only includes the rows where the value of `month` is `11` (i.e., the eleventh month, November).
+
+```{r, echo=TRUE}
+flights_from_nyc %>%
+  dplyr::select(origin, dest, year, month, day, dep_delay) %>%
+  dplyr::filter(month == 11) %>%
+  dplyr::slice_head(n = 5) %>%
+  knitr::kable()
+```
+
+Notice how `filter` is used in combination with `select`. All functions in the `dplyr` library can be combined, in any other order that makes logical sense. However, if the `select` step didn’t include `month`, that same column couldn’t have been used in the `filter` step.
+
+### Mutate
+
+The function `mutate()` can be used to add a new column to an output table. The `mutate` step in the code below adds a new column `air_time_hours` to the table obtained through the pipe, that is the flight air time in hours, dividing the flight air time in minutes by `60`.
+
+```{r, echo=TRUE}
+flights_from_nyc %>%
+  dplyr::select(flight, origin, dest, air_time) %>%
+  dplyr::mutate(
+    air_time_hours = air_time / 60
+  ) %>%
+  dplyr::slice_head(n = 5) %>%
+  knitr::kable()
+```
+
+### Arrange
+
+The function `arrange()` sorts a tibble or data frame by ascending order of the values in the specified column. If a negative sign is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.
+
+```{r, echo=TRUE}
+flights_from_nyc %>%
+  dplyr::select(origin, dest, air_time) %>%
+  dplyr::arrange(-air_time) %>%
+  dplyr::slice_head(n = 5) %>%
+  knitr::kable()
+```
+
+In the examples above, we have used `slice_head` to present only the first `n` rows in a table, based on the existing order. 
+
+### Exercise: data manipulation
+
+```{block2, type = 'rmdexercise'}
+
+The Food and Agriculture Organization (FAO) is a specialized agency of the United Nations that leads international efforts to defeat hunger. On their [Website](http://www.fao.org/home/en/){target="_blank"} they provide comprehensive datasets on global crop and livestock production. Your task in this exercise is to create a table that shows national African sorghum production in 2019. 
+
+```
+
+1. Create an RScript and install or load the libraries `tidyverse` and `knitr`, if not done yet.
+2. Bulk download [African Crop and Livestock Production](http://www.fao.org/faostat/en/#data/QCL){target="_blank"} data as CSV:
+
+```{r L06-faodata, echo=FALSE, fig.cap="FAO Data Download", out.width='100%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/FAODataAfrica.png')
+```
+
+3. Read data from comma-separated CSV ("Production_Crops_Livestock_E_Africa_NOFLAG.csv") into your Script.
+
+```{echo=FALSE}
+fao_data <- read.csv(directory as string, header = TRUE, sep = ",")
+```
+
+4. Use the pipe operator to perform the following operations:
+    a) Select columns Area, Item, Element, Unit and Y2019
+    b) Filter rows that contain sorghum production (Item == "Sorghum" & Element == "Production")
+    c) Sort the table based on yield in descending order (arrange)
+    d) remove rows including `No Data` by means of function `drop_na()`
+    e) render the table using the function `kable()` of `library knitr`
+  
+See [my solution](Solution_Exercise_DataWrangling1.R){target="_blank"}!
+
+## Join
+
+A join operation combines two tables into one by matching rows that have the same values in the specified column. This operation is usually executed on columns containing identifiers, which are matched through different tables containing different data about the same real-world entities. For instance, the **table below** (data frame `city_telephone_prexix`) presents the telephone prefixes for two cities. That information can be combined with the data present in the **second table below** (data frame `city_info_wide`) through a join operation on the columns containing the city names. As the two tables do not contain all the same cities, if a full join operation is executed, some cells have no values assigned.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+city_telephone_prexix <- data.frame(
+    city = c("Leicester", "Birmingham", "London"),
+    telephon_prefix = c("0116", "0121", "0171")
+  ) %>%
+  tibble::as_tibble()
+
+city_telephone_prexix %>%
+  knitr::kable()
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+city_info_wide <- data.frame(
+    city = c("Leicester", "Nottingham"),
+    population = c(329839, 321500),
+    area = c(73.3, 74.6),
+    density = c(4500, 4412)
+  ) %>%
+  tibble::as_tibble()
+
+city_info_wide %>%
+ knitr::kable()
+```
+
+```{block2, type = 'rmdtip'}
+Note that data frames in the code above are converted to [tibbles](https://tibble.tidyverse.org/){target="_blank"}. This step is needed as the function `kable()` takes `tibbles` as an input. 
+```
+
+The `dplyr` library offers different types of join operations, which correspond to the different `SQL` joins illustrated in the image below. 
+
+```{r L06-joins, echo=FALSE, fig.cap="Join types", out.width='70%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/joins.png')
+```
+
+Please take your time to understand the examples below and check out the [related `dplyr` help pages](https://www.rdocumentation.org/packages/dplyr/versions/0.7.8/topics/join){target="_blank"} before continuing. The first four examples execute the exact same *full join* operation using three different syntaxes: with or without using the pipe operator and specifying the `by` argument or not. Note that all those approaches to writing the join are valid and produce the same result. The choice about which approach to use will depend on the code you are writing. In particular, you might find it useful to use the syntax that uses the pipe operator when the join operation is itself only one stem in a series of data manipulation steps. Using the `by` argument is usually advisable unless you are certain that you aim to join two tables with all and exactly the column that have the same names in the two table.
+
+Note how the result of the join operations is *not* saved to a variable. The function `knitr::kable` is added after each join operation through a pipe `%>%` to display the resulting table in a nice format.
+
+\newpage
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Option 1: without using the pipe operator
+# full join verb
+dplyr::full_join(
+    # left table
+    city_info_wide,
+    # right table
+    city_telephone_prexix,
+    # columns to match
+    by = c("city" = "city")
+  ) %>%
+  knitr::kable()
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Option 2: without using the pipe operator
+#   and without using the argument "by"
+#   as columns have the same name
+#   in the two tables.
+# Same result as Option 1
+# full join verb
+dplyr::full_join(
+    # left table
+    city_info_wide,
+    # right table
+    city_telephone_prexix
+  ) %>%
+  knitr::kable()
+```
+
+\newpage
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Option 3: using the pipe operator
+#   and without using the argument "by"
+#   as columns have the same name
+#   in the two tables.
+# Same result as Option 1 and 2
+# left table
+city_info_wide %>%
+  # full join verb
+  dplyr::full_join(
+    # right table
+    city_telephone_prexix
+  ) %>%
+  knitr::kable()
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Option 4: using the pipe operator
+#   and using the argument "by".
+# Same result as Option 1, 2 and 3
+# left table
+city_info_wide %>%
+  # full join verb
+  dplyr::full_join(
+    # right table
+    city_telephone_prexix,
+    # columns to match
+    by = c("city" = "city")
+  ) %>%
+  knitr::kable()
+```
+
+\newpage
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Left join
+# Using syntax similar to Option 1 above
+# left join
+dplyr::left_join(
+    # left table
+    city_info_wide, 
+    # right table
+    city_telephone_prexix,
+    # columns to match
+    by = c("city" = "city")
+  ) %>%
+  kable()
+```
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Right join
+# Using syntax similar to Option 2 above
+# right join verb
+dplyr::right_join(
+    # left table
+    city_info_wide, 
+    # right table
+    city_telephone_prexix
+  ) %>%
+  kable()
+```
+
+\newpage
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+# Inner join
+# Using syntax similar to Option 3 above
+# left table
+city_info_wide %>%
+  # inner join
+  dplyr::inner_join(
+    # right table
+    city_telephone_prexix
+  ) %>%
+  kable()
+```
+### Exercise: join
+
+```{block2, type = 'rmdexercise'}
+
+In the previous exercise we have created a table that shows national African sorghum production in 2019. In this exercise we will join crop production statistics with a table that contains national boundaries and visualize sorghum production quantities in a simple map. 
+
+```
+
+1. Create an RScript and install and load the libraries `tidyverse`, `knitr`, `ggplot2` and `maps`, if not done yet.
+2. Copy the [code from the previous exercise](Solution_Exercise_DataWrangling1.R){target="_blank"} into your new RScript. Note that the result of the pipe operations is *not* saved to a variable. Save it to a variable. 
+3. Use the `ggplot2` function `map_data` to convert the built in sample dataset `world` (comes with library `maps`) to a data frame:
+
+```{echo=FALSE}
+world_ctry <- map_data("world") 
+```
+
+4. Inspect the structure of this data frame. Every row represents a node (defined by long/lat) of a polygon feature (national boundaries).
+5. Join tables (left table: geographic features, right table: sorghum production statistics) based on country names. Make sure to choose a join method (`full_join`, `inner_join`, `left_join` or `right_join`) that allows for retaining all the geographic features. 
+
+[My exercise solution](Solution_Exercise_DataWrangling2.R){target="_blank"} creates a simple output map. In a subsequent lesson we will cover visualization methods in more detail.  
+
+```{block2, type = 'rmdtip'}
+
+Take a look at the [dplyr Cheatsheet](https://www.rstudio.com/resources/cheatsheets/){target="_blank"} which shows the most important dplyr operations at a glance.
+
+```
