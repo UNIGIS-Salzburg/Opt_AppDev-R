@@ -187,6 +187,10 @@ a3dim_array <- array(1:24, dim=c(4, 3, 2))
 a3dim_array
 ```
 
+```{block2, type = 'rmdtip'}
+Note that an array could also have only one dimension. Such an array would look like a vector. Nevertheless, it is stored with additional attributes like `dim`, has different options and behaves differently!
+```
+
 ### Selection
 
 Subsetting of matrices and arrays works in a very similar way as seen for vectors. However, as these are multi-dimensional objects, one value (or index) needs to be specified for each one of the dimensions.

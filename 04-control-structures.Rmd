@@ -106,7 +106,7 @@ There are two main types of loops:
     - construct `for`
 
 
-### While
+### While and repeat
 
 The *while* construct can be defined using the `while` reserved word, followed by a condition between simple brackets, and a code block. The instructions in the code block are re-executed as long as the result of the evaluation of the condition is `TRUE`.
 
@@ -139,6 +139,21 @@ Go through the example above and try to verbalize the consecutive steps.
 </details>  
 
 ```
+
+The same procedure can alternatively be implemented by means of the *repeat* construct:
+
+```{r, echo=TRUE}
+current_value <- 0 
+repeat { 
+  cat("Current value is", current_value, "\n") 
+  current_value = current_value + 1 
+if (current_value == 3){            #if (variable == 10)... 
+  break                              #the loop will break!
+  }
+}
+```
+
+The break statement is executed and stops (breaks) the repeat loop (also applicable to while or for loops) once the variable `current_value` is equal to ten.  
 
 ### For
 

@@ -32,7 +32,7 @@ if
 else
 code-blocks
 loops
-while
+while-and-repeat
 for
 loops-with-conditional-statements
 functions

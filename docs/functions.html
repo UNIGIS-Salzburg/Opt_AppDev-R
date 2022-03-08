@@ -170,7 +170,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="control-structures.html"><a href="control-structures.html#else"><i class="fa fa-check"></i><b>4.2</b> Else</a></li>
 <li class="chapter" data-level="4.3" data-path="control-structures.html"><a href="control-structures.html#code-blocks"><i class="fa fa-check"></i><b>4.3</b> Code blocks</a></li>
 <li class="chapter" data-level="4.4" data-path="control-structures.html"><a href="control-structures.html#loops"><i class="fa fa-check"></i><b>4.4</b> Loops</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="control-structures.html"><a href="control-structures.html#while"><i class="fa fa-check"></i><b>4.4.1</b> While</a></li>
+<li class="chapter" data-level="4.4.1" data-path="control-structures.html"><a href="control-structures.html#while-and-repeat"><i class="fa fa-check"></i><b>4.4.1</b> While and repeat</a></li>
 <li class="chapter" data-level="4.4.2" data-path="control-structures.html"><a href="control-structures.html#for"><i class="fa fa-check"></i><b>4.4.2</b> For</a></li>
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="control-structures.html"><a href="control-structures.html#loops-with-conditional-statements"><i class="fa fa-check"></i><b>4.5</b> Loops with conditional statements</a></li>
@@ -239,12 +239,12 @@ Moreover, you will get to know the difference between variables with global and 
 <h2><span class="header-section-number">5.1</span> Defining functions</h2>
 <p>The syntax for defining a function does not look too different from the syntax that we have been using to define a variable or to create a conditional statement. We start by defining an identifier (e.g. add_one) on the left of an assignment operator (<code>&lt;-</code>). This is followed by the so-called <strong>corpus of the function.</strong></p>
 <p>The corpus starts with the reserved word ‘function’ followed by the <strong>parameter(s)</strong> (e.g. <code>input_value</code> in the example below) between simple brackets and the instruction(s) to be executed in a code block. The value of the last statement is returned as output:</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="functions.html#cb106-1"></a>add_one &lt;-<span class="st"> </span><span class="cf">function</span> (input_value) {</span>
-<span id="cb106-2"><a href="functions.html#cb106-2"></a>  output_value &lt;-<span class="st"> </span>input_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
-<span id="cb106-3"><a href="functions.html#cb106-3"></a>  output_value</span>
-<span id="cb106-4"><a href="functions.html#cb106-4"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="functions.html#cb108-1"></a>add_one &lt;-<span class="st"> </span><span class="cf">function</span> (input_value) {</span>
+<span id="cb108-2"><a href="functions.html#cb108-2"></a>  output_value &lt;-<span class="st"> </span>input_value <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb108-3"><a href="functions.html#cb108-3"></a>  output_value</span>
+<span id="cb108-4"><a href="functions.html#cb108-4"></a>  }</span></code></pre></div>
 <p>After being defined, a function can be invoked by specifying the <strong>identifier</strong> and necessary parameters. The function above takes a single numeric value as an input and returns that value incremented by +1. So if we invoke the function with an input value ‘3’, the function returns 4:</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="functions.html#cb107-1"></a><span class="kw">add_one</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="functions.html#cb109-1"></a><span class="kw">add_one</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 </div>
 <div id="more-parameters" class="section level2">
@@ -254,11 +254,11 @@ Moreover, you will get to know the difference between variables with global and 
 <p>A function always takes as input as many values as the number of parameters specified in the definition, otherwise an error is generated</p>
 </blockquote>
 <p>The function ‘area_rectangle’ includes two parameters (height and width), calculates an area value by multiplying the inputs and returns the area as a single numeric value:</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="functions.html#cb109-1"></a>area_rectangle &lt;-<span class="st"> </span><span class="cf">function</span> (height, width) {</span>
-<span id="cb109-2"><a href="functions.html#cb109-2"></a>  area &lt;-<span class="st"> </span>height <span class="op">*</span><span class="st"> </span>width</span>
-<span id="cb109-3"><a href="functions.html#cb109-3"></a>  area</span>
-<span id="cb109-4"><a href="functions.html#cb109-4"></a>}</span>
-<span id="cb109-5"><a href="functions.html#cb109-5"></a><span class="kw">area_rectangle</span>(<span class="dv">3</span>, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="functions.html#cb111-1"></a>area_rectangle &lt;-<span class="st"> </span><span class="cf">function</span> (height, width) {</span>
+<span id="cb111-2"><a href="functions.html#cb111-2"></a>  area &lt;-<span class="st"> </span>height <span class="op">*</span><span class="st"> </span>width</span>
+<span id="cb111-3"><a href="functions.html#cb111-3"></a>  area</span>
+<span id="cb111-4"><a href="functions.html#cb111-4"></a>}</span>
+<span id="cb111-5"><a href="functions.html#cb111-5"></a><span class="kw">area_rectangle</span>(<span class="dv">3</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 
 <div class="rmdexercise">
@@ -269,19 +269,19 @@ Moreover, you will get to know the difference between variables with global and 
 <div id="more-return-values" class="section level2">
 <h2><span class="header-section-number">5.3</span> More return values</h2>
 <p>In order to let a function return multiple values, you can append return values to a list and return the list. The following functions ‘rectangle_metrics’ calculates area and perimeter of a rectangle based on two inputs (rectangle height and width) and writes the two outputs to a new list ‘return_vals’:</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="functions.html#cb111-1"></a>rectangle_metrics &lt;-<span class="st"> </span><span class="cf">function</span> (height, width) {</span>
-<span id="cb111-2"><a href="functions.html#cb111-2"></a>  area &lt;-<span class="st"> </span>height <span class="op">*</span><span class="st"> </span>width</span>
-<span id="cb111-3"><a href="functions.html#cb111-3"></a>  perimeter &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span>height <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>width</span>
-<span id="cb111-4"><a href="functions.html#cb111-4"></a>  </span>
-<span id="cb111-5"><a href="functions.html#cb111-5"></a>  return_vals &lt;-<span class="st"> </span><span class="kw">list</span>(area, perimeter)</span>
-<span id="cb111-6"><a href="functions.html#cb111-6"></a>  </span>
-<span id="cb111-7"><a href="functions.html#cb111-7"></a>  return_vals</span>
-<span id="cb111-8"><a href="functions.html#cb111-8"></a>  </span>
-<span id="cb111-9"><a href="functions.html#cb111-9"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="functions.html#cb113-1"></a>rectangle_metrics &lt;-<span class="st"> </span><span class="cf">function</span> (height, width) {</span>
+<span id="cb113-2"><a href="functions.html#cb113-2"></a>  area &lt;-<span class="st"> </span>height <span class="op">*</span><span class="st"> </span>width</span>
+<span id="cb113-3"><a href="functions.html#cb113-3"></a>  perimeter &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">*</span>height <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>width</span>
+<span id="cb113-4"><a href="functions.html#cb113-4"></a>  </span>
+<span id="cb113-5"><a href="functions.html#cb113-5"></a>  return_vals &lt;-<span class="st"> </span><span class="kw">list</span>(area, perimeter)</span>
+<span id="cb113-6"><a href="functions.html#cb113-6"></a>  </span>
+<span id="cb113-7"><a href="functions.html#cb113-7"></a>  return_vals</span>
+<span id="cb113-8"><a href="functions.html#cb113-8"></a>  </span>
+<span id="cb113-9"><a href="functions.html#cb113-9"></a>}</span></code></pre></div>
 <p>We can retrieve the two return values by specifying their list indexes [[1]] and [[2]]:</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="functions.html#cb112-1"></a><span class="kw">cat</span>(<span class="st">&quot;This is the first return value - area: &quot;</span>, <span class="kw">rectangle_metrics</span>(<span class="dv">3</span>, <span class="dv">2</span>)[[<span class="dv">1</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="functions.html#cb114-1"></a><span class="kw">cat</span>(<span class="st">&quot;This is the first return value - area: &quot;</span>, <span class="kw">rectangle_metrics</span>(<span class="dv">3</span>, <span class="dv">2</span>)[[<span class="dv">1</span>]])</span></code></pre></div>
 <pre><code>## This is the first return value - area:  6</code></pre>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="functions.html#cb114-1"></a><span class="kw">cat</span>(<span class="st">&quot;This is the second return value - perimeter: &quot;</span>, <span class="kw">rectangle_metrics</span>(<span class="dv">3</span>, <span class="dv">2</span>)[[<span class="dv">2</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="functions.html#cb116-1"></a><span class="kw">cat</span>(<span class="st">&quot;This is the second return value - perimeter: &quot;</span>, <span class="kw">rectangle_metrics</span>(<span class="dv">3</span>, <span class="dv">2</span>)[[<span class="dv">2</span>]])</span></code></pre></div>
 <pre><code>## This is the second return value - perimeter:  10</code></pre>
 
 <div class="rmdtip">
@@ -293,15 +293,15 @@ If you execute one of the functions above in a new R Script, you will see that t
 <h2><span class="header-section-number">5.4</span> Functions and control structures</h2>
 <p>In the last lesson, you have learned that loops can contain conditional statements and that conditional statement can contain loops. In the same way, the corpus of a function can contain both loops and conditional statements.</p>
 <p>The following code shows an example of a function that is using a loop to calculate the factorial of a number. A factorial of a number is simply the product of all the numbers less than or equal to that number (e.g. factorial of 3 = 1 * 2 * 3 = 6).</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="functions.html#cb116-1"></a>factorial &lt;-<span class="st"> </span><span class="cf">function</span> (input_value) {</span>
-<span id="cb116-2"><a href="functions.html#cb116-2"></a>  result &lt;-<span class="st"> </span><span class="dv">1</span></span>
-<span id="cb116-3"><a href="functions.html#cb116-3"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>input_value) {</span>
-<span id="cb116-4"><a href="functions.html#cb116-4"></a>    <span class="kw">cat</span>(<span class="st">&quot;current:&quot;</span>, result, <span class="st">&quot; | i:&quot;</span>, i, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb116-5"><a href="functions.html#cb116-5"></a>    result &lt;-<span class="st"> </span>result <span class="op">*</span><span class="st"> </span>i</span>
-<span id="cb116-6"><a href="functions.html#cb116-6"></a>  }</span>
-<span id="cb116-7"><a href="functions.html#cb116-7"></a>  result</span>
-<span id="cb116-8"><a href="functions.html#cb116-8"></a>}</span>
-<span id="cb116-9"><a href="functions.html#cb116-9"></a><span class="kw">factorial</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="functions.html#cb118-1"></a>factorial &lt;-<span class="st"> </span><span class="cf">function</span> (input_value) {</span>
+<span id="cb118-2"><a href="functions.html#cb118-2"></a>  result &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb118-3"><a href="functions.html#cb118-3"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>input_value) {</span>
+<span id="cb118-4"><a href="functions.html#cb118-4"></a>    <span class="kw">cat</span>(<span class="st">&quot;current:&quot;</span>, result, <span class="st">&quot; | i:&quot;</span>, i, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb118-5"><a href="functions.html#cb118-5"></a>    result &lt;-<span class="st"> </span>result <span class="op">*</span><span class="st"> </span>i</span>
+<span id="cb118-6"><a href="functions.html#cb118-6"></a>  }</span>
+<span id="cb118-7"><a href="functions.html#cb118-7"></a>  result</span>
+<span id="cb118-8"><a href="functions.html#cb118-8"></a>}</span>
+<span id="cb118-9"><a href="functions.html#cb118-9"></a><span class="kw">factorial</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## current: 1  | i: 1 
 ## current: 1  | i: 2 
 ## current: 2  | i: 3</code></pre>
@@ -328,12 +328,12 @@ Although it is technically feasible, you would normally not define a function wi
 <li>scope does <strong>not</strong> apply to <code>if</code> or loop constructs, meaning that variables defined within a loop or control structure are referable from everywhere in the code.</li>
 </ul>
 <p>Let us take an example. In the case below, <code>x_value</code> is <strong>global</strong> to the function <code>times_x</code>. <code>new_value</code> and <code>input_value</code> are <strong>local</strong> to the function <code>times_x</code>. Referring to <code>new_value</code> or <code>input_value</code> from outside the definition of <code>times_x</code> would result in an error. However, we can refer to <code>x_value</code> from inside function <code>times_x</code>:</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="functions.html#cb119-1"></a>x_value &lt;-<span class="st"> </span><span class="dv">10</span></span>
-<span id="cb119-2"><a href="functions.html#cb119-2"></a>times_x &lt;-<span class="st"> </span><span class="cf">function</span> (input_value) {</span>
-<span id="cb119-3"><a href="functions.html#cb119-3"></a>  new_value &lt;-<span class="st"> </span>input_value <span class="op">*</span><span class="st"> </span>x_value</span>
-<span id="cb119-4"><a href="functions.html#cb119-4"></a>  new_value</span>
-<span id="cb119-5"><a href="functions.html#cb119-5"></a>}</span>
-<span id="cb119-6"><a href="functions.html#cb119-6"></a><span class="kw">times_x</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="functions.html#cb121-1"></a>x_value &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb121-2"><a href="functions.html#cb121-2"></a>times_x &lt;-<span class="st"> </span><span class="cf">function</span> (input_value) {</span>
+<span id="cb121-3"><a href="functions.html#cb121-3"></a>  new_value &lt;-<span class="st"> </span>input_value <span class="op">*</span><span class="st"> </span>x_value</span>
+<span id="cb121-4"><a href="functions.html#cb121-4"></a>  new_value</span>
+<span id="cb121-5"><a href="functions.html#cb121-5"></a>}</span>
+<span id="cb121-6"><a href="functions.html#cb121-6"></a><span class="kw">times_x</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 20</code></pre>
 
 <div class="rmdexercise">
