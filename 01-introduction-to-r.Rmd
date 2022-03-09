@@ -216,3 +216,4 @@ Apart from [Stefano de Sabbata's](https://stefanodesabbata.com/){target="_blank"
 - *The Art of R Programming: A Tour of Statistical Software Design* by Norman Matloff, No Starch Press, 2011. See book [webpage](https://nostarch.com/artofr.htm){target="_blank"}
 - *An Introduction to R for Spatial Analysis and Mapping* by Chris Brunsdon and Lex Comber, Sage, 2015. See book [webpage](https://us.sagepub.com/en-us/nam/an-introduction-to-r-for-spatial-analysis-and-mapping/book258267){target="_blank"}
 - *Geocomputation with R* by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. See [online book](https://bookdown.org/robinlovelace/geocompr/){target="_blank"}.
+- *The RStudio Cheatsheets - * [Collection on R Studio Website](https://www.rstudio.com/resources/cheatsheets/){target="_blank"}.
