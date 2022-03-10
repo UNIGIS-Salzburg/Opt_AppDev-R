@@ -11,4 +11,4 @@ ToDos:
 
 * describe tibbles (output of dplyr) in more detail
 * add long and wide table formats (see data wrangling de sabbata)
-* [Shiny](https://shiny.rstudio.com/){target="_blank"}
+* [Shiny](https://shiny.rstudio.com/)
