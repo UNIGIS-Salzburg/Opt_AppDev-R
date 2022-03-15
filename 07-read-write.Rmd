@@ -54,7 +54,7 @@ The library `sf` makes it easy to read and write vector datasets such as shapefi
 
 Simple features is a widely supported data model that underlies data structures in many GIS applications including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other set-ups, for example importing from and exporting to spatial databases.
 
-In order to load vector data in an R-Script, we can use the function `st_read()`. In the code block below, a shapefile ([North Carolina sample data](https://r-spatial.github.io/sf/reference/nc.html){target="_blank"}) is loaded and assigned to a variable nc. 
+In order to load vector data in an R-Script, we can use the function `st_read()`. In the code block below, a [shapefile](data/nc.zip){target="_blank"} ([North Carolina sample data](https://r-spatial.github.io/sf/reference/nc.html){target="_blank"}) is loaded and assigned to a variable nc. 
 
 The next line creates a basic map in `sf` by means of `plot()`. By default this creates a multi-panel plot, one sub-plot for each variable of the object. 
 
@@ -169,6 +169,8 @@ In the code above, the function `paste()` assembles base URL and parameters. The
 
 ```{block2, type = 'rmdtip'}
 Note: The OpenWeather API requires an API Key to be passed as a parameter in the call. Get your [personal Key](https://openweathermap.org/appid){target="_blank"} to implement your own API requests. 
+
+If your code returns an error 401, this most likely indicates that your key is not activated yet. According to the [FAQs](https://openweathermap.org/faq){target="_blank"}, it may take a couple of hours until your key is active. 
 
 ```
 

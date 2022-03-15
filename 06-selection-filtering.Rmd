@@ -121,6 +121,22 @@ flights_from_nyc %>%
   knitr::kable()
 ```
 
+```{block2, type = 'rmdexercise'}
+
+Run the mutate example above in a new script and replace `dplyr::mutate` by `dplyr::transmutate`. What happens to your results?
+  
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+The `transmutate` function adds a new column to the table and drops existing ones.
+    
+</font></i>
+</p>
+</details> 
+
+```
+
 ### Arrange
 
 The function `arrange()` sorts a tibble or data frame by ascending order of the values in the specified column. If a negative sign is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.
@@ -287,7 +303,7 @@ dplyr::left_join(
     # columns to match
     by = c("city" = "city")
   ) %>%
-  kable()
+  knitr::kable()
 ```
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
@@ -300,7 +316,7 @@ dplyr::right_join(
     # right table
     city_telephone_prexix
   ) %>%
-  kable()
+  knitr::kable()
 ```
 
 \newpage
@@ -315,7 +331,7 @@ city_info_wide %>%
     # right table
     city_telephone_prexix
   ) %>%
-  kable()
+  knitr::kable()
 ```
 ### Exercise: join
 

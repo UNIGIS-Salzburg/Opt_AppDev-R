@@ -313,14 +313,14 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 <h2><span class="header-section-number">7.2</span> Read and write vector data</h2>
 <p>The library <code>sf</code> makes it easy to read and write vector datasets such as shapefiles. The name (sf stands for <strong>simple features</strong>) already implies that <code>sf</code> supports simple feature access via R.</p>
 <p>Simple features is a widely supported data model that underlies data structures in many GIS applications including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other set-ups, for example importing from and exporting to spatial databases.</p>
-<p>In order to load vector data in an R-Script, we can use the function <code>st_read()</code>. In the code block below, a shapefile (<a href="https://r-spatial.github.io/sf/reference/nc.html" target="_blank">North Carolina sample data</a>) is loaded and assigned to a variable nc.</p>
+<p>In order to load vector data in an R-Script, we can use the function <code>st_read()</code>. In the code block below, a <a href="data/nc.zip" target="_blank">shapefile</a> (<a href="https://r-spatial.github.io/sf/reference/nc.html" target="_blank">North Carolina sample data</a>) is loaded and assigned to a variable nc.</p>
 <p>The next line creates a basic map in <code>sf</code> by means of <code>plot()</code>. By default this creates a multi-panel plot, one sub-plot for each variable of the object.</p>
 <div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="read-and-write-data.html#cb143-1"></a><span class="kw">library</span>(sf)</span>
 <span id="cb143-2"><a href="read-and-write-data.html#cb143-2"></a></span>
 <span id="cb143-3"><a href="read-and-write-data.html#cb143-3"></a>nc &lt;-<span class="st"> </span>sf<span class="op">::</span><span class="kw">st_read</span>(<span class="st">&quot;data/nc.shp&quot;</span>)</span>
 <span id="cb143-4"><a href="read-and-write-data.html#cb143-4"></a></span>
 <span id="cb143-5"><a href="read-and-write-data.html#cb143-5"></a><span class="kw">plot</span>(nc)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
 <p>The library <code>sf</code> represents features as records in a data frame or tibble with a geometry list-column. The example below renders three features (rows) of variable nc including the geometry column as well as the attributes <code>AREA</code> (feature area) and <code>NAME</code> (name of county):</p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="read-and-write-data.html#cb144-1"></a>nc <span class="op">%&gt;%</span></span>
 <span id="cb144-2"><a href="read-and-write-data.html#cb144-2"></a><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(AREA, NAME, geometry) <span class="op">%&gt;%</span></span>
@@ -355,7 +355,7 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 <p><code>sf</code> also includes a number of operations to manipulate the geometry of features such as <code>st_simplify</code>:</p>
 <div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="read-and-write-data.html#cb145-1"></a>sf<span class="op">::</span><span class="kw">st_simplify</span>(nc) <span class="op">%&gt;%</span></span>
 <span id="cb145-2"><a href="read-and-write-data.html#cb145-2"></a><span class="st">  </span><span class="kw">plot</span>(., <span class="dt">max.plot =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
 
 <div class="rmdtip">
 <p>You may have recognized that a dot (.) is used as a parameter in the function <code>plot()</code>. The dot represents the piped value. In the example above the dot is used to define the simplified geometry of nc as first parameter of function <code>plot()</code> and <code>max.plot = 1</code> as the second.</p>
@@ -366,7 +366,7 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 <span id="cb146-2"><a href="read-and-write-data.html#cb146-2"></a><span class="st">  </span>sf<span class="op">::</span><span class="kw">st_centroid</span>() <span class="op">%&gt;%</span></span>
 <span id="cb146-3"><a href="read-and-write-data.html#cb146-3"></a><span class="st">  </span>sf<span class="op">::</span><span class="kw">st_write</span>(<span class="st">&quot;data/nc-centroids.shp&quot;</span>, <span class="dt">delete_dsn =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
 <span id="cb146-4"><a href="read-and-write-data.html#cb146-4"></a><span class="st">  </span><span class="kw">plot</span>(<span class="dt">pch =</span> <span class="dv">3</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>) </span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
 
 <div class="rmdtip">
 The online book <a href="https://geocompr.robinlovelace.net/geometric-operations.html" target="_blank">Geocomputation with R</a> offers a more comprehensive explanation of available geometric, attribute and spatial data operations. For a quick overview, you may turn to the <a href="https://github.com/rstudio/cheatsheets/blob/master/sf.pdf" target="_blank">sf cheatsheets</a>.
@@ -425,6 +425,7 @@ Figure 7.1: Video (3:13 min): REST API concepts and examples.
 
 <div class="rmdtip">
 <p>Note: The OpenWeather API requires an API Key to be passed as a parameter in the call. Get your <a href="https://openweathermap.org/appid" target="_blank">personal Key</a> to implement your own API requests.</p>
+<p>If your code returns an error 401, this most likely indicates that your key is not activated yet. According to the <a href="https://openweathermap.org/faq" target="_blank">FAQs</a>, it may take a couple of hours until your key is active.</p>
 </div>
 
 <p>Per default, the <code>GET()</code> function returns a response object. Printing a response object gives you some useful information: the actual url used (after any redirects), the http status, the file (content) type, the size, and if it’s a text file, the first few lines of output.</p>
@@ -438,31 +439,31 @@ Figure 7.1: Video (3:13 min): REST API concepts and examples.
 ##   ..$ lat: num 47.8
 ##  $ weather   :List of 1
 ##   ..$ :List of 4
-##   .. ..$ id         : int 800
-##   .. ..$ main       : chr &quot;Clear&quot;
-##   .. ..$ description: chr &quot;clear sky&quot;
-##   .. ..$ icon       : chr &quot;01d&quot;
+##   .. ..$ id         : int 803
+##   .. ..$ main       : chr &quot;Clouds&quot;
+##   .. ..$ description: chr &quot;broken clouds&quot;
+##   .. ..$ icon       : chr &quot;04d&quot;
 ##  $ base      : chr &quot;stations&quot;
 ##  $ main      :List of 6
-##   ..$ temp      : num 280
-##   ..$ feels_like: num 280
-##   ..$ temp_min  : num 280
-##   ..$ temp_max  : num 283
-##   ..$ pressure  : int 1024
-##   ..$ humidity  : int 31
+##   ..$ temp      : num 285
+##   ..$ feels_like: num 284
+##   ..$ temp_min  : num 284
+##   ..$ temp_max  : num 286
+##   ..$ pressure  : int 1023
+##   ..$ humidity  : int 75
 ##  $ visibility: int 10000
 ##  $ wind      :List of 2
 ##   ..$ speed: num 0.51
 ##   ..$ deg  : int 0
 ##  $ clouds    :List of 1
-##   ..$ all: int 0
-##  $ dt        : int 1646823238
+##   ..$ all: int 75
+##  $ dt        : int 1647358594
 ##  $ sys       :List of 5
 ##   ..$ type   : int 1
 ##   ..$ id     : int 6877
 ##   ..$ country: chr &quot;AT&quot;
-##   ..$ sunrise: int 1646804020
-##   ..$ sunset : int 1646845410
+##   ..$ sunrise: int 1647321693
+##   ..$ sunset : int 1647364337
 ##  $ timezone  : int 3600
 ##  $ id        : int 2766824
 ##  $ name      : chr &quot;Salzburg&quot;
