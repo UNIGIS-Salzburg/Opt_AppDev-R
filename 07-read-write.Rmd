@@ -146,7 +146,7 @@ The most important take away messages are:
 
 The [library `httr`](https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html){target="_blank"} (also part of [Tidyverse](https://www.tidyverse.org/packages/#import){target="_blank"}) offers functions to programmatically implement API calls in an R script. We will make use of this library to let our R script interact with the [APIs](https://openweathermap.org/api){target="_blank"} offered by [OpenWeather Map](https://openweathermap.org/){target="_blank"} that contain historical and real-time weather data for retrieval. In the upcoming example we will make a call to the [Current Weather API](https://openweathermap.org/current){target="_blank"}, which is one out of currently [10 free APIs](https://openweathermap.org/price){target="_blank"} provided by OpenWeather Map.
 
-For accessing the data, we need to create a URL that is composed of a references to the data source (base) and parameters to filter the desired data subset (lat and lon). The parameters are concatenated by means of a '&' symbol, a question mark '?' needs to be placed between reference URL and parameters: 
+For accessing the data, we need to create a URL that is composed of a reference to the data source (base) and parameters to filter the desired data subset (lat and lon). The parameters are concatenated by means of a '&' symbol, a question mark '?' needs to be placed between reference URL and parameters: 
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -212,9 +212,9 @@ In order to facilitate subsequent analyses and data visualization, we can conver
 
 library(jsonlite)
 
-get_text <- content(get, "text")
-get_json <- fromJSON(get_text, flatten = TRUE)
-get_df <- as.data.frame(get_json)
+get_text <- content(get, "text")                 #retrieve contents of request as character vector (library httr)
+get_json <- fromJSON(get_text, flatten = TRUE)   #convert from JSON to R Object (library jsonlite)
+get_df <- as.data.frame(get_json)                #convert R Object to Data Frame 
 
 ```
 

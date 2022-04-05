@@ -409,6 +409,24 @@ Note that an array could also have only one dimension. Such an array would look 
 ## [3,]    7    1</code></pre>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="complex-data-types.html#cb62-1"></a>a_matrix[<span class="dv">2</span>, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)]</span></code></pre></div>
 <pre><code>## [1] 5 3</code></pre>
+<p>Accordingly, to subset an array with three dimensions, three indices are required:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="complex-data-types.html#cb64-1"></a>an_array &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">dim=</span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb64-2"><a href="complex-data-types.html#cb64-2"></a>an_array</span></code></pre></div>
+<pre><code>## , , 1
+## 
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6
+## 
+## , , 2
+## 
+##      [,1] [,2]
+## [1,]    7   10
+## [2,]    8   11
+## [3,]    9   12</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="complex-data-types.html#cb66-1"></a>an_array[<span class="dv">2</span>,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1]  8 11</code></pre>
 
 <div class="rmdexercise">
 <p>As an exercise, create an arbitrary 3-dimensional array, retrieve 2 elements from it and write those elements to a new vector variable. Then retrieve 4 elements from the 3-dimensional array and write it to a new matrix variable.</p>
@@ -432,36 +450,36 @@ Note that an array could also have only one dimension. Such an array would look 
 <h3><span class="header-section-number">3.2.4</span> List</h3>
 <p>Variables of the type <strong>list</strong> can contain elements of different types (including vectors and matrices), whereas elements of vectors are all of the same type.</p>
 <p>In the following example, I created a list containing the simple types ‘character’ and ‘numeric integer’:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="complex-data-types.html#cb64-1"></a>employee &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Christian&quot;</span>, <span class="dv">2017</span>)</span>
-<span id="cb64-2"><a href="complex-data-types.html#cb64-2"></a>employee</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="complex-data-types.html#cb68-1"></a>employee &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;Christian&quot;</span>, <span class="dv">2017</span>)</span>
+<span id="cb68-2"><a href="complex-data-types.html#cb68-2"></a>employee</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;Christian&quot;
 ## 
 ## [[2]]
 ## [1] 2017</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="complex-data-types.html#cb66-1"></a>employee[[<span class="dv">1</span>]] <span class="co"># Note the double square brackets for selection</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="complex-data-types.html#cb70-1"></a>employee[[<span class="dv">1</span>]] <span class="co"># Note the double square brackets for selection</span></span></code></pre></div>
 <pre><code>## [1] &quot;Christian&quot;</code></pre>
 <p>In contrast to vectors, matrices or arrays, the selection of list elements requires the use of <strong>double square brackets</strong>.</p>
 <p>A specific type of list is the so called named list. In <strong>named lists</strong>, each element has a name, and elements can be selected using their name after the symbol <code>$</code>:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="complex-data-types.html#cb68-1"></a>employee &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">employee_name =</span> <span class="st">&quot;Christian&quot;</span>, <span class="dt">start_year =</span> <span class="dv">2017</span>)</span>
-<span id="cb68-2"><a href="complex-data-types.html#cb68-2"></a>employee</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="complex-data-types.html#cb72-1"></a>employee &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">employee_name =</span> <span class="st">&quot;Christian&quot;</span>, <span class="dt">start_year =</span> <span class="dv">2017</span>)</span>
+<span id="cb72-2"><a href="complex-data-types.html#cb72-2"></a>employee</span></code></pre></div>
 <pre><code>## $employee_name
 ## [1] &quot;Christian&quot;
 ## 
 ## $start_year
 ## [1] 2017</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="complex-data-types.html#cb70-1"></a>employee<span class="op">$</span>employee_name</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="complex-data-types.html#cb74-1"></a>employee<span class="op">$</span>employee_name</span></code></pre></div>
 <pre><code>## [1] &quot;Christian&quot;</code></pre>
 </div>
 <div id="data-frame" class="section level3">
 <h3><span class="header-section-number">3.2.5</span> Data Frame</h3>
 <p><strong>Data frames</strong> are commonly used in R to encode tables of data. A data frame is equivalent to a named list where all elements are vectors of the same length. The code below creates a data frame named ‘employees’ that is composed of three vectors:</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="complex-data-types.html#cb72-1"></a>employees &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
-<span id="cb72-2"><a href="complex-data-types.html#cb72-2"></a>  <span class="dt">EmployeeName =</span> <span class="kw">c</span>(<span class="st">&quot;Maria&quot;</span>, <span class="st">&quot;Pete&quot;</span>, <span class="st">&quot;Sarah&quot;</span>),</span>
-<span id="cb72-3"><a href="complex-data-types.html#cb72-3"></a>  <span class="dt">Age =</span> <span class="kw">c</span>(<span class="dv">47</span>, <span class="dv">34</span>, <span class="dv">32</span>),</span>
-<span id="cb72-4"><a href="complex-data-types.html#cb72-4"></a>  <span class="dt">Role =</span> <span class="kw">c</span>(<span class="st">&quot;Professor&quot;</span>, <span class="st">&quot;Researcher&quot;</span>, <span class="st">&quot;Researcher&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="complex-data-types.html#cb76-1"></a>employees &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</span>
+<span id="cb76-2"><a href="complex-data-types.html#cb76-2"></a>  <span class="dt">EmployeeName =</span> <span class="kw">c</span>(<span class="st">&quot;Maria&quot;</span>, <span class="st">&quot;Pete&quot;</span>, <span class="st">&quot;Sarah&quot;</span>),</span>
+<span id="cb76-3"><a href="complex-data-types.html#cb76-3"></a>  <span class="dt">Age =</span> <span class="kw">c</span>(<span class="dv">47</span>, <span class="dv">34</span>, <span class="dv">32</span>),</span>
+<span id="cb76-4"><a href="complex-data-types.html#cb76-4"></a>  <span class="dt">Role =</span> <span class="kw">c</span>(<span class="st">&quot;Professor&quot;</span>, <span class="st">&quot;Researcher&quot;</span>, <span class="st">&quot;Researcher&quot;</span>))</span></code></pre></div>
 <p>You can retrieve the tabular structure of the data frame ‘employees’ by invoking the identifier in the code:</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="complex-data-types.html#cb73-1"></a>employees</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="complex-data-types.html#cb77-1"></a>employees</span></code></pre></div>
 <pre><code>##   EmployeeName Age       Role
 ## 1        Maria  47  Professor
 ## 2         Pete  34 Researcher
@@ -489,26 +507,26 @@ Note that an array could also have only one dimension. Such an array would look 
 
 <p>The selection of values from a data frame is similar to what we have seen for vectors and lists. However, you have to consider the two-dimensional shape of data frames. As such, you will generally need to specify two indices in order to retrieve values from a table.</p>
 <p>The following example retrieves the first element of the first column in data frame ‘employees’:</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="complex-data-types.html#cb75-1"></a>employees[<span class="dv">1</span>, <span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="complex-data-types.html#cb79-1"></a>employees[<span class="dv">1</span>, <span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;Maria&quot;</code></pre>
 <p>We can also retrieve entire rows…</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="complex-data-types.html#cb77-1"></a>employees[<span class="dv">1</span>, ]</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="complex-data-types.html#cb81-1"></a>employees[<span class="dv">1</span>, ]</span></code></pre></div>
 <pre><code>##   EmployeeName Age      Role
 ## 1        Maria  47 Professor</code></pre>
 <p>…and columns:</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="complex-data-types.html#cb79-1"></a>employees[ ,<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="complex-data-types.html#cb83-1"></a>employees[ ,<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;Maria&quot; &quot;Pete&quot;  &quot;Sarah&quot;</code></pre>
 <p>Alternatively, columns can be selected by means of dollar signs and columns names:</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="complex-data-types.html#cb81-1"></a>employees<span class="op">$</span>Age</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="complex-data-types.html#cb85-1"></a>employees<span class="op">$</span>Age</span></code></pre></div>
 <pre><code>## [1] 47 34 32</code></pre>
 <p>This returns the vector ‘Age’. Accordingly, we can use square brackets to retrieve elements of the vector:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="complex-data-types.html#cb83-1"></a>employees<span class="op">$</span>Age[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="complex-data-types.html#cb87-1"></a>employees<span class="op">$</span>Age[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## [1] 47</code></pre>
 <p>To further modify the data frame, we can change elements (e.g. change the age of ‘Pete’ from 34 to 33)…</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="complex-data-types.html#cb85-1"></a>employees<span class="op">$</span>Age[<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">33</span></span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="complex-data-types.html#cb89-1"></a>employees<span class="op">$</span>Age[<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="dv">33</span></span></code></pre></div>
 <p>…or insert new columns as vectors (new column name Place):</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="complex-data-types.html#cb86-1"></a>employees<span class="op">$</span>Place &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Salzburg&quot;</span>, <span class="st">&quot;Salzburg&quot;</span>, <span class="st">&quot;Salzburg&quot;</span>)</span>
-<span id="cb86-2"><a href="complex-data-types.html#cb86-2"></a>employees</span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="complex-data-types.html#cb90-1"></a>employees<span class="op">$</span>Place &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Salzburg&quot;</span>, <span class="st">&quot;Salzburg&quot;</span>, <span class="st">&quot;Salzburg&quot;</span>)</span>
+<span id="cb90-2"><a href="complex-data-types.html#cb90-2"></a>employees</span></code></pre></div>
 <pre><code>##   EmployeeName Age       Role    Place
 ## 1        Maria  47  Professor Salzburg
 ## 2         Pete  33 Researcher Salzburg

@@ -261,7 +261,7 @@ Note: The code is executed line by line in a sequential order!
 <p>At this point, the question may arise, why bother using variables instead of simply typing the numbers? The answer is that variables make your code reusable and safe you lots of time.</p>
 <p>Let us consider the following example:</p>
 <p>Meteorologists monitor water temperature gradients in the Pacific Ocean to better understand El Niño weather patterns and to forecast extreme weather conditions associated with it. In a given year the water temperature at location A is 22°C and 26°C at location B. We could simply calculate the difference by executing the arithmetic operation ‘26 - 22’ in the console window of RStudio. However, temperatures are measured in real-time, i.e. we have to calculate temperature gradients repeatedly.</p>
-<p>To speed up the process we could write code that does the calculation (temperature at location A - temperature at location B). This piece of code takes to variables (temperature at location A and B) as an input. As a result, we only need to update these two variables; the algorithm (simple subtraction in our example) is reusable.</p>
+<p>To speed up the process we could write code that does the calculation (temperature at location A - temperature at location B). This piece of code takes two variables (temperature at location A and B) as an input. As a result, we only need to update these two variables; the algorithm (simple subtraction in our example) is reusable.</p>
 <p>Of course, gains in efficiency are minor given that the calculus is simple. In a more practical application, however, the algorithm is likely being composed of many lines of code that evaluate El Niño occurrence risk based on sensor records.</p>
 
 <div class="rmdexercise">
@@ -279,6 +279,7 @@ Note: The code is executed line by line in a sequential order!
 <p>temp_B &lt;- 28</p>
 <p>diff &lt;- temp_A - temp_B</p>
 <p>When executing the code in Rstudio, you should see that something has changed in the panel on the top right, which is the <strong>Environment Panel</strong>. The Environment Panel shows that we now have three slots of memory with identifiers named diff, temp_A and temp_B that have values of -4, 24 and 28. If we invoke the name of the identifier in the code (e.g. type <em>diff</em> and run), the value that is stored in that slot gets returned.</p>
+<p>To clear your workspace memory, push the broom icon in the menu of the Environment Panel.</p>
 </font></i>
 </p>
 </details>
@@ -289,7 +290,7 @@ Note: The code is executed line by line in a sequential order!
 <h2><span class="header-section-number">2.2</span> Algorithms and functions</h2>
 <p><em>An</em> <strong>algorithm</strong> <em>or effective procedure is a mechanical rule, or automatic method, or program for performing some mathematical operation</em> (Cutland, 1980).</p>
 <p>A <strong>program</strong> is a specific set of instructions that implement an abstract algorithm.</p>
-<p>The definition of an algorithm (and thus a program) can consist of one or more <strong>functions</strong>. Functions are a set of instructions that preform a task, i.e. functions help structuring code into functional units. These functional units are reusable in the code. Some of them receive values as inputs, some return output values.</p>
+<p>The definition of an algorithm (and thus a program) can consist of one or more <strong>functions</strong>. Functions are a set of instructions that perform a task, i.e. functions help structuring code into functional units. These functional units are reusable in the code. Some of them receive values as inputs, some return output values.</p>
 <p>Programming languages usually provide pre-defined functions that implement common algorithms (e.g., to find the square root of a number or to calculate a linear regression).</p>
 <p>For instance, the pre-defined function ‘sqrt()’ calculates the square root of an input value. ‘sqrt()’ (as every function in R) is invoked by specifying the <em>function name</em> and the <em>arguments</em> (input values) between simple brackets:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="core.html#cb9-1"></a><span class="kw">sqrt</span>(<span class="dv">2</span>)</span></code></pre></div>

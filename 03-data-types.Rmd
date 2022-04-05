@@ -203,6 +203,14 @@ a_matrix
 a_matrix[2, c(1, 2)]
 ```
 
+Accordingly, to subset an array with three dimensions, three indices are required:
+
+```{r, echo=TRUE}
+an_array <- array(1:12, dim=c(3, 2, 2))
+an_array
+an_array[2,c(1,2),2]
+```
+
 ```{block2, type = 'rmdexercise'}
 
 As an exercise, create an arbitrary 3-dimensional array, retrieve 2 elements from it and write those elements to a new vector variable. Then retrieve 4 elements from the 3-dimensional array and write it to a new matrix variable.

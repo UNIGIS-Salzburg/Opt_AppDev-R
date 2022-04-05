@@ -150,11 +150,15 @@ R provides a series of basic numeric operators.
 
 Whereas mathematical operators are self-explanatory, the operators 'Module' and 'Integer division' may be new to some of you. Integer division returns an integer quotient:
 
-
 ```{r, echo=TRUE}
 5%/%2
 ```
 
+```{block2, type = 'rmdtip'}
+
+Note: In this web book, two hash symbols (##) highlight the values returned by the R Console. The code above returns a value of 2. The number in squared brackets [1] indicates the line number of the return.   
+
+```
 
 ```{block2, type = 'rmdexercise'}
 

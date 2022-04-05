@@ -95,7 +95,7 @@ The line 'cat("First is greater than second\n")' prints a text (string) and inse
 
 ## Loops
 
-The second family of control structures that we a going to discuss in this lesson are loops. Loops are a fundamental component of (procedural) programming. They allow repeating one or more instructions multiple times.
+The second family of control structures that we are going to discuss in this lesson are loops. Loops are a fundamental component of (procedural) programming. They allow repeating one or more instructions multiple times.
 
 There are two main types of loops:
 
