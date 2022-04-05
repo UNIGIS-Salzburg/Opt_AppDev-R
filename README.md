@@ -9,6 +9,6 @@ In this module, the granolarr materials will be adapted and extended to fit the 
 
 ToDos:
 
-* describe tibbles (output of dplyr) in more detail
+* More geo-content: In assignment 1 retrieve multiple lat/lon points and create interpolation surface, suggest interpolation method in material section
 * add long and wide table formats (see data wrangling de sabbata)
 * [Shiny](https://shiny.rstudio.com/)
