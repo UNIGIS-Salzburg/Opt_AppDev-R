@@ -12,4 +12,4 @@ ToDos:
 * Umbenennung des Moduls auf "Automated Data Analysis with R" laut Studienplan
 * More geo-content: In assignment 1 retrieve multiple lat/lon points and create interpolation surface, suggest interpolation method in material section
 * add long and wide table formats (see data wrangling de sabbata)
-* [Shiny](https://shiny.rstudio.com/)
+* introduce interactive maps with leaflet in lesson 8, see contents live session and [leaflet documentation](https://rstudio.github.io/leaflet/)
