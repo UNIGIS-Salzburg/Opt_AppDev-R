@@ -419,3 +419,49 @@ ggsave("data/map_web.png", width = 10, height = 10, dpi = "screen")
 Take a look at the [ggplot Cheatsheet](https://www.rstudio.com/resources/cheatsheets/){target="_blank"} which shows the most important ggplot operations at a glance.
 
 ```
+
+## Interactive Maps
+
+The [Leaflet library for R](https://cran.r-project.org/web/packages/leaflet/index.html){target="_blank"} makes it easy to create interactive web maps. Leaflet is one of the most popular open-source JavaScript libraries used by a number of websites such as [The New York Times](https://www.nytimes.com/projects/elections/2013/nyc-primary/mayor/map.html){target="_blank"}, [Flickr](https://www.flickr.com/map){target="_blank"} or [OpenStreetMap](https://www.openstreetmap.org/#map=14/53.7727/20.5526){target="_blank"}.
+
+The first step in creating a leaflet map is to initialize an empty map widget:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+library(leaflet)
+m <- leaflet()
+```
+
+The map widget can be supplemented with additional layers such as a basemap or clickable markers:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+m %>%
+  addTiles() %>%
+  addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+```
+
+You may have recognized that layers can be simply appended by means of the pipe operator (%>%). This is because most functions in the leaflet package have an argument "map" as their first argument.
+
+```{block2, type = 'rmdtip'}
+The function `addTiles()`  per default adds OpenStreetMap map tiles. You may use the function `addProviderTiles()` to add other map tiles. Leaflet supports a large number of [basemap layers](http://leaflet-extras.github.io/leaflet-providers/preview/){target="_blank"}.
+```
+
+The same pipe-syntax can be used to add [Markers](https://rstudio.github.io/leaflet/markers.html){target="_blank"} and HTML [Labels](https://rstudio.github.io/leaflet/popups.html){target="_blank"} or [ Popups](https://rstudio.github.io/leaflet/popups.html){target="_blank"}. In the following example, an HTML Popup locates a restaurant:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+library(leaflet)
+
+content <- paste(sep = "<br/>",
+                 "<b><a href='https://www.techno-z.at/standort-und-service/gastronomie/'>Bistro im Techno_Z</a></b>",
+                 "Schillerstrasse 30",
+                 "5020 Salzburg",
+                 "This is where I had lunch today!"
+)
+
+leaflet() %>%
+  setView(lng = 13.040030, lat = 47.823112, zoom = 18) %>%
+  addProviderTiles("OpenStreetMap.Mapnik") %>%
+  addPopups(13.040030, 47.823112, content,
+            options = popupOptions(closeButton = TRUE))
+```
+
+Moreover, leaflet offers numerous methods and functions for [manipulating the map widget](https://rstudio.github.io/leaflet/map_widget.html){target="_blank"} and integrating [lines and shapes](https://rstudio.github.io/leaflet/shapes.html){target="_blank"}, [GeoJSON](https://rstudio.github.io/leaflet/json.html){target="_blank"} and [Raster Images](https://rstudio.github.io/leaflet/raster.html){target="_blank"}. To get more information on creating interactive maps with R and leaflet, turn to the [Documentation](https://rstudio.github.io/leaflet/){target="_blank"}.    

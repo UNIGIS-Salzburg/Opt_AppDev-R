@@ -52,6 +52,16 @@
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -206,6 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>8.3</b> Boxplots</a></li>
 <li class="chapter" data-level="8.4" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i><b>8.4</b> Scatterplots</a></li>
 <li class="chapter" data-level="8.5" data-path="data-visualization.html"><a href="data-visualization.html#map-visualization"><i class="fa fa-check"></i><b>8.5</b> Map visualization</a></li>
+<li class="chapter" data-level="8.6" data-path="data-visualization.html"><a href="data-visualization.html#interactive-maps"><i class="fa fa-check"></i><b>8.6</b> Interactive Maps</a></li>
 </ul></li>
 <li class="divider"></li>
 <li>Copyright © UNIGIS Salzburg.</li>
@@ -603,6 +614,43 @@ cbind(nc, .)</p>
 <p>Take a look at the <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">ggplot Cheatsheet</a> which shows the most important ggplot operations at a glance.</p>
 </div>
 
+</div>
+<div id="interactive-maps" class="section level2">
+<h2><span class="header-section-number">8.6</span> Interactive Maps</h2>
+<p>The <a href="https://cran.r-project.org/web/packages/leaflet/index.html" target="_blank">Leaflet library for R</a> makes it easy to create interactive web maps. Leaflet is one of the most popular open-source JavaScript libraries used by a number of websites such as <a href="https://www.nytimes.com/projects/elections/2013/nyc-primary/mayor/map.html" target="_blank">The New York Times</a>, <a href="https://www.flickr.com/map" target="_blank">Flickr</a> or <a href="https://www.openstreetmap.org/#map=14/53.7727/20.5526" target="_blank">OpenStreetMap</a>.</p>
+<p>The first step in creating a leaflet map is to initialize an empty map widget:</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="data-visualization.html#cb173-1"></a><span class="kw">library</span>(leaflet)</span>
+<span id="cb173-2"><a href="data-visualization.html#cb173-2"></a>m &lt;-<span class="st"> </span><span class="kw">leaflet</span>()</span></code></pre></div>
+<p>The map widget can be supplemented with additional layers such as a basemap or clickable markers:</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="data-visualization.html#cb174-1"></a>m <span class="op">%&gt;%</span></span>
+<span id="cb174-2"><a href="data-visualization.html#cb174-2"></a><span class="st">  </span><span class="kw">addTiles</span>() <span class="op">%&gt;%</span></span>
+<span id="cb174-3"><a href="data-visualization.html#cb174-3"></a><span class="st">  </span><span class="kw">addMarkers</span>(<span class="dt">lng=</span><span class="fl">174.768</span>, <span class="dt">lat=</span><span class="op">-</span><span class="fl">36.852</span>, <span class="dt">popup=</span><span class="st">&quot;The birthplace of R&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-c04de2c4ded3e79d738e" style="width:672px;height:384px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c04de2c4ded3e79d738e">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[-36.852,174.768,null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"The birthplace of R",null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[-36.852,-36.852],"lng":[174.768,174.768]}},"evals":[],"jsHooks":[]}</script>
+<p>You may have recognized that layers can be simply appended by means of the pipe operator offered by the magrittr package. This is because most functions in the leaflet package have an argument “map” as their first argument.</p>
+
+<div class="rmdtip">
+The function <code>addTiles()</code> per default adds OpenStreetMap map tiles. You may use the function <code>addProviderTiles()</code> to add other map tiles. Leaflet supports a large number of <a href="http://leaflet-extras.github.io/leaflet-providers/preview/" target="_blank">basemap layers</a>.
+</div>
+
+<p>The same pipe-syntax can be used to add <a href="https://rstudio.github.io/leaflet/markers.html" target="_blank">Markers</a> and HTML <a href="https://rstudio.github.io/leaflet/popups.html" target="_blank">Labels</a> or <a href="https://rstudio.github.io/leaflet/popups.html" target="_blank">Popups</a>. In the following example, an HTML Popup locates a restaurant:</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="data-visualization.html#cb175-1"></a><span class="kw">library</span>(leaflet)</span>
+<span id="cb175-2"><a href="data-visualization.html#cb175-2"></a></span>
+<span id="cb175-3"><a href="data-visualization.html#cb175-3"></a>content &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="dt">sep =</span> <span class="st">&quot;&lt;br/&gt;&quot;</span>,</span>
+<span id="cb175-4"><a href="data-visualization.html#cb175-4"></a>                 <span class="st">&quot;&lt;b&gt;&lt;a href=&#39;https://www.techno-z.at/standort-und-service/gastronomie/&#39;&gt;Bistro im Techno_Z&lt;/a&gt;&lt;/b&gt;&quot;</span>,</span>
+<span id="cb175-5"><a href="data-visualization.html#cb175-5"></a>                 <span class="st">&quot;Schillerstrasse 30&quot;</span>,</span>
+<span id="cb175-6"><a href="data-visualization.html#cb175-6"></a>                 <span class="st">&quot;5020 Salzburg&quot;</span>,</span>
+<span id="cb175-7"><a href="data-visualization.html#cb175-7"></a>                 <span class="st">&quot;This is where I had lunch today!&quot;</span></span>
+<span id="cb175-8"><a href="data-visualization.html#cb175-8"></a>)</span>
+<span id="cb175-9"><a href="data-visualization.html#cb175-9"></a></span>
+<span id="cb175-10"><a href="data-visualization.html#cb175-10"></a><span class="kw">leaflet</span>() <span class="op">%&gt;%</span></span>
+<span id="cb175-11"><a href="data-visualization.html#cb175-11"></a><span class="st">  </span><span class="kw">setView</span>(<span class="dt">lng =</span> <span class="fl">13.040030</span>, <span class="dt">lat =</span> <span class="fl">47.823112</span>, <span class="dt">zoom =</span> <span class="dv">18</span>) <span class="op">%&gt;%</span></span>
+<span id="cb175-12"><a href="data-visualization.html#cb175-12"></a><span class="st">  </span><span class="kw">addProviderTiles</span>(<span class="st">&quot;OpenStreetMap.Mapnik&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb175-13"><a href="data-visualization.html#cb175-13"></a><span class="st">  </span><span class="kw">addPopups</span>(<span class="fl">13.040030</span>, <span class="fl">47.823112</span>, content,</span>
+<span id="cb175-14"><a href="data-visualization.html#cb175-14"></a>            <span class="dt">options =</span> <span class="kw">popupOptions</span>(<span class="dt">closeButton =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<div id="htmlwidget-3c2aad7be0495b07c733" style="width:672px;height:384px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3c2aad7be0495b07c733">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"setView":[[47.823112,13.04003],18,[]],"calls":[{"method":"addProviderTiles","args":["OpenStreetMap.Mapnik",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addPopups","args":[47.823112,13.04003,"<b><a href='https://www.techno-z.at/standort-und-service/gastronomie/'>Bistro im Techno_Z<\/a><\/b><br/>Schillerstrasse 30<br/>5020 Salzburg<br/>This is where I had lunch today!",null,null,{"maxWidth":300,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"className":""}]}],"limits":{"lat":[47.823112,47.823112],"lng":[13.04003,13.04003]}},"evals":[],"jsHooks":[]}</script>
+<p>Moreover, leaflet offers numerous methods and functions for <a href="https://rstudio.github.io/leaflet/map_widget.html" target="_blank">manipulating the map widget</a> and integrating <a href="https://rstudio.github.io/leaflet/shapes.html" target="_blank">lines and shapes</a>, <a href="https://rstudio.github.io/leaflet/json.html" target="_blank">GeoJSON</a> and <a href="https://rstudio.github.io/leaflet/raster.html" target="_blank">Raster Images</a>. To get more information on creating interactive maps with R and leaflet, turn to the <a href="https://rstudio.github.io/leaflet/" target="_blank">Documentation</a>.</p>
 
 </div>
 </div>

@@ -61,3 +61,4 @@ visualization-of-distributions
 boxplots
 scatterplots
 map-visualization
+interactive-maps
