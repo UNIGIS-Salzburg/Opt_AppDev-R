@@ -9,7 +9,7 @@ In this module, the granolarr materials will be adapted and extended to fit the 
 
 ToDos:
 
-* Umbenennung des Moduls auf "Automated Data Analysis with R" laut Studienplan
+* Umbenennung des Moduls auf "Automated Data Analysis with R" laut Studienplan od. "Data processing with R"
 * More geo-content: In assignment 1 retrieve multiple lat/lon points and create interpolation surface, suggest interpolation method in material section
 * add long and wide table formats (see data wrangling de sabbata)
-* introduce interactive maps with leaflet in lesson 8, see contents live session and [leaflet documentation](https://rstudio.github.io/leaflet/)
+
