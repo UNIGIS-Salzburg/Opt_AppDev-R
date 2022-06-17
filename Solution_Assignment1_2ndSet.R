@@ -12,14 +12,8 @@ library(sf)
 locations <- sf::st_read("data/nc-centroids.shp")
 
 coords <- sf::st_coordinates(locations)
-coords[1,2]
-coords[,1]
-coords[,2]
-coords[1,]
-coords[1,][1]
-coords[2,]
-nrow(coords)
 
+#test loop
 for (r in 1:nrow(coords)){
   
   print(coords[r,][1])
