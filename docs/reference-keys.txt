@@ -32,7 +32,7 @@ if
 else
 code-blocks
 loops
-while
+while-and-repeat
 for
 loops-with-conditional-statements
 functions
@@ -61,3 +61,4 @@ visualization-of-distributions
 boxplots
 scatterplots
 map-visualization
+interactive-maps

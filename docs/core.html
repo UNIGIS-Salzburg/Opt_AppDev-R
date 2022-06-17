@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Lesson 2 Core concepts | Application Development with R</title>
   <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Lesson 2 Core concepts | Application Development with R" />
   <meta property="og:type" content="book" />
@@ -32,8 +32,7 @@
   <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="intro.html"/>
 <link rel="next" href="complex-data-types.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,9 +48,20 @@
 
 
 
+
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -170,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="control-structures.html"><a href="control-structures.html#else"><i class="fa fa-check"></i><b>4.2</b> Else</a></li>
 <li class="chapter" data-level="4.3" data-path="control-structures.html"><a href="control-structures.html#code-blocks"><i class="fa fa-check"></i><b>4.3</b> Code blocks</a></li>
 <li class="chapter" data-level="4.4" data-path="control-structures.html"><a href="control-structures.html#loops"><i class="fa fa-check"></i><b>4.4</b> Loops</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="control-structures.html"><a href="control-structures.html#while"><i class="fa fa-check"></i><b>4.4.1</b> While</a></li>
+<li class="chapter" data-level="4.4.1" data-path="control-structures.html"><a href="control-structures.html#while-and-repeat"><i class="fa fa-check"></i><b>4.4.1</b> While and repeat</a></li>
 <li class="chapter" data-level="4.4.2" data-path="control-structures.html"><a href="control-structures.html#for"><i class="fa fa-check"></i><b>4.4.2</b> For</a></li>
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="control-structures.html"><a href="control-structures.html#loops-with-conditional-statements"><i class="fa fa-check"></i><b>4.5</b> Loops with conditional statements</a></li>
@@ -206,6 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>8.3</b> Boxplots</a></li>
 <li class="chapter" data-level="8.4" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i><b>8.4</b> Scatterplots</a></li>
 <li class="chapter" data-level="8.5" data-path="data-visualization.html"><a href="data-visualization.html#map-visualization"><i class="fa fa-check"></i><b>8.5</b> Map visualization</a></li>
+<li class="chapter" data-level="8.6" data-path="data-visualization.html"><a href="data-visualization.html#interactive-maps"><i class="fa fa-check"></i><b>8.6</b> Interactive Maps</a></li>
 </ul></li>
 <li class="divider"></li>
 <li>Copyright © UNIGIS Salzburg.</li>
@@ -261,7 +272,7 @@ Note: The code is executed line by line in a sequential order!
 <p>At this point, the question may arise, why bother using variables instead of simply typing the numbers? The answer is that variables make your code reusable and safe you lots of time.</p>
 <p>Let us consider the following example:</p>
 <p>Meteorologists monitor water temperature gradients in the Pacific Ocean to better understand El Niño weather patterns and to forecast extreme weather conditions associated with it. In a given year the water temperature at location A is 22°C and 26°C at location B. We could simply calculate the difference by executing the arithmetic operation ‘26 - 22’ in the console window of RStudio. However, temperatures are measured in real-time, i.e. we have to calculate temperature gradients repeatedly.</p>
-<p>To speed up the process we could write code that does the calculation (temperature at location A - temperature at location B). This piece of code takes to variables (temperature at location A and B) as an input. As a result, we only need to update these two variables; the algorithm (simple subtraction in our example) is reusable.</p>
+<p>To speed up the process we could write code that does the calculation (temperature at location A - temperature at location B). This piece of code takes two variables (temperature at location A and B) as an input. As a result, we only need to update these two variables; the algorithm (simple subtraction in our example) is reusable.</p>
 <p>Of course, gains in efficiency are minor given that the calculus is simple. In a more practical application, however, the algorithm is likely being composed of many lines of code that evaluate El Niño occurrence risk based on sensor records.</p>
 
 <div class="rmdexercise">
@@ -279,6 +290,7 @@ Note: The code is executed line by line in a sequential order!
 <p>temp_B &lt;- 28</p>
 <p>diff &lt;- temp_A - temp_B</p>
 <p>When executing the code in Rstudio, you should see that something has changed in the panel on the top right, which is the <strong>Environment Panel</strong>. The Environment Panel shows that we now have three slots of memory with identifiers named diff, temp_A and temp_B that have values of -4, 24 and 28. If we invoke the name of the identifier in the code (e.g. type <em>diff</em> and run), the value that is stored in that slot gets returned.</p>
+<p>To clear your workspace memory, push the broom icon in the menu of the Environment Panel.</p>
 </font></i>
 </p>
 </details>
@@ -289,7 +301,7 @@ Note: The code is executed line by line in a sequential order!
 <h2><span class="header-section-number">2.2</span> Algorithms and functions</h2>
 <p><em>An</em> <strong>algorithm</strong> <em>or effective procedure is a mechanical rule, or automatic method, or program for performing some mathematical operation</em> (Cutland, 1980).</p>
 <p>A <strong>program</strong> is a specific set of instructions that implement an abstract algorithm.</p>
-<p>The definition of an algorithm (and thus a program) can consist of one or more <strong>functions</strong>. Functions are a set of instructions that preform a task, i.e. functions help structuring code into functional units. These functional units are reusable in the code. Some of them receive values as inputs, some return output values.</p>
+<p>The definition of an algorithm (and thus a program) can consist of one or more <strong>functions</strong>. Functions are a set of instructions that perform a task, i.e. functions help structuring code into functional units. These functional units are reusable in the code. Some of them receive values as inputs, some return output values.</p>
 <p>Programming languages usually provide pre-defined functions that implement common algorithms (e.g., to find the square root of a number or to calculate a linear regression).</p>
 <p>For instance, the pre-defined function ‘sqrt()’ calculates the square root of an input value. ‘sqrt()’ (as every function in R) is invoked by specifying the <em>function name</em> and the <em>arguments</em> (input values) between simple brackets:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="core.html#cb9-1"></a><span class="kw">sqrt</span>(<span class="dv">2</span>)</span></code></pre></div>
@@ -398,6 +410,7 @@ Each input value corresponds to a <em>parameter</em> that was specified in the d
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -436,11 +449,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
+"download": ["UNIGIS-AppDev-R.pdf", "UNIGIS-AppDev-R.epub"],
 "toc": {
 "collapse": "section"
 }

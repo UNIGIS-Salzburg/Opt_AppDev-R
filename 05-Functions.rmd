@@ -27,7 +27,7 @@ add_one(3)
 
 ## More parameters
 
-A function can be defined as having two or more **parameters** by specifying  more than one parameter name (separated by **commas**) in the function definition. 
+A function can be defined as having two or more **parameters**. Parameter names are separated by **commas** in the definition of the function.
 
 > A function always takes as input as many values as the number of parameters specified in the definition, otherwise an error is generated
 
