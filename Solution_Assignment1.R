@@ -7,6 +7,19 @@ library(httr)
 library(jsonlite)
 library(lubridate)
 library(ggplot2)
+library(sf)
+
+locations <- sf::st_read("data/nc-centroids.shp")
+
+coords <- sf::st_coordinates(locations)
+
+#test loop
+for (r in 1:nrow(coords)){
+  
+  print(coords[r,][1])
+  print(coords[r,][2])
+  
+}
 
 #functions retrieves current weather data at location lat/lon
 weather_retrieve <- function(lat_num, lon_num, key_string){
@@ -23,39 +36,34 @@ weather_retrieve <- function(lat_num, lon_num, key_string){
   get_json <- fromJSON(get_text, flatten = TRUE)
   get_df <- as.data.frame(get_json)
   
-  return_vals <- list("hum" = get_df$main.humidity, "temp" = get_df$main.temp - 273.15) # append time and temperature in a list
+  return_vals <- list("y" = lat_num, "x" = lon_num, "temp" = get_df$main.temp - 273.15) # append temperature and coordinates in a list
   
-  return_vals  #return time and temperature
+  return_vals  #return coordinates and temperature
 
 }
 
-hum_vec <- c()                 # initialize vector outside loop and append within loop 
-temp_vec <- c()
+temp_vec <- c()                 # initialize vector outside loop and append within loop 
+x_vec <- c()
+y_vec <- c()
 
-# retrieve data a predefined number of times
-rep <- 0
-while (rep < 40){    # 40 x 15 min = 10h
-  
-  rep <- rep + 1
-  
-  hum_vec <- c(hum_vec, weather_retrieve(47.8, 13.033, "3f87141421b32590d50416aae5ca780c")[[1]]) #retrieve time element from function return
-  temp_vec <- c(temp_vec, weather_retrieve(47.8, 13.033, "3f87141421b32590d50416aae5ca780c")[[2]]) #retrieve temperature element from function return
 
+for (r in 1:nrow(coords)){
   
-  print("step")
-  
-  Sys.sleep(900) # interrupt 900 sec, temp. resolution = 15 min
-  
+  x_vec <- c(x_vec, coords[r,][1])
+  y_vec <- c(y_vec, coords[r,][2])
+  temp_vec <- c(temp_vec, weather_retrieve(coords[r,][2], coords[r,][1], "3f87141421b32590d50416aae5ca780c")[[3]])
+
 }
 
-result_df <- data.frame(hum_vec, temp_vec) # two vectors (humidity and temperature) to data frame
+result_df <- data.frame(x_vec, y_vec, temp_vec) # vectors (x, y and temperature) to data frame
 
-print(result_df)
+ggplot2::ggplot(data=result_df)+
+  geom_point(aes(x = x_vec, y = y_vec, color = temp_vec)) + 
+  scale_color_continuous(name = "Temperature °C", breaks = seq(from = 18, to = 24, by = 1)) +
+  xlab("longitude") +
+  ylab("latitude") 
+  
 
-p <- ggplot(result_df, aes(x=hum_vec, y=temp_vec)) +
-  geom_point()
-
-p
 
 
 
