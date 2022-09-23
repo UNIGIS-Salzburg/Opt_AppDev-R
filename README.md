@@ -10,6 +10,5 @@ In this module, the granolarr materials will be adapted and extended to fit the 
 ToDos:
 
 * Umbenennung des Moduls auf "Automated Data Analysis with R" laut Studienplan od. "Data processing with R" (ab 2023 ändern!)
-* More geo-content: In assignment 1 retrieve multiple lat/lon points and create interpolation surface, suggest interpolation method in material section. Assignment 1 for retake could be used as standard assignment 1 (see Z:\UNIGIS\_UNIGIS_OptMod\Module_OPTMOD_Moodle\AppDev_R\Assignments_2ndSet\Assignment1_2ndSet_OpenWeather.docx).
 * add long and wide table formats (see data wrangling de sabbata)
 
