@@ -9,6 +9,7 @@ In this module, the granolarr materials will be adapted and extended to fit the 
 
 ToDos:
 
-* Umbenennung des Moduls auf "Automated Data Analysis with R" laut Studienplan od. "Data processing with R" (ab 2023 ändern!)
+* Umbenennung des Moduls auf "Automated Data Processing with R" (ab 2023 ändern!)
 * add long and wide table formats (see data wrangling de sabbata)
+* Neues Unterkapitel in Data visualization zu RMarkdown. Aufgabeneinreichung nur noch einzelnes als RMarkdown Dokument zulassen!
 
