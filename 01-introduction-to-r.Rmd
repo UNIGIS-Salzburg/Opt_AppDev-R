@@ -99,22 +99,27 @@ If you start your input with a hash symbol (#) the interpreter will consider tha
 
 ## Simple data types
 
-In the previous section you have already see **numeric** and **character (string)** data types. **Logical** is a third simple data type provided with R.  
+In the previous section you have already see **numeric** and **character (string)** data types. **Logical** is a third simple data type provided with R. Two less used but not less important data types are **raw** and **complex** 
 
 ```{block2, type = 'rmdtip'}
 
-R provides three core data types
+R provides six core data types
 
-- numeric 
-    - both integer and real numbers
+- numeric **integer**
+    - for integer values **1L, 2L, etc**
+- numeric **double**
+    - for real values **1.0, 2.5, 7.3, etc**
 - character 
     - i.e., text, also called *strings*
 - logical
     - `TRUE` or `FALSE`
-
+- raw
+    - data as bytes, i.e., "text" becomes "74 65 78 74" in raw
+- complex
+    - to specify purely imaginary values. i.e., the value **3+2i**
 ```
 
-The type 'logical' encodes the values TRUE or FALSE. Together these three simple data types are the building blocks R uses to encode information. 
+The type 'logical' encodes the values TRUE or FALSE. Together these six simple data types are the building blocks R uses to encode information. 
 
 ```{block2, type = 'rmdexercise'}
 
