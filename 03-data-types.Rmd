@@ -1,14 +1,13 @@
 # Complex Data Types
 
-In this lesson I will introduce a series of more complex data types that are built on top of the already discussed simple data types 'numeric', 'character' (string) and 'logical' (see [Lesson 1](#intro) 'Simple data types').
+In this lesson I will introduce a series of more complex data types that are built on top of the already discussed simple data types (see [Lesson 1](#intro) 'Simple data types').
 
 ```{block2, type = 'rmdtip'}
 In this lesson, you will get to know the following complex data types:
 
-1) Vectors
-2) Matrices and Arrays
-3) Lists
-4) Data Frames
+|             | 1D      | 2D          | 3D     |
+|Homogeneous  | Vectors | Matrices    | Arrays |
+|Heterogeneous| Lists   | Data frames | -      |
 
 ```
 
@@ -19,6 +18,8 @@ A **Vector** is an ordered list of values. Vectors can be of any simple type:
     - numeric
     - character
     - logic
+    - raw
+    - complex
 
 However all items in a vector have to be of the same type. A vector can be of any length.
 
