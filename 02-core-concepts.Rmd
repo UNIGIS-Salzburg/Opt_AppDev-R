@@ -54,7 +54,7 @@ At this point, the question may arise, why bother using variables instead of sim
 
 Let us consider the following example: 
   
-Meteorologists monitor water temperature gradients in the Pacific Ocean to better understand El Niño weather patterns and to forecast extreme weather conditions associated with it. In a given year the water temperature at location A is 22°C and 26°C at location B. We could simply calculate the difference by executing the arithmetic operation '26 - 22' in the console window of RStudio. However, temperatures are measured in real-time, i.e. we have to calculate temperature gradients repeatedly.
+Meteorologists monitor water temperature gradients in the Pacific Ocean to better understand El Niño weather patterns and to forecast extreme weather conditions associated with it. In a given year the water temperature at location A is 22°C and 26°C at location B. We could simply calculate the difference by executing the arithmetic operation `26 - 22` in the console window of RStudio. However, temperatures are measured in real-time, i.e. we have to calculate temperature gradients repeatedly.
 
 To speed up the process we could write code that does the calculation (temperature at location A - temperature at location B). This piece of code takes two variables (temperature at location A and B) as an input. As a result, we only need to update these two variables; the algorithm (simple subtraction in our example) is reusable. 
 
@@ -185,7 +185,7 @@ To date there are more than 10,000 R libraries available, which can be downloade
 Libraries can be of any size and complexity, e.g.:
 
 - `base`: base R functions, including the `sqrt` function above
-- `rgdal`: implementation of the [GDAL (Geospatial Data Abstraction Library)](https://gdal.org/){target="_blank"} functionalities.
+- `sf`: implementation of the [Simple features standard](https://www.iso.org/standard/40114.html){target="_blank"} and [GDAL wrappers](https://gdal.org){target="_blank"}.
 
 The use of libraries in R can be illustrate by means of the `stringr` library, which provides a consistent and well-defined set of functions for manipulating strings. Assuming that the library has already been installed on your computer, you can load the library as
 
