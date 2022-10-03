@@ -35,7 +35,7 @@ fishery_data <- readr::read_csv("data/capture-fisheries-vs-aquaculture.csv")
 
 fishery_data %>%
   dplyr::filter(Entity == "Norway") %>%
-  readr::write_csv("data/capture-fisheries-vs-aquaculture-noraway.csv", append=FALSE) %>%
+  readr::write_csv("data/capture-fisheries-vs-aquaculture-norway.csv", append=FALSE) %>%
   
   dplyr::slice_head(n = 3) %>%
   knitr::kable()

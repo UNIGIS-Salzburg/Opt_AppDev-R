@@ -272,7 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb92-3"><a href="control-structures.html#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Negative&quot;</span>)</span>
 <span id="cb92-4"><a href="control-structures.html#cb92-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## Negative</code></pre>
-<p>The <strong>statement</strong> ‘cat(“Negative”)’ gets executed and the text “negative” is printed out, because the <strong>condition</strong> (a_value &lt; 0) is TRUE.</p>
+<p>The <strong>statement</strong> ‘cat(“Negative”)’ gets executed and the text “Negative” is printed out, because the <strong>condition</strong> (a_value &lt; 0) is TRUE.</p>
 
 <div class="rmdtip">
 <p>The function <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/cat" target="_blank">cat()</a> concatenates and prints string inputs (“Negative” in the example above). Alternatively, you can use the function ‘print()’ to write variable values to the console window.</p>
@@ -320,10 +320,10 @@ Note that statement 1 and statement 2 are in curly brackets! The indentation of 
 <span id="cb96-3"><a href="control-structures.html#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (first_value <span class="sc">&gt;</span> second_value) {</span>
 <span id="cb96-4"><a href="control-structures.html#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;First is greater than second</span><span class="sc">\n</span><span class="st">&quot;</span>) </span>
 <span id="cb96-5"><a href="control-structures.html#cb96-5" aria-hidden="true" tabindex="-1"></a>  difference <span class="ot">&lt;-</span> first_value <span class="sc">-</span> second_value</span>
-<span id="cb96-6"><a href="control-structures.html#cb96-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Their difference is &quot;</span>, difference)</span>
+<span id="cb96-6"><a href="control-structures.html#cb96-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Their difference is&quot;</span>, difference)</span>
 <span id="cb96-7"><a href="control-structures.html#cb96-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## First is greater than second
-## Their difference is  3</code></pre>
+## Their difference is 3</code></pre>
 <p>The line ‘cat(“First is greater than second”)’ prints a text (string) and inserts a line break. The next line calculates the difference between first and second value. The third line in the code block concatenates two inputs (“Their difference is” and variable ‘difference’) and prints them to the console window.</p>
 
 <div class="rmdtip">
@@ -385,26 +385,26 @@ Note that statement 1 and statement 2 are in curly brackets! The indentation of 
 <span id="cb100-2"><a href="control-structures.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="cf">repeat</span> { </span>
 <span id="cb100-3"><a href="control-structures.html#cb100-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Current value is&quot;</span>, current_value, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) </span>
 <span id="cb100-4"><a href="control-structures.html#cb100-4" aria-hidden="true" tabindex="-1"></a>  current_value <span class="ot">=</span> current_value <span class="sc">+</span> <span class="dv">1</span> </span>
-<span id="cb100-5"><a href="control-structures.html#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (current_value <span class="sc">==</span> <span class="dv">3</span>){            <span class="co">#if (variable == 10)... </span></span>
+<span id="cb100-5"><a href="control-structures.html#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (current_value <span class="sc">==</span> <span class="dv">3</span>){             <span class="co">#if (variable == 3)... </span></span>
 <span id="cb100-6"><a href="control-structures.html#cb100-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">break</span>                              <span class="co">#the loop will break!</span></span>
 <span id="cb100-7"><a href="control-structures.html#cb100-7" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb100-8"><a href="control-structures.html#cb100-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## Current value is 0 
 ## Current value is 1 
 ## Current value is 2</code></pre>
-<p>The break statement is executed and stops (breaks) the repeat loop (also applicable to while or for loops) once the variable <code>current_value</code> is equal to ten.</p>
+<p>The break statement is executed and stops (breaks) the repeat loop (also applicable to while or for loops) once the variable <code>current_value</code> is equal to three.</p>
 </div>
 <div id="for" class="section level3 hasAnchor" number="4.4.2">
 <h3><span class="header-section-number">4.4.2</span> For<a href="control-structures.html#for" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <em>for</em> construct can be defined using the <code>for</code> reserved word, followed by the definition of an <strong>iterator</strong>. The iterator is a variable, which is temporarily assigned with the current element of a vector, as the construct iterates through all elements of the vector. This definition is followed by a code block, whose instructions are re-executed once for each element of the vector.</p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="control-structures.html#cb102-1" aria-hidden="true" tabindex="-1"></a>cities <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Derby&quot;</span>, <span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Lincoln&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>)</span>
 <span id="cb102-2"><a href="control-structures.html#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (city <span class="cf">in</span> cities) {</span>
-<span id="cb102-3"><a href="control-structures.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Do you live in&quot;</span>, city, <span class="st">&quot;?</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb102-3"><a href="control-structures.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Do you live in &quot;</span>, city, <span class="st">&quot;?</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
 <span id="cb102-4"><a href="control-structures.html#cb102-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## Do you live in Derby ?
-## Do you live in Leicester ?
-## Do you live in Lincoln ?
-## Do you live in Nottingham ?</code></pre>
+<pre><code>## Do you live in Derby?
+## Do you live in Leicester?
+## Do you live in Lincoln?
+## Do you live in Nottingham?</code></pre>
 <p>In the first iteration of the for-loop the text string “Derby” is assigned to the iterator ‘city’. The function ‘cat()’ uses the iterator value as an input. In the second iteration, the text string “Leicester” is assigned to the iterator ‘city’ … etc.</p>
 <p>The code block below illustrates another example.</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="control-structures.html#cb104-1" aria-hidden="true" tabindex="-1"></a>cities <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Derby&quot;</span>, <span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Lincoln&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>)</span>

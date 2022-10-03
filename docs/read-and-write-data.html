@@ -281,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb146-7"><a href="read-and-write-data.html#cb146-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb146-8"><a href="read-and-write-data.html#cb146-8" aria-hidden="true" tabindex="-1"></a>fishery_data <span class="sc">%&gt;%</span></span>
 <span id="cb146-9"><a href="read-and-write-data.html#cb146-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Entity <span class="sc">==</span> <span class="st">&quot;Norway&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb146-10"><a href="read-and-write-data.html#cb146-10" aria-hidden="true" tabindex="-1"></a>  readr<span class="sc">::</span><span class="fu">write_csv</span>(<span class="st">&quot;data/capture-fisheries-vs-aquaculture-noraway.csv&quot;</span>, <span class="at">append=</span><span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb146-10"><a href="read-and-write-data.html#cb146-10" aria-hidden="true" tabindex="-1"></a>  readr<span class="sc">::</span><span class="fu">write_csv</span>(<span class="st">&quot;data/capture-fisheries-vs-aquaculture-norway.csv&quot;</span>, <span class="at">append=</span><span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb146-11"><a href="read-and-write-data.html#cb146-11" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb146-12"><a href="read-and-write-data.html#cb146-12" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb146-13"><a href="read-and-write-data.html#cb146-13" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
@@ -457,31 +457,31 @@ Figure 7.1: Video (3:13 min): REST API concepts and examples.
 ##   ..$ lat: num 47.8
 ##  $ weather   :List of 1
 ##   ..$ :List of 4
-##   .. ..$ id         : int 801
+##   .. ..$ id         : int 803
 ##   .. ..$ main       : chr &quot;Clouds&quot;
-##   .. ..$ description: chr &quot;few clouds&quot;
-##   .. ..$ icon       : chr &quot;02d&quot;
+##   .. ..$ description: chr &quot;broken clouds&quot;
+##   .. ..$ icon       : chr &quot;04d&quot;
 ##  $ base      : chr &quot;stations&quot;
 ##  $ main      :List of 6
-##   ..$ temp      : num 292
-##   ..$ feels_like: num 292
-##   ..$ temp_min  : num 290
-##   ..$ temp_max  : num 295
-##   ..$ pressure  : int 1018
-##   ..$ humidity  : int 77
+##   ..$ temp      : num 284
+##   ..$ feels_like: num 283
+##   ..$ temp_min  : num 283
+##   ..$ temp_max  : num 285
+##   ..$ pressure  : int 1026
+##   ..$ humidity  : int 94
 ##  $ visibility: int 10000
 ##  $ wind      :List of 2
-##   ..$ speed: num 2.06
-##   ..$ deg  : int 330
+##   ..$ speed: num 1.54
+##   ..$ deg  : int 250
 ##  $ clouds    :List of 1
-##   ..$ all: int 20
-##  $ dt        : int 1663938989
+##   ..$ all: int 75
+##  $ dt        : int 1664782380
 ##  $ sys       :List of 5
 ##   ..$ type   : int 1
 ##   ..$ id     : int 6877
 ##   ..$ country: chr &quot;AT&quot;
-##   ..$ sunrise: int 1663908934
-##   ..$ sunset : int 1663952708
+##   ..$ sunrise: int 1664773756
+##   ..$ sunset : int 1664815469
 ##  $ timezone  : int 7200
 ##  $ id        : int 2766824
 ##  $ name      : chr &quot;Salzburg&quot;
