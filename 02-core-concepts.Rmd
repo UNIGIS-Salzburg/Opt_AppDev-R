@@ -185,7 +185,7 @@ To date there are more than 10,000 R libraries available, which can be downloade
 Libraries can be of any size and complexity, e.g.:
 
 - `base`: base R functions, including the `sqrt` function above
-- `rgdal`: implementation of the [GDAL (Geospatial Data Abstraction Library)](https://gdal.org/){target="_blank"} functionalities.
+- `sf`: A package that provides [simple feature access](https://en.wikipedia.org/wiki/Simple_Features){target="_blank"}.
 
 The use of libraries in R can be illustrate by means of the `stringr` library, which provides a consistent and well-defined set of functions for manipulating strings. Assuming that the library has already been installed on your computer, you can load the library as
 
