@@ -11,5 +11,6 @@ ToDos:
 
 * Umbenennung des Moduls auf "Automated Data Processing with R" (ab 2023 ändern!)
 * add long and wide table formats (see data wrangling de sabbata)
+* add raw and complex as additional simple data types, see [pull request Gabriel Gaona](https://github.com/UNIGIS-Salzburg/Opt_AppDev-R/pulls)
 * Neues Unterkapitel in Data visualization zu RMarkdown. Aufgabeneinreichung nur noch einzelnes als RMarkdown Dokument zulassen!
 
