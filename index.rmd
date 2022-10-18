@@ -1,5 +1,5 @@
 --- 
-title: "Application Development with R"
+title: "Automated Data Processing with R"
 author: "Christian Neuwirth"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 
