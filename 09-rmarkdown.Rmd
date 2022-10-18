@@ -40,17 +40,55 @@ tinytex::install_tinytex()  # install TinyTeX
 
 RStudio may call for the installation of dependencies. Follow the instructions and install the requested libraries. In case you are facing any technical issues, please turn to the discussion forum!
 
-## Create an RMarkdown document
+## Create a local clone
 
-Once you have successfully implemented the setup, you can create your first RMarkdown document. 
+In order to locally work on your repository contents, you will have to create a local clone of your online GitHub repository.
 
 ```{block2, type = 'rmdexercise'}
 
-As a first step, we will create a local clone from our Online GitHub repository. In RStudio: File -> New Project... -> Version Control -> Git.
+In RStudio: File -> New Project... -> Version Control -> Git.
 
-Copy/past the Repository URL (go to your Online repository to find URL), browse local directory and `Create Project`.
+Copy/past the Repository URL (go to your Online repository to find URL), browse local directory and `Create Project` (see Fig. \@ref(fig:L09-clone)).
 
 ```
+
+```{r L09-clone, echo=FALSE, fig.cap="Clone GitHub Repository", out.width='70%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/Gitclone.png')
+```
+
+Once you have cloned the online repository, the file contents of the repository as well as a new tab called `Git` appears in RStudio (see Fig. \@ref(fig:L09-features)).
+
+```{r L09-features, echo=FALSE, fig.cap="New features in RStudio", out.width='80%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/NewFeatures.png')
+```
+
+Per default the repository contains three files: 
+
+1) [`gitignore`](https://git-scm.com/docs/gitignore){target="_blank"}
+2) An [RStudio Project File](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects){target="_blank"} (.Rproj) 
+3) A [ReadmMe File](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes){target="_blank"} (.md = pure markdown)
+
+[`gitignore`](https://git-scm.com/docs/gitignore){target="_blank"} and the [RStudio Project File](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects){target="_blank"} were created on project initialization, meaning that these files are new and not yet available in the online repository. Changes made to the original repository are listed in the `Git tab` (see Fig. \@ref(fig:L09-changes)). 
+
+```{r L09-changes, echo=FALSE, fig.cap="Changes in Git tab", out.width='80%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/Changes.png')
+```
+
+Before we further modify our repository, switch to the `dev` branch (see Fig. \@ref(fig:L09-branch)). At the moment `dev` branch and `main` branch are identical.
+
+```{r L09-branch, echo=FALSE, fig.cap="Switch branch", out.width='80%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/Branches.png')
+```
+
+```{block2, type = 'rmdtip'}
+
+It his highly recommended to keep work in progress seperate from the `main` branch. Later on, we will merge our changes from `dev` into the `main` branch.
+
+```
+
+## Create a first RMarkdown document
+
+
 
 
 
@@ -74,6 +112,8 @@ this is written in rmarkdown
 ## Synchronize with GitHub
 
 , let them push
+
+also merge dev to main
 
 
 ## Basic RMarkdown syntax

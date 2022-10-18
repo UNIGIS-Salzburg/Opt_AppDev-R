@@ -223,11 +223,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>9</b> RMarkdown</a>
 <ul>
 <li class="chapter" data-level="9.1" data-path="rmarkdown.html"><a href="rmarkdown.html#setup"><i class="fa fa-check"></i><b>9.1</b> Setup</a></li>
-<li class="chapter" data-level="9.2" data-path="rmarkdown.html"><a href="rmarkdown.html#create-an-rmarkdown-document"><i class="fa fa-check"></i><b>9.2</b> Create an RMarkdown document</a></li>
-<li class="chapter" data-level="9.3" data-path="rmarkdown.html"><a href="rmarkdown.html#synchronize-with-github"><i class="fa fa-check"></i><b>9.3</b> Synchronize with GitHub</a></li>
-<li class="chapter" data-level="9.4" data-path="rmarkdown.html"><a href="rmarkdown.html#basic-rmarkdown-syntax"><i class="fa fa-check"></i><b>9.4</b> Basic RMarkdown syntax</a></li>
-<li class="chapter" data-level="9.5" data-path="rmarkdown.html"><a href="rmarkdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>9.5</b> Speed up your workflows</a></li>
-<li class="chapter" data-level="9.6" data-path="rmarkdown.html"><a href="rmarkdown.html#self-study"><i class="fa fa-check"></i><b>9.6</b> Self-study</a></li>
+<li class="chapter" data-level="9.2" data-path="rmarkdown.html"><a href="rmarkdown.html#create-a-local-clone"><i class="fa fa-check"></i><b>9.2</b> Create a local clone</a></li>
+<li class="chapter" data-level="9.3" data-path="rmarkdown.html"><a href="rmarkdown.html#create-a-first-rmarkdown-document"><i class="fa fa-check"></i><b>9.3</b> Create a first RMarkdown document</a></li>
+<li class="chapter" data-level="9.4" data-path="rmarkdown.html"><a href="rmarkdown.html#synchronize-with-github"><i class="fa fa-check"></i><b>9.4</b> Synchronize with GitHub</a></li>
+<li class="chapter" data-level="9.5" data-path="rmarkdown.html"><a href="rmarkdown.html#basic-rmarkdown-syntax"><i class="fa fa-check"></i><b>9.5</b> Basic RMarkdown syntax</a></li>
+<li class="chapter" data-level="9.6" data-path="rmarkdown.html"><a href="rmarkdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>9.6</b> Speed up your workflows</a></li>
+<li class="chapter" data-level="9.7" data-path="rmarkdown.html"><a href="rmarkdown.html#self-study"><i class="fa fa-check"></i><b>9.7</b> Self-study</a></li>
 </ul></li>
 <li class="divider"></li>
 <li>Copyright © UNIGIS Salzburg.</li>
@@ -272,7 +273,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>By default, your repository has one branch named <code>main</code>. Create an additional branch off the <code>main</code> and call this new branch <code>dev</code>. To do so, follow the instructions in the <a href="https://docs.github.com/en/get-started/quickstart/hello-world" target="_blank">Hello-World-Tutorial</a>.</li>
 </ol>
 </div>
-<p>Once you have successfully implemented those steps, your GitHub environment is ready for use. As next step, you will have to install the <code>rmarkdown</code> library as well as <code>tinytex</code> in RStudio as described in the <a href="https://bookdown.org/yihui/rmarkdown/installation.html" target="_blank">RMarkdown Guide</a>.</p>
+<p>As next step, you will have to install the <code>rmarkdown</code> library as well as <code>tinytex</code> in RStudio as described in the <a href="https://bookdown.org/yihui/rmarkdown/installation.html" target="_blank">RMarkdown Guide</a>.</p>
 
 <div class="rmdtip">
 In order to correctly install <code>tinytex</code>, make sure to execute both lines in RStudio:
@@ -281,25 +282,76 @@ In order to correctly install <code>tinytex</code>, make sure to execute both li
 <span id="cb1-2"><a href="rmarkdown.html#cb1-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
 <p>RStudio may call for the installation of dependencies. Follow the instructions and install the requested libraries. In case you are facing any technical issues, please turn to the discussion forum!</p>
 </div>
-<div id="create-an-rmarkdown-document" class="section level2 hasAnchor" number="9.2">
-<h2><span class="header-section-number">9.2</span> Create an RMarkdown document<a href="rmarkdown.html#create-an-rmarkdown-document" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="create-a-local-clone" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Create a local clone<a href="rmarkdown.html#create-a-local-clone" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In order to locally work on your repository contents, you will have to create a local clone of your online GitHub repository.</p>
+
+<div class="rmdexercise">
+<p>In RStudio: File -&gt; New Project… -&gt; Version Control -&gt; Git.</p>
+<p>Copy/past the Repository URL (go to your Online repository to find URL), browse local directory and <code>Create Project</code> (see Fig. <a href="rmarkdown.html#fig:L09-clone">9.1</a>).</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-clone"></span>
+<img src="images/Gitclone.png" alt="Clone GitHub Repository" width="70%" />
+<p class="caption">
+Figure 9.1: Clone GitHub Repository
+</p>
+</div>
+<p>Once you have cloned the online repository, the file contents of the repository as well as a new tab called <code>Git</code> appears in RStudio (see Fig. <a href="rmarkdown.html#fig:L09-features">9.2</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-features"></span>
+<img src="images/NewFeatures.png" alt="New features in RStudio" width="80%" />
+<p class="caption">
+Figure 9.2: New features in RStudio
+</p>
+</div>
+<p>Per default the repository contains three files:</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://git-scm.com/docs/gitignore" target="_blank"><code>gitignore</code></a></li>
+<li>An <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank">RStudio Project File</a> (.Rproj)</li>
+<li>A <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes" target="_blank">ReadmMe File</a> (.md = pure markdown)</li>
+</ol>
+<p><a href="https://git-scm.com/docs/gitignore" target="_blank"><code>gitignore</code></a> and the <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank">RStudio Project File</a> were created on project initialization, meaning that these files are new and not yet available in the online repository. Changes made to the original repository are listed in the <code>Git tab</code> (see Fig. <a href="rmarkdown.html#fig:L09-changes">9.3</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-changes"></span>
+<img src="images/Changes.png" alt="Changes in Git tab" width="80%" />
+<p class="caption">
+Figure 9.3: Changes in Git tab
+</p>
+</div>
+<p>Before we further modify our repository, switch to the <code>dev</code> branch (see Fig. <a href="rmarkdown.html#fig:L09-branch">9.4</a>). At the moment <code>dev</code> branch and <code>main</code> branch are identical.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-branch"></span>
+<img src="images/Branches.png" alt="Switch branch" width="80%" />
+<p class="caption">
+Figure 9.4: Switch branch
+</p>
+</div>
+
+<div class="rmdtip">
+<p>It his highly recommended to keep work in progress seperate from the <code>main</code> branch. Later on, we will merge our changes from <code>dev</code> into the <code>main</code> branch.</p>
+</div>
+</div>
+<div id="create-a-first-rmarkdown-document" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Create a first RMarkdown document<a href="rmarkdown.html#create-a-first-rmarkdown-document" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This document should be stored in the GitHub repository that you have created. In order to make changes locally on your machine, you first have to pull the online</p>
+<p>fetch the online GitHub repository</p>
+<p>After you have set up GitHub and RMarkdown, you can create</p>
+<p>Now that we can create an RMarkdown document and push it to GitHub.</p>
 <p>go through syntax</p>
 <p>this is written in rmarkdown</p>
 </div>
-<div id="synchronize-with-github" class="section level2 hasAnchor" number="9.3">
-<h2><span class="header-section-number">9.3</span> Synchronize with GitHub<a href="rmarkdown.html#synchronize-with-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="synchronize-with-github" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Synchronize with GitHub<a href="rmarkdown.html#synchronize-with-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>, let them push</p>
+<p>also merge dev to main</p>
 </div>
-<div id="basic-rmarkdown-syntax" class="section level2 hasAnchor" number="9.4">
-<h2><span class="header-section-number">9.4</span> Basic RMarkdown syntax<a href="rmarkdown.html#basic-rmarkdown-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="basic-rmarkdown-syntax" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Basic RMarkdown syntax<a href="rmarkdown.html#basic-rmarkdown-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>link to cheatsheet</p>
 </div>
-<div id="speed-up-your-workflows" class="section level2 hasAnchor" number="9.5">
-<h2><span class="header-section-number">9.5</span> Speed up your workflows<a href="rmarkdown.html#speed-up-your-workflows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="speed-up-your-workflows" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> Speed up your workflows<a href="rmarkdown.html#speed-up-your-workflows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>update real-time data flows in rmakrdown doc</p>
 </div>
-<div id="self-study" class="section level2 hasAnchor" number="9.6">
-<h2><span class="header-section-number">9.6</span> Self-study<a href="rmarkdown.html#self-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="self-study" class="section level2 hasAnchor" number="9.7">
+<h2><span class="header-section-number">9.7</span> Self-study<a href="rmarkdown.html#self-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>R Markdown book</p>
 
 </div>

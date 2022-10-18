@@ -73,3 +73,9 @@ speed-up-your-workflows
 self-study
 setup
 basic-rmarkdown-syntax
+fig:L09-clone
+fig:L09-features
+fig:L09-changes
+fig:L09-branch
+create-a-local-clone
+create-a-first-rmarkdown-document
