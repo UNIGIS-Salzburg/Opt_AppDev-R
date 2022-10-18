@@ -25,7 +25,7 @@ To setup your personal GitHub environment, follow these steps:
 
 ```
 
-Once you have successfully implemented those steps, your GitHub environment is ready for use. As next step, you will have to install the `rmarkdown` library as well as `tinytex` in RStudio as described in the [RMarkdown Guide](https://bookdown.org/yihui/rmarkdown/installation.html){target="_blank"}. 
+As next step, you will have to install the `rmarkdown` library as well as `tinytex` in RStudio as described in the [RMarkdown Guide](https://bookdown.org/yihui/rmarkdown/installation.html){target="_blank"}. 
 
 ```{block2, type = 'rmdtip'}
 
@@ -41,6 +41,30 @@ tinytex::install_tinytex()  # install TinyTeX
 RStudio may call for the installation of dependencies. Follow the instructions and install the requested libraries. In case you are facing any technical issues, please turn to the discussion forum!
 
 ## Create an RMarkdown document
+
+Once you have successfully implemented the setup, you can create your first RMarkdown document. 
+
+```{block2, type = 'rmdexercise'}
+
+As a first step, we will create a local clone from our Online GitHub repository. In RStudio: File -> New Project... -> Version Control -> Git.
+
+Copy/past the Repository URL (go to your Online repository to find URL), browse local directory and `Create Project`.
+
+```
+
+
+
+
+This document should be stored in the GitHub repository that you have created. In order to make changes  locally on your machine, you  first have to pull the online 
+
+
+fetch the online GitHub repository    
+
+
+After you have set up GitHub and RMarkdown, you can create 
+
+
+Now that we can create an RMarkdown document and push it to GitHub.
 
 go through syntax
 
