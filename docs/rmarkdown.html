@@ -222,7 +222,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>9</b> RMarkdown</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="rmarkdown.html"><a href="rmarkdown.html#setup"><i class="fa fa-check"></i><b>9.1</b> Setup</a></li>
+<li class="chapter" data-level="9.1" data-path="rmarkdown.html"><a href="rmarkdown.html#set-up-your-work-environment"><i class="fa fa-check"></i><b>9.1</b> Set up your work environment</a></li>
 <li class="chapter" data-level="9.2" data-path="rmarkdown.html"><a href="rmarkdown.html#create-a-local-clone"><i class="fa fa-check"></i><b>9.2</b> Create a local clone</a></li>
 <li class="chapter" data-level="9.3" data-path="rmarkdown.html"><a href="rmarkdown.html#create-a-first-rmarkdown-document"><i class="fa fa-check"></i><b>9.3</b> Create a first RMarkdown document</a></li>
 <li class="chapter" data-level="9.4" data-path="rmarkdown.html"><a href="rmarkdown.html#synchronize-with-github"><i class="fa fa-check"></i><b>9.4</b> Synchronize with GitHub</a></li>
@@ -257,8 +257,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="rmdtip">
 <p>In this lesson, we will weave together code and text in professionally rendered Rmarkdown documents. And we will use <a href="https://github.com/" target="_blank">GitHub</a> to savely store, share and administer our results.</p>
 </div>
-<div id="setup" class="section level2 hasAnchor" number="9.1">
-<h2><span class="header-section-number">9.1</span> Setup<a href="rmarkdown.html#setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="set-up-your-work-environment" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Set up your work environment<a href="rmarkdown.html#set-up-your-work-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Before you will create your first Rmarkdown document, we have to setup the GitHub environment. GitHub was originally founded as a platform for software developers. The architecture of GitHub is designed to manage changes that are made to computer software in the process of software development. The same architecture, however, can also be used to control the versioning of documents or any other collection of information.</p>
 
 <div class="rmdexercise">
@@ -330,17 +330,45 @@ Figure 9.4: Switch branch
 </div>
 <div id="create-a-first-rmarkdown-document" class="section level2 hasAnchor" number="9.3">
 <h2><span class="header-section-number">9.3</span> Create a first RMarkdown document<a href="rmarkdown.html#create-a-first-rmarkdown-document" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that the environment is set up, we can create a first simple RMarkdown document.</p>
+
+<div class="rmdexercise">
+<p>In RStudio: File -&gt; New File -&gt; R Markdown….</p>
+<p>Type in a title, keep the default settings and confirm with <code>OK</code>. As a result you get a minimal RMarkdown sample file, with the file extension <code>.Rmd</code>.</p>
+</div>
+<p>As apparent from the sample file, RMarkdown documents are composed of the three basic components <strong>metadata</strong>, <strong>text</strong> and <strong>code</strong> (see Fig. <a href="rmarkdown.html#fig:L09-sample">9.5</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-sample"></span>
+<img src="images/SampleFile.png" alt="RMarkdown sample file" width="80%" />
+<p class="caption">
+Figure 9.5: RMarkdown sample file
+</p>
+</div>
+<p>The syntax for the metadata is <a href="https://en.wikipedia.org/wiki/YAML" target="_blank">YAML</a>. In our document, the metadata section specifies the title of the document, the output format and the date of creation. A large number of other document properties can be specified in this section. <a href="https://cran.r-project.org/web/packages/ymlthis/vignettes/yaml-overview.html" target="_blank">Here</a> you can find an overview of the basic YAML syntax.</p>
+<p>After the metadata section an <strong>R inline code block</strong> starts and ends with backticks. The three parameters in curly brackets identify the code as R code. <code>setup</code> is the name of the code block and (as we will see later) <code>include=FALSE</code> prevents code and code results from being displayed in the compiled HTML output. Nevertheless, RMarkdown still runs the code in this block. The inline code block as such sets <code>echo=TRUE</code> as default option for all code chunks in the document, which prevents code, but not the results from being displayed.</p>
+<p>The other code blocks in the <code>.Rmd</code> document produce a summary output (see lines 7-19) or create a simple scatterplot (see lines 25-27). To see how the compiled HTML output looks like, click <code>Knit</code> (see Fig. <a href="rmarkdown.html#fig:L09-knit">9.6</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-knit"></span>
+<img src="images/knit.png" alt="Knit HTML Output " width="80%" />
+<p class="caption">
+Figure 9.6: Knit HTML Output
+</p>
+</div>
+<p>Alternatively, you may click on the dropdown arrow next to the <code>Knit</code> button and compile <code>PDF</code> or <code>.docx</code> outputs.</p>
+
+<div class="rmdexercise">
+<p>Please take your time to understand how the <code>.Rmd</code> syntax translates into an output. For instances, to bold text, you can add two astersisks before and after a word or phrase.</p>
+</div>
+</div>
+<div id="synchronize-with-github" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Synchronize with GitHub<a href="rmarkdown.html#synchronize-with-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>first pull…somebody may have made changes to the dev branch</p>
+<p>, let them push</p>
+<p>also merge dev to main</p>
 <p>This document should be stored in the GitHub repository that you have created. In order to make changes locally on your machine, you first have to pull the online</p>
 <p>fetch the online GitHub repository</p>
 <p>After you have set up GitHub and RMarkdown, you can create</p>
 <p>Now that we can create an RMarkdown document and push it to GitHub.</p>
 <p>go through syntax</p>
 <p>this is written in rmarkdown</p>
-</div>
-<div id="synchronize-with-github" class="section level2 hasAnchor" number="9.4">
-<h2><span class="header-section-number">9.4</span> Synchronize with GitHub<a href="rmarkdown.html#synchronize-with-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>, let them push</p>
-<p>also merge dev to main</p>
 </div>
 <div id="basic-rmarkdown-syntax" class="section level2 hasAnchor" number="9.5">
 <h2><span class="header-section-number">9.5</span> Basic RMarkdown syntax<a href="rmarkdown.html#basic-rmarkdown-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h2>

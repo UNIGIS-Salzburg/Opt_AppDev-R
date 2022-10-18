@@ -8,7 +8,7 @@ In this lesson, we will weave together code and text in professionally rendered 
 
 ```
 
-## Setup
+## Set up your work environment
 
 Before you will create your first Rmarkdown document, we have to setup the GitHub environment. GitHub was originally founded as a platform for software developers. The architecture of GitHub is designed to manage changes that are made to computer software in the process of software development. The same architecture, however, can also be used to control the versioning of documents or any other collection of information.
 
@@ -88,7 +88,48 @@ It his highly recommended to keep work in progress seperate from the `main` bran
 
 ## Create a first RMarkdown document
 
+Now that the environment is set up, we can create a first simple RMarkdown document. 
 
+```{block2, type = 'rmdexercise'}
+
+In RStudio: File -> New File -> R Markdown....
+
+Type in a title, keep the default settings and confirm with `OK`. As a result you get a minimal RMarkdown sample file, with the file extension `.Rmd`.
+
+```
+
+As apparent from the sample file, RMarkdown documents are composed of the three basic components **metadata**, **text** and **code** (see Fig. \@ref(fig:L09-sample)). 
+
+```{r L09-sample, echo=FALSE, fig.cap="RMarkdown sample file", out.width='80%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/SampleFile.png')
+```
+
+The syntax for the metadata is [YAML](https://en.wikipedia.org/wiki/YAML){target="_blank"}. In  our document, the metadata section specifies the title of the document, the output format and the date of creation. A large number of other document properties can be specified in this section. [Here](https://cran.r-project.org/web/packages/ymlthis/vignettes/yaml-overview.html){target="_blank"} you can find an overview of the basic YAML syntax.    
+
+After the metadata section an **R inline code block** starts and ends with backticks. The three parameters in curly brackets identify the code as R code. `setup` is the name of the code block and (as we will see later) `include=FALSE` prevents code and code results from being displayed in the compiled HTML output. Nevertheless, RMarkdown still runs the code in this block.  The inline code block as such sets `echo=TRUE` as default option for all code chunks in the document, which prevents code, but not the results from being displayed.    
+
+The other code blocks in the `.Rmd` document produce a summary output (see lines 7-19) or create a simple scatterplot (see lines 25-27). To see how the compiled HTML output looks like, click `Knit` (see Fig. \@ref(fig:L09-knit)).
+
+```{r L09-knit, echo=FALSE, fig.cap="Knit HTML Output ", out.width='80%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/knit.png')
+```
+
+Alternatively, you may click on the dropdown arrow next to the `Knit` button and compile `PDF` or `.docx` outputs. 
+
+```{block2, type = 'rmdexercise'}
+
+Please take your time to understand how the `.Rmd` syntax translates into an output. For instances, to bold text, you can add two astersisks before and after a word or phrase.  
+
+```
+
+## Synchronize with GitHub
+
+first pull...somebody may have made changes to the dev branch
+
+
+, let them push
+
+also merge dev to main
 
 
 
@@ -107,13 +148,6 @@ Now that we can create an RMarkdown document and push it to GitHub.
 go through syntax
 
 this is written in rmarkdown
-
-
-## Synchronize with GitHub
-
-, let them push
-
-also merge dev to main
 
 
 ## Basic RMarkdown syntax
