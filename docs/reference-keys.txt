@@ -71,3 +71,5 @@ synchronize-with-github
 basic-syntax
 speed-up-your-workflows
 self-study
+setup
+basic-rmarkdown-syntax

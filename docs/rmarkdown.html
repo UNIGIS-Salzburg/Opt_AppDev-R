@@ -53,6 +53,70 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 
 <link rel="stylesheet" href="css/custom.css" type="text/css" />
@@ -158,11 +222,11 @@
 </ul></li>
 <li class="chapter" data-level="9" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>9</b> RMarkdown</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="rmarkdown.html"><a href="rmarkdown.html#before-we-start"><i class="fa fa-check"></i><b>9.1</b> Before we start</a></li>
+<li class="chapter" data-level="9.1" data-path="rmarkdown.html"><a href="rmarkdown.html#setup"><i class="fa fa-check"></i><b>9.1</b> Setup</a></li>
 <li class="chapter" data-level="9.2" data-path="rmarkdown.html"><a href="rmarkdown.html#create-an-rmarkdown-document"><i class="fa fa-check"></i><b>9.2</b> Create an RMarkdown document</a></li>
 <li class="chapter" data-level="9.3" data-path="rmarkdown.html"><a href="rmarkdown.html#synchronize-with-github"><i class="fa fa-check"></i><b>9.3</b> Synchronize with GitHub</a></li>
-<li class="chapter" data-level="9.4" data-path="rmarkdown.html"><a href="rmarkdown.html#basic-syntax"><i class="fa fa-check"></i><b>9.4</b> Basic syntax</a></li>
-<li class="chapter" data-level="9.5" data-path="rmarkdown.html"><a href="rmarkdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>9.5</b> speed up your workflows</a></li>
+<li class="chapter" data-level="9.4" data-path="rmarkdown.html"><a href="rmarkdown.html#basic-rmarkdown-syntax"><i class="fa fa-check"></i><b>9.4</b> Basic RMarkdown syntax</a></li>
+<li class="chapter" data-level="9.5" data-path="rmarkdown.html"><a href="rmarkdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>9.5</b> Speed up your workflows</a></li>
 <li class="chapter" data-level="9.6" data-path="rmarkdown.html"><a href="rmarkdown.html#self-study"><i class="fa fa-check"></i><b>9.6</b> Self-study</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -187,31 +251,51 @@
             <section class="normal" id="section-">
 <div id="rmarkdown" class="section level1 hasAnchor" number="9">
 <h1><span class="header-section-number">Lesson 9</span> RMarkdown<a href="rmarkdown.html#rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This lesson is dedicated to the library <code>rmarkdown</code>. In fact, however, Rmarkdown is more than only a library. <a href="https://rmarkdown.rstudio.com/" target="_blank">RMarkdown</a> belongs to a set of tools that are designed to improve the reproducibility of your work. Other tools and platforms such as <a href="https://github.com/" target="_blank">GitHub</a>, <a href="https://jupyter.org/" target="_blank">Jupyter</a>, <a href="https://www.docker.com/" target="_blank">Docker</a> or preprint servers such as <a href="https://arxiv.org/" target="_blank">ArXiv</a> or <a href="https://www.biorxiv.org/" target="_blank">bioRxiv</a> facilitate reproducibility in many different ways. In this module, we will not cover the full paradigm of <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801" target="_blank">reproducible research</a>. Instead, we will focus on those aspects that will helping you make your analyses and reports more appealing, interactive and efficient.</p>
+<p>This lesson is dedicated to the library <code>rmarkdown</code>. In fact, however, Rmarkdown is more than only a library. <a href="https://rmarkdown.rstudio.com/" target="_blank">RMarkdown</a> belongs to a set of tools that are designed to improve the reproducibility of your work. Other tools and platforms such as <a href="https://github.com/" target="_blank">GitHub</a>, <a href="https://jupyter.org/" target="_blank">Jupyter</a>, <a href="https://www.docker.com/" target="_blank">Docker</a> or preprint servers such as <a href="https://arxiv.org/" target="_blank">ArXiv</a> or <a href="https://www.biorxiv.org/" target="_blank">bioRxiv</a> facilitate reproducibility in many different ways. In this module, we will not cover the paradigm of <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801" target="_blank">reproducible research</a> in detail. Instead, we will focus on those aspects that will helping you make your analyses and reports more appealing, interactive and efficient.</p>
 
 <div class="rmdtip">
-<p>In this lesson, we will weave together code and text in professionally rendered Rmarkdown documents. And we will use <a href="https://github.com/" target="_blank">GitHub</a> to savely store, share and administer our work.</p>
+<p>In this lesson, we will weave together code and text in professionally rendered Rmarkdown documents. And we will use <a href="https://github.com/" target="_blank">GitHub</a> to savely store, share and administer our results.</p>
 </div>
-<div id="before-we-start" class="section level2 hasAnchor" number="9.1">
-<h2><span class="header-section-number">9.1</span> Before we start<a href="rmarkdown.html#before-we-start" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>this is written in rmarkdown</p>
-<p>assignment with Rmarkdown</p>
-<p>git, GitHub and rmarkdown installation</p>
+<div id="setup" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Setup<a href="rmarkdown.html#setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before you will create your first Rmarkdown document, we have to setup the GitHub environment. GitHub was originally founded as a platform for software developers. The architecture of GitHub is designed to manage changes that are made to computer software in the process of software development. The same architecture, however, can also be used to control the versioning of documents or any other collection of information.</p>
+
+<div class="rmdexercise">
+<p>To setup your personal GitHub environment, follow these steps:</p>
+<ol style="list-style-type: decimal">
+<li>Read through the <a href="https://docs.github.com/en/get-started/quickstart/hello-world" target="_blank">Hello-World-Section</a> of GitHub’s Quickstart Documentation. For now reading is fine. You do not necessarily have to work through the tutorial.<br />
+</li>
+<li><a href="https://github.com/" target="_blank">Create a GitHub account</a>.</li>
+<li><a href="https://git-scm.com/downloads" target="_blank">Download and install Git</a>. <a href="https://docs.github.com/en/get-started/quickstart/set-up-git" target="_blank">Git</a> is responsible for everything GitHub-related that happens locally on your machine.</li>
+<li>Open R Studio -&gt; Tools -&gt; Global Options -&gt; Git / SVN: check “enable version control” and set the path to the git.exe (e.g. C:/Program Files/Git/bin/git.exe). Restart RStudio.</li>
+<li><a href="https://docs.github.com/en/get-started/quickstart/create-a-repo" target="_blank">Create a repository</a> on GitHub. Skip section ‘Commit your first changes’.</li>
+<li>By default, your repository has one branch named <code>main</code>. Create an additional branch off the <code>main</code> and call this new branch <code>dev</code>. To do so, follow the instructions in the <a href="https://docs.github.com/en/get-started/quickstart/hello-world" target="_blank">Hello-World-Tutorial</a>.</li>
+</ol>
+</div>
+<p>Once you have successfully implemented those steps, your GitHub environment is ready for use. As next step, you will have to install the <code>rmarkdown</code> library as well as <code>tinytex</code> in RStudio as described in the <a href="https://bookdown.org/yihui/rmarkdown/installation.html" target="_blank">RMarkdown Guide</a>.</p>
+
+<div class="rmdtip">
+In order to correctly install <code>tinytex</code>, make sure to execute both lines in RStudio:
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rmarkdown.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
+<span id="cb1-2"><a href="rmarkdown.html#cb1-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
+<p>RStudio may call for the installation of dependencies. Follow the instructions and install the requested libraries. In case you are facing any technical issues, please turn to the discussion forum!</p>
 </div>
 <div id="create-an-rmarkdown-document" class="section level2 hasAnchor" number="9.2">
 <h2><span class="header-section-number">9.2</span> Create an RMarkdown document<a href="rmarkdown.html#create-an-rmarkdown-document" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>go through syntax</p>
+<p>this is written in rmarkdown</p>
 </div>
 <div id="synchronize-with-github" class="section level2 hasAnchor" number="9.3">
 <h2><span class="header-section-number">9.3</span> Synchronize with GitHub<a href="rmarkdown.html#synchronize-with-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>, let them push</p>
 </div>
-<div id="basic-syntax" class="section level2 hasAnchor" number="9.4">
-<h2><span class="header-section-number">9.4</span> Basic syntax<a href="rmarkdown.html#basic-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="basic-rmarkdown-syntax" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Basic RMarkdown syntax<a href="rmarkdown.html#basic-rmarkdown-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>link to cheatsheet</p>
 </div>
 <div id="speed-up-your-workflows" class="section level2 hasAnchor" number="9.5">
-<h2><span class="header-section-number">9.5</span> speed up your workflows<a href="rmarkdown.html#speed-up-your-workflows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">9.5</span> Speed up your workflows<a href="rmarkdown.html#speed-up-your-workflows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>update real-time data flows in rmakrdown doc</p>
 </div>
 <div id="self-study" class="section level2 hasAnchor" number="9.6">

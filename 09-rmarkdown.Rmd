@@ -1,27 +1,50 @@
 # RMarkdown
 
-This lesson is dedicated to the library `rmarkdown`. In fact, however, Rmarkdown is more than only a library. [RMarkdown](https://rmarkdown.rstudio.com/){target="_blank"} belongs to a set of tools that are designed to improve the reproducibility of your work. Other tools and platforms such as [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"} or preprint servers such as [ArXiv](https://arxiv.org/){target="_blank"} or [bioRxiv](https://www.biorxiv.org/){target="_blank"} facilitate reproducibility in many different ways. In this module, we will not cover the full paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"}. Instead, we will focus on those aspects that will helping you make your analyses and reports more appealing, interactive and efficient.
+This lesson is dedicated to the library `rmarkdown`. In fact, however, Rmarkdown is more than only a library. [RMarkdown](https://rmarkdown.rstudio.com/){target="_blank"} belongs to a set of tools that are designed to improve the reproducibility of your work. Other tools and platforms such as [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"} or preprint servers such as [ArXiv](https://arxiv.org/){target="_blank"} or [bioRxiv](https://www.biorxiv.org/){target="_blank"} facilitate reproducibility in many different ways. In this module, we will not cover the paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"} in detail. Instead, we will focus on those aspects that will helping you make your analyses and reports more appealing, interactive and efficient.
 
 ```{block2, type = 'rmdtip'}
 
-In this lesson, we will weave together code and text in professionally rendered Rmarkdown documents. And we will use [GitHub](https://github.com/){target="_blank"} to savely store, share and administer our work.    
+In this lesson, we will weave together code and text in professionally rendered Rmarkdown documents. And we will use [GitHub](https://github.com/){target="_blank"} to savely store, share and administer our results.    
 
 ```
 
-## Before we start
+## Setup
 
+Before you will create your first Rmarkdown document, we have to setup the GitHub environment. GitHub was originally founded as a platform for software developers. The architecture of GitHub is designed to manage changes that are made to computer software in the process of software development. The same architecture, however, can also be used to control the versioning of documents or any other collection of information.
 
-this is written in rmarkdown
+```{block2, type = 'rmdexercise'}
 
-assignment with Rmarkdown
+To setup your personal GitHub environment, follow these steps:
 
-git, GitHub and rmarkdown installation
+1) Read through the [Hello-World-Section](https://docs.github.com/en/get-started/quickstart/hello-world){target="_blank"} of GitHub's Quickstart Documentation. For now reading is fine. You do not necessarily have to work through the tutorial.  
+2) [Create a GitHub account](https://github.com/){target="_blank"}.
+3) [Download and install Git](https://git-scm.com/downloads){target="_blank"}. [Git](https://docs.github.com/en/get-started/quickstart/set-up-git){target="_blank"} is responsible for everything GitHub-related that happens locally on your machine.
+4) Open R Studio -> Tools -> Global Options -> Git / SVN: check "enable version control" and set the path to the git.exe (e.g. C:/Program Files/Git/bin/git.exe). Restart RStudio.
+5) [Create a repository](https://docs.github.com/en/get-started/quickstart/create-a-repo){target="_blank"} on GitHub. Skip section 'Commit your first changes'. 
+6) By default, your repository has one branch named `main`. Create an additional branch off the `main` and call this new branch `dev`. To do so, follow the instructions in the [Hello-World-Tutorial](https://docs.github.com/en/get-started/quickstart/hello-world){target="_blank"}.
 
+```
 
+Once you have successfully implemented those steps, your GitHub environment is ready for use. As next step, you will have to install the `rmarkdown` library as well as `tinytex` in RStudio as described in the [RMarkdown Guide](https://bookdown.org/yihui/rmarkdown/installation.html){target="_blank"}. 
+
+```{block2, type = 'rmdtip'}
+
+In order to correctly install `tinytex`, make sure to execute both lines in RStudio:
+  
+```
+
+```{r, echo=TRUE, eval = FALSE}
+install.packages('tinytex')
+tinytex::install_tinytex()  # install TinyTeX
+```
+
+RStudio may call for the installation of dependencies. Follow the instructions and install the requested libraries. In case you are facing any technical issues, please turn to the discussion forum!
 
 ## Create an RMarkdown document
 
 go through syntax
+
+this is written in rmarkdown
 
 
 ## Synchronize with GitHub
@@ -29,7 +52,7 @@ go through syntax
 , let them push
 
 
-## Basic syntax
+## Basic RMarkdown syntax
 
 link to cheatsheet
 
