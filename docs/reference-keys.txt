@@ -62,3 +62,12 @@ boxplots
 scatterplots
 map-visualization
 interactive-maps
+rmarkdown-analyze.share.reproduce
+analyze-share-reproduce
+rmarkdown
+before-we-start
+create-an-rmarkdown-document
+synchronize-with-github
+basic-syntax
+speed-up-your-workflows
+self-study

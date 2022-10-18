@@ -1,0 +1,43 @@
+# RMarkdown
+
+This lesson is dedicated to the library `rmarkdown`. In fact, however, Rmarkdown is more than only a library. [RMarkdown](https://rmarkdown.rstudio.com/){target="_blank"} belongs to a set of tools that are designed to improve the reproducibility of your work. Other tools and platforms such as [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"} or preprint servers such as [ArXiv](https://arxiv.org/){target="_blank"} or [bioRxiv](https://www.biorxiv.org/){target="_blank"} facilitate reproducibility in many different ways. In this module, we will not cover the full paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"}. Instead, we will focus on those aspects that will helping you make your analyses and reports more appealing, interactive and efficient.
+
+```{block2, type = 'rmdtip'}
+
+In this lesson, we will weave together code and text in professionally rendered Rmarkdown documents. And we will use [GitHub](https://github.com/){target="_blank"} to savely store, share and administer our work.    
+
+```
+
+## Before we start
+
+
+this is written in rmarkdown
+
+assignment with Rmarkdown
+
+git, GitHub and rmarkdown installation
+
+
+
+## Create an RMarkdown document
+
+go through syntax
+
+
+## Synchronize with GitHub
+
+, let them push
+
+
+## Basic syntax
+
+link to cheatsheet
+
+
+## Speed up your workflows
+
+update real-time data flows in rmakrdown doc
+
+## Self-study
+
+R Markdown book
