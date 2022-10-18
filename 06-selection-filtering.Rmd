@@ -5,7 +5,7 @@ In most instances the structure of the available data will not meet the specific
 
 This lesson introduces to the most common data wrangling operations by means of the dplyr library (part of the Tidyverse libraries), which offers a grammar for data manipulation.
 
-You will also get to know [tibbles](https://tibble.tidyverse.org/){target="_blank"} as a new complex data type. Tibbles are basically a lightweight version of data frames (see [Tibbles in R for Data Science](https://r4ds.had.co.nz/tibbles.html){target="_blank"}). 
+You will also get to know [tibbles](https://tibble.tidyverse.org/){target="_blank"}, which is another data structure in R. Tibbles are basically a lightweight version of data frames (see [Tibbles in R for Data Science](https://r4ds.had.co.nz/tibbles.html){target="_blank"}). 
 ```
 
 ## Preparation

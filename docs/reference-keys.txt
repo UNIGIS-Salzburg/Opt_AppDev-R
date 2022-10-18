@@ -17,7 +17,7 @@ core
 variables
 algorithms-and-functions
 libraries
-complex-data-types
+data-structures
 vectors
 vector-element-selection
 functions-on-vectors
