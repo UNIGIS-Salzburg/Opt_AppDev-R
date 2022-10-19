@@ -12,6 +12,8 @@ In this lesson, we will weave together code and text in professionally rendered 
 
 Before you will create your first Rmarkdown document, we have to setup the GitHub environment. GitHub was originally founded as a platform for software developers. The architecture of GitHub is designed to manage changes that are made to computer software in the process of software development. The same architecture, however, can also be used to control the versioning of documents or any other collection of information.
 
+Version control is particularly important when working in teams to sync working steps among project participants. However, even when working individually, GitHub is a trustworthy and open online data dump that tracks changes and simplifies the documentation and sharing of your work.
+
 ```{block2, type = 'rmdexercise'}
 
 To setup your personal GitHub environment, follow these steps:
@@ -82,7 +84,7 @@ knitr::include_graphics('images/Branches.png')
 
 ```{block2, type = 'rmdtip'}
 
-It his highly recommended to keep work in progress seperate from the `main` branch. Later on, we will merge our changes from `dev` into the `main` branch.
+It his highly recommended to keep work in progress seperate from the `main` branch by working in a seperate developer branch. Later on, we will merge our changes from `dev` into the `main` branch.
 
 ```
 
