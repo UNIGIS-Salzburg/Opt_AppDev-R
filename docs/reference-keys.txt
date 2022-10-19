@@ -76,3 +76,6 @@ synchronize-with-github
 basic-rmarkdown-syntax
 speed-up-your-workflows
 self-study
+fig:L09-pull
+fig:L09-commit
+fig:L09-push

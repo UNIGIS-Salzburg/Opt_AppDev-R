@@ -326,7 +326,7 @@ Figure 9.4: Switch branch
 </div>
 
 <div class="rmdtip">
-<p>It his highly recommended to keep work in progress seperate from the <code>main</code> branch. Later on, we will merge our changes from <code>dev</code> into the <code>main</code> branch.</p>
+<p>It his highly recommended to keep work in progress seperate from the <code>main</code> branch by working in a seperate developer branch. Later on, we will merge our changes from <code>dev</code> into the <code>main</code> branch.</p>
 </div>
 </div>
 <div id="create-a-first-rmarkdown-document" class="section level2 hasAnchor" number="9.3">
@@ -361,6 +361,40 @@ Figure 9.6: Knit HTML Output
 </div>
 <div id="synchronize-with-github" class="section level2 hasAnchor" number="9.4">
 <h2><span class="header-section-number">9.4</span> Synchronize with GitHub<a href="rmarkdown.html#synchronize-with-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is good practice to synchronize changes made to the project on a regular basis with the online repository. First, we need to pull changes that someone else could have made in the meantime.</p>
+
+<div class="rmdexercise">
+<p>Click the <code>Pull button</code> in the <code>Git tab</code> (see Fig. <a href="rmarkdown.html#fig:L09-pull">9.7</a>). A message appears indicating that no other changes have been made (<code>Already up to date</code>).</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-pull"></span>
+<img src="images/pull.png" alt="Make Pull" width="80%" />
+<p class="caption">
+Figure 9.7: Make Pull
+</p>
+</div>
+<p>Even if you work on your own, it is advisable to routinely start the sync process with a <code>Pull</code>.</p>
+<p>Before you can push your own changes to the online repository, you have to <code>Commit</code> changes. Committing is like in-process saving. The <code>Commit</code> takes a snapshot of your changes. This snapshot is combined with a user defined commit message.</p>
+
+<div class="rmdexercise">
+<p>Locally save all documents in RStudio. Click the <code>Commit button</code> in the <code>Git tab</code> . Those files that are affected by changes are listed in the commit window. You can click on one of the files. The changes will be displayed (green is new, red is deleted content).</p>
+<p>Manually select all files by clicking the respective checkboxes. In order to make sure that you have not missed a file, you may execute <code>git add -A</code> in the terminal window to add all files to the commit. Once this is done, enter a meaningful commit message that describes your revision and push the <code>Commit button</code>.</p>
+<p>See Fig. <a href="rmarkdown.html#fig:L09-commit">9.8</a></p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-commit"></span>
+<img src="images/commit.png" alt="Make Commit" width="80%" />
+<p class="caption">
+Figure 9.8: Make Commit
+</p>
+</div>
+<p>To finish the sync process, click the <code>Push button</code> in the <code>Git tab</code> (see Fig. <a href="rmarkdown.html#fig:L09-push">9.9</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-push"></span>
+<img src="images/Push.png" alt="Make Push" width="80%" />
+<p class="caption">
+Figure 9.9: Make Push
+</p>
+</div>
+<p>get used to get used to a standard sequence of steps and</p>
+<p>to stick to the same sequence of steps.</p>
 <p>first pull…somebody may have made changes to the dev branch</p>
 <p>, let them push</p>
 <p>also merge dev to main</p>

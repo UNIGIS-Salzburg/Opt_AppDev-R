@@ -126,6 +126,51 @@ Please take your time to understand how the `.Rmd` syntax translates into an out
 
 ## Synchronize with GitHub
 
+It is good practice to synchronize changes made to the project on a regular basis with the online repository. First, we need to pull changes that someone else could have made in the meantime.   
+
+```{block2, type = 'rmdexercise'}
+
+Click the `Pull button` in the `Git tab` (see Fig. \@ref(fig:L09-pull)). A message appears indicating that no other changes have been made (`Already up to date`).
+
+```
+
+```{r L09-pull, echo=FALSE, fig.cap="Make Pull", out.width='80%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/pull.png')
+```
+
+Even if you work on your own, it is advisable to routinely start the sync process with a `Pull`. 
+
+Before you can push your own changes to the online repository, you have to `Commit` changes. Committing is like in-process saving. The `Commit` takes a snapshot of your changes. This snapshot is combined with a user defined commit message. 
+
+```{block2, type = 'rmdexercise'}
+
+Locally save all documents in RStudio. Click the `Commit button` in the `Git tab` . Those files that are affected by changes are listed in the commit window. You can click on one of the files. The changes will be displayed (green is new, red is deleted content).
+
+Manually select all files by clicking the respective checkboxes. In order to make sure that you have not missed a file, you may execute `git add -A` in the terminal window to add all files to the commit. Once this is done, enter a meaningful commit message that describes your revision and push the `Commit button`. 
+
+See Fig. \@ref(fig:L09-commit)
+
+```
+
+```{r L09-commit, echo=FALSE, fig.cap="Make Commit", out.width='80%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/commit.png')
+```
+
+To finish the sync process, click the `Push button` in the `Git tab` (see Fig. \@ref(fig:L09-push)). 
+
+```{r L09-push, echo=FALSE, fig.cap="Make Push", out.width='70%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/Push.png')
+```
+
+When you turn to your GitHub repository 
+
+
+
+get used to get used to a standard sequence of steps and 
+
+to stick to the same sequence of steps.
+
+
 first pull...somebody may have made changes to the dev branch
 
 
