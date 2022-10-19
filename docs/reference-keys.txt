@@ -79,3 +79,4 @@ self-study
 fig:L09-pull
 fig:L09-commit
 fig:L09-push
+fig:L09-updated
