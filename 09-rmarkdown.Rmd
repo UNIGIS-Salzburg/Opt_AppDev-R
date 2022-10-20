@@ -164,11 +164,17 @@ knitr::include_graphics('images/Push.png')
 
 Your online repository should now be updated (switch to `dev` branch in your repository) (see Fig. \@ref(fig:L09-updated)).
 
-```{r L09-updated, echo=FALSE, fig.cap="Commit with message 'decribe sync process in github' was pushed to the developer branch of this repository 1 minute ago", out.width='90%', fig.asp=.75, fig.align='center'}
+```{r L09-updated, echo=FALSE, fig.cap="Commit with message 'decribe sync process in github' was pushed to the developer branch a minute ago", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/CommitFinished.png')
 ```
 
 ## Speed up your workflows
+
+every day a new update on exchange rate with a map
+
+alpha ventage API: https://www.alphavantage.co/
+
+https://www.alphavantage.co/query?function=FX_DAILY&from_symbol=EUR&to_symbol=USD&apikey=5A80E9FDZ6KO093O
 
 update real-time data flows in rmakrdown doc
 
