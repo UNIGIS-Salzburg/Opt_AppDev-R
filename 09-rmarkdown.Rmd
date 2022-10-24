@@ -183,7 +183,15 @@ free alpha only 500 cals a day and 5 calls/minute
 
 ```{block2, type = 'rmdexercise'}
 
-[Download](data/rmarkdown-example.zip){target="_blank"} my Rmarkdown example, unzip and add to a local project in RStudio....
+[Download](data/rmarkdown-example.zip){target="_blank"} my Rmarkdown example, unzip and copy/paste contents of folder `rmarkdown-example` to a local RStudio project. 
+
+Inspect .bib, .Rmd and .csv files. 
+
+add at least one more reference, increase the number of calls in the R code, inspect intersting leaflet example 
+
+knit the results as html, pdf and word documents
+
+etc.
 
 ```
 
