@@ -22,7 +22,7 @@ To setup your personal GitHub environment, follow these steps:
 2) [Create a GitHub account](https://github.com/){target="_blank"}.
 3) [Download and install Git](https://git-scm.com/downloads){target="_blank"}. [Git](https://docs.github.com/en/get-started/quickstart/set-up-git){target="_blank"} is responsible for everything GitHub-related that happens locally on your machine.
 4) Open R Studio -> Tools -> Global Options -> Git / SVN: check "enable version control" and set the path to the git.exe (e.g. C:/Program Files/Git/bin/git.exe). Restart RStudio.
-5) [Create a repository](https://docs.github.com/en/get-started/quickstart/create-a-repo){target="_blank"} on GitHub. Skip section 'Commit your first changes'. 
+5) [Create a repository](https://docs.github.com/en/get-started/quickstart/create-a-repo){target="_blank"} on GitHub. In the tutorial,  Skip section 'Commit your first changes'. 
 6) By default, your repository has one branch named `main`. Create an additional branch off the `main` and call this new branch `dev`. To do so, follow the instructions in the [Hello-World-Tutorial](https://docs.github.com/en/get-started/quickstart/hello-world){target="_blank"}.
 
 ```
@@ -108,7 +108,7 @@ knitr::include_graphics('images/SampleFile.png')
 
 The syntax for the metadata is [YAML](https://en.wikipedia.org/wiki/YAML){target="_blank"}. In  our document, the metadata section specifies the title of the document, the output format and the date of creation. A large number of other document properties can be specified in this section. [Here](https://cran.r-project.org/web/packages/ymlthis/vignettes/yaml-overview.html){target="_blank"} you can find an overview of the basic YAML syntax.    
 
-After the metadata section an **R inline code block** starts and ends with backticks. The three parameters in curly brackets identify the code as R code. `setup` is the name of the code block and (as we will see later) `include=FALSE` prevents code and code results from being displayed in the compiled HTML output. Nevertheless, RMarkdown still runs the code in this block.  The inline code block as such sets `echo=TRUE` as default option for all code chunks in the document, which prevents code, but not the results from being displayed.    
+After the metadata section an **R inline code block** starts and ends with backticks. The three parameters in curly brackets identify the code as R code. `setup` is the name of the code block and (as we will see later) `include=FALSE` prevents code and code results of this code chunk from being displayed in the compiled HTML output. Nevertheless, RMarkdown still runs the code in this block.  The inline code block as such sets `echo=TRUE` as default option for all code chunks in the document. This means, per default the code of all code chunks in the document are displayed in the output file, if not otherwise indicated. 
 
 The other code blocks in the `.Rmd` document produce a summary output (see lines 7-19) or create a simple scatterplot (see lines 25-27). To see how the compiled HTML output looks like, click `Knit` (see Fig. \@ref(fig:L09-knit)).
 
@@ -146,7 +146,7 @@ Before you can push your own changes to the online repository, you have to `Comm
 
 Locally save all documents in RStudio. Click the `Commit button` in the `Git tab` . Those files that are affected by changes are listed in the commit window. You can click on one of the files. The changes will be displayed (green is new, red is deleted content).
 
-Manually select all files by clicking the respective checkboxes. In order to make sure that you have not missed a file, you may execute `git add -A` in the terminal window to add all files to the commit. Once this is done, enter a meaningful commit message that describes your revision and push the `Commit button`. 
+Manually select all files by clicking the respective checkboxes. In order to make sure that you have not missed a file, you may execute `git add -A` in the terminal window to add all files to the commit (see [list of popular Git Commands](https://github.com/joshnh/Git-Commands){target="_blank"}). Once this is done, enter a meaningful commit message that describes your revision and push the `Commit button`. 
 
 See Fig. \@ref(fig:L09-commit)
 
@@ -162,13 +162,31 @@ To finish the sync process, click the `Push button` in the `Git tab` (see Fig. \
 knitr::include_graphics('images/Push.png')
 ```
 
-Your online repository should now be updated (switch to `dev` branch in your repository) (see Fig. \@ref(fig:L09-updated)).
+Your online repository on GitHub should now be updated (switch to `dev` branch in your repository) (see Fig. \@ref(fig:L09-updated)).
 
 ```{r L09-updated, echo=FALSE, fig.cap="Commit with message 'decribe sync process in github' was pushed to the developer branch a minute ago", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/CommitFinished.png')
 ```
 
+## Basic RMarkdown syntax
+
+The use of double astersisks to bold words and phrases in RMarkdown documents has already been mentioned. Moreover, text may be italicised by placing single asterisks before and after text.     
+
+The referencing feature is another important and time-saving function of RMarkdown.    
+
+link to cheatsheet
+
+also merge dev to main
+
+this is written in rmarkdown
+
+reference cheat sheet for rmarkdown i self-study section: https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf
+
+bookdown is required for cross referencing figures: https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#bookdown-markdown
+
 ## Speed up your workflows
+
+knit html only - dynamic content
 
 every day a new update on exchange rate with a map
 
@@ -195,13 +213,7 @@ etc.
 
 ```
 
-## Basic RMarkdown syntax
 
-link to cheatsheet
-
-also merge dev to main
-
-this is written in rmarkdown
 
 
 
