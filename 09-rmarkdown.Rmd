@@ -170,7 +170,17 @@ knitr::include_graphics('images/CommitFinished.png')
 
 ## Basic RMarkdown syntax
 
-The use of double astersisks to bold words and phrases in RMarkdown documents has already been mentioned. Moreover, text may be italicised by placing single asterisks before and after text.     
+The use of double astersisks (`**Text**`) to bold words and phrases in RMarkdown documents has already been mentioned. Moreover, text may be italicised by placing single asterisks (`*Text*`) before and after text.     
+RMarkdown also comes with a time-saving method to insert citations and to build a bibliography. References are collected in a .bib-file that resides in the RProject folder. To create a .bib-file, you can use any text editor. Open a new document (for instance a Windows Editor file), replace .txt with .bib (e.g. references.bib) and save to the RProject folder.
+
+Now you can add references to the .bib-file. References are encoded in BibTeX format. The easiest way to get the BibTeX description of a reference is to export from Google Scholar. To enable BibTeX export...change setting in google Scholar
+
+image change settings in google scholar
+
+
+
+
+
 
 The referencing feature is another important and time-saving function of RMarkdown.    
 
@@ -221,3 +231,4 @@ etc.
 ## Self-study
 
 R Markdown book
+Aufgabe: private repository mit rechten zukommen lassen

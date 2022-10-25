@@ -236,8 +236,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="rmarkdown.html"><a href="rmarkdown.html#create-a-local-clone"><i class="fa fa-check"></i><b>9.2</b> Create a local clone</a></li>
 <li class="chapter" data-level="9.3" data-path="rmarkdown.html"><a href="rmarkdown.html#create-a-first-rmarkdown-document"><i class="fa fa-check"></i><b>9.3</b> Create a first RMarkdown document</a></li>
 <li class="chapter" data-level="9.4" data-path="rmarkdown.html"><a href="rmarkdown.html#synchronize-with-github"><i class="fa fa-check"></i><b>9.4</b> Synchronize with GitHub</a></li>
-<li class="chapter" data-level="9.5" data-path="rmarkdown.html"><a href="rmarkdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>9.5</b> Speed up your workflows</a></li>
-<li class="chapter" data-level="9.6" data-path="rmarkdown.html"><a href="rmarkdown.html#basic-rmarkdown-syntax"><i class="fa fa-check"></i><b>9.6</b> Basic RMarkdown syntax</a></li>
+<li class="chapter" data-level="9.5" data-path="rmarkdown.html"><a href="rmarkdown.html#basic-rmarkdown-syntax"><i class="fa fa-check"></i><b>9.5</b> Basic RMarkdown syntax</a></li>
+<li class="chapter" data-level="9.6" data-path="rmarkdown.html"><a href="rmarkdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>9.6</b> Speed up your workflows</a></li>
 <li class="chapter" data-level="9.7" data-path="rmarkdown.html"><a href="rmarkdown.html#self-study"><i class="fa fa-check"></i><b>9.7</b> Self-study</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -280,7 +280,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://github.com/" target="_blank">Create a GitHub account</a>.</li>
 <li><a href="https://git-scm.com/downloads" target="_blank">Download and install Git</a>. <a href="https://docs.github.com/en/get-started/quickstart/set-up-git" target="_blank">Git</a> is responsible for everything GitHub-related that happens locally on your machine.</li>
 <li>Open R Studio -&gt; Tools -&gt; Global Options -&gt; Git / SVN: check “enable version control” and set the path to the git.exe (e.g. C:/Program Files/Git/bin/git.exe). Restart RStudio.</li>
-<li><a href="https://docs.github.com/en/get-started/quickstart/create-a-repo" target="_blank">Create a repository</a> on GitHub. Skip section ‘Commit your first changes’.</li>
+<li><a href="https://docs.github.com/en/get-started/quickstart/create-a-repo" target="_blank">Create a repository</a> on GitHub. In the tutorial, Skip section ‘Commit your first changes’.</li>
 <li>By default, your repository has one branch named <code>main</code>. Create an additional branch off the <code>main</code> and call this new branch <code>dev</code>. To do so, follow the instructions in the <a href="https://docs.github.com/en/get-started/quickstart/hello-world" target="_blank">Hello-World-Tutorial</a>.</li>
 </ol>
 </div>
@@ -355,7 +355,7 @@ Figure 9.5: RMarkdown sample file
 </p>
 </div>
 <p>The syntax for the metadata is <a href="https://en.wikipedia.org/wiki/YAML" target="_blank">YAML</a>. In our document, the metadata section specifies the title of the document, the output format and the date of creation. A large number of other document properties can be specified in this section. <a href="https://cran.r-project.org/web/packages/ymlthis/vignettes/yaml-overview.html" target="_blank">Here</a> you can find an overview of the basic YAML syntax.</p>
-<p>After the metadata section an <strong>R inline code block</strong> starts and ends with backticks. The three parameters in curly brackets identify the code as R code. <code>setup</code> is the name of the code block and (as we will see later) <code>include=FALSE</code> prevents code and code results from being displayed in the compiled HTML output. Nevertheless, RMarkdown still runs the code in this block. The inline code block as such sets <code>echo=TRUE</code> as default option for all code chunks in the document, which prevents code, but not the results from being displayed.</p>
+<p>After the metadata section an <strong>R inline code block</strong> starts and ends with backticks. The three parameters in curly brackets identify the code as R code. <code>setup</code> is the name of the code block and (as we will see later) <code>include=FALSE</code> prevents code and code results of this code chunk from being displayed in the compiled HTML output. Nevertheless, RMarkdown still runs the code in this block. The inline code block as such sets <code>echo=TRUE</code> as default option for all code chunks in the document. This means, per default the code of all code chunks in the document are displayed in the output file, if not otherwise indicated.</p>
 <p>The other code blocks in the <code>.Rmd</code> document produce a summary output (see lines 7-19) or create a simple scatterplot (see lines 25-27). To see how the compiled HTML output looks like, click <code>Knit</code> (see Fig. <a href="rmarkdown.html#fig:L09-knit">9.6</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-knit"></span>
 <img src="images/knit.png" alt="Knit HTML Output " width="80%" />
@@ -387,7 +387,7 @@ Figure 9.7: Make Pull
 
 <div class="rmdexercise">
 <p>Locally save all documents in RStudio. Click the <code>Commit button</code> in the <code>Git tab</code> . Those files that are affected by changes are listed in the commit window. You can click on one of the files. The changes will be displayed (green is new, red is deleted content).</p>
-<p>Manually select all files by clicking the respective checkboxes. In order to make sure that you have not missed a file, you may execute <code>git add -A</code> in the terminal window to add all files to the commit. Once this is done, enter a meaningful commit message that describes your revision and push the <code>Commit button</code>.</p>
+<p>Manually select all files by clicking the respective checkboxes. In order to make sure that you have not missed a file, you may execute <code>git add -A</code> in the terminal window to add all files to the commit (see <a href="https://github.com/joshnh/Git-Commands" target="_blank">list of popular Git Commands</a>). Once this is done, enter a meaningful commit message that describes your revision and push the <code>Commit button</code>.</p>
 <p>See Fig. <a href="rmarkdown.html#fig:L09-commit">9.8</a></p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-commit"></span>
@@ -403,7 +403,7 @@ Figure 9.8: Make Commit
 Figure 9.9: Make Push
 </p>
 </div>
-<p>Your online repository should now be updated (switch to <code>dev</code> branch in your repository) (see Fig. <a href="rmarkdown.html#fig:L09-updated">9.10</a>).</p>
+<p>Your online repository on GitHub should now be updated (switch to <code>dev</code> branch in your repository) (see Fig. <a href="rmarkdown.html#fig:L09-updated">9.10</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-updated"></span>
 <img src="images/CommitFinished.png" alt="Commit with message 'decribe sync process in github' was pushed to the developer branch a minute ago" width="90%" />
 <p class="caption">
@@ -411,8 +411,19 @@ Figure 9.10: Commit with message ‘decribe sync process in github’ was pushed
 </p>
 </div>
 </div>
-<div id="speed-up-your-workflows" class="section level2 hasAnchor" number="9.5">
-<h2><span class="header-section-number">9.5</span> Speed up your workflows<a href="rmarkdown.html#speed-up-your-workflows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="basic-rmarkdown-syntax" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Basic RMarkdown syntax<a href="rmarkdown.html#basic-rmarkdown-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The use of double astersisks to bold words and phrases in RMarkdown documents has already been mentioned. Moreover, text may be italicised by placing single asterisks before and after text.</p>
+<p>The referencing feature is another important and time-saving function of RMarkdown.</p>
+<p>link to cheatsheet</p>
+<p>also merge dev to main</p>
+<p>this is written in rmarkdown</p>
+<p>reference cheat sheet for rmarkdown i self-study section: <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf" class="uri">https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf</a></p>
+<p>bookdown is required for cross referencing figures: <a href="https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#bookdown-markdown" class="uri">https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#bookdown-markdown</a></p>
+</div>
+<div id="speed-up-your-workflows" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> Speed up your workflows<a href="rmarkdown.html#speed-up-your-workflows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>knit html only - dynamic content</p>
 <p>every day a new update on exchange rate with a map</p>
 <p>alpha ventage API: <a href="https://www.alphavantage.co/" class="uri">https://www.alphavantage.co/</a></p>
 <p><a href="https://www.alphavantage.co/query?function=FX_DAILY&amp;from_symbol=EUR&amp;to_symbol=USD&amp;apikey=5A80E9FDZ6KO093O" class="uri">https://www.alphavantage.co/query?function=FX_DAILY&amp;from_symbol=EUR&amp;to_symbol=USD&amp;apikey=5A80E9FDZ6KO093O</a></p>
@@ -420,14 +431,12 @@ Figure 9.10: Commit with message ‘decribe sync process in github’ was pushed
 <p>free alpha only 500 cals a day and 5 calls/minute</p>
 
 <div class="rmdexercise">
-<p><a href="data/rmarkdown-example.zip" target="_blank">Download</a> my Rmarkdown example, unzip and add to a local project in RStudio….</p>
+<p><a href="data/rmarkdown-example.zip" target="_blank">Download</a> my Rmarkdown example, unzip and copy/paste contents of folder <code>rmarkdown-example</code> to a local RStudio project.</p>
+<p>Inspect .bib, .Rmd and .csv files.</p>
+<p>add at least one more reference, increase the number of calls in the R code, inspect intersting leaflet example</p>
+<p>knit the results as html, pdf and word documents</p>
+<p>etc.</p>
 </div>
-</div>
-<div id="basic-rmarkdown-syntax" class="section level2 hasAnchor" number="9.6">
-<h2><span class="header-section-number">9.6</span> Basic RMarkdown syntax<a href="rmarkdown.html#basic-rmarkdown-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>link to cheatsheet</p>
-<p>also merge dev to main</p>
-<p>this is written in rmarkdown</p>
 </div>
 <div id="self-study" class="section level2 hasAnchor" number="9.7">
 <h2><span class="header-section-number">9.7</span> Self-study<a href="rmarkdown.html#self-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
