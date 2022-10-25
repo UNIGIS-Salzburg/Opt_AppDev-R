@@ -2,8 +2,6 @@
 title: "Global currency exchange report"
 output:
   html_document: default
-  word_document: default
-  pdf_document: default
 date: '2022-10-24'
 bibliography: references.bib
 ---
@@ -14,12 +12,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Global currencies to USD
 
-Map \@ref(fig:currencymap) shows currency exchange rates from national currencies to US Dollar. Data is retrieved by means of [Alpha Ventage API](https://www.alphavantage.co/){target="_blank"} in real-time at [foreign exchange opening hours](https://support.e-markets.nordea.com/hc/en-us/articles/360001333429-What-are-foreign-exchange-opening-hours-){target="_blank"}.
+The map shows currency exchange rates from national currencies to US Dollar. Data is retrieved by means of [Alpha Ventage API](https://www.alphavantage.co/){target="_blank"} in real-time at [foreign exchange opening hours](https://support.e-markets.nordea.com/hc/en-us/articles/360001333429-What-are-foreign-exchange-opening-hours-){target="_blank"}.
 
 Alpha Ventage API provides free API service for up to 5 API requests per minute and 500 requests per day. To make sure that this limit is not exceeded, the request frequency is set to 1 request per 20 seconds. 
-> Currently, the code retrieves data for the first country in the list of alphabetically order countries, i.e. exchange rate of Afghan Afghani to USD. 
->
-> You may retrieve exchange rates of a larger number of countries (see variable `numcalls <- 1`).  Keep in mind that rendering time will increase with ~numcalls * 20sec.    
+
+Currently, the code retrieves data for the first country in the list of alphabetically order countries, i.e. exchange rate of Afghan Afghani to USD. You may retrieve exchange rates of a larger number of countries (change variable `numcalls <- 1`).  
+
+> Keep in mind that rendering time will increase with ~numcalls * 20sec.    
 
 ```{r currencymap, echo=FALSE, message=FALSE, warning=FALSE}
 ######This code retrieves today's currency exchange rates [USD to national currency] from Alpha Ventage and renders data in a world map#######
