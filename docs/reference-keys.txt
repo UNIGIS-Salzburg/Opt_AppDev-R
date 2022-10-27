@@ -81,6 +81,6 @@ set-up-your-work-environment
 create-a-local-clone
 create-a-first-rmarkdown-document
 synchronize-with-github
-basic-rmarkdown-syntax
+basic-r-markdown-syntax
 speed-up-your-workflows
 self-study
