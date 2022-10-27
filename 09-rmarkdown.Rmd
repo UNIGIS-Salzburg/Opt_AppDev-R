@@ -217,7 +217,7 @@ To compile your R Markdown document, `knit` as HTML, PDF or Word. The `rmarkdown
 knitr::include_graphics('images/knit_pdf.png')
 ```
 
-[Here]("data/ReferencesInRMarkdown.zip"){target="_blank"} you can find the full worked example for download.
+[Here]("data/ReferencesInRMarkdown.zip"){target="_blank"} you can find a worked example for download. Unzip the folder and open the .Rproj file in RStudio.
 
 ```{block2, type = 'rmdtip'}
 Other helpful R Markdown syntax examples can be looked up in the [RMarkdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf){target="_blank"}.
@@ -225,33 +225,25 @@ Other helpful R Markdown syntax examples can be looked up in the [RMarkdown Chea
 
 ## Speed up your workflows
 
-knit html only - dynamic content
+Many of the methods that were covered in this module are intended to make repetitive workflows more efficient and less time-consuming. In this section, an example is introduced that illustrates the great potentials of R Markdown in terms of automation and efficiency improvement.
 
-every day a new update on exchange rate with a map
+Let's assume a client of you is interest in a specific set of spatial economic indicators that are updated on a daily basis. Rather than creating a data report on every new day from scratch, R Markdown allows you to create a data report with charts that are auto generated on report compilation.
 
-alpha ventage API: https://www.alphavantage.co/
-
-https://www.alphavantage.co/query?function=FX_DAILY&from_symbol=EUR&to_symbol=USD&apikey=5A80E9FDZ6KO093O
-
-update real-time data flows in rmakrdown doc
-
-free alpha only 500 cals a day and 5 calls/minute
-
+Data can be retrieved in real-time by means of [Alpha Ventage](https://www.alphavantage.co/){target="_blank"}. Alpha Ventage provides financial market data through the [Alpha Ventage Rest API](https://www.alphavantage.co/documentation/){target="_blank"}. To access the API in R, we can use the R library [`alphaventager`](https://cran.r-project.org/web/packages/alphavantager/index.html){target="_blank"}. 
 
 ```{block2, type = 'rmdexercise'}
 
-[Download](data/rmarkdown-example.zip){target="_blank"} my Rmarkdown example, unzip and copy/paste contents of folder `rmarkdown-example` to a local RStudio project. 
+[Download](data/RMarkdownFinanceData.zip){target="_blank"} the real-time finance data report. Unzip the folder and open the .Rproj file in RStudio. 
 
-Inspect .bib, .Rmd and .csv files. 
+The project includes a .bib file that contains a BibTeX reference, a .csv file (see folder data) with more than 400 country names, national currencies and currency codes and an .Rmd file with inline R code that renders real-time currency exchange in a map.
 
-add at least one more reference, increase the number of calls in the R code, inspect intersting leaflet example 
+Carefully read through the .Rmd file **before you compile an HTML output**.
 
-knit the results as html, pdf and word documents
+Important: The .Rmd file includes an interactive leaflet map, other outputs than HTML are not supported.
 
-etc.
+Once you have understood the structure of this document, try to supplement the finance data report with an additional spatial indicator (e.g. map of exchange rates from national currencies to Euro).
 
 ```
-
 
 ## Self-study
 

@@ -51,7 +51,7 @@ for (i in 1:length(codes$NumericCode[1:numcalls])){
   dat_alphaventage <- alphavantager::av_get(symbol, av_fun = "FX_DAILY")
   
   #Append API return to vectors
-  if (length(dat_alphaventage) == 5){           #if: API call retrieved timestamp, open, high, low, close exchange rates
+  if (length(dat_alphaventage) == 5){           #if: API call retrieved timestamp, open, high,ow, close exchange rates
     
     today <- tail(dat_alphaventage$open, n=1)
     
