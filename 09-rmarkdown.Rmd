@@ -168,7 +168,7 @@ Your online repository on GitHub should now be updated (switch to `dev` branch i
 knitr::include_graphics('images/CommitFinished.png')
 ```
 
-## Basic RMarkdown syntax
+## Basic R Markdown syntax
 
 The use of double asterisks (`**Text**`) to bold words and phrases in R Markdown documents has already been mentioned. Alternatively, text may be italicized by placing single asterisks (`*Text*`) before and after text.
 
@@ -232,7 +232,7 @@ Other helpful R Markdown syntax examples can be looked up in the [RMarkdown Chea
 
 Many of the methods that were covered in this module are intended to make repetitive workflows more efficient and less time-consuming. In this section, an example is introduced that illustrates the great potentials of R Markdown in terms of automation and efficiency improvement.
 
-Let's assume a client of you is interest in a specific set of spatial economic indicators that are updated on a daily basis. Rather than creating a data report on every new day from scratch, R Markdown allows you to create a data report with charts that are auto-generated on report compilation.
+Let's assume a client of you is interest in a specific set of spatial economic indicators that are updated daily. Rather than creating a data report on every new day from scratch, R Markdown allows you to create a data report with charts that are auto-generated on report compilation.
 
 Data can be retrieved in real-time by means of [Alpha Ventage](https://www.alphavantage.co/){target="_blank"}. Alpha Ventage provides financial market data through the [Alpha Ventage Rest API](https://www.alphavantage.co/documentation/){target="_blank"}. To access the API in R, we can use the R library [`alphaventager`](https://cran.r-project.org/web/packages/alphavantager/index.html){target="_blank"}. 
 
@@ -252,7 +252,7 @@ Once you have understood the structure of this document, try to supplement the f
 
 ## Self-study
 
-The functionality of R Markdown is fairly comprehensive and cannot be covered in one lesson. It is highly recommended to consult the online book [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/){target="_blank"} to leverage the full potential of R Markdown.
+The functionality of R Markdown is comprehensive and cannot be covered in one lesson. It is highly recommended to consult the online book [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/){target="_blank"} to leverage the full potential of R Markdown.
 
 Other R Markdown compile formats that are described in this book are Notebooks and Presentations. RMarkdown also support other languages such as Python, C++ and SQL. Moreover, R Markdown is customizable and can be used to design more complex documents with extensions like [BookDown](https://bookdown.org/){target="_blank"} or [ThesisDown](https://github.com/ismayc/thesisdown){target="_blank"}.
 
