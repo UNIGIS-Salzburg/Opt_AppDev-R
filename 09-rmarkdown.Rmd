@@ -247,13 +247,10 @@ Once you have understood the structure of this document, try to supplement the f
 
 ## Self-study
 
-also merge dev to main
+The functionality of R Markdown is fairly comprehensive and cannot be covered in one lesson. It is highly recommended to consult the online book [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/){target="_blank"} to leverage the full potential of R Markdown.
 
-this is written in rmarkdown
+Other R Markdown compile formats that are described in this book are Notebooks and Presentations. RMarkdown also support other languages such as Python, C++ and SQL. Moreover, R Markdown is customizable and can be used to design more complex documents with extensions like [BookDown](https://bookdown.org/){target="_blank"} or [ThesisDown](https://github.com/ismayc/thesisdown){target="_blank"}.
 
-reference cheat sheet for rmarkdown i self-study section: https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf
-
-bookdown is required for cross referencing figures: https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#bookdown-markdown
-
-R Markdown book
-Aufgabe: private repository mit rechten zukommen lassen
+```{block2, type = 'rmdtip'}
+By the way, this module is written in BookDown.
+```

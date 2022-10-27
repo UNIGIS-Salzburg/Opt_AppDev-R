@@ -14,6 +14,10 @@ fig:L09-pull
 fig:L09-commit
 fig:L09-push
 fig:L09-updated
+fig:L09-scholarsettings
+fig:L09-biboption
+fig:L09-refs
+fig:L09-pdfknit
 intro
 about-this-module
 r-programming-language
@@ -72,7 +76,7 @@ boxplots
 scatterplots
 map-visualization
 interactive-maps
-rmarkdown
+r-markdown
 set-up-your-work-environment
 create-a-local-clone
 create-a-first-rmarkdown-document
