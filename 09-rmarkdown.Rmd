@@ -1,16 +1,16 @@
-# RMarkdown
+# R Markdown
 
-This lesson is dedicated to the library `rmarkdown`. In fact, however, Rmarkdown is more than only a library. [RMarkdown](https://rmarkdown.rstudio.com/){target="_blank"} belongs to a set of tools that are designed to improve the reproducibility of your work. Other tools and platforms such as [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"} or preprint servers such as [ArXiv](https://arxiv.org/){target="_blank"} or [bioRxiv](https://www.biorxiv.org/){target="_blank"} facilitate reproducibility in many different ways. In this module, we will not cover the paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"} in detail. Instead, we will focus on those aspects that will helping you make your analyses and reports more appealing, interactive and efficient.
+This lesson is dedicated to the library `rmarkdown`. In fact, however, R Markdown is more than only a library. [RMarkdown](https://rmarkdown.rstudio.com/){target="_blank"} belongs to a set of tools that are designed to improve the reproducibility of your work. Other tools and platforms such as [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"} or preprint servers such as [ArXiv](https://arxiv.org/){target="_blank"} or [bioRxiv](https://www.biorxiv.org/){target="_blank"} facilitate reproducibility in many different ways. In this module, we will not cover the paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"} in detail. Instead, we will focus on those aspects that will helping you make your analyses and reports more appealing, interactive and efficient.
 
 ```{block2, type = 'rmdtip'}
 
-In this lesson, we will weave together code and text in professionally rendered Rmarkdown documents. And we will use [GitHub](https://github.com/){target="_blank"} to savely store, share and administer our results.    
+In this lesson, we will weave together code and text in professionally rendered R Markdown documents. And we will use [GitHub](https://github.com/){target="_blank"} to safely store, share and administer our results.    
 
 ```
 
 ## Set up your work environment
 
-Before you will create your first Rmarkdown document, we have to setup the GitHub environment. GitHub was originally founded as a platform for software developers. The architecture of GitHub is designed to manage changes that are made to computer software in the process of software development. The same architecture, however, can also be used to control the versioning of documents or any other collection of information.
+Before you will create your first R Markdown document, we have to setup the GitHub environment. GitHub was originally founded as a platform for software developers. The architecture of GitHub is designed to manage changes that are made to computer software in the process of software development. The same architecture, however, can also be used to control the versioning of documents or any other collection of information.
 
 Version control is particularly important when working in teams to sync working steps among project participants. However, even when working individually, GitHub is a trustworthy and open online data dump that tracks changes and simplifies the documentation and sharing of your work.
 
@@ -18,7 +18,7 @@ Version control is particularly important when working in teams to sync working 
 
 To setup your personal GitHub environment, follow these steps:
 
-1) Read through the [Hello-World-Section](https://docs.github.com/en/get-started/quickstart/hello-world){target="_blank"} of GitHub's Quickstart Documentation. For now reading is fine. You do not necessarily have to work through the tutorial.  
+1) Read through the [Hello-World-Section](https://docs.github.com/en/get-started/quickstart/hello-world){target="_blank"} of GitHub's Quickstart Documentation. For now, reading is fine. You do not necessarily have to work through the tutorial.  
 2) [Create a GitHub account](https://github.com/){target="_blank"}.
 3) [Download and install Git](https://git-scm.com/downloads){target="_blank"}. [Git](https://docs.github.com/en/get-started/quickstart/set-up-git){target="_blank"} is responsible for everything GitHub-related that happens locally on your machine.
 4) Open R Studio -> Tools -> Global Options -> Git / SVN: check "enable version control" and set the path to the git.exe (e.g. C:/Program Files/Git/bin/git.exe). Restart RStudio.
@@ -27,7 +27,7 @@ To setup your personal GitHub environment, follow these steps:
 
 ```
 
-As next step, you will have to install the `rmarkdown` library as well as `tinytex` in RStudio as described in the [RMarkdown Guide](https://bookdown.org/yihui/rmarkdown/installation.html){target="_blank"}. 
+As next step, you will have to install the `rmarkdown` library as well as `tinytex` in RStudio as described in the [R Markdown Guide](https://bookdown.org/yihui/rmarkdown/installation.html){target="_blank"}. 
 
 ```{block2, type = 'rmdtip'}
 
@@ -84,31 +84,31 @@ knitr::include_graphics('images/Branches.png')
 
 ```{block2, type = 'rmdtip'}
 
-It his highly recommended to keep work in progress seperate from the `main` branch by working in a seperate developer branch. Later on, we will merge our changes from `dev` into the `main` branch.
+It his highly recommended to keep work in progress separate from the `main` branch by working in a separate developer branch. Later, we will merge our changes from `dev` into the `main` branch.
 
 ```
 
 ## Create a first RMarkdown document
 
-Now that the environment is set up, we can create a first simple RMarkdown document. 
+Now that the environment is set up, we can create a first simple R Markdown document. 
 
 ```{block2, type = 'rmdexercise'}
 
 In RStudio: File -> New File -> R Markdown....
 
-Type in a title, keep the default settings and confirm with `OK`. As a result you get a minimal RMarkdown sample file, with the file extension `.Rmd`.
+Type in a title, keep the default settings and confirm with `OK`. As a result you get a minimal R Markdown sample file, with the file extension `.Rmd`.
 
 ```
 
-As apparent from the sample file, RMarkdown documents are composed of the three basic components **metadata**, **text** and **code** (see Fig. \@ref(fig:L09-sample)). 
+As apparent from the sample file, R Markdown documents are composed of the three basic components **metadata**, **text** and **code** (see Fig. \@ref(fig:L09-sample)). 
 
-```{r L09-sample, echo=FALSE, fig.cap="RMarkdown sample file", out.width='80%', fig.asp=.75, fig.align='center'}
+```{r L09-sample, echo=FALSE, fig.cap="R Markdown sample file", out.width='80%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/SampleFile.png')
 ```
 
-The syntax for the metadata is [YAML](https://en.wikipedia.org/wiki/YAML){target="_blank"}. In  our document, the metadata section specifies the title of the document, the output format and the date of creation. A large number of other document properties can be specified in this section. [Here](https://cran.r-project.org/web/packages/ymlthis/vignettes/yaml-overview.html){target="_blank"} you can find an overview of the basic YAML syntax.    
+The syntax for the metadata is [YAML](https://en.wikipedia.org/wiki/YAML){target="_blank"}. In  our document, the metadata section specifies the title of the document, the output format, and the date of creation. Many other document properties can be specified in this section. [Here](https://cran.r-project.org/web/packages/ymlthis/vignettes/yaml-overview.html){target="_blank"} you can find an overview of the basic YAML syntax.    
 
-After the metadata section an **R inline code block** starts and ends with backticks. The three parameters in curly brackets identify the code as R code. `setup` is the name of the code block and (as we will see later) `include=FALSE` prevents code and code results of this code chunk from being displayed in the compiled HTML output. Nevertheless, RMarkdown still runs the code in this block.  The inline code block as such sets `echo=TRUE` as default option for all code chunks in the document. This means, per default the code of all code chunks in the document are displayed in the output file, if not otherwise indicated. 
+After the metadata section an **R inline code block** starts and ends with backticks. The three parameters in curly brackets identify the code as R code. `setup` is the name of the code block and (as we will see later) `include=FALSE` prevents code and code results of this code chunk from being displayed in the compiled HTML output. Nevertheless, R Markdown still runs the code in this block.  The inline code block as such sets `echo=TRUE` as default option for all code chunks in the document. This means, per default the code of all code chunks in the document are displayed in the output file, if not otherwise indicated. 
 
 The other code blocks in the `.Rmd` document produce a summary output (see lines 7-19) or create a simple scatterplot (see lines 25-27). To see how the compiled HTML output looks like, click `Knit` (see Fig. \@ref(fig:L09-knit)).
 
@@ -120,7 +120,7 @@ Alternatively, you may click on the dropdown arrow next to the `Knit` button and
 
 ```{block2, type = 'rmdexercise'}
 
-Please take your time to understand how the `.Rmd` syntax translates into an output. For instances, to bold text, you can add two astersisks before and after a word or phrase.  
+Please take your time to understand how the `.Rmd` syntax translates into an output. For instances, to bold text, you can add two asterisks before and after a word or phrase.  
 
 ```
 
@@ -170,29 +170,58 @@ knitr::include_graphics('images/CommitFinished.png')
 
 ## Basic RMarkdown syntax
 
-The use of double astersisks (`**Text**`) to bold words and phrases in RMarkdown documents has already been mentioned. Moreover, text may be italicised by placing single asterisks (`*Text*`) before and after text.     
-RMarkdown also comes with a time-saving method to insert citations and to build a bibliography. References are collected in a .bib-file that resides in the RProject folder. To create a .bib-file, you can use any text editor. Open a new document (for instance a Windows Editor file), replace .txt with .bib (e.g. references.bib) and save to the RProject folder.
+The use of double asterisks (`**Text**`) to bold words and phrases in R Markdown documents has already been mentioned. Alternatively, text may be italicized by placing single asterisks (`*Text*`) before and after text.
 
-Now you can add references to the .bib-file. References are encoded in BibTeX format. The easiest way to get the BibTeX description of a reference is to export from Google Scholar. To enable BibTeX export...change setting in google Scholar
+Moreover, hash signs indicate headings. The number of hash signs you use corresponds to the heading level:  
 
-image change settings in google scholar
+```{} 
+
+# Heading level 1
+
+## Heading level 2
+
+### Heading level 3
+
+```
 
 
+R Markdown also comes with a time-saving method to insert citations and to build a bibliography. References are collected in a .bib-file that resides in the R-Project folder. To create a .bib-file, you can use any text editor. Open a new document (for instance a Windows Editor file), replace .txt with .bib (e.g. references.bib) and save to the R-Project folder.
 
+Now you can add references to the .bib-file. References are encoded in BibTeX format. The easiest way to get the BibTeX description of a reference is to export from Google Scholar. To enable BibTeX export, change setting in Google Scholar (see Fig. \@ref(fig:L09-scholarsettings)).
 
+```{r L09-scholarsettings, echo=FALSE, fig.cap="Enable BibTeX in Firefox 106.0.1", out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/ScholarSettings.png')
+```
 
+```{block2, type = 'rmdtip'}
+You may use a different browser or version of Firefox. In case you need support, please turn to the discussion forum!
+```
 
-The referencing feature is another important and time-saving function of RMarkdown.    
+Once you have enabled BibTeX export in your browser, a new link appears (see Fig. \@ref(fig:L09-biboption)).
 
-link to cheatsheet
+```{r L09-biboption, echo=FALSE, fig.cap="BibTeX Link in Firefox 106.0.1", out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/bibtexoption.png')
+```
 
-also merge dev to main
+Click the link and copy & paste the BibTeX code into your .bib-file.
 
-this is written in rmarkdown
+Now you can use the reference in your R Markdown file by specifying the name of the .bib-file as YAML metadata. You can add multiple BibTeX references to the .bib-file. The syntax to embedded references in text is `@<first BibTeX parameter` (see Fig. \@ref(fig:L09-refs)).  
 
-reference cheat sheet for rmarkdown i self-study section: https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf
+```{r L09-refs, echo=FALSE, fig.cap="Integrate BibTeX reference in RMarkdown document", out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/refs.png')
+```
 
-bookdown is required for cross referencing figures: https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#bookdown-markdown
+To compile your R Markdown document, `knit` as HTML, PDF or Word. The `rmarkdown` library renders references as indirect citations (*without squared brackets*) and direct citations (*with squared brackets*)  and inserts a bibliography (see Fig. \@ref(fig:L09-pdfknit)).
+
+```{r L09-pdfknit, echo=FALSE, fig.cap="Knit R Markdown as PDF", out.width='90%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/knit_pdf.png')
+```
+
+[Here]("data/ReferencesInRMarkdown.zip"){target="_blank"} you can find the full worked example for download.
+
+```{block2, type = 'rmdtip'}
+Other helpful R Markdown syntax examples can be looked up in the [RMarkdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf){target="_blank"}.
+```
 
 ## Speed up your workflows
 
@@ -224,11 +253,15 @@ etc.
 ```
 
 
-
-
-
-
 ## Self-study
+
+also merge dev to main
+
+this is written in rmarkdown
+
+reference cheat sheet for rmarkdown i self-study section: https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf
+
+bookdown is required for cross referencing figures: https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#bookdown-markdown
 
 R Markdown book
 Aufgabe: private repository mit rechten zukommen lassen

@@ -320,13 +320,54 @@ Figure 1.10: Commit with message ‘decribe sync process in github’ was pushed
 </div>
 <div id="basic-rmarkdown-syntax" class="section level2 hasAnchor" number="1.5">
 <h2><span class="header-section-number">1.5</span> Basic RMarkdown syntax<a href="#basic-rmarkdown-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The use of double astersisks (<code>**Test**</code>) to bold words and phrases in RMarkdown documents has already been mentioned. Moreover, text may be italicised by placing single asterisks (<code>*Test*</code>) before and after text.</p>
-<p>The referencing feature is another important and time-saving function of RMarkdown.</p>
-<p>link to cheatsheet</p>
-<p>also merge dev to main</p>
-<p>this is written in rmarkdown</p>
-<p>reference cheat sheet for rmarkdown i self-study section: <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf" class="uri">https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf</a></p>
-<p>bookdown is required for cross referencing figures: <a href="https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#bookdown-markdown" class="uri">https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#bookdown-markdown</a></p>
+<p>The use of double astersisks (<code>**Text**</code>) to bold words and phrases in RMarkdown documents has already been mentioned. Alternatively, text may be italicised by placing single asterisks (<code>*Text*</code>) before and after text.</p>
+<p>Moreover, hash signs indicate headings. The number of hash signs you use corresponds to the heading level:</p>
+<pre><code>
+# Heading level 1
+
+## Heading level 2
+
+### Heading level 3
+</code></pre>
+<p>RMarkdown also comes with a time-saving method to insert citations and to build a bibliography. References are collected in a .bib-file that resides in the RProject folder. To create a .bib-file, you can use any text editor. Open a new document (for instance a Windows Editor file), replace .txt with .bib (e.g. references.bib) and save to the RProject folder.</p>
+<p>Now you can add references to the .bib-file. References are encoded in BibTeX format. The easiest way to get the BibTeX description of a reference is to export from Google Scholar. To enable BibTeX export, change setting in Google Scholar (see Fig. <a href="#fig:L09-scholarsettings">1.11</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-scholarsettings"></span>
+<img src="images/ScholarSettings.png" alt="Enable BibTeX in Firefox 106.0.1" width="90%" />
+<p class="caption">
+Figure 1.11: Enable BibTeX in Firefox 106.0.1
+</p>
+</div>
+
+<div class="rmdtip">
+You may use a different browser or version of Firefox. In case you need support, please turn to the discussion forum!
+</div>
+<p>Once you have enabled BibTeX export in your browser, a new link appears (see Fig. <a href="#fig:L09-biboption">1.12</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-biboption"></span>
+<img src="images/bibtexoption.png" alt="BibTeX Link in Firefox 106.0.1" width="90%" />
+<p class="caption">
+Figure 1.12: BibTeX Link in Firefox 106.0.1
+</p>
+</div>
+<p>Click the link and copy &amp; paste the BibTeX code into your .bib-file.</p>
+<p>Now you can use the reference in your Rmarkdown file by specifying the name of the .bib-file as YAML metadata. You can add multiple BibTeX references to the .bib-file. The syntax to embedded references in text is <code>@&lt;first BibTeX parameter</code> (see Fig. <a href="#fig:L09-refs">1.13</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-refs"></span>
+<img src="images/refs.png" alt="Integrate BibTeX reference in RMarkdown document" width="90%" />
+<p class="caption">
+Figure 1.13: Integrate BibTeX reference in RMarkdown document
+</p>
+</div>
+<p>To compile your RMarkdown document, <code>knit</code> as HTML, PDF or Word. The <code>rmarkdown</code> library renders references as indirect citations (<em>without squared brackets</em>) and direct citations (<em>with squared brackets</em>) and inserts a bibliography (see Fig. <a href="#fig:L09-pdfknit">1.14</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-pdfknit"></span>
+<img src="images/knit_pdf.png" alt="Knit RMarkdown as PDF" width="90%" />
+<p class="caption">
+Figure 1.14: Knit RMarkdown as PDF
+</p>
+</div>
+<p><a href="%22data/ReferencesInRMarkdown.zip%22" target="_blank">Here</a> you can find the full worked example for download.</p>
+
+<div class="rmdtip">
+Other helpful RMarkdown syntax examples can be looked up in the <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf" target="_blank">RMarkdown Cheatsheet</a>.
+</div>
 </div>
 <div id="speed-up-your-workflows" class="section level2 hasAnchor" number="1.6">
 <h2><span class="header-section-number">1.6</span> Speed up your workflows<a href="#speed-up-your-workflows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -347,7 +388,12 @@ Figure 1.10: Commit with message ‘decribe sync process in github’ was pushed
 </div>
 <div id="self-study" class="section level2 hasAnchor" number="1.7">
 <h2><span class="header-section-number">1.7</span> Self-study<a href="#self-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>R Markdown book</p>
+<p>also merge dev to main</p>
+<p>this is written in rmarkdown</p>
+<p>reference cheat sheet for rmarkdown i self-study section: <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf" class="uri">https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf</a></p>
+<p>bookdown is required for cross referencing figures: <a href="https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#bookdown-markdown" class="uri">https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#bookdown-markdown</a></p>
+<p>R Markdown book
+Aufgabe: private repository mit rechten zukommen lassen</p>
 </div>
 </div>
             </section>
