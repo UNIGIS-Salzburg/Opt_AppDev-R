@@ -308,7 +308,7 @@ Figure 9.2: New features in RStudio
 <ol style="list-style-type: decimal">
 <li><a href="https://git-scm.com/docs/gitignore" target="_blank"><code>gitignore</code></a></li>
 <li>An <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank">RStudio Project File</a> (.Rproj)</li>
-<li>A <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes" target="_blank">ReadmMe File</a> (.md = pure markdown)</li>
+<li>A <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes" target="_blank">ReadMe File</a> (.md = pure markdown)</li>
 </ol>
 <p><a href="https://git-scm.com/docs/gitignore" target="_blank"><code>gitignore</code></a> and the <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank">RStudio Project File</a> were created on project initialization, meaning that these files are new and not yet available in the online repository. Changes made to the original repository are listed in the <code>Git tab</code> (see Fig. <a href="r-markdown.html#fig:L09-changes">9.3</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-changes"></span>
@@ -326,7 +326,7 @@ Figure 9.4: Switch branch
 </div>
 
 <div class="rmdtip">
-<p>It his highly recommended to keep work in progress separate from the <code>main</code> branch by working in a separate developer branch. Later, we will merge our changes from <code>dev</code> into the <code>main</code> branch.</p>
+<p>It his highly recommended to keep work in progress separate from the <code>main</code> branch by working in a separate developer branch. Later, branches may be unified by merging from <code>dev</code> into the <code>main</code> branch (see <a href="https://docs.github.com/en/get-started/quickstart/hello-world#opening-a-pull-request" target="_blank">Opening a pull request</a>).</p>
 </div>
 </div>
 <div id="create-a-first-rmarkdown-document" class="section level2 hasAnchor" number="9.3">
@@ -412,7 +412,11 @@ Figure 9.10: Commit with message ‘decribe sync process in github’ was pushed
 
 ### Heading level 3
 </code></pre>
-<p>R Markdown also comes with a time-saving method to insert citations and to build a bibliography. References are collected in a .bib-file that resides in the R-Project folder. To create a .bib-file, you can use any text editor. Open a new document (for instance a Windows Editor file), replace .txt with .bib (e.g. references.bib) and save to the R-Project folder.</p>
+<p>R Markdown also comes with a time-saving method to insert <strong>citations</strong> and to build a <strong>bibliography</strong>. References are collected in a .bib-file that resides in the RStudio Project folder. To create a .bib-file, you can use any text editor. Open a new document (for instance a Windows Editor file), replace .txt with .bib (e.g. references.bib) and save to the Project folder.</p>
+
+<div class="rmdtip">
+<p>You can use the RStudio project that you have cloned, modified and synchronized in previous exercises.</p>
+</div>
 <p>Now you can add references to the .bib-file. References are encoded in BibTeX format. The easiest way to get the BibTeX description of a reference is to export from Google Scholar. To enable BibTeX export, change setting in Google Scholar (see Fig. <a href="r-markdown.html#fig:L09-scholarsettings">9.11</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-scholarsettings"></span>
 <img src="images/ScholarSettings.png" alt="Enable BibTeX in Firefox 106.0.1" width="90%" />
@@ -424,7 +428,7 @@ Figure 9.11: Enable BibTeX in Firefox 106.0.1
 <div class="rmdtip">
 You may use a different browser or version of Firefox. In case you need support, please turn to the discussion forum!
 </div>
-<p>Once you have enabled BibTeX export in your browser, a new link appears (see Fig. <a href="r-markdown.html#fig:L09-biboption">9.12</a>).</p>
+<p>Once you have enabled BibTeX export in your browser, a new link <code>Import into BibTeX</code> appears in Google Scholar (see Fig. <a href="r-markdown.html#fig:L09-biboption">9.12</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-biboption"></span>
 <img src="images/bibtexoption.png" alt="BibTeX Link in Firefox 106.0.1" width="90%" />
 <p class="caption">
@@ -439,7 +443,7 @@ Figure 9.12: BibTeX Link in Firefox 106.0.1
 Figure 9.13: Integrate BibTeX reference in RMarkdown document
 </p>
 </div>
-<p>To compile your R Markdown document, <code>knit</code> as HTML, PDF or Word. The <code>rmarkdown</code> library renders references as indirect citations (<em>without squared brackets</em>) and direct citations (<em>with squared brackets</em>) and inserts a bibliography (see Fig. <a href="r-markdown.html#fig:L09-pdfknit">9.14</a>).</p>
+<p>To compile your R Markdown document, <code>knit</code> as HTML, PDF or Word. The <code>rmarkdown</code> library renders references as indirect citations (<em>reference without squared brackets in .Rmd file</em>) and direct citations (<em>reference with squared brackets in .Rmd file</em>) and inserts a bibliography (see Fig. <a href="r-markdown.html#fig:L09-pdfknit">9.14</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-pdfknit"></span>
 <img src="images/knit_pdf.png" alt="Knit R Markdown as PDF" width="90%" />
 <p class="caption">
@@ -455,14 +459,14 @@ Other helpful R Markdown syntax examples can be looked up in the <a href="https:
 <div id="speed-up-your-workflows" class="section level2 hasAnchor" number="9.6">
 <h2><span class="header-section-number">9.6</span> Speed up your workflows<a href="r-markdown.html#speed-up-your-workflows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Many of the methods that were covered in this module are intended to make repetitive workflows more efficient and less time-consuming. In this section, an example is introduced that illustrates the great potentials of R Markdown in terms of automation and efficiency improvement.</p>
-<p>Let’s assume a client of you is interest in a specific set of spatial economic indicators that are updated on a daily basis. Rather than creating a data report on every new day from scratch, R Markdown allows you to create a data report with charts that are auto generated on report compilation.</p>
+<p>Let’s assume a client of you is interest in a specific set of spatial economic indicators that are updated on a daily basis. Rather than creating a data report on every new day from scratch, R Markdown allows you to create a data report with charts that are auto-generated on report compilation.</p>
 <p>Data can be retrieved in real-time by means of <a href="https://www.alphavantage.co/" target="_blank">Alpha Ventage</a>. Alpha Ventage provides financial market data through the <a href="https://www.alphavantage.co/documentation/" target="_blank">Alpha Ventage Rest API</a>. To access the API in R, we can use the R library <a href="https://cran.r-project.org/web/packages/alphavantager/index.html" target="_blank"><code>alphaventager</code></a>.</p>
 
 <div class="rmdexercise">
-<p><a href="data/RMarkdownFinanceData.zip" target="_blank">Download</a> the real-time finance data report. Unzip the folder and open the .Rproj file in RStudio.</p>
+<p>In this exercise you are provided with a first draft version of the finance data report. <a href="data/RMarkdownFinanceData.zip" target="_blank">Download</a> the draft version. Unzip the folder and open the .Rproj file in RStudio.</p>
 <p>The project includes a .bib file that contains a BibTeX reference, a .csv file (see folder data) with more than 400 country names, national currencies and currency codes and an .Rmd file with inline R code that renders real-time currency exchange in a map.</p>
 <p>Carefully read through the .Rmd file <strong>before you compile an HTML output</strong>.</p>
-<p>Important: The .Rmd file includes an interactive leaflet map, other outputs than HTML are not supported.</p>
+<p>Important: The .Rmd file includes an interactive leaflet map, i.e. other outputs than HTML are not supported.</p>
 <p>Once you have understood the structure of this document, try to supplement the finance data report with an additional spatial indicator (e.g. map of exchange rates from national currencies to Euro).</p>
 </div>
 </div>
