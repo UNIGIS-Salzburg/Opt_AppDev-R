@@ -1,9 +1,9 @@
-# Complex Data Types
+# Data Structures
 
 In this lesson I will introduce a series of more complex data types that are built on top of the already discussed simple data types 'numeric', 'character' (string) and 'logical' (see [Lesson 1](#intro) 'Simple data types').
 
 ```{block2, type = 'rmdtip'}
-In this lesson, you will get to know the following complex data types:
+In this lesson, you will get to know the following data structures in R:
 
 1) Vectors
 2) Matrices and Arrays

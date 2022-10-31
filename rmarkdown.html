@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 1 RMarkdown | 09-rmarkdown.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 1 RMarkdown | 09-rmarkdown.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 1 RMarkdown | 09-rmarkdown.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://unigis.at/en" target="_blank"><img alt="UNIGIS Salzburg" src="branding/UNIGIS_Salzburg_Schriftlogo_globe.png" width=100%></a></li>
+<li><a href="./">Automated Data Processing with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path=""><a href="#rmarkdown"><i class="fa fa-check"></i><b>1</b> RMarkdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path=""><a href="#set-up-your-work-environment"><i class="fa fa-check"></i><b>1.1</b> Set up your work environment</a></li>
+<li class="chapter" data-level="1.2" data-path=""><a href="#create-a-local-clone"><i class="fa fa-check"></i><b>1.2</b> Create a local clone</a></li>
+<li class="chapter" data-level="1.3" data-path=""><a href="#create-a-first-rmarkdown-document"><i class="fa fa-check"></i><b>1.3</b> Create a first RMarkdown document</a></li>
+<li class="chapter" data-level="1.4" data-path=""><a href="#synchronize-with-github"><i class="fa fa-check"></i><b>1.4</b> Synchronize with GitHub</a></li>
+<li class="chapter" data-level="1.5" data-path=""><a href="#basic-rmarkdown-syntax"><i class="fa fa-check"></i><b>1.5</b> Basic RMarkdown syntax</a></li>
+<li class="chapter" data-level="1.6" data-path=""><a href="#speed-up-your-workflows"><i class="fa fa-check"></i><b>1.6</b> Speed up your workflows</a></li>
+<li class="chapter" data-level="1.7" data-path=""><a href="#self-study"><i class="fa fa-check"></i><b>1.7</b> Self-study</a></li>
+</ul></li>
+<li class="divider"></li>
+<li>Copyright © UNIGIS Salzburg.</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<div id="rmarkdown" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Lesson 1</span> RMarkdown<a href="#rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This lesson is dedicated to the library <code>rmarkdown</code>. In fact, however, Rmarkdown is more than only a library. <a href="https://rmarkdown.rstudio.com/" target="_blank">RMarkdown</a> belongs to a set of tools that are designed to improve the reproducibility of your work. Other tools and platforms such as <a href="https://github.com/" target="_blank">GitHub</a>, <a href="https://jupyter.org/" target="_blank">Jupyter</a>, <a href="https://www.docker.com/" target="_blank">Docker</a> or preprint servers such as <a href="https://arxiv.org/" target="_blank">ArXiv</a> or <a href="https://www.biorxiv.org/" target="_blank">bioRxiv</a> facilitate reproducibility in many different ways. In this module, we will not cover the paradigm of <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801" target="_blank">reproducible research</a> in detail. Instead, we will focus on those aspects that will helping you make your analyses and reports more appealing, interactive and efficient.</p>
+
+<div class="rmdtip">
+<p>In this lesson, we will weave together code and text in professionally rendered Rmarkdown documents. And we will use <a href="https://github.com/" target="_blank">GitHub</a> to savely store, share and administer our results.</p>
+</div>
+<div id="set-up-your-work-environment" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Set up your work environment<a href="#set-up-your-work-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before you will create your first Rmarkdown document, we have to setup the GitHub environment. GitHub was originally founded as a platform for software developers. The architecture of GitHub is designed to manage changes that are made to computer software in the process of software development. The same architecture, however, can also be used to control the versioning of documents or any other collection of information.</p>
+<p>Version control is particularly important when working in teams to sync working steps among project participants. However, even when working individually, GitHub is a trustworthy and open online data dump that tracks changes and simplifies the documentation and sharing of your work.</p>
+
+<div class="rmdexercise">
+<p>To setup your personal GitHub environment, follow these steps:</p>
+<ol style="list-style-type: decimal">
+<li>Read through the <a href="https://docs.github.com/en/get-started/quickstart/hello-world" target="_blank">Hello-World-Section</a> of GitHub’s Quickstart Documentation. For now reading is fine. You do not necessarily have to work through the tutorial.<br />
+</li>
+<li><a href="https://github.com/" target="_blank">Create a GitHub account</a>.</li>
+<li><a href="https://git-scm.com/downloads" target="_blank">Download and install Git</a>. <a href="https://docs.github.com/en/get-started/quickstart/set-up-git" target="_blank">Git</a> is responsible for everything GitHub-related that happens locally on your machine.</li>
+<li>Open R Studio -&gt; Tools -&gt; Global Options -&gt; Git / SVN: check “enable version control” and set the path to the git.exe (e.g. C:/Program Files/Git/bin/git.exe). Restart RStudio.</li>
+<li><a href="https://docs.github.com/en/get-started/quickstart/create-a-repo" target="_blank">Create a repository</a> on GitHub. In the tutorial, Skip section ‘Commit your first changes’.</li>
+<li>By default, your repository has one branch named <code>main</code>. Create an additional branch off the <code>main</code> and call this new branch <code>dev</code>. To do so, follow the instructions in the <a href="https://docs.github.com/en/get-started/quickstart/hello-world" target="_blank">Hello-World-Tutorial</a>.</li>
+</ol>
+</div>
+<p>As next step, you will have to install the <code>rmarkdown</code> library as well as <code>tinytex</code> in RStudio as described in the <a href="https://bookdown.org/yihui/rmarkdown/installation.html" target="_blank">RMarkdown Guide</a>.</p>
+
+<div class="rmdtip">
+In order to correctly install <code>tinytex</code>, make sure to execute both lines in RStudio:
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
+<p>RStudio may call for the installation of dependencies. Follow the instructions and install the requested libraries. In case you are facing any technical issues, please turn to the discussion forum!</p>
+</div>
+<div id="create-a-local-clone" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Create a local clone<a href="#create-a-local-clone" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In order to locally work on your repository contents, you will have to create a local clone of your online GitHub repository.</p>
+
+<div class="rmdexercise">
+<p>In RStudio: File -&gt; New Project… -&gt; Version Control -&gt; Git.</p>
+<p>Copy/past the Repository URL (go to your Online repository to find URL), browse local directory and <code>Create Project</code> (see Fig. <a href="#fig:L09-clone">1.1</a>).</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-clone"></span>
+<img src="images/Gitclone.png" alt="Clone GitHub Repository" width="70%" />
+<p class="caption">
+Figure 1.1: Clone GitHub Repository
+</p>
+</div>
+<p>Once you have cloned the online repository, the file contents of the repository as well as a new tab called <code>Git</code> appears in RStudio (see Fig. <a href="#fig:L09-features">1.2</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-features"></span>
+<img src="images/NewFeatures.png" alt="New features in RStudio" width="80%" />
+<p class="caption">
+Figure 1.2: New features in RStudio
+</p>
+</div>
+<p>Per default the repository contains three files:</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://git-scm.com/docs/gitignore" target="_blank"><code>gitignore</code></a></li>
+<li>An <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank">RStudio Project File</a> (.Rproj)</li>
+<li>A <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes" target="_blank">ReadmMe File</a> (.md = pure markdown)</li>
+</ol>
+<p><a href="https://git-scm.com/docs/gitignore" target="_blank"><code>gitignore</code></a> and the <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank">RStudio Project File</a> were created on project initialization, meaning that these files are new and not yet available in the online repository. Changes made to the original repository are listed in the <code>Git tab</code> (see Fig. <a href="#fig:L09-changes">1.3</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-changes"></span>
+<img src="images/Changes.png" alt="Changes in Git tab" width="80%" />
+<p class="caption">
+Figure 1.3: Changes in Git tab
+</p>
+</div>
+<p>Before we further modify our repository, switch to the <code>dev</code> branch (see Fig. <a href="#fig:L09-branch">1.4</a>). At the moment <code>dev</code> branch and <code>main</code> branch are identical.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-branch"></span>
+<img src="images/Branches.png" alt="Switch branch" width="80%" />
+<p class="caption">
+Figure 1.4: Switch branch
+</p>
+</div>
+
+<div class="rmdtip">
+<p>It his highly recommended to keep work in progress seperate from the <code>main</code> branch by working in a seperate developer branch. Later on, we will merge our changes from <code>dev</code> into the <code>main</code> branch.</p>
+</div>
+</div>
+<div id="create-a-first-rmarkdown-document" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Create a first RMarkdown document<a href="#create-a-first-rmarkdown-document" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that the environment is set up, we can create a first simple RMarkdown document.</p>
+
+<div class="rmdexercise">
+<p>In RStudio: File -&gt; New File -&gt; R Markdown….</p>
+<p>Type in a title, keep the default settings and confirm with <code>OK</code>. As a result you get a minimal RMarkdown sample file, with the file extension <code>.Rmd</code>.</p>
+</div>
+<p>As apparent from the sample file, RMarkdown documents are composed of the three basic components <strong>metadata</strong>, <strong>text</strong> and <strong>code</strong> (see Fig. <a href="#fig:L09-sample">1.5</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-sample"></span>
+<img src="images/SampleFile.png" alt="RMarkdown sample file" width="80%" />
+<p class="caption">
+Figure 1.5: RMarkdown sample file
+</p>
+</div>
+<p>The syntax for the metadata is <a href="https://en.wikipedia.org/wiki/YAML" target="_blank">YAML</a>. In our document, the metadata section specifies the title of the document, the output format and the date of creation. A large number of other document properties can be specified in this section. <a href="https://cran.r-project.org/web/packages/ymlthis/vignettes/yaml-overview.html" target="_blank">Here</a> you can find an overview of the basic YAML syntax.</p>
+<p>After the metadata section an <strong>R inline code block</strong> starts and ends with backticks. The three parameters in curly brackets identify the code as R code. <code>setup</code> is the name of the code block and (as we will see later) <code>include=FALSE</code> prevents code and code results of this code chunk from being displayed in the compiled HTML output. Nevertheless, RMarkdown still runs the code in this block. The inline code block as such sets <code>echo=TRUE</code> as default option for all code chunks in the document. This means, per default the code of all code chunks in the document are displayed in the output file, if not otherwise indicated.</p>
+<p>The other code blocks in the <code>.Rmd</code> document produce a summary output (see lines 7-19) or create a simple scatterplot (see lines 25-27). To see how the compiled HTML output looks like, click <code>Knit</code> (see Fig. <a href="#fig:L09-knit">1.6</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-knit"></span>
+<img src="images/knit.png" alt="Knit HTML Output " width="80%" />
+<p class="caption">
+Figure 1.6: Knit HTML Output
+</p>
+</div>
+<p>Alternatively, you may click on the dropdown arrow next to the <code>Knit</code> button and compile <code>PDF</code> or <code>.docx</code> outputs.</p>
+
+<div class="rmdexercise">
+<p>Please take your time to understand how the <code>.Rmd</code> syntax translates into an output. For instances, to bold text, you can add two astersisks before and after a word or phrase.</p>
+</div>
+</div>
+<div id="synchronize-with-github" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Synchronize with GitHub<a href="#synchronize-with-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It is good practice to synchronize changes made to the project on a regular basis with the online repository. First, we need to pull changes that someone else could have made in the meantime.</p>
+
+<div class="rmdexercise">
+<p>Click the <code>Pull button</code> in the <code>Git tab</code> (see Fig. <a href="#fig:L09-pull">1.7</a>). A message appears indicating that no other changes have been made (<code>Already up to date</code>).</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-pull"></span>
+<img src="images/pull.png" alt="Make Pull" width="80%" />
+<p class="caption">
+Figure 1.7: Make Pull
+</p>
+</div>
+<p>Even if you work on your own, it is advisable to routinely start the sync process with a <code>Pull</code>.</p>
+<p>Before you can push your own changes to the online repository, you have to <code>Commit</code> changes. Committing is like in-process saving. The <code>Commit</code> takes a snapshot of your changes. This snapshot is combined with a user defined commit message.</p>
+
+<div class="rmdexercise">
+<p>Locally save all documents in RStudio. Click the <code>Commit button</code> in the <code>Git tab</code> . Those files that are affected by changes are listed in the commit window. You can click on one of the files. The changes will be displayed (green is new, red is deleted content).</p>
+<p>Manually select all files by clicking the respective checkboxes. In order to make sure that you have not missed a file, you may execute <code>git add -A</code> in the terminal window to add all files to the commit (see <a href="https://github.com/joshnh/Git-Commands" target="_blank">list of popular Git Commands</a>). Once this is done, enter a meaningful commit message that describes your revision and push the <code>Commit button</code>.</p>
+<p>See Fig. <a href="#fig:L09-commit">1.8</a></p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-commit"></span>
+<img src="images/commit.png" alt="Make Commit" width="80%" />
+<p class="caption">
+Figure 1.8: Make Commit
+</p>
+</div>
+<p>To finish the sync process, click the <code>Push button</code> in the <code>Git tab</code> (see Fig. <a href="#fig:L09-push">1.9</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-push"></span>
+<img src="images/Push.png" alt="Make Push" width="70%" />
+<p class="caption">
+Figure 1.9: Make Push
+</p>
+</div>
+<p>Your online repository on GitHub should now be updated (switch to <code>dev</code> branch in your repository) (see Fig. <a href="#fig:L09-updated">1.10</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-updated"></span>
+<img src="images/CommitFinished.png" alt="Commit with message 'decribe sync process in github' was pushed to the developer branch a minute ago" width="90%" />
+<p class="caption">
+Figure 1.10: Commit with message ‘decribe sync process in github’ was pushed to the developer branch a minute ago
+</p>
+</div>
+</div>
+<div id="basic-rmarkdown-syntax" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Basic RMarkdown syntax<a href="#basic-rmarkdown-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The use of double astersisks (<code>**Text**</code>) to bold words and phrases in RMarkdown documents has already been mentioned. Alternatively, text may be italicised by placing single asterisks (<code>*Text*</code>) before and after text.</p>
+<p>Moreover, hash signs indicate headings. The number of hash signs you use corresponds to the heading level:</p>
+<pre><code>
+# Heading level 1
+
+## Heading level 2
+
+### Heading level 3
+</code></pre>
+<p>RMarkdown also comes with a time-saving method to insert citations and to build a bibliography. References are collected in a .bib-file that resides in the RProject folder. To create a .bib-file, you can use any text editor. Open a new document (for instance a Windows Editor file), replace .txt with .bib (e.g. references.bib) and save to the RProject folder.</p>
+<p>Now you can add references to the .bib-file. References are encoded in BibTeX format. The easiest way to get the BibTeX description of a reference is to export from Google Scholar. To enable BibTeX export, change setting in Google Scholar (see Fig. <a href="#fig:L09-scholarsettings">1.11</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-scholarsettings"></span>
+<img src="images/ScholarSettings.png" alt="Enable BibTeX in Firefox 106.0.1" width="90%" />
+<p class="caption">
+Figure 1.11: Enable BibTeX in Firefox 106.0.1
+</p>
+</div>
+
+<div class="rmdtip">
+You may use a different browser or version of Firefox. In case you need support, please turn to the discussion forum!
+</div>
+<p>Once you have enabled BibTeX export in your browser, a new link appears (see Fig. <a href="#fig:L09-biboption">1.12</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-biboption"></span>
+<img src="images/bibtexoption.png" alt="BibTeX Link in Firefox 106.0.1" width="90%" />
+<p class="caption">
+Figure 1.12: BibTeX Link in Firefox 106.0.1
+</p>
+</div>
+<p>Click the link and copy &amp; paste the BibTeX code into your .bib-file.</p>
+<p>Now you can use the reference in your Rmarkdown file by specifying the name of the .bib-file as YAML metadata. You can add multiple BibTeX references to the .bib-file. The syntax to embedded references in text is <code>@&lt;first BibTeX parameter</code> (see Fig. <a href="#fig:L09-refs">1.13</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-refs"></span>
+<img src="images/refs.png" alt="Integrate BibTeX reference in RMarkdown document" width="90%" />
+<p class="caption">
+Figure 1.13: Integrate BibTeX reference in RMarkdown document
+</p>
+</div>
+<p>To compile your RMarkdown document, <code>knit</code> as HTML, PDF or Word. The <code>rmarkdown</code> library renders references as indirect citations (<em>without squared brackets</em>) and direct citations (<em>with squared brackets</em>) and inserts a bibliography (see Fig. <a href="#fig:L09-pdfknit">1.14</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-pdfknit"></span>
+<img src="images/knit_pdf.png" alt="Knit RMarkdown as PDF" width="90%" />
+<p class="caption">
+Figure 1.14: Knit RMarkdown as PDF
+</p>
+</div>
+<p><a href="%22data/ReferencesInRMarkdown.zip%22" target="_blank">Here</a> you can find the full worked example for download.</p>
+
+<div class="rmdtip">
+Other helpful RMarkdown syntax examples can be looked up in the <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf" target="_blank">RMarkdown Cheatsheet</a>.
+</div>
+</div>
+<div id="speed-up-your-workflows" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Speed up your workflows<a href="#speed-up-your-workflows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>knit html only - dynamic content</p>
+<p>every day a new update on exchange rate with a map</p>
+<p>alpha ventage API: <a href="https://www.alphavantage.co/" class="uri">https://www.alphavantage.co/</a></p>
+<p><a href="https://www.alphavantage.co/query?function=FX_DAILY&amp;from_symbol=EUR&amp;to_symbol=USD&amp;apikey=5A80E9FDZ6KO093O" class="uri">https://www.alphavantage.co/query?function=FX_DAILY&amp;from_symbol=EUR&amp;to_symbol=USD&amp;apikey=5A80E9FDZ6KO093O</a></p>
+<p>update real-time data flows in rmakrdown doc</p>
+<p>free alpha only 500 cals a day and 5 calls/minute</p>
+
+<div class="rmdexercise">
+<p><a href="data/rmarkdown-example.zip" target="_blank">Download</a> my Rmarkdown example, unzip and copy/paste contents of folder <code>rmarkdown-example</code> to a local RStudio project.</p>
+<p>Inspect .bib, .Rmd and .csv files.</p>
+<p>add at least one more reference, increase the number of calls in the R code, inspect intersting leaflet example</p>
+<p>knit the results as html, pdf and word documents</p>
+<p>etc.</p>
+</div>
+</div>
+<div id="self-study" class="section level2 hasAnchor" number="1.7">
+<h2><span class="header-section-number">1.7</span> Self-study<a href="#self-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>also merge dev to main</p>
+<p>this is written in rmarkdown</p>
+<p>reference cheat sheet for rmarkdown i self-study section: <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf" class="uri">https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf</a></p>
+<p>bookdown is required for cross referencing figures: <a href="https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#bookdown-markdown" class="uri">https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#bookdown-markdown</a></p>
+<p>R Markdown book
+Aufgabe: private repository mit rechten zukommen lassen</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

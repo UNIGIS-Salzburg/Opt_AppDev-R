@@ -16,7 +16,7 @@ The corpus starts with the reserved word 'function' followed by the **parameter(
 add_one <- function (input_value) {
   output_value <- input_value + 1
   output_value
-  }
+}
 ```
 
 After being defined, a function can be invoked by specifying the **identifier** and necessary parameters. The function above takes a single numeric value as an input and returns that value incremented by +1. So if we invoke the function with an input value '3', the function returns 4: 

@@ -48,7 +48,7 @@ The basic concept behind the grammar of graphics is described in an [article](ht
 
 As already announced above, functions in the `ggplot2` library are structured according to the Grammar of Graphics. To create a graph in `ggplot2`, we need to provide input data, specify visual variables by means of an aesthetics element (`aes()`), specify the geometry of marks (e.g., `geom_point`) and apply transformations (axis spacing) and themes (background theme of the graph).
 
-We start the analysis with a simple histogram, to explore the distribution of air quality [data](data/AirQualityUpperAut.csv){target="_blank"} that has been measured at different locations in Upper Austria.
+We start the analysis with a simple histogram, to explore the distribution of air quality [**data**](data/AirQualityUpperAut.csv){target="_blank"} that has been measured at different locations in Upper Austria.
 
 ```{block2, type = 'rmdtip'}
 
@@ -277,7 +277,7 @@ library("ggplot2")
 
 nc <- sf::st_read("data/nc.shp")
 
-ggplot(data = nc)+
+ggplot(data = nc) +
     geom_sf() +
     xlab("Longitude") + ylab("Latitude") +
     ggtitle("North Carolina", subtitle = paste0("(", length(unique(nc$NAME)), " counties)"))

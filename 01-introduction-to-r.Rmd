@@ -12,7 +12,7 @@ After you have learned how to manipulate data, you will get to know methods to *
 Upon the completion of this module, you will have the fundamental skills in R programming as a basis for more advanced methods like Geospatial Data Analysis (is covered by the module "Spatial Statistics" in the MSc program) and Machine Learning.
 
 ```{block2, type = 'rmdtip'}
-This module is partly based on the teaching materials [granolarr](https://sdesabbata.github.io/granolarr/){target="_blank"} worked out by [Stefano de Sabbata](https://stefanodesabbata.com/){target="_blank"} at the [University of Leicester](https://le.ac.uk/){target="_blank"}. For more information take a look at the [Granolarr Lecture Pages](https://sdesabbata.github.io/granolarr/lectures_100/){target="_blank"} or at the more comprehensive [Bookdown Version](https://sdesabbata.github.io/granolarr/lectures/bookdown/){target="_blank"}. The chapters on **Statistical Analysis** and **Machine Learning** are recommended as a follow up read for those who are willing to delve into more advanced applications of R. 
+This module is partly based on the teaching materials [granolarr](https://github.com/sdesabbata/granolarr){target="_blank"} worked out by [Stefano de Sabbata](https://stefanodesabbata.com/){target="_blank"} at the [University of Leicester](https://le.ac.uk/){target="_blank"}. For more information take a look at the Webbook [R for Geographic Data Science](https://sdesabbata.github.io/r-for-geographic-data-science/){target="_blank"}. The chapters on **Statistical Analysis** and **Machine Learning** are recommended as a follow up read for those who are willing to delve into more advanced applications of R. 
 ```
 
 ## R programming language
@@ -208,8 +208,6 @@ Type and execute (Enter button) in the RStudio console to validate your assumpti
 
 Apart from [Stefano de Sabbata's](https://stefanodesabbata.com/){target="_blank"} teaching materials, a number of other sources are use in this module. Most of them are freely available online:
 
-- Granolarr - A geographic data science reproducible teaching resource in R by Stefano de Sabbata. see [Online Book](https://sdesabbata.github.io/granolarr/){target="_blank"} 
-- R for Geographic Data Science by Stefano de Sabbata. [see Online Book](https://sdesabbata.github.io/r-for-geographic-data-science/){target="_blank"} 
 - The Grammar Of Graphics – All You Need to Know About ggplot2 and Pokemons by Pascal Schmidt. see [Online Tutorial](https://thatdatatho.com/grammar-of-graphics-ggplot2/){target="_blank"}
 - ggplot2 - Overview. see [Online Documentation](https://ggplot2.tidyverse.org/){target="_blank"}
 - Getting started with httr - httr quickstart guide. [Online Tutorial](https://cran.r-project.org/web/packages/httr/vignettes/quickstart.html){target="_blank"}
