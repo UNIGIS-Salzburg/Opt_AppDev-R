@@ -12,3 +12,8 @@ ToDos:
 * add long and wide table formats (see data wrangling de sabbata)
 * add raw and complex as additional simple data types, see [pull request Gabriel Gaona](https://github.com/UNIGIS-Salzburg/Opt_AppDev-R/pulls)
 
+
+## Interesting API-Call's (if the OpenWeather API has some issues in the near future.)
+
+https://api.nasa.gov/ #free to use - API-keys, that need different parameters.
+for example: https://epic.gsfc.nasa.gov/about/api
