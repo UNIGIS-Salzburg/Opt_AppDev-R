@@ -2,17 +2,12 @@
 title: "Automated Data Processing with R"
 author: "Christian Neuwirth"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
-always_allow_html: true
 
-#knit: bookdown::render_book
-#site: bookdown::bookdown_site
-#output: bookdown::gitbook
-#documentclass: book
+always_allow_html: true
 
 bibliography: refs.bib
 biblio-style: "apalike"
@@ -24,4 +19,13 @@ favicon: "branding/favicon.ico"
 csl: "branding/journal-of-geographical-systems.csl"
 ---
 
+# Preface {-}
+
+This web-book is a text book with exercises that together form the learning materials for "Automated Data Processing with R", an elective module  of the <a href="https://unigis.at" target="_blank">UNIGIS distance learning program in Geoinformatics</a> at the University of Salzburg. 
+
+<a href="https://unigis.at/en" target="_blank">
+  <img src="images/UNIGIS_Educating.gif" alt="UNIGIS Distance Learning program">
+</a>  
+
+The web-book is published under an open licence. I welcome everybody to explore the contents and to work through the exercises. Only the related discussion forum and the assignments can exclusively be accessed by actively enrolled UNIGIS students, who signed up for this module.
 
