@@ -259,3 +259,17 @@ Other R Markdown compile formats that are described in this book are Notebooks a
 ```{block2, type = 'rmdtip'}
 By the way, this module is written in BookDown.
 ```
+
+# 1
+
+## 2
+
+### 3
+
+#### 4
+
+##### 5
+
+###### 6
+
+####### 7
