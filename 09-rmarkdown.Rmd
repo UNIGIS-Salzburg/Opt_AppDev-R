@@ -20,7 +20,7 @@ To setup your personal GitHub environment, follow these steps:
 
 1) Read through the [Hello-World-Section](https://docs.github.com/en/get-started/quickstart/hello-world){target="_blank"} of GitHub's Quickstart Documentation. For now, reading is fine. You do not necessarily have to work through the tutorial.  
 2) [Create a GitHub account](https://github.com/){target="_blank"}.
-3) [Download and install Git](https://git-scm.com/downloads){target="_blank"}. [Git](https://docs.github.com/en/get-started/quickstart/set-up-git){target="_blank"} is responsible for everything GitHub-related that happens locally on your machine.
+3) [Download and install Git](https://git-scm.com/downloads){target="_blank"}. [Git](https://docs.github.com/en/get-started/quickstart/set-up-git){target="_blank"} is responsible for everything GitHub-related that happens locally on your machine.If you are interested, this  [video](https://www.youtube.com/watch?v=uR6G2v_WsRA){target="_blank"} gives a very nice explanation of core concepts in Git.
 4) Open R Studio -> Tools -> Global Options -> Git / SVN: check "enable version control" and set the path to the git.exe (e.g. C:/Program Files/Git/bin/git.exe). Restart RStudio.
 5) [Create a repository](https://docs.github.com/en/get-started/quickstart/create-a-repo){target="_blank"} on GitHub. In the tutorial,  Skip section 'Commit your first changes'. 
 6) By default, your repository has one branch named `main`. Create an additional branch off the `main` and call this new branch `dev`. To do so, follow the instructions in the [Hello-World-Tutorial](https://docs.github.com/en/get-started/quickstart/hello-world){target="_blank"}.
@@ -112,7 +112,7 @@ Though, as an addition, you can also update the date automatically reflected on 
 
 After the metadata section an **R inline code block** starts and ends with backticks. The three parameters in curly brackets identify the code as R code.The `r` gives you the specific programming language, which is the default for R. But for example, you can also use {py} for Python (see Fig. \@ref(fig:L09-python)). Try the command: names(knitr::knit_engines\$get()) to get a list of the supported programming languages. `setup` is the name of the code block (also called code chunk) and (as we will see later) `include=FALSE` prevents code and code results of this code chunk from being displayed in the compiled HTML output. Nevertheless, R Markdown still runs the code in this block. The inline code block as such sets `echo=TRUE` as default option for all code chunks in the document. This means, per default the code of all code chunks in the document are displayed in the output file, if not otherwise indicated.
 
-```{r L09-python, echo=FALSE, fig.cap="Python Example", out.width='80%', fig.asp=.75, fig.align='center'}
+```{r L09-python, echo=FALSE, fig.cap="Python Example", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/pyexample.png')
 ```
 
@@ -122,7 +122,7 @@ The other code blocks in the `.Rmd` document produce a summary output (see lines
 knitr::include_graphics('images/knit.png')
 ```
 
-Alternatively, you may click on the dropdown arrow next to the `Knit` button and compile `PDF` or `.docx` outputs.
+Alternatively, you may click on the dropdown arrow next to the `Knit` button and compile `PDF` or `.docx` outputs. Though, there are even [more](https://rmarkdown.rstudio.com/lesson-9.html){target="_blank"} supported formats.
 
 ```{block2, type = 'rmdexercise'}
 
@@ -158,7 +158,7 @@ See Fig. \@ref(fig:L09-commit)
 
 ```
 
-```{r L09-commit, echo=FALSE, fig.cap="Make Commit", out.width='80%', fig.asp=.75, fig.align='center'}
+```{r L09-commit, echo=FALSE, fig.cap="Make Commit", out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/commit.png')
 ```
 
@@ -186,6 +186,25 @@ Moreover, hash signs indicate headings. The number of hash signs you use corresp
     ## Heading level 2
 
     ### Heading level 3
+
+
+Do you remember in the first chapter, the numeric operators table? 
+Tables are made by using the symbol | and - like this:
+
+    |Operator|Meaning         |Example  |Output     |
+    |--------|----------------|---------|-----------|
+    |+       |Plus            |`5 + 2`  |`r 5 + 2`  |
+    |-       |Minus           |`5 - 2`  |`r 5 - 2`  |
+    |`*`     |Product         |`5 * 2`  |`r 5 * 2`  |
+    |/       |Division        |`5 / 2`  |`r 5 / 2`  |
+    |%/%     |Integer division|`5 %/% 2`|`r 5 %/% 2`|
+    |%%      |Module          |`5 %% 2` |`r 5 %% 2` |
+    |^       |Power           |`5^2`    |`r 5^2`    |
+
+```{r L09-tables, echo=FALSE, tab.cap="How Tables are made in Markdown", out.width='100%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/tables.png')
+```
+
 
 R Markdown also comes with a time-saving method to insert **citations** and to build a **bibliography**. References are collected in a .bib-file that resides in the RStudio Project folder. To create a .bib-file, you can use any text editor. Open a new document (for instance a Windows Editor file), replace .txt with .bib (e.g. references.bib) and save to the Project folder.
 
@@ -262,3 +281,6 @@ Other R Markdown compile formats that are described in this book are Notebooks a
 ```{block2, type = 'rmdtip'}
 By the way, this module is written in BookDown.
 ```
+
+
+
