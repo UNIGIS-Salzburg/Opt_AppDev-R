@@ -195,7 +195,43 @@ Tables are made by using the symbol | and - like this:
 knitr::include_graphics('images/tables.png')
 ```
 
-Now you might ask yourself if we want to use a \# hash sign, or a double underscore \_italic_. But not for a heading or italic style, but in our sentence. How can we tell Markdown to ignore these special characters? This works with an \\ backslash. Simply, put the backslash before your special character. The backslash sign then gets ignored and you will see the specific sign. 
+Ordered Lists are made by create numbers followed by a period. The first should start with the number one.
+
+    Ordered List:
+    1. item 1
+    2. item 2
+    2. item 3
+    4. item 4
+    
+#insert image
+
+Unordered Lists are easily made by making one *, - or +. Leave a blank line before the first element and you have a list:
+    
+    Unordered List:
+    * item 1
+    * item 2
+    * item 3 
+      * Item 3.1
+      * Item 3.2
+
+#insert image
+
+A very important thing to know are providing **hyperlinks**, first you surround links in [] brackets and then the link target in () parantheses, {target="_blank} is optional. But it will open a new browser tab like this:
+
+    \[Github](https://github.com/){target="_blank"}
+
+#insert image?
+
+Now you might ask yourself if we want to use a \# hash sign, or a double underscore \_italic_ for example. But not for a heading or italic style, but in our sentence. How can we tell Markdown to **ignore these special characters**? This works with an **\(\) backslash**. Simply, put the backslash before your special character. The backslash sign then gets ignored and you will see the specific sign. 
+
+If you need to write a scientific paper and/or need to proof something. >ou will also oftentimes need **mathematical formula**.These are absolutely based on LaTeX - you will find more formulas [here](https://en.wikibooks.org/wiki/LaTeX/Mathematics){target="_blank"}. Though, in R Markdown, you can call these by using the "\$" icon before and after writing, this will create an **inline equation**. A Double "\$$" icon means its a **display equation**. They come in very handy.
+
+$Z =\left(\frac{x-\mu}{\sigma}\right) inline$
+$$Z =\left(\frac{x-\mu}{\sigma}\right) display$$
+
+```{r L09-mathequations, echo=FALSE, fig.cap="Math Equations in RMarkdown", out.width='100%', fig.asp=.75, fig.align='center'}
+knitr::include_graphics('images/mathequations.png')
+```
 
 R Markdown also comes with a time-saving method to insert **citations** and to build a **bibliography**. References are collected in a .bib-file that resides in the RStudio Project folder. To create a .bib-file, you can use any text editor. Open a new document (for instance a Windows Editor file), replace .txt with .bib (e.g. references.bib) and save to the Project folder.
 
@@ -241,9 +277,6 @@ knitr::include_graphics('images/knit_pdf.png')
 Other helpful R Markdown syntax examples can be looked up in the [RMarkdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf){target="_blank"}.
 ```
 
-## Designing your Markdown
-
-
 ## Speed up your workflows
 
 Many of the methods that were covered in this module are intended to make repetitive workflows more efficient and less time-consuming. In this section, an example is introduced that illustrates the great potentials of R Markdown in terms of automation and efficiency improvement.
@@ -276,6 +309,5 @@ Other R Markdown compile formats that are described in this book are Notebooks a
 ```{block2, type = 'rmdtip'}
 By the way, this module is written in BookDown.
 ```
-
 
 
