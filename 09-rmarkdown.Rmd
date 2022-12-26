@@ -227,13 +227,13 @@ To create an **unordered list**, use *, -, or +:
     + Item 2a
     - Item 2b
 
-A very important thing to know are providing **hyperlinks**, first you surround links in [] brackets and then the link target in () parantheses, `{target="_blank}` is optional. But it will open a new browser tab like this:
+A very important thing to know are providing **hyperlinks**, first you surround links in **[ ]** square brackets and then the link target in **( )** parentheses,`{target="_blank}` with **\{\ }** curly brackets is optional. But it will open a new browser tab like this:
 
     Code - \[Github](https://github.com/){target="_blank"}
 
 [Github](https://github.com/){target="_blank"}
 
-Now you might ask yourself if we want to use a \# for example. But not for a header. How can we tell Markdown to **ignore these special characters**? This works with an **\(\) backslash**. Simply, put the backslash before your **special character**. The backslash sign then gets ignored and you will see the specific sign. 
+Now you might ask yourself if we want to use a \# for example. But not for a header. How can we tell Markdown to **ignore these special characters**? This works with an **(\\) backslash**. Simply, put the backslash before your **special character**. The backslash sign then gets ignored and you will see the specific sign. 
 
 If you need to write a scientific paper and need to proof something. you will also oftentimes need **mathematical formula**. These are based on LaTeX - you will find more formulas [here](https://en.wikibooks.org/wiki/LaTeX/Mathematics){target="_blank"}. You can call these by using the "\$" icon before and after writing, this will create an **inline equation**. A Double "\$$" icon means its a **display equation**. They come in very handy.
 
