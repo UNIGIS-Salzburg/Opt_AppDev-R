@@ -1,6 +1,6 @@
 # R Markdown
 
-This lesson is dedicated to the library `rmarkdown`. In fact, however, R Markdown is **more than only a library**. [RMarkdown](https://rmarkdown.rstudio.com/){target="_blank"} belongs to a set of tools that are designed to improve the reproducibility of your work. Other tools and platforms such as [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"} or preprint servers such as [ArXiv](https://arxiv.org/){target="_blank"} or [bioRxiv](https://www.biorxiv.org/){target="_blank"} facilitate reproducibility in many different ways. In this module, we will not cover the paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"} in detail. Instead, we will focus on those aspects that will helping you **make your analyses and reports** more appealing, interactive and **efficient**.
+This lesson is dedicated to the library `rmarkdown`. In fact, however, R Markdown is **more than only a library**. [RMarkdown](https://rmarkdown.rstudio.com/){target="_blank"} belongs to a set of tools that are designed to improve the reproducibility of your work. Other tools and platforms such as [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"} or preprint servers such as [ArXiv](https://arxiv.org/){target="_blank"} or [bioRxiv](https://www.biorxiv.org/){target="_blank"} facilitate reproducibility in many different ways. In this module, we will not cover the paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"} in detail. Instead, we will focus on those aspects that will helping you **make your analyses and reports** more appealing, interactive and **efficient** through RMarkdown.
 
 ```{block2, type = 'rmdtip'}
 
@@ -126,7 +126,7 @@ You can also use the dropdown arrow next to the **Knit** button to compile PDF o
 
 ```{block2, type = 'rmdexercise'}
 
-Please take your time to understand how the `.Rmd` syntax translates into an output. For instances, to bold text, you can add two asterisks before and after a word or phrase.  
+When you **"knit"** an R Markdown document, the .Rmd file is processed by the knitr package, which executes the code chunks and creates a new markdown file containing the code and its output. This markdown file is then processed by pandoc, which creates the final output document in the specified format. This two-step process allows for a wide range of output options, and enables you to easily create professional-quality documents from your R Markdown code.
 
 ```
 
@@ -233,9 +233,22 @@ A very important thing to know are providing **hyperlinks**, first you surround 
 
 [Github](https://github.com/){target="_blank"}
 
-Now you might ask yourself if we want to use a \# for example. But not for a header. How can we tell Markdown to **ignore these special characters**? This works with an **(\\) backslash**. Simply, put the backslash before your **special character**. The backslash sign then gets ignored and you will see the specific sign. 
+**Blockquotes** are written after a greater-than **`>`** sign and can also be nested by adding **`>>`** two signs with an example from [Waldo R. Tobler's](https://en.wikipedia.org/wiki/Waldo_R._Tobler){target="_blank"} "Law of geography":
 
-If you need to write a scientific paper and need to proof something. you will also oftentimes need **mathematical formula**. These are based on LaTeX - you will find more formulas [here](https://en.wikibooks.org/wiki/LaTeX/Mathematics){target="_blank"}. You can call these by using the "\$" icon before and after writing, this will create an **inline equation**. A Double "\$$" icon means its a **display equation**. They come in very handy.
+    >"Everything is related to everything else, but near things are more related than distant things"
+    >
+    >>>The lesser known second law of geography is: "The phenomenon external to an area of interest affects what goes on inside".
+
+
+
+>The first law of geography is: "Everything is related to everything else, but near things are more related than distant things"
+>
+>>The lesser known second law of geography is: "The phenomenon external to an area of interest affects what goes on inside".
+
+
+Now, you might ask yourself if we want to use a **\#** for example. But not for a header. How can we tell Markdown to **ignore these special characters**? This works with an **(\\) backslash**. Simply, put the backslash before your **special character**. The backslash sign then gets ignored and you will see the specific sign. 
+
+If you need to write a scientific paper and need to proof something. you will also oftentimes need **mathematical formula**. These are based on LaTeX - you will find more formulas [here](https://en.wikibooks.org/wiki/LaTeX/Mathematics){target="_blank"}. You can call these by using the "\$" icon before and after your command, this will create an **inline equation**. A Double "\$$" icon means its a **display equation**. They come in very handy.
 
 $Z =\left(\frac{x-\mu}{\sigma}\right) inline$
 $$Z =\left(\frac{x-\mu}{\sigma}\right) display$$
@@ -244,6 +257,10 @@ $$Z =\left(\frac{x-\mu}{\sigma}\right) display$$
 ```{r L09-mathequations, echo=FALSE, fig.cap="Math Equations in RMarkdown", out.width='100%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/mathequations.png')
 ```
+
+As you saw in chapter 8 - data visualization. We of course can also use graphical elements in our .Rmd file.
+
+Before we begin, make sure you have the ggplot2 library installed and loaded in your R environment. You can install ggplot2 by running `install.packages("ggplot2")` in the R console. Then, load the library by running `library(ggplot2)`.
 
 R Markdown also comes with a time-saving method to insert **citations** and to build a **bibliography**. References are collected in a .bib-file that resides in the RStudio Project folder. For example, you can create a new document in a text editor such as Windows Editor, save the file with a **.bib** extension (e.g. references.bib), and then place it in the same folder as your RStudio project.
 
@@ -291,7 +308,7 @@ Other helpful R Markdown syntax examples can be looked up in the [RMarkdown Chea
 
 ## Speed up your workflows
 
-Many of the methods that were covered in this module ***are intended to make repetitive workflows more efficient** and less time-consuming. In this section, an example is introduced that illustrates the great potentials of R Markdown in terms of automation and efficiency improvement.
+Many of the methods that were covered in this module **are intended to make repetitive workflows more efficient** and less time-consuming. In this section, an example is introduced that illustrates the great potentials of R Markdown in terms of automation and efficiency improvement.
 
 Imagine you have a client who is interested in a specific set of spatial economic indicators that are updated daily. Rather than creating a data report from scratch every day, R Markdown allows you to create a data report with charts that are automatically generated on report compilation. This can save you a significant amount of time and effort, and allow you to focus on other tasks.
 
