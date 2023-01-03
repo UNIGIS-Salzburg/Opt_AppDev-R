@@ -1,6 +1,6 @@
 # R Markdown
 
-This lesson is dedicated to the library `rmarkdown`. In fact, however, R Markdown is **more than only a library**. [RMarkdown](https://rmarkdown.rstudio.com/){target="_blank"} belongs to a set of tools that are designed to improve the reproducibility of your work. Other tools and platforms such as [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"} or preprint servers such as [ArXiv](https://arxiv.org/){target="_blank"} or [bioRxiv](https://www.biorxiv.org/){target="_blank"} facilitate reproducibility in many different ways. In this module, we will not cover the paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"} in detail. Instead, we will focus on those aspects that will helping you **make your analyses and reports** more appealing, interactive and **efficient** through RMarkdown.
+This lesson is dedicated to the library `rmarkdown`. In fact, however, R Markdown is **more than only a library**. [RMarkdown](https://rmarkdown.rstudio.com/){target="_blank"} belongs to a set of tools that are designed to improve the reproducibility of your work. Other tools and platforms such as [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"} or preprint servers such as [ArXiv](https://arxiv.org/){target="_blank"} or [bioRxiv](https://www.biorxiv.org/){target="_blank"} facilitate reproducibility in many different ways. In this module, we will not cover the paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"} in detail. Instead, we will focus on those aspects that will helping you **make your analyses and reports** more appealing, interactive and **efficient** through the use of RMarkdown.
 
 ```{block2, type = 'rmdtip'}
 
@@ -110,7 +110,7 @@ The syntax for the metadata is [YAML](https://en.wikipedia.org/wiki/YAML){target
 
 You can also update the date automatically to reflect the last time the report was updated by adding this simple code to the metadata section:   `format(Sys.time(), '%d %B, %Y')`. This will output the current date in a human-readable format based on your systems time zone.
 
-After the metadata section an **R inline code block** starts and ends with backticks (\`). The three **parameters** in curly brackets identify the code as R code. The `r` specifies the programming language, which is the default for R. But for example, You can also use{py}for Python (see Fig. \@ref(fig:L09-python)). or see a list of supported programming languages by running: `names(knitr::knit_engines\$get())`. The `setup` is the name of the code block (also called code chunk) and (as we will see later) `include=FALSE` prevents the code and code results of this code block from being displayed in the compiled HTML output. Nevertheless, R Markdown still runs the code in this block. The **inline code block** as such **sets** `echo=TRUE` as the default option for all code chunks in the document. This means that, by default, the code of all code chunks in the document will be displayed in the output file unless otherwise indicated. If you want to know more about **knitr** and "fine-tune" its behavior when processing chunks. Please refer to this [documentation](https://yihui.org/knitr/options/){target="_blank"}
+After the metadata section an **R inline code block** starts and ends with backticks (\`). The three **parameters** in curly brackets identify the code as R code. The `r` specifies the programming language, which is the default for R. But for example, You can also use{py}for Python (see Fig. \@ref(fig:L09-python)). or see a list of supported programming languages by running: `names(knitr::knit_engines\$get())`. The `setup` is the name of the code block (also called code chunk) and (as we will see later) `include=FALSE` prevents the code and code results of this code block from being displayed in the compiled HTML output. Nevertheless, R Markdown still runs the code in this block. The **inline code block** as such **sets** `echo=TRUE` as the default option for all code chunks in the document. This means that, by default, the code of all code chunks in the document will be displayed in the output file unless otherwise indicated. To increase speed, consider using `cache = TRUE` in code chunks that take a long time to run. This will save the results of the code chunk so that it does not need to be rerun every time the document is compiled. Just be sure to clear the cache when you make changes to the code that would affect the results. If you want to know more about **knitr** and "fine-tune" its behavior when processing chunks. Please refer to this [documentation](https://yihui.org/knitr/options/){target="_blank"}
 
 ```{r L09-python, echo=FALSE, fig.cap="Python Example", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/pyexample.png')
@@ -235,9 +235,9 @@ A very important thing to know are providing **hyperlinks**, first you surround 
 
 **Blockquotes** are written after a greater-than **`>`** sign and can also be nested by adding **`>>`** two signs with an example from [Waldo R. Tobler's](https://en.wikipedia.org/wiki/Waldo_R._Tobler){target="_blank"} "Law of geography":
 
-    >"Everything is related to everything else, but near things are more related than distant things"
+    >"Everything is related to everything else, but near things are more related than distant things".
     >
-    >>>The lesser known second law of geography is: "The phenomenon external to an area of interest affects what goes on inside".
+    >>His lesser known second law of geography is: "The phenomenon external to an area of interest affects what goes on inside".
 
 
 
@@ -248,7 +248,7 @@ A very important thing to know are providing **hyperlinks**, first you surround 
 
 Now, you might ask yourself if we want to use a **\#** for example. But not for a header. How can we tell Markdown to **ignore these special characters**? This works with an **(\\) backslash**. Simply, put the backslash before your **special character**. The backslash sign then gets ignored and you will see the specific sign. 
 
-If you need to write a scientific paper and need to proof something. you will also oftentimes need **mathematical formula**. These are based on LaTeX - you will find more formulas [here](https://en.wikibooks.org/wiki/LaTeX/Mathematics){target="_blank"}. You can call these by using the "\$" icon before and after your command, this will create an **inline equation**. A Double "\$$" icon means its a **display equation**. They come in very handy.
+If you need to write a scientific paper and need to proof something. you will also oftentimes need **mathematical formula**. These are based on LaTeX - you will find more formulas [here](https://en.wikibooks.org/wiki/LaTeX/Mathematics){target="_blank"}. You can call these by using the **"\$" icon** before and after your command, this will create an **inline equation**. A Double **"\$$" icon** means its a **display equation**. They come in very handy.
 
 $Z =\left(\frac{x-\mu}{\sigma}\right) inline$
 $$Z =\left(\frac{x-\mu}{\sigma}\right) display$$
@@ -257,10 +257,6 @@ $$Z =\left(\frac{x-\mu}{\sigma}\right) display$$
 ```{r L09-mathequations, echo=FALSE, fig.cap="Math Equations in RMarkdown", out.width='100%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/mathequations.png')
 ```
-
-As you saw in chapter 8 - data visualization. We of course can also use graphical elements in our .Rmd file.
-
-Before we begin, make sure you have the ggplot2 library installed and loaded in your R environment. You can install ggplot2 by running `install.packages("ggplot2")` in the R console. Then, load the library by running `library(ggplot2)`.
 
 R Markdown also comes with a time-saving method to insert **citations** and to build a **bibliography**. References are collected in a .bib-file that resides in the RStudio Project folder. For example, you can create a new document in a text editor such as Windows Editor, save the file with a **.bib** extension (e.g. references.bib), and then place it in the same folder as your RStudio project.
 
@@ -288,7 +284,7 @@ knitr::include_graphics('images/bibtexoption.png')
 
 Click the link and copy & paste the BibTeX code into your .bib-file.
 
-Now you can use the reference in your R Markdown file by specifying the name of the .bib-file as YAML metadata. You can add multiple BibTeX references to the .bib-file. The syntax to embedded references in text is approached by using the \@ character, `@<first BibTeX parameter` (see Fig. \@ref(fig:L09-refs)).
+Now you can use the reference in your R Markdown file by specifying the name of the .bib-file as YAML metadata. You can add multiple BibTeX references to the .bib-file. The syntax to **embedded references** in text is approached by using the **\@ character**, `@<first BibTeX parameter` (see Fig. \@ref(fig:L09-refs)).
 
 ```{r L09-refs, echo=FALSE, fig.cap="Integrate BibTeX reference in RMarkdown document", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/refs.png')
@@ -307,6 +303,14 @@ Other helpful R Markdown syntax examples can be looked up in the [RMarkdown Chea
 ```
 
 ## Speed up your workflows
+
+To increase speed and efficiency in any application, it is helpful to develop a habit of using **keyboard shortcuts.** RStudio provides a number of useful keyboard shortcuts that can save you time and reduce the need to switch between the keyboard and mouse. Some of the most useful shortcuts include:
+
+* **Ctrl + Enter:** Run the current code chunk or line of code
+* **Shift + Enter:** Run the current line of code and move the cursor to the next line
+* **Ctrl + Shift + Enter:** Run the current code chunk and move the cursor to the next chunk
+
+RStudio has a built-in quick reference in: `Tools > Modify Keyboard Shortcuts Help` or `Alt + Shift + K`.
 
 Many of the methods that were covered in this module **are intended to make repetitive workflows more efficient** and less time-consuming. In this section, an example is introduced that illustrates the great potentials of R Markdown in terms of automation and efficiency improvement.
 
@@ -336,7 +340,7 @@ The functionality of R Markdown is comprehensive and **cannot be covered** in on
 Other R Markdown compile formats that are described in this book are Notebooks and Presentations. As mentioned in the Python example, RMarkdown also supports other languages such as Python, C++ and SQL. It can also be customized and used to create more complex documents with extensions like: [BookDown](https://bookdown.org/){target="_blank"} or [ThesisDown](https://github.com/ismayc/thesisdown){target="_blank"}. It is **recommended to practice and experiment** with these different features to become proficient in using R Markdown.
 
 ```{block2, type = 'rmdtip'}
-By the way, this module is written in BookDown\!
+By the way, this module is written in BookDown.
 ```
 
 
