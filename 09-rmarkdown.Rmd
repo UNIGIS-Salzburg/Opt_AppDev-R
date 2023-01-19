@@ -296,7 +296,7 @@ To compile your R Markdown document, `knit` as HTML, PDF or Word. The `rmarkdown
 knitr::include_graphics('images/knit_pdf.png')
 ```
 
-[Here](%22data/ReferencesInRMarkdown.zip%22){target="_blank"} you can find a worked example for download. Unzip the folder and open the .Rproj file in RStudio.
+[Here](data/ReferencesInRMarkdown.zip){target="_blank"} you can find a worked example for download. Unzip the folder and open the .Rproj file in RStudio.
 
 ```{block2, type = 'rmdtip'}
 Other helpful R Markdown syntax examples can be looked up in the [RMarkdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf){target="_blank"}.
