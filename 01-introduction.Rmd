@@ -134,7 +134,7 @@ The interpreter returns 'TRUE', because it is 'true' that 2 is less than 3.
 
 ```
 
-## Numeric operators
+## Numeric operators{#numop}
 
 R provides a series of basic numeric operators.
 

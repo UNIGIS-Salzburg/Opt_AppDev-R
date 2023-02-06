@@ -108,15 +108,25 @@ knitr::include_graphics('images/SampleFile.png')
 
 The syntax for the metadata is [YAML](https://en.wikipedia.org/wiki/YAML){target="_blank"}. In our document, the metadata section specifies the title of the document, the output format, and the date of creation. Many other document properties can be specified in this section. [Here](https://cran.r-project.org/web/packages/ymlthis/vignettes/yaml-overview.html){target="_blank"} you can find an **overview** of the basic YAML syntax.
 
-You can also update the date automatically to reflect the last time the report was updated by adding this simple code to the metadata section:   `format(Sys.time(), '%d %B, %Y')`. This will output the current date in a human-readable format based on your systems time zone.
+```{block2, type = 'rmdtip'}
 
-After the metadata section an **R inline code block** starts and ends with backticks (\`). The three **parameters** in curly brackets identify the code as R code. The `r` specifies the programming language, which is the default for R. But for example, You can also use{py}for Python (see Fig. \@ref(fig:L09-python)). or see a list of supported programming languages by running: `names(knitr::knit_engines\$get())`. The `setup` is the name of the code block (also called code chunk) and (as we will see later) `include=FALSE` prevents the code and code results of this code block from being displayed in the compiled HTML output. Nevertheless, R Markdown still runs the code in this block. The **inline code block** as such **sets** `echo=TRUE` as the default option for all code chunks in the document. This means that, by default, the code of all code chunks in the document will be displayed in the output file unless otherwise indicated. To increase speed, consider using `cache = TRUE` in code chunks that take a long time to run. This will save the results of the code chunk so that it does not need to be rerun every time the document is compiled. Just be sure to clear the cache when you make changes to the code that would affect the results. If you want to know more about **knitr** and "fine-tune" its behavior when processing chunks. Please refer to this [documentation](https://yihui.org/knitr/options/){target="_blank"}
+You can also update the date automatically to reflect the last time the report was updated by adding this line to the metadata section: `date: "```r format(Sys.time(), '%d %B, %Y')```"`. This will output the current date in a human-readable format based on your systems time zone.
+
+```
+
+After the metadata section an **R inline code block** starts and ends with three backticks (see Fig. \@ref(fig:L09-sample)). The three **parameters** in curly brackets identify the code as R code. The `r` specifies the programming language, which is the default for R. Alternatively, you can also use parameter `{py}` to insert Python code into your markdown document (see Fig. \@ref(fig:L09-python)).
 
 ```{r L09-python, echo=FALSE, fig.cap="Python Example", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/pyexample.png')
 ```
 
-The other code blocks in the `.Rmd` document produce a summary output (see line 7-19) or create a simple scatterplot (see line 25-27). To see how the compiled HTML output looks like, click `Knit` (see Fig. \@ref(fig:L09-knit)).
+The `setup` parameter specifies the name of the code block and (as we will see later) `include=FALSE` prevents the code and code results from being displayed in the compiled HTML output. Nevertheless, RMarkdown still runs the code in this block, which sets `echo=TRUE` as the default option for all code blocks in the RMarkdown document. This means that, by default, the code of all code blocks in the document will be displayed in the output file unless otherwise indicated. 
+
+```{block2, type = 'rmdtip'}
+To learn more about code block options you may turn to the [knitr documentation](https://yihui.org/knitr/options/){target="_blank"}.
+```
+
+The other code blocks in the RMarkdown sample file produce a summary output (see line 17-19) or create a simple scatterplot (see line 25-27). To see how the compiled HTML output looks like, click `Knit` (see Fig. \@ref(fig:L09-knit)).
 
 ```{r L09-knit, echo=FALSE, fig.cap="Knit HTML Output ", out.width='80%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/knit.png')
@@ -126,7 +136,7 @@ You can also use the dropdown arrow next to the **Knit** button to compile PDF o
 
 ```{block2, type = 'rmdexercise'}
 
-When you **"knit"** an R Markdown document, the .Rmd file is processed by the knitr package, which executes the code chunks and creates a new markdown file containing the code and its output. This markdown file is then processed by pandoc, which creates the final output document in the specified format. This two-step process allows for a wide range of output options, and enables you to easily create professional-quality documents from your R Markdown code.
+When you **"knit"** an R Markdown document, the .Rmd file is processed by the knitr package, which executes the code chunks and creates a new markdown file containing the code and its output. This markdown file is then processed by pandoc, which creates the final output document in the specified format. This two-step process allows for a wide range of output options and enables you to easily create professional-quality documents from your R Markdown code.
 
 ```
 
@@ -173,15 +183,15 @@ knitr::include_graphics('images/Push.png')
 
 Your online repository on GitHub should now be updated (switch to `dev` branch in your repository) (see Fig. \@ref(fig:L09-updated)).
 
-```{r L09-updated, echo=FALSE, fig.cap="Commit with message 'decribe sync process in github' was pushed to the developer branch a minute ago", out.width='90%', fig.asp=.75, fig.align='center'}
+```{r L09-updated, echo=FALSE, fig.cap="Commit with message 'describe sync process in github' was pushed to the developer branch a minute ago", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/CommitFinished.png')
 ```
 
-## Basic R Markdown syntax
+## Basic RMarkdown syntax
 
 In R Markdown documents, you can use double asterisks (`**Text**`) to **bold** words and phrases, or single asterisks (`*Text*`) to *italicize* them.
 
-You can also create headings using hash signs (#). The number of hash signs you use corresponds to the heading level (up to 6):
+You can also create **headings** using hash signs (#). The number of hash signs you use corresponds to the heading level:
 
 
     # Heading level 1
@@ -190,9 +200,7 @@ You can also create headings using hash signs (#). The number of hash signs you 
 
     ### Heading level 3
 
-
-Do you remember in the first chapter, the numeric operators table? 
-Tables are made by using the symbol | and - like this:
+**Tables** are created by using the symbols `|` and `-`. Do you remember in the first chapter, the [numeric operators table](#numop)? Figure \@ref(fig:L09-tables) illustrates the RMarkdown syntax being used to create this table. 
 
 ```{r L09-tables, echo=FALSE, fig.cap="How Tables are made in Markdown", out.width='100%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/tables.png')
@@ -227,38 +235,50 @@ To create an **unordered list**, use *, -, or +:
     + Item 2a
     - Item 2b
 
-A very important thing to know are providing **hyperlinks**, first you surround links in **[ ]** square brackets and then the link target in **( )** parentheses,`{target="_blank}` with **\{\ }** curly brackets is optional. But it will open a new browser tab like this:
+The following syntax example illustrate how to create **hyperlinks** in RMarkdown documents:
 
-    Code - \[Github](https://github.com/){target="_blank"}
+`[Github](https://github.com/){target="_blank"}`
 
-[Github](https://github.com/){target="_blank"}
+Result looks like... [Github](https://github.com/){target="_blank"}
 
-**Blockquotes** are written after a greater-than **`>`** sign and can also be nested by adding **`>>`** two signs with an example from [Waldo R. Tobler's](https://en.wikipedia.org/wiki/Waldo_R._Tobler){target="_blank"} "Law of geography":
+By setting parameter `target="_blank`, the link is opened in a new browser tab.
+
+**Blockquotes** are written after a greater-than sign **(`>`)** and can be indented by adding a second greater-than sign **(`>>`)** like... 
 
     >"Everything is related to everything else, but near things are more related than distant things".
     >
-    >>His lesser known second law of geography is: "The phenomenon external to an area of interest affects what goes on inside".
-
-
+    >>The phenomenon external to an area of interest affects what goes on inside.
 
 >The first law of geography is: "Everything is related to everything else, but near things are more related than distant things"
 >
->>The lesser known second law of geography is: "The phenomenon external to an area of interest affects what goes on inside".
+>>The phenomenon external to an area of interest affects what goes on inside.
 
+```{block2, type = 'rmdtip'}
 
-Now, you might ask yourself if we want to use a **\#** for example. But not for a header. How can we tell Markdown to **ignore these special characters**? This works with an **(\\) backslash**. Simply, put the backslash before your **special character**. The backslash sign then gets ignored and you will see the specific sign. 
+Meanwhile, you know a number of characters that have a special meaning in RMarkdown syntax (like \# or \>). If you want these characters verbatim, you have to escape them. The way to **escape a special character** is to add a backslash before. For instance, \\# will not translate into a heading, but will return \#.
 
-If you need to write a scientific paper and need to proof something. you will also oftentimes need **mathematical formula**. These are based on LaTeX - you will find more formulas [here](https://en.wikibooks.org/wiki/LaTeX/Mathematics){target="_blank"}. You can call these by using the **"\$" icon** before and after your command, this will create an **inline equation**. A Double **"\$$" icon** means its a **display equation**. They come in very handy.
-
-$Z =\left(\frac{x-\mu}{\sigma}\right) inline$
-$$Z =\left(\frac{x-\mu}{\sigma}\right) display$$
-&nbsp;
-
-```{r L09-mathequations, echo=FALSE, fig.cap="Math Equations in RMarkdown", out.width='100%', fig.asp=.75, fig.align='center'}
-knitr::include_graphics('images/mathequations.png')
 ```
 
-R Markdown also comes with a time-saving method to insert **citations** and to build a **bibliography**. References are collected in a .bib-file that resides in the RStudio Project folder. For example, you can create a new document in a text editor such as Windows Editor, save the file with a **.bib** extension (e.g. references.bib), and then place it in the same folder as your RStudio project.
+RMarkdown supports a large number of **mathematical notations**, which are surrounded by dollar signs `$`.   
+
+**Math. notation example 1:**
+
+`$x = y$`
+
+Result looks like... $x = y$
+
+**Math. notation example 2:**
+
+`$\frac{\partial f}{\partial x}$`
+
+Result looks like... $\frac{\partial f}{\partial x}$
+
+See ["Mathematics in R Markdown"](https://rpruim.github.io/s341/S19/from-class/MathinRmd.html){target="_blank"} for more examples.
+
+### References in RMarkdown
+
+R Markdown also comes with a time-saving method to insert **citations** and to build a **bibliography**. References are collected in a .bib-file. 
+Create a new document in a text editor such as Windows Editor. Save the file with a **.bib** extension (e.g. references.bib) in your RStudio project folder.
 
 ```{block2, type = 'rmdtip'}
 
@@ -282,9 +302,7 @@ Once you have enabled BibTeX export in your browser, a new link `Import into Bib
 knitr::include_graphics('images/bibtexoption.png')
 ```
 
-Click the link and copy & paste the BibTeX code into your .bib-file.
-
-Now you can use the reference in your R Markdown file by specifying the name of the .bib-file as YAML metadata. You can add multiple BibTeX references to the .bib-file. The syntax to **embedded references** in text is approached by using the **\@ character**, `@<first BibTeX parameter` (see Fig. \@ref(fig:L09-refs)).
+Click the link in Google Scholar and copy & paste the BibTeX code into your .bib-file. As a next step, you have to specify the location of the .bib-file in the YAML metadata (YAML parameter `bibliography:<.bib file>`). Now you can use the BibTeX reference sources from `.bib` in your R Markdown file. Insert `@` and the first BibTeX parameter of a BibTeX reference source to add citations to your document (see Fig. \@ref(fig:L09-refs)).
 
 ```{r L09-refs, echo=FALSE, fig.cap="Integrate BibTeX reference in RMarkdown document", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/refs.png')
@@ -303,14 +321,6 @@ Other helpful R Markdown syntax examples can be looked up in the [RMarkdown Chea
 ```
 
 ## Speed up your workflows
-
-To increase speed and efficiency in any application, it is helpful to develop a habit of using **keyboard shortcuts.** RStudio provides a number of useful keyboard shortcuts that can save you time and reduce the need to switch between the keyboard and mouse. Some of the most useful shortcuts include:
-
-* **Ctrl + Enter:** Run the current code chunk or line of code
-* **Shift + Enter:** Run the current line of code and move the cursor to the next line
-* **Ctrl + Shift + Enter:** Run the current code chunk and move the cursor to the next chunk
-
-RStudio has a built-in quick reference in: `Tools > Modify Keyboard Shortcuts Help` or `Alt + Shift + K`.
 
 Many of the methods that were covered in this module **are intended to make repetitive workflows more efficient** and less time-consuming. In this section, an example is introduced that illustrates the great potentials of R Markdown in terms of automation and efficiency improvement.
 
@@ -337,10 +347,11 @@ Once you have understood the structure of this document, try to supplement the f
 
 The functionality of R Markdown is comprehensive and **cannot be covered** in one lesson. It is highly recommended to consult the online book [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/){target="_blank"} to leverage the full potential of R Markdown.
 
-Other R Markdown compile formats that are described in this book are Notebooks and Presentations. As mentioned in the Python example, RMarkdown also supports other languages such as Python, C++ and SQL. It can also be customized and used to create more complex documents with extensions like: [BookDown](https://bookdown.org/){target="_blank"} or [ThesisDown](https://github.com/ismayc/thesisdown){target="_blank"}. It is **recommended to practice and experiment** with these different features to become proficient in using R Markdown.
+Other R Markdown compile formats that are described in this book are Notebooks and Presentations. RMarkdown also supports other languages such as Python, C++ and SQL. It can also be customized and used to create more complex documents with extensions like: [BookDown](https://bookdown.org/){target="_blank"} or [ThesisDown](https://github.com/ismayc/thesisdown){target="_blank"}. It is **recommended to practice and experiment** with these different features to become proficient in using R Markdown.
 
 ```{block2, type = 'rmdtip'}
 By the way, this module is written in BookDown.
 ```
+
 
 

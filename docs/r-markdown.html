@@ -154,7 +154,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#installation-and-setup"><i class="fa fa-check"></i><b>1.3</b> Installation and Setup</a></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#interpreting-values"><i class="fa fa-check"></i><b>1.4</b> Interpreting values</a></li>
 <li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#simple-data-types"><i class="fa fa-check"></i><b>1.5</b> Simple data types</a></li>
-<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#numeric-operators"><i class="fa fa-check"></i><b>1.6</b> Numeric operators</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#numop"><i class="fa fa-check"></i><b>1.6</b> Numeric operators</a></li>
 <li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#logical-operators"><i class="fa fa-check"></i><b>1.7</b> Logical operators</a></li>
 <li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#references"><i class="fa fa-check"></i><b>1.8</b> References</a></li>
 </ul></li>
@@ -237,7 +237,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="r-markdown.html"><a href="r-markdown.html#create-a-local-clone"><i class="fa fa-check"></i><b>9.2</b> Create a local clone</a></li>
 <li class="chapter" data-level="9.3" data-path="r-markdown.html"><a href="r-markdown.html#create-a-first-rmarkdown-document"><i class="fa fa-check"></i><b>9.3</b> Create a first RMarkdown document</a></li>
 <li class="chapter" data-level="9.4" data-path="r-markdown.html"><a href="r-markdown.html#synchronize-with-github"><i class="fa fa-check"></i><b>9.4</b> Synchronize with GitHub</a></li>
-<li class="chapter" data-level="9.5" data-path="r-markdown.html"><a href="r-markdown.html#basic-r-markdown-syntax"><i class="fa fa-check"></i><b>9.5</b> Basic R Markdown syntax</a></li>
+<li class="chapter" data-level="9.5" data-path="r-markdown.html"><a href="r-markdown.html#basic-rmarkdown-syntax"><i class="fa fa-check"></i><b>9.5</b> Basic RMarkdown syntax</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="r-markdown.html"><a href="r-markdown.html#references-in-rmarkdown"><i class="fa fa-check"></i><b>9.5.1</b> References in RMarkdown</a></li>
+</ul></li>
 <li class="chapter" data-level="9.6" data-path="r-markdown.html"><a href="r-markdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>9.6</b> Speed up your workflows</a></li>
 <li class="chapter" data-level="9.7" data-path="r-markdown.html"><a href="r-markdown.html#self-study"><i class="fa fa-check"></i><b>9.7</b> Self-study</a></li>
 </ul></li>
@@ -356,15 +359,23 @@ Figure 9.5: R Markdown sample file
 </p>
 </div>
 <p>The syntax for the metadata is <a href="https://en.wikipedia.org/wiki/YAML" target="_blank">YAML</a>. In our document, the metadata section specifies the title of the document, the output format, and the date of creation. Many other document properties can be specified in this section. <a href="https://cran.r-project.org/web/packages/ymlthis/vignettes/yaml-overview.html" target="_blank">Here</a> you can find an <strong>overview</strong> of the basic YAML syntax.</p>
-<p>You can also update the date automatically to reflect the last time the report was updated by adding this simple code to the metadata section: <code>format(Sys.time(), '%d %B, %Y')</code>. This will output the current date in a human-readable format based on your systems time zone.</p>
-<p>After the metadata section an <strong>R inline code block</strong> starts and ends with backticks (`). The three <strong>parameters</strong> in curly brackets identify the code as R code. The <code>r</code> specifies the programming language, which is the default for R. But for example, You can also use{py}for Python (see Fig. <a href="r-markdown.html#fig:L09-python">9.6</a>). or see a list of supported programming languages by running: <code>names(knitr::knit_engines\$get())</code>. The <code>setup</code> is the name of the code block (also called code chunk) and (as we will see later) <code>include=FALSE</code> prevents the code and code results of this code block from being displayed in the compiled HTML output. Nevertheless, R Markdown still runs the code in this block. The <strong>inline code block</strong> as such <strong>sets</strong> <code>echo=TRUE</code> as the default option for all code chunks in the document. This means that, by default, the code of all code chunks in the document will be displayed in the output file unless otherwise indicated. To increase speed, consider using <code>cache = TRUE</code> in code chunks that take a long time to run. This will save the results of the code chunk so that it does not need to be rerun every time the document is compiled. Just be sure to clear the cache when you make changes to the code that would affect the results. If you want to know more about <strong>knitr</strong> and “fine-tune” its behavior when processing chunks. Please refer to this <a href="https://yihui.org/knitr/options/" target="_blank">documentation</a></p>
+
+<div class="rmdtip">
+<p>You can also update the date automatically to reflect the last time the report was updated by adding this line to the metadata section: <code>date: "```r format(Sys.time(), '%d %B, %Y')```"</code>. This will output the current date in a human-readable format based on your systems time zone.</p>
+</div>
+<p>After the metadata section an <strong>R inline code block</strong> starts and ends with three backticks (see Fig. <a href="r-markdown.html#fig:L09-sample">9.5</a>). The three <strong>parameters</strong> in curly brackets identify the code as R code. The <code>r</code> specifies the programming language, which is the default for R. Alternatively, you can also use parameter <code>{py}</code> to insert Python code into your markdown document (see Fig. <a href="r-markdown.html#fig:L09-python">9.6</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-python"></span>
 <img src="images/pyexample.png" alt="Python Example" width="90%" />
 <p class="caption">
 Figure 9.6: Python Example
 </p>
 </div>
-<p>The other code blocks in the <code>.Rmd</code> document produce a summary output (see line 7-19) or create a simple scatterplot (see line 25-27). To see how the compiled HTML output looks like, click <code>Knit</code> (see Fig. <a href="r-markdown.html#fig:L09-knit">9.7</a>).</p>
+<p>The <code>setup</code> parameter specifies the name of the code block and (as we will see later) <code>include=FALSE</code> prevents the code and code results from being displayed in the compiled HTML output. Nevertheless, RMarkdown still runs the code in this block, which sets <code>echo=TRUE</code> as the default option for all code blocks in the RMarkdown document. This means that, by default, the code of all code blocks in the document will be displayed in the output file unless otherwise indicated.</p>
+
+<div class="rmdtip">
+To learn more about code block options you may turn to the <a href="https://yihui.org/knitr/options/" target="_blank">knitr documentation</a>.
+</div>
+<p>The other code blocks in the RMarkdown sample file produce a summary output (see line 17-19) or create a simple scatterplot (see line 25-27). To see how the compiled HTML output looks like, click <code>Knit</code> (see Fig. <a href="r-markdown.html#fig:L09-knit">9.7</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-knit"></span>
 <img src="images/knit.png" alt="Knit HTML Output " width="80%" />
 <p class="caption">
@@ -374,7 +385,7 @@ Figure 9.7: Knit HTML Output
 <p>You can also use the dropdown arrow next to the <strong>Knit</strong> button to compile PDF or .docx outputs, or choose from the <a href="https://rmarkdown.rstudio.com/lesson-9.html" target="_blank">other</a> supported formats.</p>
 
 <div class="rmdexercise">
-<p>When you <strong>“knit”</strong> an R Markdown document, the .Rmd file is processed by the knitr package, which executes the code chunks and creates a new markdown file containing the code and its output. This markdown file is then processed by pandoc, which creates the final output document in the specified format. This two-step process allows for a wide range of output options, and enables you to easily create professional-quality documents from your R Markdown code.</p>
+<p>When you <strong>“knit”</strong> an R Markdown document, the .Rmd file is processed by the knitr package, which executes the code chunks and creates a new markdown file containing the code and its output. This markdown file is then processed by pandoc, which creates the final output document in the specified format. This two-step process allows for a wide range of output options and enables you to easily create professional-quality documents from your R Markdown code.</p>
 </div>
 </div>
 <div id="synchronize-with-github" class="section level2 hasAnchor" number="9.4">
@@ -415,23 +426,22 @@ Figure 9.10: Make Push
 <p> </p>
 <p>Your online repository on GitHub should now be updated (switch to <code>dev</code> branch in your repository) (see Fig. <a href="r-markdown.html#fig:L09-updated">9.11</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-updated"></span>
-<img src="images/CommitFinished.png" alt="Commit with message 'decribe sync process in github' was pushed to the developer branch a minute ago" width="90%" />
+<img src="images/CommitFinished.png" alt="Commit with message 'describe sync process in github' was pushed to the developer branch a minute ago" width="90%" />
 <p class="caption">
-Figure 9.11: Commit with message ‘decribe sync process in github’ was pushed to the developer branch a minute ago
+Figure 9.11: Commit with message ‘describe sync process in github’ was pushed to the developer branch a minute ago
 </p>
 </div>
 </div>
-<div id="basic-r-markdown-syntax" class="section level2 hasAnchor" number="9.5">
-<h2><span class="header-section-number">9.5</span> Basic R Markdown syntax<a href="r-markdown.html#basic-r-markdown-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="basic-rmarkdown-syntax" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Basic RMarkdown syntax<a href="r-markdown.html#basic-rmarkdown-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In R Markdown documents, you can use double asterisks (<code>**Text**</code>) to <strong>bold</strong> words and phrases, or single asterisks (<code>*Text*</code>) to <em>italicize</em> them.</p>
-<p>You can also create headings using hash signs (#). The number of hash signs you use corresponds to the heading level (up to 6):</p>
+<p>You can also create <strong>headings</strong> using hash signs (#). The number of hash signs you use corresponds to the heading level:</p>
 <pre><code># Heading level 1
 
 ## Heading level 2
 
 ### Heading level 3</code></pre>
-<p>Do you remember in the first chapter, the numeric operators table?
-Tables are made by using the symbol | and - like this:</p>
+<p><strong>Tables</strong> are created by using the symbols <code>|</code> and <code>-</code>. Do you remember in the first chapter, the <a href="intro.html#numop">numeric operators table</a>? Figure <a href="r-markdown.html#fig:L09-tables">9.12</a> illustrates the RMarkdown syntax being used to create this table.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-tables"></span>
 <img src="images/tables.png" alt="How Tables are made in Markdown" width="100%" />
 <p class="caption">
@@ -468,66 +478,70 @@ Figure 9.12: How Tables are made in Markdown
 <li>Item 2b</li>
 </ul></li>
 </ul>
-<p>A very important thing to know are providing <strong>hyperlinks</strong>, first you surround links in <strong>[ ]</strong> square brackets and then the link target in <strong>( )</strong> parentheses,<code>{target="_blank}</code> with <strong>{ }</strong> curly brackets is optional. But it will open a new browser tab like this:</p>
-<pre><code>Code - \[Github](https://github.com/){target=&quot;_blank&quot;}</code></pre>
-<p><a href="https://github.com/" target="_blank">Github</a></p>
-<p><strong>Blockquotes</strong> are written after a greater-than <strong><code>&gt;</code></strong> sign and can also be nested by adding <strong><code>&gt;&gt;</code></strong> two signs with an example from <a href="https://en.wikipedia.org/wiki/Waldo_R._Tobler" target="_blank">Waldo R. Tobler’s</a> “Law of geography”:</p>
+<p>The following syntax example illustrate how to create <strong>hyperlinks</strong> in RMarkdown documents:</p>
+<p><code>[Github](https://github.com/){target="_blank"}</code></p>
+<p>Result looks like… <a href="https://github.com/" target="_blank">Github</a></p>
+<p>By setting parameter <code>target="_blank</code>, the link is opened in a new browser tab.</p>
+<p><strong>Blockquotes</strong> are written after a greater-than sign <strong>(<code>&gt;</code>)</strong> and can be indented by adding a second greater-than sign <strong>(<code>&gt;&gt;</code>)</strong> like…</p>
 <pre><code>&gt;&quot;Everything is related to everything else, but near things are more related than distant things&quot;.
 &gt;
-&gt;&gt;His lesser known second law of geography is: &quot;The phenomenon external to an area of interest affects what goes on inside&quot;.</code></pre>
+&gt;&gt;The phenomenon external to an area of interest affects what goes on inside.</code></pre>
 <blockquote>
 <p>The first law of geography is: “Everything is related to everything else, but near things are more related than distant things”</p>
 <blockquote>
-<p>The lesser known second law of geography is: “The phenomenon external to an area of interest affects what goes on inside”.</p>
+<p>The phenomenon external to an area of interest affects what goes on inside.</p>
 </blockquote>
 </blockquote>
-<p>Now, you might ask yourself if we want to use a <strong>#</strong> for example. But not for a header. How can we tell Markdown to <strong>ignore these special characters</strong>? This works with an <strong>(\) backslash</strong>. Simply, put the backslash before your <strong>special character</strong>. The backslash sign then gets ignored and you will see the specific sign.</p>
-<p>If you need to write a scientific paper and need to proof something. you will also oftentimes need <strong>mathematical formula</strong>. These are based on LaTeX - you will find more formulas <a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics" target="_blank">here</a>. You can call these by using the <strong>“$” icon</strong> before and after your command, this will create an <strong>inline equation</strong>. A Double <strong>“$$” icon</strong> means its a <strong>display equation</strong>. They come in very handy.</p>
-<p><span class="math inline">\(Z =\left(\frac{x-\mu}{\sigma}\right) inline\)</span>
-<span class="math display">\[Z =\left(\frac{x-\mu}{\sigma}\right) display\]</span>
- </p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-mathequations"></span>
-<img src="images/mathequations.png" alt="Math Equations in RMarkdown" width="100%" />
-<p class="caption">
-Figure 9.13: Math Equations in RMarkdown
-</p>
+
+<div class="rmdtip">
+<p>Meanwhile, you know a number of characters that have a special meaning in RMarkdown syntax (like # or &gt;). If you want these characters verbatim, you have to escape them. The way to <strong>escape a special character</strong> is to add a backslash before. For instance, \# will not translate into a heading, but will return #.</p>
 </div>
-<p>R Markdown also comes with a time-saving method to insert <strong>citations</strong> and to build a <strong>bibliography</strong>. References are collected in a .bib-file that resides in the RStudio Project folder. For example, you can create a new document in a text editor such as Windows Editor, save the file with a <strong>.bib</strong> extension (e.g. references.bib), and then place it in the same folder as your RStudio project.</p>
+<p>RMarkdown supports a large number of <strong>mathematical notations</strong>, which are surrounded by dollar signs <code>$</code>.</p>
+<p><strong>Math. notation example 1:</strong></p>
+<p><code>$x = y$</code></p>
+<p>Result looks like… <span class="math inline">\(x = y\)</span></p>
+<p><strong>Math. notation example 2:</strong></p>
+<p><code>$\frac{\partial f}{\partial x}$</code></p>
+<p>Result looks like… <span class="math inline">\(\frac{\partial f}{\partial x}\)</span></p>
+<p>See <a href="https://rpruim.github.io/s341/S19/from-class/MathinRmd.html" target="_blank">“Mathematics in R Markdown”</a> for more examples.</p>
+<div id="references-in-rmarkdown" class="section level3 hasAnchor" number="9.5.1">
+<h3><span class="header-section-number">9.5.1</span> References in RMarkdown<a href="r-markdown.html#references-in-rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R Markdown also comes with a time-saving method to insert <strong>citations</strong> and to build a <strong>bibliography</strong>. References are collected in a .bib-file.
+Create a new document in a text editor such as Windows Editor. Save the file with a <strong>.bib</strong> extension (e.g. references.bib) in your RStudio project folder.</p>
 
 <div class="rmdtip">
 <p>You can use the RStudio project that you have cloned, modified and synchronized in previous exercises.</p>
 </div>
-<p>Now you can <strong>add references</strong> to the .bib-file. References are encoded in BibTeX format. The easiest way to get the BibTeX description of a reference is to export from Google Scholar. To enable BibTeX export, change setting in Google Scholar (see Fig. <a href="r-markdown.html#fig:L09-scholarsettings">9.14</a>).</p>
+<p>Now you can <strong>add references</strong> to the .bib-file. References are encoded in BibTeX format. The easiest way to get the BibTeX description of a reference is to export from Google Scholar. To enable BibTeX export, change setting in Google Scholar (see Fig. <a href="r-markdown.html#fig:L09-scholarsettings">9.13</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-scholarsettings"></span>
 <img src="images/ScholarSettings.png" alt="Enable BibTeX in Firefox 106.0.1" width="90%" />
 <p class="caption">
-Figure 9.14: Enable BibTeX in Firefox 106.0.1
+Figure 9.13: Enable BibTeX in Firefox 106.0.1
 </p>
 </div>
 
 <div class="rmdtip">
 You may use a different browser or version of Firefox. In case you need support, please turn to the discussion forum!
 </div>
-<p>Once you have enabled BibTeX export in your browser, a new link <code>Import into BibTeX</code> appears in Google Scholar (see Fig. <a href="r-markdown.html#fig:L09-biboption">9.15</a>).</p>
+<p>Once you have enabled BibTeX export in your browser, a new link <code>Import into BibTeX</code> appears in Google Scholar (see Fig. <a href="r-markdown.html#fig:L09-biboption">9.14</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-biboption"></span>
 <img src="images/bibtexoption.png" alt="BibTeX Link in Firefox 106.0.1" width="90%" />
 <p class="caption">
-Figure 9.15: BibTeX Link in Firefox 106.0.1
+Figure 9.14: BibTeX Link in Firefox 106.0.1
 </p>
 </div>
-<p>Click the link and copy &amp; paste the BibTeX code into your .bib-file.</p>
-<p>Now you can use the reference in your R Markdown file by specifying the name of the .bib-file as YAML metadata. You can add multiple BibTeX references to the .bib-file. The syntax to <strong>embedded references</strong> in text is approached by using the <strong>@ character</strong>, <code>@&lt;first BibTeX parameter</code> (see Fig. <a href="r-markdown.html#fig:L09-refs">9.16</a>).</p>
+<p>Click the link in Google Scholar and copy &amp; paste the BibTeX code into your .bib-file. As a next step, you have to specify the location of the .bib-file in the YAML metadata (YAML parameter <code>bibliography:&lt;.bib file&gt;</code>). Now you can use the BibTeX reference sources from <code>.bib</code> in your R Markdown file. Insert <code>@</code> and the first BibTeX parameter of a BibTeX reference source to add citations to your document (see Fig. <a href="r-markdown.html#fig:L09-refs">9.15</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-refs"></span>
 <img src="images/refs.png" alt="Integrate BibTeX reference in RMarkdown document" width="90%" />
 <p class="caption">
-Figure 9.16: Integrate BibTeX reference in RMarkdown document
+Figure 9.15: Integrate BibTeX reference in RMarkdown document
 </p>
 </div>
-<p>To compile your R Markdown document, <code>knit</code> as HTML, PDF or Word. The <code>rmarkdown</code> library renders references as indirect citations (<em>reference without squared brackets in .Rmd file</em>) and direct citations (<em>reference with squared brackets in .Rmd file</em>) and inserts a bibliography (see Fig. <a href="r-markdown.html#fig:L09-pdfknit">9.17</a>).</p>
+<p>To compile your R Markdown document, <code>knit</code> as HTML, PDF or Word. The <code>rmarkdown</code> library renders references as indirect citations (<em>reference without squared brackets in .Rmd file</em>) and direct citations (<em>reference with squared brackets in .Rmd file</em>) and inserts a bibliography (see Fig. <a href="r-markdown.html#fig:L09-pdfknit">9.16</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-pdfknit"></span>
 <img src="images/knit_pdf.png" alt="Knit R Markdown as PDF" width="90%" />
 <p class="caption">
-Figure 9.17: Knit R Markdown as PDF
+Figure 9.16: Knit R Markdown as PDF
 </p>
 </div>
 <p><a href="data/ReferencesInRMarkdown.zip" target="_blank">Here</a> you can find a worked example for download. Unzip the folder and open the .Rproj file in RStudio.</p>
@@ -536,15 +550,9 @@ Figure 9.17: Knit R Markdown as PDF
 Other helpful R Markdown syntax examples can be looked up in the <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf" target="_blank">RMarkdown Cheatsheet</a>.
 </div>
 </div>
+</div>
 <div id="speed-up-your-workflows" class="section level2 hasAnchor" number="9.6">
 <h2><span class="header-section-number">9.6</span> Speed up your workflows<a href="r-markdown.html#speed-up-your-workflows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To increase speed and efficiency in any application, it is helpful to develop a habit of using <strong>keyboard shortcuts.</strong> RStudio provides a number of useful keyboard shortcuts that can save you time and reduce the need to switch between the keyboard and mouse. Some of the most useful shortcuts include:</p>
-<ul>
-<li><strong>Ctrl + Enter:</strong> Run the current code chunk or line of code</li>
-<li><strong>Shift + Enter:</strong> Run the current line of code and move the cursor to the next line</li>
-<li><strong>Ctrl + Shift + Enter:</strong> Run the current code chunk and move the cursor to the next chunk</li>
-</ul>
-<p>RStudio has a built-in quick reference in: <code>Tools &gt; Modify Keyboard Shortcuts Help</code> or <code>Alt + Shift + K</code>.</p>
 <p>Many of the methods that were covered in this module <strong>are intended to make repetitive workflows more efficient</strong> and less time-consuming. In this section, an example is introduced that illustrates the great potentials of R Markdown in terms of automation and efficiency improvement.</p>
 <p>Imagine you have a client who is interested in a specific set of spatial economic indicators that are updated daily. Rather than creating a data report from scratch every day, R Markdown allows you to create a data report with charts that are automatically generated on report compilation. This can save you a significant amount of time and effort, and allow you to focus on other tasks.</p>
 <p>Data can be retrieved in real-time by means of <a href="https://www.alphavantage.co/" target="_blank">Alpha Ventage</a>. Alpha Ventage provides financial market data through the <a href="https://www.alphavantage.co/documentation/" target="_blank">Alpha Ventage Rest API</a>. To access the API in R, we can use the R library <a href="https://cran.r-project.org/web/packages/alphavantager/index.html" target="_blank"><code>alphaventager</code></a>.</p>
@@ -560,7 +568,7 @@ Other helpful R Markdown syntax examples can be looked up in the <a href="https:
 <div id="self-study" class="section level2 hasAnchor" number="9.7">
 <h2><span class="header-section-number">9.7</span> Self-study<a href="r-markdown.html#self-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The functionality of R Markdown is comprehensive and <strong>cannot be covered</strong> in one lesson. It is highly recommended to consult the online book <a href="https://bookdown.org/yihui/rmarkdown/" target="_blank">R Markdown: The Definitive Guide</a> to leverage the full potential of R Markdown.</p>
-<p>Other R Markdown compile formats that are described in this book are Notebooks and Presentations. As mentioned in the Python example, RMarkdown also supports other languages such as Python, C++ and SQL. It can also be customized and used to create more complex documents with extensions like: <a href="https://bookdown.org/" target="_blank">BookDown</a> or <a href="https://github.com/ismayc/thesisdown" target="_blank">ThesisDown</a>. It is <strong>recommended to practice and experiment</strong> with these different features to become proficient in using R Markdown.</p>
+<p>Other R Markdown compile formats that are described in this book are Notebooks and Presentations. RMarkdown also supports other languages such as Python, C++ and SQL. It can also be customized and used to create more complex documents with extensions like: <a href="https://bookdown.org/" target="_blank">BookDown</a> or <a href="https://github.com/ismayc/thesisdown" target="_blank">ThesisDown</a>. It is <strong>recommended to practice and experiment</strong> with these different features to become proficient in using R Markdown.</p>
 
 <div class="rmdtip">
 By the way, this module is written in BookDown.
