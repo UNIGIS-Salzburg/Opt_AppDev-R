@@ -9,11 +9,13 @@ fig:L09-features
 fig:L09-changes
 fig:L09-branch
 fig:L09-sample
+fig:L09-python
 fig:L09-knit
 fig:L09-pull
 fig:L09-commit
 fig:L09-push
 fig:L09-updated
+fig:L09-tables
 fig:L09-scholarsettings
 fig:L09-biboption
 fig:L09-refs
@@ -24,7 +26,7 @@ r-programming-language
 installation-and-setup
 interpreting-values
 simple-data-types
-numeric-operators
+numop
 logical-operators
 references
 core
@@ -81,6 +83,7 @@ set-up-your-work-environment
 create-a-local-clone
 create-a-first-rmarkdown-document
 synchronize-with-github
-basic-r-markdown-syntax
+basic-rmarkdown-syntax
+references-in-rmarkdown
 speed-up-your-workflows
 self-study
