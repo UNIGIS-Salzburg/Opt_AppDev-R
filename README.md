@@ -10,7 +10,9 @@ In this module, the granolarr materials will be adapted and extended to fit the 
 ToDos:
 
 * add long and wide table formats (see data wrangling de sabbata)
+* spatial data wrangling as new lesson
 * add raw and complex as additional simple data types, see [pull request Gabriel Gaona](https://github.com/UNIGIS-Salzburg/Opt_AppDev-R/pulls)
+* new tidymodels library for modeling and machine learning using tidyverse principles, new lesson on machine learning
 
 
 ## Interesting API-Call's (if the OpenWeather API has some issues in the near future.)
