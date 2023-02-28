@@ -71,6 +71,8 @@ In the example above, the **condition** 'a_value < 0' is TRUE, **statement 1** '
 
 ```{block2, type = 'rmdtip'}
 Note that statement 1 and statement 2 are in curly brackets! The indentation of statements is good programming practice, however does not affect the functioning of the code.
+
+However, inserting a line break before 'else' returns an error. The reason for this behavior is explained in [a forum thread](https://stackoverflow.com/questions/37929184/if-else-does-the-line-break-between-and-else-really-matters){target="_blank"}. 
 ```
 
 ## Code blocks

@@ -51,16 +51,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/proj4-2.6.2/proj4.min.js"></script>
-<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -279,10 +269,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.1</span> If<a href="control-structures.html#if" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The most fundamental conditional statement in R is the structure ‘if’, which is used to execute one or more instructions only if a certain condition is TRUE.</p>
 <p>In order to include an if-structure in your code, you need to use the following syntax:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="control-structures.html#cb92-1" aria-hidden="true" tabindex="-1"></a>a_value <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">7</span></span>
-<span id="cb92-2"><a href="control-structures.html#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (a_value <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
-<span id="cb92-3"><a href="control-structures.html#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Negative&quot;</span>)</span>
-<span id="cb92-4"><a href="control-structures.html#cb92-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="control-structures.html#cb1-1" aria-hidden="true" tabindex="-1"></a>a_value <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">7</span></span>
+<span id="cb1-2"><a href="control-structures.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (a_value <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb1-3"><a href="control-structures.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Negative&quot;</span>)</span>
+<span id="cb1-4"><a href="control-structures.html#cb1-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## Negative</code></pre>
 <p>The <strong>statement</strong> ‘cat(“Negative”)’ gets executed and the text “Negative” is printed out, because the <strong>condition</strong> (a_value &lt; 0) is TRUE.</p>
 
@@ -311,29 +301,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="else" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Else<a href="control-structures.html#else" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In many cases, we want the interpreter to do something if the condition is satisfied or do something <em>else</em>, if the condition is not satisfied. In this case, we can use ‘if’ together with ‘else’:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="control-structures.html#cb94-1" aria-hidden="true" tabindex="-1"></a>a_value <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">7</span></span>
-<span id="cb94-2"><a href="control-structures.html#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (a_value <span class="sc">&lt;</span> <span class="dv">0</span>){</span>
-<span id="cb94-3"><a href="control-structures.html#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Negative&quot;</span>)</span>
-<span id="cb94-4"><a href="control-structures.html#cb94-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb94-5"><a href="control-structures.html#cb94-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Positive&quot;</span>)</span>
-<span id="cb94-6"><a href="control-structures.html#cb94-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="control-structures.html#cb3-1" aria-hidden="true" tabindex="-1"></a>a_value <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">7</span></span>
+<span id="cb3-2"><a href="control-structures.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (a_value <span class="sc">&lt;</span> <span class="dv">0</span>){</span>
+<span id="cb3-3"><a href="control-structures.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Negative&quot;</span>)</span>
+<span id="cb3-4"><a href="control-structures.html#cb3-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb3-5"><a href="control-structures.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Positive&quot;</span>)</span>
+<span id="cb3-6"><a href="control-structures.html#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## Negative</code></pre>
 <p>In the example above, the <strong>condition</strong> ‘a_value &lt; 0’ is TRUE, <strong>statement 1</strong> ‘cat(“Negative”)’ gets executed and <strong>statement 2</strong> ‘cat(“Positive”)’ is ignored. If you change ‘a_value’ to a positive value, the interpreter will ignore statement 1 and execute statement 2.</p>
 
 <div class="rmdtip">
-Note that statement 1 and statement 2 are in curly brackets! The indentation of statements is good programming practice, however does not affect the functioning of the code.
+<p>Note that statement 1 and statement 2 are in curly brackets! The indentation of statements is good programming practice, however does not affect the functioning of the code.</p>
+However, inserting a line break before ‘else’ returns an error. The reason for this behavior is explained in this <a href="https://stackoverflow.com/questions/37929184/if-else-does-the-line-break-between-and-else-really-matters" target="_blank">forum thread</a>.
 </div>
 </div>
 <div id="code-blocks" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Code blocks<a href="control-structures.html#code-blocks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Conditional structures have a wide range of applications. Almost everything what a computer does requires an input. Each time you click a button the computer responds accordingly. The code that dictates the response typically has an if-else control structure or something very similar that tells the computer what to do depending on the input it got. Obviously in most cases the response won’t be defined by a single instruction, but a code block that is composed of multiple instructions. <strong>Code blocks</strong> allow encapsulating <strong>several</strong> statements in a single group. The condition in the following example yields TRUE and the code block is executed:</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="control-structures.html#cb96-1" aria-hidden="true" tabindex="-1"></a>first_value <span class="ot">&lt;-</span> <span class="dv">8</span></span>
-<span id="cb96-2"><a href="control-structures.html#cb96-2" aria-hidden="true" tabindex="-1"></a>second_value <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb96-3"><a href="control-structures.html#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (first_value <span class="sc">&gt;</span> second_value) {</span>
-<span id="cb96-4"><a href="control-structures.html#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;First is greater than second</span><span class="sc">\n</span><span class="st">&quot;</span>) </span>
-<span id="cb96-5"><a href="control-structures.html#cb96-5" aria-hidden="true" tabindex="-1"></a>  difference <span class="ot">&lt;-</span> first_value <span class="sc">-</span> second_value</span>
-<span id="cb96-6"><a href="control-structures.html#cb96-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Their difference is&quot;</span>, difference)</span>
-<span id="cb96-7"><a href="control-structures.html#cb96-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="control-structures.html#cb5-1" aria-hidden="true" tabindex="-1"></a>first_value <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb5-2"><a href="control-structures.html#cb5-2" aria-hidden="true" tabindex="-1"></a>second_value <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb5-3"><a href="control-structures.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (first_value <span class="sc">&gt;</span> second_value) {</span>
+<span id="cb5-4"><a href="control-structures.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;First is greater than second</span><span class="sc">\n</span><span class="st">&quot;</span>) </span>
+<span id="cb5-5"><a href="control-structures.html#cb5-5" aria-hidden="true" tabindex="-1"></a>  difference <span class="ot">&lt;-</span> first_value <span class="sc">-</span> second_value</span>
+<span id="cb5-6"><a href="control-structures.html#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Their difference is&quot;</span>, difference)</span>
+<span id="cb5-7"><a href="control-structures.html#cb5-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## First is greater than second
 ## Their difference is 3</code></pre>
 <p>The line ‘cat(“First is greater than second”)’ prints a text (string) and inserts a line break. The next line calculates the difference between first and second value. The third line in the code block concatenates two inputs (“Their difference is” and variable ‘difference’) and prints them to the console window.</p>
@@ -360,11 +351,11 @@ Note that statement 1 and statement 2 are in curly brackets! The indentation of 
 <div id="while-and-repeat" class="section level3 hasAnchor" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> While and repeat<a href="control-structures.html#while-and-repeat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <em>while</em> construct can be defined using the <code>while</code> reserved word, followed by a condition between simple brackets, and a code block. The instructions in the code block are re-executed as long as the result of the evaluation of the condition is <code>TRUE</code>.</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="control-structures.html#cb98-1" aria-hidden="true" tabindex="-1"></a>current_value <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb98-2"><a href="control-structures.html#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (current_value <span class="sc">&lt;</span> <span class="dv">3</span>) {</span>
-<span id="cb98-3"><a href="control-structures.html#cb98-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Current value is&quot;</span>, current_value, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb98-4"><a href="control-structures.html#cb98-4" aria-hidden="true" tabindex="-1"></a>  current_value <span class="ot">&lt;-</span> current_value <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb98-5"><a href="control-structures.html#cb98-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="control-structures.html#cb7-1" aria-hidden="true" tabindex="-1"></a>current_value <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb7-2"><a href="control-structures.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> (current_value <span class="sc">&lt;</span> <span class="dv">3</span>) {</span>
+<span id="cb7-3"><a href="control-structures.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Current value is&quot;</span>, current_value, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb7-4"><a href="control-structures.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  current_value <span class="ot">&lt;-</span> current_value <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb7-5"><a href="control-structures.html#cb7-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## Current value is 0 
 ## Current value is 1 
 ## Current value is 2</code></pre>
@@ -393,14 +384,14 @@ Note that statement 1 and statement 2 are in curly brackets! The indentation of 
 </details>
 </div>
 <p>The same procedure can alternatively be implemented by means of the <em>repeat</em> construct:</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="control-structures.html#cb100-1" aria-hidden="true" tabindex="-1"></a>current_value <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
-<span id="cb100-2"><a href="control-structures.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="cf">repeat</span> { </span>
-<span id="cb100-3"><a href="control-structures.html#cb100-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Current value is&quot;</span>, current_value, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) </span>
-<span id="cb100-4"><a href="control-structures.html#cb100-4" aria-hidden="true" tabindex="-1"></a>  current_value <span class="ot">=</span> current_value <span class="sc">+</span> <span class="dv">1</span> </span>
-<span id="cb100-5"><a href="control-structures.html#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (current_value <span class="sc">==</span> <span class="dv">3</span>){             <span class="co">#if (variable == 3)... </span></span>
-<span id="cb100-6"><a href="control-structures.html#cb100-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">break</span>                              <span class="co">#the loop will break!</span></span>
-<span id="cb100-7"><a href="control-structures.html#cb100-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb100-8"><a href="control-structures.html#cb100-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="control-structures.html#cb9-1" aria-hidden="true" tabindex="-1"></a>current_value <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
+<span id="cb9-2"><a href="control-structures.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">repeat</span> { </span>
+<span id="cb9-3"><a href="control-structures.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Current value is&quot;</span>, current_value, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>) </span>
+<span id="cb9-4"><a href="control-structures.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  current_value <span class="ot">=</span> current_value <span class="sc">+</span> <span class="dv">1</span> </span>
+<span id="cb9-5"><a href="control-structures.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (current_value <span class="sc">==</span> <span class="dv">3</span>){             <span class="co">#if (variable == 3)... </span></span>
+<span id="cb9-6"><a href="control-structures.html#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">break</span>                              <span class="co">#the loop will break!</span></span>
+<span id="cb9-7"><a href="control-structures.html#cb9-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-8"><a href="control-structures.html#cb9-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## Current value is 0 
 ## Current value is 1 
 ## Current value is 2</code></pre>
@@ -409,22 +400,22 @@ Note that statement 1 and statement 2 are in curly brackets! The indentation of 
 <div id="for" class="section level3 hasAnchor" number="4.4.2">
 <h3><span class="header-section-number">4.4.2</span> For<a href="control-structures.html#for" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <em>for</em> construct can be defined using the <code>for</code> reserved word, followed by the definition of an <strong>iterator</strong>. The iterator is a variable, which is temporarily assigned with the current element of a vector, as the construct iterates through all elements of the vector. This definition is followed by a code block, whose instructions are re-executed once for each element of the vector.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="control-structures.html#cb102-1" aria-hidden="true" tabindex="-1"></a>cities <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Derby&quot;</span>, <span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Lincoln&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>)</span>
-<span id="cb102-2"><a href="control-structures.html#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (city <span class="cf">in</span> cities) {</span>
-<span id="cb102-3"><a href="control-structures.html#cb102-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Do you live in &quot;</span>, city, <span class="st">&quot;?</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb102-4"><a href="control-structures.html#cb102-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="control-structures.html#cb11-1" aria-hidden="true" tabindex="-1"></a>cities <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Derby&quot;</span>, <span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Lincoln&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>)</span>
+<span id="cb11-2"><a href="control-structures.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (city <span class="cf">in</span> cities) {</span>
+<span id="cb11-3"><a href="control-structures.html#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Do you live in &quot;</span>, city, <span class="st">&quot;?</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb11-4"><a href="control-structures.html#cb11-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## Do you live in Derby?
 ## Do you live in Leicester?
 ## Do you live in Lincoln?
 ## Do you live in Nottingham?</code></pre>
 <p>In the first iteration of the for-loop the text string “Derby” is assigned to the iterator ‘city’. The function ‘cat()’ uses the iterator value as an input. In the second iteration, the text string “Leicester” is assigned to the iterator ‘city’ … etc.</p>
 <p>The code block below illustrates another example.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="control-structures.html#cb104-1" aria-hidden="true" tabindex="-1"></a>cities <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Derby&quot;</span>, <span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Lincoln&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>)</span>
-<span id="cb104-2"><a href="control-structures.html#cb104-2" aria-hidden="true" tabindex="-1"></a>letter_cnt <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb104-3"><a href="control-structures.html#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (city <span class="cf">in</span> cities) {</span>
-<span id="cb104-4"><a href="control-structures.html#cb104-4" aria-hidden="true" tabindex="-1"></a>  letter_cnt <span class="ot">&lt;-</span> <span class="fu">c</span>(letter_cnt, <span class="fu">nchar</span>(city))</span>
-<span id="cb104-5"><a href="control-structures.html#cb104-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb104-6"><a href="control-structures.html#cb104-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(letter_cnt)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="control-structures.html#cb13-1" aria-hidden="true" tabindex="-1"></a>cities <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Derby&quot;</span>, <span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Lincoln&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>)</span>
+<span id="cb13-2"><a href="control-structures.html#cb13-2" aria-hidden="true" tabindex="-1"></a>letter_cnt <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb13-3"><a href="control-structures.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (city <span class="cf">in</span> cities) {</span>
+<span id="cb13-4"><a href="control-structures.html#cb13-4" aria-hidden="true" tabindex="-1"></a>  letter_cnt <span class="ot">&lt;-</span> <span class="fu">c</span>(letter_cnt, <span class="fu">nchar</span>(city))</span>
+<span id="cb13-5"><a href="control-structures.html#cb13-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-6"><a href="control-structures.html#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(letter_cnt)</span></code></pre></div>
 <pre><code>## [1]  5  9  7 10</code></pre>
 <p>The for-loop iterates over the elements in vector ‘cities’. The base function ‘nchar()’ counts the number of letters of every city name and appends the count to a new vector ‘letter_cnt’.</p>
 
@@ -433,10 +424,10 @@ Note that statement 1 and statement 2 are in curly brackets! The indentation of 
 <p><em>name vector &lt;- c(name vector, element to append)</em></p>
 </div>
 <p>There are some cases in which, for some reason, you just want to execute a certain sequence of steps a pre-defined number of times. In such cases, it is common practice to create a vector of integers on the spot. In the following example the for-loop is executed 3 times as it iterates over a vector composed of the three elements 1, 2, and 3 (vector is created on the spot by 1:3):</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="control-structures.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
-<span id="cb106-2"><a href="control-structures.html#cb106-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;This is exectuion number&quot;</span>, i, <span class="st">&quot;:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb106-3"><a href="control-structures.html#cb106-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;    See you later!</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb106-4"><a href="control-structures.html#cb106-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="control-structures.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb15-2"><a href="control-structures.html#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;This is exectuion number&quot;</span>, i, <span class="st">&quot;:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb15-3"><a href="control-structures.html#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;    See you later!</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb15-4"><a href="control-structures.html#cb15-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## This is exectuion number 1 :
 ##     See you later!
 ## This is exectuion number 2 :
@@ -466,14 +457,14 @@ Note that statement 1 and statement 2 are in curly brackets! The indentation of 
 <h2><span class="header-section-number">4.5</span> Loops with conditional statements<a href="control-structures.html#loops-with-conditional-statements" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now that we have seen both types of control structures, <strong>conditional statements</strong> and <strong>loops</strong>, we can combine these structures. R, as most other programming languages, allows you to include conditional statements within a loop or a loop within a conditional statement.</p>
 <p>A simple example is this bit of code that defines a countdown:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="control-structures.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Example: countdown!</span></span>
-<span id="cb108-2"><a href="control-structures.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">0</span>) {</span>
-<span id="cb108-3"><a href="control-structures.html#cb108-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">==</span> <span class="dv">0</span>) {</span>
-<span id="cb108-4"><a href="control-structures.html#cb108-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Go!</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb108-5"><a href="control-structures.html#cb108-5" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb108-6"><a href="control-structures.html#cb108-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(i, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb108-7"><a href="control-structures.html#cb108-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb108-8"><a href="control-structures.html#cb108-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="control-structures.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Example: countdown!</span></span>
+<span id="cb17-2"><a href="control-structures.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">0</span>) {</span>
+<span id="cb17-3"><a href="control-structures.html#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (i <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb17-4"><a href="control-structures.html#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;Go!</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb17-5"><a href="control-structures.html#cb17-5" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb17-6"><a href="control-structures.html#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(i, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb17-7"><a href="control-structures.html#cb17-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb17-8"><a href="control-structures.html#cb17-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## 3 
 ## 2 
 ## 1 
@@ -487,18 +478,18 @@ Note that statement 1 and statement 2 are in curly brackets! The indentation of 
 </summary>
 <p>
 <p><i><font color="grey"></p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="control-structures.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb110-2"><a href="control-structures.html#cb110-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-3"><a href="control-structures.html#cb110-3" aria-hidden="true" tabindex="-1"></a>cities <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Salzburg&quot;</span>, <span class="st">&quot;Linz&quot;</span>, <span class="st">&quot;Wien&quot;</span>, <span class="st">&quot;Eisenstadt&quot;</span>, <span class="st">&quot;Innsbruck&quot;</span>, <span class="st">&quot;Graz&quot;</span>)</span>
-<span id="cb110-4"><a href="control-structures.html#cb110-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb110-5"><a href="control-structures.html#cb110-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (city <span class="cf">in</span> cities){</span>
-<span id="cb110-6"><a href="control-structures.html#cb110-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">str_starts</span>(city, <span class="st">&quot;S&quot;</span>)){</span>
-<span id="cb110-7"><a href="control-structures.html#cb110-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;City name starts with S&quot;</span>)</span>
-<span id="cb110-8"><a href="control-structures.html#cb110-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span>{</span>
-<span id="cb110-9"><a href="control-structures.html#cb110-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;City name starts with other letter&quot;</span>)</span>
-<span id="cb110-10"><a href="control-structures.html#cb110-10" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb110-11"><a href="control-structures.html#cb110-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb110-12"><a href="control-structures.html#cb110-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="control-structures.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb19-2"><a href="control-structures.html#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="control-structures.html#cb19-3" aria-hidden="true" tabindex="-1"></a>cities <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Salzburg&quot;</span>, <span class="st">&quot;Linz&quot;</span>, <span class="st">&quot;Wien&quot;</span>, <span class="st">&quot;Eisenstadt&quot;</span>, <span class="st">&quot;Innsbruck&quot;</span>, <span class="st">&quot;Graz&quot;</span>)</span>
+<span id="cb19-4"><a href="control-structures.html#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="control-structures.html#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (city <span class="cf">in</span> cities){</span>
+<span id="cb19-6"><a href="control-structures.html#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">str_starts</span>(city, <span class="st">&quot;S&quot;</span>)){</span>
+<span id="cb19-7"><a href="control-structures.html#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;City name starts with S&quot;</span>)</span>
+<span id="cb19-8"><a href="control-structures.html#cb19-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span>{</span>
+<span id="cb19-9"><a href="control-structures.html#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;City name starts with other letter&quot;</span>)</span>
+<span id="cb19-10"><a href="control-structures.html#cb19-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb19-11"><a href="control-structures.html#cb19-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb19-12"><a href="control-structures.html#cb19-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;City name starts with S&quot;
 ## [1] &quot;City name starts with other letter&quot;
 ## [1] &quot;City name starts with other letter&quot;
@@ -573,20 +564,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
