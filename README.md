@@ -9,7 +9,7 @@ In this module, the granolarr materials will be adapted and extended to fit the 
 
 ToDos:
 
-* add long and wide table formats (see data wrangling de sabbata)
+* add long and wide table conversion (see spread and gather: https://datascienceplus.com/converting-data-from-long-to-wide-and-from-wide-to-long-simplified-tidyverse-package/)
 * spatial data wrangling as new lesson
 * add raw and complex as additional simple data types, see [pull request Gabriel Gaona](https://github.com/UNIGIS-Salzburg/Opt_AppDev-R/pulls)
 * new tidymodels library for modeling and machine learning using tidyverse principles, new lesson on machine learning
