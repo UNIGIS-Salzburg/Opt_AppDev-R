@@ -10,10 +10,15 @@ In this module, the granolarr materials will be adapted and extended to fit the 
 ToDos:
 
 * add long and wide table conversion (see spread and gather: https://datascienceplus.com/converting-data-from-long-to-wide-and-from-wide-to-long-simplified-tidyverse-package/)
-* spatial data wrangling as new lesson
-* add raw and complex as additional simple data types, see [pull request Gabriel Gaona](https://github.com/UNIGIS-Salzburg/Opt_AppDev-R/pulls)
-* new tidymodels library for modeling and machine learning using tidyverse principles, new lesson on machine learning
 
+Updates for 6 ECTS Module:
+
+* new lesson 4 'Spatial Data Structures': intro sf, sfc, raster objects (watch out: terra replaces the raster package), stars package with spatiotemporal arrays and coordinate reference systems in R, convert from data frame / tibble to sf with st_as_sf, get crs with st_crs, assign crs with st_set_crs, project with st_transform etc. (see https://thinking-spatial.org/courses/angewandte_geodatenverarbeitung/kurs03/#coordinate-reference-systems-crs)   
+* new lesson 7 'spatial data wrangling', filter sf objects and raster by condition, spatial joins, simple geometric operations like intersect and buffer (use terra or sfdep packages)
+* new outlook lesson 'chatgpt and R'. similar to:
+Part 1: https://www.youtube.com/watch?v=QDf-zc81NSE&t=6s
+Part 2: https://www.youtube.com/watch?v=gn1BrRUBr74
+* add two additional assignments
 
 ## Interesting API-Call's (if the OpenWeather API has some issues in the near future.)
 
