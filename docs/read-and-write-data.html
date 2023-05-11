@@ -463,37 +463,44 @@ Figure 7.1: Video (3:13 min): REST API concepts and examples.
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="read-and-write-data.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">status_code</span>(get)</span></code></pre></div>
 <pre><code>## [1] 200</code></pre>
 <div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="read-and-write-data.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">content</span>(get))</span></code></pre></div>
-<pre><code>## List of 13
+<pre><code>## List of 14
 ##  $ coord     :List of 2
 ##   ..$ lon: num 13
 ##   ..$ lat: num 47.8
-##  $ weather   :List of 1
+##  $ weather   :List of 2
 ##   ..$ :List of 4
-##   .. ..$ id         : int 801
-##   .. ..$ main       : chr &quot;Clouds&quot;
-##   .. ..$ description: chr &quot;few clouds&quot;
-##   .. ..$ icon       : chr &quot;02d&quot;
+##   .. ..$ id         : int 501
+##   .. ..$ main       : chr &quot;Rain&quot;
+##   .. ..$ description: chr &quot;moderate rain&quot;
+##   .. ..$ icon       : chr &quot;10d&quot;
+##   ..$ :List of 4
+##   .. ..$ id         : int 701
+##   .. ..$ main       : chr &quot;Mist&quot;
+##   .. ..$ description: chr &quot;mist&quot;
+##   .. ..$ icon       : chr &quot;50d&quot;
 ##  $ base      : chr &quot;stations&quot;
 ##  $ main      :List of 6
-##   ..$ temp      : num 293
-##   ..$ feels_like: num 293
-##   ..$ temp_min  : num 291
-##   ..$ temp_max  : num 298
-##   ..$ pressure  : int 1020
-##   ..$ humidity  : int 72
-##  $ visibility: int 10000
+##   ..$ temp      : num 282
+##   ..$ feels_like: num 281
+##   ..$ temp_min  : num 281
+##   ..$ temp_max  : num 284
+##   ..$ pressure  : int 1015
+##   ..$ humidity  : int 99
+##  $ visibility: int 4000
 ##  $ wind      :List of 2
-##   ..$ speed: num 4.12
-##   ..$ deg  : int 20
+##   ..$ speed: num 2.06
+##   ..$ deg  : int 30
+##  $ rain      :List of 1
+##   ..$ 1h: num 0.24
 ##  $ clouds    :List of 1
-##   ..$ all: int 20
-##  $ dt        : int 1683208939
+##   ..$ all: int 75
+##  $ dt        : int 1683791988
 ##  $ sys       :List of 5
 ##   ..$ type   : int 1
 ##   ..$ id     : int 6877
 ##   ..$ country: chr &quot;AT&quot;
-##   ..$ sunrise: int 1683171967
-##   ..$ sunset : int 1683224591
+##   ..$ sunrise: int 1683776147
+##   ..$ sunset : int 1683829969
 ##  $ timezone  : int 7200
 ##  $ id        : int 2766824
 ##  $ name      : chr &quot;Salzburg&quot;
