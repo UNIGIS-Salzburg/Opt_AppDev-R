@@ -321,7 +321,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In the example above, the <strong>condition</strong> ‘a_value &lt; 0’ is TRUE, <strong>statement 1</strong> ‘cat(“Negative”)’ gets executed and <strong>statement 2</strong> ‘cat(“Positive”)’ is ignored. If you change ‘a_value’ to a positive value, the interpreter will ignore statement 1 and execute statement 2.</p>
 
 <div class="rmdtip">
-Note that statement 1 and statement 2 are in curly brackets! The indentation of statements is good programming practice, however does not affect the functioning of the code.
+<p>Note that statement 1 and statement 2 are in curly brackets! The indentation of statements is good programming practice, however does not affect the functioning of the code.</p>
+However, inserting a line break before ‘else’ returns an error. The reason for this behavior is explained in <a href="https://stackoverflow.com/questions/37929184/if-else-does-the-line-break-between-and-else-really-matters" target="_blank">a forum thread</a>.
 </div>
 </div>
 <div id="code-blocks" class="section level2 hasAnchor" number="4.3">

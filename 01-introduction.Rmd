@@ -12,7 +12,7 @@ After you have learned how to manipulate data, you will get to know methods to *
 Upon the completion of this module, you will have the fundamental skills in R programming as a basis for more advanced methods like Geospatial Data Analysis (is covered by the module "Spatial Statistics" in the MSc program) and Machine Learning.
 
 ```{block2, type = 'rmdtip'}
-This module is partly based on the teaching materials [granolarr](https://github.com/sdesabbata/granolarr){target="_blank"} worked out by [Stefano de Sabbata](https://stefanodesabbata.com/){target="_blank"} at the [University of Leicester](https://le.ac.uk/){target="_blank"}. For more information take a look at the Webbook [R for Geographic Data Science](https://sdesabbata.github.io/r-for-geographic-data-science/){target="_blank"}. The chapters on **Statistical Analysis** and **Machine Learning** are recommended as a follow up read for those who are willing to delve into more advanced applications of R. 
+This module is partly based on the teaching materials [granolarr](https://github.com/sdesabbata/granolarr){target="_blank"} worked out by [Stefano de Sabbata](https://sdesabbata.github.io/){target="_blank"} at the [University of Leicester](https://le.ac.uk/){target="_blank"}. For more information take a look at the Webbook [R for Geographic Data Science](https://sdesabbata.github.io/r-for-geographic-data-science/){target="_blank"}. The chapters on **Statistical Analysis** and **Machine Learning** are recommended as a follow up read for those who are willing to delve into more advanced applications of R. 
 ```
 
 ## R programming language
@@ -206,7 +206,7 @@ Type and execute (Enter button) in the RStudio console to validate your assumpti
 
 ## References
 
-Apart from [Stefano de Sabbata's](https://stefanodesabbata.com/){target="_blank"} teaching materials, a number of other sources are use in this module. Most of them are freely available online:
+Apart from [Stefano de Sabbata's](https://sdesabbata.github.io/){target="_blank"} teaching materials, a number of other sources are use in this module. Most of them are freely available online:
 
 - The Grammar Of Graphics – All You Need to Know About ggplot2 and Pokemons by Pascal Schmidt. see [Online Tutorial](https://thatdatatho.com/grammar-of-graphics-ggplot2/){target="_blank"}
 - ggplot2 - Overview. see [Online Documentation](https://ggplot2.tidyverse.org/){target="_blank"}

@@ -123,13 +123,13 @@ flights_from_nyc %>%
 
 ```{block2, type = 'rmdexercise'}
 
-Run the mutate example above in a new script and replace `dplyr::mutate` by `dplyr::transmutate`. What happens to your results?
+Run the mutate example above in a new script and replace `dplyr::mutate` by `dplyr::transmute`. What happens to your results?
   
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
 <p><i><font color="grey">
   
-The `transmutate` function adds a new column to the table and drops existing ones.
+The `transmute` function adds a new column to the table and drops existing ones.
     
 </font></i>
 </p>
