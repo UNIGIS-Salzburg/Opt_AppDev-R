@@ -24,3 +24,18 @@ Part 2: https://www.youtube.com/watch?v=gn1BrRUBr74
 
 https://api.nasa.gov/ #free to use - API-keys, that need different parameters.
 for example: https://epic.gsfc.nasa.gov/about/api
+
+## Used Packages in Module:
+[provided by: https://github.com/UNIGIS-Salzburg/Opt_AppDev-R/blob/developer/packagechecker.R ]
+```
+ggplot2
+ggspatial
+httr
+jsonlite
+knitr
+leaflet
+nycflights13
+sf
+stringr
+tidyverse
+```
