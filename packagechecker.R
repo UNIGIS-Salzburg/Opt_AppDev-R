@@ -12,6 +12,7 @@ for (rmd_file in rmd_files) {
   used_packages <- c(used_packages, packages)
 }
 
+# sorts used_packages
 used_packages <- sort(unique(unlist(used_packages)))
 cat("Packages used in the Bookdown project:\n")
 cat(used_packages, sep = "\n")
