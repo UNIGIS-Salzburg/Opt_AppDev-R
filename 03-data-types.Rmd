@@ -147,7 +147,7 @@ all(a_numeric_vector >= 3)
 ```
 
 ```{block2, type = 'rmdtip'}
-A **factor** is a data type similar to a vector. However, the values contained in a factor can only be selected from a set of **levels**. Factors will not be covered in the module. For more information on this data type turn to the online tutorial [Programming with R](https://swcarpentry.github.io/r-novice-inflammation/12-supp-factors/index.html){target="_blank"}
+A **factor** is a data type similar to a vector. However, the values contained in a factor can only be selected from a set of **levels**. Factors will not be covered in the module. For more information on this data type turn to the online tutorial [Programming with R](https://swcarpentry.github.io/r-novice-inflammation/12-supp-factors.html){target="_blank"}
 ```
 
 ## Multi-dimensional data types

@@ -106,7 +106,7 @@ sf::st_geometry(nc) %>%
 ```
 
 ```{block2, type = 'rmdtip'}
-The online book [Geocomputation with R](https://geocompr.robinlovelace.net/geometric-operations.html){target="_blank"} offers a more comprehensive explanation of available geometric, attribute and spatial data operations. For a quick overview, you may turn to the [sf cheatsheets](https://github.com/rstudio/cheatsheets/blob/master/sf.pdf){target="_blank"}. 
+The online book [Geocomputation with R](https://r.geocompx.org/){target="_blank"} offers a more comprehensive explanation of available geometric, attribute and spatial data operations. For a quick overview, you may turn to the [sf cheatsheets](https://github.com/rstudio/cheatsheets/blob/master/sf.pdf){target="_blank"}. 
 ```
 
 In order to test the code on your machine, [download](data/nc-centroids.zip){target="_blank"} the North Carolina dataset and install the libraries `sf` and `Rcpp` before you run the code in an R-Script.   
