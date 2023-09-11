@@ -1,6 +1,7 @@
 # Load the httr2 library
 library(httr2)
 
+
 # Define the base URL and parameters
 base <- "http://api.openweathermap.org/data/2.5/weather"
 lat <- "47.81"    
