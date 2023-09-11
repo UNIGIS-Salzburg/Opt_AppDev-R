@@ -1,8 +1,40 @@
 # New Chapter: **Spatial Data Structures (see modified chapters)**
-- Which packages can enhance **vector data workflow and data structures?**
-- What emerging standards (e.g., STDEV, TERRA) **are shaping spatial data structures**?
-- How can packages like **`terra`** and **`sfdep`** contribute to spatial data wrangling tasks?
-    - **`sfdep`** **:** Investigate the features and benefits of the **`sfdep`** package for spatial data management. Explore how **`sfdep`** data structures compare to traditional methods and how they can optimize spatial data workflows.
-    - **TERRA:** Examine the spatial data structure capabilities of the TERRA package. Determine whether TERRA provides a more efficient approach to handling and analyzing large geospatial datasets.
-    
-    **Compare the data structures of these packages with traditional options like `sf` and other existing solutions**. Consider factors like performance, scalability, and **ease of use while evaluating the "golden standard" for spatial data structures**.
+
+(Basic outline)
+
+In this chapter, we'll delve into the world of spatial data structures in R. We'll explore how to represent, manipulate, and analyze spatial data using state-of-the-art libraries.
+
+## Introduction to Spatial Data
+- Definition and types of spatial data: vector (points, lines, polygons) and raster.
+- Importance of spatial data in various domains: urban planning, environmental science, transportation, etc.
+
+## Setting Up
+- Installing and loading essential packages: sf, terra, sp, raster, and others.
+
+## Simple Features (sf)
+- Introduction to the sf package: a modern approach to spatial data in R.
+- Creating simple feature objects from vectors and data frames.
+- Reading and writing spatial data with sf.
+- Basic spatial operations: buffering, overlay, and spatial joins.
+
+
+## Raster Data with terra
+- Introduction to the terra package: a newer and faster approach to raster data.
+- Creating, reading, and writing raster data.
+- Raster algebra and analysis.
+- Conversion between raster and vector data.
+
+
+## Spatial Visualization ?
+- Static maps with ggplot2 and sf. ?
+- Interactive maps with mapview and leaflet. ?
+
+## Ideas for Advanced Topics
+- Spatial interpolation techniques.
+- Spatial regression and statistical analysis.
+- Working with large datasets: tips and best practices.
+
+## Exercises and Practical Applications
+- Loading and visualizing a real-world spatial dataset, based on ... 
+- Performing basic spatial operations and analysis on the dataset ..
+- Creating interactive visualizations to explore the data ..
