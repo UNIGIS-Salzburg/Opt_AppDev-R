@@ -1,40 +1,53 @@
 # New Chapter: **Spatial Data Structures (see modified chapters)**
 
-(Basic outline)
+(Basic outline - avoid overlap with chapter 7!)
 
-In this chapter, we'll delve into the world of spatial data structures in R. We'll explore how to represent, manipulate, and analyze spatial data using state-of-the-art libraries.
+## Introduction
+- Briefly discuss the importance of spatial data structures in geoinformatics and related fields.
+- Highlight the difference between traditional data structures and spatial data structures.
 
-## Introduction to Spatial Data
-- Definition and types of spatial data: vector (points, lines, polygons) and raster.
-- Importance of spatial data in various domains: urban planning, environmental science, transportation, etc.
+## Fundamental Spatial Data Structures
+- Vector Data Structures:
+- Points: Basic units in space.
+- Lines: Sequences of points.
+- Polygons: Closed lines with associated areas.
 
-## Setting Up
-- Installing and loading essential packages: sf, terra, sp, raster, and others.
+## Raster Data Structures:
+- Grids: Regularly spaced cells.
+- Pixels: The smallest non-divisible units in raster data.
 
-## Simple Features (sf)
-- Introduction to the sf package: a modern approach to spatial data in R.
-- Creating simple feature objects from vectors and data frames.
-- Reading and writing spatial data with sf.
-- Basic spatial operations: buffering, overlay, and spatial joins.
+## Representing Spatial Data Structures in R (watchout for old chapters!)
+### Simple Features (sf):
+- How sf represents vector data structures.
+- sf objects and their components.
+- Advantages of using sf over traditional spatial packages in R.
 
-
-## Raster Data with terra
-- Introduction to the terra package: a newer and faster approach to raster data.
-- Creating, reading, and writing raster data.
-- Raster algebra and analysis.
-- Conversion between raster and vector data.
+### Raster Data with terra:
+- How terra represents raster data structures.
+- Differences between terra and older packages like raster.
 
 
-## Spatial Visualization ?
-- Static maps with ggplot2 and sf. ?
-- Interactive maps with mapview and leaflet. ?
+## Spatial Indexing
+- Introduction to spatial indexing and its importance.
+Common spatial indexing techniques:
+- Quadtree
+- R-tree
+- KD-tree
 
-## Ideas for Advanced Topics
-- Spatial interpolation techniques.
-- Spatial regression and statistical analysis.
-- Working with large datasets: tips and best practices.
+- How spatial indexing is implemented in R packages.
 
-## Exercises and Practical Applications
-- Loading and visualizing a real-world spatial dataset, based on ... 
-- Performing basic spatial operations and analysis on the dataset ..
-- Creating interactive visualizations to explore the data ..
+### Topological Relationships
+Here we could then discuss spatial relationships like:
+- Adjacency (what's next to what)
+- Connectivity (how things are connected)
+- Containment (what contains what)
+Importance of understanding topological relationships in spatial analysis.
+
+
+## Challenges in Spatial Data Structures
+Issues with data integrity and accuracy.
+- Handling different coordinate reference systems (CRS).
+- Dealing with large spatial datasets.
+
+## Practical Applications and Exercises
+- Finally, focus on understanding spatial data structures in R:
