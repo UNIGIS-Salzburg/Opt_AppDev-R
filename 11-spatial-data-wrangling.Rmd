@@ -1,59 +1,44 @@
-# New Chapter: **Spatial Data Wrangling (see modified chapters)**
+# Spatial Data Wrangling
 
-### Example of ****Spatial Data Wrangling****
+## Spatial Aggregation
+Aggregating spatial data based on certain attributes or spatial units. For instance, summing up population data by administrative boundaries.
 
-Spatial data wrangling involves the manipulation and transformation of spatial data structures, such as vector and raster datasets. This chapter delves into techniques specific to spatial data, building upon the foundational data wrangling concepts introduced in the previous chapter.
-
-### **Preparation**
-
-**Ensure you have the required spatial libraries installed and loaded:**
-
-
-- library(sf)
-- library(terra)
-- library(sfdep)
-
-
-### **Spatial Data Manipulation**
-
-### **Filtering `sf` Objects**
-
-Filtering spatial features based on attribute or spatial conditions:
-
-```{r, echo=TRUE}
-# Example code here
+```{r}
+# Example code for spatial aggregation
 ```
 
-### **Spatial Joins**
+## Coordinate Transformations
+Changing the spatial reference system of datasets to ensure they're on the same projection or to transform them to a more suitable projection for analysis.
 
-Joining two spatial datasets based on their spatial relationship:
-
-```{r, echo=TRUE}
-# Example code here
+```{r}
+# Example code for coordinate transformations
 ```
 
-### **Geometric Operations**
+## Raster Resampling and Reprojection
+Adjusting the resolution of raster datasets or changing their projection.
 
-### Intersect
+```{r}
+# Example code for raster resampling and reprojection
+```
+Merging and Appending Spatial Data
+Combining multiple spatial datasets into one, either by stacking attributes (columns) or by appending features (rows).
 
-Finding the common spatial elements between two datasets:
-
-```{r, echo=TRUE}
-# Example code here 
+```{r}
+# Example code for merging and appending
 ```
 
-### Buffer
+## Handling Missing Data
+Spatial datasets often have missing values. Here, we could discuss methods to identify, visualize, and impute missing data.
 
-Creating a buffer zone around a spatial feature:
+```{r}
+# Example code for handling missing data
+```
+## Spatial Data Cleaning
+Detecting and correcting topological errors, such as slivers, gaps, or overlaps in polygon datasets.
 
-```{r, echo=TRUE}
-# Example code here
+```{r}
+# Example code for spatial data cleaning
 ```
 
-### **Exercises: Spatial Data Wrangling**
-
-```{r, echo=TRUE}
-# Exercise details here
-```
-
-usw..
+## Case Study: A Complete Spatial Data Wrangling Workflow
+Maybe we could end it here with a Case Study to read that shows a workflow etc.

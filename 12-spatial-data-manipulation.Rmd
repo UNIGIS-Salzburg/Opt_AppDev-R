@@ -1,5 +1,76 @@
 # New Chapter: **Spatial Data Manipulation (see modified chapters)**
-- Focus on **key skills** for **spatial data wrangling**:
-    - Filtering **`sf`** objects and rasters based on conditions.
-    - **Conducting spatial joins** and **geometric** operations (e.g., intersect, buffer).
-- **Investigate** which packages (e.g., **`terra`**, **`sfdep`**) excel in specific spatial operations.
+
+## Introduction
+Here, we could briefly explain the difference between data wrangling and data manipulation in the spatial context. Highlight the importance of spatial data manipulation in GIS and spatial analysis workflows.
+
+## Filtering Spatial Data
+### Filtering sf Objects
+Demonstrate how to filter spatial features in sf objects based on attribute conditions.
+
+```{r}
+# Example code for filtering sf objects
+```
+### Filtering Rasters
+Show how to filter raster data based on cell values or spatial conditions.
+
+```{r}
+# Example code for filtering rasters
+```
+
+## Spatial Joins
+Explain the concept of spatial joins and demonstrate how to join two spatial datasets based on their spatial relationship.
+
+```{r}
+# Example code for spatial joins
+```
+
+## Geometric Operations
+
+###Intersect
+Demonstrate how to find the common spatial elements between two datasets.
+
+```{r}
+# Example code for intersect operation
+```
+
+### Buffer
+Show how to create a buffer zone around a spatial feature.
+
+```{r}
+# Example code for buffer operation
+```
+
+### Union and Difference
+Explain and demonstrate the union and difference operations between two spatial datasets.
+
+```{r}
+# Example code for union and difference operations
+```
+
+## Coordinate Transformations and Reprojections
+Discuss the importance of having datasets in the same coordinate system and demonstrate how to reproject spatial data.
+
+```{r}
+# Example code for coordinate transformations
+```
+
+## Raster Operations
+
+### Resampling
+Show how to change the resolution of raster datasets.
+
+```{r}
+# Example code for raster resampling
+```
+
+### Raster Algebra
+Demonstrate basic raster algebra operations like addition, subtraction, and multiplication of raster layers.
+
+```{r}
+# Example code for raster algebra
+```
+
+## Comparative Analysis of Packages
+Investigate and compare the performance (caching and stuff), ease of use, and capabilities of different packages like sf, terra, and sfdep for various spatial operations... (just an idea)
+
+## Exercise ..
