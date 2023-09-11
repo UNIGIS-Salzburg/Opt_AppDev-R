@@ -1,21 +1,20 @@
-# Spatial Data Wrangling
-
+# New Chapter: **Spatial Data Wrangling (see modified chapters)**
 ## Spatial Aggregation
-Aggregating spatial data based on certain attributes or spatial units. For instance, summing up population data by administrative boundaries.
+First: Aggregating spatial data based on certain attributes or spatial units. For instance, summing up population data by for example administrative boundaries.
 
 ```{r}
 # Example code for spatial aggregation
 ```
 
 ## Coordinate Transformations
-Changing the spatial reference system of datasets to ensure they're on the same projection or to transform them to a more suitable projection for analysis.
+Changing the spatial reference system of datasets to ensure they're on the same projection or to transform them to a more suitable projection for analysis. (needs to be checked, if it makes sense with the old chaters)
 
 ```{r}
 # Example code for coordinate transformations
 ```
 
 ## Raster Resampling and Reprojection
-Adjusting the resolution of raster datasets or changing their projection.
+Adjusting the resolution of raster datasets or changing their projection...
 
 ```{r}
 # Example code for raster resampling and reprojection
@@ -28,7 +27,7 @@ Combining multiple spatial datasets into one, either by stacking attributes (col
 ```
 
 ## Handling Missing Data
-Spatial datasets often have missing values. Here, we could discuss methods to identify, visualize, and impute missing data.
+Spatial datasets often have missing values. Here, we could discuss methods to identify, visualize, and impute missing data. (I would say, a important one)
 
 ```{r}
 # Example code for handling missing data
@@ -41,4 +40,4 @@ Detecting and correcting topological errors, such as slivers, gaps, or overlaps 
 ```
 
 ## Case Study: A Complete Spatial Data Wrangling Workflow
-Maybe we could end it here with a Case Study to read that shows a workflow etc.
+Maybe we could end it here with a Case Study to read that shows a workflow etc. Or just an Exercise?
