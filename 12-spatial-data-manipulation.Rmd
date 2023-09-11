@@ -1,0 +1,5 @@
+# New Chapter: **Spatial Data Manipulation (see modified chapters)**
+- Focus on **key skills** for **spatial data wrangling**:
+    - Filtering **`sf`** objects and rasters based on conditions.
+    - **Conducting spatial joins** and **geometric** operations (e.g., intersect, buffer).
+- **Investigate** which packages (e.g., **`terra`**, **`sfdep`**) excel in specific spatial operations.

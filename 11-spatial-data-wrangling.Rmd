@@ -1,0 +1,59 @@
+# New Chapter: **Spatial Data Wrangling (see modified chapters)**
+
+### Example of ****Spatial Data Wrangling****
+
+Spatial data wrangling involves the manipulation and transformation of spatial data structures, such as vector and raster datasets. This chapter delves into techniques specific to spatial data, building upon the foundational data wrangling concepts introduced in the previous chapter.
+
+### **Preparation**
+
+**Ensure you have the required spatial libraries installed and loaded:**
+
+
+- library(sf)
+- library(terra)
+- library(sfdep)
+
+
+### **Spatial Data Manipulation**
+
+### **Filtering `sf` Objects**
+
+Filtering spatial features based on attribute or spatial conditions:
+
+```{r, echo=TRUE}
+# Example code here
+```
+
+### **Spatial Joins**
+
+Joining two spatial datasets based on their spatial relationship:
+
+```{r, echo=TRUE}
+# Example code here
+```
+
+### **Geometric Operations**
+
+### Intersect
+
+Finding the common spatial elements between two datasets:
+
+```{r, echo=TRUE}
+# Example code here 
+```
+
+### Buffer
+
+Creating a buffer zone around a spatial feature:
+
+```{r, echo=TRUE}
+# Example code here
+```
+
+### **Exercises: Spatial Data Wrangling**
+
+```{r, echo=TRUE}
+# Exercise details here
+```
+
+usw..
