@@ -48,7 +48,7 @@ Has a high probabilty of changing way faster then state of the art packages or s
 - **Assess** the **complexity and relevance** of the topic.
 - Explore **whether to use ChatGPT or explore alternative technologies**.
 - **Determine the required frequency of updates** for the lesson (**Note**: with a high probability that it may require more updates than even the packages.. Main reason why I would debate).
-- Altough, there are very interesting plugins for programming and data visualisations see GPT-4 (altough, so far, Advanced Data Analysis only uses Python - Time of Writing: (11.09.2023))
+- Altough, there are very interesting plugins for programming and data visualisations see GPT-4 (altough, so far, Advanced Data Analysis only uses Python - Time of Writing: (11.09.2023) - and the data analysis tool is for paying customers.)
 
 #### Chapter X: "Machine Learning with Spatial Data"
 Very debatable, ... ML workloads normally need a lot of foundation in mathematical understanding...
