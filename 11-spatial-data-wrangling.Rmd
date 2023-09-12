@@ -1,43 +1,67 @@
-# New Chapter: **Spatial Data Wrangling (see modified chapters)**
+# New Chapter: Spatial Data Wrangling
+## Introduction
+- Briefly discuss the importance of spatial data wrangling in geoinformatics and related fields.
+- Quick highlight of the difference between traditional data wrangling and spatial data wrangling.
+
 ## Spatial Aggregation
-First: Aggregating spatial data based on certain attributes or spatial units. For instance, summing up population data by for example administrative boundaries.
+- Aggregating spatial data based on certain attributes or spatial units.
+- Introduce the sf and terra packages for aggregation tasks.
 
 ```{r}
-# Example code for spatial aggregation
+# Example code for spatial aggregation using sf and terra
 ```
 
 ## Coordinate Transformations
-Changing the spatial reference system of datasets to ensure they're on the same projection or to transform them to a more suitable projection for analysis. (needs to be checked, if it makes sense with the old chaters)
+- See Chapter 10 prototype
+- Changing the spatial reference system of datasets.
+- Discuss the importance of coordinate transformations in spatial analysis.
+- Introduce the sf package for these tasks.
+- Visualizing the results of coordinate transformations.
+- Then, for example Introduce the ggspatial package for visualizing transformed spatial data in conjunction with ggplot2. (**Note that, ggspatial was introduced in chapter 8. Data Visualisation.. Very briefly.**)
 
 ```{r}
-# Example code for coordinate transformations
+# Example code for coordinate transformations using sf
 ```
 
 ## Raster Resampling and Reprojection
-Adjusting the resolution of raster datasets or changing their projection...
-
+- Adjusting the resolution of raster datasets or changing their projection.
+- Introduce the terra package for these tasks.
 ```{r}
-# Example code for raster resampling and reprojection
+# Example code for raster resampling and reprojection using terra
 ```
-Merging and Appending Spatial Data
-Combining multiple spatial datasets into one, either by stacking attributes (columns) or by appending features (rows).
 
+## Merging and Appending Spatial Data
+- Combining multiple spatial datasets.
+- Introduce the sf package for these tasks.
 ```{r}
-# Example code for merging and appending
+# Example code for merging and appending using sf
 ```
 
 ## Handling Missing Data
-Spatial datasets often have missing values. Here, we could discuss methods to identify, visualize, and impute missing data. (I would say, a important one)
+- Discuss methods to identify, visualize, and impute missing data.
+- Introduce the tidyverse suite for handling missing data in spatial datasets. (but again, watchout for httr1 and httr2 + (**time of writing 12.09.2023**)
 
 ```{r}
-# Example code for handling missing data
+# Example code for handling missing data using tidyverse
 ```
+
 ## Spatial Data Cleaning
-Detecting and correcting topological errors, such as slivers, gaps, or overlaps in polygon datasets.
+- Detecting and correcting topological errors.
+- Introduce the sf and spatstat packages for these tasks.
 
 ```{r}
-# Example code for spatial data cleaning
+# Example code for spatial data cleaning using sf and spatstat
+```
+
+## Multidimensional Data Wrangling with stars
+- Handling and manipulating multidimensional arrays.
+- Discuss the importance of stars in the R spatial ecosystem.
+
+```{r}
+# Example code for wrangling multidimensional data using stars
 ```
 
 ## Case Study: A Complete Spatial Data Wrangling Workflow
-Maybe we could end it here with a Case Study to read that shows a workflow etc. Or just an Exercise?
+- Would be a quite interesting change of wind: a comprehensive case study integrating various spatial data wrangling techniques...
+- This could be based on a real-world scenario, such as urban planning, environmental monitoring, or transportation.
+- Alternatively, a set of exercises allowing our students to apply the techniques learned in the chapter.

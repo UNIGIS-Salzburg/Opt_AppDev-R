@@ -4,6 +4,7 @@
 - here, we could discuss the importance of spatial data structures in geoinformatics and related fields.
 -  Highlight the difference between traditional data structures and spatial data structures.
 - Note that: This Chapter could end quite big?
+- **For the spatial chapters https://cran.r-project.org/web/packages/spData/index.html will be quite handy for practical use, which is actively developed on! - maybe even for De_MSc_GeoStat something to use!**
 
 ## Fundamentals of Spatial Data Structures
 ### Vector Data Structures:
@@ -20,21 +21,20 @@
 - How sf represents vector data structures.
 - sf objects and their components.
 - Maybe even a "food for thought", WHY we use "sf" a lot.
+- (Now, after we did the basics, get a bit deeper: Advanced operations with sf such as coordinate transformations, geometric operations, and spatial aggregations.)
 
-
-(Now, after we did the basics, get a bit deeper: Advanced operations with sf such as coordinate transformations, geometric operations, and spatial aggregations.)
 ## Raster Data with terra:
 - How terra represents raster data structures.
-- Differences between terra and older packages like raster. **(I actually think.. that's a good idea, because even though, we didn't cover raster. A lot of sources have used raster in the past, just to outline, that it was his predecessor)**
+- Differences between terra and older packages like raster. **Information: (I actually think.. that's a good idea, because even though, we didn't cover raster. A lot of sources have used raster in the past, just to outline, that it was his predecessor)**
 - dive deeper: Advanced raster operations, raster-vector conversions, and raster algebra with terra and intro to stars.
 
 ## Multidimensional Data with stars:
 - Introduction to stars and its capability to handle multidimensional arrays.
 - How stars complements sf and terra in the R spatial ecosystem.
 - Dive Deeper: Handling time series, three-dimensional data, and other multidimensional datasets with stars.
-Spatial Indexing
 
-## Introduction to spatial indexing and its importance.
+## Spatial Indexing
+- Introduction to spatial indexing and its importance.
 - Common spatial indexing techniques:
 - Quadtree
 - R-tree
