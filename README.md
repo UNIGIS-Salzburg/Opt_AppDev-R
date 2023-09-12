@@ -6,36 +6,67 @@ The contents of this module are based on [granolarr](https://sdesabbata.github.i
 
 In this module, the granolarr materials will be adapted and extended to fit the UNIGIS curriculum and layout of materials. Like the source materials, this work is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html).
 
+## Major Revision Branch
 
-ToDos:
+### Overview
+This branch focuses on the major revision of the course, emphasizing the integration of spatial concepts and tools in R. The objective is to provide a more comprehensive exploration of spatial data, primarily leveraging newer spatial packages in R. This naturally increases the course's workload but ensures students are exposed to the latest tools and techniques in spatial data analysis.
 
-* add long and wide table conversion (see spread and gather: https://datascienceplus.com/converting-data-from-long-to-wide-and-from-wide-to-long-simplified-tidyverse-package/)
+### Objectives
+- Enrich the course content by focusing on applied spatial concepts.
+- Explore and integrate newer spatial packages in R.
+- Provide hands-on exercises using spatial datasets and solving problems.
+- Foster a collaborative environment for students to share findings, challenges, and solutions... -> Discussion Forum and a few more Exercises via collapsible section [>]
 
-Updates for 6 ECTS Module:
+### Key Packages and Tools
+- Spatial Data: The [**spData**]() package could be a primary resource for practical exercises. It's actively developed and offers a variety of datasets suitable for our course. For more details, refer to their [**manual**]().
 
-* new lesson 4 'Spatial Data Structures': intro sf, sfc, raster objects (watch out: terra replaces the raster package), stars package with spatiotemporal arrays and coordinate reference systems in R, convert from data frame / tibble to sf with st_as_sf, get crs with st_crs, assign crs with st_set_crs, project with st_transform etc. (see https://thinking-spatial.org/courses/angewandte_geodatenverarbeitung/kurs03/#coordinate-reference-systems-crs)   
-* new lesson 7 'spatial data wrangling', filter sf objects and raster by condition, spatial joins, simple geometric operations like intersect and buffer (use terra or sfdep packages)
-* new outlook lesson 'chatgpt and R'. similar to:
-Part 1: https://www.youtube.com/watch?v=QDf-zc81NSE&t=6s
-Part 2: https://www.youtube.com/watch?v=gn1BrRUBr74
-* add two additional assignments
+- Spatial Packages: We'll be focusing on modern spatial packages like **sf**, **terra**, **stars**, and **spatstat**. These packages represent the current state-of-the-art in spatial data handling in R.
+  
+- Visualization: Packages like **ggplot2** and **ggspatial** will be used extensively for spatial data visualization.
 
-## Interesting API-Call's (if the OpenWeather API has some issues in the near future.)
+- (Consider retired packages see: [**evolution blog**](https://r-spatial.org/r/2023/05/15/evolution4.html) and [**spatial blog**](https://cran.r-project.org/web/views/Spatial.html), both reliable source of authors in the spatial R community.
 
-https://api.nasa.gov/ #free to use - API-keys, that need different parameters.
-for example: https://epic.gsfc.nasa.gov/about/api
+### Chapter Overview
+**Note:** high probability of change!
 
-## Used Packages in Module:
-[provided by: https://github.com/UNIGIS-Salzburg/Opt_AppDev-R/blob/developer/packagechecker.R ]
-```
-ggplot2
-ggspatial
-httr
-jsonlite
-knitr
-leaflet
-nycflights13
-sf
-stringr
-tidyverse
-```
+#### Chapter 10: Spatial Data Structures
+This chapter delves into the foundational concepts of spatial data structures. It distinguishes between traditional and spatial data structures, introduces vector and raster data structures, and demonstrates how to represent these structures in R using packages like **sf** and **terra**. Advanced topics include spatial indexing and topological relationships.
+
+#### Chapter 11: Spatial Data Wrangling
+Chapter 11 emphasizes the importance of spatial data wrangling. It covers spatial aggregation, coordinate transformations, raster resampling, and data merging. The chapter also addresses challenges like handling missing data and spatial data cleaning. Practical exercises and a comprehensive case study ensure students can apply the techniques learned.
+
+#### Chapter 12: Spatial Data Manipulation
+In this chapter, the distinction between data wrangling and data manipulation in the spatial context is highlighted. It covers filtering spatial data, spatial joins, geometric operations, and raster operations. The chapter also provides a comparative analysis of different spatial packages, ensuring students understand the strengths and weaknesses of each tools they heard of so far. And why it changes (R ecosystem vs. other ecosystems in Open Source land like Python).
+
+### Chapters to debate or just quick ideas:
+#### Chapter X: "ChatGPT and R":
+Has a high probabilty of changing way faster then state of the art packages or syntax of R language.
+- **Consider** creating an innovative lesson on integrating ChatGPT with R.
+- **Assess** the **complexity and relevance** of the topic.
+- Explore **whether to use ChatGPT or explore alternative technologies**.
+- **Determine the required frequency of updates** for the lesson (**Note**: with a high probability that it may require more updates than even the packages.. Main reason why I would debate).
+- Altough, there are very interesting plugins for programming and data visualisations see GPT-4 (altough, so far, Advanced Data Analysis only uses Python - Time of Writing: (11.09.2023))
+
+#### Chapter X: Machine Learning with Spatial Data
+Very debatable, ... ML workloads normally need a lot of foundation in mathematical understanding.
+- Introduce machine learning techniques tailored for spatial data.
+- Discuss spatial autocorrelation and its implications in predictive modeling.
+
+#### Chapter X: Web Applications for Spatial Data
+- Introduce the concept of creating web applications to showcase spatial analyses.
+- Discuss the importance of interactive web maps and dashboards.
+- Explore the **shiny** package and its integration with spatial packages.
+
+#### Chapter X: Spatial Data Visualization Techniques
+- Dive deeper into advanced visualization techniques specific to spatial data.
+- Explore 3D visualizations, interactive maps, and animation of spatial-temporal data.
+- Introduce packages like **mapview**, **leaflet**, and **rayshader**.
+
+#### Chapter X: Time-Series Analysis with Spatial Data
+- Discuss the importance of temporal data in spatial analyses.
+- Introduce techniques to analyze spatial data that changes over time.
+
+#### Chapter X: Integrating Remote Sensing Data in R
+- Introduce the concept of remote sensing and its importance in spatial analyses.
+- Discuss the processing and analysis of satellite imagery.
+- Explore packages like **stars**, and tools for specific satellite data.
