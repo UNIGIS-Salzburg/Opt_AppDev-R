@@ -3,6 +3,7 @@
 These learning materials are designed for the UNIGIS distance-learning study programs as part of a module that introduces into Application Development. 
 
 The contents of this module are based on [granolarr](https://sdesabbata.github.io/granolarr/), a *geogGRaphic dAta scieNce, reprOducibLe teAching resouRce in R* by Stefano De Sabbata, University of Leicester. 
+**!! important, source changed into [R for Geographic Data Science](https://github.com/sdesabbata/r-for-geographic-data-science)**
 
 In this module, the granolarr materials will be adapted and extended to fit the UNIGIS curriculum and layout of materials. Like the source materials, this work is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html).
 
@@ -11,6 +12,8 @@ In this module, the granolarr materials will be adapted and extended to fit the 
 ### Overview
 This branch focuses on the major revision of the course, emphasizing the integration of spatial concepts and tools in R. The objective is to provide a more comprehensive exploration of spatial data, primarily leveraging newer spatial packages in R. This naturally increases the course's workload but ensures students are exposed to the latest tools and techniques in spatial data analysis.
 
+Neat, consice information in: [Geocomputation with R](https://r.geocompx.org/)
+
 ### Objectives
 - Enrich the course content by focusing on applied spatial concepts.
 - Explore and integrate newer spatial packages in R.
@@ -18,13 +21,13 @@ This branch focuses on the major revision of the course, emphasizing the integra
 - Foster a collaborative environment for students to share findings, challenges, and solutions... -> Discussion Forum and a few more Exercises via collapsible section [>]
 
 ### Key Packages and Tools
-- Spatial Data: The [**spData**]() package could be a primary resource for practical exercises. It's actively developed and offers a variety of datasets suitable for our course. For more details, refer to their [**manual**]().
+- Spatial Data: The [**spData**](https://cran.r-project.org/web/packages/spData/index.html) package could be a primary resource for practical exercises. It's actively developed and offers a variety of datasets suitable for our course. For more details, refer to their [**manual**](https://cran.r-project.org/web/packages/spData/spData.pdf).
 
-- Spatial Packages: We'll be focusing on modern spatial packages like **sf**, **terra**, **stars**, and **spatstat**. These packages represent the current state-of-the-art in spatial data handling in R.
+- Spatial Packages: We'll be focusing on modern spatial packages like [**sf**](https://r-spatial.github.io/sf/), [**terra**](https://rspatial.org/pkg/), [**stars**](https://r-spatial.github.io/stars/), and [**spatstat**](https://cran.r-project.org/web/packages/spatstat/index.html). These packages represent the current state-of-the-art in spatial data handling in R.
   
-- Visualization: Packages like **ggplot2** and **ggspatial** will be used extensively for spatial data visualization.
+- Visualization: Packages like [**ggplot2**](https://ggplot2.tidyverse.org/) and [**ggspatial**](https://cran.r-project.org/web/packages/ggspatial/index.html) will be used extensively for spatial data visualization.
 
-- (Consider retired packages see: [**evolution blog**](https://r-spatial.org/r/2023/05/15/evolution4.html) and [**spatial blog**](https://cran.r-project.org/web/views/Spatial.html), both reliable source of authors in the spatial R community.
+- Consider retired packages see: [**evolution blog**](https://r-spatial.org/r/2023/05/15/evolution4.html) and [**spatial blog**](https://cran.r-project.org/web/views/Spatial.html), both reliable source of authors in the spatial R community.
 
 ### Chapter Overview
 **Note:** high probability of change!
@@ -47,22 +50,27 @@ Has a high probabilty of changing way faster then state of the art packages or s
 - **Determine the required frequency of updates** for the lesson (**Note**: with a high probability that it may require more updates than even the packages.. Main reason why I would debate).
 - Altough, there are very interesting plugins for programming and data visualisations see GPT-4 (altough, so far, Advanced Data Analysis only uses Python - Time of Writing: (11.09.2023))
 
-#### Chapter X: Machine Learning with Spatial Data
-Very debatable, ... ML workloads normally need a lot of foundation in mathematical understanding.
+#### Chapter X: "Machine Learning with Spatial Data"
+Very debatable, ... ML workloads normally need a lot of foundation in mathematical understanding...
 - Introduce machine learning techniques tailored for spatial data.
 - Discuss spatial autocorrelation and its implications in predictive modeling.
 
-#### Chapter X: Web Applications for Spatial Data
+#### Chapter X: "Web Applications for Spatial Data"
 - Introduce the concept of creating web applications to showcase spatial analyses.
 - Discuss the importance of interactive web maps and dashboards.
-- Explore the **shiny** package and its integration with spatial packages.
+- Explore the [**shiny**](https://shiny.posit.co/) package and its integration with spatial packages.
 
-#### Chapter X: Spatial Data Visualization Techniques
-- Dive deeper into advanced visualization techniques specific to spatial data.
+#### Chapter X: "Spatial Data Visualization Techniques"
+- Dives deeper into advanced visualization techniques specific to spatial data.
 - Explore 3D visualizations, interactive maps, and animation of spatial-temporal data.
-- Introduce packages like **mapview**, **leaflet**, and **rayshader**.
+- Introduce packages like [**mapview**](https://r-spatial.github.io/mapview/), [**leaflet**](https://rstudio.github.io/leaflet/), and [**rayshader**](https://www.rayshader.com/).
 
-#### Chapter X: Time-Series Analysis with Spatial Data
+#### Chapter X: "Spatial Network Analysis"
+- Dives into the world of spatial networks, such as transportation and social networks.
+- Discuss shortest path, network flow, and centrality measures in a spatial context.
+- Explore packages like [**sfnetworks**](https://luukvdmeer.github.io/sfnetworks/).
+
+#### Chapter X: "Time-Series Analysis with Spatial Data"
 - Discuss the importance of temporal data in spatial analyses.
 - Introduce techniques to analyze spatial data that changes over time.
 
