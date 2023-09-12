@@ -61,4 +61,4 @@
 - Dive Deeper: Strategies for optimizing spatial data structures for large datasets and high-performance computing.
 
 ## Practical Applications and Exercises
-Exercises focusing on understanding spatial data structures in R, leveraging the capabilities of sf, terra, stars, and spatstat.
+Exercises focusing on understanding spatial data structures in R, leveraging the capabilities of sf, terra, stars, and spatstat... altough, this might be a bit too much and should be lowered.. 

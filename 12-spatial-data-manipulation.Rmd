@@ -1,76 +1,70 @@
-# New Chapter: **Spatial Data Manipulation (see modified chapters)**
-
+# New Chapter: Spatial Data Manipulation
 ## Introduction
-Here, we could briefly explain the difference between data wrangling and data manipulation in the spatial context. Highlight the importance of spatial data manipulation in GIS and spatial analysis workflows.
+- Briefly explain the difference between data wrangling and data manipulation in the spatial context.
+- Highlight the importance of spatial data manipulation in GIS and spatial analysis workflows.
+- Introduce the primary packages for this chapter: sf, terra, stars, and spatstat.
 
 ## Filtering Spatial Data
-### Filtering sf Objects
-Demonstrate how to filter spatial features in sf objects based on attribute conditions.
-
+- Filtering sf Objects
+- Demonstrate how to filter spatial features in sf objects based on attribute conditions.
+- Introduce the sf package for vector data filtering.
 ```{r}
 # Example code for filtering sf objects
 ```
-### Filtering Rasters
-Show how to filter raster data based on cell values or spatial conditions.
 
+## Filtering Rasters with terra
+- Show how to filter raster data based on cell values or spatial conditions using terra.
 ```{r}
-# Example code for filtering rasters
+# Example code for filtering rasters with terra
 ```
-
-## Spatial Joins
-Explain the concept of spatial joins and demonstrate how to join two spatial datasets based on their spatial relationship.
-
+## Spatial Joins with sf
+- Explain the concept of spatial joins.
+- Demonstrate how to join two spatial datasets based on their spatial relationship using sf.
 ```{r}
-# Example code for spatial joins
+# Example code for spatial joins with sf
 ```
-
-## Geometric Operations
-
-###Intersect
-Demonstrate how to find the common spatial elements between two datasets.
-
+## Geometric Operations with sf
+### Intersect
+- Demonstrate how to find the common spatial elements between two datasets using sf.
 ```{r}
-# Example code for intersect operation
+# Example code for intersect operation with sf
 ```
-
 ### Buffer
-Show how to create a buffer zone around a spatial feature.
-
+- Show how to create a buffer zone around a spatial feature using sf.
 ```{r}
-# Example code for buffer operation
+# Example code for buffer operation with sf
 ```
-
 ### Union and Difference
-Explain and demonstrate the union and difference operations between two spatial datasets.
-
+- Explain and demonstrate the union and difference operations between two spatial datasets using sf.
 ```{r}
-# Example code for union and difference operations
+# Example code for union and difference operations with sf
 ```
-
-## Coordinate Transformations and Reprojections
-Discuss the importance of having datasets in the same coordinate system and demonstrate how to reproject spatial data.
-
+##  Coordinate Transformations and Reprojections with sf and terra
+- Discuss the importance of having datasets in the same coordinate system.
+- Demonstrate how to reproject spatial data using both sf for vector data and terra for raster data.
 ```{r}
-# Example code for coordinate transformations
+# Example code for coordinate transformations with sf and terra
 ```
-
-## Raster Operations
-
+## Raster Operations with terra
 ### Resampling
-Show how to change the resolution of raster datasets.
-
+- Show how to change the resolution of raster datasets using terra.
 ```{r}
-# Example code for raster resampling
+# Example code for raster resampling with terra
 ```
-
 ### Raster Algebra
-Demonstrate basic raster algebra operations like addition, subtraction, and multiplication of raster layers.
-
+- Demonstrate basic raster algebra operations like addition, subtraction, and multiplication of raster layers using terra.
 ```{r}
-# Example code for raster algebra
+# Example code for raster algebra with terra
+```
+## Applied Spatial Statistics with spatstat
+- Introduce the spatstat package for advanced spatial statistics.
+- Dive deeper into ppa (see last chapter), spatial clustering, and | or other specialized techniques.
+```{r}
+# Example code for advanced spatial statistics with spatstat
 ```
 
 ## Comparative Analysis of Packages
-Investigate and compare the performance (caching and stuff), ease of use, and capabilities of different packages like sf, terra, and sfdep for various spatial operations... (just an idea)
+- After that intense usage of packages, Investigate and compare the performance, ease of use, and capabilities of sf, terra, stars, and spatstat for various spatial operations.
 
-## Exercise ..
+## Exercise
+- Provide exercises that allow readers to apply the techniques learned in the chapter, ensuring they get hands-on experience with each of the introduced packages.
