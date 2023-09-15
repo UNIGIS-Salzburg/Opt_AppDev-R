@@ -1,5 +1,6 @@
 # req
 library(sf)
+# https://r-spatial.github.io/sf/reference/st.html
 
 # point
 # Create a point

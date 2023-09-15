@@ -12,7 +12,7 @@ In this module, the granolarr materials will be adapted and extended to fit the 
 ### Overview
 This branch focuses on the major revision of the course, emphasizing the integration of spatial concepts and tools in R. The objective is to provide a more comprehensive exploration of spatial data, primarily leveraging newer spatial packages in R. This naturally increases the course's workload but ensures students are exposed to the latest tools and techniques in spatial data analysis.
 
-Neat, consice information in: [Geocomputation with R](https://r.geocompx.org/)
+Neat, concise information in: [Geocomputation with R](https://r.geocompx.org/) as well as [Spatial Data Science](https://rspatial.org/index.html)
 
 ### Objectives
 - Enrich the course content by focusing on applied spatial concepts.
@@ -43,12 +43,12 @@ In this chapter, the distinction between data wrangling and data manipulation in
 
 ### Chapters to debate or just quick ideas:
 #### Chapter X: "ChatGPT and R":
-Has a high probabilty of changing way faster then state of the art packages or syntax of R language.
+Has a high probability of changing way faster then state of the art packages or syntax of R language.
 - **Consider** creating an innovative lesson on integrating ChatGPT with R.
 - **Assess** the **complexity and relevance** of the topic.
 - Explore **whether to use ChatGPT or explore alternative technologies**.
 - **Determine the required frequency of updates** for the lesson (**Note**: with a high probability that it may require more updates than even the packages.. Main reason why I would debate).
-- Altough, there are very interesting plugins for programming and data visualisations see GPT-4 (altough, so far, Advanced Data Analysis only uses Python - Time of Writing: (11.09.2023) - and the data analysis tool is for paying customers.)
+- Although, there are very interesting plugins for programming and data visualizations see GPT-4 (although, so far, Advanced Data Analysis only uses Python - Time of Writing: (11.09.2023) - and the data analysis tool is for paying customers.)
 
 #### Chapter X: "Machine Learning with Spatial Data"
 Very debatable, ... ML workloads normally need a lot of foundation in mathematical understanding...
@@ -78,6 +78,10 @@ Very debatable, ... ML workloads normally need a lot of foundation in mathematic
 - Introduce the concept of remote sensing and its importance in spatial analyses.
 - Discuss the processing and analysis of satellite imagery.
 - Explore packages like **stars**, and tools for specific satellite data.
+
+
+### folder: example_introduction_packages
+- In this folder, I will add more and more examples, on how we might use the packages / libraries for examples.
 
 ### Automation Tools
 - [packagechecker.R](https://github.com/UNIGIS-Salzburg/Opt_AppDev-R/blob/major-revision/packagechecker.R) - to lookup the packages used in the .RMD files
