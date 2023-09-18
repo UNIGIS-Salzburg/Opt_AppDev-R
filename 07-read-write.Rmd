@@ -258,6 +258,7 @@ Given that **`httr2`** has caching capabilities, this can be a valuable addition
 Building on the capabilities of **`httr2`**:
 
 - **Understanding HTTP Errors**: Briefly explain common HTTP errors like 404 (Not Found) or 429 (Too Many Requests) and why they might occur when working with APIs.
+
 - **Implementing Retries**: Show how to use **`req_retry()`** in **`httr2`** to automatically retry if a request fails.
 
 ### **7.7 Advanced API Techniques**
@@ -265,11 +266,10 @@ Building on the capabilities of **`httr2`**:
 - **Pagination**: Many APIs return data in pages, especially if there's a lot of data. Teach how to handle paginated responses and fetch all data.
 - **Rate Limiting**: Explaining what rate limiting is and how to handle it, possibly by introducing pauses in requests or by using caching.
 
-### **7.8 Introduction to Web Scraping**
+### **7.8 Introduction to Web Scraping** (Altough, this might be too much.. and even if it's important, for data sourcing, it's kind of a grey area, limited by rate limits or considerations with ToS.)
 
 While APIs are a clean way to get data, not all websites offer them. We could introduce the concept of web scraping:
 
 - **What is Web Scraping?**: Briefly explain the concept and why it might be necessary.
 - **Using `rvest` for Web Scraping**: Introduce the **`rvest`** package, which is part of the tidyverse and is used for web scraping. We could provide a simple example of scraping data from a website.
-
-
+- **Morality of Web Scraping**: via. Ethical, Legal, Technical Considerations

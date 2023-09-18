@@ -82,6 +82,11 @@ Very debatable, ... ML workloads normally need a lot of foundation in mathematic
 - Discuss the processing and analysis of satellite imagery.
 - Explore packages like **stars**, and tools for specific satellite data.
 
+#### Chapter X: TDD (Test-Driven-Development)
+(Could actually be quite beneficial!)
+- Introduction to TDD: What it is, How it works
+- Testing Scopes (Unit, Integration, Blackbox-testing)
+- When to use it ..
 
 ### folder: example_introduction_packages
 - In this folder, I will add more and more examples, on how we might use the packages / libraries for examples. And what they do essentially. (will be modified into .rmd files.)
