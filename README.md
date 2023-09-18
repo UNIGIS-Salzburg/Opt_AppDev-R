@@ -32,6 +32,9 @@ Neat, concise information in: [Geocomputation with R](https://r.geocompx.org/) a
 ### Chapter Overview
 **Note:** high probability of change!
 
+#### Rewrite: Chapter 7: Read and write data
+Although, I made a few changes already using httr2 instead of httr. There are a lot of neat functions, we could show the students and make them familiar with other examples. (for an introduction how it may look like, see "example_introduction_packages" directory. (examples will be increased in the future.))
+
 #### Chapter 10: Spatial Data Structures
 This chapter delves into the foundational concepts of spatial data structures. It distinguishes between traditional and spatial data structures, introduces vector and raster data structures, and demonstrates how to represent these structures in R using packages like **sf** and **terra**. Advanced topics include spatial indexing and topological relationships.
 
@@ -81,7 +84,7 @@ Very debatable, ... ML workloads normally need a lot of foundation in mathematic
 
 
 ### folder: example_introduction_packages
-- In this folder, I will add more and more examples, on how we might use the packages / libraries for examples.
+- In this folder, I will add more and more examples, on how we might use the packages / libraries for examples. And what they do essentially. (will be modified into .rmd files.)
 
 ### Automation Tools
 - [packagechecker.R](https://github.com/UNIGIS-Salzburg/Opt_AppDev-R/blob/major-revision/packagechecker.R) - to lookup the packages used in the .RMD files

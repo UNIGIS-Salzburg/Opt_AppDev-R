@@ -12,12 +12,12 @@
 ```
 
 ## Coordinate Transformations
-- See Chapter 10 prototype
+- See Chapter 10 prototype 
 - Changing the spatial reference system of datasets.
 - Discuss the importance of coordinate transformations in spatial analysis.
 - Introduce the sf package for these tasks.
 - Visualizing the results of coordinate transformations.
-- Then, for example Introduce the ggspatial package for visualizing transformed spatial data in conjunction with ggplot2. (**Note that, ggspatial was introduced in chapter 8. Data Visualisation.. Very briefly.**)
+- Then, for example Introduce the ggspatial package for visualizing transformed spatial data in conjunction with ggplot2. (**Note that, ggspatial was introduced in chapter 8. Data Visualisation.. Very, very briefly.**)
 
 ```{r}
 # Example code for coordinate transformations using sf
@@ -25,7 +25,7 @@
 
 ## Raster Resampling and Reprojection
 - Adjusting the resolution of raster datasets or changing their projection.
-- Introduce the terra package for these tasks.
+- Introduce the **terra** package for these tasks.
 ```{r}
 # Example code for raster resampling and reprojection using terra
 ```
@@ -39,7 +39,7 @@
 
 ## Handling Missing Data
 - Discuss methods to identify, visualize, and impute missing data.
-- Introduce the tidyverse suite for handling missing data in spatial datasets. (but again, watchout for httr1 and httr2 + (**time of writing 12.09.2023**)
+- Introduce the **tidyverse** suite for handling missing data in spatial datasets. (but again, watchout for **httr1** and **httr2** + (**time of writing 12.09.2023**)
 
 ```{r}
 # Example code for handling missing data using tidyverse
