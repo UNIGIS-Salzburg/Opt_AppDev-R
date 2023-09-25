@@ -17,7 +17,7 @@
 ```{r}
 # Example code for filtering rasters with terra
 ```
-## Spatial Joins with sf
+## Spatial Joins with sf (though.. we could also put that in Chapter 10 and make 12 bigger with spatial stat)
 - Explain the concept of spatial joins.
 - Demonstrate how to join two spatial datasets based on their spatial relationship using sf.
 ```{r}
@@ -56,15 +56,23 @@
 ```{r}
 # Example code for raster algebra with terra
 ```
-## Applied Spatial Statistics with spatstat
-- Introduce the spatstat package for advanced spatial statistics.
-- Dive deeper into ppa (see last chapter), spatial clustering, and | or other specialized techniques.
-```{r}
-# Example code for advanced spatial statistics with spatstat
-```
+## Applied Spatial Statistics with spatstat 
+(I think, this will be yours Christian :) But it might be a pretty good idea to showcase it in chapter 12, atleast basics.):
+- Introduction to spatstat:
+- Briefly introduce the spatstat package and its capabilities in handling advanced spatial statistics.
+- Point Pattern Analysis (ppa):
+- Dive deeper into point pattern analysis, discussing its importance and applications in spatial statistics.
+- Spatial Clustering:
+- Discuss the concept of spatial clustering and its relevance in identifying patterns in spatial data.
+- Illustrate with examples how spatstat can be used for spatial clustering analysis.
+- Nearest Neighbor Analysis:
+- Introduce Nearest Neighbor as a crucial type of spatial query often used in spatial statistics to analyze the spatial distribution of features.
+- Discuss its applications in evaluating the spatial arrangement of points, assessing spatial randomness, and identifying - patterns such as clustering or dispersion.
+- Provide practical examples demonstrating how to perform Nearest Neighbor analysis using spatstat, and discuss the interpretation of the results.
+
 
 ## Comparative Analysis of Packages
-- After that intense usage of packages, Investigate and compare the performance, ease of use, and capabilities of sf, terra, stars, and spatstat for various spatial operations.
+- After that intense usage of packages, Investigate and compare the performance, ease of use, and capabilities of sf, terra, stars, and spatstat for various spatial operations. Compiled languages (for example via C, C++) and packages and their difference in speed.
 
 ## Exercise
 - Provide exercises that allow readers to apply the techniques learned in the chapter, ensuring they get hands-on experience with each of the introduced packages.

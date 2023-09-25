@@ -61,6 +61,13 @@
 # Example code for wrangling multidimensional data using stars
 ```
 
+## Challenges in Spatial Data Structures
+- Issues with data integrity and accuracy.
+- Handling different coordinate reference systems (CRS). (If you get for example a old or exotic dataset)
+
+## Dealing with large spatial datasets.
+- Dive Deeper: Strategies for optimizing spatial data structures for large datasets and high-performance computing.
+
 ## Case Study: A Complete Spatial Data Wrangling Workflow
 - Would be a quite interesting change of wind: a comprehensive case study integrating various spatial data wrangling techniques...
 - This could be based on a real-world scenario, such as urban planning, environmental monitoring, or transportation.

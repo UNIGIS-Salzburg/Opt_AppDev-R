@@ -35,14 +35,14 @@ Neat, concise information in: [Geocomputation with R](https://r.geocompx.org/) a
 #### Rewrite: Chapter 7: Read and write data
 Although, I made a few changes already using httr2 instead of httr. There are a lot of neat functions, we could show the students and make them familiar with other examples. (for an introduction how it may look like, see "example_introduction_packages" directory. (examples will be increased in the future.))
 
-#### Chapter 10: Spatial Data Structures
-This chapter delves into the foundational concepts of spatial data structures. It distinguishes between traditional and spatial data structures, introduces vector and raster data structures, and demonstrates how to represent these structures in R using packages like **sf** and **terra**. Advanced topics include spatial indexing and topological relationships.
+## Chapter 10: Spatial Data Structures
+this digs deep into spatial data structures, laying the groundwork for understanding the basics and more. It distinguishes between traditional and spatial data structures, exploring vector and raster data structures in detail. The chapter demonstrates how to represent these structures in R using the sf and terra packages as well as in theory, providing a hands-on approach to learning and ventures into advanced topics such as spatial indexing and understanding topological relationships, ensuring a comprehensive grasp of the subject matter. 
 
-#### Chapter 11: Spatial Data Wrangling
-Chapter 11 emphasizes the importance of spatial data wrangling. It covers spatial aggregation, coordinate transformations, raster resampling, and data merging. The chapter also addresses challenges like handling missing data and spatial data cleaning. Practical exercises and a comprehensive case study ensure students can apply the techniques learned.
+## Chapter 11: Spatial Data Wrangling
+underscores the crucial role of spatial data wrangling in geoinformatics. It navigates through various aspects such as spatial aggregation, coordinate transformations, raster resampling, and data merging. The chapter addresses common challenges encountered in spatial data wrangling, including handling missing data and cleaning spatial data. Practical exercises and a comprehensive case study are integrated to ensure students can apply the learned techniques effectively, bridging the gap between theory and practice.
 
-#### Chapter 12: Spatial Data Manipulation
-In this chapter, the distinction between data wrangling and data manipulation in the spatial context is highlighted. It covers filtering spatial data, spatial joins, geometric operations, and raster operations. The chapter also provides a comparative analysis of different spatial packages, ensuring students understand the strengths and weaknesses of each tools they heard of so far. And why it changes (R ecosystem vs. other ecosystems in Open Source land like Python).
+## Chapter 12: Spatial Data Manipulation and (Advanced Spatial Statistics?)
+This chapter delves deeper, in the nuances between data wrangling and data manipulation in the spatial context. It covers a range of topics from filtering spatial data, performing spatial joins, executing geometric and raster operations, to exploring advanced spatial statistics with **spatstat**. The chapter could also provide insights into point pattern analysis, spatial clustering, and nearest neighbor analysis, offering a rounded perspective on spatial data manipulation and its statistical implications. Additionally, a comparative analysis of different spatial packages is included, allowing students to discern the strengths and weaknesses of each tool within the R ecosystem and in comparison to other open-source ecosystems like Python and computation via compiler...) (We could of course easily branch of the Spatial Statistics into an additional Chapter.. But I think the basics would be very beneficial.)
 
 ### Chapters to debate or just quick ideas:
 #### Chapter X: "ChatGPT and R":
