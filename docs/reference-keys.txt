@@ -102,7 +102,6 @@ multidimensional-data-wrangling-with-stars
 challenges-in-spatial-data-structures
 dealing-with-large-spatial-datasets.
 case-study-a-complete-spatial-data-wrangling-workflow
-new-chapter-spatial-data-manipulation
 introduction-2
 filtering-spatial-data
 filtering-rasters-with-terra

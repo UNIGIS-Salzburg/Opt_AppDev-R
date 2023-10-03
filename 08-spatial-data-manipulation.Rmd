@@ -60,7 +60,7 @@
 
 ---
 
-# New Chapter: Spatial Data Manipulation
+
 ## Introduction
 - Briefly explain the difference between data wrangling and data manipulation in the spatial context.
 - Highlight the importance of spatial data manipulation in GIS and spatial analysis workflows.

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 12 R Markdown | Automated Data Processing with R</title>
+  <title>Lesson 11 R Markdown | Automated Data Processing with R</title>
   <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 12 R Markdown | Automated Data Processing with R" />
+  <meta property="og:title" content="Lesson 11 R Markdown | Automated Data Processing with R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/branding/Cover_epub.png" />
   <meta property="og:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="github-repo" content="UNIGIS-Salzburg/En_AppDev-R" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 12 R Markdown | Automated Data Processing with R" />
+  <meta name="twitter:title" content="Lesson 11 R Markdown | Automated Data Processing with R" />
   
   <meta name="twitter:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="twitter:image" content="/branding/Cover_epub.png" />
@@ -254,64 +254,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.7" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#challenges-in-spatial-data-structures"><i class="fa fa-check"></i><b>8.7</b> Challenges in Spatial Data Structures</a></li>
 <li class="chapter" data-level="8.8" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#dealing-with-large-spatial-datasets."><i class="fa fa-check"></i><b>8.8</b> Dealing with large spatial datasets.</a></li>
 <li class="chapter" data-level="8.9" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#case-study-a-complete-spatial-data-wrangling-workflow"><i class="fa fa-check"></i><b>8.9</b> Case Study: A Complete Spatial Data Wrangling Workflow</a></li>
+<li class="chapter" data-level="8.10" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#introduction-2"><i class="fa fa-check"></i><b>8.10</b> Introduction</a></li>
+<li class="chapter" data-level="8.11" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#filtering-spatial-data"><i class="fa fa-check"></i><b>8.11</b> Filtering Spatial Data</a></li>
+<li class="chapter" data-level="8.12" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#filtering-rasters-with-terra"><i class="fa fa-check"></i><b>8.12</b> Filtering Rasters with terra</a></li>
+<li class="chapter" data-level="8.13" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#spatial-joins-with-sf-though..-we-could-also-put-that-in-chapter-10-and-make-12-bigger-with-spatial-stat"><i class="fa fa-check"></i><b>8.13</b> Spatial Joins with sf (though.. we could also put that in Chapter 10 and make 12 bigger with spatial stat)</a></li>
+<li class="chapter" data-level="8.14" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#geometric-operations-with-sf"><i class="fa fa-check"></i><b>8.14</b> Geometric Operations with sf</a>
+<ul>
+<li class="chapter" data-level="8.14.1" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#intersect"><i class="fa fa-check"></i><b>8.14.1</b> Intersect</a></li>
+<li class="chapter" data-level="8.14.2" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#buffer"><i class="fa fa-check"></i><b>8.14.2</b> Buffer</a></li>
+<li class="chapter" data-level="8.14.3" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#union-and-difference"><i class="fa fa-check"></i><b>8.14.3</b> Union and Difference</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="new-chapter-spatial-data-manipulation.html"><a href="new-chapter-spatial-data-manipulation.html"><i class="fa fa-check"></i><b>9</b> New Chapter: Spatial Data Manipulation</a>
+<li class="chapter" data-level="8.15" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#coordinate-transformations-and-reprojections-with-sf-and-terra"><i class="fa fa-check"></i><b>8.15</b> Coordinate Transformations and Reprojections with sf and terra</a></li>
+<li class="chapter" data-level="8.16" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#raster-operations-with-terra"><i class="fa fa-check"></i><b>8.16</b> Raster Operations with terra</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="new-chapter-spatial-data-manipulation.html"><a href="new-chapter-spatial-data-manipulation.html#introduction-2"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
-<li class="chapter" data-level="9.2" data-path="new-chapter-spatial-data-manipulation.html"><a href="new-chapter-spatial-data-manipulation.html#filtering-spatial-data"><i class="fa fa-check"></i><b>9.2</b> Filtering Spatial Data</a></li>
-<li class="chapter" data-level="9.3" data-path="new-chapter-spatial-data-manipulation.html"><a href="new-chapter-spatial-data-manipulation.html#filtering-rasters-with-terra"><i class="fa fa-check"></i><b>9.3</b> Filtering Rasters with terra</a></li>
-<li class="chapter" data-level="9.4" data-path="new-chapter-spatial-data-manipulation.html"><a href="new-chapter-spatial-data-manipulation.html#spatial-joins-with-sf-though..-we-could-also-put-that-in-chapter-10-and-make-12-bigger-with-spatial-stat"><i class="fa fa-check"></i><b>9.4</b> Spatial Joins with sf (though.. we could also put that in Chapter 10 and make 12 bigger with spatial stat)</a></li>
-<li class="chapter" data-level="9.5" data-path="new-chapter-spatial-data-manipulation.html"><a href="new-chapter-spatial-data-manipulation.html#geometric-operations-with-sf"><i class="fa fa-check"></i><b>9.5</b> Geometric Operations with sf</a>
-<ul>
-<li class="chapter" data-level="9.5.1" data-path="new-chapter-spatial-data-manipulation.html"><a href="new-chapter-spatial-data-manipulation.html#intersect"><i class="fa fa-check"></i><b>9.5.1</b> Intersect</a></li>
-<li class="chapter" data-level="9.5.2" data-path="new-chapter-spatial-data-manipulation.html"><a href="new-chapter-spatial-data-manipulation.html#buffer"><i class="fa fa-check"></i><b>9.5.2</b> Buffer</a></li>
-<li class="chapter" data-level="9.5.3" data-path="new-chapter-spatial-data-manipulation.html"><a href="new-chapter-spatial-data-manipulation.html#union-and-difference"><i class="fa fa-check"></i><b>9.5.3</b> Union and Difference</a></li>
+<li class="chapter" data-level="8.16.1" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#resampling"><i class="fa fa-check"></i><b>8.16.1</b> Resampling</a></li>
+<li class="chapter" data-level="8.16.2" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#raster-algebra"><i class="fa fa-check"></i><b>8.16.2</b> Raster Algebra</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="new-chapter-spatial-data-manipulation.html"><a href="new-chapter-spatial-data-manipulation.html#coordinate-transformations-and-reprojections-with-sf-and-terra"><i class="fa fa-check"></i><b>9.6</b> Coordinate Transformations and Reprojections with sf and terra</a></li>
-<li class="chapter" data-level="9.7" data-path="new-chapter-spatial-data-manipulation.html"><a href="new-chapter-spatial-data-manipulation.html#raster-operations-with-terra"><i class="fa fa-check"></i><b>9.7</b> Raster Operations with terra</a>
-<ul>
-<li class="chapter" data-level="9.7.1" data-path="new-chapter-spatial-data-manipulation.html"><a href="new-chapter-spatial-data-manipulation.html#resampling"><i class="fa fa-check"></i><b>9.7.1</b> Resampling</a></li>
-<li class="chapter" data-level="9.7.2" data-path="new-chapter-spatial-data-manipulation.html"><a href="new-chapter-spatial-data-manipulation.html#raster-algebra"><i class="fa fa-check"></i><b>9.7.2</b> Raster Algebra</a></li>
+<li class="chapter" data-level="8.17" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#applied-spatial-statistics-with-spatstat"><i class="fa fa-check"></i><b>8.17</b> Applied Spatial Statistics with spatstat</a></li>
+<li class="chapter" data-level="8.18" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#comparative-analysis-of-packages"><i class="fa fa-check"></i><b>8.18</b> Comparative Analysis of Packages</a></li>
+<li class="chapter" data-level="8.19" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#exercise"><i class="fa fa-check"></i><b>8.19</b> Exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="9.8" data-path="new-chapter-spatial-data-manipulation.html"><a href="new-chapter-spatial-data-manipulation.html#applied-spatial-statistics-with-spatstat"><i class="fa fa-check"></i><b>9.8</b> Applied Spatial Statistics with spatstat</a></li>
-<li class="chapter" data-level="9.9" data-path="new-chapter-spatial-data-manipulation.html"><a href="new-chapter-spatial-data-manipulation.html#comparative-analysis-of-packages"><i class="fa fa-check"></i><b>9.9</b> Comparative Analysis of Packages</a></li>
-<li class="chapter" data-level="9.10" data-path="new-chapter-spatial-data-manipulation.html"><a href="new-chapter-spatial-data-manipulation.html#exercise"><i class="fa fa-check"></i><b>9.10</b> Exercise</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="read-and-write-data.html"><a href="read-and-write-data.html"><i class="fa fa-check"></i><b>10</b> Read and write data</a>
+<li class="chapter" data-level="9" data-path="read-and-write-data.html"><a href="read-and-write-data.html"><i class="fa fa-check"></i><b>9</b> Read and write data</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-tabular-data"><i class="fa fa-check"></i><b>10.1</b> Read and write tabular data</a></li>
-<li class="chapter" data-level="10.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-vector-data"><i class="fa fa-check"></i><b>10.2</b> Read and write vector data</a></li>
-<li class="chapter" data-level="10.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#data-api"><i class="fa fa-check"></i><b>10.3</b> Data API</a></li>
-<li class="chapter" data-level="10.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#additional-thoughts-so-far-for-revision"><i class="fa fa-check"></i><b>10.4</b> Additional Thoughts so far for revision</a>
+<li class="chapter" data-level="9.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-tabular-data"><i class="fa fa-check"></i><b>9.1</b> Read and write tabular data</a></li>
+<li class="chapter" data-level="9.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-vector-data"><i class="fa fa-check"></i><b>9.2</b> Read and write vector data</a></li>
+<li class="chapter" data-level="9.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#data-api"><i class="fa fa-check"></i><b>9.3</b> Data API</a></li>
+<li class="chapter" data-level="9.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#additional-thoughts-so-far-for-revision"><i class="fa fa-check"></i><b>9.4</b> Additional Thoughts so far for revision</a>
 <ul>
-<li class="chapter" data-level="10.4.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-json-handling-with-httr2"><i class="fa fa-check"></i><b>10.4.1</b> <strong>7.4 Advanced JSON Handling with <code>httr2</code></strong></a></li>
-<li class="chapter" data-level="10.4.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#caching-data-with-httr2"><i class="fa fa-check"></i><b>10.4.2</b> <strong>7.5 Caching Data with <code>httr2</code></strong></a></li>
-<li class="chapter" data-level="10.4.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#error-handling-and-retries-with-httr2"><i class="fa fa-check"></i><b>10.4.3</b> <strong>7.6 Error Handling and Retries with <code>httr2</code></strong></a></li>
-<li class="chapter" data-level="10.4.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-api-techniques"><i class="fa fa-check"></i><b>10.4.4</b> <strong>7.7 Advanced API Techniques</strong></a></li>
-<li class="chapter" data-level="10.4.5" data-path="read-and-write-data.html"><a href="read-and-write-data.html#introduction-to-web-scraping-altough-this-might-be-too-much..-and-even-if-its-important-for-data-sourcing-its-kind-of-a-grey-area-limited-by-rate-limits-or-considerations-with-tos."><i class="fa fa-check"></i><b>10.4.5</b> <strong>7.8 Introduction to Web Scraping</strong> (Altough, this might be too much.. and even if it’s important, for data sourcing, it’s kind of a grey area, limited by rate limits or considerations with ToS.)</a></li>
+<li class="chapter" data-level="9.4.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-json-handling-with-httr2"><i class="fa fa-check"></i><b>9.4.1</b> <strong>7.4 Advanced JSON Handling with <code>httr2</code></strong></a></li>
+<li class="chapter" data-level="9.4.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#caching-data-with-httr2"><i class="fa fa-check"></i><b>9.4.2</b> <strong>7.5 Caching Data with <code>httr2</code></strong></a></li>
+<li class="chapter" data-level="9.4.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#error-handling-and-retries-with-httr2"><i class="fa fa-check"></i><b>9.4.3</b> <strong>7.6 Error Handling and Retries with <code>httr2</code></strong></a></li>
+<li class="chapter" data-level="9.4.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-api-techniques"><i class="fa fa-check"></i><b>9.4.4</b> <strong>7.7 Advanced API Techniques</strong></a></li>
+<li class="chapter" data-level="9.4.5" data-path="read-and-write-data.html"><a href="read-and-write-data.html#introduction-to-web-scraping-altough-this-might-be-too-much..-and-even-if-its-important-for-data-sourcing-its-kind-of-a-grey-area-limited-by-rate-limits-or-considerations-with-tos."><i class="fa fa-check"></i><b>9.4.5</b> <strong>7.8 Introduction to Web Scraping</strong> (Altough, this might be too much.. and even if it’s important, for data sourcing, it’s kind of a grey area, limited by rate limits or considerations with ToS.)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>11</b> Data visualization</a>
+<li class="chapter" data-level="10" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>10</b> Data visualization</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="data-visualization.html"><a href="data-visualization.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>11.1</b> The Grammar of Graphics</a></li>
-<li class="chapter" data-level="11.2" data-path="data-visualization.html"><a href="data-visualization.html#visualization-of-distributions"><i class="fa fa-check"></i><b>11.2</b> Visualization of distributions</a></li>
-<li class="chapter" data-level="11.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>11.3</b> Boxplots</a></li>
-<li class="chapter" data-level="11.4" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i><b>11.4</b> Scatterplots</a></li>
-<li class="chapter" data-level="11.5" data-path="data-visualization.html"><a href="data-visualization.html#map-visualization"><i class="fa fa-check"></i><b>11.5</b> Map visualization</a></li>
-<li class="chapter" data-level="11.6" data-path="data-visualization.html"><a href="data-visualization.html#interactive-maps"><i class="fa fa-check"></i><b>11.6</b> Interactive Maps</a></li>
+<li class="chapter" data-level="10.1" data-path="data-visualization.html"><a href="data-visualization.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>10.1</b> The Grammar of Graphics</a></li>
+<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#visualization-of-distributions"><i class="fa fa-check"></i><b>10.2</b> Visualization of distributions</a></li>
+<li class="chapter" data-level="10.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>10.3</b> Boxplots</a></li>
+<li class="chapter" data-level="10.4" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i><b>10.4</b> Scatterplots</a></li>
+<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#map-visualization"><i class="fa fa-check"></i><b>10.5</b> Map visualization</a></li>
+<li class="chapter" data-level="10.6" data-path="data-visualization.html"><a href="data-visualization.html#interactive-maps"><i class="fa fa-check"></i><b>10.6</b> Interactive Maps</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>12</b> R Markdown</a>
+<li class="chapter" data-level="11" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>11</b> R Markdown</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="r-markdown.html"><a href="r-markdown.html#set-up-your-work-environment"><i class="fa fa-check"></i><b>12.1</b> Set up your work environment</a></li>
-<li class="chapter" data-level="12.2" data-path="r-markdown.html"><a href="r-markdown.html#create-a-local-clone"><i class="fa fa-check"></i><b>12.2</b> Create a local clone</a></li>
-<li class="chapter" data-level="12.3" data-path="r-markdown.html"><a href="r-markdown.html#create-a-first-rmarkdown-document"><i class="fa fa-check"></i><b>12.3</b> Create a first RMarkdown document</a></li>
-<li class="chapter" data-level="12.4" data-path="r-markdown.html"><a href="r-markdown.html#synchronize-with-github"><i class="fa fa-check"></i><b>12.4</b> Synchronize with GitHub</a></li>
-<li class="chapter" data-level="12.5" data-path="r-markdown.html"><a href="r-markdown.html#basic-rmarkdown-syntax"><i class="fa fa-check"></i><b>12.5</b> Basic RMarkdown syntax</a>
+<li class="chapter" data-level="11.1" data-path="r-markdown.html"><a href="r-markdown.html#set-up-your-work-environment"><i class="fa fa-check"></i><b>11.1</b> Set up your work environment</a></li>
+<li class="chapter" data-level="11.2" data-path="r-markdown.html"><a href="r-markdown.html#create-a-local-clone"><i class="fa fa-check"></i><b>11.2</b> Create a local clone</a></li>
+<li class="chapter" data-level="11.3" data-path="r-markdown.html"><a href="r-markdown.html#create-a-first-rmarkdown-document"><i class="fa fa-check"></i><b>11.3</b> Create a first RMarkdown document</a></li>
+<li class="chapter" data-level="11.4" data-path="r-markdown.html"><a href="r-markdown.html#synchronize-with-github"><i class="fa fa-check"></i><b>11.4</b> Synchronize with GitHub</a></li>
+<li class="chapter" data-level="11.5" data-path="r-markdown.html"><a href="r-markdown.html#basic-rmarkdown-syntax"><i class="fa fa-check"></i><b>11.5</b> Basic RMarkdown syntax</a>
 <ul>
-<li class="chapter" data-level="12.5.1" data-path="r-markdown.html"><a href="r-markdown.html#references-in-rmarkdown"><i class="fa fa-check"></i><b>12.5.1</b> References in RMarkdown</a></li>
+<li class="chapter" data-level="11.5.1" data-path="r-markdown.html"><a href="r-markdown.html#references-in-rmarkdown"><i class="fa fa-check"></i><b>11.5.1</b> References in RMarkdown</a></li>
 </ul></li>
-<li class="chapter" data-level="12.6" data-path="r-markdown.html"><a href="r-markdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>12.6</b> Speed up your workflows</a></li>
-<li class="chapter" data-level="12.7" data-path="r-markdown.html"><a href="r-markdown.html#self-study"><i class="fa fa-check"></i><b>12.7</b> Self-study</a></li>
+<li class="chapter" data-level="11.6" data-path="r-markdown.html"><a href="r-markdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>11.6</b> Speed up your workflows</a></li>
+<li class="chapter" data-level="11.7" data-path="r-markdown.html"><a href="r-markdown.html#self-study"><i class="fa fa-check"></i><b>11.7</b> Self-study</a></li>
 </ul></li>
 <li class="divider"></li>
 <li>Copyright © UNIGIS Salzburg.</li>
@@ -333,15 +330,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-markdown" class="section level1 hasAnchor" number="12">
-<h1><span class="header-section-number">Lesson 12</span> R Markdown<a href="r-markdown.html#r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="r-markdown" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Lesson 11</span> R Markdown<a href="r-markdown.html#r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This lesson is dedicated to the library <code>rmarkdown</code>. In fact, however, R Markdown is <strong>more than only a library</strong>. <a href="https://rmarkdown.rstudio.com/" target="_blank">RMarkdown</a> belongs to a set of tools that are designed to improve the reproducibility of your work. Other tools and platforms such as <a href="https://github.com/" target="_blank">GitHub</a>, <a href="https://jupyter.org/" target="_blank">Jupyter</a>, <a href="https://www.docker.com/" target="_blank">Docker</a> or preprint servers such as <a href="https://arxiv.org/" target="_blank">ArXiv</a> or <a href="https://www.biorxiv.org/" target="_blank">bioRxiv</a> facilitate reproducibility in many different ways. In this module, we will not cover the paradigm of <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801" target="_blank">reproducible research</a> in detail. Instead, we will focus on those aspects that will helping you <strong>make your analyses and reports</strong> more appealing, interactive and <strong>efficient</strong> through the use of RMarkdown.</p>
 
 <div class="rmdtip">
 <p>In this lesson, we will weave together code and text in professionally rendered R Markdown documents. And we will use <a href="https://github.com/" target="_blank">GitHub</a> to safely store, share and administer our results.</p>
 </div>
-<div id="set-up-your-work-environment" class="section level2 hasAnchor" number="12.1">
-<h2><span class="header-section-number">12.1</span> Set up your work environment<a href="r-markdown.html#set-up-your-work-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="set-up-your-work-environment" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Set up your work environment<a href="r-markdown.html#set-up-your-work-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Before you will create your first R Markdown document, we have to <strong>setup</strong> the <strong>GitHub</strong> environment. GitHub was originally founded as a platform for software developers. The architecture of GitHub is designed to manage changes that are made to computer software in the process of software development. The same architecture, however, can also be used to control the versioning of documents or any other collection of information.</p>
 <p>Version control is particularly important when working in teams to sync working steps among project participants. However, even when working individually, GitHub is a trustworthy and open online data dump that tracks changes and simplifies the documentation and sharing of your work and others.</p>
 
@@ -366,25 +363,25 @@ In order to correctly <strong>install</strong><code>tinytex</code>, make sure to
 <span id="cb207-2"><a href="r-markdown.html#cb207-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
 <p>If R Studio prompts you to install any dependencies, follow the instructions and install the necessary libraries. If you encounter any technical issues, please turn to the discussion forum for help.</p>
 </div>
-<div id="create-a-local-clone" class="section level2 hasAnchor" number="12.2">
-<h2><span class="header-section-number">12.2</span> Create a local clone<a href="r-markdown.html#create-a-local-clone" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="create-a-local-clone" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Create a local clone<a href="r-markdown.html#create-a-local-clone" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To work on your repository locally, you will need to create a local clone of your online GitHub repository. Here’s how:</p>
 
 <div class="rmdexercise">
 <p>In RStudio: File -&gt; New Project… -&gt; Version Control -&gt; Git.</p>
-<p>Copy and paste the repository URL (you can find this by going to your online repository), browse to the local directory and click: <code>Create Project</code> (see Fig. <a href="r-markdown.html#fig:L09-clone">12.1</a>).</p>
+<p>Copy and paste the repository URL (you can find this by going to your online repository), browse to the local directory and click: <code>Create Project</code> (see Fig. <a href="r-markdown.html#fig:L09-clone">11.1</a>).</p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-clone"></span>
 <img src="images/Gitclone.png" alt="Clone GitHub Repository" width="70%" />
 <p class="caption">
-Figure 12.1: Clone GitHub Repository
+Figure 11.1: Clone GitHub Repository
 </p>
 </div>
-<p>Once you have cloned the online repository, the file contents of the repository as well as a new tab called <code>Git</code> appears in RStudio (see Fig. <a href="r-markdown.html#fig:L09-features">12.2</a>).</p>
+<p>Once you have cloned the online repository, the file contents of the repository as well as a new tab called <code>Git</code> appears in RStudio (see Fig. <a href="r-markdown.html#fig:L09-features">11.2</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-features"></span>
 <img src="images/NewFeatures.png" alt="New features in RStudio" width="80%" />
 <p class="caption">
-Figure 12.2: New features in RStudio
+Figure 11.2: New features in RStudio
 </p>
 </div>
 <p>Per default the repository contains three files:</p>
@@ -393,18 +390,18 @@ Figure 12.2: New features in RStudio
 <li>An <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank">RStudio Project File</a> (.Rproj)</li>
 <li>A <a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes" target="_blank">ReadMe File</a> (.md = pure markdown)</li>
 </ol>
-<p><a href="https://git-scm.com/docs/gitignore" target="_blank"><code>gitignore</code></a> and the <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank">RStudio Project File</a> were created on project initialization, meaning that these files are new and not yet available in the online repository. Changes made to the original repository are listed in the <code>Git tab</code> (see Fig. <a href="r-markdown.html#fig:L09-changes">12.3</a>).</p>
+<p><a href="https://git-scm.com/docs/gitignore" target="_blank"><code>gitignore</code></a> and the <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank">RStudio Project File</a> were created on project initialization, meaning that these files are new and not yet available in the online repository. Changes made to the original repository are listed in the <code>Git tab</code> (see Fig. <a href="r-markdown.html#fig:L09-changes">11.3</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-changes"></span>
 <img src="images/Changes.png" alt="Changes in Git tab" width="80%" />
 <p class="caption">
-Figure 12.3: Changes in Git tab
+Figure 11.3: Changes in Git tab
 </p>
 </div>
-<p>Before we further modify our repository, switch to the <code>dev</code> branch (see Fig. <a href="r-markdown.html#fig:L09-branch">12.4</a>). At the moment <code>dev</code> branch and <code>main</code> branch <strong>are identical</strong>.</p>
+<p>Before we further modify our repository, switch to the <code>dev</code> branch (see Fig. <a href="r-markdown.html#fig:L09-branch">11.4</a>). At the moment <code>dev</code> branch and <code>main</code> branch <strong>are identical</strong>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-branch"></span>
 <img src="images/Branches.png" alt="Switch branch" width="80%" />
 <p class="caption">
-Figure 12.4: Switch branch
+Figure 11.4: Switch branch
 </p>
 </div>
 
@@ -412,19 +409,19 @@ Figure 12.4: Switch branch
 <p>It his <strong>highly recommended</strong> to keep work in progress separate from the <code>main</code> branch by working in a separate developer branch. Later, branches may be unified by merging from <code>dev</code> into the <code>main</code> branch (see <a href="https://docs.github.com/en/get-started/quickstart/hello-world#opening-a-pull-request" target="_blank">Opening a pull request</a>).</p>
 </div>
 </div>
-<div id="create-a-first-rmarkdown-document" class="section level2 hasAnchor" number="12.3">
-<h2><span class="header-section-number">12.3</span> Create a first RMarkdown document<a href="r-markdown.html#create-a-first-rmarkdown-document" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="create-a-first-rmarkdown-document" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Create a first RMarkdown document<a href="r-markdown.html#create-a-first-rmarkdown-document" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now that the environment is set up, we can create a first simple R Markdown document.</p>
 
 <div class="rmdexercise">
 <p>In RStudio: File -&gt; New File -&gt; R Markdown….</p>
 <p>Type in a title, keep the default settings and confirm with <code>OK</code>. As a result you get a minimal R Markdown sample file, with the file extension <code>.Rmd</code>.</p>
 </div>
-<p>As apparent from the sample file, R Markdown documents are composed of the three basic components <strong>metadata</strong>, <strong>text</strong> and <strong>code</strong> (see Fig. <a href="r-markdown.html#fig:L09-sample">12.5</a>).</p>
+<p>As apparent from the sample file, R Markdown documents are composed of the three basic components <strong>metadata</strong>, <strong>text</strong> and <strong>code</strong> (see Fig. <a href="r-markdown.html#fig:L09-sample">11.5</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-sample"></span>
 <img src="images/SampleFile.png" alt="R Markdown sample file" width="80%" />
 <p class="caption">
-Figure 12.5: R Markdown sample file
+Figure 11.5: R Markdown sample file
 </p>
 </div>
 <p>The syntax for the metadata is <a href="https://en.wikipedia.org/wiki/YAML" target="_blank">YAML</a>. In our document, the metadata section specifies the title of the document, the output format, and the date of creation. Many other document properties can be specified in this section. <a href="https://cran.r-project.org/web/packages/ymlthis/vignettes/yaml-overview.html" target="_blank">Here</a> you can find an <strong>overview</strong> of the basic YAML syntax.</p>
@@ -432,11 +429,11 @@ Figure 12.5: R Markdown sample file
 <div class="rmdtip">
 <p>You can also update the date automatically to reflect the last time the report was updated by adding this line to the metadata section: <code>date: "```r format(Sys.time(), '%d %B, %Y')```"</code>. This will output the current date in a human-readable format based on your systems time zone.</p>
 </div>
-<p>After the metadata section an <strong>R inline code block</strong> starts and ends with three backticks (see Fig. <a href="r-markdown.html#fig:L09-sample">12.5</a>). The three <strong>parameters</strong> in curly brackets identify the code as R code. The <code>r</code> specifies the programming language, which is the default for R. Alternatively, you can also use parameter <code>{py}</code> to insert Python code into your markdown document (see Fig. <a href="r-markdown.html#fig:L09-python">12.6</a>).</p>
+<p>After the metadata section an <strong>R inline code block</strong> starts and ends with three backticks (see Fig. <a href="r-markdown.html#fig:L09-sample">11.5</a>). The three <strong>parameters</strong> in curly brackets identify the code as R code. The <code>r</code> specifies the programming language, which is the default for R. Alternatively, you can also use parameter <code>{py}</code> to insert Python code into your markdown document (see Fig. <a href="r-markdown.html#fig:L09-python">11.6</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-python"></span>
 <img src="images/pyexample.png" alt="Python Example" width="90%" />
 <p class="caption">
-Figure 12.6: Python Example
+Figure 11.6: Python Example
 </p>
 </div>
 <p>The <code>setup</code> parameter specifies the name of the code block and (as we will see later) <code>include=FALSE</code> prevents the code and code results from being displayed in the compiled HTML output. Nevertheless, RMarkdown still runs the code in this block, which sets <code>echo=TRUE</code> as the default option for all code blocks in the RMarkdown document. This means that, by default, the code of all code blocks in the document will be displayed in the output file unless otherwise indicated.</p>
@@ -444,11 +441,11 @@ Figure 12.6: Python Example
 <div class="rmdtip">
 To learn more about code block options you may turn to the <a href="https://yihui.org/knitr/options/" target="_blank">knitr documentation</a>.
 </div>
-<p>The other code blocks in the RMarkdown sample file produce a summary output (see line 17-19) or create a simple scatterplot (see line 25-27). To see how the compiled HTML output looks like, click <code>Knit</code> (see Fig. <a href="r-markdown.html#fig:L09-knit">12.7</a>).</p>
+<p>The other code blocks in the RMarkdown sample file produce a summary output (see line 17-19) or create a simple scatterplot (see line 25-27). To see how the compiled HTML output looks like, click <code>Knit</code> (see Fig. <a href="r-markdown.html#fig:L09-knit">11.7</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-knit"></span>
 <img src="images/knit.png" alt="Knit HTML Output " width="80%" />
 <p class="caption">
-Figure 12.7: Knit HTML Output
+Figure 11.7: Knit HTML Output
 </p>
 </div>
 <p>You can also use the dropdown arrow next to the <strong>Knit</strong> button to compile PDF or .docx outputs, or choose from the <a href="https://rmarkdown.rstudio.com/lesson-9.html" target="_blank">other</a> supported formats.</p>
@@ -457,17 +454,17 @@ Figure 12.7: Knit HTML Output
 <p>When you <strong>“knit”</strong> an R Markdown document, the .Rmd file is processed by the knitr package, which executes the code chunks and creates a new markdown file containing the code and its output. This markdown file is then processed by pandoc, which creates the final output document in the specified format. This two-step process allows for a wide range of output options and enables you to easily create professional-quality documents from your R Markdown code.</p>
 </div>
 </div>
-<div id="synchronize-with-github" class="section level2 hasAnchor" number="12.4">
-<h2><span class="header-section-number">12.4</span> Synchronize with GitHub<a href="r-markdown.html#synchronize-with-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="synchronize-with-github" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Synchronize with GitHub<a href="r-markdown.html#synchronize-with-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>It’s good practice to <strong>synchronize</strong> changes made to the project <strong>regularly</strong> with the online repository. First, you need to pull any changes that someone else may have made.</p>
 
 <div class="rmdexercise">
-<p>Click the <code>Pull button</code> in the <code>Git tab</code> (see Fig. <a href="r-markdown.html#fig:L09-pull">12.8</a>). A message appears indicating that no other changes have been made (<code>Already up to date</code>).</p>
+<p>Click the <code>Pull button</code> in the <code>Git tab</code> (see Fig. <a href="r-markdown.html#fig:L09-pull">11.8</a>). A message appears indicating that no other changes have been made (<code>Already up to date</code>).</p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-pull"></span>
 <img src="images/pull.png" alt="Make Pull" width="80%" />
 <p class="caption">
-Figure 12.8: Make Pull
+Figure 11.8: Make Pull
 </p>
 </div>
 <p>Even if you’re working on your own, it’s a good idea to routinely start the sync process with a <code>Pull</code>.</p>
@@ -476,33 +473,33 @@ Figure 12.8: Make Pull
 <div class="rmdexercise">
 <p>Save all documents in R Studio, then click the “Commit” button in the Git tab. The files that have been affected by changes will be listed in the commit window. You can click on one of the files to see the changes (green represents new content, red represents deleted content).</p>
 <p>Manually select all the files by clicking the corresponding checkboxes. To make sure you have not missed a file, you may execute <code>git add -A</code> in the terminal window to add all files to the commit (see <a href="https://github.com/joshnh/Git-Commands" target="_blank">this</a> list of popular Git Commands.) Once this is done, enter a meaningful commit message that describes your revision and click the <code>Commit button</code>.</p>
-<p>See Fig. <a href="r-markdown.html#fig:L09-commit">12.9</a></p>
+<p>See Fig. <a href="r-markdown.html#fig:L09-commit">11.9</a></p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-commit"></span>
 <img src="images/commit.png" alt="Make Commit" width="70%" />
 <p class="caption">
-Figure 12.9: Make Commit
+Figure 11.9: Make Commit
 </p>
 </div>
 <p> </p>
-<p>To finish the sync process, click the <code>Push button</code> in the <code>Git tab</code> (see Fig. <a href="r-markdown.html#fig:L09-push">12.10</a>).</p>
+<p>To finish the sync process, click the <code>Push button</code> in the <code>Git tab</code> (see Fig. <a href="r-markdown.html#fig:L09-push">11.10</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-push"></span>
 <img src="images/Push.png" alt="Make Push" width="70%" />
 <p class="caption">
-Figure 12.10: Make Push
+Figure 11.10: Make Push
 </p>
 </div>
 <p> </p>
-<p>Your online repository on GitHub should now be updated (switch to <code>dev</code> branch in your repository) (see Fig. <a href="r-markdown.html#fig:L09-updated">12.11</a>).</p>
+<p>Your online repository on GitHub should now be updated (switch to <code>dev</code> branch in your repository) (see Fig. <a href="r-markdown.html#fig:L09-updated">11.11</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-updated"></span>
 <img src="images/CommitFinished.png" alt="Commit with message 'describe sync process in github' was pushed to the developer branch a minute ago" width="90%" />
 <p class="caption">
-Figure 12.11: Commit with message ‘describe sync process in github’ was pushed to the developer branch a minute ago
+Figure 11.11: Commit with message ‘describe sync process in github’ was pushed to the developer branch a minute ago
 </p>
 </div>
 </div>
-<div id="basic-rmarkdown-syntax" class="section level2 hasAnchor" number="12.5">
-<h2><span class="header-section-number">12.5</span> Basic RMarkdown syntax<a href="r-markdown.html#basic-rmarkdown-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="basic-rmarkdown-syntax" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Basic RMarkdown syntax<a href="r-markdown.html#basic-rmarkdown-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In R Markdown documents, you can use double asterisks (<code>**Text**</code>) to <strong>bold</strong> words and phrases, or single asterisks (<code>*Text*</code>) to <em>italicize</em> them.</p>
 <p>You can also create <strong>headings</strong> using hash signs (#). The number of hash signs you use corresponds to the heading level:</p>
 <pre><code># Heading level 1
@@ -510,11 +507,11 @@ Figure 12.11: Commit with message ‘describe sync process in github’ was push
 ## Heading level 2
 
 ### Heading level 3</code></pre>
-<p><strong>Tables</strong> are created by using the symbols <code>|</code> and <code>-</code>. Do you remember in the first chapter, the <a href="intro.html#numop">numeric operators table</a>? Figure <a href="r-markdown.html#fig:L09-tables">12.12</a> illustrates the RMarkdown syntax being used to create this table.</p>
+<p><strong>Tables</strong> are created by using the symbols <code>|</code> and <code>-</code>. Do you remember in the first chapter, the <a href="intro.html#numop">numeric operators table</a>? Figure <a href="r-markdown.html#fig:L09-tables">11.12</a> illustrates the RMarkdown syntax being used to create this table.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-tables"></span>
 <img src="images/tables.png" alt="How Tables are made in Markdown" width="100%" />
 <p class="caption">
-Figure 12.12: How Tables are made in Markdown
+Figure 11.12: How Tables are made in Markdown
 </p>
 </div>
 <p>To create an <strong>ordered list</strong>, use numbers followed by a period. The first item should start with the number 1:</p>
@@ -573,44 +570,44 @@ Figure 12.12: How Tables are made in Markdown
 <p><code>$\frac{\partial f}{\partial x}$</code></p>
 <p>Result looks like… <span class="math inline">\(\frac{\partial f}{\partial x}\)</span></p>
 <p>See <a href="https://rpruim.github.io/s341/S19/from-class/MathinRmd.html" target="_blank">“Mathematics in R Markdown”</a> for more examples.</p>
-<div id="references-in-rmarkdown" class="section level3 hasAnchor" number="12.5.1">
-<h3><span class="header-section-number">12.5.1</span> References in RMarkdown<a href="r-markdown.html#references-in-rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="references-in-rmarkdown" class="section level3 hasAnchor" number="11.5.1">
+<h3><span class="header-section-number">11.5.1</span> References in RMarkdown<a href="r-markdown.html#references-in-rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>R Markdown also comes with a time-saving method to insert <strong>citations</strong> and to build a <strong>bibliography</strong>. References are collected in a .bib-file.
 Create a new document in a text editor such as Windows Editor. Save the file with a <strong>.bib</strong> extension (e.g. references.bib) in your RStudio project folder.</p>
 
 <div class="rmdtip">
 <p>You can use the RStudio project that you have cloned, modified and synchronized in previous exercises.</p>
 </div>
-<p>Now you can <strong>add references</strong> to the .bib-file. References are encoded in BibTeX format. The easiest way to get the BibTeX description of a reference is to export from Google Scholar. To enable BibTeX export, change setting in Google Scholar (see Fig. <a href="r-markdown.html#fig:L09-scholarsettings">12.13</a>).</p>
+<p>Now you can <strong>add references</strong> to the .bib-file. References are encoded in BibTeX format. The easiest way to get the BibTeX description of a reference is to export from Google Scholar. To enable BibTeX export, change setting in Google Scholar (see Fig. <a href="r-markdown.html#fig:L09-scholarsettings">11.13</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-scholarsettings"></span>
 <img src="images/ScholarSettings.png" alt="Enable BibTeX in Firefox 106.0.1" width="90%" />
 <p class="caption">
-Figure 12.13: Enable BibTeX in Firefox 106.0.1
+Figure 11.13: Enable BibTeX in Firefox 106.0.1
 </p>
 </div>
 
 <div class="rmdtip">
 You may use a different browser or version of Firefox. In case you need support, please turn to the discussion forum!
 </div>
-<p>Once you have enabled BibTeX export in your browser, a new link <code>Import into BibTeX</code> appears in Google Scholar (see Fig. <a href="r-markdown.html#fig:L09-biboption">12.14</a>).</p>
+<p>Once you have enabled BibTeX export in your browser, a new link <code>Import into BibTeX</code> appears in Google Scholar (see Fig. <a href="r-markdown.html#fig:L09-biboption">11.14</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-biboption"></span>
 <img src="images/bibtexoption.png" alt="BibTeX Link in Firefox 106.0.1" width="90%" />
 <p class="caption">
-Figure 12.14: BibTeX Link in Firefox 106.0.1
+Figure 11.14: BibTeX Link in Firefox 106.0.1
 </p>
 </div>
-<p>Click the link in Google Scholar and copy &amp; paste the BibTeX code into your .bib-file. As a next step, you have to specify the location of the .bib-file in the YAML metadata (YAML parameter <code>bibliography:&lt;.bib file&gt;</code>). Now you can use the BibTeX reference sources from <code>.bib</code> in your R Markdown file. Insert <code>@</code> and the first BibTeX parameter of a BibTeX reference source to add citations to your document (see Fig. <a href="r-markdown.html#fig:L09-refs">12.15</a>).</p>
+<p>Click the link in Google Scholar and copy &amp; paste the BibTeX code into your .bib-file. As a next step, you have to specify the location of the .bib-file in the YAML metadata (YAML parameter <code>bibliography:&lt;.bib file&gt;</code>). Now you can use the BibTeX reference sources from <code>.bib</code> in your R Markdown file. Insert <code>@</code> and the first BibTeX parameter of a BibTeX reference source to add citations to your document (see Fig. <a href="r-markdown.html#fig:L09-refs">11.15</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-refs"></span>
 <img src="images/refs.png" alt="Integrate BibTeX reference in RMarkdown document" width="90%" />
 <p class="caption">
-Figure 12.15: Integrate BibTeX reference in RMarkdown document
+Figure 11.15: Integrate BibTeX reference in RMarkdown document
 </p>
 </div>
-<p>To compile your R Markdown document, <code>knit</code> as HTML, PDF or Word. The <code>rmarkdown</code> library renders references as indirect citations (<em>reference without squared brackets in .Rmd file</em>) and direct citations (<em>reference with squared brackets in .Rmd file</em>) and inserts a bibliography (see Fig. <a href="r-markdown.html#fig:L09-pdfknit">12.16</a>).</p>
+<p>To compile your R Markdown document, <code>knit</code> as HTML, PDF or Word. The <code>rmarkdown</code> library renders references as indirect citations (<em>reference without squared brackets in .Rmd file</em>) and direct citations (<em>reference with squared brackets in .Rmd file</em>) and inserts a bibliography (see Fig. <a href="r-markdown.html#fig:L09-pdfknit">11.16</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-pdfknit"></span>
 <img src="images/knit_pdf.png" alt="Knit R Markdown as PDF" width="90%" />
 <p class="caption">
-Figure 12.16: Knit R Markdown as PDF
+Figure 11.16: Knit R Markdown as PDF
 </p>
 </div>
 <p><a href="data/ReferencesInRMarkdown.zip" target="_blank">Here</a> you can find a worked example for download. Unzip the folder and open the .Rproj file in RStudio.</p>
@@ -620,8 +617,8 @@ Other helpful R Markdown syntax examples can be looked up in the <a href="https:
 </div>
 </div>
 </div>
-<div id="speed-up-your-workflows" class="section level2 hasAnchor" number="12.6">
-<h2><span class="header-section-number">12.6</span> Speed up your workflows<a href="r-markdown.html#speed-up-your-workflows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="speed-up-your-workflows" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> Speed up your workflows<a href="r-markdown.html#speed-up-your-workflows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Many of the methods that were covered in this module <strong>are intended to make repetitive workflows more efficient</strong> and less time-consuming. In this section, an example is introduced that illustrates the great potentials of R Markdown in terms of automation and efficiency improvement.</p>
 <p>Imagine you have a client who is interested in a specific set of spatial economic indicators that are updated daily. Rather than creating a data report from scratch every day, R Markdown allows you to create a data report with charts that are automatically generated on report compilation. This can save you a significant amount of time and effort, and allow you to focus on other tasks.</p>
 <p>Data can be retrieved in real-time by means of <a href="https://www.alphavantage.co/" target="_blank">Alpha Ventage</a>. Alpha Ventage provides financial market data through the <a href="https://www.alphavantage.co/documentation/" target="_blank">Alpha Ventage Rest API</a>. To access the API in R, we can use the R library <a href="https://cran.r-project.org/web/packages/alphavantager/index.html" target="_blank"><code>alphaventager</code></a>.</p>
@@ -634,8 +631,8 @@ Other helpful R Markdown syntax examples can be looked up in the <a href="https:
 <p>Once you have understood the structure of this document, try to supplement the finance data report with an additional spatial indicator (e.g. map of exchange rates from national currencies to Euro).</p>
 </div>
 </div>
-<div id="self-study" class="section level2 hasAnchor" number="12.7">
-<h2><span class="header-section-number">12.7</span> Self-study<a href="r-markdown.html#self-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="self-study" class="section level2 hasAnchor" number="11.7">
+<h2><span class="header-section-number">11.7</span> Self-study<a href="r-markdown.html#self-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The functionality of R Markdown is comprehensive and <strong>cannot be covered</strong> in one lesson. It is highly recommended to consult the online book <a href="https://bookdown.org/yihui/rmarkdown/" target="_blank">R Markdown: The Definitive Guide</a> to leverage the full potential of R Markdown.</p>
 <p>Other R Markdown compile formats that are described in this book are Notebooks and Presentations. RMarkdown also supports other languages such as Python, C++ and SQL. It can also be customized and used to create more complex documents with extensions like: <a href="https://bookdown.org/" target="_blank">BookDown</a> or <a href="https://github.com/ismayc/thesisdown" target="_blank">ThesisDown</a>. It is <strong>recommended to practice and experiment</strong> with these different features to become proficient in using R Markdown.</p>
 
