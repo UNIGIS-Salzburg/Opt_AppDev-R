@@ -1,3 +1,65 @@
+# Spatial Data Manipulation
+
+## Introduction
+- Briefly discuss the importance of spatial data wrangling in geoinformatics and related fields.
+- Quick highlight of the difference between traditional data wrangling and spatial data wrangling.
+
+## Spatial Aggregation
+- Aggregating spatial data based on certain attributes or spatial units.
+- Introduce the sf and terra packages for aggregation tasks.
+
+```{r}
+# Example code for spatial aggregation using sf and terra
+```
+
+
+
+## Merging and Appending Spatial Data
+- Combining multiple spatial datasets.
+- Introduce the sf package for these tasks.
+```{r}
+# Example code for merging and appending using sf
+```
+
+## Handling Missing Data
+- Discuss methods to identify, visualize, and impute missing data.
+- Introduce the **tidyverse** suite for handling missing data in spatial datasets. (but again, watchout for **httr1** and **httr2** + (**time of writing 12.09.2023**)
+
+```{r}
+# Example code for handling missing data using tidyverse
+```
+
+## Spatial Data Cleaning
+- Detecting and correcting topological errors.
+- Introduce the sf and spatstat packages for these tasks.
+
+```{r}
+# Example code for spatial data cleaning using sf and spatstat
+```
+
+## Multidimensional Data Wrangling with stars
+- Handling and manipulating multidimensional arrays.
+- Discuss the importance of stars in the R spatial ecosystem.
+
+```{r}
+# Example code for wrangling multidimensional data using stars
+```
+
+## Challenges in Spatial Data Structures
+- Issues with data integrity and accuracy.
+- Handling different coordinate reference systems (CRS). (If you get for example a old or exotic dataset)
+
+## Dealing with large spatial datasets.
+- Dive Deeper: Strategies for optimizing spatial data structures for large datasets and high-performance computing.
+
+## Case Study: A Complete Spatial Data Wrangling Workflow
+- Would be a quite interesting change of wind: a comprehensive case study integrating various spatial data wrangling techniques...
+- This could be based on a real-world scenario, such as urban planning, environmental monitoring, or transportation.
+- Alternatively, a set of exercises allowing our students to apply the techniques learned in the chapter.
+
+
+---
+
 # New Chapter: Spatial Data Manipulation
 ## Introduction
 - Briefly explain the difference between data wrangling and data manipulation in the spatial context.

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 1 Introduction to R | Automated Data Processing with R</title>
+  <title>Lesson 9 New Chapter: Spatial Data Manipulation | Automated Data Processing with R</title>
   <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 1 Introduction to R | Automated Data Processing with R" />
+  <meta property="og:title" content="Lesson 9 New Chapter: Spatial Data Manipulation | Automated Data Processing with R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/branding/Cover_epub.png" />
   <meta property="og:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="github-repo" content="UNIGIS-Salzburg/En_AppDev-R" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 1 Introduction to R | Automated Data Processing with R" />
+  <meta name="twitter:title" content="Lesson 9 New Chapter: Spatial Data Manipulation | Automated Data Processing with R" />
   
   <meta name="twitter:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="twitter:image" content="/branding/Cover_epub.png" />
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="index.html"/>
-<link rel="next" href="core.html"/>
+<link rel="prev" href="spatial-data-manipulation.html"/>
+<link rel="next" href="read-and-write-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -333,297 +333,114 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Lesson 1</span> Introduction to R<a href="intro.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="about-this-module" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> About this module<a href="intro.html#about-this-module" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This module will provide you with the fundamental skills in basic programming in R. We will start with some core concepts of programming that are the building blocks of programming in any language. This includes <strong>Datatypes</strong>, <strong>Operators</strong>, <strong>Variables</strong>, <strong>Functions</strong>, <strong>Control Structures</strong> and <strong>Libraries</strong>.</p>
-<p>On this basis, we will explore more complex data types like <strong>Data Frames</strong> and <strong>Tibbles</strong> as well as methods to <strong>Read and Write</strong> spatial and non-spatial datasets. In many cases the available data will not be suitable for your analyses. You will learn how to <strong>filter, query, subset, join and re-shape</strong> data to fit your needs.</p>
-<p>After you have learned how to manipulate data, you will get to know methods to <strong>visualize</strong> data by means of diagrams (e.g. box plots, scatterplots, line plots etc.) and maps.</p>
-<p>Upon the completion of this module, you will have the fundamental skills in R programming as a basis for more advanced methods like Geospatial Data Analysis (is covered by the module “Spatial Statistics” in the MSc program) and Machine Learning.</p>
-
-<div class="rmdtip">
-This module is partly based on the teaching materials <a href="https://github.com/sdesabbata/granolarr" target="_blank">granolarr</a> worked out by <a href="https://sdesabbata.github.io/" target="_blank">Stefano de Sabbata</a> at the <a href="https://le.ac.uk/" target="_blank">University of Leicester</a>. For more information take a look at the Webbook <a href="https://sdesabbata.github.io/r-for-geographic-data-science/" target="_blank">R for Geographic Data Science</a>. The chapters on <strong>Statistical Analysis</strong> and <strong>Machine Learning</strong> are recommended as a follow up read for those who are willing to delve into more advanced applications of R.
-</div>
-</div>
-<div id="r-programming-language" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> R programming language<a href="intro.html#r-programming-language" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>R is a language that is applied in diverse fields of data science and analysis. Typical applications include…</p>
+<div id="new-chapter-spatial-data-manipulation" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Lesson 9</span> New Chapter: Spatial Data Manipulation<a href="new-chapter-spatial-data-manipulation.html#new-chapter-spatial-data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-2" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Introduction<a href="new-chapter-spatial-data-manipulation.html#introduction-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>data wrangling</li>
-<li>statistical analysis</li>
-<li>machine learning</li>
-<li>data visualisation and maps</li>
-<li>processing spatial data</li>
-<li>geographic information analysis</li>
-<li>and many more.</li>
-</ul>
-<p>Apart from its widespread use, there are a number of other reasons to learn R…</p>
-<ul>
-<li>R is free and open source.</li>
-<li>R has more comprehensive functionality than most proprietary solutions.</li>
-<li>R is available for Windows, Mac OS and Linux</li>
-<li>R is a general-purpose programming language, so you can use it to automate analyses and create new custom functions that extend default features.</li>
-<li>Because R is open source, it has a large user community, so it is easy to get help.</li>
-</ul>
-<p>R is a so-called <strong>high level programming language</strong> or <strong>scripting language</strong>. This means that R code is not compiled into a computer readable format, but interpreted by an <strong>interpreter.</strong> An interpreter is a computer program that directly interprets and executes instructions written in a programming language.</p>
-<p>In order to make sure that the interpreter can understand the program code, the programmer must stick to the grammar of the programming language; i.e. the interpreter expects commands to appear in a predefined order. This grammar is often regarded as <strong>Syntax</strong>.</p>
-<p>In this lesson we will focus on some key principles of the R syntax and logic.</p>
-</div>
-<div id="installation-and-setup" class="section level2 hasAnchor" number="1.3">
-<h2><span class="header-section-number">1.3</span> Installation and Setup<a href="intro.html#installation-and-setup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Before you can run your code, you have to install R together with an <strong>Integrated Development Environment (IDE)</strong> on your machine:</p>
-<ol style="list-style-type: decimal">
-<li>Download R from <a href="http://cran.r-project.org" target="_blank">R Archive Network (CRAN.)</a></li>
-<li>Follow the instructions and install the most up to date version on your machine (chose ‘base’ as well as 32-bit or 64-bit dependent on the bit-version of your operating system).</li>
-</ol>
-<p>The IDE is where you write, test and execute your R programs. I strongly recommend using <strong>RStudio Desktop</strong>, which is <a href="https://www.rstudio.com/" target="_blank">freely available for download.</a></p>
-<p>The following video gives a brief overview of key functions of RStudio.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:RStudioVideo"></span>
-<iframe src="https://www.youtube.com/embed/FIrsOBy5k58" width="672" height="400px" data-external="1">
-</iframe>
-<p class="caption">
-Figure 1.1: Video (6:09 min): RStudio for the Total Beginner.
-</p>
-</div>
-
-<div class="rmdtip">
-In case you are facing any technical issues, please turn to the discussion forum!
-</div>
-</div>
-<div id="interpreting-values" class="section level2 hasAnchor" number="1.4">
-<h2><span class="header-section-number">1.4</span> Interpreting values<a href="intro.html#interpreting-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Now that you have installed RStudio and R on your machine, it is time to run some code in RStudio. When you open RStudio, you will find the <strong>Console Window</strong> (see Fig. <a href="intro.html#fig:L01-console">1.2</a>). When values and operations are inputted in the <em>Console</em>, the interpreter returns the results of its interpretation of the expression.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L01-console"></span>
-<img src="images/Console.png" alt="Console Window in RStudio" width="90%" />
-<p class="caption">
-Figure 1.2: Console Window in RStudio
-</p>
-</div>
-<p>Type in a numeric value (e.g. 3) and press Enter. The interpreter returns a value in brackets and the input value. The value in brackets indicates that the input is composed of one single entity.</p>
-
-<div class="rmdexercise">
-<p>What if you type in a text value (e.g. test) and press Enter?</p>
-<details closed>
-<summary>
-<ins>
-<strong>See solution!</strong>
-</ins>
-</summary>
-<p>
-<p><i><font color="grey"></p>
-<p>The interpreter returns an error, because this datatype is unknown. Text is commonly reffered to as <strong>String</strong> or <strong>String of Characters</strong>. When apostrophes (i.e. <span>"</span>Test<span>"</span>) are added, the interpreter knows that this is a String.</p>
-</font></i>
-</p>
-</details>
-</div>
-<p>If you start your input with a hash symbol (#) the interpreter will consider that line as a comment. For instance, if you type in <strong># Test Test Test</strong>, you will see that nothing is returned as an output. Comments are extremely important as they allow you to add explanations in plain language. Comments are fundamental to allow other people to understand your code and it will save you time interpreting your own code.</p>
-</div>
-<div id="simple-data-types" class="section level2 hasAnchor" number="1.5">
-<h2><span class="header-section-number">1.5</span> Simple data types<a href="intro.html#simple-data-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In the previous section you have already see <strong>numeric</strong> and <strong>character (string)</strong> data types. <strong>Logical</strong> is a third simple data type provided with R.</p>
-
-<div class="rmdtip">
-<p>R provides three core data types</p>
-<ul>
-<li>numeric
-<ul>
-<li>both integer and real numbers</li>
-</ul></li>
-<li>character
-<ul>
-<li>i.e., text, also called <em>strings</em></li>
-</ul></li>
-<li>logical
-<ul>
-<li><code>TRUE</code> or <code>FALSE</code></li>
-</ul></li>
+<li>Briefly explain the difference between data wrangling and data manipulation in the spatial context.</li>
+<li>Highlight the importance of spatial data manipulation in GIS and spatial analysis workflows.</li>
+<li>Introduce the primary packages for this chapter: sf, terra, stars, and spatstat.</li>
 </ul>
 </div>
-<p>The type ‘logical’ encodes the values TRUE or FALSE. Together these three simple data types are the building blocks R uses to encode information.</p>
-
-<div class="rmdexercise">
-<p>If you type a simple numeric operation in the console (e.g. 2 + 4), the interpreter will return a result. This indicates that operations (e.g. mathematical calculations) can be carried out on these types.</p>
-<p>Logical operations return values of type ‘logical’. What value is returned in the console when you type and execute the expression 2 &lt; 3?</p>
-<details closed>
-<summary>
-<ins>
-<strong>See solution!</strong>
-</ins>
-</summary>
-<p>
-<p><i><font color="grey"></p>
-<p>The interpreter returns ‘TRUE’, because it is ‘true’ that 2 is less than 3.</p>
-</font></i>
-</p>
-</details>
-</div>
-</div>
-<div id="numop" class="section level2 hasAnchor" number="1.6">
-<h2><span class="header-section-number">1.6</span> Numeric operators<a href="intro.html#numop" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>R provides a series of basic numeric operators.</p>
-<table>
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Meaning</th>
-<th>Example</th>
-<th>Output</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>+</td>
-<td>Plus</td>
-<td><code>5 + 2</code></td>
-<td>7</td>
-</tr>
-<tr class="even">
-<td>-</td>
-<td>Minus</td>
-<td><code>5 - 2</code></td>
-<td>3</td>
-</tr>
-<tr class="odd">
-<td><code>*</code></td>
-<td>Product</td>
-<td><code>5 * 2</code></td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td>/</td>
-<td>Division</td>
-<td><code>5 / 2</code></td>
-<td>2.5</td>
-</tr>
-<tr class="odd">
-<td>%/%</td>
-<td>Integer division</td>
-<td><code>5 %/% 2</code></td>
-<td>2</td>
-</tr>
-<tr class="even">
-<td>%%</td>
-<td>Module</td>
-<td><code>5 %% 2</code></td>
-<td>1</td>
-</tr>
-<tr class="odd">
-<td>^</td>
-<td>Power</td>
-<td><code>5^2</code></td>
-<td>25</td>
-</tr>
-</tbody>
-</table>
-<p>Whereas mathematical operators are self-explanatory, the operators ‘Module’ and ‘Integer division’ may be new to some of you. Integer division returns an integer quotient:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intro.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">%/%</span><span class="dv">2</span></span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
-
-<div class="rmdtip">
-<p>Note: In this web book, two hash symbols (##) highlight the values returned by the R Console. The code above returns a value of 2. The number in squared brackets [1] indicates the line number of the return.</p>
-</div>
-
-<div class="rmdexercise">
-<p>Execute 5 %% 2 to test the ‘Module’ operator.</p>
-<details closed>
-<summary>
-<ins>
-<strong>See solution!</strong>
-</ins>
-</summary>
-<p>
-<p><i><font color="grey"></p>
-<p>The ‘Module’ returns the remainder of the division, which is ‘1’ in the example above.</p>
-</font></i>
-</p>
-</details>
-</div>
-</div>
-<div id="logical-operators" class="section level2 hasAnchor" number="1.7">
-<h2><span class="header-section-number">1.7</span> Logical operators<a href="intro.html#logical-operators" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>R also provides a series of basic logical operators to create logical expressions.</p>
-<table>
-<thead>
-<tr class="header">
-<th>Operator</th>
-<th>Meaning</th>
-<th>Example</th>
-<th>Output</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>==</td>
-<td>Equal</td>
-<td><code>5 == 2</code></td>
-<td>FALSE</td>
-</tr>
-<tr class="even">
-<td>!=</td>
-<td>Not equal</td>
-<td><code>5 != 2</code></td>
-<td>TRUE</td>
-</tr>
-<tr class="odd">
-<td>&gt; (&gt;=)</td>
-<td>Greater (or equal)</td>
-<td><code>5 &gt; 2</code></td>
-<td>TRUE</td>
-</tr>
-<tr class="even">
-<td>&lt; (&lt;=)</td>
-<td>Less (or equal)</td>
-<td><code>5 &lt;= 2</code></td>
-<td>FALSE</td>
-</tr>
-<tr class="odd">
-<td>!</td>
-<td>Not</td>
-<td><code>!TRUE</code></td>
-<td>FALSE</td>
-</tr>
-<tr class="even">
-<td>&amp;</td>
-<td>And</td>
-<td><code>TRUE &amp; FALSE</code></td>
-<td>FALSE</td>
-</tr>
-<tr class="odd">
-<td>|</td>
-<td>Or</td>
-<td><code>TRUE | FALSE</code></td>
-<td>TRUE</td>
-</tr>
-</tbody>
-</table>
-<p>Logical expressions are typically used to execute code dependent on the occurrence of conditions.</p>
-
-<div class="rmdexercise">
-<p>What logical values are returned by the following expressions:</p>
+<div id="filtering-spatial-data" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Filtering Spatial Data<a href="new-chapter-spatial-data-manipulation.html#filtering-spatial-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><em>(3 != 5) | (3 == 4)</em></li>
-<li><em>(2 &gt;= 3) | (3 &lt; 7)</em></li>
-<li><em>(2 == 9) &amp; (2 &lt; 4)</em></li>
+<li>Filtering sf Objects</li>
+<li>Demonstrate how to filter spatial features in sf objects based on attribute conditions.</li>
+<li>Introduce the sf package for vector data filtering.</li>
 </ul>
-<p>Type and execute (Enter button) in the RStudio console to validate your assumptions.</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="new-chapter-spatial-data-manipulation.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for filtering sf objects</span></span></code></pre></div>
 </div>
-</div>
-<div id="references" class="section level2 hasAnchor" number="1.8">
-<h2><span class="header-section-number">1.8</span> References<a href="intro.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Apart from <a href="https://sdesabbata.github.io/" target="_blank">Stefano de Sabbata’s</a> teaching materials, a number of other sources are use in this module. Most of them are freely available online:</p>
+<div id="filtering-rasters-with-terra" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Filtering Rasters with terra<a href="new-chapter-spatial-data-manipulation.html#filtering-rasters-with-terra" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li>The Grammar Of Graphics – All You Need to Know About ggplot2 and Pokemons by Pascal Schmidt. see <a href="https://thatdatatho.com/grammar-of-graphics-ggplot2/" target="_blank">Online Tutorial</a></li>
-<li>ggplot2 - Overview. see <a href="https://ggplot2.tidyverse.org/" target="_blank">Online Documentation</a></li>
-<li>Getting started with httr2 - httr2 quickstart guide. <a href="https://httr2.r-lib.org/articles/httr2.html" target="_blank">Online Tutorial</a></li>
-<li><em>Programming Skills for Data Science: Start Writing Code to Wrangle, Analyze, and Visualize Data with R</em> by Michael Freeman and Joel Ross, Addison-Wesley, 2019. See book <a href="https://www.pearson.com/us/higher-education/program/Freeman-Programming-Skills-for-Data-Science-Start-Writing-Code-to-Wrangle-Analyze-and-Visualize-Data-with-R/PGM2047488.html" target="_blank">webpage</a> and <a href="https://programming-for-data-science.github.io/" target="_blank">repository</a>.</li>
-<li><em>R for Data Science</em> by Garrett Grolemund and Hadley Wickham, O’Reilly Media, 2016. See <a href="https://r4ds.had.co.nz/" target="_blank">online book</a>.</li>
-<li><em>Discovering Statistics Using R</em> by Andy Field, Jeremy Miles and Zoë Field, SAGE Publications Ltd, 2012. See book <a href="https://www.discoveringstatistics.com/books/discovering-statistics-using-r/" target="_blank">webpage</a>.</li>
-<li><em>Machine Learning with R: Expert techniques for predictive modeling</em> by Brett Lantz, Packt Publishing, 2019. See book <a href="https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788295864" target="_blank">webpage</a>.</li>
-<li><em>The Art of R Programming: A Tour of Statistical Software Design</em> by Norman Matloff, No Starch Press, 2011. See book <a href="https://nostarch.com/artofr.htm" target="_blank">webpage</a></li>
-<li><em>An Introduction to R for Spatial Analysis and Mapping</em> by Chris Brunsdon and Lex Comber, Sage, 2015. See book <a href="https://us.sagepub.com/en-us/nam/an-introduction-to-r-for-spatial-analysis-and-mapping/book258267" target="_blank">webpage</a></li>
-<li><em>Geocomputation with R</em> by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. See <a href="https://bookdown.org/robinlovelace/geocompr/" target="_blank">online book</a>.</li>
-<li><em>The RStudio Cheatsheets - </em> <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">Collection on R Studio Website</a>.</li>
+<li>Show how to filter raster data based on cell values or spatial conditions using terra.</li>
+</ul>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="new-chapter-spatial-data-manipulation.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for filtering rasters with terra</span></span></code></pre></div>
+</div>
+<div id="spatial-joins-with-sf-though..-we-could-also-put-that-in-chapter-10-and-make-12-bigger-with-spatial-stat" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Spatial Joins with sf (though.. we could also put that in Chapter 10 and make 12 bigger with spatial stat)<a href="new-chapter-spatial-data-manipulation.html#spatial-joins-with-sf-though..-we-could-also-put-that-in-chapter-10-and-make-12-bigger-with-spatial-stat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Explain the concept of spatial joins.</li>
+<li>Demonstrate how to join two spatial datasets based on their spatial relationship using sf.</li>
+</ul>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="new-chapter-spatial-data-manipulation.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for spatial joins with sf</span></span></code></pre></div>
+</div>
+<div id="geometric-operations-with-sf" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Geometric Operations with sf<a href="new-chapter-spatial-data-manipulation.html#geometric-operations-with-sf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="intersect" class="section level3 hasAnchor" number="9.5.1">
+<h3><span class="header-section-number">9.5.1</span> Intersect<a href="new-chapter-spatial-data-manipulation.html#intersect" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Demonstrate how to find the common spatial elements between two datasets using sf.</li>
+</ul>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="new-chapter-spatial-data-manipulation.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for intersect operation with sf</span></span></code></pre></div>
+</div>
+<div id="buffer" class="section level3 hasAnchor" number="9.5.2">
+<h3><span class="header-section-number">9.5.2</span> Buffer<a href="new-chapter-spatial-data-manipulation.html#buffer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Show how to create a buffer zone around a spatial feature using sf.</li>
+</ul>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="new-chapter-spatial-data-manipulation.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for buffer operation with sf</span></span></code></pre></div>
+</div>
+<div id="union-and-difference" class="section level3 hasAnchor" number="9.5.3">
+<h3><span class="header-section-number">9.5.3</span> Union and Difference<a href="new-chapter-spatial-data-manipulation.html#union-and-difference" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Explain and demonstrate the union and difference operations between two spatial datasets using sf.</li>
+</ul>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="new-chapter-spatial-data-manipulation.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for union and difference operations with sf</span></span></code></pre></div>
+</div>
+</div>
+<div id="coordinate-transformations-and-reprojections-with-sf-and-terra" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> Coordinate Transformations and Reprojections with sf and terra<a href="new-chapter-spatial-data-manipulation.html#coordinate-transformations-and-reprojections-with-sf-and-terra" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Discuss the importance of having datasets in the same coordinate system.</li>
+<li>Demonstrate how to reproject spatial data using both sf for vector data and terra for raster data.</li>
+</ul>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="new-chapter-spatial-data-manipulation.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for coordinate transformations with sf and terra</span></span></code></pre></div>
+</div>
+<div id="raster-operations-with-terra" class="section level2 hasAnchor" number="9.7">
+<h2><span class="header-section-number">9.7</span> Raster Operations with terra<a href="new-chapter-spatial-data-manipulation.html#raster-operations-with-terra" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="resampling" class="section level3 hasAnchor" number="9.7.1">
+<h3><span class="header-section-number">9.7.1</span> Resampling<a href="new-chapter-spatial-data-manipulation.html#resampling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Show how to change the resolution of raster datasets using terra.</li>
+</ul>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="new-chapter-spatial-data-manipulation.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for raster resampling with terra</span></span></code></pre></div>
+</div>
+<div id="raster-algebra" class="section level3 hasAnchor" number="9.7.2">
+<h3><span class="header-section-number">9.7.2</span> Raster Algebra<a href="new-chapter-spatial-data-manipulation.html#raster-algebra" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Demonstrate basic raster algebra operations like addition, subtraction, and multiplication of raster layers using terra.</li>
+</ul>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="new-chapter-spatial-data-manipulation.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for raster algebra with terra</span></span></code></pre></div>
+</div>
+</div>
+<div id="applied-spatial-statistics-with-spatstat" class="section level2 hasAnchor" number="9.8">
+<h2><span class="header-section-number">9.8</span> Applied Spatial Statistics with spatstat<a href="new-chapter-spatial-data-manipulation.html#applied-spatial-statistics-with-spatstat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>(I think, this will be yours Christian :) But it might be a pretty good idea to showcase it in chapter 12, atleast basics.):
+- Introduction to spatstat:
+- Briefly introduce the spatstat package and its capabilities in handling advanced spatial statistics.
+- Point Pattern Analysis (ppa):
+- Dive deeper into point pattern analysis, discussing its importance and applications in spatial statistics.
+- Spatial Clustering:
+- Discuss the concept of spatial clustering and its relevance in identifying patterns in spatial data.
+- Illustrate with examples how spatstat can be used for spatial clustering analysis.
+- Nearest Neighbor Analysis:
+- Introduce Nearest Neighbor as a crucial type of spatial query often used in spatial statistics to analyze the spatial distribution of features.
+- Discuss its applications in evaluating the spatial arrangement of points, assessing spatial randomness, and identifying - patterns such as clustering or dispersion.
+- Provide practical examples demonstrating how to perform Nearest Neighbor analysis using spatstat, and discuss the interpretation of the results.</p>
+</div>
+<div id="comparative-analysis-of-packages" class="section level2 hasAnchor" number="9.9">
+<h2><span class="header-section-number">9.9</span> Comparative Analysis of Packages<a href="new-chapter-spatial-data-manipulation.html#comparative-analysis-of-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>After that intense usage of packages, Investigate and compare the performance, ease of use, and capabilities of sf, terra, stars, and spatstat for various spatial operations. Compiled languages (for example via C, C++) and packages and their difference in speed.</li>
+</ul>
+</div>
+<div id="exercise" class="section level2 hasAnchor" number="9.10">
+<h2><span class="header-section-number">9.10</span> Exercise<a href="new-chapter-spatial-data-manipulation.html#exercise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Provide exercises that allow readers to apply the techniques learned in the chapter, ensuring they get hands-on experience with each of the introduced packages.</li>
 </ul>
 
 </div>
@@ -633,8 +450,8 @@ Figure 1.2: Console Window in RStudio
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="core.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="spatial-data-manipulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="read-and-write-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
