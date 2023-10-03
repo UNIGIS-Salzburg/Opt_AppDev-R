@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="twitter:image" content="/branding/Cover_epub.png" />
 
-<meta name="author" content="Christian Neuwirth" />
+<meta name="author" content="Christian Neuwirth &amp; Maximilian Elixhauser" />
 
 
 
@@ -51,16 +51,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="libs/proj4-2.6.2/proj4.min.js"></script>
-<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -182,17 +172,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html"><i class="fa fa-check"></i><b>4</b> Spatial Data Structures</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#fundamentals-of-spatial-data-structures"><i class="fa fa-check"></i><b>4.2</b> Fundamentals of Spatial Data Structures</a>
+<li class="chapter" data-level="4.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#vector-data-structures"><i class="fa fa-check"></i><b>4.1</b> Vector Data Structures:</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#vector-data-structures"><i class="fa fa-check"></i><b>4.2.1</b> Vector Data Structures:</a></li>
-<li class="chapter" data-level="4.2.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#raster-data-structures"><i class="fa fa-check"></i><b>4.2.2</b> Raster Data Structures:</a></li>
+<li class="chapter" data-level="4.1.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#points"><i class="fa fa-check"></i><b>4.1.1</b> Points:</a></li>
+<li class="chapter" data-level="4.1.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#lines"><i class="fa fa-check"></i><b>4.1.2</b> Lines:</a></li>
+<li class="chapter" data-level="4.1.3" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#polygons"><i class="fa fa-check"></i><b>4.1.3</b> Polygons:</a></li>
+<li class="chapter" data-level="4.1.4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#raster-data-structures"><i class="fa fa-check"></i><b>4.1.4</b> Raster Data Structures:</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#representing-spatial-data-structures-in-r"><i class="fa fa-check"></i><b>4.3</b> Representing Spatial Data Structures in R</a>
+<li class="chapter" data-level="4.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#representing-spatial-data-structures-in-r"><i class="fa fa-check"></i><b>4.2</b> Representing Spatial Data Structures in R</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#simple-features-with-sf"><i class="fa fa-check"></i><b>4.3.1</b> Simple Features with sf:</a></li>
+<li class="chapter" data-level="4.2.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#simple-features-with-sf"><i class="fa fa-check"></i><b>4.2.1</b> Simple Features with sf:</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#raster-data-with-terra"><i class="fa fa-check"></i><b>4.4</b> Raster Data with terra:</a>
+<li class="chapter" data-level="4.3" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#raster-data-with-terra"><i class="fa fa-check"></i><b>4.3</b> Raster Data with terra:</a></li>
+<li class="chapter" data-level="4.4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#raster-data-with-terra-1"><i class="fa fa-check"></i><b>4.4</b> Raster Data with Terra</a>
 <ul>
 <li class="chapter" data-level="4.4.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#reading-raster-data"><i class="fa fa-check"></i><b>4.4.1</b> Reading Raster Data</a></li>
 <li class="chapter" data-level="4.4.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#basic-raster-operations"><i class="fa fa-check"></i><b>4.4.2</b> Basic Raster Operations</a></li>
@@ -245,7 +237,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html"><i class="fa fa-check"></i><b>8</b> Spatial Data Manipulation</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#introduction-1"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.1" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
 <li class="chapter" data-level="8.2" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#spatial-aggregation"><i class="fa fa-check"></i><b>8.2</b> Spatial Aggregation</a></li>
 <li class="chapter" data-level="8.3" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#merging-and-appending-spatial-data"><i class="fa fa-check"></i><b>8.3</b> Merging and Appending Spatial Data</a></li>
 <li class="chapter" data-level="8.4" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#handling-missing-data"><i class="fa fa-check"></i><b>8.4</b> Handling Missing Data</a></li>
@@ -254,7 +246,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.7" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#challenges-in-spatial-data-structures"><i class="fa fa-check"></i><b>8.7</b> Challenges in Spatial Data Structures</a></li>
 <li class="chapter" data-level="8.8" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#dealing-with-large-spatial-datasets."><i class="fa fa-check"></i><b>8.8</b> Dealing with large spatial datasets.</a></li>
 <li class="chapter" data-level="8.9" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#case-study-a-complete-spatial-data-wrangling-workflow"><i class="fa fa-check"></i><b>8.9</b> Case Study: A Complete Spatial Data Wrangling Workflow</a></li>
-<li class="chapter" data-level="8.10" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#introduction-2"><i class="fa fa-check"></i><b>8.10</b> Introduction</a></li>
+<li class="chapter" data-level="8.10" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#introduction-1"><i class="fa fa-check"></i><b>8.10</b> Introduction</a></li>
 <li class="chapter" data-level="8.11" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#filtering-spatial-data"><i class="fa fa-check"></i><b>8.11</b> Filtering Spatial Data</a></li>
 <li class="chapter" data-level="8.12" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#filtering-rasters-with-terra"><i class="fa fa-check"></i><b>8.12</b> Filtering Rasters with terra</a></li>
 <li class="chapter" data-level="8.13" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#spatial-joins-with-sf-though..-we-could-also-put-that-in-chapter-10-and-make-12-bigger-with-spatial-stat"><i class="fa fa-check"></i><b>8.13</b> Spatial Joins with sf (though.. we could also put that in Chapter 10 and make 12 bigger with spatial stat)</a></li>
@@ -617,6 +609,7 @@ Figure 1.2: Console Window in RStudio
 <li><em>R for Data Science</em> by Garrett Grolemund and Hadley Wickham, O’Reilly Media, 2016. See <a href="https://r4ds.had.co.nz/" target="_blank">online book</a>.</li>
 <li><em>Discovering Statistics Using R</em> by Andy Field, Jeremy Miles and Zoë Field, SAGE Publications Ltd, 2012. See book <a href="https://www.discoveringstatistics.com/books/discovering-statistics-using-r/" target="_blank">webpage</a>.</li>
 <li><em>Machine Learning with R: Expert techniques for predictive modeling</em> by Brett Lantz, Packt Publishing, 2019. See book <a href="https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788295864" target="_blank">webpage</a>.</li>
+<li><em>Introduction to spatial data in R</em> by Nils Riach and Rafael Hologa. See <a href="https://thinking-spatial.org/courses/angewandte_geodatenverarbeitung/kurs03/#understanding-sf-objects" target="_blank">online tutorial</a>.</li>
 <li><em>The Art of R Programming: A Tour of Statistical Software Design</em> by Norman Matloff, No Starch Press, 2011. See book <a href="https://nostarch.com/artofr.htm" target="_blank">webpage</a></li>
 <li><em>An Introduction to R for Spatial Analysis and Mapping</em> by Chris Brunsdon and Lex Comber, Sage, 2015. See book <a href="https://us.sagepub.com/en-us/nam/an-introduction-to-r-for-spatial-analysis-and-mapping/book258267" target="_blank">webpage</a></li>
 <li><em>Geocomputation with R</em> by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. See <a href="https://bookdown.org/robinlovelace/geocompr/" target="_blank">online book</a>.</li>
@@ -685,20 +678,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
