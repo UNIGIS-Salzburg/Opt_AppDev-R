@@ -33,8 +33,12 @@ Neat, concise information in: [Geocomputation with R](https://r.geocompx.org/) a
 **Note:** high probability of change!
 
 #### Rewrite: Chapter 7: Read and write data
-Although, I made a few changes already using httr2 instead of httr. There are a lot of neat functions, we could show the students and make them familiar with other examples. (for an introduction how it may look like, see "example_introduction_packages" directory. (examples will be increased in the future.))
+Although, I made a few changes already using httr2 instead of httr. There are a lot of neat functions, we could show the students and make them familiar with other examples. (for an introduction how it may look like, see "example_introduction_packages" directory. (examples will be increased in the future.)) -> Additional thoughts for the chapter. Are written in Chapter 7.
 
+#### Rewrite: Assignment 1
+Will not be shown on Github, hence will be sent if needed.
+
+## Added:
 ## Chapter 10: Spatial Data Structures
 this digs deep into spatial data structures, laying the groundwork for understanding the basics and more. It distinguishes between traditional and spatial data structures, exploring vector and raster data structures in detail. The chapter demonstrates how to represent these structures in R using the sf and terra packages as well as in theory, providing a hands-on approach to learning and ventures into advanced topics such as spatial indexing and understanding topological relationships, ensuring a comprehensive grasp of the subject matter. 
 
