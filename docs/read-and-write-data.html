@@ -422,7 +422,7 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 <span id="cb191-3"><a href="read-and-write-data.html#cb191-3" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="st">&quot;data/nc.shp&quot;</span>)</span>
 <span id="cb191-4"><a href="read-and-write-data.html#cb191-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb191-5"><a href="read-and-write-data.html#cb191-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nc)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
 <p>The library <code>sf</code> represents features as records in a data frame or tibble with a geometry list-column. The example below renders three features (rows) of variable nc including the geometry column as well as the attributes <code>AREA</code> (feature area) and <code>NAME</code> (name of county):</p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="read-and-write-data.html#cb192-1" aria-hidden="true" tabindex="-1"></a>nc <span class="sc">%&gt;%</span></span>
 <span id="cb192-2"><a href="read-and-write-data.html#cb192-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(AREA, NAME, geometry) <span class="sc">%&gt;%</span></span>
@@ -457,7 +457,7 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 <p><code>sf</code> also includes a number of operations to manipulate the geometry of features such as <code>st_simplify</code>:</p>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="read-and-write-data.html#cb193-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_simplify</span>(nc) <span class="sc">%&gt;%</span></span>
 <span id="cb193-2"><a href="read-and-write-data.html#cb193-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(., <span class="at">max.plot =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
 
 <div class="rmdtip">
 <p>You may have recognized that a dot (.) is used as a parameter in the function <code>plot()</code>. The dot represents the piped value. In the example above the dot is used to define the simplified geometry of nc as first parameter of function <code>plot()</code> and <code>max.plot = 1</code> as the second.</p>
@@ -467,7 +467,7 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 <span id="cb194-2"><a href="read-and-write-data.html#cb194-2" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_centroid</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb194-3"><a href="read-and-write-data.html#cb194-3" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_write</span>(<span class="st">&quot;data/nc-centroids.shp&quot;</span>, <span class="at">delete_dsn =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb194-4"><a href="read-and-write-data.html#cb194-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">pch =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>) </span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
 
 <div class="rmdtip">
 The online book <a href="https://r.geocompx.org/" target="_blank">Geocomputation with R</a> offers a more comprehensive explanation of available geometric, attribute and spatial data operations. For a quick overview, you may turn to the <a href="https://github.com/rstudio/cheatsheets/blob/master/sf.pdf" target="_blank">sf cheatsheets</a>.
@@ -550,24 +550,24 @@ Figure 9.1: Video (3:13 min): REST API concepts and examples.
 ##   .. ..$ icon       : chr &quot;02d&quot;
 ##  $ base      : chr &quot;stations&quot;
 ##  $ main      :List of 6
-##   ..$ temp      : num 285
-##   ..$ feels_like: num 284
-##   ..$ temp_min  : num 284
-##   ..$ temp_max  : num 287
-##   ..$ pressure  : int 1027
-##   ..$ humidity  : int 94
+##   ..$ temp      : num 292
+##   ..$ feels_like: num 292
+##   ..$ temp_min  : num 290
+##   ..$ temp_max  : num 294
+##   ..$ pressure  : int 1026
+##   ..$ humidity  : int 81
 ##  $ visibility: int 10000
 ##  $ wind      :List of 2
 ##   ..$ speed: num 2.57
-##   ..$ deg  : int 150
+##   ..$ deg  : int 10
 ##  $ clouds    :List of 1
 ##   ..$ all: int 20
-##  $ dt        : int 1696490683
+##  $ dt        : int 1696511653
 ##  $ sys       :List of 5
 ##   ..$ type   : int 1
 ##   ..$ id     : int 6877
 ##   ..$ country: chr &quot;AT&quot;
-##   ..$ sunrise: int 1696482701
+##   ..$ sunrise: int 1696482702
 ##   ..$ sunset : int 1696524056
 ##  $ timezone  : int 7200
 ##  $ id        : int 2766824
@@ -597,13 +597,13 @@ Figure 9.1: Video (3:13 min): REST API concepts and examples.
 <span id="cb201-3"><a href="read-and-write-data.html#cb201-3" aria-hidden="true" tabindex="-1"></a>response_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(response_content)</span>
 <span id="cb201-4"><a href="read-and-write-data.html#cb201-4" aria-hidden="true" tabindex="-1"></a>response_df</span></code></pre></div>
 <pre><code>##   coord.lon coord.lat weather.id weather.main weather.description weather.icon
-## 1   13.0332   47.8093        801       Clouds          few clouds          02d
+## 1     13.03     47.81        801       Clouds          few clouds          02d
 ##       base main.temp main.feels_like main.temp_min main.temp_max main.pressure
-## 1 stations    284.62          284.28        283.65        286.68          1027
+## 1 stations    292.07          292.13        290.32        294.03          1026
 ##   main.humidity visibility wind.speed wind.deg all         dt sys.type sys.id
-## 1            94      10000       2.57      150  20 1696490683        1   6877
+## 1            81      10000       2.57       10  20 1696511653        1   6877
 ##   sys.country sys.sunrise sys.sunset timezone      id     name cod
-## 1          AT  1696482701 1696524056     7200 2766824 Salzburg 200</code></pre>
+## 1          AT  1696482702 1696524056     7200 2766824 Salzburg 200</code></pre>
 
 <div class="rmdexercise">
 Copy the code snippets above to a new R-Script. <strong>Make sure to replace the key in the code example by your own API key!</strong> If you need help, please turn to the discussion forum.

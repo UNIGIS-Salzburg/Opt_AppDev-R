@@ -44,7 +44,7 @@ The operator :: is used to indicate that the functions `st_point`, `st_sf` and `
 
 The function `st_point` creates a simple feature object from a numeric vector. The object is of the same nature as the numeric vector `c(5,5)`. To convert to an sf-object, the function `st_sf` is used. 
 
-Sf-object are similar in structure as data frames. However, in contrast to data frames, sf-objects have an additional geometry column. The sf-object `point_sf` contains a single point geometry and no fields:
+Sf-object are similar in structure as data frames. However, in contrast to data frames, sf-objects have an additional geometry column. The sf-object `point_sf` (created by the code above) contains a single point geometry and no fields:
 
 ```{r}
 
@@ -74,7 +74,7 @@ plot(point_sf_multi)
 
 ```
 
-Plotting the sf-object metadata in the console reveals that `Geometry type` is `Multipoint` and that no coordinate reference system has been defined (CRS: NA):
+Plotting the metadata of sf-object `point_sf_multi` in the console reveals that `Geometry type` is `Multipoint` and that no coordinate reference system has been defined (`CRS: NA`):
 
 ```{r}
 
@@ -95,6 +95,7 @@ In case when a CRS is missing or the wrong CRS is set, the function `st_crs` is 
 ```{r}
 
 # Assign WGS84 as CRS
+# 4326 is the EPSG code of WGS84
 sf::st_crs(point_sf_multi) <- 4326
 
 ```
@@ -105,12 +106,12 @@ EPSG-Codes of other reference systems can be found [here.](https://spatialrefere
 
 ```
 
-Now we transform the sf-object to CRS NAD27 with function `st_transform`:
+Now we transform the sf-object to [EPSG 3416](https://spatialreference.org/ref/epsg/3416/){target="_blank"} (Austrian Lambert Projection) with function `st_transform`:
 
 ```{r}
 
 # Assign NAD27 as CRS
-point_sf_multi_transform <- sf::st_transform(point_sf_multi, 4267)
+point_sf_multi_transform <- sf::st_transform(point_sf_multi, 3416)
 
 ```
 
@@ -119,17 +120,10 @@ Eventually we can compare the two sf-objects with different coordinate systems:
 ```{r}
 
 par(mfrow=c(1,2)) # both plots together
-plot(sf::st_geometry(point_sf_multi_transform), main = "EPSG: 4267")
+plot(sf::st_geometry(point_sf_multi_transform), main = "EPSG: 3416")
 plot(sf::st_geometry(point_sf_multi), main = "EPSG: 4326")
 
 ```
-
-```{block2, type = 'rmdtip'}
-
-
-
-```
-
 
 ### Lines:
 
