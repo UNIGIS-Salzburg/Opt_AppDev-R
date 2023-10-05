@@ -51,6 +51,16 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -337,22 +347,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="vector-data-structures" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Vector Data Structures:<a href="spatial-data-structures.html#vector-data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Spatial data structures are the foundation upon which geospatial information is built. They provide a systematic framework for organizing and representing geographical entities, ensuring that they can be efficiently processed, analyzed, and visualized. In this section, we’ll delve into vector data structures, which are essential for representing discrete spatial entities.</p>
-<p>The most common geometry types are points, lines and polygons and their respective “multi” versions. Let’s explore each of these in detail.</p>
+<p>The most common geometry types are points, lines and polygons and their respective “multi” versions.</p>
 <div id="points" class="section level3 hasAnchor" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Points:<a href="spatial-data-structures.html#points" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Points are fundamental in geospatial analysis. They are the simplest spatial entities, representing a singular location in space. They have no dimensions, meaning they don’t possess length, width, or area. Using the <code>sf</code> package, you can create and manipulate point data with ease:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="spatial-data-structures.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a point</span></span>
-<span id="cb1-2"><a href="spatial-data-structures.html#cb1-2" aria-hidden="true" tabindex="-1"></a>point <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_point</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
-<span id="cb1-3"><a href="spatial-data-structures.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="spatial-data-structures.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to sf object</span></span>
-<span id="cb1-5"><a href="spatial-data-structures.html#cb1-5" aria-hidden="true" tabindex="-1"></a>point_sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sf</span>(<span class="at">geometry =</span> sf<span class="sc">::</span><span class="fu">st_sfc</span>(point))</span></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="spatial-data-structures.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a point</span></span>
+<span id="cb92-2"><a href="spatial-data-structures.html#cb92-2" aria-hidden="true" tabindex="-1"></a>point <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_point</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb92-3"><a href="spatial-data-structures.html#cb92-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-4"><a href="spatial-data-structures.html#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to sf object</span></span>
+<span id="cb92-5"><a href="spatial-data-structures.html#cb92-5" aria-hidden="true" tabindex="-1"></a>point_sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sf</span>(<span class="at">geometry =</span> sf<span class="sc">::</span><span class="fu">st_sfc</span>(point))</span></code></pre></div>
 
 <div class="rmdtip">
 The operator :: is used to indicate that the functions <code>st_point</code>, <code>st_sf</code> and <code>st_sfc</code> are situated within the library <code>sf</code>. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names.
 </div>
 <p>The function <code>st_point</code> creates a simple feature object from a numeric vector. The object is of the same nature as the numeric vector <code>c(5,5)</code>. To convert to an sf-object, the function <code>st_sf</code> is used.</p>
-<p>Sf-object are similar in structure as data frames. However, in contrast to data frames sf-objects have an additional geometry column. The sf-object <code>point_sf</code> contains a single point geometry and no fields:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="spatial-data-structures.html#cb2-1" aria-hidden="true" tabindex="-1"></a>point_sf</span></code></pre></div>
+<p>Sf-object are similar in structure as data frames. However, in contrast to data frames, sf-objects have an additional geometry column. The sf-object <code>point_sf</code> contains a single point geometry and no fields:</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="spatial-data-structures.html#cb93-1" aria-hidden="true" tabindex="-1"></a>point_sf</span></code></pre></div>
 <pre><code>## Simple feature collection with 1 feature and 0 fields
 ## Geometry type: POINT
 ## Dimension:     XY
@@ -360,19 +370,19 @@ The operator :: is used to indicate that the functions <code>st_point</code>, <c
 ## CRS:           NA
 ##      geometry
 ## 1 POINT (5 5)</code></pre>
-<p>In principle sf-objects can be treated like data frames. Accordingly, data frame syntax is used to assign fields to geometries:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="spatial-data-structures.html#cb4-1" aria-hidden="true" tabindex="-1"></a>point_sf<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;my location&quot;</span>)</span></code></pre></div>
+<p>In principle sf-objects can be treated like data frames. Accordingly, data frame syntax is used to assign fields (table columns) to geometries:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="spatial-data-structures.html#cb95-1" aria-hidden="true" tabindex="-1"></a>point_sf<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;my location&quot;</span>)</span></code></pre></div>
 <p>To stay in GIS terms, records (rows) in a sf-object table may be called <code>features</code>. Features can be composed of multiple geometries:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="spatial-data-structures.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create three points at locations 3/4, 5/3 and 7/1 as multipoint geometry</span></span>
-<span id="cb5-2"><a href="spatial-data-structures.html#cb5-2" aria-hidden="true" tabindex="-1"></a>point_multi <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_multipoint</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>), <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)), <span class="at">dim =</span> <span class="st">&quot;XY&quot;</span>)</span>
-<span id="cb5-3"><a href="spatial-data-structures.html#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="spatial-data-structures.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to sf object</span></span>
-<span id="cb5-5"><a href="spatial-data-structures.html#cb5-5" aria-hidden="true" tabindex="-1"></a>point_sf_multi <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sf</span>(<span class="at">geometry =</span> sf<span class="sc">::</span><span class="fu">st_sfc</span>(point_multi))</span>
-<span id="cb5-6"><a href="spatial-data-structures.html#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-7"><a href="spatial-data-structures.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(point_sf_multi)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="spatial-data-structures.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create three points at locations 3/4, 5/3 and 7/1 as multipoint geometry</span></span>
+<span id="cb96-2"><a href="spatial-data-structures.html#cb96-2" aria-hidden="true" tabindex="-1"></a>point_multi <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_multipoint</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>), <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)), <span class="at">dim =</span> <span class="st">&quot;XY&quot;</span>)</span>
+<span id="cb96-3"><a href="spatial-data-structures.html#cb96-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-4"><a href="spatial-data-structures.html#cb96-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to sf object</span></span>
+<span id="cb96-5"><a href="spatial-data-structures.html#cb96-5" aria-hidden="true" tabindex="-1"></a>point_sf_multi <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sf</span>(<span class="at">geometry =</span> sf<span class="sc">::</span><span class="fu">st_sfc</span>(point_multi))</span>
+<span id="cb96-6"><a href="spatial-data-structures.html#cb96-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-7"><a href="spatial-data-structures.html#cb96-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(point_sf_multi)</span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
 <p>Plotting the sf-object metadata in the console reveals that <code>Geometry type</code> is <code>Multipoint</code> and that no coordinate coordinate reference system has been defined (CRS: NA):</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="spatial-data-structures.html#cb6-1" aria-hidden="true" tabindex="-1"></a>point_sf_multi</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="spatial-data-structures.html#cb97-1" aria-hidden="true" tabindex="-1"></a>point_sf_multi</span></code></pre></div>
 <pre><code>## Simple feature collection with 1 feature and 0 fields
 ## Geometry type: MULTIPOINT
 ## Dimension:     XY
@@ -381,55 +391,55 @@ The operator :: is used to indicate that the functions <code>st_point</code>, <c
 ##                         geometry
 ## 1 MULTIPOINT ((3 4), (5 3), (...</code></pre>
 <p>Alternatively, the function <code>st_crs</code> may be used extract coordinate system information from an sf-object:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="spatial-data-structures.html#cb8-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(point_sf_multi)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="spatial-data-structures.html#cb99-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(point_sf_multi)</span></code></pre></div>
 <pre><code>## Coordinate Reference System: NA</code></pre>
 <p>In case when a CRS is missing or the wrong CRS is set, the function <code>st_crs</code> is used:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="spatial-data-structures.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign WGS84 as CRS</span></span>
-<span id="cb10-2"><a href="spatial-data-structures.html#cb10-2" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(point_sf_multi) <span class="ot">&lt;-</span> <span class="dv">4326</span></span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="spatial-data-structures.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign WGS84 as CRS</span></span>
+<span id="cb101-2"><a href="spatial-data-structures.html#cb101-2" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(point_sf_multi) <span class="ot">&lt;-</span> <span class="dv">4326</span></span></code></pre></div>
 
 <div class="rmdtip">
 <p>EPSG-Codes of other reference systems can be found <a href="https://spatialreference.org/ref/epsg/?search=4326&amp;srtext=Search" target="_blank">here.</a></p>
 </div>
 <p>Now we transform the sf-object to CRS NAD27 with function <code>st_transform</code>:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="spatial-data-structures.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign NAD27 as CRS</span></span>
-<span id="cb11-2"><a href="spatial-data-structures.html#cb11-2" aria-hidden="true" tabindex="-1"></a>point_sf_multi_transform <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(point_sf_multi, <span class="dv">4267</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="spatial-data-structures.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign NAD27 as CRS</span></span>
+<span id="cb102-2"><a href="spatial-data-structures.html#cb102-2" aria-hidden="true" tabindex="-1"></a>point_sf_multi_transform <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(point_sf_multi, <span class="dv">4267</span>)</span></code></pre></div>
 <p>Eventually we can compare the two sf-objects with different coordinate systems:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="spatial-data-structures.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="co"># both plots together</span></span>
-<span id="cb12-2"><a href="spatial-data-structures.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(point_sf_multi_transform), <span class="at">main =</span> <span class="st">&quot;EPSG: 4267&quot;</span>)</span>
-<span id="cb12-3"><a href="spatial-data-structures.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(point_sf_multi), <span class="at">main =</span> <span class="st">&quot;EPSG: 4326&quot;</span>)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="spatial-data-structures.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="co"># both plots together</span></span>
+<span id="cb103-2"><a href="spatial-data-structures.html#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(point_sf_multi_transform), <span class="at">main =</span> <span class="st">&quot;EPSG: 4267&quot;</span>)</span>
+<span id="cb103-3"><a href="spatial-data-structures.html#cb103-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(point_sf_multi), <span class="at">main =</span> <span class="st">&quot;EPSG: 4326&quot;</span>)</span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
 </div>
 <div id="lines" class="section level3 hasAnchor" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Lines:<a href="spatial-data-structures.html#lines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Lines are sequences of points. They’re instrumental in representing pathways, routes, or any linear feature. Here’s how you can create a line using <code>sf</code>:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="spatial-data-structures.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a line from a matrix of coordinates</span></span>
-<span id="cb13-2"><a href="spatial-data-structures.html#cb13-2" aria-hidden="true" tabindex="-1"></a>line <span class="ot">&lt;-</span> <span class="fu">st_linestring</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
-<span id="cb13-3"><a href="spatial-data-structures.html#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="spatial-data-structures.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to spatial feature</span></span>
-<span id="cb13-5"><a href="spatial-data-structures.html#cb13-5" aria-hidden="true" tabindex="-1"></a>line_sf <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">geometry =</span> <span class="fu">st_sfc</span>(line))</span>
-<span id="cb13-6"><a href="spatial-data-structures.html#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="spatial-data-structures.html#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the line</span></span>
-<span id="cb13-8"><a href="spatial-data-structures.html#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(line_sf)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="spatial-data-structures.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a line from a matrix of coordinates</span></span>
+<span id="cb104-2"><a href="spatial-data-structures.html#cb104-2" aria-hidden="true" tabindex="-1"></a>line <span class="ot">&lt;-</span> <span class="fu">st_linestring</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb104-3"><a href="spatial-data-structures.html#cb104-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-4"><a href="spatial-data-structures.html#cb104-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to spatial feature</span></span>
+<span id="cb104-5"><a href="spatial-data-structures.html#cb104-5" aria-hidden="true" tabindex="-1"></a>line_sf <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">geometry =</span> <span class="fu">st_sfc</span>(line))</span>
+<span id="cb104-6"><a href="spatial-data-structures.html#cb104-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb104-7"><a href="spatial-data-structures.html#cb104-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the line</span></span>
+<span id="cb104-8"><a href="spatial-data-structures.html#cb104-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(line_sf)</span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
 </div>
 <div id="polygons" class="section level3 hasAnchor" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> Polygons:<a href="spatial-data-structures.html#polygons" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Polygons are closed shapes, perfect for representing areas with defined boundaries. Here’s a demonstration using sf and its st_polygon function:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="spatial-data-structures.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a matrix of coordinates</span></span>
-<span id="cb14-2"><a href="spatial-data-structures.html#cb14-2" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>, <span class="dv">4</span>,<span class="dv">4</span>, <span class="dv">4</span>,<span class="dv">2</span>, <span class="dv">2</span>,<span class="dv">2</span>), <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb14-3"><a href="spatial-data-structures.html#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="spatial-data-structures.html#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of matrices (in this case, just one matrix)</span></span>
-<span id="cb14-5"><a href="spatial-data-structures.html#cb14-5" aria-hidden="true" tabindex="-1"></a>list_of_coords <span class="ot">&lt;-</span> <span class="fu">list</span>(coords)</span>
-<span id="cb14-6"><a href="spatial-data-structures.html#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="spatial-data-structures.html#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the polygon</span></span>
-<span id="cb14-8"><a href="spatial-data-structures.html#cb14-8" aria-hidden="true" tabindex="-1"></a>polygon <span class="ot">&lt;-</span> <span class="fu">st_polygon</span>(list_of_coords)</span>
-<span id="cb14-9"><a href="spatial-data-structures.html#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="spatial-data-structures.html#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to spatial feature</span></span>
-<span id="cb14-11"><a href="spatial-data-structures.html#cb14-11" aria-hidden="true" tabindex="-1"></a>polygon_sf <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">geometry =</span> <span class="fu">st_sfc</span>(polygon))</span>
-<span id="cb14-12"><a href="spatial-data-structures.html#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-13"><a href="spatial-data-structures.html#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the polygon</span></span>
-<span id="cb14-14"><a href="spatial-data-structures.html#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(polygon_sf)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="spatial-data-structures.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a matrix of coordinates</span></span>
+<span id="cb105-2"><a href="spatial-data-structures.html#cb105-2" aria-hidden="true" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>, <span class="dv">4</span>,<span class="dv">4</span>, <span class="dv">4</span>,<span class="dv">2</span>, <span class="dv">2</span>,<span class="dv">2</span>), <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb105-3"><a href="spatial-data-structures.html#cb105-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-4"><a href="spatial-data-structures.html#cb105-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a list of matrices (in this case, just one matrix)</span></span>
+<span id="cb105-5"><a href="spatial-data-structures.html#cb105-5" aria-hidden="true" tabindex="-1"></a>list_of_coords <span class="ot">&lt;-</span> <span class="fu">list</span>(coords)</span>
+<span id="cb105-6"><a href="spatial-data-structures.html#cb105-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-7"><a href="spatial-data-structures.html#cb105-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the polygon</span></span>
+<span id="cb105-8"><a href="spatial-data-structures.html#cb105-8" aria-hidden="true" tabindex="-1"></a>polygon <span class="ot">&lt;-</span> <span class="fu">st_polygon</span>(list_of_coords)</span>
+<span id="cb105-9"><a href="spatial-data-structures.html#cb105-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-10"><a href="spatial-data-structures.html#cb105-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to spatial feature</span></span>
+<span id="cb105-11"><a href="spatial-data-structures.html#cb105-11" aria-hidden="true" tabindex="-1"></a>polygon_sf <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">geometry =</span> <span class="fu">st_sfc</span>(polygon))</span>
+<span id="cb105-12"><a href="spatial-data-structures.html#cb105-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb105-13"><a href="spatial-data-structures.html#cb105-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the polygon</span></span>
+<span id="cb105-14"><a href="spatial-data-structures.html#cb105-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(polygon_sf)</span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
 <p>I npraxitce you wont define vector geometries manually. In lesson xy read and write you will learn how to create sf objects in R from Shapefiles</p>
 <div id="quiz-understanding-spatial-data-integrity" class="section level4 hasAnchor" number="4.1.3.1">
 <h4><span class="header-section-number">4.1.3.1</span> Quiz: Understanding Spatial Data Integrity<a href="spatial-data-structures.html#quiz-understanding-spatial-data-integrity" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -511,15 +521,15 @@ While many older resources may use the raster package, terra is its modern succe
 </ul>
 <div id="reading-raster-data" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> Reading Raster Data<a href="spatial-data-structures.html#reading-raster-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="spatial-data-structures.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the terra package</span></span>
-<span id="cb15-2"><a href="spatial-data-structures.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="spatial-data-structures.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the terra package</span></span>
+<span id="cb106-2"><a href="spatial-data-structures.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span></code></pre></div>
 <pre><code>## Warning: Paket &#39;terra&#39; wurde unter R Version 4.2.3 erstellt</code></pre>
 <pre><code>## terra 1.7.46</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="spatial-data-structures.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use the elevation tif file from &quot;spData&quot;</span></span>
-<span id="cb18-2"><a href="spatial-data-structures.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;The raster data represents elevation in meters and uses WGS84 as a coordinate reference system.&quot;</span></span>
-<span id="cb18-3"><a href="spatial-data-structures.html#cb18-3" aria-hidden="true" tabindex="-1"></a>elev <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;raster/elev.tif&quot;</span>, <span class="at">package =</span> <span class="st">&quot;spData&quot;</span>)</span>
-<span id="cb18-4"><a href="spatial-data-structures.html#cb18-4" aria-hidden="true" tabindex="-1"></a>elev <span class="ot">&lt;-</span> <span class="fu">rast</span>(elev)</span>
-<span id="cb18-5"><a href="spatial-data-structures.html#cb18-5" aria-hidden="true" tabindex="-1"></a>elev </span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="spatial-data-structures.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use the elevation tif file from &quot;spData&quot;</span></span>
+<span id="cb109-2"><a href="spatial-data-structures.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;The raster data represents elevation in meters and uses WGS84 as a coordinate reference system.&quot;</span></span>
+<span id="cb109-3"><a href="spatial-data-structures.html#cb109-3" aria-hidden="true" tabindex="-1"></a>elev <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;raster/elev.tif&quot;</span>, <span class="at">package =</span> <span class="st">&quot;spData&quot;</span>)</span>
+<span id="cb109-4"><a href="spatial-data-structures.html#cb109-4" aria-hidden="true" tabindex="-1"></a>elev <span class="ot">&lt;-</span> <span class="fu">rast</span>(elev)</span>
+<span id="cb109-5"><a href="spatial-data-structures.html#cb109-5" aria-hidden="true" tabindex="-1"></a>elev </span></code></pre></div>
 <pre><code>## class       : SpatRaster 
 ## dimensions  : 6, 6, 1  (nrow, ncol, nlyr)
 ## resolution  : 0.5, 0.5  (x, y)
@@ -529,8 +539,8 @@ While many older resources may use the raster package, terra is its modern succe
 ## name        : elev 
 ## min value   :    1 
 ## max value   :   36</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="spatial-data-structures.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(elev) </span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="spatial-data-structures.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(elev) </span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-85-1.png" width="672" />
 Once you’ve read the raster data, you can explore its properties using various functions:</p>
 <ul>
 <li>ncol(r): Number of columns</li>
@@ -549,19 +559,19 @@ Raster cropping is the process of selecting a specific area (or “extent”) fr
 Before cropping, it’s crucial to know the extent of the original raster. This ensures that the area you want to crop actually exists within the original raster. If the extents don’t overlap, you’ll get an error.</p>
 <p>How to Check the Extent?
 You can use the ext() function from the terra package to check the extent of a raster.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="spatial-data-structures.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the extent of the original raster</span></span>
-<span id="cb21-2"><a href="spatial-data-structures.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ext</span>(elev)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="spatial-data-structures.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the extent of the original raster</span></span>
+<span id="cb112-2"><a href="spatial-data-structures.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ext</span>(elev)</span></code></pre></div>
 <pre><code>## SpatExtent : -1.5, 1.5, -1.5, 1.5 (xmin, xmax, ymin, ymax)</code></pre>
 <ul>
 <li>How to Crop?
 Once you know the extent, you can specify a new extent within that range for cropping.</li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="spatial-data-structures.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a new extent that is within the original raster&#39;s extent</span></span>
-<span id="cb23-2"><a href="spatial-data-structures.html#cb23-2" aria-hidden="true" tabindex="-1"></a>crop_extent <span class="ot">&lt;-</span> <span class="fu">ext</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)  <span class="co"># These coordinates are within the original extent</span></span>
-<span id="cb23-3"><a href="spatial-data-structures.html#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="spatial-data-structures.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Crop the raster</span></span>
-<span id="cb23-5"><a href="spatial-data-structures.html#cb23-5" aria-hidden="true" tabindex="-1"></a>elev_cropped <span class="ot">&lt;-</span> <span class="fu">crop</span>(elev, crop_extent)</span>
-<span id="cb23-6"><a href="spatial-data-structures.html#cb23-6" aria-hidden="true" tabindex="-1"></a>elev_cropped</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="spatial-data-structures.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a new extent that is within the original raster&#39;s extent</span></span>
+<span id="cb114-2"><a href="spatial-data-structures.html#cb114-2" aria-hidden="true" tabindex="-1"></a>crop_extent <span class="ot">&lt;-</span> <span class="fu">ext</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)  <span class="co"># These coordinates are within the original extent</span></span>
+<span id="cb114-3"><a href="spatial-data-structures.html#cb114-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb114-4"><a href="spatial-data-structures.html#cb114-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Crop the raster</span></span>
+<span id="cb114-5"><a href="spatial-data-structures.html#cb114-5" aria-hidden="true" tabindex="-1"></a>elev_cropped <span class="ot">&lt;-</span> <span class="fu">crop</span>(elev, crop_extent)</span>
+<span id="cb114-6"><a href="spatial-data-structures.html#cb114-6" aria-hidden="true" tabindex="-1"></a>elev_cropped</span></code></pre></div>
 <pre><code>## class       : SpatRaster 
 ## dimensions  : 4, 4, 1  (nrow, ncol, nlyr)
 ## resolution  : 0.5, 0.5  (x, y)
@@ -587,15 +597,15 @@ Once you know the extent, you can specify a new extent within that range for cro
 <p>Resampling is the process of changing the spatial resolution of a raster dataset. This is useful when you want to align multiple rasters that have different resolutions or when you want to change the level of detail in your analysis.</p>
 <p>Step 1: Check the Original Resolution
 Before resampling, it’s important to know the original resolution of your raster. You can use the res() function to check this.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="spatial-data-structures.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">res</span>(elev) <span class="co"># shows us the resolution of 0.5. 0.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="spatial-data-structures.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">res</span>(elev) <span class="co"># shows us the resolution of 0.5. 0.5</span></span></code></pre></div>
 <pre><code>## [1] 0.5 0.5</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="spatial-data-structures.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(elev)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="spatial-data-structures.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(elev)</span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-88-1.png" width="672" />
 Where res is the new resolution.</p>
 <p>Step 2: Choose a New Resolution
 Decide what the new resolution should be. This could be higher or lower than the original, depending on your needs.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="spatial-data-structures.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resample the raster to the new resolution</span></span>
-<span id="cb28-2"><a href="spatial-data-structures.html#cb28-2" aria-hidden="true" tabindex="-1"></a>new_res <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>)  <span class="co"># Example new resolution, for example double the size.</span></span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="spatial-data-structures.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resample the raster to the new resolution</span></span>
+<span id="cb119-2"><a href="spatial-data-structures.html#cb119-2" aria-hidden="true" tabindex="-1"></a>new_res <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>)  <span class="co"># Example new resolution, for example double the size.</span></span></code></pre></div>
 <p>Step 3: Perform Resampling
 You can use the resample() function to change the resolution. The method can be “nearest”, “bilinear”, etc., depending on the type of interpolation you want to use.</p>
 <p>#```{r}</p>
@@ -666,7 +676,7 @@ Where mask_layer is another raster or a vector layer</p>
 <li>Visualizing the results of coordinate transformations.</li>
 <li>Then, for example Introduce the ggspatial package for visualizing transformed spatial data in conjunction with ggplot2. (<strong>Note that, ggspatial was introduced in chapter 8. Data Visualisation.. Very, very briefly.</strong>)</li>
 </ul>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="spatial-data-structures.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for coordinate transformations using sf</span></span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="spatial-data-structures.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for coordinate transformations using sf</span></span></code></pre></div>
 </div>
 <div id="raster-resampling-and-reprojection" class="section level2 hasAnchor" number="4.10">
 <h2><span class="header-section-number">4.10</span> Raster Resampling and Reprojection<a href="spatial-data-structures.html#raster-resampling-and-reprojection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -674,7 +684,7 @@ Where mask_layer is another raster or a vector layer</p>
 <li>Adjusting the resolution of raster datasets or changing their projection.</li>
 <li>Introduce the <strong>terra</strong> package for these tasks.</li>
 </ul>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="spatial-data-structures.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for raster resampling and reprojection using terra</span></span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="spatial-data-structures.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for raster resampling and reprojection using terra</span></span></code></pre></div>
 
 </div>
 </div>
@@ -738,6 +748,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

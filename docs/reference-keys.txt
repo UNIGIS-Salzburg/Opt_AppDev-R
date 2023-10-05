@@ -44,8 +44,6 @@ selection
 list
 data-frame
 spatial-data-structures
-introduction
-fundamentals-of-spatial-data-structures
 vector-data-structures
 points
 lines
@@ -93,7 +91,7 @@ exercise-data-manipulation
 join
 exercise-join
 spatial-data-manipulation
-introduction-1
+introduction
 spatial-aggregation
 merging-and-appending-spatial-data
 handling-missing-data
@@ -102,7 +100,7 @@ multidimensional-data-wrangling-with-stars
 challenges-in-spatial-data-structures
 dealing-with-large-spatial-datasets.
 case-study-a-complete-spatial-data-wrangling-workflow
-introduction-2
+introduction-1
 filtering-spatial-data
 filtering-rasters-with-terra
 spatial-joins-with-sf-though..-we-could-also-put-that-in-chapter-10-and-make-12-bigger-with-spatial-stat
@@ -143,4 +141,3 @@ basic-rmarkdown-syntax
 references-in-rmarkdown
 speed-up-your-workflows
 self-study
-raster-data-with-terra-1

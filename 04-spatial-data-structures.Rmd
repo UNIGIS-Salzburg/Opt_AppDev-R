@@ -18,7 +18,7 @@ You will also learn how to retrieve, assign and modify coordinate systems, proje
 
 Spatial data structures are the foundation upon which geospatial information is built. They provide a systematic framework for organizing and representing geographical entities, ensuring that they can be efficiently processed, analyzed, and visualized. In this section, we'll delve into vector data structures, which are essential for representing discrete spatial entities.
 
-The most common geometry types are points, lines and polygons and their respective "multi" versions. Let's explore each of these in detail.
+The most common geometry types are points, lines and polygons and their respective "multi" versions.
 
 ### Points:
 
@@ -44,7 +44,7 @@ The operator :: is used to indicate that the functions `st_point`, `st_sf` and `
 
 The function `st_point` creates a simple feature object from a numeric vector. The object is of the same nature as the numeric vector `c(5,5)`. To convert to an sf-object, the function `st_sf` is used. 
 
-Sf-object are similar in structure as data frames. However, in contrast to data frames sf-objects have an additional geometry column. The sf-object `point_sf` contains a single point geometry and no fields:
+Sf-object are similar in structure as data frames. However, in contrast to data frames, sf-objects have an additional geometry column. The sf-object `point_sf` contains a single point geometry and no fields:
 
 ```{r}
 
@@ -52,7 +52,7 @@ point_sf
 
 ```
 
-In principle sf-objects can be treated like data frames. Accordingly, data frame syntax is used to assign fields to geometries: 
+In principle sf-objects can be treated like data frames. Accordingly, data frame syntax is used to assign fields (table columns) to geometries: 
 
 ```{r}
 
@@ -74,7 +74,7 @@ plot(point_sf_multi)
 
 ```
 
-Plotting the sf-object metadata in the console reveals that `Geometry type` is `Multipoint` and that no coordinate coordinate reference system has been defined (CRS: NA):
+Plotting the sf-object metadata in the console reveals that `Geometry type` is `Multipoint` and that no coordinate reference system has been defined (CRS: NA):
 
 ```{r}
 
@@ -123,6 +123,13 @@ plot(sf::st_geometry(point_sf_multi_transform), main = "EPSG: 4267")
 plot(sf::st_geometry(point_sf_multi), main = "EPSG: 4326")
 
 ```
+
+```{block2, type = 'rmdtip'}
+
+
+
+```
+
 
 ### Lines:
 
