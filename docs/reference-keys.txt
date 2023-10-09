@@ -45,14 +45,7 @@ list
 data-frame
 spatial-data-structures
 vector-data-structures
-points
-lines
-polygons
-quiz-understanding-spatial-data-integrity
 raster-data-structures
-representing-spatial-data-structures-in-r
-simple-features-with-sf
-raster-data-with-terra
 reading-raster-data
 basic-raster-operations
 cropping

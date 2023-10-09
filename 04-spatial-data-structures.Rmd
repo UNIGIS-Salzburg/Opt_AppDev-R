@@ -14,15 +14,13 @@ You will also learn how to retrieve, assign and modify coordinate systems, proje
 
 ```
 
-## Vector Data Structures:
+## Vector Data Structures
 
 Spatial data structures are the foundation upon which geospatial information is built. They provide a systematic framework for organizing and representing geographical entities, ensuring that they can be efficiently processed, analyzed, and visualized. In this section, we'll delve into vector data structures, which are essential for representing discrete spatial entities.
 
 The most common geometry types are points, lines and polygons and their respective "multi" versions.
 
-### Points:
-
-Points are fundamental in geospatial analysis. They are the simplest spatial entities, representing a singular location in space. They have no dimensions, meaning they don't possess length, width, or area. Using the `sf` package, you can create and manipulate point data with ease:
+**Points** are fundamental in geospatial analysis. They are the simplest spatial entities, representing a singular location in space. They have no dimensions, meaning they don't possess length, width, or area. Using the `sf` package, you can create and manipulate point data with ease:
 
 ```{r, echo=FALSE, message=FALSE}
 library(sf)
@@ -125,7 +123,11 @@ plot(sf::st_geometry(point_sf_multi), main = "EPSG: 4326")
 
 ```
 
-### Lines:
+The same syntax and functions can be used to deal with **line or polygon** data. The following drop-downs contain two simple examples.
+
+<details closed>
+<summary><ins>**Create Line Feature!**</ins></summary>
+<p><i><font color="grey">
 
 Lines are sequences of points. They're instrumental in representing pathways, routes, or any linear feature. Here's how you can create a line using `sf`:
 
@@ -140,8 +142,15 @@ line_sf <- st_sf(geometry = st_sfc(line))
 plot(line_sf)
 
 ```
+    
+</font></i>
+</p>
+</details> 
 
-### Polygons:
+
+<details closed>
+<summary><ins>**Create Polygon Feature!**</ins></summary>
+<p><i><font color="grey">
 
 Polygons are closed shapes, perfect for representing areas with defined boundaries. Here's a demonstration using sf and its st_polygon function:
 
@@ -162,21 +171,23 @@ polygon_sf <- st_sf(geometry = st_sfc(polygon))
 # Plot the polygon
 plot(polygon_sf)
 ```
+    
+</font></i>
+</p>
+</details>
 
-I npraxitce you wont define vector geometries manually. In lesson xy read and write you will learn how to create sf objects in R from Shapefiles
+```{block2, type = 'rmdexercise'}
 
-
-#### Quiz: Understanding Spatial Data Integrity
-
-The code above successfully creates and plots a polygon. However, imagine if the last coordinate in the coords matrix was mistakenly omitted, leading to an error...
+The code above successfully creates and plots a polygon. However, imagine if the last coordinate in the coordinate matrix (2,2) was mistakenly omitted.
 
 Consider following Questions:
 
 1. What error would you expect to encounter if the last coordinate was omitted?
 2. Why is the last coordinate crucial for the creation of the polygon?
 
-<details>
-<summary>Solution:</summary>
+  <details closed>
+<summary><ins>**Solution!**</ins></summary>
+<p><i><font color="grey">
 
 1. If the last coordinate was omitted, you would encounter the following error:
 
@@ -196,41 +207,27 @@ In practical terms, if you're creating or manipulating polygons, you need to ens
 
 2. The last coordinate is crucial because it ensures that the polygon is closed, meaning its starting and ending coordinates are the same.
 
-
+</font></i>
+</p>
 </details>
+  
+```
+
 
 
 ```{block2, type = 'rmdtip'}
-**Why did we not use Terra instead of sf?:**
-While `sf` is predominantly used for vector data structures like points, lines, and polygons, `terra` is more oriented towards raster data. However, both packages can handle both vector and raster data to some extent. For vector operations, especially with points, lines, and polygons, `sf` is the preferred choice due to its comprehensive toolset and integration with the tidyverse ecosystem.
+
+In practice you will not define vector geometries manually. In lesson Read and Write Data you will learn how to load Shapefile data as sf-object in R. 
+
 ```
 
---- Just a Test on how to write..
+## Raster Data Structures
 
-- Then we could go into for example:
+Whereas man-made infrastructures (streets, buildings, sewage systems etc.) can clearly be delineated and modeled by discrete features, our natural-physical environment (temperature, soil moisture etc.) tends to be continuous by nature and best represented by raster data structures.
 
-### Raster Data Structures:
+Both packages, `sf` and `terra` can handle raster and vector data. Due to its comprehensive toolset and integration with the tidyverse ecosystem (tidyverse will be covered in lesson Data Manipulation), `sf` is predominantly used for discrete vector data structures. Until quite recently, the package [`raster`](https://cran.r-project.org/web/packages/raster/index.html){target="_blank"} has been the most popular resource to work with continuous data in R. This package is being replaced by `terra` (see [here](https://psfaculty.plantsciences.ucdavis.edu/plant/AdditionalTopics_Transition.pdf){target="_blank"} for more information). 
 
-- Grids: Regularly spaced cells.
-- Pixels: The smallest non-divisible units in raster data.
-- continous vs. discrete.. 
-
-## Representing Spatial Data Structures in R
-### Simple Features with sf:
-- How sf represents vector data structures.
-- sf objects and their components.
-- Maybe even a "food for thought", WHY we use "sf" a lot.
-- (Now, after we did the basics, get a bit deeper: Advanced operations with sf such as coordinate transformations (altough, this would fit very nicely in chapter 11 - see first), geometric operations, and spatial aggregations.)
-
-## Raster Data with terra:
-- Now, we consinder how terra represents raster data structures.
-- Differences between terra and older packages like raster. **Information: (I actually think.. that's a good idea, because even though, we didn't cover raster. A lot of sources have used raster in the past, just to outline, that it was his predecessor) ?**
-- dive deeper: Advanced raster operations, raster-vector conversions, and raster algebra with** terra** and intro to **stars**?
-
----for example:
-## Raster Data with Terra
-- Why Terra Over Older Packages like Raster?
-While many older resources may use the raster package, terra is its modern successor, offering several advantages:
+Accordingly, in this chapter we will focus on the more modern `terra` package that offers several advantages over its predecessor: 
 
 - Efficiency: Terra is optimized for speed and uses less memory, making it more efficient for large datasets.
 - Flexibility: It supports raster, vector, and time-series data, providing a one-stop solution for various spatial data types.
