@@ -185,7 +185,7 @@ Consider following Questions:
 1. What error would you expect to encounter if the last coordinate was omitted?
 2. Why is the last coordinate crucial for the creation of the polygon?
 
-  <details closed>
+<details closed>
 <summary><ins>**Solution!**</ins></summary>
 <p><i><font color="grey">
 
@@ -234,6 +234,74 @@ Accordingly, in this chapter we will focus on the more modern `terra` package th
 - Ease of Use: With a simplified and consistent syntax, terra is easier to pick up for newcomers.
 - Comprehensive Functions: From raster algebra to resampling and reclassification, terra offers a wide array of functionalities.
 - Integration: It's designed to work seamlessly with other R packages, making it easier to integrate into larger workflows.
+
+### Working with SpatRaster objects
+
+A `SpatRaster Object` can be created using function `rast`:
+
+```{r, warning=FALSE, message=FALSE}
+# Load the terra package
+library(terra)
+
+x <- terra::rast()
+
+x
+
+```
+
+Per default the SpatRaster Object is initialized with a global extent and a spatial resolution of 1 degree. The coordinate reference system is WGS84.
+
+Alternatively, additional arguments may be provided in the function to customize the SpatRaster Object:
+
+```{r, warning=FALSE, message=FALSE}
+
+x <- terra::rast(ncol=100, nrow=100, xmin=797422, xmax=807387, ymin=5298037, ymax=5306341, crs = "+proj=utm +zone=32 +ellps=WGS84 +datum=WGS84 +units=m +no_defs ")
+
+x
+
+```
+
+In the example above, arguments such as the number of grid rows and columns (`nrow` and `ncol`) as well as the grid extent (`xmin`, `xmax`, `ymin` and `ymax`) were defined. The raster cell resolution is a result of these inputs (`x=99.65`, `y=83.04`). 
+
+According to the [documentation of the `rast` function](https://www.rdocumentation.org/packages/terra/versions/1.7-46/topics/rast){target="_blank"}, the coordinate reference system can be specified in `PROJ.4`, `WKT` or `authority:code` notation. In the given example `WGS84 UTM 33N` is encoded in `PROJ.4`. To find the desired encoding, it is recommended to first search for a CRS on the [Spatial Reference Website](https://spatialreference.org/){target="_blank"}. The `PROJ.4` is one out of many formats (e.g. EPSG code, WKT, GML etc.) that are provided in the search results.
+
+```{block2, type = 'rmdexercise'}
+
+The SpatRaster Object has an extent that covers the City of Salzburg, which is completely within UTM Zone 33N. Search for the `PROJ.4` encoding of `WGS84 UTM 33N` on the [Spatial Reference Site.](https://spatialreference.org/){target="_blank"}
+
+<details closed>
+<summary><ins>**Solution!**</ins></summary>
+<p><i><font color="grey">
+
++proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs 
+
+</font></i>
+</p>
+</details>
+
+```
+
+In order to change the coordinate reference system to `WGS84 UTM 33N` and to change the spatial resolution to 100m, the terra-functions `project` and `res` can be used:
+
+```{r, warning=FALSE, message=FALSE}
+
+y <- terra::project(x, "+proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs")
+terra::res(y) <- 100
+y
+
+```
+
+Note that the number of rows and column was changed to enable a raster resolution of 100m. Also the extent of the SpatRaster Object object has changed, which indicates a successful projection of the raster grid from `UTM 32` to `UTM 33`.
+
+```{block2, type = 'rmdtip'}
+
+Given that the SpatRaster Object has not coordinate reference system, it can be defined by means of [terra-function `crs`](https://rdrr.io/cran/terra/man/crs.html){target="_blank"}.
+
+```
+
+The objects x and y created in the examples above only consist of a “skeleton”, that is, w....see https://rspatial.org/pkg/3-objects.html
+
+Achtung: Vielleicht war change crs bei sf kein change sondern nur eine neudefinition des Systems ohne Projektion!!!
 
 
 ### Reading Raster Data

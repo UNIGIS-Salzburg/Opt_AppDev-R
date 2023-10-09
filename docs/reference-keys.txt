@@ -134,3 +134,4 @@ basic-rmarkdown-syntax
 references-in-rmarkdown
 speed-up-your-workflows
 self-study
+working-with-spatraster-objects

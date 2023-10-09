@@ -175,10 +175,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#vector-data-structures"><i class="fa fa-check"></i><b>4.1</b> Vector Data Structures</a></li>
 <li class="chapter" data-level="4.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#raster-data-structures"><i class="fa fa-check"></i><b>4.2</b> Raster Data Structures</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#reading-raster-data"><i class="fa fa-check"></i><b>4.2.1</b> Reading Raster Data</a></li>
-<li class="chapter" data-level="4.2.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#basic-raster-operations"><i class="fa fa-check"></i><b>4.2.2</b> Basic Raster Operations</a></li>
-<li class="chapter" data-level="4.2.3" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#common-pitfalls"><i class="fa fa-check"></i><b>4.2.3</b> Common Pitfalls</a></li>
-<li class="chapter" data-level="4.2.4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#resampling-raster-data-in-terra"><i class="fa fa-check"></i><b>4.2.4</b> Resampling Raster Data in Terra</a></li>
+<li class="chapter" data-level="4.2.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#working-with-spatraster-objects"><i class="fa fa-check"></i><b>4.2.1</b> Working with SpatRaster objects</a></li>
+<li class="chapter" data-level="4.2.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#reading-raster-data"><i class="fa fa-check"></i><b>4.2.2</b> Reading Raster Data</a></li>
+<li class="chapter" data-level="4.2.3" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#basic-raster-operations"><i class="fa fa-check"></i><b>4.2.3</b> Basic Raster Operations</a></li>
+<li class="chapter" data-level="4.2.4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#common-pitfalls"><i class="fa fa-check"></i><b>4.2.4</b> Common Pitfalls</a></li>
+<li class="chapter" data-level="4.2.5" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#resampling-raster-data-in-terra"><i class="fa fa-check"></i><b>4.2.5</b> Resampling Raster Data in Terra</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#multidimensional-data-with-stars"><i class="fa fa-check"></i><b>4.3</b> Multidimensional Data with stars:</a></li>
 <li class="chapter" data-level="4.4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#spatial-indexing"><i class="fa fa-check"></i><b>4.4</b> Spatial Indexing</a></li>
@@ -488,17 +489,73 @@ The operator :: is used to indicate that the functions <code>st_point</code>, <c
 <li>Comprehensive Functions: From raster algebra to resampling and reclassification, terra offers a wide array of functionalities.</li>
 <li>Integration: It’s designed to work seamlessly with other R packages, making it easier to integrate into larger workflows.</li>
 </ul>
-<div id="reading-raster-data" class="section level3 hasAnchor" number="4.2.1">
-<h3><span class="header-section-number">4.2.1</span> Reading Raster Data<a href="spatial-data-structures.html#reading-raster-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="working-with-spatraster-objects" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Working with SpatRaster objects<a href="spatial-data-structures.html#working-with-spatraster-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A <code>SpatRaster Object</code> can be created using function <code>rast</code>:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="spatial-data-structures.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the terra package</span></span>
-<span id="cb15-2"><a href="spatial-data-structures.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span></code></pre></div>
-<pre><code>## Warning: Paket &#39;terra&#39; wurde unter R Version 4.2.3 erstellt</code></pre>
-<pre><code>## terra 1.7.46</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="spatial-data-structures.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use the elevation tif file from &quot;spData&quot;</span></span>
-<span id="cb18-2"><a href="spatial-data-structures.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;The raster data represents elevation in meters and uses WGS84 as a coordinate reference system.&quot;</span></span>
-<span id="cb18-3"><a href="spatial-data-structures.html#cb18-3" aria-hidden="true" tabindex="-1"></a>elev <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;raster/elev.tif&quot;</span>, <span class="at">package =</span> <span class="st">&quot;spData&quot;</span>)</span>
-<span id="cb18-4"><a href="spatial-data-structures.html#cb18-4" aria-hidden="true" tabindex="-1"></a>elev <span class="ot">&lt;-</span> <span class="fu">rast</span>(elev)</span>
-<span id="cb18-5"><a href="spatial-data-structures.html#cb18-5" aria-hidden="true" tabindex="-1"></a>elev </span></code></pre></div>
+<span id="cb15-2"><a href="spatial-data-structures.html#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb15-3"><a href="spatial-data-structures.html#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="spatial-data-structures.html#cb15-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>()</span>
+<span id="cb15-5"><a href="spatial-data-structures.html#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="spatial-data-structures.html#cb15-6" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## class       : SpatRaster 
+## dimensions  : 180, 360, 1  (nrow, ncol, nlyr)
+## resolution  : 1, 1  (x, y)
+## extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
+## coord. ref. : lon/lat WGS 84</code></pre>
+<p>Per default the SpatRaster Object is initialized with a global extent and a spatial resolution of 1 degree. The coordinate reference system is WGS84.</p>
+<p>Alternatively, additional arguments may be provided in the function to customize the SpatRaster Object:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="spatial-data-structures.html#cb17-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="at">ncol=</span><span class="dv">100</span>, <span class="at">nrow=</span><span class="dv">100</span>, <span class="at">xmin=</span><span class="dv">797422</span>, <span class="at">xmax=</span><span class="dv">807387</span>, <span class="at">ymin=</span><span class="dv">5298037</span>, <span class="at">ymax=</span><span class="dv">5306341</span>, <span class="at">crs =</span> <span class="st">&quot;+proj=utm +zone=32 +ellps=WGS84 +datum=WGS84 +units=m +no_defs &quot;</span>)</span>
+<span id="cb17-2"><a href="spatial-data-structures.html#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="spatial-data-structures.html#cb17-3" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## class       : SpatRaster 
+## dimensions  : 100, 100, 1  (nrow, ncol, nlyr)
+## resolution  : 99.65, 83.04  (x, y)
+## extent      : 797422, 807387, 5298037, 5306341  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=utm +zone=32 +datum=WGS84 +units=m +no_defs</code></pre>
+<p>In the example above, arguments such as the number of grid rows and columns (<code>nrow</code> and <code>ncol</code>) as well as the grid extent (<code>xmin</code>, <code>xmax</code>, <code>ymin</code> and <code>ymax</code>) were defined. The raster cell resolution is a result of these inputs (<code>x=99.65</code>, <code>y=83.04</code>).</p>
+<p>According to the <a href="https://www.rdocumentation.org/packages/terra/versions/1.7-46/topics/rast" target="_blank">documentation of the <code>rast</code> function</a>, the coordinate reference system can be specified in <code>PROJ.4</code>, <code>WKT</code> or <code>authority:code</code> notation. In the given example <code>WGS84 UTM 33N</code> is encoded in <code>PROJ.4</code>. To find the desired encoding, it is recommended to first search for a CRS on the <a href="https://spatialreference.org/" target="_blank">Spatial Reference Website</a>. The <code>PROJ.4</code> is one out of many formats (e.g. EPSG code, WKT, GML etc.) that are provided in the search results.</p>
+
+<div class="rmdexercise">
+<p>The SpatRaster Object has an extent that covers the City of Salzburg, which is completely within UTM Zone 33N. Search for the <code>PROJ.4</code> encoding of <code>WGS84 UTM 33N</code> on the <a href="https://spatialreference.org/" target="_blank">Spatial Reference Site.</a></p>
+<details closed>
+<summary>
+<ins>
+<strong>Solution!</strong>
+</ins>
+</summary>
+<p>
+<p><i><font color="grey"></p>
+<p>+proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs</p>
+</font></i>
+</p>
+</details>
+</div>
+<p>In order to change the coordinate reference system to <code>WGS84 UTM 33N</code> and to change the spatial resolution to 100m, the terra-functions <code>project</code> and <code>res</code> can be used:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="spatial-data-structures.html#cb19-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">project</span>(x, <span class="st">&quot;+proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs&quot;</span>)</span>
+<span id="cb19-2"><a href="spatial-data-structures.html#cb19-2" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">res</span>(y) <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb19-3"><a href="spatial-data-structures.html#cb19-3" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div>
+<pre><code>## class       : SpatRaster 
+## dimensions  : 91, 105, 1  (nrow, ncol, nlyr)
+## resolution  : 100, 100  (x, y)
+## extent      : 347863.1, 358363.1, 5291599, 5300699  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=utm +zone=33 +datum=WGS84 +units=m +no_defs</code></pre>
+<p>Note that the number of rows and column was changed to enable a raster resolution of 100m. Also the extent of the SpatRaster Object object has changed, which indicates a successful projection of the raster grid.</p>
+
+<div class="rmdtip">
+<p>Given that the SpatRaster Object has not coordinate reference system, it can be defined by means of <a href="https://rdrr.io/cran/terra/man/crs.html" target="_blank">terra-function <code>crs</code></a>.</p>
+</div>
+</div>
+<div id="reading-raster-data" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Reading Raster Data<a href="spatial-data-structures.html#reading-raster-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="spatial-data-structures.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the terra package</span></span>
+<span id="cb21-2"><a href="spatial-data-structures.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb21-3"><a href="spatial-data-structures.html#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="spatial-data-structures.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># use the elevation tif file from &quot;spData&quot;</span></span>
+<span id="cb21-5"><a href="spatial-data-structures.html#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;The raster data represents elevation in meters and uses WGS84 as a coordinate reference system.&quot;</span></span>
+<span id="cb21-6"><a href="spatial-data-structures.html#cb21-6" aria-hidden="true" tabindex="-1"></a>elev <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;raster/elev.tif&quot;</span>, <span class="at">package =</span> <span class="st">&quot;spData&quot;</span>)</span>
+<span id="cb21-7"><a href="spatial-data-structures.html#cb21-7" aria-hidden="true" tabindex="-1"></a>elev <span class="ot">&lt;-</span> <span class="fu">rast</span>(elev)</span>
+<span id="cb21-8"><a href="spatial-data-structures.html#cb21-8" aria-hidden="true" tabindex="-1"></a>elev </span></code></pre></div>
 <pre><code>## class       : SpatRaster 
 ## dimensions  : 6, 6, 1  (nrow, ncol, nlyr)
 ## resolution  : 0.5, 0.5  (x, y)
@@ -508,8 +565,8 @@ The operator :: is used to indicate that the functions <code>st_point</code>, <c
 ## name        : elev 
 ## min value   :    1 
 ## max value   :   36</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="spatial-data-structures.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(elev) </span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="spatial-data-structures.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(elev) </span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-23-1.png" width="672" />
 Once you’ve read the raster data, you can explore its properties using various functions:</p>
 <ul>
 <li>ncol(r): Number of columns</li>
@@ -518,29 +575,29 @@ Once you’ve read the raster data, you can explore its properties using various
 <li>crs(r): Coordinate Reference System</li>
 </ul>
 </div>
-<div id="basic-raster-operations" class="section level3 hasAnchor" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Basic Raster Operations<a href="spatial-data-structures.html#basic-raster-operations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="cropping" class="section level4 hasAnchor" number="4.2.2.1">
-<h4><span class="header-section-number">4.2.2.1</span> Cropping:<a href="spatial-data-structures.html#cropping" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="basic-raster-operations" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Basic Raster Operations<a href="spatial-data-structures.html#basic-raster-operations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="cropping" class="section level4 hasAnchor" number="4.2.3.1">
+<h4><span class="header-section-number">4.2.3.1</span> Cropping:<a href="spatial-data-structures.html#cropping" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>What is Raster Cropping?
 Raster cropping is the process of selecting a specific area (or “extent”) from a larger raster dataset. This is useful when you want to focus your analysis on a particular region.</p>
 <p>Why Do We Need to Check the Original Raster’s Extent?
 Before cropping, it’s crucial to know the extent of the original raster. This ensures that the area you want to crop actually exists within the original raster. If the extents don’t overlap, you’ll get an error.</p>
 <p>How to Check the Extent?
 You can use the ext() function from the terra package to check the extent of a raster.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="spatial-data-structures.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the extent of the original raster</span></span>
-<span id="cb21-2"><a href="spatial-data-structures.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ext</span>(elev)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="spatial-data-structures.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the extent of the original raster</span></span>
+<span id="cb24-2"><a href="spatial-data-structures.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ext</span>(elev)</span></code></pre></div>
 <pre><code>## SpatExtent : -1.5, 1.5, -1.5, 1.5 (xmin, xmax, ymin, ymax)</code></pre>
 <ul>
 <li>How to Crop?
 Once you know the extent, you can specify a new extent within that range for cropping.</li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="spatial-data-structures.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a new extent that is within the original raster&#39;s extent</span></span>
-<span id="cb23-2"><a href="spatial-data-structures.html#cb23-2" aria-hidden="true" tabindex="-1"></a>crop_extent <span class="ot">&lt;-</span> <span class="fu">ext</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)  <span class="co"># These coordinates are within the original extent</span></span>
-<span id="cb23-3"><a href="spatial-data-structures.html#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="spatial-data-structures.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Crop the raster</span></span>
-<span id="cb23-5"><a href="spatial-data-structures.html#cb23-5" aria-hidden="true" tabindex="-1"></a>elev_cropped <span class="ot">&lt;-</span> <span class="fu">crop</span>(elev, crop_extent)</span>
-<span id="cb23-6"><a href="spatial-data-structures.html#cb23-6" aria-hidden="true" tabindex="-1"></a>elev_cropped</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="spatial-data-structures.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a new extent that is within the original raster&#39;s extent</span></span>
+<span id="cb26-2"><a href="spatial-data-structures.html#cb26-2" aria-hidden="true" tabindex="-1"></a>crop_extent <span class="ot">&lt;-</span> <span class="fu">ext</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)  <span class="co"># These coordinates are within the original extent</span></span>
+<span id="cb26-3"><a href="spatial-data-structures.html#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="spatial-data-structures.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Crop the raster</span></span>
+<span id="cb26-5"><a href="spatial-data-structures.html#cb26-5" aria-hidden="true" tabindex="-1"></a>elev_cropped <span class="ot">&lt;-</span> <span class="fu">crop</span>(elev, crop_extent)</span>
+<span id="cb26-6"><a href="spatial-data-structures.html#cb26-6" aria-hidden="true" tabindex="-1"></a>elev_cropped</span></code></pre></div>
 <pre><code>## class       : SpatRaster 
 ## dimensions  : 4, 4, 1  (nrow, ncol, nlyr)
 ## resolution  : 0.5, 0.5  (x, y)
@@ -552,29 +609,29 @@ Once you know the extent, you can specify a new extent within that range for cro
 ## max value   :   29</code></pre>
 </div>
 </div>
-<div id="common-pitfalls" class="section level3 hasAnchor" number="4.2.3">
-<h3><span class="header-section-number">4.2.3</span> Common Pitfalls<a href="spatial-data-structures.html#common-pitfalls" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="common-pitfalls" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Common Pitfalls<a href="spatial-data-structures.html#common-pitfalls" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Non-overlapping Extents: Make sure the cropping extent overlaps with the original raster’s extent, otherwise, you’ll get an error.</li>
 <li>Coordinate Systems: Ensure that the raster and the extent are in the same coordinate system!</li>
 </ul>
 </div>
-<div id="resampling-raster-data-in-terra" class="section level3 hasAnchor" number="4.2.4">
-<h3><span class="header-section-number">4.2.4</span> Resampling Raster Data in Terra<a href="spatial-data-structures.html#resampling-raster-data-in-terra" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="what-is-resampling" class="section level4 hasAnchor" number="4.2.4.1">
-<h4><span class="header-section-number">4.2.4.1</span> What is Resampling?<a href="spatial-data-structures.html#what-is-resampling" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="resampling-raster-data-in-terra" class="section level3 hasAnchor" number="4.2.5">
+<h3><span class="header-section-number">4.2.5</span> Resampling Raster Data in Terra<a href="spatial-data-structures.html#resampling-raster-data-in-terra" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="what-is-resampling" class="section level4 hasAnchor" number="4.2.5.1">
+<h4><span class="header-section-number">4.2.5.1</span> What is Resampling?<a href="spatial-data-structures.html#what-is-resampling" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Resampling is the process of changing the spatial resolution of a raster dataset. This is useful when you want to align multiple rasters that have different resolutions or when you want to change the level of detail in your analysis.</p>
 <p>Step 1: Check the Original Resolution
 Before resampling, it’s important to know the original resolution of your raster. You can use the res() function to check this.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="spatial-data-structures.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">res</span>(elev) <span class="co"># shows us the resolution of 0.5. 0.5</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="spatial-data-structures.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">res</span>(elev) <span class="co"># shows us the resolution of 0.5. 0.5</span></span></code></pre></div>
 <pre><code>## [1] 0.5 0.5</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="spatial-data-structures.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(elev)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="spatial-data-structures.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(elev)</span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-26-1.png" width="672" />
 Where res is the new resolution.</p>
 <p>Step 2: Choose a New Resolution
 Decide what the new resolution should be. This could be higher or lower than the original, depending on your needs.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="spatial-data-structures.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resample the raster to the new resolution</span></span>
-<span id="cb28-2"><a href="spatial-data-structures.html#cb28-2" aria-hidden="true" tabindex="-1"></a>new_res <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>)  <span class="co"># Example new resolution, for example double the size.</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="spatial-data-structures.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resample the raster to the new resolution</span></span>
+<span id="cb31-2"><a href="spatial-data-structures.html#cb31-2" aria-hidden="true" tabindex="-1"></a>new_res <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>)  <span class="co"># Example new resolution, for example double the size.</span></span></code></pre></div>
 <p>Step 3: Perform Resampling
 You can use the resample() function to change the resolution. The method can be “nearest”, “bilinear”, etc., depending on the type of interpolation you want to use.</p>
 <p>#```{r}</p>
@@ -645,7 +702,7 @@ Where mask_layer is another raster or a vector layer</p>
 <li>Visualizing the results of coordinate transformations.</li>
 <li>Then, for example Introduce the ggspatial package for visualizing transformed spatial data in conjunction with ggplot2. (<strong>Note that, ggspatial was introduced in chapter 8. Data Visualisation.. Very, very briefly.</strong>)</li>
 </ul>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="spatial-data-structures.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for coordinate transformations using sf</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="spatial-data-structures.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for coordinate transformations using sf</span></span></code></pre></div>
 </div>
 <div id="raster-resampling-and-reprojection" class="section level2 hasAnchor" number="4.9">
 <h2><span class="header-section-number">4.9</span> Raster Resampling and Reprojection<a href="spatial-data-structures.html#raster-resampling-and-reprojection" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -653,7 +710,7 @@ Where mask_layer is another raster or a vector layer</p>
 <li>Adjusting the resolution of raster datasets or changing their projection.</li>
 <li>Introduce the <strong>terra</strong> package for these tasks.</li>
 </ul>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="spatial-data-structures.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for raster resampling and reprojection using terra</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="spatial-data-structures.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for raster resampling and reprojection using terra</span></span></code></pre></div>
 
 </div>
 </div>
