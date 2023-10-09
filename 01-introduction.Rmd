@@ -220,3 +220,5 @@ Apart from [Stefano de Sabbata's](https://sdesabbata.github.io/){target="_blank"
 - *An Introduction to R for Spatial Analysis and Mapping* by Chris Brunsdon and Lex Comber, Sage, 2015. See book [webpage](https://us.sagepub.com/en-us/nam/an-introduction-to-r-for-spatial-analysis-and-mapping/book258267){target="_blank"}
 - *Geocomputation with R* by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. See [online book](https://bookdown.org/robinlovelace/geocompr/){target="_blank"}.
 - *The RStudio Cheatsheets - * [Collection on R Studio Website](https://www.rstudio.com/resources/cheatsheets/){target="_blank"}.
+- *The terra package.* see [Online Documentation](https://rspatial.org/pkg/index.html){target="_blank"}
+- *Sf - Simple Features for R.* see [Online Documentation](https://r-spatial.github.io/sf/){target="_blank"}
