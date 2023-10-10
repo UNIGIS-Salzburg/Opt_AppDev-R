@@ -30,7 +30,7 @@
   
   <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="data-manipulation.html"/>
-<link rel="next" href="read-and-write-data.html"/>
+<link rel="next" href="crop-the-raster.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -186,18 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#raster-data-structures"><i class="fa fa-check"></i><b>4.2</b> Raster Data Structures</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#working-with-spatraster-objects"><i class="fa fa-check"></i><b>4.2.1</b> Working with SpatRaster objects</a></li>
-<li class="chapter" data-level="4.2.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#reading-raster-data"><i class="fa fa-check"></i><b>4.2.2</b> Reading Raster Data</a></li>
-<li class="chapter" data-level="4.2.3" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#basic-raster-operations"><i class="fa fa-check"></i><b>4.2.3</b> Basic Raster Operations</a></li>
-<li class="chapter" data-level="4.2.4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#common-pitfalls"><i class="fa fa-check"></i><b>4.2.4</b> Common Pitfalls</a></li>
-<li class="chapter" data-level="4.2.5" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#resampling-raster-data-in-terra"><i class="fa fa-check"></i><b>4.2.5</b> Resampling Raster Data in Terra</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#multidimensional-data-with-stars"><i class="fa fa-check"></i><b>4.3</b> Multidimensional Data with stars:</a></li>
-<li class="chapter" data-level="4.4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#spatial-indexing"><i class="fa fa-check"></i><b>4.4</b> Spatial Indexing</a></li>
-<li class="chapter" data-level="4.5" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#topological-relationships"><i class="fa fa-check"></i><b>4.5</b> Topological Relationships</a></li>
-<li class="chapter" data-level="4.6" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#introduction-to-spatstat-for-point-pattern-analysis.-not-recommended..-would-be-beneficial-for-chapter-12."><i class="fa fa-check"></i><b>4.6</b> Introduction to spatstat for point pattern analysis.(<strong>!!! not recommended.. would be beneficial for Chapter 12.</strong>)</a></li>
-<li class="chapter" data-level="4.7" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#practical-applications-and-exercises"><i class="fa fa-check"></i><b>4.7</b> Practical Applications and Exercises</a></li>
-<li class="chapter" data-level="4.8" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#coordinate-transformations"><i class="fa fa-check"></i><b>4.8</b> Coordinate Transformations</a></li>
-<li class="chapter" data-level="4.9" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#raster-resampling-and-reprojection"><i class="fa fa-check"></i><b>4.9</b> Raster Resampling and Reprojection</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="control-structures.html"><a href="control-structures.html"><i class="fa fa-check"></i><b>5</b> Control structures</a>
 <ul>
@@ -265,42 +254,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.17" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#applied-spatial-statistics-with-spatstat"><i class="fa fa-check"></i><b>8.17</b> Applied Spatial Statistics with spatstat</a></li>
 <li class="chapter" data-level="8.18" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#comparative-analysis-of-packages"><i class="fa fa-check"></i><b>8.18</b> Comparative Analysis of Packages</a></li>
 <li class="chapter" data-level="8.19" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#exercise"><i class="fa fa-check"></i><b>8.19</b> Exercise</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="read-and-write-data.html"><a href="read-and-write-data.html"><i class="fa fa-check"></i><b>9</b> Read and write data</a>
+<li class="chapter" data-level="8.20" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#topological-relationships"><i class="fa fa-check"></i><b>8.20</b> Topological Relationships</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-tabular-data"><i class="fa fa-check"></i><b>9.1</b> Read and write tabular data</a></li>
-<li class="chapter" data-level="9.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-vector-data"><i class="fa fa-check"></i><b>9.2</b> Read and write vector data</a></li>
-<li class="chapter" data-level="9.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#data-api"><i class="fa fa-check"></i><b>9.3</b> Data API</a></li>
-<li class="chapter" data-level="9.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#additional-thoughts-so-far-for-revision"><i class="fa fa-check"></i><b>9.4</b> Additional Thoughts so far for revision</a>
-<ul>
-<li class="chapter" data-level="9.4.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-json-handling-with-httr2"><i class="fa fa-check"></i><b>9.4.1</b> <strong>7.4 Advanced JSON Handling with <code>httr2</code></strong></a></li>
-<li class="chapter" data-level="9.4.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#caching-data-with-httr2"><i class="fa fa-check"></i><b>9.4.2</b> <strong>7.5 Caching Data with <code>httr2</code></strong></a></li>
-<li class="chapter" data-level="9.4.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#error-handling-and-retries-with-httr2"><i class="fa fa-check"></i><b>9.4.3</b> <strong>7.6 Error Handling and Retries with <code>httr2</code></strong></a></li>
-<li class="chapter" data-level="9.4.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-api-techniques"><i class="fa fa-check"></i><b>9.4.4</b> <strong>7.7 Advanced API Techniques</strong></a></li>
-<li class="chapter" data-level="9.4.5" data-path="read-and-write-data.html"><a href="read-and-write-data.html#introduction-to-web-scraping-altough-this-might-be-too-much..-and-even-if-its-important-for-data-sourcing-its-kind-of-a-grey-area-limited-by-rate-limits-or-considerations-with-tos."><i class="fa fa-check"></i><b>9.4.5</b> <strong>7.8 Introduction to Web Scraping</strong> (Altough, this might be too much.. and even if it’s important, for data sourcing, it’s kind of a grey area, limited by rate limits or considerations with ToS.)</a></li>
+<li class="chapter" data-level="8.20.1" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#resampling-raster-data-in-terra"><i class="fa fa-check"></i><b>8.20.1</b> Resampling Raster Data in Terra</a></li>
+<li class="chapter" data-level="8.20.2" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#basic-raster-operations"><i class="fa fa-check"></i><b>8.20.2</b> Basic Raster Operations</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>10</b> Data visualization</a>
+<li class="chapter" data-level="9" data-path="crop-the-raster.html"><a href="crop-the-raster.html"><i class="fa fa-check"></i><b>9</b> Crop the raster</a></li>
+<li class="chapter" data-level="10" data-path="read-and-write-data.html"><a href="read-and-write-data.html"><i class="fa fa-check"></i><b>10</b> Read and write data</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="data-visualization.html"><a href="data-visualization.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>10.1</b> The Grammar of Graphics</a></li>
-<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#visualization-of-distributions"><i class="fa fa-check"></i><b>10.2</b> Visualization of distributions</a></li>
-<li class="chapter" data-level="10.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>10.3</b> Boxplots</a></li>
-<li class="chapter" data-level="10.4" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i><b>10.4</b> Scatterplots</a></li>
-<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#map-visualization"><i class="fa fa-check"></i><b>10.5</b> Map visualization</a></li>
-<li class="chapter" data-level="10.6" data-path="data-visualization.html"><a href="data-visualization.html#interactive-maps"><i class="fa fa-check"></i><b>10.6</b> Interactive Maps</a></li>
+<li class="chapter" data-level="10.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-tabular-data"><i class="fa fa-check"></i><b>10.1</b> Read and write tabular data</a></li>
+<li class="chapter" data-level="10.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-vector-data"><i class="fa fa-check"></i><b>10.2</b> Read and write vector data</a></li>
+<li class="chapter" data-level="10.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#data-api"><i class="fa fa-check"></i><b>10.3</b> Data API</a></li>
+<li class="chapter" data-level="10.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#additional-thoughts-so-far-for-revision"><i class="fa fa-check"></i><b>10.4</b> Additional Thoughts so far for revision</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-json-handling-with-httr2"><i class="fa fa-check"></i><b>10.4.1</b> <strong>7.4 Advanced JSON Handling with <code>httr2</code></strong></a></li>
+<li class="chapter" data-level="10.4.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#caching-data-with-httr2"><i class="fa fa-check"></i><b>10.4.2</b> <strong>7.5 Caching Data with <code>httr2</code></strong></a></li>
+<li class="chapter" data-level="10.4.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#error-handling-and-retries-with-httr2"><i class="fa fa-check"></i><b>10.4.3</b> <strong>7.6 Error Handling and Retries with <code>httr2</code></strong></a></li>
+<li class="chapter" data-level="10.4.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-api-techniques"><i class="fa fa-check"></i><b>10.4.4</b> <strong>7.7 Advanced API Techniques</strong></a></li>
+<li class="chapter" data-level="10.4.5" data-path="read-and-write-data.html"><a href="read-and-write-data.html#introduction-to-web-scraping-altough-this-might-be-too-much..-and-even-if-its-important-for-data-sourcing-its-kind-of-a-grey-area-limited-by-rate-limits-or-considerations-with-tos."><i class="fa fa-check"></i><b>10.4.5</b> <strong>7.8 Introduction to Web Scraping</strong> (Altough, this might be too much.. and even if it’s important, for data sourcing, it’s kind of a grey area, limited by rate limits or considerations with ToS.)</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>11</b> R Markdown</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="r-markdown.html"><a href="r-markdown.html#set-up-your-work-environment"><i class="fa fa-check"></i><b>11.1</b> Set up your work environment</a></li>
-<li class="chapter" data-level="11.2" data-path="r-markdown.html"><a href="r-markdown.html#create-a-local-clone"><i class="fa fa-check"></i><b>11.2</b> Create a local clone</a></li>
-<li class="chapter" data-level="11.3" data-path="r-markdown.html"><a href="r-markdown.html#create-a-first-rmarkdown-document"><i class="fa fa-check"></i><b>11.3</b> Create a first RMarkdown document</a></li>
-<li class="chapter" data-level="11.4" data-path="r-markdown.html"><a href="r-markdown.html#synchronize-with-github"><i class="fa fa-check"></i><b>11.4</b> Synchronize with GitHub</a></li>
-<li class="chapter" data-level="11.5" data-path="r-markdown.html"><a href="r-markdown.html#basic-rmarkdown-syntax"><i class="fa fa-check"></i><b>11.5</b> Basic RMarkdown syntax</a>
-<ul>
-<li class="chapter" data-level="11.5.1" data-path="r-markdown.html"><a href="r-markdown.html#references-in-rmarkdown"><i class="fa fa-check"></i><b>11.5.1</b> References in RMarkdown</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="r-markdown.html"><a href="r-markdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>11.6</b> Speed up your workflows</a></li>
-<li class="chapter" data-level="11.7" data-path="r-markdown.html"><a href="r-markdown.html#self-study"><i class="fa fa-check"></i><b>11.7</b> Self-study</a></li>
+<li class="chapter" data-level="11" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>11</b> Data visualization</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="data-visualization.html"><a href="data-visualization.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>11.1</b> The Grammar of Graphics</a></li>
+<li class="chapter" data-level="11.2" data-path="data-visualization.html"><a href="data-visualization.html#visualization-of-distributions"><i class="fa fa-check"></i><b>11.2</b> Visualization of distributions</a></li>
+<li class="chapter" data-level="11.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>11.3</b> Boxplots</a></li>
+<li class="chapter" data-level="11.4" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i><b>11.4</b> Scatterplots</a></li>
+<li class="chapter" data-level="11.5" data-path="data-visualization.html"><a href="data-visualization.html#map-visualization"><i class="fa fa-check"></i><b>11.5</b> Map visualization</a></li>
+<li class="chapter" data-level="11.6" data-path="data-visualization.html"><a href="data-visualization.html#interactive-maps"><i class="fa fa-check"></i><b>11.6</b> Interactive Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>12</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="r-markdown.html"><a href="r-markdown.html#set-up-your-work-environment"><i class="fa fa-check"></i><b>12.1</b> Set up your work environment</a></li>
+<li class="chapter" data-level="12.2" data-path="r-markdown.html"><a href="r-markdown.html#create-a-local-clone"><i class="fa fa-check"></i><b>12.2</b> Create a local clone</a></li>
+<li class="chapter" data-level="12.3" data-path="r-markdown.html"><a href="r-markdown.html#create-a-first-rmarkdown-document"><i class="fa fa-check"></i><b>12.3</b> Create a first RMarkdown document</a></li>
+<li class="chapter" data-level="12.4" data-path="r-markdown.html"><a href="r-markdown.html#synchronize-with-github"><i class="fa fa-check"></i><b>12.4</b> Synchronize with GitHub</a></li>
+<li class="chapter" data-level="12.5" data-path="r-markdown.html"><a href="r-markdown.html#basic-rmarkdown-syntax"><i class="fa fa-check"></i><b>12.5</b> Basic RMarkdown syntax</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="r-markdown.html"><a href="r-markdown.html#references-in-rmarkdown"><i class="fa fa-check"></i><b>12.5.1</b> References in RMarkdown</a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="r-markdown.html"><a href="r-markdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>12.6</b> Speed up your workflows</a></li>
+<li class="chapter" data-level="12.7" data-path="r-markdown.html"><a href="r-markdown.html#self-study"><i class="fa fa-check"></i><b>12.7</b> Self-study</a></li>
 </ul></li>
 <li class="divider"></li>
 <li>Copyright © UNIGIS Salzburg.</li>
@@ -337,7 +332,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Aggregating spatial data based on certain attributes or spatial units.</li>
 <li>Introduce the sf and terra packages for aggregation tasks.</li>
 </ul>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="spatial-data-manipulation.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for spatial aggregation using sf and terra</span></span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="spatial-data-manipulation.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for spatial aggregation using sf and terra</span></span></code></pre></div>
 </div>
 <div id="merging-and-appending-spatial-data" class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">8.3</span> Merging and Appending Spatial Data<a href="spatial-data-manipulation.html#merging-and-appending-spatial-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -345,7 +340,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Combining multiple spatial datasets.</li>
 <li>Introduce the sf package for these tasks.</li>
 </ul>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="spatial-data-manipulation.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for merging and appending using sf</span></span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="spatial-data-manipulation.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for merging and appending using sf</span></span></code></pre></div>
 </div>
 <div id="handling-missing-data" class="section level2 hasAnchor" number="8.4">
 <h2><span class="header-section-number">8.4</span> Handling Missing Data<a href="spatial-data-manipulation.html#handling-missing-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -353,7 +348,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Discuss methods to identify, visualize, and impute missing data.</li>
 <li>Introduce the <strong>tidyverse</strong> suite for handling missing data in spatial datasets. (but again, watchout for <strong>httr1</strong> and <strong>httr2</strong> + (<strong>time of writing 12.09.2023</strong>)</li>
 </ul>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="spatial-data-manipulation.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for handling missing data using tidyverse</span></span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="spatial-data-manipulation.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for handling missing data using tidyverse</span></span></code></pre></div>
 </div>
 <div id="spatial-data-cleaning" class="section level2 hasAnchor" number="8.5">
 <h2><span class="header-section-number">8.5</span> Spatial Data Cleaning<a href="spatial-data-manipulation.html#spatial-data-cleaning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -361,7 +356,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Detecting and correcting topological errors.</li>
 <li>Introduce the sf and spatstat packages for these tasks.</li>
 </ul>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="spatial-data-manipulation.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for spatial data cleaning using sf and spatstat</span></span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="spatial-data-manipulation.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for spatial data cleaning using sf and spatstat</span></span></code></pre></div>
 </div>
 <div id="multidimensional-data-wrangling-with-stars" class="section level2 hasAnchor" number="8.6">
 <h2><span class="header-section-number">8.6</span> Multidimensional Data Wrangling with stars<a href="spatial-data-manipulation.html#multidimensional-data-wrangling-with-stars" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -369,7 +364,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Handling and manipulating multidimensional arrays.</li>
 <li>Discuss the importance of stars in the R spatial ecosystem.</li>
 </ul>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="spatial-data-manipulation.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for wrangling multidimensional data using stars</span></span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="spatial-data-manipulation.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for wrangling multidimensional data using stars</span></span></code></pre></div>
 </div>
 <div id="challenges-in-spatial-data-structures" class="section level2 hasAnchor" number="8.7">
 <h2><span class="header-section-number">8.7</span> Challenges in Spatial Data Structures<a href="spatial-data-manipulation.html#challenges-in-spatial-data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -408,14 +403,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Demonstrate how to filter spatial features in sf objects based on attribute conditions.</li>
 <li>Introduce the sf package for vector data filtering.</li>
 </ul>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="spatial-data-manipulation.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for filtering sf objects</span></span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="spatial-data-manipulation.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for filtering sf objects</span></span></code></pre></div>
 </div>
 <div id="filtering-rasters-with-terra" class="section level2 hasAnchor" number="8.12">
 <h2><span class="header-section-number">8.12</span> Filtering Rasters with terra<a href="spatial-data-manipulation.html#filtering-rasters-with-terra" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Show how to filter raster data based on cell values or spatial conditions using terra.</li>
 </ul>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="spatial-data-manipulation.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for filtering rasters with terra</span></span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="spatial-data-manipulation.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for filtering rasters with terra</span></span></code></pre></div>
 </div>
 <div id="spatial-joins-with-sf-though..-we-could-also-put-that-in-chapter-10-and-make-12-bigger-with-spatial-stat" class="section level2 hasAnchor" number="8.13">
 <h2><span class="header-section-number">8.13</span> Spatial Joins with sf (though.. we could also put that in Chapter 10 and make 12 bigger with spatial stat)<a href="spatial-data-manipulation.html#spatial-joins-with-sf-though..-we-could-also-put-that-in-chapter-10-and-make-12-bigger-with-spatial-stat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -423,7 +418,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Explain the concept of spatial joins.</li>
 <li>Demonstrate how to join two spatial datasets based on their spatial relationship using sf.</li>
 </ul>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="spatial-data-manipulation.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for spatial joins with sf</span></span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="spatial-data-manipulation.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for spatial joins with sf</span></span></code></pre></div>
 </div>
 <div id="geometric-operations-with-sf" class="section level2 hasAnchor" number="8.14">
 <h2><span class="header-section-number">8.14</span> Geometric Operations with sf<a href="spatial-data-manipulation.html#geometric-operations-with-sf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -432,21 +427,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Demonstrate how to find the common spatial elements between two datasets using sf.</li>
 </ul>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="spatial-data-manipulation.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for intersect operation with sf</span></span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="spatial-data-manipulation.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for intersect operation with sf</span></span></code></pre></div>
 </div>
 <div id="buffer" class="section level3 hasAnchor" number="8.14.2">
 <h3><span class="header-section-number">8.14.2</span> Buffer<a href="spatial-data-manipulation.html#buffer" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Show how to create a buffer zone around a spatial feature using sf.</li>
 </ul>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="spatial-data-manipulation.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for buffer operation with sf</span></span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="spatial-data-manipulation.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for buffer operation with sf</span></span></code></pre></div>
 </div>
 <div id="union-and-difference" class="section level3 hasAnchor" number="8.14.3">
 <h3><span class="header-section-number">8.14.3</span> Union and Difference<a href="spatial-data-manipulation.html#union-and-difference" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Explain and demonstrate the union and difference operations between two spatial datasets using sf.</li>
 </ul>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="spatial-data-manipulation.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for union and difference operations with sf</span></span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="spatial-data-manipulation.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for union and difference operations with sf</span></span></code></pre></div>
 </div>
 </div>
 <div id="coordinate-transformations-and-reprojections-with-sf-and-terra" class="section level2 hasAnchor" number="8.15">
@@ -455,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Discuss the importance of having datasets in the same coordinate system.</li>
 <li>Demonstrate how to reproject spatial data using both sf for vector data and terra for raster data.</li>
 </ul>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="spatial-data-manipulation.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for coordinate transformations with sf and terra</span></span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="spatial-data-manipulation.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for coordinate transformations with sf and terra</span></span></code></pre></div>
 </div>
 <div id="raster-operations-with-terra" class="section level2 hasAnchor" number="8.16">
 <h2><span class="header-section-number">8.16</span> Raster Operations with terra<a href="spatial-data-manipulation.html#raster-operations-with-terra" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -464,14 +459,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Show how to change the resolution of raster datasets using terra.</li>
 </ul>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="spatial-data-manipulation.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for raster resampling with terra</span></span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="spatial-data-manipulation.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for raster resampling with terra</span></span></code></pre></div>
 </div>
 <div id="raster-algebra" class="section level3 hasAnchor" number="8.16.2">
 <h3><span class="header-section-number">8.16.2</span> Raster Algebra<a href="spatial-data-manipulation.html#raster-algebra" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Demonstrate basic raster algebra operations like addition, subtraction, and multiplication of raster layers using terra.</li>
 </ul>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="spatial-data-manipulation.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for raster algebra with terra</span></span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="spatial-data-manipulation.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example code for raster algebra with terra</span></span></code></pre></div>
 </div>
 </div>
 <div id="applied-spatial-statistics-with-spatstat" class="section level2 hasAnchor" number="8.17">
@@ -500,7 +495,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Provide exercises that allow readers to apply the techniques learned in the chapter, ensuring they get hands-on experience with each of the introduced packages.</li>
 </ul>
-
+<hr />
+</div>
+<div id="topological-relationships" class="section level2 hasAnchor" number="8.20">
+<h2><span class="header-section-number">8.20</span> Topological Relationships<a href="spatial-data-manipulation.html#topological-relationships" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Discuss spatial relationships like:</li>
+<li>Adjacency (what’s next to what)</li>
+<li>Connectivity (how things are connected)</li>
+<li>Containment (what contains what)</li>
+<li>Importance of understanding topological relationships in spatial analysis and how one might implement that in R.</li>
+</ul>
+<div id="resampling-raster-data-in-terra" class="section level3 hasAnchor" number="8.20.1">
+<h3><span class="header-section-number">8.20.1</span> Resampling Raster Data in Terra<a href="spatial-data-manipulation.html#resampling-raster-data-in-terra" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="what-is-resampling" class="section level4 hasAnchor" number="8.20.1.1">
+<h4><span class="header-section-number">8.20.1.1</span> What is Resampling?<a href="spatial-data-manipulation.html#what-is-resampling" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Resampling is the process of changing the spatial resolution of a raster dataset. This is useful when you want to align multiple rasters that have different resolutions or when you want to change the level of detail in your analysis.</p>
+<p>Step 1: Check the Original Resolution
+Before resampling, it’s important to know the original resolution of your raster. You can use the res() function to check this.</p>
+<p>#```{r}</p>
+<p>#res(elev) # shows us the resolution of 0.5. 0.5
+#plot(elev)
+#```
+Where res is the new resolution.</p>
+<p>Step 2: Choose a New Resolution
+Decide what the new resolution should be. This could be higher or lower than the original, depending on your needs.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="spatial-data-manipulation.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resample the raster to the new resolution</span></span>
+<span id="cb187-2"><a href="spatial-data-manipulation.html#cb187-2" aria-hidden="true" tabindex="-1"></a>new_res <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>)  <span class="co"># Example new resolution, for example double the size.</span></span></code></pre></div>
+<p>Step 3: Perform Resampling
+You can use the resample() function to change the resolution. The method can be “nearest”, “bilinear”, etc., depending on the type of interpolation you want to use.</p>
+<p>#```{r}</p>
+<p>#elev_resampled &lt;- resample(elev, new_res, method=“bilinear”)
+# Create a target raster with the new resolution
+#target_raster &lt;- rast(elev, res=new_res)
+# Resample the original raster to match the target raster
+#elev_resampled &lt;- resample(elev, target_raster, method=“bilinear”)
+# Check the new resolution
+#res(elev_resampled)</p>
+<p>#```</p>
+<p>Masking: To mask a raster using another raster or vector, you can use the mask() function.</p>
+<p>#<code>{r} #r_masked &lt;- mask(r, mask_layer) #</code>
+Where mask_layer is another raster or a vector layer</p>
+<hr />
+</div>
+</div>
+<div id="basic-raster-operations" class="section level3 hasAnchor" number="8.20.2">
+<h3><span class="header-section-number">8.20.2</span> Basic Raster Operations<a href="spatial-data-manipulation.html#basic-raster-operations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="cropping" class="section level4 hasAnchor" number="8.20.2.1">
+<h4><span class="header-section-number">8.20.2.1</span> Cropping:<a href="spatial-data-manipulation.html#cropping" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>What is Raster Cropping?
+Raster cropping is the process of selecting a specific area (or “extent”) from a larger raster dataset. This is useful when you want to focus your analysis on a particular region.</p>
+<p>Why Do We Need to Check the Original Raster’s Extent?
+Before cropping, it’s crucial to know the extent of the original raster. This ensures that the area you want to crop actually exists within the original raster. If the extents don’t overlap, you’ll get an error.</p>
+<p>How to Check the Extent?
+You can use the ext() function from the terra package to check the extent of a raster.</p>
+<p>#<code>{r} # Check the extent of the original raster #ext(elev) #</code>
+- How to Crop?
+Once you know the extent, you can specify a new extent within that range for cropping.</p>
+<p>#```{r}
+# Define a new extent that is within the original #raster’s extent
+#crop_extent &lt;- ext(-1, 1, -1, 1) # These coordinates #are within the original extent</p>
+</div>
+</div>
 </div>
 </div>
             </section>
@@ -509,7 +565,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="data-manipulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="read-and-write-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="crop-the-raster.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

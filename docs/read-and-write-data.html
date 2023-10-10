@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Lesson 9 Read and write data | Automated Data Processing with R</title>
+  <title>Lesson 10 Read and write data | Automated Data Processing with R</title>
   <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Lesson 9 Read and write data | Automated Data Processing with R" />
+  <meta property="og:title" content="Lesson 10 Read and write data | Automated Data Processing with R" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="/branding/Cover_epub.png" />
   <meta property="og:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="github-repo" content="UNIGIS-Salzburg/En_AppDev-R" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Lesson 9 Read and write data | Automated Data Processing with R" />
+  <meta name="twitter:title" content="Lesson 10 Read and write data | Automated Data Processing with R" />
   
   <meta name="twitter:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
   <meta name="twitter:image" content="/branding/Cover_epub.png" />
@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
-<link rel="prev" href="spatial-data-manipulation.html"/>
+<link rel="prev" href="crop-the-raster.html"/>
 <link rel="next" href="data-visualization.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -186,18 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#raster-data-structures"><i class="fa fa-check"></i><b>4.2</b> Raster Data Structures</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#working-with-spatraster-objects"><i class="fa fa-check"></i><b>4.2.1</b> Working with SpatRaster objects</a></li>
-<li class="chapter" data-level="4.2.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#reading-raster-data"><i class="fa fa-check"></i><b>4.2.2</b> Reading Raster Data</a></li>
-<li class="chapter" data-level="4.2.3" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#basic-raster-operations"><i class="fa fa-check"></i><b>4.2.3</b> Basic Raster Operations</a></li>
-<li class="chapter" data-level="4.2.4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#common-pitfalls"><i class="fa fa-check"></i><b>4.2.4</b> Common Pitfalls</a></li>
-<li class="chapter" data-level="4.2.5" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#resampling-raster-data-in-terra"><i class="fa fa-check"></i><b>4.2.5</b> Resampling Raster Data in Terra</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#multidimensional-data-with-stars"><i class="fa fa-check"></i><b>4.3</b> Multidimensional Data with stars:</a></li>
-<li class="chapter" data-level="4.4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#spatial-indexing"><i class="fa fa-check"></i><b>4.4</b> Spatial Indexing</a></li>
-<li class="chapter" data-level="4.5" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#topological-relationships"><i class="fa fa-check"></i><b>4.5</b> Topological Relationships</a></li>
-<li class="chapter" data-level="4.6" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#introduction-to-spatstat-for-point-pattern-analysis.-not-recommended..-would-be-beneficial-for-chapter-12."><i class="fa fa-check"></i><b>4.6</b> Introduction to spatstat for point pattern analysis.(<strong>!!! not recommended.. would be beneficial for Chapter 12.</strong>)</a></li>
-<li class="chapter" data-level="4.7" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#practical-applications-and-exercises"><i class="fa fa-check"></i><b>4.7</b> Practical Applications and Exercises</a></li>
-<li class="chapter" data-level="4.8" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#coordinate-transformations"><i class="fa fa-check"></i><b>4.8</b> Coordinate Transformations</a></li>
-<li class="chapter" data-level="4.9" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#raster-resampling-and-reprojection"><i class="fa fa-check"></i><b>4.9</b> Raster Resampling and Reprojection</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="control-structures.html"><a href="control-structures.html"><i class="fa fa-check"></i><b>5</b> Control structures</a>
 <ul>
@@ -265,42 +254,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.17" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#applied-spatial-statistics-with-spatstat"><i class="fa fa-check"></i><b>8.17</b> Applied Spatial Statistics with spatstat</a></li>
 <li class="chapter" data-level="8.18" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#comparative-analysis-of-packages"><i class="fa fa-check"></i><b>8.18</b> Comparative Analysis of Packages</a></li>
 <li class="chapter" data-level="8.19" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#exercise"><i class="fa fa-check"></i><b>8.19</b> Exercise</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="read-and-write-data.html"><a href="read-and-write-data.html"><i class="fa fa-check"></i><b>9</b> Read and write data</a>
+<li class="chapter" data-level="8.20" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#topological-relationships"><i class="fa fa-check"></i><b>8.20</b> Topological Relationships</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-tabular-data"><i class="fa fa-check"></i><b>9.1</b> Read and write tabular data</a></li>
-<li class="chapter" data-level="9.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-vector-data"><i class="fa fa-check"></i><b>9.2</b> Read and write vector data</a></li>
-<li class="chapter" data-level="9.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#data-api"><i class="fa fa-check"></i><b>9.3</b> Data API</a></li>
-<li class="chapter" data-level="9.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#additional-thoughts-so-far-for-revision"><i class="fa fa-check"></i><b>9.4</b> Additional Thoughts so far for revision</a>
-<ul>
-<li class="chapter" data-level="9.4.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-json-handling-with-httr2"><i class="fa fa-check"></i><b>9.4.1</b> <strong>7.4 Advanced JSON Handling with <code>httr2</code></strong></a></li>
-<li class="chapter" data-level="9.4.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#caching-data-with-httr2"><i class="fa fa-check"></i><b>9.4.2</b> <strong>7.5 Caching Data with <code>httr2</code></strong></a></li>
-<li class="chapter" data-level="9.4.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#error-handling-and-retries-with-httr2"><i class="fa fa-check"></i><b>9.4.3</b> <strong>7.6 Error Handling and Retries with <code>httr2</code></strong></a></li>
-<li class="chapter" data-level="9.4.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-api-techniques"><i class="fa fa-check"></i><b>9.4.4</b> <strong>7.7 Advanced API Techniques</strong></a></li>
-<li class="chapter" data-level="9.4.5" data-path="read-and-write-data.html"><a href="read-and-write-data.html#introduction-to-web-scraping-altough-this-might-be-too-much..-and-even-if-its-important-for-data-sourcing-its-kind-of-a-grey-area-limited-by-rate-limits-or-considerations-with-tos."><i class="fa fa-check"></i><b>9.4.5</b> <strong>7.8 Introduction to Web Scraping</strong> (Altough, this might be too much.. and even if it’s important, for data sourcing, it’s kind of a grey area, limited by rate limits or considerations with ToS.)</a></li>
+<li class="chapter" data-level="8.20.1" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#resampling-raster-data-in-terra"><i class="fa fa-check"></i><b>8.20.1</b> Resampling Raster Data in Terra</a></li>
+<li class="chapter" data-level="8.20.2" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#basic-raster-operations"><i class="fa fa-check"></i><b>8.20.2</b> Basic Raster Operations</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>10</b> Data visualization</a>
+<li class="chapter" data-level="9" data-path="crop-the-raster.html"><a href="crop-the-raster.html"><i class="fa fa-check"></i><b>9</b> Crop the raster</a></li>
+<li class="chapter" data-level="10" data-path="read-and-write-data.html"><a href="read-and-write-data.html"><i class="fa fa-check"></i><b>10</b> Read and write data</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="data-visualization.html"><a href="data-visualization.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>10.1</b> The Grammar of Graphics</a></li>
-<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#visualization-of-distributions"><i class="fa fa-check"></i><b>10.2</b> Visualization of distributions</a></li>
-<li class="chapter" data-level="10.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>10.3</b> Boxplots</a></li>
-<li class="chapter" data-level="10.4" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i><b>10.4</b> Scatterplots</a></li>
-<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#map-visualization"><i class="fa fa-check"></i><b>10.5</b> Map visualization</a></li>
-<li class="chapter" data-level="10.6" data-path="data-visualization.html"><a href="data-visualization.html#interactive-maps"><i class="fa fa-check"></i><b>10.6</b> Interactive Maps</a></li>
+<li class="chapter" data-level="10.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-tabular-data"><i class="fa fa-check"></i><b>10.1</b> Read and write tabular data</a></li>
+<li class="chapter" data-level="10.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-vector-data"><i class="fa fa-check"></i><b>10.2</b> Read and write vector data</a></li>
+<li class="chapter" data-level="10.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#data-api"><i class="fa fa-check"></i><b>10.3</b> Data API</a></li>
+<li class="chapter" data-level="10.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#additional-thoughts-so-far-for-revision"><i class="fa fa-check"></i><b>10.4</b> Additional Thoughts so far for revision</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-json-handling-with-httr2"><i class="fa fa-check"></i><b>10.4.1</b> <strong>7.4 Advanced JSON Handling with <code>httr2</code></strong></a></li>
+<li class="chapter" data-level="10.4.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#caching-data-with-httr2"><i class="fa fa-check"></i><b>10.4.2</b> <strong>7.5 Caching Data with <code>httr2</code></strong></a></li>
+<li class="chapter" data-level="10.4.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#error-handling-and-retries-with-httr2"><i class="fa fa-check"></i><b>10.4.3</b> <strong>7.6 Error Handling and Retries with <code>httr2</code></strong></a></li>
+<li class="chapter" data-level="10.4.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-api-techniques"><i class="fa fa-check"></i><b>10.4.4</b> <strong>7.7 Advanced API Techniques</strong></a></li>
+<li class="chapter" data-level="10.4.5" data-path="read-and-write-data.html"><a href="read-and-write-data.html#introduction-to-web-scraping-altough-this-might-be-too-much..-and-even-if-its-important-for-data-sourcing-its-kind-of-a-grey-area-limited-by-rate-limits-or-considerations-with-tos."><i class="fa fa-check"></i><b>10.4.5</b> <strong>7.8 Introduction to Web Scraping</strong> (Altough, this might be too much.. and even if it’s important, for data sourcing, it’s kind of a grey area, limited by rate limits or considerations with ToS.)</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>11</b> R Markdown</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="r-markdown.html"><a href="r-markdown.html#set-up-your-work-environment"><i class="fa fa-check"></i><b>11.1</b> Set up your work environment</a></li>
-<li class="chapter" data-level="11.2" data-path="r-markdown.html"><a href="r-markdown.html#create-a-local-clone"><i class="fa fa-check"></i><b>11.2</b> Create a local clone</a></li>
-<li class="chapter" data-level="11.3" data-path="r-markdown.html"><a href="r-markdown.html#create-a-first-rmarkdown-document"><i class="fa fa-check"></i><b>11.3</b> Create a first RMarkdown document</a></li>
-<li class="chapter" data-level="11.4" data-path="r-markdown.html"><a href="r-markdown.html#synchronize-with-github"><i class="fa fa-check"></i><b>11.4</b> Synchronize with GitHub</a></li>
-<li class="chapter" data-level="11.5" data-path="r-markdown.html"><a href="r-markdown.html#basic-rmarkdown-syntax"><i class="fa fa-check"></i><b>11.5</b> Basic RMarkdown syntax</a>
-<ul>
-<li class="chapter" data-level="11.5.1" data-path="r-markdown.html"><a href="r-markdown.html#references-in-rmarkdown"><i class="fa fa-check"></i><b>11.5.1</b> References in RMarkdown</a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="r-markdown.html"><a href="r-markdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>11.6</b> Speed up your workflows</a></li>
-<li class="chapter" data-level="11.7" data-path="r-markdown.html"><a href="r-markdown.html#self-study"><i class="fa fa-check"></i><b>11.7</b> Self-study</a></li>
+<li class="chapter" data-level="11" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>11</b> Data visualization</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="data-visualization.html"><a href="data-visualization.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>11.1</b> The Grammar of Graphics</a></li>
+<li class="chapter" data-level="11.2" data-path="data-visualization.html"><a href="data-visualization.html#visualization-of-distributions"><i class="fa fa-check"></i><b>11.2</b> Visualization of distributions</a></li>
+<li class="chapter" data-level="11.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>11.3</b> Boxplots</a></li>
+<li class="chapter" data-level="11.4" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i><b>11.4</b> Scatterplots</a></li>
+<li class="chapter" data-level="11.5" data-path="data-visualization.html"><a href="data-visualization.html#map-visualization"><i class="fa fa-check"></i><b>11.5</b> Map visualization</a></li>
+<li class="chapter" data-level="11.6" data-path="data-visualization.html"><a href="data-visualization.html#interactive-maps"><i class="fa fa-check"></i><b>11.6</b> Interactive Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>12</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="r-markdown.html"><a href="r-markdown.html#set-up-your-work-environment"><i class="fa fa-check"></i><b>12.1</b> Set up your work environment</a></li>
+<li class="chapter" data-level="12.2" data-path="r-markdown.html"><a href="r-markdown.html#create-a-local-clone"><i class="fa fa-check"></i><b>12.2</b> Create a local clone</a></li>
+<li class="chapter" data-level="12.3" data-path="r-markdown.html"><a href="r-markdown.html#create-a-first-rmarkdown-document"><i class="fa fa-check"></i><b>12.3</b> Create a first RMarkdown document</a></li>
+<li class="chapter" data-level="12.4" data-path="r-markdown.html"><a href="r-markdown.html#synchronize-with-github"><i class="fa fa-check"></i><b>12.4</b> Synchronize with GitHub</a></li>
+<li class="chapter" data-level="12.5" data-path="r-markdown.html"><a href="r-markdown.html#basic-rmarkdown-syntax"><i class="fa fa-check"></i><b>12.5</b> Basic RMarkdown syntax</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="r-markdown.html"><a href="r-markdown.html#references-in-rmarkdown"><i class="fa fa-check"></i><b>12.5.1</b> References in RMarkdown</a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="r-markdown.html"><a href="r-markdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>12.6</b> Speed up your workflows</a></li>
+<li class="chapter" data-level="12.7" data-path="r-markdown.html"><a href="r-markdown.html#self-study"><i class="fa fa-check"></i><b>12.7</b> Self-study</a></li>
 </ul></li>
 <li class="divider"></li>
 <li>Copyright © UNIGIS Salzburg.</li>
@@ -322,15 +317,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="read-and-write-data" class="section level1 hasAnchor" number="9">
-<h1><span class="header-section-number">Lesson 9</span> Read and write data<a href="read-and-write-data.html#read-and-write-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="read-and-write-data" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Lesson 10</span> Read and write data<a href="read-and-write-data.html#read-and-write-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In previous exercises we have <strong>read</strong> data from a CSV file into our script. Similarly we can also <strong>write</strong> code outputs to file.</p>
 
 <div class="rmdtip">
 <p>In this lesson you will learn to read and write plain-text and spatial vector file formats. Moreover, we will retrieve online data by means of a data API.</p>
 </div>
-<div id="read-and-write-tabular-data" class="section level2 hasAnchor" number="9.1">
-<h2><span class="header-section-number">9.1</span> Read and write tabular data<a href="read-and-write-data.html#read-and-write-tabular-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="read-and-write-tabular-data" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Read and write tabular data<a href="read-and-write-data.html#read-and-write-tabular-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A series of formats are based on plain-text files.</p>
 <p>For instance…</p>
 <ul>
@@ -342,19 +337,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>The <a href="https://readr.tidyverse.org/" target="_blank"><code>readr</code> library</a> (also part of <a href="https://www.tidyverse.org/packages/#import" target="_blank">Tidyverse</a>) provides a series of functions that can be used to load from and save to such data formats. For instance, the <code>read_csv</code> function reads a comma delimited (CSV) file from the path provided as the first argument.</p>
 <p>The code example below reads a CSV file that contains global fishery statistics provided by the <a href="https://datacatalog.worldbank.org/dataset/world-development-indicators" target="_blank">World Bank</a> and queries Norwegian entries. The function <code>writes_csv</code> writes these entries to a new CSV file.</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="read-and-write-data.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb193-2"><a href="read-and-write-data.html#cb193-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb193-3"><a href="read-and-write-data.html#cb193-3" aria-hidden="true" tabindex="-1"></a>fishery_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;data/capture-fisheries-vs-aquaculture.csv&quot;</span>)</span>
-<span id="cb193-4"><a href="read-and-write-data.html#cb193-4" aria-hidden="true" tabindex="-1"></a><span class="co">#print(fishery_data)</span></span>
-<span id="cb193-5"><a href="read-and-write-data.html#cb193-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb193-6"><a href="read-and-write-data.html#cb193-6" aria-hidden="true" tabindex="-1"></a><span class="co">#print(typeof(fishery_data$))</span></span>
-<span id="cb193-7"><a href="read-and-write-data.html#cb193-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb193-8"><a href="read-and-write-data.html#cb193-8" aria-hidden="true" tabindex="-1"></a>fishery_data <span class="sc">%&gt;%</span></span>
-<span id="cb193-9"><a href="read-and-write-data.html#cb193-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Entity <span class="sc">==</span> <span class="st">&quot;Norway&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb193-10"><a href="read-and-write-data.html#cb193-10" aria-hidden="true" tabindex="-1"></a>  readr<span class="sc">::</span><span class="fu">write_csv</span>(<span class="st">&quot;data/capture-fisheries-vs-aquaculture-norway.csv&quot;</span>, <span class="at">append=</span><span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb193-11"><a href="read-and-write-data.html#cb193-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb193-12"><a href="read-and-write-data.html#cb193-12" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb193-13"><a href="read-and-write-data.html#cb193-13" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="read-and-write-data.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb191-2"><a href="read-and-write-data.html#cb191-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-3"><a href="read-and-write-data.html#cb191-3" aria-hidden="true" tabindex="-1"></a>fishery_data <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&quot;data/capture-fisheries-vs-aquaculture.csv&quot;</span>)</span>
+<span id="cb191-4"><a href="read-and-write-data.html#cb191-4" aria-hidden="true" tabindex="-1"></a><span class="co">#print(fishery_data)</span></span>
+<span id="cb191-5"><a href="read-and-write-data.html#cb191-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-6"><a href="read-and-write-data.html#cb191-6" aria-hidden="true" tabindex="-1"></a><span class="co">#print(typeof(fishery_data$))</span></span>
+<span id="cb191-7"><a href="read-and-write-data.html#cb191-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-8"><a href="read-and-write-data.html#cb191-8" aria-hidden="true" tabindex="-1"></a>fishery_data <span class="sc">%&gt;%</span></span>
+<span id="cb191-9"><a href="read-and-write-data.html#cb191-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Entity <span class="sc">==</span> <span class="st">&quot;Norway&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb191-10"><a href="read-and-write-data.html#cb191-10" aria-hidden="true" tabindex="-1"></a>  readr<span class="sc">::</span><span class="fu">write_csv</span>(<span class="st">&quot;data/capture-fisheries-vs-aquaculture-norway.csv&quot;</span>, <span class="at">append=</span><span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb191-11"><a href="read-and-write-data.html#cb191-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb191-12"><a href="read-and-write-data.html#cb191-12" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb191-13"><a href="read-and-write-data.html#cb191-13" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <colgroup>
 <col width="7%" />
@@ -402,23 +397,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Other important packages for reading tabular data are <a href="https://readxl.tidyverse.org/" target="_blank">readxl</a> for Excel (.xls and .xlsx) and <a href="https://haven.tidyverse.org/" target="_blank">haven</a> for SPSS, Stata and SAS data.
 </div>
 </div>
-<div id="read-and-write-vector-data" class="section level2 hasAnchor" number="9.2">
-<h2><span class="header-section-number">9.2</span> Read and write vector data<a href="read-and-write-data.html#read-and-write-vector-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="read-and-write-vector-data" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Read and write vector data<a href="read-and-write-data.html#read-and-write-vector-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The library <code>sf</code> makes it easy to read and write vector datasets such as shapefiles. The name (sf stands for <strong>simple features</strong>) already implies that <code>sf</code> supports simple feature access via R.</p>
 <p>Simple features is a widely supported data model that underlies data structures in many GIS applications including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other set-ups, for example importing from and exporting to spatial databases.</p>
 <p>In order to load vector data in an R-Script, we can use the function <code>st_read()</code>. In the code block below, a <a href="data/nc.zip" target="_blank">shapefile</a> (<a href="https://r-spatial.github.io/sf/reference/nc.html" target="_blank">North Carolina sample data</a>) is loaded and assigned to a variable nc.</p>
 <p>The next line creates a basic map in <code>sf</code> by means of <code>plot()</code>. By default this creates a multi-panel plot, one sub-plot for each variable of the object.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="read-and-write-data.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb194-2"><a href="read-and-write-data.html#cb194-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-3"><a href="read-and-write-data.html#cb194-3" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="st">&quot;data/nc.shp&quot;</span>)</span>
-<span id="cb194-4"><a href="read-and-write-data.html#cb194-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-5"><a href="read-and-write-data.html#cb194-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nc)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="read-and-write-data.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb192-2"><a href="read-and-write-data.html#cb192-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-3"><a href="read-and-write-data.html#cb192-3" aria-hidden="true" tabindex="-1"></a>nc <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_read</span>(<span class="st">&quot;data/nc.shp&quot;</span>)</span>
+<span id="cb192-4"><a href="read-and-write-data.html#cb192-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb192-5"><a href="read-and-write-data.html#cb192-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nc)</span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
 <p>The library <code>sf</code> represents features as records in a data frame or tibble with a geometry list-column. The example below renders three features (rows) of variable nc including the geometry column as well as the attributes <code>AREA</code> (feature area) and <code>NAME</code> (name of county):</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="read-and-write-data.html#cb195-1" aria-hidden="true" tabindex="-1"></a>nc <span class="sc">%&gt;%</span></span>
-<span id="cb195-2"><a href="read-and-write-data.html#cb195-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(AREA, NAME, geometry) <span class="sc">%&gt;%</span></span>
-<span id="cb195-3"><a href="read-and-write-data.html#cb195-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb195-4"><a href="read-and-write-data.html#cb195-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="read-and-write-data.html#cb193-1" aria-hidden="true" tabindex="-1"></a>nc <span class="sc">%&gt;%</span></span>
+<span id="cb193-2"><a href="read-and-write-data.html#cb193-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(AREA, NAME, geometry) <span class="sc">%&gt;%</span></span>
+<span id="cb193-3"><a href="read-and-write-data.html#cb193-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb193-4"><a href="read-and-write-data.html#cb193-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -446,19 +441,19 @@ Other important packages for reading tabular data are <a href="https://readxl.ti
 </tbody>
 </table>
 <p><code>sf</code> also includes a number of operations to manipulate the geometry of features such as <code>st_simplify</code>:</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="read-and-write-data.html#cb196-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_simplify</span>(nc) <span class="sc">%&gt;%</span></span>
-<span id="cb196-2"><a href="read-and-write-data.html#cb196-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(., <span class="at">max.plot =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="read-and-write-data.html#cb194-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_simplify</span>(nc) <span class="sc">%&gt;%</span></span>
+<span id="cb194-2"><a href="read-and-write-data.html#cb194-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(., <span class="at">max.plot =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-171-1.png" width="672" /></p>
 
 <div class="rmdtip">
 <p>You may have recognized that a dot (.) is used as a parameter in the function <code>plot()</code>. The dot represents the piped value. In the example above the dot is used to define the simplified geometry of nc as first parameter of function <code>plot()</code> and <code>max.plot = 1</code> as the second.</p>
 </div>
 <p>In the next example, the <code>st_geometry()</code> retrieves the geometry attribute from variable nc, function <code>st_centroid()</code> calculates the centroid of the polygon geometry (counties) and function <code>st_write</code> writes the centroid point geometry to file.</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="read-and-write-data.html#cb197-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_geometry</span>(nc) <span class="sc">%&gt;%</span></span>
-<span id="cb197-2"><a href="read-and-write-data.html#cb197-2" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_centroid</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb197-3"><a href="read-and-write-data.html#cb197-3" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_write</span>(<span class="st">&quot;data/nc-centroids.shp&quot;</span>, <span class="at">delete_dsn =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb197-4"><a href="read-and-write-data.html#cb197-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">pch =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>) </span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="read-and-write-data.html#cb195-1" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_geometry</span>(nc) <span class="sc">%&gt;%</span></span>
+<span id="cb195-2"><a href="read-and-write-data.html#cb195-2" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_centroid</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb195-3"><a href="read-and-write-data.html#cb195-3" aria-hidden="true" tabindex="-1"></a>  sf<span class="sc">::</span><span class="fu">st_write</span>(<span class="st">&quot;data/nc-centroids.shp&quot;</span>, <span class="at">delete_dsn =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb195-4"><a href="read-and-write-data.html#cb195-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">pch =</span> <span class="dv">3</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>) </span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
 
 <div class="rmdtip">
 The online book <a href="https://r.geocompx.org/" target="_blank">Geocomputation with R</a> offers a more comprehensive explanation of available geometric, attribute and spatial data operations. For a quick overview, you may turn to the <a href="https://github.com/rstudio/cheatsheets/blob/master/sf.pdf" target="_blank">sf cheatsheets</a>.
@@ -474,8 +469,8 @@ The online book <a href="https://r.geocompx.org/" target="_blank">Geocomputation
 Similar R functions are also available for raster data (see package <a href="https://cran.r-project.org/web/packages/raster/raster.pdf" target="_blank">raster: Geographic Data Analysis and Modeling</a>)
 </div>
 </div>
-<div id="data-api" class="section level2 hasAnchor" number="9.3">
-<h2><span class="header-section-number">9.3</span> Data API<a href="read-and-write-data.html#data-api" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="data-api" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Data API<a href="read-and-write-data.html#data-api" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
 <p>API is the acronym for Application Programming Interface, which is a software intermediary that allows two applications to talk to each other.</p>
 </blockquote>
@@ -484,7 +479,7 @@ Similar R functions are also available for raster data (see package <a href="htt
 <iframe src="https://www.youtube.com/embed/7YcW25PHnAA?end=194" width="672" height="400px" data-external="1">
 </iframe>
 <p class="caption">
-Figure 9.1: Video (3:13 min): REST API concepts and examples.
+Figure 10.1: Video (3:13 min): REST API concepts and examples.
 </p>
 </div>
 <p>The most important take away messages are:</p>
@@ -498,19 +493,19 @@ Figure 9.1: Video (3:13 min): REST API concepts and examples.
 </ol>
 <p>The library <a href="https://httr2.r-lib.org/" target="_blank">httr2</a> offers functions to programmatically implement API calls in an R script. We will make use of this library to let our R script interact with the <a href="https://openweathermap.org/api" target="_blank">APIs</a> offered by <a href="https://openweathermap.org/" target="_blank">OpenWeather Map</a>. that contain historical and real-time weather data for retrieval. In the upcoming example we will make a call to the <a href="https://openweathermap.org/current" target="_blank">Current Weather API</a>, which is one out of currently <a href="https://openweathermap.org/price" target="_blank">10 free APIs</a> provided by OpenWeather Map.</p>
 <p>For accessing the data with httr2, we’ll construct a URL composed of a reference to the data source (base) and parameters to filter the desired data subset (lat and lon). In httr2, the URL and query parameters can be separated, simplifying the process. The parameters are passed as a named list to the request() function:</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="read-and-write-data.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr2)</span>
-<span id="cb198-2"><a href="read-and-write-data.html#cb198-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb198-3"><a href="read-and-write-data.html#cb198-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the base URL and parameters</span></span>
-<span id="cb198-4"><a href="read-and-write-data.html#cb198-4" aria-hidden="true" tabindex="-1"></a>base <span class="ot">&lt;-</span> <span class="st">&quot;http://api.openweathermap.org/data/2.5/weather&quot;</span></span>
-<span id="cb198-5"><a href="read-and-write-data.html#cb198-5" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> <span class="st">&quot;47.81&quot;</span>    </span>
-<span id="cb198-6"><a href="read-and-write-data.html#cb198-6" aria-hidden="true" tabindex="-1"></a>lon <span class="ot">&lt;-</span> <span class="st">&quot;13.03&quot;</span></span>
-<span id="cb198-7"><a href="read-and-write-data.html#cb198-7" aria-hidden="true" tabindex="-1"></a>apiKey <span class="ot">&lt;-</span> <span class="st">&quot;3f87141421b32590d50416aae5ca780c&quot;</span></span>
-<span id="cb198-8"><a href="read-and-write-data.html#cb198-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb198-9"><a href="read-and-write-data.html#cb198-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct the full URL with query parameters using sprintf</span></span>
-<span id="cb198-10"><a href="read-and-write-data.html#cb198-10" aria-hidden="true" tabindex="-1"></a>full_url <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">&quot;%s?lat=%s&amp;lon=%s&amp;appid=%s&quot;</span>, base, lat, lon, apiKey)</span>
-<span id="cb198-11"><a href="read-and-write-data.html#cb198-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb198-12"><a href="read-and-write-data.html#cb198-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the constructed URL</span></span>
-<span id="cb198-13"><a href="read-and-write-data.html#cb198-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(full_url)</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="read-and-write-data.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr2)</span>
+<span id="cb196-2"><a href="read-and-write-data.html#cb196-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-3"><a href="read-and-write-data.html#cb196-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the base URL and parameters</span></span>
+<span id="cb196-4"><a href="read-and-write-data.html#cb196-4" aria-hidden="true" tabindex="-1"></a>base <span class="ot">&lt;-</span> <span class="st">&quot;http://api.openweathermap.org/data/2.5/weather&quot;</span></span>
+<span id="cb196-5"><a href="read-and-write-data.html#cb196-5" aria-hidden="true" tabindex="-1"></a>lat <span class="ot">&lt;-</span> <span class="st">&quot;47.81&quot;</span>    </span>
+<span id="cb196-6"><a href="read-and-write-data.html#cb196-6" aria-hidden="true" tabindex="-1"></a>lon <span class="ot">&lt;-</span> <span class="st">&quot;13.03&quot;</span></span>
+<span id="cb196-7"><a href="read-and-write-data.html#cb196-7" aria-hidden="true" tabindex="-1"></a>apiKey <span class="ot">&lt;-</span> <span class="st">&quot;3f87141421b32590d50416aae5ca780c&quot;</span></span>
+<span id="cb196-8"><a href="read-and-write-data.html#cb196-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-9"><a href="read-and-write-data.html#cb196-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Construct the full URL with query parameters using sprintf</span></span>
+<span id="cb196-10"><a href="read-and-write-data.html#cb196-10" aria-hidden="true" tabindex="-1"></a>full_url <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">&quot;%s?lat=%s&amp;lon=%s&amp;appid=%s&quot;</span>, base, lat, lon, apiKey)</span>
+<span id="cb196-11"><a href="read-and-write-data.html#cb196-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-12"><a href="read-and-write-data.html#cb196-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the constructed URL</span></span>
+<span id="cb196-13"><a href="read-and-write-data.html#cb196-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(full_url)</span></code></pre></div>
 <pre><code>## [1] &quot;http://api.openweathermap.org/data/2.5/weather?lat=47.81&amp;lon=13.03&amp;appid=3f87141421b32590d50416aae5ca780c&quot;</code></pre>
 <p>In the code above, the function sprintf() assembles the base URL and parameters. The URL (of type string) will then pass the request() function to create a request object, and req_perform() is used to execute the HTTP Get method.</p>
 
@@ -520,15 +515,15 @@ Figure 9.1: Video (3:13 min): REST API concepts and examples.
 </div>
 <p>By default, the req_perform() function returns a response object. Printing a response object provides useful information such as the actual URL used (after any redirects), the HTTP status, and the content type.</p>
 <p>You can extract important parts of the response with various helper functions such as resp_status() and resp_body_json():</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="read-and-write-data.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the request and perform it</span></span>
-<span id="cb200-2"><a href="read-and-write-data.html#cb200-2" aria-hidden="true" tabindex="-1"></a>req <span class="ot">&lt;-</span> <span class="fu">request</span>(full_url)</span>
-<span id="cb200-3"><a href="read-and-write-data.html#cb200-3" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> <span class="fu">req_perform</span>(req)</span>
-<span id="cb200-4"><a href="read-and-write-data.html#cb200-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-5"><a href="read-and-write-data.html#cb200-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the status code of the response</span></span>
-<span id="cb200-6"><a href="read-and-write-data.html#cb200-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">resp_status</span>(resp))</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="read-and-write-data.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the request and perform it</span></span>
+<span id="cb198-2"><a href="read-and-write-data.html#cb198-2" aria-hidden="true" tabindex="-1"></a>req <span class="ot">&lt;-</span> <span class="fu">request</span>(full_url)</span>
+<span id="cb198-3"><a href="read-and-write-data.html#cb198-3" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> <span class="fu">req_perform</span>(req)</span>
+<span id="cb198-4"><a href="read-and-write-data.html#cb198-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb198-5"><a href="read-and-write-data.html#cb198-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the status code of the response</span></span>
+<span id="cb198-6"><a href="read-and-write-data.html#cb198-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">resp_status</span>(resp))</span></code></pre></div>
 <pre><code>## [1] 200</code></pre>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="read-and-write-data.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the content structure of the response in JSON</span></span>
-<span id="cb202-2"><a href="read-and-write-data.html#cb202-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">resp_body_json</span>(resp))</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="read-and-write-data.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the content structure of the response in JSON</span></span>
+<span id="cb200-2"><a href="read-and-write-data.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">resp_body_json</span>(resp))</span></code></pre></div>
 <pre><code>## List of 13
 ##  $ coord     :List of 2
 ##   ..$ lon: num 13
@@ -541,19 +536,19 @@ Figure 9.1: Video (3:13 min): REST API concepts and examples.
 ##   .. ..$ icon       : chr &quot;03d&quot;
 ##  $ base      : chr &quot;stations&quot;
 ##  $ main      :List of 6
-##   ..$ temp      : num 291
-##   ..$ feels_like: num 291
-##   ..$ temp_min  : num 289
-##   ..$ temp_max  : num 295
+##   ..$ temp      : num 296
+##   ..$ feels_like: num 296
+##   ..$ temp_min  : num 294
+##   ..$ temp_max  : num 298
 ##   ..$ pressure  : int 1023
-##   ..$ humidity  : int 88
+##   ..$ humidity  : int 80
 ##  $ visibility: int 10000
 ##  $ wind      :List of 2
-##   ..$ speed: num 2.06
-##   ..$ deg  : int 150
+##   ..$ speed: num 0.51
+##   ..$ deg  : int 0
 ##  $ clouds    :List of 1
 ##   ..$ all: int 40
-##  $ dt        : int 1696926298
+##  $ dt        : int 1696937749
 ##  $ sys       :List of 5
 ##   ..$ type   : int 1
 ##   ..$ id     : int 6877
@@ -583,16 +578,16 @@ Figure 9.1: Video (3:13 min): REST API concepts and examples.
 </details>
 </div>
 <p>To facilitate subsequent analyses and data visualization, we can convert the content of the return object to a data frame. With httr2, you can directly retrieve the JSON content and convert it to a data frame:</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="read-and-write-data.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using resp_body_json to get the JSON content of the response</span></span>
-<span id="cb204-2"><a href="read-and-write-data.html#cb204-2" aria-hidden="true" tabindex="-1"></a>response_content <span class="ot">&lt;-</span> <span class="fu">resp_body_json</span>(resp)</span>
-<span id="cb204-3"><a href="read-and-write-data.html#cb204-3" aria-hidden="true" tabindex="-1"></a>response_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(response_content)</span>
-<span id="cb204-4"><a href="read-and-write-data.html#cb204-4" aria-hidden="true" tabindex="-1"></a>response_df</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="read-and-write-data.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using resp_body_json to get the JSON content of the response</span></span>
+<span id="cb202-2"><a href="read-and-write-data.html#cb202-2" aria-hidden="true" tabindex="-1"></a>response_content <span class="ot">&lt;-</span> <span class="fu">resp_body_json</span>(resp)</span>
+<span id="cb202-3"><a href="read-and-write-data.html#cb202-3" aria-hidden="true" tabindex="-1"></a>response_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(response_content)</span>
+<span id="cb202-4"><a href="read-and-write-data.html#cb202-4" aria-hidden="true" tabindex="-1"></a>response_df</span></code></pre></div>
 <pre><code>##   coord.lon coord.lat weather.id weather.main weather.description weather.icon
 ## 1     13.03     47.81        802       Clouds    scattered clouds          03d
 ##       base main.temp main.feels_like main.temp_min main.temp_max main.pressure
-## 1 stations    290.78           290.9        289.16         295.1          1023
+## 1 stations    295.78          296.19        294.16         297.9          1023
 ##   main.humidity visibility wind.speed wind.deg all         dt sys.type sys.id
-## 1            88      10000       2.06      150  40 1696926298        1   6877
+## 1            80      10000       0.51        0  40 1696937749        1   6877
 ##   sys.country sys.sunrise sys.sunset timezone      id     name cod
 ## 1          AT  1696915126 1696955456     7200 2766824 Salzburg 200</code></pre>
 
@@ -606,41 +601,41 @@ Copy the code snippets above to a new R-Script. <strong>Make sure to replace the
 </div>
 <p>… more to come!</p>
 </div>
-<div id="additional-thoughts-so-far-for-revision" class="section level2 hasAnchor" number="9.4">
-<h2><span class="header-section-number">9.4</span> Additional Thoughts so far for revision<a href="read-and-write-data.html#additional-thoughts-so-far-for-revision" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="advanced-json-handling-with-httr2" class="section level3 hasAnchor" number="9.4.1">
-<h3><span class="header-section-number">9.4.1</span> <strong>7.4 Advanced JSON Handling with <code>httr2</code></strong><a href="read-and-write-data.html#advanced-json-handling-with-httr2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="additional-thoughts-so-far-for-revision" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Additional Thoughts so far for revision<a href="read-and-write-data.html#additional-thoughts-so-far-for-revision" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="advanced-json-handling-with-httr2" class="section level3 hasAnchor" number="10.4.1">
+<h3><span class="header-section-number">10.4.1</span> <strong>7.4 Advanced JSON Handling with <code>httr2</code></strong><a href="read-and-write-data.html#advanced-json-handling-with-httr2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>While touched on converting API responses to data frames using <strong><code>jsonlite</code></strong>, we could delve deeper into JSON handling:</p>
 <ul>
 <li><strong>Parsing Nested JSON</strong>: Often, APIs return nested JSON structures. Teach how to handle and flatten these structures to convert them into usable data frames.</li>
 <li><strong>JSON to List</strong>: Before converting to a data frame, JSON can be converted to a list in R. This can be useful for certain types of analyses or data manipulations.</li>
 </ul>
 </div>
-<div id="caching-data-with-httr2" class="section level3 hasAnchor" number="9.4.2">
-<h3><span class="header-section-number">9.4.2</span> <strong>7.5 Caching Data with <code>httr2</code></strong><a href="read-and-write-data.html#caching-data-with-httr2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="caching-data-with-httr2" class="section level3 hasAnchor" number="10.4.2">
+<h3><span class="header-section-number">10.4.2</span> <strong>7.5 Caching Data with <code>httr2</code></strong><a href="read-and-write-data.html#caching-data-with-httr2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Given that <strong><code>httr2</code></strong> has caching capabilities, this can be a valuable addition:</p>
 <ul>
 <li><strong>Why Cache?</strong>: Explain the benefits of caching, especially when dealing with rate-limited APIs or to speed up development and analysis by not fetching data repeatedly.</li>
 <li><strong>Implementing Caching</strong>: Show how to use <strong><code>req_cache()</code></strong> in <strong><code>httr2</code></strong> to cache API responses.</li>
 </ul>
 </div>
-<div id="error-handling-and-retries-with-httr2" class="section level3 hasAnchor" number="9.4.3">
-<h3><span class="header-section-number">9.4.3</span> <strong>7.6 Error Handling and Retries with <code>httr2</code></strong><a href="read-and-write-data.html#error-handling-and-retries-with-httr2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="error-handling-and-retries-with-httr2" class="section level3 hasAnchor" number="10.4.3">
+<h3><span class="header-section-number">10.4.3</span> <strong>7.6 Error Handling and Retries with <code>httr2</code></strong><a href="read-and-write-data.html#error-handling-and-retries-with-httr2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Building on the capabilities of <strong><code>httr2</code></strong>:</p>
 <ul>
 <li><p><strong>Understanding HTTP Errors</strong>: Briefly explain common HTTP errors like 404 (Not Found) or 429 (Too Many Requests) and why they might occur when working with APIs.</p></li>
 <li><p><strong>Implementing Retries</strong>: Show how to use <strong><code>req_retry()</code></strong> in <strong><code>httr2</code></strong> to automatically retry if a request fails.</p></li>
 </ul>
 </div>
-<div id="advanced-api-techniques" class="section level3 hasAnchor" number="9.4.4">
-<h3><span class="header-section-number">9.4.4</span> <strong>7.7 Advanced API Techniques</strong><a href="read-and-write-data.html#advanced-api-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="advanced-api-techniques" class="section level3 hasAnchor" number="10.4.4">
+<h3><span class="header-section-number">10.4.4</span> <strong>7.7 Advanced API Techniques</strong><a href="read-and-write-data.html#advanced-api-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><strong>Pagination</strong>: Many APIs return data in pages, especially if there’s a lot of data. Teach how to handle paginated responses and fetch all data.</li>
 <li><strong>Rate Limiting</strong>: Explaining what rate limiting is and how to handle it, possibly by introducing pauses in requests or by using caching.</li>
 </ul>
 </div>
-<div id="introduction-to-web-scraping-altough-this-might-be-too-much..-and-even-if-its-important-for-data-sourcing-its-kind-of-a-grey-area-limited-by-rate-limits-or-considerations-with-tos." class="section level3 hasAnchor" number="9.4.5">
-<h3><span class="header-section-number">9.4.5</span> <strong>7.8 Introduction to Web Scraping</strong> (Altough, this might be too much.. and even if it’s important, for data sourcing, it’s kind of a grey area, limited by rate limits or considerations with ToS.)<a href="read-and-write-data.html#introduction-to-web-scraping-altough-this-might-be-too-much..-and-even-if-its-important-for-data-sourcing-its-kind-of-a-grey-area-limited-by-rate-limits-or-considerations-with-tos." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="introduction-to-web-scraping-altough-this-might-be-too-much..-and-even-if-its-important-for-data-sourcing-its-kind-of-a-grey-area-limited-by-rate-limits-or-considerations-with-tos." class="section level3 hasAnchor" number="10.4.5">
+<h3><span class="header-section-number">10.4.5</span> <strong>7.8 Introduction to Web Scraping</strong> (Altough, this might be too much.. and even if it’s important, for data sourcing, it’s kind of a grey area, limited by rate limits or considerations with ToS.)<a href="read-and-write-data.html#introduction-to-web-scraping-altough-this-might-be-too-much..-and-even-if-its-important-for-data-sourcing-its-kind-of-a-grey-area-limited-by-rate-limits-or-considerations-with-tos." class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>While APIs are a clean way to get data, not all websites offer them. We could introduce the concept of web scraping:</p>
 <ul>
 <li><strong>What is Web Scraping?</strong>: Briefly explain the concept and why it might be necessary.</li>
@@ -656,7 +651,7 @@ Copy the code snippets above to a new R-Script. <strong>Make sure to replace the
           </div>
         </div>
       </div>
-<a href="spatial-data-manipulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="crop-the-raster.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="data-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

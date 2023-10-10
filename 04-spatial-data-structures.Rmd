@@ -316,15 +316,17 @@ plot(y, main='100m Raster, Salzburg')
 
 ```
 
-The function `runif` of package `stats` takes three arguments, `n`, `min` and `max`, to generate `n` random numbers in a range between `min` and `max`. In the example above argument `n` is derived from `terra` function `ncell`, which returns the number of cells of SpatRaster Object `y` as an integer value. As a result we get a numeric vector of random values  whose length corresponds to the number of grid cells of SpatRaster Object `y`. Accordingly, we can assign the numeric vector values to the grid.
+The function `runif` of package `stats` takes three arguments, `n`, `min` and `max`, to generate `n` random numbers in a range between `min` and `max`. In the example above argument `n` is derived from `terra` function `ncell`, which returns the number of cells of SpatRaster Object `y` as an integer value. As a result we get a numeric vector of random values whose length corresponds to the number of grid cells of SpatRaster Object `y`. Accordingly, we can assign the numeric vector values to the grid.
 
 ```{block2, type = 'rmdexercise'}
 
-When assigning or accessing values, it is crucial to know the origin and orientation of raster values. Create a SpatRaster Object with 4 cells and assign a numeric vector that consists of 4 values `c(1,2,3,4)`  to it. Try to access individual grid values by means of the following syntax:
+When assigning or accessing values, it is crucial to know the origin and orientation of raster values. Create a SpatRaster Object with 4 cells and assign a numeric vector that consists of 4 values `c(1,2,3,4)`  to it. 
+
+The syntax to select values from SpatRaster Objects is the same that we have use to select elements of matrix and array data structures:
 
 `raster-obj[<row index>, <column index>]`
 
-Where is the origin of the grid? In what order are the values `c(1,2,3,4)` stored in the vector grid.
+Where is the origin of the grid? In what order are the values `c(1,2,3,4)` stored in the vector grid?
 
 <details closed>
 <summary><ins>**Solution!**</ins></summary>

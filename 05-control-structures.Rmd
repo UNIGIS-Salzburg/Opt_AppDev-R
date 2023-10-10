@@ -268,3 +268,16 @@ We need to load the library 'tidyverse' to make use of the function 'str_starts(
 </p>
 </details> 
 
+
+see https://tmieno2.github.io/R-as-GIS-for-Economists/repetitive-processes-and-looping.html#for-loop
+
+r <- terra::rast(ncol=100, nrow=100, xmin=-1000, xmax=1000, ymin=-1000, ymax=1000)
+terra::values(r) <- stats::runif(terra::ncell(r),0,1)
+plot(r)
+
+# do you need loop?
+rv <- terra::values(r)  #is matrix
+new_vec <- rv[,1] > 0.9
+length(new_vec[new_vec== TRUE])
+
+seems like random values are evenly distributed in a range between 0 and 1. Other r functions like rnorm() generate numbers from a normal distribution. 

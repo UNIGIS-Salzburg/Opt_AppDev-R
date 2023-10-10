@@ -156,11 +156,11 @@ Resampling is the process of changing the spatial resolution of a raster dataset
 Step 1: Check the Original Resolution
 Before resampling, it's important to know the original resolution of your raster. You can use the res() function to check this.
 
-```{r}
+#```{r}
 
-res(elev) # shows us the resolution of 0.5. 0.5
-plot(elev)
-```
+#res(elev) # shows us the resolution of 0.5. 0.5
+#plot(elev)
+#```
 Where res is the new resolution.
 
 Step 2: Choose a New Resolution
@@ -205,22 +205,22 @@ Before cropping, it's crucial to know the extent of the original raster. This en
 How to Check the Extent?
 You can use the ext() function from the terra package to check the extent of a raster.
 
-```{r}
+#```{r}
 # Check the extent of the original raster
-ext(elev)
-```
+#ext(elev)
+#```
 - How to Crop?
 Once you know the extent, you can specify a new extent within that range for cropping.
 
-```{r}
-# Define a new extent that is within the original raster's extent
-crop_extent <- ext(-1, 1, -1, 1)  # These coordinates are within the original extent
+#```{r}
+# Define a new extent that is within the original #raster's extent
+#crop_extent <- ext(-1, 1, -1, 1)  # These coordinates #are within the original extent
 
 # Crop the raster
-elev_cropped <- crop(elev, crop_extent)
-elev_cropped
+#elev_cropped <- crop(elev, crop_extent)
+#elev_cropped
 
-```
+#```
 ### Common Pitfalls
 - Non-overlapping Extents: Make sure the cropping extent overlaps with the original raster's extent, otherwise, you'll get an error.
 - Coordinate Systems: Ensure that the raster and the extent are in the same coordinate system!
