@@ -565,6 +565,59 @@ However, inserting a line break before ‘else’ returns an error. The reason f
 </p>
 </details>
 
+<div class="rmdexercise">
+As a last exercise in this lesson, you will implement a code that iterates over a two dimensional SpatRaster Object and counts values in the raster grid that exceed a certain threshold:
+</div>
+<ol style="list-style-type: decimal">
+<li><p>Create a SpatRaster Object <code>r</code> with 20 rows and 20 columns and assign random values in a range between 0 and 1. Use the function <code>runif</code> as random value generator. It is recommended to make use of code snippets from lesson Spatial Data Structures.</p></li>
+<li><p>Define a variable named <code>cnt</code> and assign a value of 0 to it.</p></li>
+<li><p>Iterate over the SpatRaster Object <code>r</code> by means of a nested for-loop:</p></li>
+</ol>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="control-structures.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(row <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(r))) {               </span>
+<span id="cb139-2"><a href="control-structures.html#cb139-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(col <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(r)) {                 </span>
+<span id="cb139-3"><a href="control-structures.html#cb139-3" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb139-4"><a href="control-structures.html#cb139-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">print</span>(r[row, col])             </span>
+<span id="cb139-5"><a href="control-structures.html#cb139-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb139-6"><a href="control-structures.html#cb139-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb139-7"><a href="control-structures.html#cb139-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Add a conditional statement within the for-loops that increases the value of <code>cnt</code> by one, given that <code>r[row, col]</code> is &gt; 0.5. Eventually, variable <code>cnt</code> will hold the number of raster grid values that exceed a threshold of 0.5.</li>
+</ol>
+<p><strong>Task 1:</strong></p>
+<p>Try to find out, in what order the nested-for-loop-structure iterates over the SpatRaster Object <code>r</code>.</p>
+<p><strong>Task 2:</strong></p>
+<p><code>r</code> contains randomly generated values in a range between 0 and 1. Change the threshold value in your conditional statement a couple of times to investigate the distribution of random values. Does the algorithm in function <code>runif</code> draw values from a normal or from a uniform distribution?</p>
+<details closed>
+<summary>
+<ins>
+<strong>Solution!</strong>
+</ins>
+</summary>
+<p>
+<p><i><font color="grey"></p>
+<p>See <a href="Solution_Exercise_ForLoop.R" target="_blank">my code</a>.</p>
+<p><strong>Answer 1:</strong></p>
+<p>The <em>nested for-loop-structure</em> starts its iteration in the leftmost cell of row1, and moves to the right, hitting col1, col2 etc., up until the last column in row 1. Then, it moves down to row2 and repeats the process.</p>
+<p><strong>Answer 2:</strong></p>
+<p>A threshold value of 0.9 returns a count of about 40, which indicates that about 10% of values are greater than 0.9. It seems like seems like random values are uniformly distributed in a range between 0 and 1. Other R functions like <a href="https://www.rdocumentation.org/packages/compositions/versions/2.0-6/topics/rnorm" target="_blank">rnorm()</a> generate numbers from a normal distribution.</p>
+</font></i>
+</p>
+</details>
+<p>As an alternative, the same functionality may be implemented without loop. Instead operations can be vectorized:</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="control-structures.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb140-2"><a href="control-structures.html#cb140-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-3"><a href="control-structures.html#cb140-3" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="at">ncol=</span><span class="dv">20</span>, <span class="at">nrow=</span><span class="dv">20</span>)</span>
+<span id="cb140-4"><a href="control-structures.html#cb140-4" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">values</span>(r) <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">runif</span>(terra<span class="sc">::</span><span class="fu">ncell</span>(r),<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb140-5"><a href="control-structures.html#cb140-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-6"><a href="control-structures.html#cb140-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Get values of SpatRaster Object `r` as matrix</span></span>
+<span id="cb140-7"><a href="control-structures.html#cb140-7" aria-hidden="true" tabindex="-1"></a>rm <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">values</span>(r)</span>
+<span id="cb140-8"><a href="control-structures.html#cb140-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Create logic vector by condition</span></span>
+<span id="cb140-9"><a href="control-structures.html#cb140-9" aria-hidden="true" tabindex="-1"></a>log_vec <span class="ot">&lt;-</span> rm[,<span class="dv">1</span>] <span class="sc">&gt;</span> <span class="fl">0.5</span></span>
+<span id="cb140-10"><a href="control-structures.html#cb140-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Get length of TRUE values (grid value &gt; 0.5) in logic vectors</span></span>
+<span id="cb140-11"><a href="control-structures.html#cb140-11" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(log_vec[log_vec<span class="sc">==</span> <span class="cn">TRUE</span>])</span></code></pre></div>
+<pre><code>## [1] 191</code></pre>
+<p>It is apparent from the code example above that avoiding loops in R code makes code shorter and increases performance. Increase the size of your raster grid (e.g. ncol=100, nrow=100) and test respective code realizations to investigate the difference in code performance. More information on vectorization and parallelization of operations can be found <a href="https://tmieno2.github.io/R-as-GIS-for-Economists/repetitive-processes-and-looping.html#do-you-really-need-to-loop" target="_blank">here.</a></p>
+
 </div>
 </div>
             </section>

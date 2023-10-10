@@ -328,12 +328,12 @@ Moreover, you will get to know the difference between variables with global and 
 <h2><span class="header-section-number">6.1</span> Defining functions<a href="functions.html#defining-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The syntax for defining a function does not look too different from the syntax that we have been using to define a variable or to create a conditional statement. We start by defining an identifier (e.g. add_one) on the left of an assignment operator (<code>&lt;-</code>). This is followed by the so-called <strong>corpus of the function.</strong></p>
 <p>The corpus starts with the reserved word ‘function’ followed by the <strong>parameter(s)</strong> (e.g. <code>input_value</code> in the example below) between simple brackets and the instruction(s) to be executed in a code block. The value of the last statement is returned as output:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="functions.html#cb139-1" aria-hidden="true" tabindex="-1"></a>add_one <span class="ot">&lt;-</span> <span class="cf">function</span> (input_value) {</span>
-<span id="cb139-2"><a href="functions.html#cb139-2" aria-hidden="true" tabindex="-1"></a>  output_value <span class="ot">&lt;-</span> input_value <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb139-3"><a href="functions.html#cb139-3" aria-hidden="true" tabindex="-1"></a>  output_value</span>
-<span id="cb139-4"><a href="functions.html#cb139-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="functions.html#cb142-1" aria-hidden="true" tabindex="-1"></a>add_one <span class="ot">&lt;-</span> <span class="cf">function</span> (input_value) {</span>
+<span id="cb142-2"><a href="functions.html#cb142-2" aria-hidden="true" tabindex="-1"></a>  output_value <span class="ot">&lt;-</span> input_value <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb142-3"><a href="functions.html#cb142-3" aria-hidden="true" tabindex="-1"></a>  output_value</span>
+<span id="cb142-4"><a href="functions.html#cb142-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>After being defined, a function can be invoked by specifying the <strong>identifier</strong> and necessary parameters. The function above takes a single numeric value as an input and returns that value incremented by +1. So if we invoke the function with an input value ‘3’, the function returns 4:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="functions.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_one</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="functions.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_one</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
 </div>
 <div id="more-parameters" class="section level2 hasAnchor" number="6.2">
@@ -343,11 +343,11 @@ Moreover, you will get to know the difference between variables with global and 
 <p>A function always takes as input as many values as the number of parameters specified in the definition, otherwise an error is generated</p>
 </blockquote>
 <p>The function ‘area_rectangle’ includes two parameters (height and width), calculates an area value by multiplying the inputs and returns the area as a single numeric value:</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="functions.html#cb142-1" aria-hidden="true" tabindex="-1"></a>area_rectangle <span class="ot">&lt;-</span> <span class="cf">function</span> (height, width) {</span>
-<span id="cb142-2"><a href="functions.html#cb142-2" aria-hidden="true" tabindex="-1"></a>  area <span class="ot">&lt;-</span> height <span class="sc">*</span> width</span>
-<span id="cb142-3"><a href="functions.html#cb142-3" aria-hidden="true" tabindex="-1"></a>  area</span>
-<span id="cb142-4"><a href="functions.html#cb142-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb142-5"><a href="functions.html#cb142-5" aria-hidden="true" tabindex="-1"></a><span class="fu">area_rectangle</span>(<span class="dv">3</span>, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="functions.html#cb145-1" aria-hidden="true" tabindex="-1"></a>area_rectangle <span class="ot">&lt;-</span> <span class="cf">function</span> (height, width) {</span>
+<span id="cb145-2"><a href="functions.html#cb145-2" aria-hidden="true" tabindex="-1"></a>  area <span class="ot">&lt;-</span> height <span class="sc">*</span> width</span>
+<span id="cb145-3"><a href="functions.html#cb145-3" aria-hidden="true" tabindex="-1"></a>  area</span>
+<span id="cb145-4"><a href="functions.html#cb145-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb145-5"><a href="functions.html#cb145-5" aria-hidden="true" tabindex="-1"></a><span class="fu">area_rectangle</span>(<span class="dv">3</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 
 <div class="rmdexercise">
@@ -357,19 +357,19 @@ Moreover, you will get to know the difference between variables with global and 
 <div id="more-return-values" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> More return values<a href="functions.html#more-return-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In order to let a function return multiple values, you can append return values to a list and return the list. The following functions ‘rectangle_metrics’ calculates area and perimeter of a rectangle based on two inputs (rectangle height and width) and writes the two outputs to a new list ‘return_vals’:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="functions.html#cb144-1" aria-hidden="true" tabindex="-1"></a>rectangle_metrics <span class="ot">&lt;-</span> <span class="cf">function</span> (height, width) {</span>
-<span id="cb144-2"><a href="functions.html#cb144-2" aria-hidden="true" tabindex="-1"></a>  area <span class="ot">&lt;-</span> height <span class="sc">*</span> width</span>
-<span id="cb144-3"><a href="functions.html#cb144-3" aria-hidden="true" tabindex="-1"></a>  perimeter <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>height <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>width</span>
-<span id="cb144-4"><a href="functions.html#cb144-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb144-5"><a href="functions.html#cb144-5" aria-hidden="true" tabindex="-1"></a>  return_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(area, perimeter)</span>
-<span id="cb144-6"><a href="functions.html#cb144-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb144-7"><a href="functions.html#cb144-7" aria-hidden="true" tabindex="-1"></a>  return_vals</span>
-<span id="cb144-8"><a href="functions.html#cb144-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb144-9"><a href="functions.html#cb144-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="functions.html#cb147-1" aria-hidden="true" tabindex="-1"></a>rectangle_metrics <span class="ot">&lt;-</span> <span class="cf">function</span> (height, width) {</span>
+<span id="cb147-2"><a href="functions.html#cb147-2" aria-hidden="true" tabindex="-1"></a>  area <span class="ot">&lt;-</span> height <span class="sc">*</span> width</span>
+<span id="cb147-3"><a href="functions.html#cb147-3" aria-hidden="true" tabindex="-1"></a>  perimeter <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>height <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>width</span>
+<span id="cb147-4"><a href="functions.html#cb147-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb147-5"><a href="functions.html#cb147-5" aria-hidden="true" tabindex="-1"></a>  return_vals <span class="ot">&lt;-</span> <span class="fu">list</span>(area, perimeter)</span>
+<span id="cb147-6"><a href="functions.html#cb147-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb147-7"><a href="functions.html#cb147-7" aria-hidden="true" tabindex="-1"></a>  return_vals</span>
+<span id="cb147-8"><a href="functions.html#cb147-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb147-9"><a href="functions.html#cb147-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>We can retrieve the two return values by specifying their list indexes [[1]] and [[2]]:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="functions.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;This is the first return value - area: &quot;</span>, <span class="fu">rectangle_metrics</span>(<span class="dv">3</span>, <span class="dv">2</span>)[[<span class="dv">1</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="functions.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;This is the first return value - area: &quot;</span>, <span class="fu">rectangle_metrics</span>(<span class="dv">3</span>, <span class="dv">2</span>)[[<span class="dv">1</span>]])</span></code></pre></div>
 <pre><code>## This is the first return value - area:  6</code></pre>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="functions.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;This is the second return value - perimeter: &quot;</span>, <span class="fu">rectangle_metrics</span>(<span class="dv">3</span>, <span class="dv">2</span>)[[<span class="dv">2</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="functions.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;This is the second return value - perimeter: &quot;</span>, <span class="fu">rectangle_metrics</span>(<span class="dv">3</span>, <span class="dv">2</span>)[[<span class="dv">2</span>]])</span></code></pre></div>
 <pre><code>## This is the second return value - perimeter:  10</code></pre>
 
 <div class="rmdtip">
@@ -380,15 +380,15 @@ If you execute one of the functions above in a new R Script, you will see that t
 <h2><span class="header-section-number">6.4</span> Functions and control structures<a href="functions.html#functions-and-control-structures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In the last lesson, you have learned that loops can contain conditional statements and that conditional statement can contain loops. In the same way, the corpus of a function can contain both loops and conditional statements.</p>
 <p>The following code shows an example of a function that is using a loop to calculate the factorial of a number. A factorial of a number is simply the product of all the numbers less than or equal to that number (e.g. factorial of 3 = 1 * 2 * 3 = 6).</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="functions.html#cb149-1" aria-hidden="true" tabindex="-1"></a>factorial <span class="ot">&lt;-</span> <span class="cf">function</span> (input_value) {</span>
-<span id="cb149-2"><a href="functions.html#cb149-2" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb149-3"><a href="functions.html#cb149-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>input_value) {</span>
-<span id="cb149-4"><a href="functions.html#cb149-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;current:&quot;</span>, result, <span class="st">&quot; | i:&quot;</span>, i, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
-<span id="cb149-5"><a href="functions.html#cb149-5" aria-hidden="true" tabindex="-1"></a>    result <span class="ot">&lt;-</span> result <span class="sc">*</span> i</span>
-<span id="cb149-6"><a href="functions.html#cb149-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb149-7"><a href="functions.html#cb149-7" aria-hidden="true" tabindex="-1"></a>  result</span>
-<span id="cb149-8"><a href="functions.html#cb149-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb149-9"><a href="functions.html#cb149-9" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="functions.html#cb152-1" aria-hidden="true" tabindex="-1"></a>factorial <span class="ot">&lt;-</span> <span class="cf">function</span> (input_value) {</span>
+<span id="cb152-2"><a href="functions.html#cb152-2" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb152-3"><a href="functions.html#cb152-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>input_value) {</span>
+<span id="cb152-4"><a href="functions.html#cb152-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">&quot;current:&quot;</span>, result, <span class="st">&quot; | i:&quot;</span>, i, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb152-5"><a href="functions.html#cb152-5" aria-hidden="true" tabindex="-1"></a>    result <span class="ot">&lt;-</span> result <span class="sc">*</span> i</span>
+<span id="cb152-6"><a href="functions.html#cb152-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb152-7"><a href="functions.html#cb152-7" aria-hidden="true" tabindex="-1"></a>  result</span>
+<span id="cb152-8"><a href="functions.html#cb152-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb152-9"><a href="functions.html#cb152-9" aria-hidden="true" tabindex="-1"></a><span class="fu">factorial</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## current: 1  | i: 1 
 ## current: 1  | i: 2 
 ## current: 2  | i: 3</code></pre>
@@ -414,12 +414,12 @@ Although it is technically feasible, you would normally not define a function wi
 <li>scope does <strong>not</strong> apply to <code>if</code> or loop constructs, meaning that variables defined within a loop or control structure are referable from everywhere in the code.</li>
 </ul>
 <p>Let us take an example. In the case below, <code>x_value</code> is <strong>global</strong> to the function <code>times_x</code>. <code>new_value</code> and <code>input_value</code> are <strong>local</strong> to the function <code>times_x</code>. Referring to <code>new_value</code> or <code>input_value</code> from outside the definition of <code>times_x</code> would result in an error. However, we can refer to <code>x_value</code> from inside function <code>times_x</code>:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="functions.html#cb152-1" aria-hidden="true" tabindex="-1"></a>x_value <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb152-2"><a href="functions.html#cb152-2" aria-hidden="true" tabindex="-1"></a>times_x <span class="ot">&lt;-</span> <span class="cf">function</span> (input_value) {</span>
-<span id="cb152-3"><a href="functions.html#cb152-3" aria-hidden="true" tabindex="-1"></a>  new_value <span class="ot">&lt;-</span> input_value <span class="sc">*</span> x_value</span>
-<span id="cb152-4"><a href="functions.html#cb152-4" aria-hidden="true" tabindex="-1"></a>  new_value</span>
-<span id="cb152-5"><a href="functions.html#cb152-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb152-6"><a href="functions.html#cb152-6" aria-hidden="true" tabindex="-1"></a><span class="fu">times_x</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="functions.html#cb155-1" aria-hidden="true" tabindex="-1"></a>x_value <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb155-2"><a href="functions.html#cb155-2" aria-hidden="true" tabindex="-1"></a>times_x <span class="ot">&lt;-</span> <span class="cf">function</span> (input_value) {</span>
+<span id="cb155-3"><a href="functions.html#cb155-3" aria-hidden="true" tabindex="-1"></a>  new_value <span class="ot">&lt;-</span> input_value <span class="sc">*</span> x_value</span>
+<span id="cb155-4"><a href="functions.html#cb155-4" aria-hidden="true" tabindex="-1"></a>  new_value</span>
+<span id="cb155-5"><a href="functions.html#cb155-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb155-6"><a href="functions.html#cb155-6" aria-hidden="true" tabindex="-1"></a><span class="fu">times_x</span>(<span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 20</code></pre>
 
 <div class="rmdexercise">

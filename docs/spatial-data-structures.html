@@ -558,16 +558,17 @@ The operator :: is used to indicate that the functions <code>st_point</code>, <c
 <span id="cb116-3"><a href="spatial-data-structures.html#cb116-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb116-4"><a href="spatial-data-structures.html#cb116-4" aria-hidden="true" tabindex="-1"></a><span class="co">#get values with index 1 to index 5</span></span>
 <span id="cb116-5"><a href="spatial-data-structures.html#cb116-5" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">values</span>(y)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
-<pre><code>## [1] 0.9807244 0.9484115 0.9809619 0.9510788 0.4033933</code></pre>
+<pre><code>## [1] 0.26122779 0.35673613 0.11505070 0.57230542 0.02473816</code></pre>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="spatial-data-structures.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot grid, plot() is a generic function to plot R objects</span></span>
 <span id="cb118-2"><a href="spatial-data-structures.html#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y, <span class="at">main=</span><span class="st">&#39;100m Raster, Salzburg&#39;</span>)</span></code></pre></div>
 <p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
 <p>The function <code>runif</code> of package <code>stats</code> takes three arguments, <code>n</code>, <code>min</code> and <code>max</code>, to generate <code>n</code> random numbers in a range between <code>min</code> and <code>max</code>. In the example above argument <code>n</code> is derived from <code>terra</code> function <code>ncell</code>, which returns the number of cells of SpatRaster Object <code>y</code> as an integer value. As a result we get a numeric vector of random values whose length corresponds to the number of grid cells of SpatRaster Object <code>y</code>. Accordingly, we can assign the numeric vector values to the grid.</p>
 
 <div class="rmdexercise">
-<p>When assigning or accessing values, it is crucial to know the origin and orientation of raster values. Create a SpatRaster Object with 4 cells and assign a numeric vector that consists of 4 values <code>c(1,2,3,4)</code> to it. Try to access individual grid values by means of the following syntax:</p>
+<p>When assigning or accessing values, it is crucial to know the origin and orientation of raster values. Create a SpatRaster Object with 4 cells and assign a numeric vector that consists of 4 values <code>c(1,2,3,4)</code> to it.</p>
+<p>The syntax to select values from SpatRaster Objects is the same that we have use to select elements of matrix and array data structures:</p>
 <p><code>raster-obj[&lt;row index&gt;, &lt;column index&gt;]</code></p>
-<p>Where is the origin of the grid? In what order are the values <code>c(1,2,3,4)</code> stored in the vector grid.</p>
+<p>Where is the origin of the grid? In what order are the values <code>c(1,2,3,4)</code> stored in the vector grid?</p>
 <details closed>
 <summary>
 <ins>

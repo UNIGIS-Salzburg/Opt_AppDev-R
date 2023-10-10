@@ -268,16 +268,74 @@ We need to load the library 'tidyverse' to make use of the function 'str_starts(
 </p>
 </details> 
 
+```{block2, type = 'rmdexercise'}
 
-see https://tmieno2.github.io/R-as-GIS-for-Economists/repetitive-processes-and-looping.html#for-loop
+As a last exercise in this lesson, you will implement a code that iterates over a two-dimensional SpatRaster Object and counts values in the raster grid that exceed a certain threshold:
+  
+```
+  
+1) Create a SpatRaster Object `r` with 20 rows and 20 columns and assign random values in a range between 0 and 1. Use the function `runif` as random value generator. It is recommended to make use of code snippets from lesson Spatial Data Structures. 
 
-r <- terra::rast(ncol=100, nrow=100, xmin=-1000, xmax=1000, ymin=-1000, ymax=1000)
+2) Define a variable named `cnt` and assign a value of 0 to it.
+
+3) Iterate over the SpatRaster Object `r` by means of a nested for-loop:
+
+```{r, eval=FALSE}
+
+for(row in c(1:nrow(r))) {               
+  for(col in 1:ncol(r)) {                 
+     
+    print(r[row, col])             
+ 
+  }
+}
+```
+
+4) Add a conditional statement within the for-loops that increases the value of `cnt` by one, given that `r[row, col]` is > 0.5. Eventually, variable `cnt` will hold the number of raster grid values that exceed a threshold of 0.5. 
+
+**Task 1:**
+
+Try to find out, in what order the nested-for-loop-structure iterates over the SpatRaster Object `r`. 
+
+**Task 2:**
+
+`r` contains randomly generated values in a range between 0 and 1. Change the threshold value in your conditional statement a couple of times to investigate the distribution of random values. Does the algorithm in function `runif` draw values from a normal or from a uniform distribution?
+
+
+<details closed>
+<summary><ins>**Solution!**</ins></summary>
+<p><i><font color="grey">
+
+See [my code](Solution_Exercise_ForLoop.R){target="_blank"}.
+
+**Answer 1:**
+
+The *nested for-loop-structure* starts its iteration in the leftmost cell of row1, and moves to the right, hitting col1, col2 etc., up until the last column in row 1. Then, it moves down to row2 and repeats the process.
+
+**Answer 2:**
+
+A threshold value of 0.9 returns a count of about 40, which indicates that about 10% of values are greater than 0.9. It seems like seems like random values are uniformly distributed in a range between 0 and 1. Other R functions like [rnorm()](https://www.rdocumentation.org/packages/compositions/versions/2.0-6/topics/rnorm){target="_blank"} generate numbers from a normal distribution. 
+
+</font></i>
+</p>
+</details> 
+
+As an alternative, the same functionality may be implemented without loop. Instead, operations can be vectorized:
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+
+library(terra)
+
+r <- terra::rast(ncol=20, nrow=20)
 terra::values(r) <- stats::runif(terra::ncell(r),0,1)
-plot(r)
 
-# do you need loop?
-rv <- terra::values(r)  #is matrix
-new_vec <- rv[,1] > 0.9
-length(new_vec[new_vec== TRUE])
+#Get values of SpatRaster Object `r` as matrix
+rm <- terra::values(r)
+#Create logic vector by condition
+log_vec <- rm[,1] > 0.5
+#Get length of TRUE values (grid value > 0.5) in logic vectors
+length(log_vec[log_vec== TRUE])
 
-seems like random values are evenly distributed in a range between 0 and 1. Other r functions like rnorm() generate numbers from a normal distribution. 
+```
+
+It is apparent from the code example above that avoiding loops in R code makes code shorter and increases performance. Increase the size of your raster grid (e.g. ncol=100, nrow=100) and test respective code realizations to investigate the difference in code performance. More information on vectorization and parallelization of operations in R can be found [here.](https://tmieno2.github.io/R-as-GIS-for-Economists/repetitive-processes-and-looping.html#do-you-really-need-to-loop){target="_blank"}
