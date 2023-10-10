@@ -216,7 +216,7 @@ Once you know the extent, you can specify a new extent within that range for cro
 # Define a new extent that is within the original #raster's extent
 #crop_extent <- ext(-1, 1, -1, 1)  # These coordinates #are within the original extent
 
-# Crop the raster
+#Crop the raster
 #elev_cropped <- crop(elev, crop_extent)
 #elev_cropped
 

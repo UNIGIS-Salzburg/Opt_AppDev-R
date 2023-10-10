@@ -102,7 +102,6 @@ resampling-raster-data-in-terra
 what-is-resampling
 basic-raster-operations
 cropping
-crop-the-raster
 read-and-write-data
 read-and-write-tabular-data
 read-and-write-vector-data

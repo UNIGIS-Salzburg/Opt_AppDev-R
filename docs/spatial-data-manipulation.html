@@ -30,7 +30,7 @@
   
   <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
 <link rel="prev" href="data-manipulation.html"/>
-<link rel="next" href="crop-the-raster.html"/>
+<link rel="next" href="read-and-write-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -263,42 +263,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.20.2" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#basic-raster-operations"><i class="fa fa-check"></i><b>8.20.2</b> Basic Raster Operations</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="crop-the-raster.html"><a href="crop-the-raster.html"><i class="fa fa-check"></i><b>9</b> Crop the raster</a></li>
-<li class="chapter" data-level="10" data-path="read-and-write-data.html"><a href="read-and-write-data.html"><i class="fa fa-check"></i><b>10</b> Read and write data</a>
+<li class="chapter" data-level="9" data-path="read-and-write-data.html"><a href="read-and-write-data.html"><i class="fa fa-check"></i><b>9</b> Read and write data</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-tabular-data"><i class="fa fa-check"></i><b>10.1</b> Read and write tabular data</a></li>
-<li class="chapter" data-level="10.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-vector-data"><i class="fa fa-check"></i><b>10.2</b> Read and write vector data</a></li>
-<li class="chapter" data-level="10.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#data-api"><i class="fa fa-check"></i><b>10.3</b> Data API</a></li>
-<li class="chapter" data-level="10.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#additional-thoughts-so-far-for-revision"><i class="fa fa-check"></i><b>10.4</b> Additional Thoughts so far for revision</a>
+<li class="chapter" data-level="9.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-tabular-data"><i class="fa fa-check"></i><b>9.1</b> Read and write tabular data</a></li>
+<li class="chapter" data-level="9.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-vector-data"><i class="fa fa-check"></i><b>9.2</b> Read and write vector data</a></li>
+<li class="chapter" data-level="9.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#data-api"><i class="fa fa-check"></i><b>9.3</b> Data API</a></li>
+<li class="chapter" data-level="9.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#additional-thoughts-so-far-for-revision"><i class="fa fa-check"></i><b>9.4</b> Additional Thoughts so far for revision</a>
 <ul>
-<li class="chapter" data-level="10.4.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-json-handling-with-httr2"><i class="fa fa-check"></i><b>10.4.1</b> <strong>7.4 Advanced JSON Handling with <code>httr2</code></strong></a></li>
-<li class="chapter" data-level="10.4.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#caching-data-with-httr2"><i class="fa fa-check"></i><b>10.4.2</b> <strong>7.5 Caching Data with <code>httr2</code></strong></a></li>
-<li class="chapter" data-level="10.4.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#error-handling-and-retries-with-httr2"><i class="fa fa-check"></i><b>10.4.3</b> <strong>7.6 Error Handling and Retries with <code>httr2</code></strong></a></li>
-<li class="chapter" data-level="10.4.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-api-techniques"><i class="fa fa-check"></i><b>10.4.4</b> <strong>7.7 Advanced API Techniques</strong></a></li>
-<li class="chapter" data-level="10.4.5" data-path="read-and-write-data.html"><a href="read-and-write-data.html#introduction-to-web-scraping-altough-this-might-be-too-much..-and-even-if-its-important-for-data-sourcing-its-kind-of-a-grey-area-limited-by-rate-limits-or-considerations-with-tos."><i class="fa fa-check"></i><b>10.4.5</b> <strong>7.8 Introduction to Web Scraping</strong> (Altough, this might be too much.. and even if it’s important, for data sourcing, it’s kind of a grey area, limited by rate limits or considerations with ToS.)</a></li>
+<li class="chapter" data-level="9.4.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-json-handling-with-httr2"><i class="fa fa-check"></i><b>9.4.1</b> <strong>7.4 Advanced JSON Handling with <code>httr2</code></strong></a></li>
+<li class="chapter" data-level="9.4.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#caching-data-with-httr2"><i class="fa fa-check"></i><b>9.4.2</b> <strong>7.5 Caching Data with <code>httr2</code></strong></a></li>
+<li class="chapter" data-level="9.4.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#error-handling-and-retries-with-httr2"><i class="fa fa-check"></i><b>9.4.3</b> <strong>7.6 Error Handling and Retries with <code>httr2</code></strong></a></li>
+<li class="chapter" data-level="9.4.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-api-techniques"><i class="fa fa-check"></i><b>9.4.4</b> <strong>7.7 Advanced API Techniques</strong></a></li>
+<li class="chapter" data-level="9.4.5" data-path="read-and-write-data.html"><a href="read-and-write-data.html#introduction-to-web-scraping-altough-this-might-be-too-much..-and-even-if-its-important-for-data-sourcing-its-kind-of-a-grey-area-limited-by-rate-limits-or-considerations-with-tos."><i class="fa fa-check"></i><b>9.4.5</b> <strong>7.8 Introduction to Web Scraping</strong> (Altough, this might be too much.. and even if it’s important, for data sourcing, it’s kind of a grey area, limited by rate limits or considerations with ToS.)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>11</b> Data visualization</a>
+<li class="chapter" data-level="10" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>10</b> Data visualization</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="data-visualization.html"><a href="data-visualization.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>11.1</b> The Grammar of Graphics</a></li>
-<li class="chapter" data-level="11.2" data-path="data-visualization.html"><a href="data-visualization.html#visualization-of-distributions"><i class="fa fa-check"></i><b>11.2</b> Visualization of distributions</a></li>
-<li class="chapter" data-level="11.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>11.3</b> Boxplots</a></li>
-<li class="chapter" data-level="11.4" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i><b>11.4</b> Scatterplots</a></li>
-<li class="chapter" data-level="11.5" data-path="data-visualization.html"><a href="data-visualization.html#map-visualization"><i class="fa fa-check"></i><b>11.5</b> Map visualization</a></li>
-<li class="chapter" data-level="11.6" data-path="data-visualization.html"><a href="data-visualization.html#interactive-maps"><i class="fa fa-check"></i><b>11.6</b> Interactive Maps</a></li>
+<li class="chapter" data-level="10.1" data-path="data-visualization.html"><a href="data-visualization.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>10.1</b> The Grammar of Graphics</a></li>
+<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#visualization-of-distributions"><i class="fa fa-check"></i><b>10.2</b> Visualization of distributions</a></li>
+<li class="chapter" data-level="10.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>10.3</b> Boxplots</a></li>
+<li class="chapter" data-level="10.4" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i><b>10.4</b> Scatterplots</a></li>
+<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#map-visualization"><i class="fa fa-check"></i><b>10.5</b> Map visualization</a></li>
+<li class="chapter" data-level="10.6" data-path="data-visualization.html"><a href="data-visualization.html#interactive-maps"><i class="fa fa-check"></i><b>10.6</b> Interactive Maps</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>12</b> R Markdown</a>
+<li class="chapter" data-level="11" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>11</b> R Markdown</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="r-markdown.html"><a href="r-markdown.html#set-up-your-work-environment"><i class="fa fa-check"></i><b>12.1</b> Set up your work environment</a></li>
-<li class="chapter" data-level="12.2" data-path="r-markdown.html"><a href="r-markdown.html#create-a-local-clone"><i class="fa fa-check"></i><b>12.2</b> Create a local clone</a></li>
-<li class="chapter" data-level="12.3" data-path="r-markdown.html"><a href="r-markdown.html#create-a-first-rmarkdown-document"><i class="fa fa-check"></i><b>12.3</b> Create a first RMarkdown document</a></li>
-<li class="chapter" data-level="12.4" data-path="r-markdown.html"><a href="r-markdown.html#synchronize-with-github"><i class="fa fa-check"></i><b>12.4</b> Synchronize with GitHub</a></li>
-<li class="chapter" data-level="12.5" data-path="r-markdown.html"><a href="r-markdown.html#basic-rmarkdown-syntax"><i class="fa fa-check"></i><b>12.5</b> Basic RMarkdown syntax</a>
+<li class="chapter" data-level="11.1" data-path="r-markdown.html"><a href="r-markdown.html#set-up-your-work-environment"><i class="fa fa-check"></i><b>11.1</b> Set up your work environment</a></li>
+<li class="chapter" data-level="11.2" data-path="r-markdown.html"><a href="r-markdown.html#create-a-local-clone"><i class="fa fa-check"></i><b>11.2</b> Create a local clone</a></li>
+<li class="chapter" data-level="11.3" data-path="r-markdown.html"><a href="r-markdown.html#create-a-first-rmarkdown-document"><i class="fa fa-check"></i><b>11.3</b> Create a first RMarkdown document</a></li>
+<li class="chapter" data-level="11.4" data-path="r-markdown.html"><a href="r-markdown.html#synchronize-with-github"><i class="fa fa-check"></i><b>11.4</b> Synchronize with GitHub</a></li>
+<li class="chapter" data-level="11.5" data-path="r-markdown.html"><a href="r-markdown.html#basic-rmarkdown-syntax"><i class="fa fa-check"></i><b>11.5</b> Basic RMarkdown syntax</a>
 <ul>
-<li class="chapter" data-level="12.5.1" data-path="r-markdown.html"><a href="r-markdown.html#references-in-rmarkdown"><i class="fa fa-check"></i><b>12.5.1</b> References in RMarkdown</a></li>
+<li class="chapter" data-level="11.5.1" data-path="r-markdown.html"><a href="r-markdown.html#references-in-rmarkdown"><i class="fa fa-check"></i><b>11.5.1</b> References in RMarkdown</a></li>
 </ul></li>
-<li class="chapter" data-level="12.6" data-path="r-markdown.html"><a href="r-markdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>12.6</b> Speed up your workflows</a></li>
-<li class="chapter" data-level="12.7" data-path="r-markdown.html"><a href="r-markdown.html#self-study"><i class="fa fa-check"></i><b>12.7</b> Self-study</a></li>
+<li class="chapter" data-level="11.6" data-path="r-markdown.html"><a href="r-markdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>11.6</b> Speed up your workflows</a></li>
+<li class="chapter" data-level="11.7" data-path="r-markdown.html"><a href="r-markdown.html#self-study"><i class="fa fa-check"></i><b>11.7</b> Self-study</a></li>
 </ul></li>
 <li class="divider"></li>
 <li>Copyright © UNIGIS Salzburg.</li>
@@ -558,6 +557,43 @@ Once you know the extent, you can specify a new extent within that range for cro
 <p>#```{r}
 # Define a new extent that is within the original #raster’s extent
 #crop_extent &lt;- ext(-1, 1, -1, 1) # These coordinates #are within the original extent</p>
+<p>#Crop the raster
+#elev_cropped &lt;- crop(elev, crop_extent)
+#elev_cropped</p>
+<p>#```
+### Common Pitfalls
+- Non-overlapping Extents: Make sure the cropping extent overlaps with the original raster’s extent, otherwise, you’ll get an error.
+- Coordinate Systems: Ensure that the raster and the extent are in the same coordinate system!</p>
+
+<p>new:</p>
+<p><strong>Reading Raster Data</strong></p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="spatial-data-manipulation.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the terra package</span></span>
+<span id="cb191-2"><a href="spatial-data-manipulation.html#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb191-3"><a href="spatial-data-manipulation.html#cb191-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-4"><a href="spatial-data-manipulation.html#cb191-4" aria-hidden="true" tabindex="-1"></a><span class="co"># use the elevation tif file from &quot;spData&quot;</span></span>
+<span id="cb191-5"><a href="spatial-data-manipulation.html#cb191-5" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;The raster data represents elevation in meters and uses WGS84 as a coordinate reference system.&quot;</span></span>
+<span id="cb191-6"><a href="spatial-data-manipulation.html#cb191-6" aria-hidden="true" tabindex="-1"></a>elev <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;raster/elev.tif&quot;</span>, <span class="at">package =</span> <span class="st">&quot;spData&quot;</span>)</span>
+<span id="cb191-7"><a href="spatial-data-manipulation.html#cb191-7" aria-hidden="true" tabindex="-1"></a>elev <span class="ot">&lt;-</span> <span class="fu">rast</span>(elev)</span>
+<span id="cb191-8"><a href="spatial-data-manipulation.html#cb191-8" aria-hidden="true" tabindex="-1"></a>elev </span></code></pre></div>
+<pre><code>## class       : SpatRaster 
+## dimensions  : 6, 6, 1  (nrow, ncol, nlyr)
+## resolution  : 0.5, 0.5  (x, y)
+## extent      : -1.5, 1.5, -1.5, 1.5  (xmin, xmax, ymin, ymax)
+## coord. ref. : lon/lat WGS 84 (EPSG:4326) 
+## source      : elev.tif 
+## name        : elev 
+## min value   :    1 
+## max value   :   36</code></pre>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="spatial-data-manipulation.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(elev) </span></code></pre></div>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-168-1.png" width="672" />
+Once you’ve read the raster data, you can explore its properties using various functions:</p>
+<ul>
+<li>ncol(r): Number of columns</li>
+<li>nrow(r): Number of rows</li>
+<li>res(r): Resolution (pixel size)</li>
+<li>crs(r): Coordinate Reference System</li>
+</ul>
+<hr />
 </div>
 </div>
 </div>
@@ -568,7 +604,7 @@ Once you know the extent, you can specify a new extent within that range for cro
         </div>
       </div>
 <a href="data-manipulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="crop-the-raster.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="read-and-write-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
