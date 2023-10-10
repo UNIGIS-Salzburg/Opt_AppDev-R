@@ -46,6 +46,7 @@ data-frame
 spatial-data-structures
 vector-data-structures
 raster-data-structures
+working-with-spatraster-objects
 reading-raster-data
 basic-raster-operations
 cropping
@@ -134,4 +135,3 @@ basic-rmarkdown-syntax
 references-in-rmarkdown
 speed-up-your-workflows
 self-study
-working-with-spatraster-objects

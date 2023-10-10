@@ -138,3 +138,96 @@
 
 ## Exercise
 - Provide exercises that allow readers to apply the techniques learned in the chapter, ensuring they get hands-on experience with each of the introduced packages.
+
+----
+
+## Topological Relationships
+- Discuss spatial relationships like:
+- Adjacency (what's next to what)
+- Connectivity (how things are connected)
+- Containment (what contains what)
+- Importance of understanding topological relationships in spatial analysis and how one might implement that in R.
+
+
+### Resampling Raster Data in Terra
+#### What is Resampling?
+Resampling is the process of changing the spatial resolution of a raster dataset. This is useful when you want to align multiple rasters that have different resolutions or when you want to change the level of detail in your analysis.
+
+Step 1: Check the Original Resolution
+Before resampling, it's important to know the original resolution of your raster. You can use the res() function to check this.
+
+```{r}
+
+res(elev) # shows us the resolution of 0.5. 0.5
+plot(elev)
+```
+Where res is the new resolution.
+
+Step 2: Choose a New Resolution
+Decide what the new resolution should be. This could be higher or lower than the original, depending on your needs.
+```{r}
+# Resample the raster to the new resolution
+new_res <- c(0.5, 0.5)  # Example new resolution, for example double the size.
+
+```
+Step 3: Perform Resampling
+You can use the resample() function to change the resolution. The method can be "nearest", "bilinear", etc., depending on the type of interpolation you want to use.
+
+#```{r}
+
+#elev_resampled <- resample(elev, new_res, method="bilinear")
+# Create a target raster with the new resolution
+#target_raster <- rast(elev, res=new_res)
+# Resample the original raster to match the target raster
+#elev_resampled <- resample(elev, target_raster, method="bilinear")
+# Check the new resolution
+#res(elev_resampled)
+
+#```
+
+Masking: To mask a raster using another raster or vector, you can use the mask() function.
+
+#```{r}
+#r_masked <- mask(r, mask_layer)
+#```
+Where mask_layer is another raster or a vector layer
+
+---
+
+### Basic Raster Operations
+#### Cropping:
+What is Raster Cropping?
+Raster cropping is the process of selecting a specific area (or "extent") from a larger raster dataset. This is useful when you want to focus your analysis on a particular region.
+
+Why Do We Need to Check the Original Raster's Extent?
+Before cropping, it's crucial to know the extent of the original raster. This ensures that the area you want to crop actually exists within the original raster. If the extents don't overlap, you'll get an error.
+
+How to Check the Extent?
+You can use the ext() function from the terra package to check the extent of a raster.
+
+```{r}
+# Check the extent of the original raster
+ext(elev)
+```
+- How to Crop?
+Once you know the extent, you can specify a new extent within that range for cropping.
+
+```{r}
+# Define a new extent that is within the original raster's extent
+crop_extent <- ext(-1, 1, -1, 1)  # These coordinates are within the original extent
+
+# Crop the raster
+elev_cropped <- crop(elev, crop_extent)
+elev_cropped
+
+```
+### Common Pitfalls
+- Non-overlapping Extents: Make sure the cropping extent overlaps with the original raster's extent, otherwise, you'll get an error.
+- Coordinate Systems: Ensure that the raster and the extent are in the same coordinate system!
+
+
+
+
+
+
+

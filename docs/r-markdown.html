@@ -185,10 +185,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#vector-data-structures"><i class="fa fa-check"></i><b>4.1</b> Vector Data Structures</a></li>
 <li class="chapter" data-level="4.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#raster-data-structures"><i class="fa fa-check"></i><b>4.2</b> Raster Data Structures</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#reading-raster-data"><i class="fa fa-check"></i><b>4.2.1</b> Reading Raster Data</a></li>
-<li class="chapter" data-level="4.2.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#basic-raster-operations"><i class="fa fa-check"></i><b>4.2.2</b> Basic Raster Operations</a></li>
-<li class="chapter" data-level="4.2.3" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#common-pitfalls"><i class="fa fa-check"></i><b>4.2.3</b> Common Pitfalls</a></li>
-<li class="chapter" data-level="4.2.4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#resampling-raster-data-in-terra"><i class="fa fa-check"></i><b>4.2.4</b> Resampling Raster Data in Terra</a></li>
+<li class="chapter" data-level="4.2.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#working-with-spatraster-objects"><i class="fa fa-check"></i><b>4.2.1</b> Working with SpatRaster objects</a></li>
+<li class="chapter" data-level="4.2.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#reading-raster-data"><i class="fa fa-check"></i><b>4.2.2</b> Reading Raster Data</a></li>
+<li class="chapter" data-level="4.2.3" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#basic-raster-operations"><i class="fa fa-check"></i><b>4.2.3</b> Basic Raster Operations</a></li>
+<li class="chapter" data-level="4.2.4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#common-pitfalls"><i class="fa fa-check"></i><b>4.2.4</b> Common Pitfalls</a></li>
+<li class="chapter" data-level="4.2.5" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#resampling-raster-data-in-terra"><i class="fa fa-check"></i><b>4.2.5</b> Resampling Raster Data in Terra</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#multidimensional-data-with-stars"><i class="fa fa-check"></i><b>4.3</b> Multidimensional Data with stars:</a></li>
 <li class="chapter" data-level="4.4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#spatial-indexing"><i class="fa fa-check"></i><b>4.4</b> Spatial Indexing</a></li>
@@ -350,8 +351,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="rmdtip">
 In order to correctly <strong>install</strong><code>tinytex</code>, make sure to execute both lines in RStudio:
 </div>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="r-markdown.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
-<span id="cb220-2"><a href="r-markdown.html#cb220-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="r-markdown.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
+<span id="cb223-2"><a href="r-markdown.html#cb223-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
 <p>If R Studio prompts you to install any dependencies, follow the instructions and install the necessary libraries. If you encounter any technical issues, please turn to the discussion forum for help.</p>
 </div>
 <div id="create-a-local-clone" class="section level2 hasAnchor" number="11.2">

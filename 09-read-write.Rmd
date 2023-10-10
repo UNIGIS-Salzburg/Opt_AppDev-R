@@ -1,3 +1,28 @@
+new:
+
+**Reading Raster Data**
+```{r}
+# Load the terra package
+library(terra)
+
+# use the elevation tif file from "spData"
+# "The raster data represents elevation in meters and uses WGS84 as a coordinate reference system."
+elev <- system.file("raster/elev.tif", package = "spData")
+elev <- rast(elev)
+elev 
+
+plot(elev) 
+```
+Once you've read the raster data, you can explore its properties using various functions:
+
+- ncol(r): Number of columns
+- nrow(r): Number of rows
+- res(r): Resolution (pixel size)
+- crs(r): Coordinate Reference System
+
+
+---
+
 # Read and write data
 
 In previous exercises we have **read** data from a CSV file into our script. Similarly we can also **write** code outputs to file.   

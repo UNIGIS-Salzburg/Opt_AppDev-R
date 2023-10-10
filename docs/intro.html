@@ -51,6 +51,16 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -175,10 +185,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#vector-data-structures"><i class="fa fa-check"></i><b>4.1</b> Vector Data Structures</a></li>
 <li class="chapter" data-level="4.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#raster-data-structures"><i class="fa fa-check"></i><b>4.2</b> Raster Data Structures</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#reading-raster-data"><i class="fa fa-check"></i><b>4.2.1</b> Reading Raster Data</a></li>
-<li class="chapter" data-level="4.2.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#basic-raster-operations"><i class="fa fa-check"></i><b>4.2.2</b> Basic Raster Operations</a></li>
-<li class="chapter" data-level="4.2.3" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#common-pitfalls"><i class="fa fa-check"></i><b>4.2.3</b> Common Pitfalls</a></li>
-<li class="chapter" data-level="4.2.4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#resampling-raster-data-in-terra"><i class="fa fa-check"></i><b>4.2.4</b> Resampling Raster Data in Terra</a></li>
+<li class="chapter" data-level="4.2.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#working-with-spatraster-objects"><i class="fa fa-check"></i><b>4.2.1</b> Working with SpatRaster objects</a></li>
+<li class="chapter" data-level="4.2.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#reading-raster-data"><i class="fa fa-check"></i><b>4.2.2</b> Reading Raster Data</a></li>
+<li class="chapter" data-level="4.2.3" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#basic-raster-operations"><i class="fa fa-check"></i><b>4.2.3</b> Basic Raster Operations</a></li>
+<li class="chapter" data-level="4.2.4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#common-pitfalls"><i class="fa fa-check"></i><b>4.2.4</b> Common Pitfalls</a></li>
+<li class="chapter" data-level="4.2.5" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#resampling-raster-data-in-terra"><i class="fa fa-check"></i><b>4.2.5</b> Resampling Raster Data in Terra</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#multidimensional-data-with-stars"><i class="fa fa-check"></i><b>4.3</b> Multidimensional Data with stars:</a></li>
 <li class="chapter" data-level="4.4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#spatial-indexing"><i class="fa fa-check"></i><b>4.4</b> Spatial Indexing</a></li>
@@ -604,7 +615,7 @@ Figure 1.2: Console Window in RStudio
 <li><em>Geocomputation with R</em> by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. See <a href="https://bookdown.org/robinlovelace/geocompr/" target="_blank">online book</a>.</li>
 <li><em>The RStudio Cheatsheets - </em> <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">Collection on R Studio Website</a>.</li>
 <li><em>The terra package.</em> see <a href="https://rspatial.org/pkg/index.html" target="_blank">Online Documentation</a></li>
-<li><em>Simple Features for R.</em> see <a href="https://r-spatial.github.io/sf/" target="_blank">Online Documentation</a></li>
+<li><em>Sf - Simple Features for R.</em> see <a href="https://r-spatial.github.io/sf/" target="_blank">Online Documentation</a></li>
 </ul>
 
 </div>
@@ -669,6 +680,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
