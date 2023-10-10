@@ -55,6 +55,7 @@ loops
 while-and-repeat
 for
 loops-with-conditional-statements
+exercise-loops-with-conditional-statements
 functions
 defining-functions
 more-parameters

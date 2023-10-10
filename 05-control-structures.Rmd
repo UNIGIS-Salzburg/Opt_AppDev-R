@@ -268,9 +268,11 @@ We need to load the library 'tidyverse' to make use of the function 'str_starts(
 </p>
 </details> 
 
+### Exercise: loops with conditional statements
+
 ```{block2, type = 'rmdexercise'}
 
-As a last exercise in this lesson, you will implement a code that iterates over a two-dimensional SpatRaster Object and counts values in the raster grid that exceed a certain threshold:
+As a last exercise in this lesson, you will implement a code that iterates over a two-dimensional SpatRaster Object and counts values in the raster grid that exceed a certain threshold.
   
 ```
   
