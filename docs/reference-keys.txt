@@ -105,6 +105,7 @@ cropping
 read-and-write-data
 read-and-write-tabular-data
 read-and-write-vector-data
+read-and-write-raster-data
 data-api
 additional-thoughts-so-far-for-revision
 advanced-json-handling-with-httr2

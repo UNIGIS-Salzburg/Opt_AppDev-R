@@ -20,7 +20,7 @@ Spatial data structures are the foundation upon which geospatial information is 
 
 In this section, we will use the library `sf` to work with vector data structures. The name (sf stands for **simple features**) already implies that `sf` supports simple feature access via R. Simple features is a widely supported data model that underlies data structures in many GIS applications including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other set-ups, for example importing from and exporting to spatial databases.
 
-Simple features have spatial, geometric attributes as well as non-spatial attributes. The most common geometry types are points, lines, and polygons and their respective "multi" versions.
+Simple features have spatial, geometric attributes as well as non-spatial attributes. The most common geometry types are points, lines, and polygons and their respective "multi" versions (see [Simple feature geometry types](https://r-spatial.github.io/sf/articles/sf1.html#simple-feature-geometry-types){target="_blank"}).
 
 **Points** are fundamental in geospatial analysis. They are the simplest spatial entities, representing a singular location in space. They have no dimensions, meaning they don't possess length, width, or area. Using the `sf` package, you can create and manipulate point data with ease:
 
