@@ -1,8 +1,8 @@
 # Spatial Data Structures 
 
-In the realm of geoinformatics, spatial data stands as a cornerstone, offering a lens through which we can view, analyze, and interpret the world around us. At this point in your Master's, you are already familiar with the basic spatial entities of: points, lines, and polygons. These fundamental structures, while simple in concept, form the bedrock of complex spatial analyses and visualizations.
+In the realm of geoinformatics, spatial data stands as a cornerstone, offering a lens through which we can view, analyze, and interpret the world around us. At this point in your Master's, you are already familiar with the basic spatial entities of points, lines, and polygons. These fundamental structures, while simple in concept, form the bedrock of complex spatial analyses and visualizations.
 
-R, with its rich ecosystem of packages, offers a unique perspective on spatial data. Packages like **sf**, **terra**, **stars**, and **spatstat** have been game-changers, allowing us to handle spatial vector, raster and multidemensional data with unprecedented ease and flexibility. 
+R, with its rich ecosystem of packages, offers a unique perspective on spatial data. Packages like **sf**, **terra**, **stars**, and **spatstat** have been game-changers, allowing us to handle spatial vector, raster and multidimensional data with unprecedented ease and flexibility. 
 
 ```{block2, type = 'rmdtip'}
 In this lesson, you will get to know the following spatial data structures in R:
@@ -10,7 +10,7 @@ In this lesson, you will get to know the following spatial data structures in R:
 1) Vector data structures based on the simple feature specification implemented in package [sf](https://r-spatial.github.io/sf/){target="_blank"}
 2) Raster data structures as provided by the package [terra](https://rspatial.org/pkg/){target="_blank"}
 
-You will also learn how to retrieve, assign and modify coordinate systems, projections and transformations of spatial data structures.
+You will also learn how to retrieve, assign, and modify coordinate systems, projections and transformations of spatial data structures.
 
 ```
 
@@ -20,7 +20,7 @@ Spatial data structures are the foundation upon which geospatial information is 
 
 In this section, we will use the library `sf` to work with vector data structures. The name (sf stands for **simple features**) already implies that `sf` supports simple feature access via R. Simple features is a widely supported data model that underlies data structures in many GIS applications including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other set-ups, for example importing from and exporting to spatial databases.
 
-Simple features have spatial, geometric attributes as well as non-spatial attributes. The most common geometry types are points, lines and polygons and their respective "multi" versions.
+Simple features have spatial, geometric attributes as well as non-spatial attributes. The most common geometry types are points, lines, and polygons and their respective "multi" versions.
 
 **Points** are fundamental in geospatial analysis. They are the simplest spatial entities, representing a singular location in space. They have no dimensions, meaning they don't possess length, width, or area. Using the `sf` package, you can create and manipulate point data with ease:
 
@@ -182,7 +182,7 @@ plot(polygon_sf)
 
 The code above successfully creates and plots a polygon. However, imagine if the last coordinate in the coordinate matrix (2,2) was mistakenly omitted.
 
-Consider following Questions:
+Consider the following questions:
 
 1. What error would you expect to encounter if the last coordinate was omitted?
 2. Why is the last coordinate crucial for the creation of the polygon?
@@ -293,7 +293,7 @@ Given that the SpatRaster Object has an undefined coordinate reference system, i
 
 ```
 
-So far we have created two SpatRaster Objects (identifiers x and y). They only consist of a skeleton, meaning that they have location, extend, a spatial gird resolution and a certain number of grid rows and columns. However, there are not yet cell-values associated with it: 
+So far, we have created two SpatRaster Objects (identifiers x and y). They only consist of a skeleton, meaning that they have location, extend, a spatial gird resolution and a certain number of grid rows and columns. However, there are not yet cell-values associated with it: 
 
 ```{r, warning=FALSE, message=FALSE}
 
@@ -318,7 +318,7 @@ plot(y, main='100m Raster, Salzburg')
 
 ```
 
-The function `runif` of package `stats` takes three arguments, `n`, `min` and `max`, to generate `n` random numbers in a range between `min` and `max`. In the example above argument `n` is derived from `terra` function `ncell`, which returns the number of cells of SpatRaster Object `y` as an integer value. As a result we get a numeric vector of random values whose length corresponds to the number of grid cells of SpatRaster Object `y`. Accordingly, we can assign the numeric vector values to the grid.
+The function `runif` of package `stats` takes three arguments, `n`, `min` and `max`, to generate `n` random numbers in a range between `min` and `max`. In the example above argument `n` is derived from `terra` function `ncell`, which returns the number of cells of SpatRaster Object `y` as an integer value. As a result, we get a numeric vector of random values whose length corresponds to the number of grid cells of SpatRaster Object `y`. Accordingly, we can assign the numeric vector values to the grid.
 
 ```{block2, type = 'rmdexercise'}
 
