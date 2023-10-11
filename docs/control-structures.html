@@ -619,7 +619,7 @@ As a last exercise in this lesson, you will implement a code that iterates over 
 <span id="cb140-9"><a href="control-structures.html#cb140-9" aria-hidden="true" tabindex="-1"></a>log_vec <span class="ot">&lt;-</span> rm[,<span class="dv">1</span>] <span class="sc">&gt;</span> <span class="fl">0.5</span></span>
 <span id="cb140-10"><a href="control-structures.html#cb140-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Get length of TRUE values (grid value &gt; 0.5) in logic vectors</span></span>
 <span id="cb140-11"><a href="control-structures.html#cb140-11" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(log_vec[log_vec<span class="sc">==</span> <span class="cn">TRUE</span>])</span></code></pre></div>
-<pre><code>## [1] 188</code></pre>
+<pre><code>## [1] 201</code></pre>
 <p>It is apparent from the code example above that avoiding loops in R code makes code shorter and increases performance. Increase the size of your raster grid (e.g. ncol=100, nrow=100) and test respective code realizations to investigate the difference in code performance. More information on vectorization and parallelization of operations in R can be found <a href="https://tmieno2.github.io/R-as-GIS-for-Economists/repetitive-processes-and-looping.html#do-you-really-need-to-loop" target="_blank">here.</a></p>
 
 </div>

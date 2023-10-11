@@ -334,8 +334,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="vector-data-structures" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Vector Data Structures<a href="spatial-data-structures.html#vector-data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Spatial data structures are the foundation upon which geospatial information is built. They provide a systematic framework for organizing and representing geographical entities, ensuring that they can be efficiently processed, analyzed, and visualized. In this section, we’ll delve into vector data structures, which are essential for representing discrete spatial entities.</p>
-<p>The most common geometry types are points, lines and polygons and their respective “multi” versions.</p>
+<p>Spatial data structures are the foundation upon which geospatial information is built. They provide a systematic framework for organizing and representing geographical entities, ensuring that they can be efficiently processed, analyzed, and visualized.</p>
+<p>In this section, we will use the library <code>sf</code> to work with vector data structures. The name (sf stands for <strong>simple features</strong>) already implies that <code>sf</code> supports simple feature access via R. Simple features is a widely supported data model that underlies data structures in many GIS applications including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other set-ups, for example importing from and exporting to spatial databases.</p>
+<p>Simple features have spatial, geometric attributes as well as non-spatial attributes. The most common geometry types are points, lines and polygons and their respective “multi” versions.</p>
 <p><strong>Points</strong> are fundamental in geospatial analysis. They are the simplest spatial entities, representing a singular location in space. They have no dimensions, meaning they don’t possess length, width, or area. Using the <code>sf</code> package, you can create and manipulate point data with ease:</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="spatial-data-structures.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a point</span></span>
 <span id="cb92-2"><a href="spatial-data-structures.html#cb92-2" aria-hidden="true" tabindex="-1"></a>point <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_point</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
@@ -347,7 +348,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 The operator :: is used to indicate that the functions <code>st_point</code>, <code>st_sf</code> and <code>st_sfc</code> are situated within the library <code>sf</code>. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names.
 </div>
 <p>The function <code>st_point</code> creates a simple feature object from a numeric vector. The object is of the same nature as the numeric vector <code>c(5,5)</code>. To convert to an sf-object, the function <code>st_sf</code> is used.</p>
-<p>Sf-object are similar in structure as data frames. However, in contrast to data frames, sf-objects have an additional geometry column. The sf-object <code>point_sf</code> (created by the code above) contains a single point geometry and no fields:</p>
+<p>Sf-objects are similar in structure as data frames. However, in contrast to data frames, sf-objects have an additional geometry column. The sf-object <code>point_sf</code> (created by the code above) contains a single point geometry and no fields:</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="spatial-data-structures.html#cb93-1" aria-hidden="true" tabindex="-1"></a>point_sf</span></code></pre></div>
 <pre><code>## Simple feature collection with 1 feature and 0 fields
 ## Geometry type: POINT
@@ -560,7 +561,7 @@ The operator :: is used to indicate that the functions <code>st_point</code>, <c
 <span id="cb116-3"><a href="spatial-data-structures.html#cb116-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb116-4"><a href="spatial-data-structures.html#cb116-4" aria-hidden="true" tabindex="-1"></a><span class="co">#get values with index 1 to index 5</span></span>
 <span id="cb116-5"><a href="spatial-data-structures.html#cb116-5" aria-hidden="true" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">values</span>(y)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
-<pre><code>## [1] 0.8720445 0.5370466 0.9437640 0.2042059 0.3112993</code></pre>
+<pre><code>## [1] 0.4757290 0.1791816 0.8358621 0.2556036 0.6197669</code></pre>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="spatial-data-structures.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot grid, plot() is a generic function to plot R objects</span></span>
 <span id="cb118-2"><a href="spatial-data-structures.html#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y, <span class="at">main=</span><span class="st">&#39;100m Raster, Salzburg&#39;</span>)</span></code></pre></div>
 <p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>

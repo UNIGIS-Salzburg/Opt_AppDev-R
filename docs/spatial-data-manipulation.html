@@ -565,35 +565,6 @@ Once you know the extent, you can specify a new extent within that range for cro
 - Non-overlapping Extents: Make sure the cropping extent overlaps with the original raster’s extent, otherwise, you’ll get an error.
 - Coordinate Systems: Ensure that the raster and the extent are in the same coordinate system!</p>
 
-<p>new:</p>
-<p><strong>Reading Raster Data</strong></p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="spatial-data-manipulation.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the terra package</span></span>
-<span id="cb191-2"><a href="spatial-data-manipulation.html#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
-<span id="cb191-3"><a href="spatial-data-manipulation.html#cb191-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb191-4"><a href="spatial-data-manipulation.html#cb191-4" aria-hidden="true" tabindex="-1"></a><span class="co"># use the elevation tif file from &quot;spData&quot;</span></span>
-<span id="cb191-5"><a href="spatial-data-manipulation.html#cb191-5" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;The raster data represents elevation in meters and uses WGS84 as a coordinate reference system.&quot;</span></span>
-<span id="cb191-6"><a href="spatial-data-manipulation.html#cb191-6" aria-hidden="true" tabindex="-1"></a>elev <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;raster/elev.tif&quot;</span>, <span class="at">package =</span> <span class="st">&quot;spData&quot;</span>)</span>
-<span id="cb191-7"><a href="spatial-data-manipulation.html#cb191-7" aria-hidden="true" tabindex="-1"></a>elev <span class="ot">&lt;-</span> <span class="fu">rast</span>(elev)</span>
-<span id="cb191-8"><a href="spatial-data-manipulation.html#cb191-8" aria-hidden="true" tabindex="-1"></a>elev </span></code></pre></div>
-<pre><code>## class       : SpatRaster 
-## dimensions  : 6, 6, 1  (nrow, ncol, nlyr)
-## resolution  : 0.5, 0.5  (x, y)
-## extent      : -1.5, 1.5, -1.5, 1.5  (xmin, xmax, ymin, ymax)
-## coord. ref. : lon/lat WGS 84 (EPSG:4326) 
-## source      : elev.tif 
-## name        : elev 
-## min value   :    1 
-## max value   :   36</code></pre>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="spatial-data-manipulation.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(elev) </span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-168-1.png" width="672" />
-Once you’ve read the raster data, you can explore its properties using various functions:</p>
-<ul>
-<li>ncol(r): Number of columns</li>
-<li>nrow(r): Number of rows</li>
-<li>res(r): Resolution (pixel size)</li>
-<li>crs(r): Coordinate Reference System</li>
-</ul>
-<hr />
 </div>
 </div>
 </div>

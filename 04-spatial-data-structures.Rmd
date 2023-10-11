@@ -16,9 +16,11 @@ You will also learn how to retrieve, assign and modify coordinate systems, proje
 
 ## Vector Data Structures
 
-Spatial data structures are the foundation upon which geospatial information is built. They provide a systematic framework for organizing and representing geographical entities, ensuring that they can be efficiently processed, analyzed, and visualized. In this section, we'll delve into vector data structures, which are essential for representing discrete spatial entities.
+Spatial data structures are the foundation upon which geospatial information is built. They provide a systematic framework for organizing and representing geographical entities, ensuring that they can be efficiently processed, analyzed, and visualized. 
 
-The most common geometry types are points, lines and polygons and their respective "multi" versions.
+In this section, we will use the library `sf` to work with vector data structures. The name (sf stands for **simple features**) already implies that `sf` supports simple feature access via R. Simple features is a widely supported data model that underlies data structures in many GIS applications including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other set-ups, for example importing from and exporting to spatial databases.
+
+Simple features have spatial, geometric attributes as well as non-spatial attributes. The most common geometry types are points, lines and polygons and their respective "multi" versions.
 
 **Points** are fundamental in geospatial analysis. They are the simplest spatial entities, representing a singular location in space. They have no dimensions, meaning they don't possess length, width, or area. Using the `sf` package, you can create and manipulate point data with ease:
 
@@ -42,7 +44,7 @@ The operator :: is used to indicate that the functions `st_point`, `st_sf` and `
 
 The function `st_point` creates a simple feature object from a numeric vector. The object is of the same nature as the numeric vector `c(5,5)`. To convert to an sf-object, the function `st_sf` is used. 
 
-Sf-object are similar in structure as data frames. However, in contrast to data frames, sf-objects have an additional geometry column. The sf-object `point_sf` (created by the code above) contains a single point geometry and no fields:
+Sf-objects are similar in structure as data frames. However, in contrast to data frames, sf-objects have an additional geometry column. The sf-object `point_sf` (created by the code above) contains a single point geometry and no fields:
 
 ```{r}
 

@@ -1,27 +1,4 @@
-new:
 
-**Reading Raster Data**
-```{r}
-# Load the terra package
-library(terra)
-
-# use the elevation tif file from "spData"
-# "The raster data represents elevation in meters and uses WGS84 as a coordinate reference system."
-elev <- system.file("raster/elev.tif", package = "spData")
-elev <- rast(elev)
-elev 
-
-plot(elev) 
-```
-Once you've read the raster data, you can explore its properties using various functions:
-
-- ncol(r): Number of columns
-- nrow(r): Number of rows
-- res(r): Resolution (pixel size)
-- crs(r): Coordinate Reference System
-
-
----
 
 # Read and write data
 
@@ -29,7 +6,7 @@ In previous exercises we have **read** data from a CSV file into our script. Sim
 
 ```{block2, type = 'rmdtip'}
 
-In this lesson you will learn to read and write plain-text and spatial vector file formats. Moreover, we will retrieve online data by means of a data API.
+In this lesson you will learn to read and write plain-text, spatial vector and raster file formats. Moreover, we will retrieve online data by means of a data API.
 
 ```
 
@@ -75,9 +52,11 @@ Other important packages for reading tabular data are [readxl](https://readxl.ti
 
 ## Read and write vector data
 
-The library `sf` makes it easy to read and write vector datasets such as shapefiles. The name (sf stands for **simple features**) already implies that `sf` supports simple feature access via R.
+The library `sf` makes it easy to read and write vector datasets such as shapefiles. 
 
-Simple features is a widely supported data model that underlies data structures in many GIS applications including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other set-ups, for example importing from and exporting to spatial databases.
+```{block2, type = 'rmdtip'}
+Remember: We have used the `sf-library` in lesson Spatial Data Structures to build vector geometries from scratch, investigate their properties and assign and transform coordinate reference systems. The name sf stands for **simple features**, meaning that [sf-objects conform to the simple feature standard](https://r-spatial.github.io/sf/articles/sf1.html){target="_blank"}. Now we use the same library to load sf-objects from file.
+```
 
 In order to load vector data in an R-Script, we can use the function `st_read()`. In the code block below, a [shapefile](data/nc.zip){target="_blank"} ([North Carolina sample data](https://r-spatial.github.io/sf/reference/nc.html){target="_blank"}) is loaded and assigned to a variable nc. 
 
@@ -93,7 +72,7 @@ plot(nc)
 
 ```
 
-The library `sf` represents features as records in a data frame or tibble with a geometry list-column. The example below renders three features (rows) of variable nc including the geometry column as well as the attributes `AREA` (feature area) and `NAME` (name of county):  
+As you have learned in lesson Spatial Data Structures, the library `sf` represents features as records in a data frame or tibble with a geometry list-column. The example below renders three features (rows) of variable nc including the geometry column as well as the attributes `AREA` (feature area) and `NAME` (name of county):  
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
