@@ -183,7 +183,7 @@ terra::writeRaster(r_z1, "data/venice_zone1.tif", overwrite=TRUE)
 
 > API is the acronym for Application Programming Interface, which is a software intermediary that allows two applications to talk to each other.
 
-By means of an API we can read, write and modify information on the web. The following video briefly introduces the technology behind it.
+By means of an API we can read, write, and modify information on the web. The following video briefly introduces the technology behind it.
 
 ```{r APIvideo, echo=FALSE, fig.align='center', fig.cap="Video (3:13 min): REST API concepts and examples."}
 
@@ -200,9 +200,18 @@ The most important take away messages are:
 5) JSON is a very popular format for transferring web data.
 6) The two primary elements that make up JSON are keys and values.
 
-The library [httr2](https://httr2.r-lib.org/){target="_blank"} offers functions to programmatically implement API calls in an R script. We will make use of this library to let our R script interact with the [APIs](https://openweathermap.org/api){target="_blank"} offered by [OpenWeather Map](https://openweathermap.org/){target="_blank"}. that contain historical and real-time weather data for retrieval. In the upcoming example we will make a call to the [Current Weather API](https://openweathermap.org/current){target="_blank"}, which is one out of currently [10 free APIs](https://openweathermap.org/price){target="_blank"} provided by OpenWeather Map.
+The library [httr2](https://httr2.r-lib.org/){target="_blank"} offers functions to programmatically implement API calls in an R script. We will make use of this library to let our R script interact with the [APIs](https://openweathermap.org/api){target="_blank"} offered by [OpenWeather Map](https://openweathermap.org/){target="_blank"} that contains historical and real-time weather data for retrieval. In the upcoming example we will make a call to the [Current Weather API](https://openweathermap.org/current){target="_blank"}, which is one out of currently [10 free APIs](https://openweathermap.org/price){target="_blank"} provided by OpenWeather Map.
 
-For accessing the data with httr2, we'll construct a URL composed of a reference to the data source (base) and parameters to filter the desired data subset (lat and lon). In httr2, the URL and query parameters can be separated, simplifying the process. The parameters are passed as a named list to the request() function:
+For accessing the data with httr2, we'll construct a URL composed of a reference to the data source (base), an API key to get access, and parameters to filter the desired data subset (lat and lon). 
+
+```{block2, type = 'rmdtip'}
+Note: The OpenWeather API requires an API Key to be passed as a parameter in the call. Get your [personal Key](https://openweathermap.org/appid){target="_blank"} to implement your own API requests. 
+
+If your code returns an error 401, this most likely indicates that your key is not activated yet. According to the [FAQs](https://openweathermap.org/faq){target="_blank"}, it may take a couple of hours until your key is active. 
+
+```
+
+First we will have to create an URL request. The function `sprintf()` assembles the URL request composed of `base URL`, `key` and `lat / lon`:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -222,30 +231,27 @@ print(full_url)
 
 ```
 
-In the code above, the function sprintf() assembles the base URL and parameters. The URL (of type string) will then pass the request() function to create a request object, and req_perform() is used to execute the HTTP Get method.
-
-```{block2, type = 'rmdtip'}
-Note: The OpenWeather API requires an API Key to be passed as a parameter in the call. Get your [personal Key](https://openweathermap.org/appid){target="_blank"} to implement your own API requests. 
-
-If your code returns an error 401, this most likely indicates that your key is not activated yet. According to the [FAQs](https://openweathermap.org/faq){target="_blank"}, it may take a couple of hours until your key is active. 
-
-```
-
-By default, the req_perform() function returns a response object. Printing a response object provides useful information such as the actual URL used (after any redirects), the HTTP status, and the content type.
-
-You can extract important parts of the response with various helper functions such as resp_status() and resp_body_json():
+As a next step, the URL is passed to the `request()` function to create a request object, and `req_perform()` is used to execute the HTTP Get method:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
 # Create the request and perform it
-req <- request(full_url)
-resp <- req_perform(req)
+req <- httr2::request(full_url)
+resp <- httr2::req_perform(req)
+
+```
+
+By default, the `req_perform()` function returns a response object. Printing a response object provides useful information such as the actual URL used (after any redirects), the HTTP status, and the content type.
+
+You can extract important parts of the response with various helper functions such as `resp_status()` and `resp_body_json()`:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
 # Check the status code of the response
-print(resp_status(resp))
+httr2::resp_status(resp)
 
 # View the content structure of the response in JSON
-str(resp_body_json(resp))
+str(httr2::resp_body_json(resp))
 
 ```
 
@@ -273,59 +279,22 @@ To facilitate subsequent analyses and data visualization, we can convert the con
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
+library(knitr)
+
 # Using resp_body_json to get the JSON content of the response
-response_content <- resp_body_json(resp)
+response_content <- httr2::resp_body_json(resp)
 response_df <- as.data.frame(response_content)
-response_df
+
+# Select columns 1:5 of response data frame 
+# and render data frame as html table
+response_df %>%
+  dplyr::select(1:5) %>%
+  knitr::kable(., format="html")
 
 ```
+
+For purposes of presentation, the returned data frame was shortened to show only columns 1 to 5. The returned values contain a short description of current weather conditions at location E: 13.03, N: 47.81.
 
 ```{block2, type = 'rmdexercise'}
-Copy the code snippets above to a new R-Script. **Make sure to replace the key in the code example by your own API key!** If you need help, please turn to the discussion forum.
+Copy the code snippets above to a new R-Script and make an API request. **Make sure to replace the key in the code example by your own API key!** If you need help, please turn to the discussion forum.
 ```
-
-```{block2, type = 'rmdtip'}
-Note: If you want more advanced JSON manipulation or flattening, you can still use the jsonlite library. But for the basic conversion shown here, it's not necessary.
-
-[Tidyverse](https://www.tidyverse.org/packages/){target="_blank"} also provides other packages for reading data such as [DBI](https://cran.r-project.org/web/packages/DBI/){target="_blank"} for relational databases [jsonlite](https://cran.r-project.org/web/packages/jsonlite/){target="_blank"} for JSON and [xml2](https://cran.r-project.org/web/packages/xml2/){target="_blank"} for XML. 
-
-```
-
-... more to come! 
-
-## Additional Thoughts so far for revision
-
-### **7.4 Advanced JSON Handling with `httr2`**
-
-While touched on converting API responses to data frames using **`jsonlite`**, we could delve deeper into JSON handling:
-
-- **Parsing Nested JSON**: Often, APIs return nested JSON structures. Teach how to handle and flatten these structures to convert them into usable data frames.
-- **JSON to List**: Before converting to a data frame, JSON can be converted to a list in R. This can be useful for certain types of analyses or data manipulations.
-
-### **7.5 Caching Data with `httr2`**
-
-Given that **`httr2`** has caching capabilities, this can be a valuable addition:
-
-- **Why Cache?**: Explain the benefits of caching, especially when dealing with rate-limited APIs or to speed up development and analysis by not fetching data repeatedly.
-- **Implementing Caching**: Show how to use **`req_cache()`** in **`httr2`** to cache API responses.
-
-### **7.6 Error Handling and Retries with `httr2`**
-
-Building on the capabilities of **`httr2`**:
-
-- **Understanding HTTP Errors**: Briefly explain common HTTP errors like 404 (Not Found) or 429 (Too Many Requests) and why they might occur when working with APIs.
-
-- **Implementing Retries**: Show how to use **`req_retry()`** in **`httr2`** to automatically retry if a request fails.
-
-### **7.7 Advanced API Techniques**
-
-- **Pagination**: Many APIs return data in pages, especially if there's a lot of data. Teach how to handle paginated responses and fetch all data.
-- **Rate Limiting**: Explaining what rate limiting is and how to handle it, possibly by introducing pauses in requests or by using caching.
-
-### **7.8 Introduction to Web Scraping** (Altough, this might be too much.. and even if it's important, for data sourcing, it's kind of a grey area, limited by rate limits or considerations with ToS.)
-
-While APIs are a clean way to get data, not all websites offer them. We could introduce the concept of web scraping:
-
-- **What is Web Scraping?**: Briefly explain the concept and why it might be necessary.
-- **Using `rvest` for Web Scraping**: Introduce the **`rvest`** package, which is part of the tidyverse and is used for web scraping. We could provide a simple example of scraping data from a website.
-- **Morality of Web Scraping**: via. Ethical, Legal, Technical Considerations

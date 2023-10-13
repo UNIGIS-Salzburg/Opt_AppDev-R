@@ -260,14 +260,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-vector-data"><i class="fa fa-check"></i><b>9.2</b> Read and write vector data</a></li>
 <li class="chapter" data-level="9.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-raster-data"><i class="fa fa-check"></i><b>9.3</b> Read and write raster data</a></li>
 <li class="chapter" data-level="9.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#data-api"><i class="fa fa-check"></i><b>9.4</b> Data API</a></li>
-<li class="chapter" data-level="9.5" data-path="read-and-write-data.html"><a href="read-and-write-data.html#additional-thoughts-so-far-for-revision"><i class="fa fa-check"></i><b>9.5</b> Additional Thoughts so far for revision</a>
-<ul>
-<li class="chapter" data-level="9.5.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-json-handling-with-httr2"><i class="fa fa-check"></i><b>9.5.1</b> <strong>7.4 Advanced JSON Handling with <code>httr2</code></strong></a></li>
-<li class="chapter" data-level="9.5.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#caching-data-with-httr2"><i class="fa fa-check"></i><b>9.5.2</b> <strong>7.5 Caching Data with <code>httr2</code></strong></a></li>
-<li class="chapter" data-level="9.5.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#error-handling-and-retries-with-httr2"><i class="fa fa-check"></i><b>9.5.3</b> <strong>7.6 Error Handling and Retries with <code>httr2</code></strong></a></li>
-<li class="chapter" data-level="9.5.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-api-techniques"><i class="fa fa-check"></i><b>9.5.4</b> <strong>7.7 Advanced API Techniques</strong></a></li>
-<li class="chapter" data-level="9.5.5" data-path="read-and-write-data.html"><a href="read-and-write-data.html#introduction-to-web-scraping-altough-this-might-be-too-much..-and-even-if-its-important-for-data-sourcing-its-kind-of-a-grey-area-limited-by-rate-limits-or-considerations-with-tos."><i class="fa fa-check"></i><b>9.5.5</b> <strong>7.8 Introduction to Web Scraping</strong> (Altough, this might be too much.. and even if it’s important, for data sourcing, it’s kind of a grey area, limited by rate limits or considerations with ToS.)</a></li>
-</ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>10</b> Data visualization</a>
 <ul>
@@ -512,8 +504,14 @@ Figure 9.1: Video (3:13 min): REST API concepts and examples.
 <li>JSON is a very popular format for transferring web data.</li>
 <li>The two primary elements that make up JSON are keys and values.</li>
 </ol>
-<p>The library <a href="https://httr2.r-lib.org/" target="_blank">httr2</a> offers functions to programmatically implement API calls in an R script. We will make use of this library to let our R script interact with the <a href="https://openweathermap.org/api" target="_blank">APIs</a> offered by <a href="https://openweathermap.org/" target="_blank">OpenWeather Map</a>. that contain historical and real-time weather data for retrieval. In the upcoming example we will make a call to the <a href="https://openweathermap.org/current" target="_blank">Current Weather API</a>, which is one out of currently <a href="https://openweathermap.org/price" target="_blank">10 free APIs</a> provided by OpenWeather Map.</p>
-<p>For accessing the data with httr2, we’ll construct a URL composed of a reference to the data source (base) and parameters to filter the desired data subset (lat and lon). In httr2, the URL and query parameters can be separated, simplifying the process. The parameters are passed as a named list to the request() function:</p>
+<p>The library <a href="https://httr2.r-lib.org/" target="_blank">httr2</a> offers functions to programmatically implement API calls in an R script. We will make use of this library to let our R script interact with the <a href="https://openweathermap.org/api" target="_blank">APIs</a> offered by <a href="https://openweathermap.org/" target="_blank">OpenWeather Map</a> that contains historical and real-time weather data for retrieval. In the upcoming example we will make a call to the <a href="https://openweathermap.org/current" target="_blank">Current Weather API</a>, which is one out of currently <a href="https://openweathermap.org/price" target="_blank">10 free APIs</a> provided by OpenWeather Map.</p>
+<p>For accessing the data with httr2, we’ll construct a URL composed of a reference to the data source (base), an API key to get access, and parameters to filter the desired data subset (lat and lon).</p>
+
+<div class="rmdtip">
+<p>Note: The OpenWeather API requires an API Key to be passed as a parameter in the call. Get your <a href="https://openweathermap.org/appid" target="_blank">personal Key</a> to implement your own API requests.</p>
+<p>If your code returns an error 401, this most likely indicates that your key is not activated yet. According to the <a href="https://openweathermap.org/faq" target="_blank">FAQs</a>, it may take a couple of hours until your key is active.</p>
+</div>
+<p>First we will have to create an URL request. The function <code>sprintf()</code> assembles the URL request composed of <code>base URL</code>, <code>key</code> and <code>lat / lon</code>:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="read-and-write-data.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr2)</span>
 <span id="cb14-2"><a href="read-and-write-data.html#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="read-and-write-data.html#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the base URL and parameters</span></span>
@@ -528,23 +526,17 @@ Figure 9.1: Video (3:13 min): REST API concepts and examples.
 <span id="cb14-12"><a href="read-and-write-data.html#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the constructed URL</span></span>
 <span id="cb14-13"><a href="read-and-write-data.html#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(full_url)</span></code></pre></div>
 <pre><code>## [1] &quot;http://api.openweathermap.org/data/2.5/weather?lat=47.81&amp;lon=13.03&amp;appid=3f87141421b32590d50416aae5ca780c&quot;</code></pre>
-<p>In the code above, the function sprintf() assembles the base URL and parameters. The URL (of type string) will then pass the request() function to create a request object, and req_perform() is used to execute the HTTP Get method.</p>
-
-<div class="rmdtip">
-<p>Note: The OpenWeather API requires an API Key to be passed as a parameter in the call. Get your <a href="https://openweathermap.org/appid" target="_blank">personal Key</a> to implement your own API requests.</p>
-<p>If your code returns an error 401, this most likely indicates that your key is not activated yet. According to the <a href="https://openweathermap.org/faq" target="_blank">FAQs</a>, it may take a couple of hours until your key is active.</p>
-</div>
-<p>By default, the req_perform() function returns a response object. Printing a response object provides useful information such as the actual URL used (after any redirects), the HTTP status, and the content type.</p>
-<p>You can extract important parts of the response with various helper functions such as resp_status() and resp_body_json():</p>
+<p>As a next step, the URL is passed to the <code>request()</code> function to create a request object, and <code>req_perform()</code> is used to execute the HTTP Get method.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="read-and-write-data.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the request and perform it</span></span>
-<span id="cb16-2"><a href="read-and-write-data.html#cb16-2" aria-hidden="true" tabindex="-1"></a>req <span class="ot">&lt;-</span> <span class="fu">request</span>(full_url)</span>
-<span id="cb16-3"><a href="read-and-write-data.html#cb16-3" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> <span class="fu">req_perform</span>(req)</span>
-<span id="cb16-4"><a href="read-and-write-data.html#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="read-and-write-data.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the status code of the response</span></span>
-<span id="cb16-6"><a href="read-and-write-data.html#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">resp_status</span>(resp))</span></code></pre></div>
+<span id="cb16-2"><a href="read-and-write-data.html#cb16-2" aria-hidden="true" tabindex="-1"></a>req <span class="ot">&lt;-</span> httr2<span class="sc">::</span><span class="fu">request</span>(full_url)</span>
+<span id="cb16-3"><a href="read-and-write-data.html#cb16-3" aria-hidden="true" tabindex="-1"></a>resp <span class="ot">&lt;-</span> httr2<span class="sc">::</span><span class="fu">req_perform</span>(req)</span></code></pre></div>
+<p>By default, the <code>req_perform()</code> function returns a response object. Printing a response object provides useful information such as the actual URL used (after any redirects), the HTTP status, and the content type.</p>
+<p>You can extract important parts of the response with various helper functions such as <code>resp_status()</code> and <code>resp_body_json()</code>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="read-and-write-data.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the status code of the response</span></span>
+<span id="cb17-2"><a href="read-and-write-data.html#cb17-2" aria-hidden="true" tabindex="-1"></a>httr2<span class="sc">::</span><span class="fu">resp_status</span>(resp)</span></code></pre></div>
 <pre><code>## [1] 200</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="read-and-write-data.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the content structure of the response in JSON</span></span>
-<span id="cb18-2"><a href="read-and-write-data.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">resp_body_json</span>(resp))</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="read-and-write-data.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the content structure of the response in JSON</span></span>
+<span id="cb19-2"><a href="read-and-write-data.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(httr2<span class="sc">::</span><span class="fu">resp_body_json</span>(resp))</span></code></pre></div>
 <pre><code>## List of 13
 ##  $ coord     :List of 2
 ##   ..$ lon: num 13
@@ -561,15 +553,15 @@ Figure 9.1: Video (3:13 min): REST API concepts and examples.
 ##   ..$ feels_like: num 299
 ##   ..$ temp_min  : num 297
 ##   ..$ temp_max  : num 301
-##   ..$ pressure  : int 1017
-##   ..$ humidity  : int 45
+##   ..$ pressure  : int 1016
+##   ..$ humidity  : int 40
 ##  $ visibility: int 10000
 ##  $ wind      :List of 2
-##   ..$ speed: num 2.06
-##   ..$ deg  : int 150
+##   ..$ speed: num 1.54
+##   ..$ deg  : int 40
 ##  $ clouds    :List of 1
 ##   ..$ all: int 0
-##  $ dt        : int 1697198665
+##  $ dt        : int 1697204355
 ##  $ sys       :List of 5
 ##   ..$ type   : int 1
 ##   ..$ id     : int 6877
@@ -599,72 +591,63 @@ Figure 9.1: Video (3:13 min): REST API concepts and examples.
 </details>
 </div>
 <p>To facilitate subsequent analyses and data visualization, we can convert the content of the return object to a data frame. With httr2, you can directly retrieve the JSON content and convert it to a data frame:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="read-and-write-data.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using resp_body_json to get the JSON content of the response</span></span>
-<span id="cb20-2"><a href="read-and-write-data.html#cb20-2" aria-hidden="true" tabindex="-1"></a>response_content <span class="ot">&lt;-</span> <span class="fu">resp_body_json</span>(resp)</span>
-<span id="cb20-3"><a href="read-and-write-data.html#cb20-3" aria-hidden="true" tabindex="-1"></a>response_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(response_content)</span>
-<span id="cb20-4"><a href="read-and-write-data.html#cb20-4" aria-hidden="true" tabindex="-1"></a>response_df</span></code></pre></div>
-<pre><code>##   coord.lon coord.lat weather.id weather.main weather.description weather.icon
-## 1     13.03     47.81        800        Clear           clear sky          01d
-##       base main.temp main.feels_like main.temp_min main.temp_max main.pressure
-## 1 stations    298.95          298.76        296.79        300.87          1017
-##   main.humidity visibility wind.speed wind.deg all         dt sys.type sys.id
-## 1            45      10000       2.06      150   0 1697198665        1   6877
-##   sys.country sys.sunrise sys.sunset timezone      id     name cod
-## 1          AT  1697174584 1697214304     7200 2766824 Salzburg 200</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="read-and-write-data.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb21-2"><a href="read-and-write-data.html#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="read-and-write-data.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Using resp_body_json to get the JSON content of the response</span></span>
+<span id="cb21-4"><a href="read-and-write-data.html#cb21-4" aria-hidden="true" tabindex="-1"></a>response_content <span class="ot">&lt;-</span> httr2<span class="sc">::</span><span class="fu">resp_body_json</span>(resp)</span>
+<span id="cb21-5"><a href="read-and-write-data.html#cb21-5" aria-hidden="true" tabindex="-1"></a>response_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(response_content)</span>
+<span id="cb21-6"><a href="read-and-write-data.html#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="read-and-write-data.html#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Select columns 1:5 of response data frame </span></span>
+<span id="cb21-8"><a href="read-and-write-data.html#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># and render data frame as html table</span></span>
+<span id="cb21-9"><a href="read-and-write-data.html#cb21-9" aria-hidden="true" tabindex="-1"></a>response_df <span class="sc">%&gt;%</span></span>
+<span id="cb21-10"><a href="read-and-write-data.html#cb21-10" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-11"><a href="read-and-write-data.html#cb21-11" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(., <span class="at">format=</span><span class="st">&quot;html&quot;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+coord.lon
+</th>
+<th style="text-align:right;">
+coord.lat
+</th>
+<th style="text-align:right;">
+weather.id
+</th>
+<th style="text-align:left;">
+weather.main
+</th>
+<th style="text-align:left;">
+weather.description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+13.03
+</td>
+<td style="text-align:right;">
+47.81
+</td>
+<td style="text-align:right;">
+800
+</td>
+<td style="text-align:left;">
+Clear
+</td>
+<td style="text-align:left;">
+clear sky
+</td>
+</tr>
+</tbody>
+</table>
+<p>For purposes of presentation, the returned data frame was shortened to show only columns 1 to 5. The returned values contain a short description of current weather conditions at location E: 13.03, N: 47.81.</p>
 
 <div class="rmdexercise">
-Copy the code snippets above to a new R-Script. <strong>Make sure to replace the key in the code example by your own API key!</strong> If you need help, please turn to the discussion forum.
+Copy the code snippets above to a new R-Script and make an API request. <strong>Make sure to replace the key in the code example by your own API key!</strong> If you need help, please turn to the discussion forum.
 </div>
 
-<div class="rmdtip">
-<p>Note: If you want more advanced JSON manipulation or flattening, you can still use the jsonlite library. But for the basic conversion shown here, it’s not necessary.</p>
-<p><a href="https://www.tidyverse.org/packages/" target="_blank">Tidyverse</a> also provides other packages for reading data such as <a href="https://cran.r-project.org/web/packages/DBI/" target="_blank">DBI</a> for relational databases <a href="https://cran.r-project.org/web/packages/jsonlite/" target="_blank">jsonlite</a> for JSON and <a href="https://cran.r-project.org/web/packages/xml2/" target="_blank">xml2</a> for XML.</p>
-</div>
-<p>… more to come!</p>
-</div>
-<div id="additional-thoughts-so-far-for-revision" class="section level2 hasAnchor" number="9.5">
-<h2><span class="header-section-number">9.5</span> Additional Thoughts so far for revision<a href="read-and-write-data.html#additional-thoughts-so-far-for-revision" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="advanced-json-handling-with-httr2" class="section level3 hasAnchor" number="9.5.1">
-<h3><span class="header-section-number">9.5.1</span> <strong>7.4 Advanced JSON Handling with <code>httr2</code></strong><a href="read-and-write-data.html#advanced-json-handling-with-httr2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>While touched on converting API responses to data frames using <strong><code>jsonlite</code></strong>, we could delve deeper into JSON handling:</p>
-<ul>
-<li><strong>Parsing Nested JSON</strong>: Often, APIs return nested JSON structures. Teach how to handle and flatten these structures to convert them into usable data frames.</li>
-<li><strong>JSON to List</strong>: Before converting to a data frame, JSON can be converted to a list in R. This can be useful for certain types of analyses or data manipulations.</li>
-</ul>
-</div>
-<div id="caching-data-with-httr2" class="section level3 hasAnchor" number="9.5.2">
-<h3><span class="header-section-number">9.5.2</span> <strong>7.5 Caching Data with <code>httr2</code></strong><a href="read-and-write-data.html#caching-data-with-httr2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Given that <strong><code>httr2</code></strong> has caching capabilities, this can be a valuable addition:</p>
-<ul>
-<li><strong>Why Cache?</strong>: Explain the benefits of caching, especially when dealing with rate-limited APIs or to speed up development and analysis by not fetching data repeatedly.</li>
-<li><strong>Implementing Caching</strong>: Show how to use <strong><code>req_cache()</code></strong> in <strong><code>httr2</code></strong> to cache API responses.</li>
-</ul>
-</div>
-<div id="error-handling-and-retries-with-httr2" class="section level3 hasAnchor" number="9.5.3">
-<h3><span class="header-section-number">9.5.3</span> <strong>7.6 Error Handling and Retries with <code>httr2</code></strong><a href="read-and-write-data.html#error-handling-and-retries-with-httr2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Building on the capabilities of <strong><code>httr2</code></strong>:</p>
-<ul>
-<li><p><strong>Understanding HTTP Errors</strong>: Briefly explain common HTTP errors like 404 (Not Found) or 429 (Too Many Requests) and why they might occur when working with APIs.</p></li>
-<li><p><strong>Implementing Retries</strong>: Show how to use <strong><code>req_retry()</code></strong> in <strong><code>httr2</code></strong> to automatically retry if a request fails.</p></li>
-</ul>
-</div>
-<div id="advanced-api-techniques" class="section level3 hasAnchor" number="9.5.4">
-<h3><span class="header-section-number">9.5.4</span> <strong>7.7 Advanced API Techniques</strong><a href="read-and-write-data.html#advanced-api-techniques" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><strong>Pagination</strong>: Many APIs return data in pages, especially if there’s a lot of data. Teach how to handle paginated responses and fetch all data.</li>
-<li><strong>Rate Limiting</strong>: Explaining what rate limiting is and how to handle it, possibly by introducing pauses in requests or by using caching.</li>
-</ul>
-</div>
-<div id="introduction-to-web-scraping-altough-this-might-be-too-much..-and-even-if-its-important-for-data-sourcing-its-kind-of-a-grey-area-limited-by-rate-limits-or-considerations-with-tos." class="section level3 hasAnchor" number="9.5.5">
-<h3><span class="header-section-number">9.5.5</span> <strong>7.8 Introduction to Web Scraping</strong> (Altough, this might be too much.. and even if it’s important, for data sourcing, it’s kind of a grey area, limited by rate limits or considerations with ToS.)<a href="read-and-write-data.html#introduction-to-web-scraping-altough-this-might-be-too-much..-and-even-if-its-important-for-data-sourcing-its-kind-of-a-grey-area-limited-by-rate-limits-or-considerations-with-tos." class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>While APIs are a clean way to get data, not all websites offer them. We could introduce the concept of web scraping:</p>
-<ul>
-<li><strong>What is Web Scraping?</strong>: Briefly explain the concept and why it might be necessary.</li>
-<li><strong>Using <code>rvest</code> for Web Scraping</strong>: Introduce the <strong><code>rvest</code></strong> package, which is part of the tidyverse and is used for web scraping. We could provide a simple example of scraping data from a website.</li>
-<li><strong>Morality of Web Scraping</strong>: via. Ethical, Legal, Technical Considerations</li>
-</ul>
-
-</div>
 </div>
 </div>
             </section>
