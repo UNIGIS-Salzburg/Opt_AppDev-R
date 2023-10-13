@@ -129,3 +129,4 @@ basic-rmarkdown-syntax
 references-in-rmarkdown
 speed-up-your-workflows
 self-study
+common-pitfalls
