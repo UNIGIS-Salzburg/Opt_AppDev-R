@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 7 Data manipulation | Automated Data Processing with R</title>
+  <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 7 Data manipulation | Automated Data Processing with R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/branding/Cover_epub.png" />
+  <meta property="og:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
+  <meta name="github-repo" content="UNIGIS-Salzburg/En_AppDev-R" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 7 Data manipulation | Automated Data Processing with R" />
+  
+  <meta name="twitter:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
+  <meta name="twitter:image" content="/branding/Cover_epub.png" />
+
+<meta name="author" content="Christian Neuwirth &amp; Maximilian Elixhauser" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="functions.html"/>
+<link rel="next" href="spatial-data-manipulation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://unigis.at/en" target="_blank"><img alt="UNIGIS Salzburg" src="branding/UNIGIS_Salzburg_Schriftlogo_globe.png" width=100%></a></li>
+<li><a href="./">Automated Data Processing with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#about-this-module"><i class="fa fa-check"></i><b>1.1</b> About this module</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#r-programming-language"><i class="fa fa-check"></i><b>1.2</b> R programming language</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#installation-and-setup"><i class="fa fa-check"></i><b>1.3</b> Installation and Setup</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#interpreting-values"><i class="fa fa-check"></i><b>1.4</b> Interpreting values</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#simple-data-types"><i class="fa fa-check"></i><b>1.5</b> Simple data types</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#numop"><i class="fa fa-check"></i><b>1.6</b> Numeric operators</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#logical-operators"><i class="fa fa-check"></i><b>1.7</b> Logical operators</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#references"><i class="fa fa-check"></i><b>1.8</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="core.html"><a href="core.html"><i class="fa fa-check"></i><b>2</b> Core concepts</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="core.html"><a href="core.html#variables"><i class="fa fa-check"></i><b>2.1</b> Variables</a></li>
+<li class="chapter" data-level="2.2" data-path="core.html"><a href="core.html#algorithms-and-functions"><i class="fa fa-check"></i><b>2.2</b> Algorithms and functions</a></li>
+<li class="chapter" data-level="2.3" data-path="core.html"><a href="core.html#libraries"><i class="fa fa-check"></i><b>2.3</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>3</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-structures.html"><a href="data-structures.html#vectors"><i class="fa fa-check"></i><b>3.1</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-structures.html"><a href="data-structures.html#vector-element-selection"><i class="fa fa-check"></i><b>3.1.1</b> Vector element selection</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-structures.html"><a href="data-structures.html#functions-on-vectors"><i class="fa fa-check"></i><b>3.1.2</b> Functions on vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-structures.html"><a href="data-structures.html#multi-dimensional-data-types"><i class="fa fa-check"></i><b>3.2</b> Multi-dimensional data types</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="data-structures.html"><a href="data-structures.html#matrices"><i class="fa fa-check"></i><b>3.2.1</b> Matrices</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-structures.html"><a href="data-structures.html#arrays"><i class="fa fa-check"></i><b>3.2.2</b> Arrays</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-structures.html"><a href="data-structures.html#selection"><i class="fa fa-check"></i><b>3.2.3</b> Selection</a></li>
+<li class="chapter" data-level="3.2.4" data-path="data-structures.html"><a href="data-structures.html#list"><i class="fa fa-check"></i><b>3.2.4</b> List</a></li>
+<li class="chapter" data-level="3.2.5" data-path="data-structures.html"><a href="data-structures.html#data-frame"><i class="fa fa-check"></i><b>3.2.5</b> Data Frame</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html"><i class="fa fa-check"></i><b>4</b> Spatial Data Structures</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#vector-data-structures"><i class="fa fa-check"></i><b>4.1</b> Vector Data Structures</a></li>
+<li class="chapter" data-level="4.2" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#raster-data-structures"><i class="fa fa-check"></i><b>4.2</b> Raster Data Structures</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="spatial-data-structures.html"><a href="spatial-data-structures.html#working-with-spatraster-objects"><i class="fa fa-check"></i><b>4.2.1</b> Working with SpatRaster objects</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="control-structures.html"><a href="control-structures.html"><i class="fa fa-check"></i><b>5</b> Control structures</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="control-structures.html"><a href="control-structures.html#if"><i class="fa fa-check"></i><b>5.1</b> If</a></li>
+<li class="chapter" data-level="5.2" data-path="control-structures.html"><a href="control-structures.html#else"><i class="fa fa-check"></i><b>5.2</b> Else</a></li>
+<li class="chapter" data-level="5.3" data-path="control-structures.html"><a href="control-structures.html#code-blocks"><i class="fa fa-check"></i><b>5.3</b> Code blocks</a></li>
+<li class="chapter" data-level="5.4" data-path="control-structures.html"><a href="control-structures.html#loops"><i class="fa fa-check"></i><b>5.4</b> Loops</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="control-structures.html"><a href="control-structures.html#while-and-repeat"><i class="fa fa-check"></i><b>5.4.1</b> While and repeat</a></li>
+<li class="chapter" data-level="5.4.2" data-path="control-structures.html"><a href="control-structures.html#for"><i class="fa fa-check"></i><b>5.4.2</b> For</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="control-structures.html"><a href="control-structures.html#loops-with-conditional-statements"><i class="fa fa-check"></i><b>5.5</b> Loops with conditional statements</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="control-structures.html"><a href="control-structures.html#exercise-loops-with-conditional-statements"><i class="fa fa-check"></i><b>5.5.1</b> Exercise: loops with conditional statements</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>6</b> Functions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="functions.html"><a href="functions.html#defining-functions"><i class="fa fa-check"></i><b>6.1</b> Defining functions</a></li>
+<li class="chapter" data-level="6.2" data-path="functions.html"><a href="functions.html#more-parameters"><i class="fa fa-check"></i><b>6.2</b> More parameters</a></li>
+<li class="chapter" data-level="6.3" data-path="functions.html"><a href="functions.html#more-return-values"><i class="fa fa-check"></i><b>6.3</b> More return values</a></li>
+<li class="chapter" data-level="6.4" data-path="functions.html"><a href="functions.html#functions-and-control-structures"><i class="fa fa-check"></i><b>6.4</b> Functions and control structures</a></li>
+<li class="chapter" data-level="6.5" data-path="functions.html"><a href="functions.html#scope"><i class="fa fa-check"></i><b>6.5</b> Scope</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>7</b> Data manipulation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="data-manipulation.html"><a href="data-manipulation.html#preparation"><i class="fa fa-check"></i><b>7.1</b> Preparation</a></li>
+<li class="chapter" data-level="7.2" data-path="data-manipulation.html"><a href="data-manipulation.html#data-manipulation-1"><i class="fa fa-check"></i><b>7.2</b> Data manipulation</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="data-manipulation.html"><a href="data-manipulation.html#summarise"><i class="fa fa-check"></i><b>7.2.1</b> Summarise</a></li>
+<li class="chapter" data-level="7.2.2" data-path="data-manipulation.html"><a href="data-manipulation.html#select-and-filter"><i class="fa fa-check"></i><b>7.2.2</b> Select and filter</a></li>
+<li class="chapter" data-level="7.2.3" data-path="data-manipulation.html"><a href="data-manipulation.html#mutate"><i class="fa fa-check"></i><b>7.2.3</b> Mutate</a></li>
+<li class="chapter" data-level="7.2.4" data-path="data-manipulation.html"><a href="data-manipulation.html#arrange"><i class="fa fa-check"></i><b>7.2.4</b> Arrange</a></li>
+<li class="chapter" data-level="7.2.5" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-data-manipulation"><i class="fa fa-check"></i><b>7.2.5</b> Exercise: data manipulation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="data-manipulation.html"><a href="data-manipulation.html#join"><i class="fa fa-check"></i><b>7.3</b> Join</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="data-manipulation.html"><a href="data-manipulation.html#exercise-join"><i class="fa fa-check"></i><b>7.3.1</b> Exercise: join</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html"><i class="fa fa-check"></i><b>8</b> Spatial Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#spatial-aggregation"><i class="fa fa-check"></i><b>8.2</b> Spatial Aggregation</a></li>
+<li class="chapter" data-level="8.3" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#merging-and-appending-spatial-data"><i class="fa fa-check"></i><b>8.3</b> Merging and Appending Spatial Data</a></li>
+<li class="chapter" data-level="8.4" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#handling-missing-data"><i class="fa fa-check"></i><b>8.4</b> Handling Missing Data</a></li>
+<li class="chapter" data-level="8.5" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#spatial-data-cleaning"><i class="fa fa-check"></i><b>8.5</b> Spatial Data Cleaning</a></li>
+<li class="chapter" data-level="8.6" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#multidimensional-data-wrangling-with-stars"><i class="fa fa-check"></i><b>8.6</b> Multidimensional Data Wrangling with stars</a></li>
+<li class="chapter" data-level="8.7" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#challenges-in-spatial-data-structures"><i class="fa fa-check"></i><b>8.7</b> Challenges in Spatial Data Structures</a></li>
+<li class="chapter" data-level="8.8" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#dealing-with-large-spatial-datasets."><i class="fa fa-check"></i><b>8.8</b> Dealing with large spatial datasets.</a></li>
+<li class="chapter" data-level="8.9" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#case-study-a-complete-spatial-data-wrangling-workflow"><i class="fa fa-check"></i><b>8.9</b> Case Study: A Complete Spatial Data Wrangling Workflow</a></li>
+<li class="chapter" data-level="8.10" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#introduction-1"><i class="fa fa-check"></i><b>8.10</b> Introduction</a></li>
+<li class="chapter" data-level="8.11" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#filtering-spatial-data"><i class="fa fa-check"></i><b>8.11</b> Filtering Spatial Data</a></li>
+<li class="chapter" data-level="8.12" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#filtering-rasters-with-terra"><i class="fa fa-check"></i><b>8.12</b> Filtering Rasters with terra</a></li>
+<li class="chapter" data-level="8.13" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#spatial-joins-with-sf-though..-we-could-also-put-that-in-chapter-10-and-make-12-bigger-with-spatial-stat"><i class="fa fa-check"></i><b>8.13</b> Spatial Joins with sf (though.. we could also put that in Chapter 10 and make 12 bigger with spatial stat)</a></li>
+<li class="chapter" data-level="8.14" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#geometric-operations-with-sf"><i class="fa fa-check"></i><b>8.14</b> Geometric Operations with sf</a>
+<ul>
+<li class="chapter" data-level="8.14.1" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#intersect"><i class="fa fa-check"></i><b>8.14.1</b> Intersect</a></li>
+<li class="chapter" data-level="8.14.2" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#buffer"><i class="fa fa-check"></i><b>8.14.2</b> Buffer</a></li>
+<li class="chapter" data-level="8.14.3" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#union-and-difference"><i class="fa fa-check"></i><b>8.14.3</b> Union and Difference</a></li>
+</ul></li>
+<li class="chapter" data-level="8.15" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#coordinate-transformations-and-reprojections-with-sf-and-terra"><i class="fa fa-check"></i><b>8.15</b> Coordinate Transformations and Reprojections with sf and terra</a></li>
+<li class="chapter" data-level="8.16" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#raster-operations-with-terra"><i class="fa fa-check"></i><b>8.16</b> Raster Operations with terra</a>
+<ul>
+<li class="chapter" data-level="8.16.1" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#resampling"><i class="fa fa-check"></i><b>8.16.1</b> Resampling</a></li>
+<li class="chapter" data-level="8.16.2" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#raster-algebra"><i class="fa fa-check"></i><b>8.16.2</b> Raster Algebra</a></li>
+</ul></li>
+<li class="chapter" data-level="8.17" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#applied-spatial-statistics-with-spatstat"><i class="fa fa-check"></i><b>8.17</b> Applied Spatial Statistics with spatstat</a></li>
+<li class="chapter" data-level="8.18" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#comparative-analysis-of-packages"><i class="fa fa-check"></i><b>8.18</b> Comparative Analysis of Packages</a></li>
+<li class="chapter" data-level="8.19" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#exercise"><i class="fa fa-check"></i><b>8.19</b> Exercise</a></li>
+<li class="chapter" data-level="8.20" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#topological-relationships"><i class="fa fa-check"></i><b>8.20</b> Topological Relationships</a>
+<ul>
+<li class="chapter" data-level="8.20.1" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#resampling-raster-data-in-terra"><i class="fa fa-check"></i><b>8.20.1</b> Resampling Raster Data in Terra</a></li>
+<li class="chapter" data-level="8.20.2" data-path="spatial-data-manipulation.html"><a href="spatial-data-manipulation.html#basic-raster-operations"><i class="fa fa-check"></i><b>8.20.2</b> Basic Raster Operations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="read-and-write-data.html"><a href="read-and-write-data.html"><i class="fa fa-check"></i><b>9</b> Read and write data</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-tabular-data"><i class="fa fa-check"></i><b>9.1</b> Read and write tabular data</a></li>
+<li class="chapter" data-level="9.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-vector-data"><i class="fa fa-check"></i><b>9.2</b> Read and write vector data</a></li>
+<li class="chapter" data-level="9.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#read-and-write-raster-data"><i class="fa fa-check"></i><b>9.3</b> Read and write raster data</a></li>
+<li class="chapter" data-level="9.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#data-api"><i class="fa fa-check"></i><b>9.4</b> Data API</a></li>
+<li class="chapter" data-level="9.5" data-path="read-and-write-data.html"><a href="read-and-write-data.html#additional-thoughts-so-far-for-revision"><i class="fa fa-check"></i><b>9.5</b> Additional Thoughts so far for revision</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-json-handling-with-httr2"><i class="fa fa-check"></i><b>9.5.1</b> <strong>7.4 Advanced JSON Handling with <code>httr2</code></strong></a></li>
+<li class="chapter" data-level="9.5.2" data-path="read-and-write-data.html"><a href="read-and-write-data.html#caching-data-with-httr2"><i class="fa fa-check"></i><b>9.5.2</b> <strong>7.5 Caching Data with <code>httr2</code></strong></a></li>
+<li class="chapter" data-level="9.5.3" data-path="read-and-write-data.html"><a href="read-and-write-data.html#error-handling-and-retries-with-httr2"><i class="fa fa-check"></i><b>9.5.3</b> <strong>7.6 Error Handling and Retries with <code>httr2</code></strong></a></li>
+<li class="chapter" data-level="9.5.4" data-path="read-and-write-data.html"><a href="read-and-write-data.html#advanced-api-techniques"><i class="fa fa-check"></i><b>9.5.4</b> <strong>7.7 Advanced API Techniques</strong></a></li>
+<li class="chapter" data-level="9.5.5" data-path="read-and-write-data.html"><a href="read-and-write-data.html#introduction-to-web-scraping-altough-this-might-be-too-much..-and-even-if-its-important-for-data-sourcing-its-kind-of-a-grey-area-limited-by-rate-limits-or-considerations-with-tos."><i class="fa fa-check"></i><b>9.5.5</b> <strong>7.8 Introduction to Web Scraping</strong> (Altough, this might be too much.. and even if it’s important, for data sourcing, it’s kind of a grey area, limited by rate limits or considerations with ToS.)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>10</b> Data visualization</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-visualization.html"><a href="data-visualization.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>10.1</b> The Grammar of Graphics</a></li>
+<li class="chapter" data-level="10.2" data-path="data-visualization.html"><a href="data-visualization.html#visualization-of-distributions"><i class="fa fa-check"></i><b>10.2</b> Visualization of distributions</a></li>
+<li class="chapter" data-level="10.3" data-path="data-visualization.html"><a href="data-visualization.html#boxplots"><i class="fa fa-check"></i><b>10.3</b> Boxplots</a></li>
+<li class="chapter" data-level="10.4" data-path="data-visualization.html"><a href="data-visualization.html#scatterplots"><i class="fa fa-check"></i><b>10.4</b> Scatterplots</a></li>
+<li class="chapter" data-level="10.5" data-path="data-visualization.html"><a href="data-visualization.html#map-visualization"><i class="fa fa-check"></i><b>10.5</b> Map visualization</a></li>
+<li class="chapter" data-level="10.6" data-path="data-visualization.html"><a href="data-visualization.html#interactive-maps"><i class="fa fa-check"></i><b>10.6</b> Interactive Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>11</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="r-markdown.html"><a href="r-markdown.html#set-up-your-work-environment"><i class="fa fa-check"></i><b>11.1</b> Set up your work environment</a></li>
+<li class="chapter" data-level="11.2" data-path="r-markdown.html"><a href="r-markdown.html#create-a-local-clone"><i class="fa fa-check"></i><b>11.2</b> Create a local clone</a></li>
+<li class="chapter" data-level="11.3" data-path="r-markdown.html"><a href="r-markdown.html#create-a-first-rmarkdown-document"><i class="fa fa-check"></i><b>11.3</b> Create a first RMarkdown document</a></li>
+<li class="chapter" data-level="11.4" data-path="r-markdown.html"><a href="r-markdown.html#synchronize-with-github"><i class="fa fa-check"></i><b>11.4</b> Synchronize with GitHub</a></li>
+<li class="chapter" data-level="11.5" data-path="r-markdown.html"><a href="r-markdown.html#basic-rmarkdown-syntax"><i class="fa fa-check"></i><b>11.5</b> Basic RMarkdown syntax</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="r-markdown.html"><a href="r-markdown.html#references-in-rmarkdown"><i class="fa fa-check"></i><b>11.5.1</b> References in RMarkdown</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="r-markdown.html"><a href="r-markdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>11.6</b> Speed up your workflows</a></li>
+<li class="chapter" data-level="11.7" data-path="r-markdown.html"><a href="r-markdown.html#self-study"><i class="fa fa-check"></i><b>11.7</b> Self-study</a></li>
+</ul></li>
+<li class="divider"></li>
+<li>Copyright © UNIGIS Salzburg.</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Automated Data Processing with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-manipulation" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Lesson 7</span> Data manipulation<a href="data-manipulation.html#data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+
+<div class="rmdtip">
+<p>In most instances the structure of the available data will not meet the specific requirements to perform the analyses you are interested in. Data analysts typically spend the majority of their time cleaning, filtering, restructuring data as well as harmonizing and joining data from different sources.</p>
+<p>This lesson introduces to the most common data wrangling operations by means of the dplyr library (part of the Tidyverse libraries), which offers a grammar for data manipulation.</p>
+You will also get to know <a href="https://tibble.tidyverse.org/" target="_blank">tibbles</a>, which is another data structure in R. Tibbles are basically a lightweight version of data frames (see <a href="https://r4ds.had.co.nz/tibbles.html" target="_blank">Tibbles in R for Data Science</a>).
+</div>
+<div id="preparation" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Preparation<a href="data-manipulation.html#preparation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If not yet installed on your machine, install the libraries <code>tidyverse</code> as well as <code>nycflights13</code> (see Libraries in lesson <a href="core.html#core">core Concepts</a>).</p>
+<p>The code below, loads a sample dataset (a <a href="https://tibble.tidyverse.org/" target="_blank">tibble</a>) from the library <code>nycflights13</code> into the variable <code>flights_from_nyc</code>. We will use this sample data in this lesson.</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="data-manipulation.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb157-2"><a href="data-manipulation.html#cb157-2" aria-hidden="true" tabindex="-1"></a>flights_from_nyc <span class="ot">&lt;-</span> nycflights13<span class="sc">::</span>flights</span></code></pre></div>
+<p>The operator <code>::</code> is used to indicate that the function <code>flights</code> (that returns our sample dataset) is situated within the library <code>nycflights13</code>. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names.</p>
+<p>In order to run the following data wrangling examples on your machine, add both lines above as well as the code snippets provided in the upcoming examples to a new R script file.</p>
+
+<div class="rmdtip">
+<p>Once you have loaded the flights table, open the <strong>Environment Tab</strong> in RStudio and double-click variable <code>flights_from_nyc</code> to inspect the variable contents.</p>
+<p>Alternatively, you may inspect <code>flights_from_nyc</code> by writing it to the console.</p>
+</div>
+</div>
+<div id="data-manipulation-1" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Data manipulation<a href="data-manipulation.html#data-manipulation-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The library <code>dplyr</code> provides a number of functions to investigate basic characteristics of inputs. For instance, the function <code>count()</code> can be used to count the number of rows of a data frame or tibble. The code below uses <code>flights_from_nyc</code> as input to the function.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="data-manipulation.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb158-2"><a href="data-manipulation.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb158-3"><a href="data-manipulation.html#cb158-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb158-4"><a href="data-manipulation.html#cb158-4" aria-hidden="true" tabindex="-1"></a>flights_from_nyc <span class="sc">%&gt;%</span></span>
+<span id="cb158-5"><a href="data-manipulation.html#cb158-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb158-6"><a href="data-manipulation.html#cb158-6" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">336776</td>
+</tr>
+</tbody>
+</table>
+<p>In the code example above, we use the so called <strong>pipe operator</strong> <code>%&gt;%</code>, which is included in <code>tidyverse</code>, as well as a function named <code>kable()</code> of library <code>knitr</code> to render the output.</p>
+
+<div class="rmdtip">
+<p>The pipe operator allows us to link a sequence of analysis steps. In the example above, <code>flights_from_nyc</code> is passed into function <code>count()</code> and the output is passed into function <code>kable()</code> to render the result_df</p>
+The pipe operator is a powerful tool to simplify your code. See <a href="https://www.youtube.com/watch?v=sohARFx6aTo" target="_blank">this video</a> to learn more about it.
+</div>
+<p>The function <code>count()</code> can also be used to count the number of rows of a table that has the same value for a given column, usually representing a category.</p>
+<p>In the example below, the column name <code>origin</code> is provided as an argument to the function <code>count()</code>, so rows representing flights from the same origin are counted together – EWR is the Newark Liberty International Airport, JFK is the John F. Kennedy International Airport, and LGA is LaGuardia Airport.</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="data-manipulation.html#cb159-1" aria-hidden="true" tabindex="-1"></a>flights_from_nyc <span class="sc">%&gt;%</span></span>
+<span id="cb159-2"><a href="data-manipulation.html#cb159-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(origin) <span class="sc">%&gt;%</span></span>
+<span id="cb159-3"><a href="data-manipulation.html#cb159-3" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">origin</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">EWR</td>
+<td align="right">120835</td>
+</tr>
+<tr class="even">
+<td align="left">JFK</td>
+<td align="right">111279</td>
+</tr>
+<tr class="odd">
+<td align="left">LGA</td>
+<td align="right">104662</td>
+</tr>
+</tbody>
+</table>
+<p>As you can see, the code above is formatted in a way similar to a code block, although it is not a code block. The code goes to a new line after every <code>%&gt;%</code>, and space is added at the beginning of new lines. That is very common in R programming (especially when functions have many parameters) as it makes the code more readable.</p>
+<div id="summarise" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Summarise<a href="data-manipulation.html#summarise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To carry out more complex aggregations, the function <code>summarise(</code>) can be used in combination with the function <code>group_by()</code> to summarise the values of the rows of a data frame or tibble. Rows having the same value for a selected column (in the example below, the same <code>origin</code>) are grouped together, then values are aggregated based on the defined function (using one or more columns in the calculation).</p>
+<p>In the example below, the function <code>sum()</code> is applied to the column <code>distance</code> to calculate a new column <code>mean_distance_traveled_from</code> (the mean distance travelled by flights starting from each airport).</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-manipulation.html#cb160-1" aria-hidden="true" tabindex="-1"></a>flights_from_nyc <span class="sc">%&gt;%</span></span>
+<span id="cb160-2"><a href="data-manipulation.html#cb160-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(origin) <span class="sc">%&gt;%</span></span>
+<span id="cb160-3"><a href="data-manipulation.html#cb160-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb160-4"><a href="data-manipulation.html#cb160-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_distance_traveled_from =</span> <span class="fu">mean</span>(distance)</span>
+<span id="cb160-5"><a href="data-manipulation.html#cb160-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb160-6"><a href="data-manipulation.html#cb160-6" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">origin</th>
+<th align="right">mean_distance_traveled_from</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">EWR</td>
+<td align="right">1056.7428</td>
+</tr>
+<tr class="even">
+<td align="left">JFK</td>
+<td align="right">1266.2491</td>
+</tr>
+<tr class="odd">
+<td align="left">LGA</td>
+<td align="right">779.8357</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="select-and-filter" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Select and filter<a href="data-manipulation.html#select-and-filter" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The function <code>select()</code> can be used to select a subset of <strong>columns</strong>. For instance in the code below, the function <code>select()</code> is used to select the columns <code>origin</code>, <code>dest</code>, and <code>dep_delay</code>. The function <code>slice_head</code> is used to include only the first <code>n</code> rows in the output.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="data-manipulation.html#cb161-1" aria-hidden="true" tabindex="-1"></a>flights_from_nyc <span class="sc">%&gt;%</span></span>
+<span id="cb161-2"><a href="data-manipulation.html#cb161-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(origin, dest, dep_delay) <span class="sc">%&gt;%</span></span>
+<span id="cb161-3"><a href="data-manipulation.html#cb161-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb161-4"><a href="data-manipulation.html#cb161-4" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">origin</th>
+<th align="left">dest</th>
+<th align="right">dep_delay</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">EWR</td>
+<td align="left">IAH</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">LGA</td>
+<td align="left">IAH</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">JFK</td>
+<td align="left">MIA</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">JFK</td>
+<td align="left">BQN</td>
+<td align="right">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">LGA</td>
+<td align="left">ATL</td>
+<td align="right">-6</td>
+</tr>
+</tbody>
+</table>
+<p>The function <code>filter()</code> can instead be used to filter <strong>rows</strong> based on a specified condition. In the example below, the output of the <code>filter</code> step only includes the rows where the value of <code>month</code> is <code>11</code> (i.e., the eleventh month, November).</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="data-manipulation.html#cb162-1" aria-hidden="true" tabindex="-1"></a>flights_from_nyc <span class="sc">%&gt;%</span></span>
+<span id="cb162-2"><a href="data-manipulation.html#cb162-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(origin, dest, year, month, day, dep_delay) <span class="sc">%&gt;%</span></span>
+<span id="cb162-3"><a href="data-manipulation.html#cb162-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">11</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb162-4"><a href="data-manipulation.html#cb162-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb162-5"><a href="data-manipulation.html#cb162-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">origin</th>
+<th align="left">dest</th>
+<th align="right">year</th>
+<th align="right">month</th>
+<th align="right">day</th>
+<th align="right">dep_delay</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">JFK</td>
+<td align="left">PSE</td>
+<td align="right">2013</td>
+<td align="right">11</td>
+<td align="right">1</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">JFK</td>
+<td align="left">SYR</td>
+<td align="right">2013</td>
+<td align="right">11</td>
+<td align="right">1</td>
+<td align="right">105</td>
+</tr>
+<tr class="odd">
+<td align="left">EWR</td>
+<td align="left">CLT</td>
+<td align="right">2013</td>
+<td align="right">11</td>
+<td align="right">1</td>
+<td align="right">-5</td>
+</tr>
+<tr class="even">
+<td align="left">LGA</td>
+<td align="left">IAH</td>
+<td align="right">2013</td>
+<td align="right">11</td>
+<td align="right">1</td>
+<td align="right">-6</td>
+</tr>
+<tr class="odd">
+<td align="left">JFK</td>
+<td align="left">MIA</td>
+<td align="right">2013</td>
+<td align="right">11</td>
+<td align="right">1</td>
+<td align="right">-3</td>
+</tr>
+</tbody>
+</table>
+<p>Notice how <code>filter</code> is used in combination with <code>select</code>. All functions in the <code>dplyr</code> library can be combined, in any other order that makes logical sense. However, if the <code>select</code> step didn’t include <code>month</code>, that same column couldn’t have been used in the <code>filter</code> step.</p>
+</div>
+<div id="mutate" class="section level3 hasAnchor" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> Mutate<a href="data-manipulation.html#mutate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The function <code>mutate()</code> can be used to add a new column to an output table. The <code>mutate</code> step in the code below adds a new column <code>air_time_hours</code> to the table obtained through the pipe, that is the flight air time in hours, dividing the flight air time in minutes by <code>60</code>.</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="data-manipulation.html#cb163-1" aria-hidden="true" tabindex="-1"></a>flights_from_nyc <span class="sc">%&gt;%</span></span>
+<span id="cb163-2"><a href="data-manipulation.html#cb163-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(flight, origin, dest, air_time) <span class="sc">%&gt;%</span></span>
+<span id="cb163-3"><a href="data-manipulation.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb163-4"><a href="data-manipulation.html#cb163-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">air_time_hours =</span> air_time <span class="sc">/</span> <span class="dv">60</span></span>
+<span id="cb163-5"><a href="data-manipulation.html#cb163-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb163-6"><a href="data-manipulation.html#cb163-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb163-7"><a href="data-manipulation.html#cb163-7" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">flight</th>
+<th align="left">origin</th>
+<th align="left">dest</th>
+<th align="right">air_time</th>
+<th align="right">air_time_hours</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1545</td>
+<td align="left">EWR</td>
+<td align="left">IAH</td>
+<td align="right">227</td>
+<td align="right">3.783333</td>
+</tr>
+<tr class="even">
+<td align="right">1714</td>
+<td align="left">LGA</td>
+<td align="left">IAH</td>
+<td align="right">227</td>
+<td align="right">3.783333</td>
+</tr>
+<tr class="odd">
+<td align="right">1141</td>
+<td align="left">JFK</td>
+<td align="left">MIA</td>
+<td align="right">160</td>
+<td align="right">2.666667</td>
+</tr>
+<tr class="even">
+<td align="right">725</td>
+<td align="left">JFK</td>
+<td align="left">BQN</td>
+<td align="right">183</td>
+<td align="right">3.050000</td>
+</tr>
+<tr class="odd">
+<td align="right">461</td>
+<td align="left">LGA</td>
+<td align="left">ATL</td>
+<td align="right">116</td>
+<td align="right">1.933333</td>
+</tr>
+</tbody>
+</table>
+
+<div class="rmdexercise">
+<p>Run the mutate example above in a new script and replace <code>dplyr::mutate</code> by <code>dplyr::transmute</code>. What happens to your results?</p>
+<details closed>
+<summary>
+<ins>
+<strong>See solution!</strong>
+</ins>
+</summary>
+<p>
+<p><i><font color="grey"></p>
+<p>The <code>transmute</code> function adds a new column to the table and drops existing ones.</p>
+</font></i>
+</p>
+</details>
+</div>
+</div>
+<div id="arrange" class="section level3 hasAnchor" number="7.2.4">
+<h3><span class="header-section-number">7.2.4</span> Arrange<a href="data-manipulation.html#arrange" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The function <code>arrange()</code> sorts a tibble or data frame by ascending order of the values in the specified column. If a negative sign is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="data-manipulation.html#cb164-1" aria-hidden="true" tabindex="-1"></a>flights_from_nyc <span class="sc">%&gt;%</span></span>
+<span id="cb164-2"><a href="data-manipulation.html#cb164-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(origin, dest, air_time) <span class="sc">%&gt;%</span></span>
+<span id="cb164-3"><a href="data-manipulation.html#cb164-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(<span class="sc">-</span>air_time) <span class="sc">%&gt;%</span></span>
+<span id="cb164-4"><a href="data-manipulation.html#cb164-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb164-5"><a href="data-manipulation.html#cb164-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">origin</th>
+<th align="left">dest</th>
+<th align="right">air_time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">EWR</td>
+<td align="left">HNL</td>
+<td align="right">695</td>
+</tr>
+<tr class="even">
+<td align="left">JFK</td>
+<td align="left">HNL</td>
+<td align="right">691</td>
+</tr>
+<tr class="odd">
+<td align="left">JFK</td>
+<td align="left">HNL</td>
+<td align="right">686</td>
+</tr>
+<tr class="even">
+<td align="left">JFK</td>
+<td align="left">HNL</td>
+<td align="right">686</td>
+</tr>
+<tr class="odd">
+<td align="left">JFK</td>
+<td align="left">HNL</td>
+<td align="right">683</td>
+</tr>
+</tbody>
+</table>
+<p>In the examples above, we have used <code>slice_head</code> to present only the first <code>n</code> rows in a table, based on the existing order.</p>
+</div>
+<div id="exercise-data-manipulation" class="section level3 hasAnchor" number="7.2.5">
+<h3><span class="header-section-number">7.2.5</span> Exercise: data manipulation<a href="data-manipulation.html#exercise-data-manipulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+
+<div class="rmdexercise">
+<p>The Food and Agriculture Organization (FAO) is a specialized agency of the United Nations that leads international efforts to defeat hunger. On their <a href="http://www.fao.org/home/en/" target="_blank">Website</a> they provide comprehensive datasets on global crop and livestock production. Your task in this exercise is to create a table that shows national African sorghum production in 2019.</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Create an RScript and install or load the libraries <code>tidyverse</code> and <code>knitr</code>, if not done yet.</li>
+<li>Bulk download <a href="http://www.fao.org/faostat/en/#data/QCL" target="_blank">African Crop and Livestock Production</a> data as CSV:</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L06-faodata"></span>
+<img src="images/FAODataAfrica.png" alt="FAO Data Download" width="100%" />
+<p class="caption">
+Figure 7.1: FAO Data Download
+</p>
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>Read data from comma-separated CSV (“Production_Crops_Livestock_E_Africa_NOFLAG.csv”) into your Script.</li>
+</ol>
+<pre echo="FALSE"><code>fao_data &lt;- read.csv(directory as string, header = TRUE, sep = &quot;,&quot;)</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Use the pipe operator to perform the following operations:
+<ol style="list-style-type: lower-alpha">
+<li>Select columns Area, Item, Element, Unit and Y2019</li>
+<li>Filter rows that contain sorghum production (Item == “Sorghum” &amp; Element == “Production”)</li>
+<li>Sort the table based on yield in descending order (arrange)</li>
+<li>remove rows including <code>No Data</code> by means of function <code>drop_na()</code></li>
+<li>render the table using the function <code>kable()</code> of <code>library knitr</code></li>
+</ol></li>
+</ol>
+<p>See <a href="Solution_Exercise_DataWrangling1.R" target="_blank">my solution</a>!</p>
+</div>
+</div>
+<div id="join" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Join<a href="data-manipulation.html#join" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A join operation combines two tables into one by matching rows that have the same values in the specified column. This operation is usually executed on columns containing identifiers, which are matched through different tables containing different data about the same real-world entities. For instance, the <strong>table below</strong> (data frame <code>city_telephone_prexix</code>) presents the telephone prefixes for two cities. That information can be combined with the data present in the <strong>second table below</strong> (data frame <code>city_info_wide</code>) through a join operation on the columns containing the city names. As the two tables do not contain all the same cities, if a full join operation is executed, some cells have no values assigned.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="data-manipulation.html#cb166-1" aria-hidden="true" tabindex="-1"></a>city_telephone_prexix <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb166-2"><a href="data-manipulation.html#cb166-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">city =</span> <span class="fu">c</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Birmingham&quot;</span>, <span class="st">&quot;London&quot;</span>),</span>
+<span id="cb166-3"><a href="data-manipulation.html#cb166-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">telephon_prefix =</span> <span class="fu">c</span>(<span class="st">&quot;0116&quot;</span>, <span class="st">&quot;0121&quot;</span>, <span class="st">&quot;0171&quot;</span>)</span>
+<span id="cb166-4"><a href="data-manipulation.html#cb166-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb166-5"><a href="data-manipulation.html#cb166-5" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>()</span>
+<span id="cb166-6"><a href="data-manipulation.html#cb166-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-7"><a href="data-manipulation.html#cb166-7" aria-hidden="true" tabindex="-1"></a>city_telephone_prexix <span class="sc">%&gt;%</span></span>
+<span id="cb166-8"><a href="data-manipulation.html#cb166-8" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="left">0116</td>
+</tr>
+<tr class="even">
+<td align="left">Birmingham</td>
+<td align="left">0121</td>
+</tr>
+<tr class="odd">
+<td align="left">London</td>
+<td align="left">0171</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="data-manipulation.html#cb167-1" aria-hidden="true" tabindex="-1"></a>city_info_wide <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb167-2"><a href="data-manipulation.html#cb167-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">city =</span> <span class="fu">c</span>(<span class="st">&quot;Leicester&quot;</span>, <span class="st">&quot;Nottingham&quot;</span>),</span>
+<span id="cb167-3"><a href="data-manipulation.html#cb167-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">population =</span> <span class="fu">c</span>(<span class="dv">329839</span>, <span class="dv">321500</span>),</span>
+<span id="cb167-4"><a href="data-manipulation.html#cb167-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">area =</span> <span class="fu">c</span>(<span class="fl">73.3</span>, <span class="fl">74.6</span>),</span>
+<span id="cb167-5"><a href="data-manipulation.html#cb167-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">density =</span> <span class="fu">c</span>(<span class="dv">4500</span>, <span class="dv">4412</span>)</span>
+<span id="cb167-6"><a href="data-manipulation.html#cb167-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb167-7"><a href="data-manipulation.html#cb167-7" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>()</span>
+<span id="cb167-8"><a href="data-manipulation.html#cb167-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb167-9"><a href="data-manipulation.html#cb167-9" aria-hidden="true" tabindex="-1"></a>city_info_wide <span class="sc">%&gt;%</span></span>
+<span id="cb167-10"><a href="data-manipulation.html#cb167-10" aria-hidden="true" tabindex="-1"></a> knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+</tr>
+<tr class="even">
+<td align="left">Nottingham</td>
+<td align="right">321500</td>
+<td align="right">74.6</td>
+<td align="right">4412</td>
+</tr>
+</tbody>
+</table>
+
+<div class="rmdtip">
+Note that data frames in the code above are converted to <a href="https://tibble.tidyverse.org/" target="_blank">tibbles</a>. This step is needed as the function <code>kable()</code> takes <code>tibbles</code> as an input.
+</div>
+<p>The <code>dplyr</code> library offers different types of join operations, which correspond to the different <code>SQL</code> joins illustrated in the image below.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L06-joins"></span>
+<img src="images/joins.png" alt="Join types" width="70%" />
+<p class="caption">
+Figure 7.2: Join types
+</p>
+</div>
+<p>Please take your time to understand the examples below and check out the <a href="https://www.rdocumentation.org/packages/dplyr/versions/0.7.8/topics/join" target="_blank">related <code>dplyr</code> help pages</a> before continuing. The first four examples execute the exact same <em>full join</em> operation using three different syntaxes: with or without using the pipe operator and specifying the <code>by</code> argument or not. Note that all those approaches to writing the join are valid and produce the same result. The choice about which approach to use will depend on the code you are writing. In particular, you might find it useful to use the syntax that uses the pipe operator when the join operation is itself only one stem in a series of data manipulation steps. Using the <code>by</code> argument is usually advisable unless you are certain that you aim to join two tables with all and exactly the column that have the same names in the two table.</p>
+<p>Note how the result of the join operations is <em>not</em> saved to a variable. The function <code>knitr::kable</code> is added after each join operation through a pipe <code>%&gt;%</code> to display the resulting table in a nice format.</p>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="data-manipulation.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 1: without using the pipe operator</span></span>
+<span id="cb168-2"><a href="data-manipulation.html#cb168-2" aria-hidden="true" tabindex="-1"></a><span class="co"># full join verb</span></span>
+<span id="cb168-3"><a href="data-manipulation.html#cb168-3" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">full_join</span>(</span>
+<span id="cb168-4"><a href="data-manipulation.html#cb168-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># left table</span></span>
+<span id="cb168-5"><a href="data-manipulation.html#cb168-5" aria-hidden="true" tabindex="-1"></a>    city_info_wide,</span>
+<span id="cb168-6"><a href="data-manipulation.html#cb168-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># right table</span></span>
+<span id="cb168-7"><a href="data-manipulation.html#cb168-7" aria-hidden="true" tabindex="-1"></a>    city_telephone_prexix,</span>
+<span id="cb168-8"><a href="data-manipulation.html#cb168-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># columns to match</span></span>
+<span id="cb168-9"><a href="data-manipulation.html#cb168-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;city&quot;</span> <span class="ot">=</span> <span class="st">&quot;city&quot;</span>)</span>
+<span id="cb168-10"><a href="data-manipulation.html#cb168-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb168-11"><a href="data-manipulation.html#cb168-11" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+<td align="left">0116</td>
+</tr>
+<tr class="even">
+<td align="left">Nottingham</td>
+<td align="right">321500</td>
+<td align="right">74.6</td>
+<td align="right">4412</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Birmingham</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0121</td>
+</tr>
+<tr class="even">
+<td align="left">London</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0171</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="data-manipulation.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 2: without using the pipe operator</span></span>
+<span id="cb169-2"><a href="data-manipulation.html#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   and without using the argument &quot;by&quot;</span></span>
+<span id="cb169-3"><a href="data-manipulation.html#cb169-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   as columns have the same name</span></span>
+<span id="cb169-4"><a href="data-manipulation.html#cb169-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   in the two tables.</span></span>
+<span id="cb169-5"><a href="data-manipulation.html#cb169-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Same result as Option 1</span></span>
+<span id="cb169-6"><a href="data-manipulation.html#cb169-6" aria-hidden="true" tabindex="-1"></a><span class="co"># full join verb</span></span>
+<span id="cb169-7"><a href="data-manipulation.html#cb169-7" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">full_join</span>(</span>
+<span id="cb169-8"><a href="data-manipulation.html#cb169-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># left table</span></span>
+<span id="cb169-9"><a href="data-manipulation.html#cb169-9" aria-hidden="true" tabindex="-1"></a>    city_info_wide,</span>
+<span id="cb169-10"><a href="data-manipulation.html#cb169-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># right table</span></span>
+<span id="cb169-11"><a href="data-manipulation.html#cb169-11" aria-hidden="true" tabindex="-1"></a>    city_telephone_prexix</span>
+<span id="cb169-12"><a href="data-manipulation.html#cb169-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb169-13"><a href="data-manipulation.html#cb169-13" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+<td align="left">0116</td>
+</tr>
+<tr class="even">
+<td align="left">Nottingham</td>
+<td align="right">321500</td>
+<td align="right">74.6</td>
+<td align="right">4412</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Birmingham</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0121</td>
+</tr>
+<tr class="even">
+<td align="left">London</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0171</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="data-manipulation.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 3: using the pipe operator</span></span>
+<span id="cb170-2"><a href="data-manipulation.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   and without using the argument &quot;by&quot;</span></span>
+<span id="cb170-3"><a href="data-manipulation.html#cb170-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   as columns have the same name</span></span>
+<span id="cb170-4"><a href="data-manipulation.html#cb170-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   in the two tables.</span></span>
+<span id="cb170-5"><a href="data-manipulation.html#cb170-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Same result as Option 1 and 2</span></span>
+<span id="cb170-6"><a href="data-manipulation.html#cb170-6" aria-hidden="true" tabindex="-1"></a><span class="co"># left table</span></span>
+<span id="cb170-7"><a href="data-manipulation.html#cb170-7" aria-hidden="true" tabindex="-1"></a>city_info_wide <span class="sc">%&gt;%</span></span>
+<span id="cb170-8"><a href="data-manipulation.html#cb170-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># full join verb</span></span>
+<span id="cb170-9"><a href="data-manipulation.html#cb170-9" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">full_join</span>(</span>
+<span id="cb170-10"><a href="data-manipulation.html#cb170-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># right table</span></span>
+<span id="cb170-11"><a href="data-manipulation.html#cb170-11" aria-hidden="true" tabindex="-1"></a>    city_telephone_prexix</span>
+<span id="cb170-12"><a href="data-manipulation.html#cb170-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb170-13"><a href="data-manipulation.html#cb170-13" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+<td align="left">0116</td>
+</tr>
+<tr class="even">
+<td align="left">Nottingham</td>
+<td align="right">321500</td>
+<td align="right">74.6</td>
+<td align="right">4412</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Birmingham</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0121</td>
+</tr>
+<tr class="even">
+<td align="left">London</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0171</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="data-manipulation.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Option 4: using the pipe operator</span></span>
+<span id="cb171-2"><a href="data-manipulation.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   and using the argument &quot;by&quot;.</span></span>
+<span id="cb171-3"><a href="data-manipulation.html#cb171-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Same result as Option 1, 2 and 3</span></span>
+<span id="cb171-4"><a href="data-manipulation.html#cb171-4" aria-hidden="true" tabindex="-1"></a><span class="co"># left table</span></span>
+<span id="cb171-5"><a href="data-manipulation.html#cb171-5" aria-hidden="true" tabindex="-1"></a>city_info_wide <span class="sc">%&gt;%</span></span>
+<span id="cb171-6"><a href="data-manipulation.html#cb171-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># full join verb</span></span>
+<span id="cb171-7"><a href="data-manipulation.html#cb171-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">full_join</span>(</span>
+<span id="cb171-8"><a href="data-manipulation.html#cb171-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># right table</span></span>
+<span id="cb171-9"><a href="data-manipulation.html#cb171-9" aria-hidden="true" tabindex="-1"></a>    city_telephone_prexix,</span>
+<span id="cb171-10"><a href="data-manipulation.html#cb171-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># columns to match</span></span>
+<span id="cb171-11"><a href="data-manipulation.html#cb171-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;city&quot;</span> <span class="ot">=</span> <span class="st">&quot;city&quot;</span>)</span>
+<span id="cb171-12"><a href="data-manipulation.html#cb171-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb171-13"><a href="data-manipulation.html#cb171-13" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+<td align="left">0116</td>
+</tr>
+<tr class="even">
+<td align="left">Nottingham</td>
+<td align="right">321500</td>
+<td align="right">74.6</td>
+<td align="right">4412</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Birmingham</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0121</td>
+</tr>
+<tr class="even">
+<td align="left">London</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0171</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="data-manipulation.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Left join</span></span>
+<span id="cb172-2"><a href="data-manipulation.html#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using syntax similar to Option 1 above</span></span>
+<span id="cb172-3"><a href="data-manipulation.html#cb172-3" aria-hidden="true" tabindex="-1"></a><span class="co"># left join</span></span>
+<span id="cb172-4"><a href="data-manipulation.html#cb172-4" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">left_join</span>(</span>
+<span id="cb172-5"><a href="data-manipulation.html#cb172-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># left table</span></span>
+<span id="cb172-6"><a href="data-manipulation.html#cb172-6" aria-hidden="true" tabindex="-1"></a>    city_info_wide, </span>
+<span id="cb172-7"><a href="data-manipulation.html#cb172-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># right table</span></span>
+<span id="cb172-8"><a href="data-manipulation.html#cb172-8" aria-hidden="true" tabindex="-1"></a>    city_telephone_prexix,</span>
+<span id="cb172-9"><a href="data-manipulation.html#cb172-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># columns to match</span></span>
+<span id="cb172-10"><a href="data-manipulation.html#cb172-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;city&quot;</span> <span class="ot">=</span> <span class="st">&quot;city&quot;</span>)</span>
+<span id="cb172-11"><a href="data-manipulation.html#cb172-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb172-12"><a href="data-manipulation.html#cb172-12" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+<td align="left">0116</td>
+</tr>
+<tr class="even">
+<td align="left">Nottingham</td>
+<td align="right">321500</td>
+<td align="right">74.6</td>
+<td align="right">4412</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="data-manipulation.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Right join</span></span>
+<span id="cb173-2"><a href="data-manipulation.html#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using syntax similar to Option 2 above</span></span>
+<span id="cb173-3"><a href="data-manipulation.html#cb173-3" aria-hidden="true" tabindex="-1"></a><span class="co"># right join verb</span></span>
+<span id="cb173-4"><a href="data-manipulation.html#cb173-4" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">right_join</span>(</span>
+<span id="cb173-5"><a href="data-manipulation.html#cb173-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># left table</span></span>
+<span id="cb173-6"><a href="data-manipulation.html#cb173-6" aria-hidden="true" tabindex="-1"></a>    city_info_wide, </span>
+<span id="cb173-7"><a href="data-manipulation.html#cb173-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># right table</span></span>
+<span id="cb173-8"><a href="data-manipulation.html#cb173-8" aria-hidden="true" tabindex="-1"></a>    city_telephone_prexix</span>
+<span id="cb173-9"><a href="data-manipulation.html#cb173-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb173-10"><a href="data-manipulation.html#cb173-10" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+<td align="left">0116</td>
+</tr>
+<tr class="even">
+<td align="left">Birmingham</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0121</td>
+</tr>
+<tr class="odd">
+<td align="left">London</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">0171</td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="data-manipulation.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inner join</span></span>
+<span id="cb174-2"><a href="data-manipulation.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Using syntax similar to Option 3 above</span></span>
+<span id="cb174-3"><a href="data-manipulation.html#cb174-3" aria-hidden="true" tabindex="-1"></a><span class="co"># left table</span></span>
+<span id="cb174-4"><a href="data-manipulation.html#cb174-4" aria-hidden="true" tabindex="-1"></a>city_info_wide <span class="sc">%&gt;%</span></span>
+<span id="cb174-5"><a href="data-manipulation.html#cb174-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># inner join</span></span>
+<span id="cb174-6"><a href="data-manipulation.html#cb174-6" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">inner_join</span>(</span>
+<span id="cb174-7"><a href="data-manipulation.html#cb174-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># right table</span></span>
+<span id="cb174-8"><a href="data-manipulation.html#cb174-8" aria-hidden="true" tabindex="-1"></a>    city_telephone_prexix</span>
+<span id="cb174-9"><a href="data-manipulation.html#cb174-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb174-10"><a href="data-manipulation.html#cb174-10" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">city</th>
+<th align="right">population</th>
+<th align="right">area</th>
+<th align="right">density</th>
+<th align="left">telephon_prefix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Leicester</td>
+<td align="right">329839</td>
+<td align="right">73.3</td>
+<td align="right">4500</td>
+<td align="left">0116</td>
+</tr>
+</tbody>
+</table>
+<div id="exercise-join" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Exercise: join<a href="data-manipulation.html#exercise-join" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+
+<div class="rmdexercise">
+<p>In the previous exercise we have created a table that shows national African sorghum production in 2019. In this exercise we will join crop production statistics with a table that contains national boundaries and visualize sorghum production quantities in a simple map.</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>Create an RScript and install and load the libraries <code>tidyverse</code>, <code>knitr</code>, <code>ggplot2</code> and <code>maps</code>, if not done yet.</li>
+<li>Copy the <a href="Solution_Exercise_DataWrangling1.R" target="_blank">code from the previous exercise</a> into your new RScript. Note that the result of the pipe operations is <em>not</em> saved to a variable. Save it to a variable.</li>
+<li>Use the <code>ggplot2</code> function <code>map_data</code> to convert the built in sample dataset <code>world</code> (comes with library <code>maps</code>) to a data frame:</li>
+</ol>
+<pre echo="FALSE"><code>world_ctry &lt;- map_data(&quot;world&quot;) </code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Inspect the structure of this data frame. Every row represents a node (defined by long/lat) of a polygon feature (national boundaries).</li>
+<li>Join tables (left table: geographic features, right table: sorghum production statistics) based on country names. Make sure to choose a join method (<code>full_join</code>, <code>inner_join</code>, <code>left_join</code> or <code>right_join</code>) that allows for retaining all the geographic features.</li>
+</ol>
+<p><a href="Solution_Exercise_DataWrangling2.R" target="_blank">My exercise solution</a> creates a simple output map. In a subsequent lesson we will cover visualization methods in more detail.</p>
+
+<div class="rmdtip">
+<p>Take a look at the <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">dplyr Cheatsheet</a> which shows the most important dplyr operations at a glance.</p>
+</div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="spatial-data-manipulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["UNIGIS-AppDev-R.pdf", "UNIGIS-AppDev-R.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
