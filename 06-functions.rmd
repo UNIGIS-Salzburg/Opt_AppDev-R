@@ -1,7 +1,7 @@
 # Functions
 
 ```{block2, type = 'rmdtip'}
-In the past few lessons, we have been using functions without looking at them in much detail (e.g. functions like 'str_starts()' or 'cat()'). In this lesson, we are going to look inside those functions to see how functions work and how to create custom functions.
+In the past few lessons, we have been using functions without looking at them in much detail (e.g. functions like `str_starts()` or `cat()`). In this lesson, we are going to look inside those functions to see how functions work and how to create custom functions.
 
 Moreover, you will get to know the difference between variables with global and variables with local scope.
 ```
@@ -10,7 +10,7 @@ Moreover, you will get to know the difference between variables with global and 
 
 The syntax for defining a function does not look too different from the syntax that we have been using to define a variable or to create a conditional statement. We start by defining an identifier (e.g. add_one) on the left of an assignment operator (`<-`). This is followed by the so-called **corpus of the function.**   
 
-The corpus starts with the reserved word 'function' followed by the **parameter(s)** (e.g. `input_value` in the example below) between simple brackets and the instruction(s) to be executed in a code block. The value of the last statement is returned as output:
+The corpus starts with the reserved word `function` followed by the **parameter(s)** (e.g. `input_value` in the example below) between simple brackets and the instruction(s) to be executed in a code block. The value of the last statement is returned as output:
 
 ```{r, echo=TRUE}
 add_one <- function (input_value) {
@@ -19,7 +19,7 @@ add_one <- function (input_value) {
 }
 ```
 
-After being defined, a function can be invoked by specifying the **identifier** and necessary parameters. The function above takes a single numeric value as an input and returns that value incremented by +1. So if we invoke the function with an input value '3', the function returns 4: 
+After being defined, a function can be invoked by specifying the **identifier** and necessary parameters. The function above takes a single numeric value as an input and returns that value incremented by +1. So, if we invoke the function with an input value '3', the function returns 4: 
 
 ```{r, echo=TRUE}
 add_one(3)
@@ -29,9 +29,9 @@ add_one(3)
 
 A function can be defined as having two or more **parameters**. Parameter names are separated by **commas** in the definition of the function.
 
-> A function always takes as input as many values as the number of parameters specified in the definition, otherwise an error is generated
+> A function always takes as input as many values as the number of parameters specified in the definition, otherwise an error is generated.
 
-The function 'area_rectangle' includes two parameters (height and width), calculates an area value by multiplying the inputs and returns the area as a single numeric value:  
+The function `area_rectangle` includes two parameters (height and width), calculates an area value by multiplying the inputs and returns the area as a single numeric value:  
 
 ```{r, echo=TRUE}
 area_rectangle <- function (height, width) {
@@ -43,13 +43,13 @@ area_rectangle(3, 2)
 
 ```{block2, type = 'rmdexercise'}
 
-In a few cases, it makes sense to define default parameters in a function. Create a new R script, copy the function definition above and change the parameter definition 'function (height, width)' to 'function (height, width = 3)'. Now invoke the function by only specifying one input value. The function should return a value 'YOUR INPUT * 3'. If you call the same function by specifying two values as inputs, the default value 'width=3' is overwritten. 
+In a few cases, it makes sense to define default parameters in a function. Create a new R script, copy the function definition above and change the parameter definition `function (height, width)` to `function (height, width = 3)`. Now invoke the function by only specifying one input value. The function should return a value `YOUR INPUT * 3`. If you call the same function by specifying two values as inputs, the default value 'width=3' is overwritten. 
 
 ```
 
 ## More return values
 
-In order to let a function return multiple values, you can append return values to a list and return the list. The following functions 'rectangle_metrics' calculates area and perimeter of a rectangle based on two inputs (rectangle height and width) and writes the two outputs to a new list 'return_vals': 
+In order to let a function return multiple values, you can append return values to a list and return the list. The following functions `rectangle_metrics` calculates area and perimeter of a rectangle based on two inputs (rectangle height and width) and writes the two outputs to a new list `return_vals`: 
 
 ```{r, echo=TRUE}
 rectangle_metrics <- function (height, width) {
@@ -96,7 +96,7 @@ factorial <- function (input_value) {
 factorial(3)
 ```
 
-The function takes a single numeric value as an input, defines a variable named 'result' that is equal to '1' and then creates a loop over all the numbers from 1 (variable 'result') to the 'input value'. In the loop, the current value of result is multiplied by the value of the iterator 'i'.  
+The function takes a single numeric value as an input, defines a variable named `result` that is equal to '1' and then creates a loop over all the numbers from 1 (variable `result`) to the `input_value`. In the loop, the current value of result is multiplied by the value of the iterator `i`.  
 
 ```{block2, type = 'rmdtip'}
 Although it is technically feasible, you would normally not define a function within conditional statements or within a loop.
@@ -130,7 +130,7 @@ times_x(2)
 ```
 
 ```{block2, type = 'rmdexercise'}
-Referring to external global variables in a function is possible, but can be dangerous. At the time of execution, one cannot be sure what the value of the global variable is. For instance, other processes might have changed its value, which affects the behavior of the function. In order to fix this problem, define the variable 'x_value' as a default attribute of function 'times_x'. 
+Referring to external global variables in a function is possible but can be dangerous. At the time of execution, one cannot be sure what the value of the global variable is. For instance, other processes might have changed its value, which affects the behavior of the function. In order to fix this problem, define the variable `x_value` as a default attribute of function `times_x`. 
 
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
