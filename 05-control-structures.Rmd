@@ -40,7 +40,7 @@ Note that every conditional statement (e.g. `a_value < 0`) returns a logical val
 
 ```{block2, type = 'rmdexercise'}
 
-Remove the negative sign from the conditional statement in the code above. 
+What result do you expect when you remove the negative sign in the code block above (`a_value <- 7`)? To evaluate your expectation, run the code in RStudio. 
 
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
@@ -56,7 +56,7 @@ The condition yields FALSE. The statement is not executed.
 
 ## Else
 
-In many cases, we want the interpreter to do something if the condition is satisfied or do something *else*, if the condition is not satisfied. In this case, we can use 'if' together with 'else':
+In many cases, we want the interpreter to do something if the condition is satisfied or do something *else*, if the condition is not satisfied. In this case, we can use `if` together with `else`:
 
 ```{r, echo=TRUE}
 a_value <- -7
@@ -67,12 +67,12 @@ if (a_value < 0){
 }
 ```
 
-In the example above, the **condition** 'a_value < 0' is TRUE, **statement 1** 'cat("Negative")' gets executed and **statement 2** 'cat("Positive")' is ignored. If you change 'a_value' to a positive value, the interpreter will ignore statement 1 and execute statement 2.
+In the example above, the **condition** `a_value < 0` is TRUE, **statement 1** `cat("Negative")` gets executed and **statement 2** `cat("Positive")` is ignored. If you change `a_value` to a positive value, the interpreter will ignore statement 1 and execute statement 2.
 
 ```{block2, type = 'rmdtip'}
 Note that statement 1 and statement 2 are in curly brackets! The indentation of statements is good programming practice, however does not affect the functioning of the code.
 
-However, inserting a line break before 'else' returns an error. The reason for this behavior is explained in [a forum thread](https://stackoverflow.com/questions/37929184/if-else-does-the-line-break-between-and-else-really-matters){target="_blank"}. 
+However, inserting a line break before `else` returns an error. The reason for this behavior is explained in [a forum thread](https://stackoverflow.com/questions/37929184/if-else-does-the-line-break-between-and-else-really-matters){target="_blank"}. 
 ```
 
 ## Code blocks
@@ -89,10 +89,10 @@ if (first_value > second_value) {
 }
 ```
 
-The line 'cat("First is greater than second\n")' prints a text (string) and inserts a line break. The next line calculates the difference between first and second value. The third line in the code block concatenates two inputs ("Their difference is " and variable 'difference') and prints them to the console window.
+The line `cat("First is greater than second\n")` prints a text (string) and inserts a line break. The next line calculates the difference between first and second value. The third line in the code block concatenates two inputs ("Their difference is " and variable 'difference') and prints them to the console window.
 
 ```{block2, type = 'rmdtip'}
-'if' and 'else' are so called **reserved words**, meaning they cannot be used as variable names. 
+`if` and `else` are so called **reserved words**, meaning they cannot be used as variable names. 
 ```
 
 ## Loops
@@ -128,13 +128,13 @@ Go through the example above and try to verbalize the consecutive steps.
 <summary><ins>**See solution!**</ins></summary>
 <p><i><font color="grey">
   
-1. The variable 'current_value' takes on a value of zero.
+1. The variable `current_value` takes on a value of zero.
 2. The condition of the while-loop returns TRUE.
-3. The 'cat()' function is executed and prints a text as well as 'current_value'.
-4. The variable 'current_value' is incremented by +1.
-5. The condition of the while-loop returns TRUE (current_value = 1), the code block is executed again (see 3 and 4).
-6. current_value = 2, the code block is executed again (see 3 and 4).
-7. current_value = 3, the condition returns FALSE, the loops ends.
+3. The `cat()` function is executed and prints a text as well as `current_value`.
+4. The variable `current_value` is incremented by +1.
+5. The condition of the while-loop returns TRUE (`current_value = 1`), the code block is executed again (see 3 and 4).
+6. `current_value = 2`, the code block is executed again (see 3 and 4).
+7. `current_value = 3`, the condition returns FALSE, the loops ends.
 
 </font></i>
 </p>
@@ -142,7 +142,7 @@ Go through the example above and try to verbalize the consecutive steps.
 
 ```
 
-The same procedure can alternatively be implemented by means of the *repeat* construct:
+The same procedure can alternatively be implemented by means of the `repeat` construct:
 
 ```{r, echo=TRUE}
 current_value <- 0 
@@ -155,7 +155,7 @@ if (current_value == 3){             #if (variable == 3)...
 }
 ```
 
-The break statement is executed and stops (breaks) the repeat loop (also applicable to while or for loops) once the variable `current_value` is equal to three.  
+The `break` statement is executed and stops (breaks) the repeat loop (also applicable to while or for loops) once the variable `current_value` is equal to three.  
 
 ### For
 
@@ -168,7 +168,7 @@ for (city in cities) {
 }
 ```
 
-In the first iteration of the for-loop the text string "Derby" is assigned to the iterator 'city'. The function 'cat()' uses the iterator value as an input. In the second iteration, the text string "Leicester" is assigned to the iterator 'city' ... etc.
+In the first iteration of the for-loop the text string "Derby" is assigned to the iterator `city`. The function `cat()` uses the iterator value as an input. In the second iteration, the text string "Leicester" is assigned to the iterator `city` ... etc.
 
 The code block below illustrates another example. 
 
@@ -181,13 +181,13 @@ for (city in cities) {
 print(letter_cnt)
 ```
 
-The for-loop iterates over the elements in vector 'cities'. The base function 'nchar()' counts the number of letters of every city name and appends the count to a new vector 'letter_cnt'.
+The for-loop iterates over the elements in vector `cities`. The base function `nchar()` counts the number of letters of every city name and appends the count to a new vector `letter_cnt`.
 
 ```{block2, type = 'rmdtip'}
 
 Note that with every iteration a new value is appended to the right side of the vector. The syntax for appending elements to a vector in R is...
 
-*name vector <- c(name vector, element to append)*
+`name vector <- c(name vector, element to append)`
 
 ```
 
@@ -316,11 +316,12 @@ The *nested for-loop-structure* starts its iteration in the leftmost cell of row
 
 **Answer 2:**
 
-A threshold value of 0.9 returns a count of about 40, which indicates that about 10% of values are greater than 0.9. It seems like seems like random values are uniformly distributed in a range between 0 and 1. Other R functions like [rnorm()](https://www.rdocumentation.org/packages/compositions/versions/2.0-6/topics/rnorm){target="_blank"} generate numbers from a normal distribution. 
+A threshold value of 0.9 returns a count of about 40, which indicates that about 10% of values are greater than 0.9. It seems like random values are uniformly distributed in a range between 0 and 1. Other R functions like [rnorm()](https://www.rdocumentation.org/packages/compositions/versions/2.0-6/topics/rnorm){target="_blank"} generate numbers from a normal distribution. 
 
 </font></i>
 </p>
 </details> 
+</br> 
 
 As an alternative, the same functionality may be implemented without loop. Instead, operations can be vectorized:
 
