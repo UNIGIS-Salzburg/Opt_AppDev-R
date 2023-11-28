@@ -257,7 +257,7 @@ x
 
 In the example above, arguments such as the number of grid rows and columns (`nrow` and `ncol`) as well as the grid extent (`xmin`, `xmax`, `ymin` and `ymax`) were defined. The raster cell resolution is a result of these inputs (`x=99.65`, `y=83.04`). 
 
-According to the [documentation of the `rast` function](https://www.rdocumentation.org/packages/terra/versions/1.7-46/topics/rast){target="_blank"}, the coordinate reference system can be specified in `PROJ.4`, `WKT` or `authority:code` notation. In the given example `WGS84 UTM 33N` is encoded in `PROJ.4`. To find the desired encoding, it is recommended to first search for a CRS on the [Spatial Reference Website](https://spatialreference.org/){target="_blank"}. The `PROJ.4` is one out of many formats (e.g. EPSG code, WKT, GML etc.) that are provided in the search results.
+According to the [documentation of the `rast` function](https://www.rdocumentation.org/packages/terra/versions/1.7-46/topics/rast){target="_blank"}, the coordinate reference system can be specified in `PROJ.4`, `WKT` or `authority:code` notation. In the given example `WGS84 UTM 32N` is encoded in `PROJ.4`. To find the desired encoding, it is recommended to first search for a CRS on the [Spatial Reference Website](https://spatialreference.org/){target="_blank"}. The `PROJ.4` is one out of many formats (e.g. EPSG code, WKT, GML etc.) that are provided in the search results.
 
 ```{block2, type = 'rmdexercise'}
 

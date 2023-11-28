@@ -17,7 +17,7 @@ We distinguish between two types of control structures:
 
 The most fundamental conditional statement in R is the structure `if`, which is used to execute one or more instructions only if a certain condition is `TRUE`.
 
-In order to include an if-structure in your code, you need to use the following syntax:
+To include an if-structure in your code, you need to use the following syntax:
 
 ```{r, echo=TRUE}
 a_value <- -7
@@ -134,7 +134,7 @@ Go through the example above and try to verbalize the consecutive steps.
 4. The variable `current_value` is incremented by +1.
 5. The condition of the while-loop returns TRUE (`current_value = 1`), the code block is executed again (see 3 and 4).
 6. `current_value = 2`, the code block is executed again (see 3 and 4).
-7. `current_value = 3`, the condition returns FALSE, the loops ends.
+7. `current_value = 3`, the condition returns FALSE, the loop ends.
 
 </font></i>
 </p>
