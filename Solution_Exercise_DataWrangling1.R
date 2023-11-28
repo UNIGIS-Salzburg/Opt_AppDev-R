@@ -11,5 +11,4 @@ fao_data %>%
   drop_na() %>%                                                    #remove rows including NAs
   knitr::kable()
 
-#Note: When using pipe operators, there is no need to pass outputs as parameter functions!
-#(e.g. the parameter list of function drop_na() is empty)
+

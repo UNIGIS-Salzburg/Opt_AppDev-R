@@ -1,7 +1,7 @@
 # Data manipulation
 
 ```{block2, type = 'rmdtip'}
-In most instances the structure of the available data will not meet the specific requirements to perform the analyses you are interested in. Data analysts typically spend the majority of their time cleaning, filtering, restructuring data as well as harmonizing and joining data from different sources.
+In most instances the structure of the available data will not meet the specific requirements to perform the analyses you are interested in. Data analysts typically spend most of their time cleaning, filtering, restructuring data as well as harmonizing and joining data from different sources.
 
 This lesson introduces to the most common data wrangling operations by means of the dplyr library (part of the Tidyverse libraries), which offers a grammar for data manipulation.
 
@@ -10,7 +10,7 @@ You will also get to know [tibbles](https://tibble.tidyverse.org/){target="_blan
 
 ## Preparation
 
-If not yet installed on your machine, install the libraries `tidyverse` as well as `nycflights13` (see Libraries in lesson [core Concepts](#core)).
+If not yet installed on your machine, install the libraries `tidyverse` as well as `nycflights13` (see Libraries in lesson [Core concepts](#core)).
 
 The code below, loads a sample dataset (a [tibble](https://tibble.tidyverse.org/){target="_blank"}) from the library `nycflights13` into the variable `flights_from_nyc`. We will use this sample data in this lesson. 
 
@@ -35,7 +35,7 @@ Alternatively, you may inspect `flights_from_nyc` by writing it to the console.
 
 ## Data manipulation
 
-The library `dplyr` provides a number of functions to investigate basic characteristics of inputs. For instance, the function `count()` can be used to count the number of rows of a data frame or tibble. The code below uses `flights_from_nyc` as input to the function. 
+The library `dplyr` provides a number of functions to investigate basic characteristics of inputs. For instance, the function `count()` can be used to count the number of rows of a data frame or tibble. The code below uses `flights_from_nyc` as input to this function. The returned row count `n` is represented in a table. 
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -47,13 +47,28 @@ flights_from_nyc %>%
   knitr::kable()
 ```
 
-In the code example above, we use the so called **pipe operator** `%>%`, which is included in `tidyverse`, as well as a function named `kable()` of library `knitr` to render the output.
+You may wonder, how objects were passed as arguments from one function to the next: In the code example above, we use the so-called pipe operator `%>%`, which is included in `magrittr` (another library provided with the `tidyverse` collection).
 
-```{block2, type = 'rmdtip'}
-The pipe operator allows us to link a sequence of analysis steps. In the example above, `flights_from_nyc` is passed into function `count()` and the output is passed into function `kable()` to render the result_df
+The pipe operator allows us to link a sequence of analysis steps. In the example above, `flights_from_nyc` is passed as parameter into function `count()` and the output is passed into function `kable()` (library `knitr`) to render the output table.
 
-The pipe operator is a powerful tool to simplify your code. See [this video](https://www.youtube.com/watch?v=sohARFx6aTo){target="_blank"} to learn more about it.
+Alternatively, the same code could be written in a traditional way with an additional variable `cnt`: 
+
+```{r, eval=FALSE, echo=TRUE, message=FALSE, warning = FALSE}
+
+cnt <- dplyr::count(flights_from_nyc)
+knitr::kable(cnt)
+
 ```
+
+Or we could reformat the code by nesting functions (function in another function):
+
+```{r, eval=FALSE, echo=TRUE, message=FALSE, warning = FALSE}
+
+knitr::kable(dplyr::count(flights_from_nyc))
+
+```
+
+The result is the same. However, nested structures are harder to read. Accordingly, the pipe operator is a powerful tool to simplify your code. See [this video](https://www.youtube.com/watch?v=sohARFx6aTo){target="_blank"} to learn more about it.
 
 The function `count()` can also be used to count the number of rows of a table that has the same value for a given column, usually representing a category.
 
@@ -67,13 +82,19 @@ flights_from_nyc %>%
 
 ```
 
-As you can see, the code above is formatted in a way similar to a code block, although it is not a code block. The code goes to a new line after every `%>%`, and space is added at the beginning of new lines. That is very common in R programming (especially when functions have many parameters) as it makes the code more readable.
+As you can see, the code goes to a new line after every `%>%`, and space is added at the beginning of new lines. That is very common in R programming (especially when functions have many parameters) as it makes the code more readable.
+
+Moreover, note that variable `flights_from_nyc` is passed as a first argument (before argument `origin`) in `dplyr::count(origin)`. 
+
+> Per default, the pipe passes the object on its left-hand side to the first argument of the function on the right-hand side. `%>%` allows you to change the placement with a `.` (see [Post by Hadley Wickham](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/){target="_blank"})
+
+For example, you could explicitly pass variable `flights_from_nyc` as a first argument by `dplyr::count(., origin)`. Passing the variable as a second argument `dplyr::count(origin, .)` will return an error as the data frame is expected as a first input to function `count`.
 
 ### Summarise
 
 To carry out more complex aggregations, the function `summarise(`) can be used in combination with the function `group_by()` to summarise the values of the rows of a data frame or tibble. Rows having the same value for a selected column (in the example below, the same `origin`) are grouped together, then values are aggregated based on the defined function (using one or more columns in the calculation).
 
-In the example below, the function `sum()` is applied to the column `distance` to calculate a new column `mean_distance_traveled_from` (the mean distance travelled by flights starting from each airport).
+In the example below, the function `mean()` is applied to the column `distance` to calculate a new column `mean_distance_traveled_from` (the mean distance travelled by flights starting from each airport).
 
 ```{r, echo=TRUE}
 flights_from_nyc %>%
@@ -83,6 +104,8 @@ flights_from_nyc %>%
   ) %>%
   knitr::kable()
 ```
+
+The results show that the average distance covered by flights starting from JFK is significantly higher that flights departing from LGA or EWR.
 
 ### Select and filter
 
@@ -129,7 +152,7 @@ Run the mutate example above in a new script and replace `dplyr::mutate` by `dpl
 <summary><ins>**See solution!**</ins></summary>
 <p><i><font color="grey">
   
-The `transmute` function adds a new column to the table and drops existing ones.
+The `transmute` function creates a new data frame containing only column `air_time_hours`. The function drops other table columns.
     
 </font></i>
 </p>
@@ -183,7 +206,9 @@ See [my solution](Solution_Exercise_DataWrangling1.R){target="_blank"}!
 
 ## Join
 
-A join operation combines two tables into one by matching rows that have the same values in the specified column. This operation is usually executed on columns containing identifiers, which are matched through different tables containing different data about the same real-world entities. For instance, the **table below** (data frame `city_telephone_prexix`) presents the telephone prefixes for two cities. That information can be combined with the data present in the **second table below** (data frame `city_info_wide`) through a join operation on the columns containing the city names. As the two tables do not contain all the same cities, if a full join operation is executed, some cells have no values assigned.
+A join operation combines two tables into one by matching rows that have the same values in a specified column. This operation is usually executed on columns containing identifiers, which are matched through different tables containing different data about the same real-world entities. 
+
+For instance, the table created below (data frame `city_telephone_prexix`) contains the telephone prefixes of three cities. 
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
 city_telephone_prexix <- data.frame(
@@ -195,6 +220,8 @@ city_telephone_prexix <- data.frame(
 city_telephone_prexix %>%
   knitr::kable()
 ```
+
+That information can be combined with the data present in a second table `city_info_wide` (see below) through a join operation on the columns containing the city names. 
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
 city_info_wide <- data.frame(
@@ -213,13 +240,15 @@ city_info_wide %>%
 Note that data frames in the code above are converted to [tibbles](https://tibble.tidyverse.org/){target="_blank"}. This step is needed as the function `kable()` takes `tibbles` as an input. 
 ```
 
-The `dplyr` library offers different types of join operations, which correspond to the different `SQL` joins illustrated in the image below. 
+Joins between two tables can be executed by different join operations. The `dplyr` library offers join operations, which correspond to `SQL` joins illustrated in the image below. 
 
 ```{r L06-joins, echo=FALSE, fig.cap="Join types", out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/joins.png')
 ```
 
-Please take your time to understand the examples below and check out the [related `dplyr` help pages](https://www.rdocumentation.org/packages/dplyr/versions/0.7.8/topics/join){target="_blank"} before continuing. The first four examples execute the exact same *full join* operation using three different syntaxes: with or without using the pipe operator and specifying the `by` argument or not. Note that all those approaches to writing the join are valid and produce the same result. The choice about which approach to use will depend on the code you are writing. In particular, you might find it useful to use the syntax that uses the pipe operator when the join operation is itself only one stem in a series of data manipulation steps. Using the `by` argument is usually advisable unless you are certain that you aim to join two tables with all and exactly the column that have the same names in the two table.
+Please take your time to understand the examples below that show different realizations of joins between table `city_telephone_prexix` and `table city_info_wide`. 
+
+The first four examples execute the exact same *full join* operation using three different syntaxes: with or without using the pipe operator and specifying the `by` argument or not. Note that all those approaches to writing the join are valid and produce the same result. The choice about which approach to use will depend on the code you are writing. In particular, you might find it useful to use the syntax that uses the pipe operator when the join operation is itself only one stem in a series of data manipulation steps. Using the `by` argument is usually advisable unless you are certain that you aim to join two tables with all and exactly the column that have the same names in the two table.
 
 Note how the result of the join operations is *not* saved to a variable. The function `knitr::kable` is added after each join operation through a pipe `%>%` to display the resulting table in a nice format.
 
@@ -333,6 +362,9 @@ city_info_wide %>%
   ) %>%
   knitr::kable()
 ```
+
+Compare the results of respective full, left, right and inner join operations. Turn to the discussion forum in case you need further explanations. 
+
 ### Exercise: join
 
 ```{block2, type = 'rmdexercise'}
