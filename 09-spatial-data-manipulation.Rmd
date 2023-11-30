@@ -1,0 +1,57 @@
+# Spatial Data Manipulation
+
+In the previous lesson you have learned to get access to data on a server via Rest API ... few words about OGC Rest API
+
+In this lesson we will....
+
+## Acquire data
+
+Invekos Service Metadata: https://www.data.gv.at/katalog/dataset/56d93431-af47-4fc0-a014-012759d8db4e#applications
+
+OGC API - Feature: https://gis.lfrz.gv.at/ogcapi009501/ogc/features/
+
+Collection Page: https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml
+
+```{}
+
+#get 10 features of INVEKOS feldstuecke
+#copy to browser
+https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon/items?f=json&limit=10
+
+```
+
+```{}
+
+# request with bbox
+https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon/items?f=json&bbox=14,48,14.02,48.02 
+
+```
+
+enter coordinates to display bounding box: https://linestrings.com/bbox/
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(httr2)
+library(geojsonsf)
+library(sf)
+
+full_url <- "https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon/items?f=json&bbox=14,48,14.02,48.02"
+
+sf <- httr2::request(full_url) %>%   #Create request
+  httr2::req_perform() %>%           #Execute request
+  httr2::resp_body_string() %>%      #Extract JSON body as string
+  geojsonsf::geojson_sf()            #JSON string to sf object
+
+#show polygon features 1 and 2
+sf %>%
+  head(2) %>%
+  dplyr::select(fnar_bezeichnung, fs_flaeche_ha, geo_id, geometry) %>%
+  knitr::kable(., format="html")
+
+```
+
+## Data Cleaning
+
+german attribute names and notations (e.g. Ackerland) to english
+filter important information (e.g. fnar_bezeichnung, fs_flaeche_ha, geo_id, geometry), see above
+check topology
