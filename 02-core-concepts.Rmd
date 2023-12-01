@@ -2,7 +2,6 @@
 
 ```{block2, type = 'rmdtip'}
 In this lesson, we'll explore three fundamental concepts in programming:
-
 1. Variables
 2. Functions
 3. Libraries
@@ -17,7 +16,7 @@ Variables are essential for **storing data**. To define a variable, use an *iden
 a_variable <- 1
 ```
 
-To retrieve the value of the variable, simply use its **identifier**.
+To retrieve the value of the variable, simply use its **identifier**:
 
 ```{r, echo=TRUE}
 a_variable
@@ -25,45 +24,29 @@ a_variable
 
 ```{block2, type = 'rmdtip'}
 
-To save your code, create an **R Script** in RStudio (File > New File > R Script). Select the code in the R Script Window and click 'Run' to execute it.
-
-Note: Code execution is sequential, processing line by line.
+To save and manage your code efficiently, create an **R Script** in RStudio (File > New File > R Script). Select the code in the R Script Window and click 'Run' to execute it. Scripts offer the advantage of running multiple lines of code at once and keeping a record of your work.
 ```
 
-Variables allow you to save the results of any computations performed in the code and retrieve them later for further analyses. For instance, you can declare a variable such as:
+Variables allow you to store computational results and later access them for further analysis. For instance:
 
 ```{r, echo=TRUE}
 a_variable <- 1
-```
-
-Then, you can manipulate the value of the variable as follows:
-
-```{r, echo=TRUE}
 a_variable <- a_variable + 10
-```
-
-Later in the code, you can assign the value to a different variable with:
-
-```{r, echo=TRUE}
 another_variable <- a_variable
 ```
 
-At this point, you might wonder why bother using variables instead of simply typing the numbers directly. The answer is that variables make your code reusable and save you a lot of time.
+Why use variables instead of direct input? They make your code reusable, scalable, and time-efficient, especially with complex data analyses or larger datasets.
 
 **Let us consider the following example:**
   
-Meteorologists monitor water temperature gradients in the Pacific Ocean to better understand El Niño weather patterns and forecast extreme weather conditions associated with it. In a given year, the water temperature at location A might be 22°C and at location B, 26°C. We could simply calculate the difference by executing the arithmetic operation '26 - 22' in the console window of RStudio. However, temperatures are measured in real-time, meaning we have to calculate temperature gradients repeatedly.
-
-To expedite the process, we could write code that performs the calculation (temperature at location A minus temperature at location B). This piece of code uses two variables (temperatures at locations A and B) as inputs. As a result, we only need to update these two variables; the algorithm (simple subtraction in our example) is reusable.
-
-Of course, the gains in efficiency are minor given the simplicity of this calculation. However, in more practical applications, the algorithm is likely to be composed of many lines of code that evaluate the risk of El Niño occurrence based on sensor records.
+Meteorologists track water temperature gradients to forecast weather patterns. If location A's temperature is 22°C and B's is 26°C, calculating the difference as '26 - 22' in the RStudio console is straightforward. However, for ongoing real-time measurements, an algorithm using variables for each location's temperature can significantly speed up the process. Such an algorithm is adaptable to various data inputs, making it a robust tool for complex calculations.
 
 ```{block2, type = 'rmdexercise'}
 
-1) Create a new R script in RStudio (File > New File > R Script).
-2) Declare two variables (`temp_A` and `temp_B`) and assign arbitrary temperature values to them.
-3) Declare a third variable (`diff`) and assign the difference between the other two variables as its value.
-4) Run your script (select your code and click 'Run').
+1) In RStudio, create a new R script (File > New File > R Script).
+2) Declare two variables (`temp_A` and `temp_B`) with temperature values.
+3) Declare a third variable (`diff`) to store their difference.
+4) Run your script and observe the changes in the Environment Panel.
 
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
@@ -159,15 +142,11 @@ Using functions as arguments in other functions is often discouraged as it can m
 
 Moreover, to enhance the readability of R code, it is recommended to follow naming conventions for variables and functions:
   
-- R is a **case-sensitive** language:
-    - UPPER and lower case are treated differently.
-    - `a_variable` is different from `a_VARIABLE`.
-- Names can include:
-    - Alphanumeric characters.
-    - `.` and `_`.
-- Names must start with:
-    - A letter.
-
+- R is a **case-sensitive** language, meaning UPPER and lower case are treated as distinct.
+    - `a_variable` is not the same as `a_VARIABLE`.
+- Valid names can include:
+    - Alphanumeric characters, `.` and `_`.
+- Names must start with a letter, not a number or a symbol.
 ```
 
 ## Libraries
@@ -196,6 +175,8 @@ install.packages('stringr')  # Note: the function takes a string argument ('')
 ```{block2, type = 'rmdtip'}
 Alternatively, libraries (a.k.a. packages) can be installed through RStudio's 'Install Packages' menu (Tools > Install Packages...). You can choose to install from CRAN or a package archive file. The majority of libraries are available through [CRAN - Comprehensive R Archive Network](https://cran.r-project.org/){target="_blank"}, a vast collection of R resources and libraries.
 
+- When using `install.packages()`, the package name must be a string, hence the quotes around 'stringr'.
+- To explore the functions provided by a library, like `stringr`, you can use `ls()` to list them. This command shows you what's available to use once a library is loaded into your R session.
 ```
 
 Once installed and loaded, the library provides a new set of functions in your environment. For instance, `str_length` in the `stringr` library returns the number of characters in a string:
