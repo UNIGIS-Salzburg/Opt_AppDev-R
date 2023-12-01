@@ -1,43 +1,40 @@
 # Introduction to R {#intro}
 
-
 ## About this module
 
-This module will provide you with the fundamental skills in basic programming in R. We will start with some core concepts of programming that are the building blocks of programming in any language. This includes **Datatypes**, **Operators**, **Variables**, **Functions**, **Control Structures** and **Libraries**.
+This module will equip you with fundamental R programming skills, starting with core programming concepts universal to most languages, including **Datatypes**, **Operators**, **Variables**, **Functions**, **Control Structures**, and **Libraries**.
 
-On this basis, we will explore more complex data types like **Data Frames** and **Tibbles** as well as methods to **Read and Write** spatial and non-spatial datasets. In many cases the available data will not be suitable for your analyses. You will learn how to **filter, query, subset, join and re-shape** data to fit your needs.
+We will then delve into more advanced data types such as **Data Frames** and **Tibbles**, and learn methods to **Read and Write** both spatial and non-spatial datasets. You'll learn to manipulate data that may initially seem unsuitable for your analyses by **filtering, querying, subsetting, joining, and reshaping** it.
 
-After you have learned how to manipulate data, you will get to know methods to **visualize** data by means of diagrams (e.g. box plots, scatterplots, line plots etc.) and maps.   
+The module progresses to data **visualization**, teaching you to create informative diagrams (e.g., box plots, scatterplots, line plots) and maps. 
 
-Upon the completion of this module, you will have the fundamental skills in R programming as a basis for more advanced methods like Geospatial Data Analysis (is covered by the module "Spatial Statistics" in the MSc program) and Machine Learning.
+Upon completing this module, you'll possess foundational R programming skills, preparing you for advanced topics like Geospatial Data Analysis (covered in the "Spatial Statistics" module of the MSc program).
+
 
 ```{block2, type = 'rmdtip'}
-This module is partly based on the teaching materials [granolarr](https://github.com/sdesabbata/granolarr){target="_blank"} worked out by [Stefano de Sabbata](https://sdesabbata.github.io/){target="_blank"} at the [University of Leicester](https://le.ac.uk/){target="_blank"}. For more information take a look at the Webbook [R for Geographic Data Science](https://sdesabbata.github.io/r-for-geographic-data-science/){target="_blank"}. The chapters on **Statistical Analysis** and **Machine Learning** are recommended as a follow up read for those who are willing to delve into more advanced applications of R. 
+This module partly draws from [granolarr](https://github.com/sdesabbata/granolarr){target="_blank"}, developed by [Stefano de Sabbata](https://sdesabbata.github.io/){target="_blank"} at [University of Leicester](https://le.ac.uk/){target="_blank"}. For further exploration, refer to the Webbook [R for Geographic Data Science](https://sdesabbata.github.io/r-for-geographic-data-science/){target="_blank"}. We particularly recommend its chapters on **Statistical Analysis** and **Machine Learning** for those interested in advanced R applications.
 ```
 
 ## R programming language
     
-R is a language that is applied in diverse fields of data science and analysis. Typical applications include...
+R is versatile in data science and analysis, with applications in:
 
-* data wrangling
-* statistical analysis
-* machine learning
-* data visualisation and maps
-* processing spatial data
-* geographic information analysis
-* and many more.
+- Data wrangling
+- Statistical analysis
+- Machine learning
+- Data visualization and mapping
+- Spatial data processing
+- Geographic information analysis
 
-Apart from its widespread use, there are a number of other reasons to learn R...
+Why R stands out:
 
-* R is free and open source.
-* R has more comprehensive functionality than most proprietary solutions.
-* R is available for Windows, Mac OS and Linux
-* R is a general-purpose programming language, so you can use it to automate analyses and create new custom functions that extend default features.
-* Because R is open source, it has a large user community, so it is easy to get help.
+- Free and open-source
+- Offers extensive functionality surpassing most proprietary tools
+- Available across Windows, Mac OS, and Linux
+- A general-purpose language, ideal for automating analyses and creating custom functions
+- Large, supportive community, facilitating problem-solving and knowledge sharing
 
-R is a so-called **high level programming language** or **scripting language**. This means that R code is not compiled into a computer readable format, but interpreted by an **interpreter.** An interpreter is a computer program that directly interprets and executes instructions written in a programming language.  
-
-In order to make sure that the interpreter can understand the program code, the programmer must stick to the grammar of the programming language; i.e. the interpreter expects commands to appear in a predefined order. This grammar is often regarded as **Syntax**.  
+R, a **high-level programming** or **scripting language**, relies on an **interpreter** instead of a compiler. This interpreter directly executes written instructions, requiring adherence to the programming language's grammar or **Syntax**.
 
 In this lesson we will focus on some key principles of the R syntax and logic. 
 
@@ -46,11 +43,11 @@ In this lesson we will focus on some key principles of the R syntax and logic.
 Before you can run your code, you have to install R together with an **Integrated Development Environment (IDE)** on your machine: 
 
 1. Download R from [R Archive Network (CRAN.)](http://cran.r-project.org){target="_blank"} 
-2. Follow the instructions and install the most up to date version on your machine (chose 'base' as well as 32-bit or 64-bit dependent on the bit-version of your operating system).
+2. Install the latest version, choosing 'base' and the appropriate bit-version for your OS.
 
-The IDE is where you write, test and execute your R programs. I strongly recommend using **RStudio Desktop**, which is [freely available for download.](https://www.rstudio.com/){target="_blank"}
+The IDE is where you write, test and execute your R programs. We strongly recommend using **RStudio Desktop**, which is [freely available for download.](https://www.rstudio.com/){target="_blank"}
 
-The following video gives a brief overview of key functions of RStudio.
+This video offers a concise RStudio overview:
 
 ```{r RStudioVideo, echo=FALSE, fig.align='center', fig.cap="Video (6:09 min): RStudio for the Total Beginner."}
 
@@ -66,22 +63,22 @@ if (knitr::is_html_output(excludes='epub')) {
 ``` 
 
 ```{block2, type = 'rmdtip'}
-In case you are facing any technical issues, please turn to the discussion forum!
+Encounter technical difficulties? Please consult the discussion forum!
 ```
 
-## Interpreting values
+## Interpreting Values
 
-Now that you have installed RStudio and R on your machine, it is time to run some code in RStudio. When you open RStudio, you will find the **Console Window** (see Fig. \@ref(fig:L01-console)). When values and operations are inputted in the *Console*, the interpreter returns the results of its interpretation of the expression. 
+With RStudio and R installed, let's dive into coding. The **Console Window** in RStudio (Fig. \@ref(fig:L01-console)) is where the interpreter outputs results based on your input.
 
 ```{r L01-console, echo=FALSE, fig.cap="Console Window in RStudio", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/Console.png')
 ```
 
-Type in a numeric value (e.g. 3) and press Enter. The interpreter returns a value in brackets and the input value. The value in brackets indicates that the input is composed of one single entity.
+Type in a **numeric value** (e.g. `3`) and press Enter. The interpreter returns a value in brackets and the input value. The value in brackets indicates that the input is composed of one single entity.
 
 ```{block2, type = 'rmdexercise'}
 
-What if you type in a text value (e.g. test) and press Enter?
+What happens when you input a text value (e.g., 'test')?
     
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
@@ -95,38 +92,36 @@ The interpreter returns an error, because this datatype is unknown. Text is comm
 
 ```
 
-If you start your input with a hash symbol (#) the interpreter will consider that line as a comment. For instance, if you type in **# Test Test Test**, you will see that nothing is returned as an output. Comments are extremely important as they allow you to add explanations in plain language. Comments are fundamental to allow other people to understand your code and it will save you time interpreting your own code.     
+If you start your input with a hash symbol (`#`) the interpreter will consider that line as a comment. For instance, if you type in **# Test Test Test**, you will see that nothing is returned as an output. Comments are extremely important as they allow you to add explanations in plain language. Comments are fundamental to allow other people to understand your code and it will save you time interpreting your own code.     
 
-## Simple data types
-
-In the previous section you have already see **numeric** and **character (string)** data types. **Logical** is a third simple data type provided with R.  
+## Simple Data Types
 
 ```{block2, type = 'rmdtip'}
 
-R provides three core data types
+R's simple data types, essential for encoding information, include:
 
 - numeric 
-    - both integer and real numbers
+    - both **integer** and **real numbers**
 - character 
     - i.e., text, also called *strings*
 - logical
-    - `TRUE` or `FALSE`
+    - Represents `TRUE` or `FALSE` values
 
 ```
 
-The type 'logical' encodes the values TRUE or FALSE. Together these three simple data types are the building blocks R uses to encode information. 
+The type 'logical' encodes the values `TRUE` or `FALSE`. Together these three simple data types are the building blocks R uses to encode information.
 
 ```{block2, type = 'rmdexercise'}
 
-If you type a simple numeric operation in the console (e.g. 2 + 4), the interpreter will return a result. This indicates that operations (e.g. mathematical calculations) can be carried out on these types.
+If you type a simple numeric operation in the console (e.g. `2 + 4`), the interpreter will return a result. This indicates that operations (e.g. mathematical calculations) can be carried out on these types.
 
-Logical operations return values of type 'logical'. What value is returned in the console when you type and execute the expression 2 < 3? 
+Logical operations return values of type **logical**. What value is returned in the console when you type and execute the expression `2 < 3`? 
     
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
 <p><i><font color="grey">
   
-The interpreter returns 'TRUE', because it is 'true' that 2 is less than 3.
+The interpreter returns `TRUE`, because it is 'true' that 2 is less than 3.
 
 </font></i>
 </p>
@@ -140,35 +135,33 @@ R provides a series of basic numeric operators.
 
 |Operator|Meaning         |Example  |Output     |
 |--------|----------------|---------|-----------|
-|+       |Plus            |`5 + 2`  |`r 5 + 2`  |
-|-       |Minus           |`5 - 2`  |`r 5 - 2`  |
-|`*`     |Product         |`5 * 2`  |`r 5 * 2`  |
-|/       |Division        |`5 / 2`  |`r 5 / 2`  |
-|%/%     |Integer division|`5 %/% 2`|`r 5 %/% 2`|
-|%%      |Module          |`5 %% 2` |`r 5 %% 2` |
-|^       |Power           |`5^2`    |`r 5^2`    |
+|+       |Plus            |5 + 2    |`r 5 + 2`  |
+|-       |Minus           |5 - 2    |`r 5 - 2`  |
+|*       |Product         |5 * 2    |`r 5 * 2`  |
+|/       |Division        |5 / 2    |`r 5 / 2`  |
+|%/%     |Integer division|5 %/% 2  |`r 5 %/% 2`|
+|%%      |Module          |5 %% 2   |`r 5 %% 2` |
+|^       |Power           |5^2      |`r 5^2`    |
 
-Whereas mathematical operators are self-explanatory, the operators 'Module' and 'Integer division' may be new to some of you. Integer division returns an integer quotient:
+Whereas mathematical operators are self-explanatory, the operators **Module** and **Integer division** may be new to some of you. Integer division returns an integer quotient:
 
 ```{r, echo=TRUE}
 5%/%2
 ```
 
 ```{block2, type = 'rmdtip'}
-
-Note: In this web book, two hash symbols (##) highlight the values returned by the R Console. The code above returns a value of 2. The number in squared brackets [1] indicates the line number of the return.   
-
+Note: In this web book, two hash symbols (`##`) highlight the values returned by the R Console. The code above returns a value of `2`. The number in squared brackets `[1]` indicates the line number of the return.
 ```
 
 ```{block2, type = 'rmdexercise'}
 
-Execute 5 %% 2 to test the 'Module' operator.
+Execute `5 %% 2` to test the 'Module' operator.
     
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
 <p><i><font color="grey">
   
-The 'Module' returns the remainder of the division, which is '1' in the example above. 
+The 'Module' returns the remainder of the division, which is `1` in the example above.
 
 </font></i>
 </p>
@@ -180,15 +173,16 @@ The 'Module' returns the remainder of the division, which is '1' in the example 
 
 R also provides a series of basic logical operators to create logical expressions.
 
-|Operator|Meaning           |Example           |Output              |
-|--------|------------------|------------------|--------------------|
-|==      |Equal             |`5 == 2`          |`r 5 == 2`          |
-|!=      |Not equal         |`5 != 2`          |`r 5 != 2`          |
-|> (>=)  |Greater (or equal)|`5 > 2`           |`r 5 > 2`           |
-|< (<=)  |Less (or equal)   |`5 <= 2`          |`r 5 <= 2`          |
-|!       |Not               |`!TRUE`           |`r !TRUE`           |
-|&       |And               |`TRUE & FALSE`    |`r TRUE & FALSE`    |
-|\|      |Or                |`TRUE | FALSE`    |`r TRUE | FALSE`    |
+
+|Operator|Meaning           |Example          |Output              |
+|--------|------------------|-----------------|--------------------|
+|==      |Equality          |5 == 2            |`r 5 == 2`         |
+|!=      |Inequality        |5 != 2            |`r 5 != 2`         |
+|> (>=)  |Greater (or equal)|5 > 2             |`r 5 > 2`          |
+|< (<=)  |Less (or equal)   |5 <= 2            |`r 5 <= 2`         |
+|!       |Negation          |!TRUE             |`r !TRUE`          |
+|&       |Logical AND       |TRUE & FALSE      |`r FALSE`          |
+|\|      |Logical OR        |TRUE | FALSE      |`r TRUE | FALSE`   |
 
 Logical expressions are typically used to execute code dependent on the occurrence of conditions. 
 
@@ -196,29 +190,29 @@ Logical expressions are typically used to execute code dependent on the occurren
 
 What logical values are returned by the following expressions:    
 
-* *(3 != 5) | (3 == 4)*
-* *(2 >= 3) | (3 < 7)*
-* *(2 == 9) & (2 < 4)*
+* `(3 != 5) | (3 == 4)`
+* `(2 >= 3) | (3 < 7)`
+* `(2 == 9) & (2 < 4)`
 
-Type and execute (Enter button) in the RStudio console to validate your assumptions.  
+Type and execute (Enter button) in the RStudio console to validate your assumptions.
 
 ```
 
 ## References
 
-Apart from [Stefano de Sabbata's](https://sdesabbata.github.io/){target="_blank"} teaching materials, a number of other sources are use in this module. Most of them are freely available online:
+Apart from [Stefano de Sabbata's](https://sdesabbata.github.io/){target="_blank"} teaching materials, this module draws from various sources, most of which are available online:
 
-- The Grammar Of Graphics – All You Need to Know About ggplot2 and Pokemons by Pascal Schmidt. see [Online Tutorial](https://thatdatatho.com/grammar-of-graphics-ggplot2/){target="_blank"}
-- ggplot2 - Overview. see [Online Documentation](https://ggplot2.tidyverse.org/){target="_blank"}
-- Getting started with httr2 - httr2 quickstart guide. [Online Tutorial](https://httr2.r-lib.org/articles/httr2.html){target="_blank"}
-- *Programming Skills for Data Science: Start Writing Code to Wrangle, Analyze, and Visualize Data with R* by Michael Freeman and Joel Ross, Addison-Wesley, 2019. See book [webpage](https://www.pearson.com/us/higher-education/program/Freeman-Programming-Skills-for-Data-Science-Start-Writing-Code-to-Wrangle-Analyze-and-Visualize-Data-with-R/PGM2047488.html){target="_blank"} and [repository](https://programming-for-data-science.github.io/){target="_blank"}.
-- *R for Data Science* by Garrett Grolemund and Hadley Wickham, O'Reilly Media, 2016. See [online book](https://r4ds.had.co.nz/){target="_blank"}.
-- *Discovering Statistics Using R* by Andy Field, Jeremy Miles and Zoë Field, SAGE Publications Ltd, 2012. See book [webpage](https://www.discoveringstatistics.com/books/discovering-statistics-using-r/){target="_blank"}.
-- *Machine Learning with R: Expert techniques for predictive modeling* by Brett Lantz, Packt Publishing, 2019. See book [webpage](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788295864){target="_blank"}.
-- *Introduction to spatial data in R* by Nils Riach and Rafael Hologa. See [online tutorial](https://thinking-spatial.org/courses/angewandte_geodatenverarbeitung/kurs03/){target="_blank"}.
-- *The Art of R Programming: A Tour of Statistical Software Design* by Norman Matloff, No Starch Press, 2011. See book [webpage](https://nostarch.com/artofr.htm){target="_blank"}
-- *An Introduction to R for Spatial Analysis and Mapping* by Chris Brunsdon and Lex Comber, Sage, 2015. See book [webpage](https://us.sagepub.com/en-us/nam/an-introduction-to-r-for-spatial-analysis-and-mapping/book258267){target="_blank"}
-- *Geocomputation with R* by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. See [online book](https://bookdown.org/robinlovelace/geocompr/){target="_blank"}.
-- *The RStudio Cheatsheets - * [Collection on R Studio Website](https://www.rstudio.com/resources/cheatsheets/){target="_blank"}.
-- *The terra package.* see [Online Documentation](https://rspatial.org/pkg/index.html){target="_blank"}
-- *Sf - Simple Features for R.* see [Online Documentation](https://r-spatial.github.io/sf/){target="_blank"}
+- *The Grammar Of Graphics – All You Need to Know About ggplot2 and Pokemons* by Pascal Schmidt. [See Online Tutorial](https://thatdatatho.com/grammar-of-graphics-ggplot2/){target="_blank"}
+- *ggplot2 - Overview.* [See Online Documentation](https://ggplot2.tidyverse.org/){target="_blank"}
+- *Getting started with httr2 - httr2 quickstart guide.* [See Online Tutorial](https://httr2.r-lib.org/articles/httr2.html){target="_blank"}
+- *Programming Skills for Data Science: Start Writing Code to Wrangle, Analyze, and Visualize Data with R* by Michael Freeman and Joel Ross, Addison-Wesley, 2019. [See Book Webpage](https://www.pearson.com/us/higher-education/program/Freeman-Programming-Skills-for-Data-Science-Start-Writing-Code-to-Wrangle-Analyze-and-Visualize-Data-with-R/PGM2047488.html){target="_blank"} and [Repository](https://programming-for-data-science.github.io/){target="_blank"}.
+- *R for Data Science* by Garrett Grolemund and Hadley Wickham, O'Reilly Media, 2016. [See Online Book](https://r4ds.had.co.nz/){target="_blank"}.
+- *Machine Learning with R: Expert techniques for predictive modeling* by Brett Lantz, Packt Publishing, 2019. [See Book Webpage](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788295864){target="_blank"}.
+- *Introduction to spatial data in R* by Nils Riach and Rafael Hologa. [See Online Tutorial](https://thinking-spatial.org/courses/angewandte_geodatenverarbeitung/kurs03/){target="_blank"}.
+- *The Art of R Programming: A Tour of Statistical Software Design* by Norman Matloff, No Starch Press, 2011. [See Book Webpage](https://nostarch.com/artofr.htm){target="_blank"}
+- *An Introduction to R for Spatial Analysis and Mapping* by Chris Brunsdon and Lex Comber, Sage, 2015. [See Book Webpage](https://us.sagepub.com/en-us/nam/an-introduction-to-r-for-spatial-analysis-and-mapping/book258267){target="_blank"}
+- *Geocomputation with R* by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. [See Online Book](https://bookdown.org/robinlovelace/geocompr/){target="_blank"}.
+- *Discovering Statistics Using R* by Andy Field, Jeremy Miles and Zoë Field, SAGE Publications Ltd, 2012. [See Book Webpage](https://us.sagepub.com/en-us/nam/discovering-statistics-using-r/book236067){target="_blank"}.
+- *The RStudio Cheatsheets - A collection of cheatsheets for various R functions and packages.* [View Collection on R Studio Website](https://www.rstudio.com/resources/cheatsheets/){target="_blank"}.
+- *The terra package - A comprehensive guide to the 'terra' package for spatial analysis in R.* [View Online Documentation](https://rspatial.org/pkg/index.html){target="_blank"}
+- *Sf - Simple Features for R - Documentation on using the 'sf' package for handling spatial data in R.* [View Online Documentation](https://r-spatial.github.io/sf/){target="_blank"}
