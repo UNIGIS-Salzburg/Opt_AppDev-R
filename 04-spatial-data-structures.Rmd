@@ -109,7 +109,7 @@ point_sf_multi_transform <- sf::st_transform(point_sf_multi, 3416)
 
 Eventually we can compare the two sf-objects with different coordinate systems:
 
-```{r}
+```{r, fig.height=6, fig.width=12}
 
 # Plotting the original and transformed points side by side
 par(mfrow = c(1, 2)) # Arrange plots in 1 row, 2 columns
@@ -125,6 +125,7 @@ grid()
 box()
 
 ```
+
 The same syntax and functions can be used to deal with **line or polygon** data. The following drop-downs contain two simple examples.
 
 <details closed>
