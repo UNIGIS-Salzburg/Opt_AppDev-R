@@ -120,7 +120,7 @@ grid()
 box()
 
 # Plot transformed points
-plot(sf::st_geometry(point_sf_multi_transform), main = "Transformed Points (EPSG: 3416)", pch = 17, col = "red", cex = 1.5)
+plot(sf::st_geometry(point_sf_multi_transform), main = "Transformed Points (EPSG: 3416)", pch = 19, col = "red", cex = 1.5)
 grid()
 box()
 
