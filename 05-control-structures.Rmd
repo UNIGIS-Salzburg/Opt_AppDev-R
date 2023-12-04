@@ -27,7 +27,7 @@ if (a_value < 0) {
 }
 ```
 
-The **statement** `cat("Negative")` gets executed and the text "Negative" is printed out, because the **condition** (`a_value < 0`) is TRUE.   
+The **statement** `cat("Negative")` gets executed and the text "Negative" is printed out, because the **condition** (`a_value < 0`) is `TRUE`.   
 
 ```{block2, type = 'rmdtip'}
 
@@ -68,7 +68,7 @@ if (a_value < 0){
 }
 ```
 
-In the example above, the **condition** `a_value < 0` is TRUE, **statement 1** `cat("Negative")` gets executed and **statement 2** `cat("Positive")` is ignored. If you change `a_value` to a positive value, the interpreter will ignore statement 1 and execute statement 2.
+In the example above, the **condition** `a_value < 0` is `TRUE`, **statement 1** `cat("Negative")` gets executed and **statement 2** `cat("Positive")` is ignored. If you change `a_value` to a positive value, the interpreter will ignore statement 1 and execute statement 2.
 
 ```{block2, type = 'rmdtip'}
 Note that statement 1 and statement 2 are in curly brackets! The indentation of statements is good programming practice, however does not affect the functioning of the code.
@@ -273,15 +273,15 @@ We need to load the library 'tidyverse' to make use of the function 'str_starts(
 
 ```{block2, type = 'rmdexercise'}
 
-As a last exercise in this lesson, you will implement a code that iterates over a two-dimensional *SpatRaster Object* and counts values in the raster grid that exceed a certain threshold.
+As a last exercise in this lesson, you will implement a code that iterates over a two-dimensional `SpatRaster Object` and counts values in the raster grid that exceed a certain threshold.
   
 ```
   
-1) Create a SpatRaster Object `r` with 20 rows and 20 columns and assign random values in a range between 0 and 1. Use the function `runif` as random value generator. It is recommended to make use of code snippets from lesson Spatial Data Structures. 
+1) Create a `SpatRaster` Object `r` with 20 rows and 20 columns and assign random values in a range between 0 and 1. Use the function `runif` as random value generator. It is recommended to make use of code snippets from lesson Spatial Data Structures. 
 
-2) Define a variable named `cnt` and assign a value of 0 to it.
+2) Define a `variable` named `cnt` and assign a value of 0 to it.
 
-3) Iterate over the SpatRaster Object `r` by means of a nested for-loop:
+3) Iterate over the `SpatRaster` Object `r` by means of a nested for-loop:
 
 ```{r, eval=FALSE}
 
@@ -298,7 +298,7 @@ for(row in c(1:nrow(r))) {
 
 **Task 1:**
 
-Try to find out, in what order the nested-for-loop-structure iterates over the SpatRaster Object `r`. 
+Try to find out, in what order the nested-for-loop-structure iterates over the `SpatRaster Object` `r`. 
 
 **Task 2:**
 
