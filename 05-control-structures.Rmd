@@ -3,13 +3,14 @@
 
 ```{block2, type = 'rmdtip'}
 
-In this lesson, you will get to know control structures as a significant structural element of code. Control structures allow our code to adapt its behavior depending on the value of the current variables in the environment. 
+In this lesson, you will get to know control structures as a significant structural element of code. Control structures allow our code to adapt its behavior depending on the value of the current variables in the environment.
+
 
 We distinguish between two types of control structures:
 
 1) **Conditional statements**, which allow executing instructions only if a certain condition is satisfied.
 
-2) **Loops**, which allow to repeat one or more instructions multiple times. Loops are commonly used to apply the same operation on a series of values that are stored in sequences such as vectors or lists.
+2) **Loops**, which allow repeating one or more instructions multiple times. Loops are commonly used to apply the same operation to a series of values stored in sequences such as vectors or lists.
 
 ```
 
@@ -30,13 +31,13 @@ The **statement** `cat("Negative")` gets executed and the text "Negative" is pri
 
 ```{block2, type = 'rmdtip'}
 
-The function [cat()](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/cat){target="_blank"} concatenates and prints string inputs ("Negative" in the example above). Alternatively, you can use the function 'print()' to write variable values to the console window. 
+The function [`cat()`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/cat){target="_blank"} concatenates and prints string inputs ("Negative" in the example above). Alternatively, you can use the function `print()` to write variable values to the console window. 
 
-These functions are highly useful to inspect whether variables take on expected values!
+These functions are highly useful to check whether variables take on expected values!
 
 ```
 
-Note that every conditional statement (e.g. `a_value < 0`) returns a logical value that is either TRUE or FALSE. 
+Note that every conditional statement (e.g. `a_value < 0`) returns a logical value that is either `TRUE` or `FALSE`. 
 
 ```{block2, type = 'rmdexercise'}
 
@@ -46,7 +47,7 @@ What result do you expect when you remove the negative sign in the code block ab
 <summary><ins>**See solution!**</ins></summary>
 <p><i><font color="grey">
   
-The condition yields FALSE. The statement is not executed. 
+The condition yields `FALSE`. The statement is not executed. 
     
 </font></i>
 </p>
@@ -77,7 +78,7 @@ However, inserting a line break before `else` returns an error. The reason for t
 
 ## Code blocks
 
-Conditional structures have a wide range of applications. Almost everything what a computer does requires an input. Each time you click a button the computer responds accordingly. The code that dictates the response typically has an if-else control structure or something very similar that tells the computer what to do depending on the input it got. Obviously in most cases the response won't be defined by a single instruction, but a code block that is composed of multiple instructions. **Code blocks** allow encapsulating **several** statements in a single group. The condition in the following example yields TRUE and the code block is executed:
+Conditional structures have a wide range of applications. Almost everything what a computer does requires an input. Each time you click a button the computer responds accordingly. The code that dictates the response typically has an if-else control structure or something very similar that tells the computer what to do depending on the input it got. Obviously in most cases the response won't be defined by a single instruction, but a code block that is composed of multiple instructions. **Code blocks** allow encapsulating **several** statements in a single group. The condition in the following example yields `TRUE` and the code block is executed:
 
 ```{r, echo=TRUE}
 first_value <- 8
@@ -89,7 +90,7 @@ if (first_value > second_value) {
 }
 ```
 
-The line `cat("First is greater than second\n")` prints a text (string) and inserts a line break. The next line calculates the difference between first and second value. The third line in the code block concatenates two inputs ("Their difference is " and variable 'difference') and prints them to the console window.
+The line `cat("First is greater than second\n")` prints a text (string) and inserts a line break. The next line calculates the difference between first and second value. The third line in the code block concatenates two inputs (`"Their difference is"` and variable `difference`) and prints them to the console window.
 
 ```{block2, type = 'rmdtip'}
 `if` and `else` are so called **reserved words**, meaning they cannot be used as variable names. 
@@ -129,12 +130,12 @@ Go through the example above and try to verbalize the consecutive steps.
 <p><i><font color="grey">
   
 1. The variable `current_value` takes on a value of zero.
-2. The condition of the while-loop returns TRUE.
+2. The condition of the `while`-loop returns `TRUE`.
 3. The `cat()` function is executed and prints a text as well as `current_value`.
 4. The variable `current_value` is incremented by +1.
-5. The condition of the while-loop returns TRUE (`current_value = 1`), the code block is executed again (see 3 and 4).
+5. The condition of the `while`-loop returns `TRUE` (`current_value = 1`), the code block is executed again (see 3 and 4).
 6. `current_value = 2`, the code block is executed again (see 3 and 4).
-7. `current_value = 3`, the condition returns FALSE, the loop ends.
+7. `current_value = 3`, the condition returns `FALSE`, the loop ends.
 
 </font></i>
 </p>
@@ -149,13 +150,13 @@ current_value <- 0
 repeat { 
   cat("Current value is", current_value, "\n") 
   current_value = current_value + 1 
-if (current_value == 3){             #if (variable == 3)... 
-  break                              #the loop will break!
+if (current_value == 3){             # if (variable == 3)... 
+  break                              # the loop will break!
   }
 }
 ```
 
-The `break` statement is executed and stops (breaks) the repeat loop (also applicable to while or for loops) once the variable `current_value` is equal to three.  
+The `break` statement is executed and stops (breaks) the `repeat` loop (also applicable to `while` or `for` loops) once the variable `current_value` is equal to three.  
 
 ### For
 
@@ -168,7 +169,7 @@ for (city in cities) {
 }
 ```
 
-In the first iteration of the for-loop the text string "Derby" is assigned to the iterator `city`. The function `cat()` uses the iterator value as an input. In the second iteration, the text string "Leicester" is assigned to the iterator `city` ... etc.
+In the first iteration of the for-loop the text string `"Derby"` is assigned to the iterator `city`. The function `cat()` uses the iterator value as an input. In the second iteration, the text string `"Leicester"` is assigned to the iterator `city` ... etc.
 
 The code block below illustrates another example. 
 
@@ -191,11 +192,11 @@ Note that with every iteration a new value is appended to the right side of the 
 
 ```
 
-There are some cases in which, for some reason, you just want to execute a certain sequence of steps a pre-defined number of times. In such cases, it is common practice to create a vector of integers on the spot. In the following example the for-loop is executed 3 times as it iterates over a vector composed of the three elements 1, 2, and 3 (vector is created on the spot by 1:3):  
+There are some cases in which, for some reason, you just want to execute a certain sequence of steps a pre-defined number of times. In such cases, it is common practice to create a vector of integers on the spot. In the following example the for-loop is executed 3 times as it iterates over a vector composed of the three elements 1, 2, and 3 (vector is created on the spot by `1:3`):  
 
 ```{r, echo=TRUE}
 for (i in 1:3) {
-  cat("This is exectuion number", i, ":\n")
+  cat("This is iteration number", i, ":\n")
   cat("    See you later!\n")
 }
 ```
@@ -203,7 +204,7 @@ for (i in 1:3) {
 ```{block2, type = 'rmdexercise'}
 
 
-Replace the vector 1:3 by a vector 3:5. What is different?
+Replace the vector `1:3` by a vector `3:5`. What is different?
 
 
 <details closed>
@@ -227,7 +228,7 @@ Now that we have seen both types of control structures, **conditional statements
 A simple example is this bit of code that defines a countdown:
 
 ```{r, echo=TRUE}
-#Example: countdown!
+# Example: countdown!
 for (i in 3:0) {
   if (i == 0) {
     cat("Go!\n")
@@ -237,7 +238,7 @@ for (i in 3:0) {
 }
 ```
 
-The deterministic loop runs 4 time on the values 3, 2, 1, and 0. If the iterator 'i' takes on a value of 0 the print "Go!" otherwise print the current value of the iterator 'i'. The result will be 3, 2, 1, Go!
+The deterministic loop runs 4 time on the values 3, 2, 1, and 0. If the iterator `i` takes on a value of 0 the print `"Go!"` otherwise print the current value of the iterator `i`. The result will be 3, 2, 1, Go!
 
 <details closed>
 <summary><ins>**See another example!**</ins></summary>
@@ -262,7 +263,7 @@ for (city in cities){
 
 We need to load the library 'tidyverse' to make use of the function 'str_starts()'. You may have to install 'tidyverse' (see Libraries in lesson [core Concepts](#core)). 
 
-'cities' is a vector of strings that includes the names of some Austrian federal capitals. The for-loop iterates over these vector elements. The function 'str_starts' takes the value of the iterator 'city' as well as a string "S" as inputs. If the city starts with letter S, the function returns TRUE and "City name starts with S" is printed to the console window, otherwise the function returns FALSE and "City name starts with other letter" is printed. 
+`cities` is a vector of strings that includes the names of some Austrian federal capitals. The for-loop iterates over these vector elements. The function `str_starts` takes the value of the iterator `city` as well as a string `"S"` as inputs. If the city starts with letter S, the function returns `TRUE` and `"City name starts with S"` is printed to the console window, otherwise the function returns `FALSE` and `"City name starts with other letter"` is printed. 
 
 </font></i>
 </p>
@@ -272,7 +273,7 @@ We need to load the library 'tidyverse' to make use of the function 'str_starts(
 
 ```{block2, type = 'rmdexercise'}
 
-As a last exercise in this lesson, you will implement a code that iterates over a two-dimensional SpatRaster Object and counts values in the raster grid that exceed a certain threshold.
+As a last exercise in this lesson, you will implement a code that iterates over a two-dimensional *SpatRaster Object* and counts values in the raster grid that exceed a certain threshold.
   
 ```
   
@@ -308,15 +309,15 @@ Try to find out, in what order the nested-for-loop-structure iterates over the S
 <summary><ins>**Solution!**</ins></summary>
 <p><i><font color="grey">
 
-See [my code](Solution_Exercise_ForLoop.R){target="_blank"}.
+See [our code](Solution_Exercise_ForLoop.R){target="_blank"}.
 
 **Answer 1:**
 
-The *nested for-loop-structure* starts its iteration in the leftmost cell of row1, and moves to the right, hitting col1, col2 etc., up until the last column in row 1. Then, it moves down to row2 and repeats the process.
+The *nested for-loop-structure* iterates through the SpatRaster Object in a **row-major order**. It starts its iteration in the leftmost cell of row 1, moves to the right through columns (e.g., col1, col2) until it reaches the last column in row 1. Then, it moves down to row 2 and repeats the process for each row in a similar manner. This row-major order ensures that it covers each element of the SpatRaster Object row by row.
 
 **Answer 2:**
 
-A threshold value of 0.9 returns a count of about 40, which indicates that about 10% of values are greater than 0.9. It seems like random values are uniformly distributed in a range between 0 and 1. Other R functions like [rnorm()](https://www.rdocumentation.org/packages/compositions/versions/2.0-6/topics/rnorm){target="_blank"} generate numbers from a normal distribution. 
+A threshold value of 0.9 returns a count of about 40, which indicates that about 10% of values are greater than 0.9. It seems like random values are uniformly distributed in a range between 0 and 1. Other R functions like [`rnorm()`](https://www.rdocumentation.org/packages/compositions/versions/2.0-6/topics/rnorm){target="_blank"} generate numbers from a normal distribution. 
 
 </font></i>
 </p>
@@ -332,13 +333,13 @@ library(terra)
 r <- terra::rast(ncol=20, nrow=20)
 terra::values(r) <- stats::runif(terra::ncell(r),0,1)
 
-#Get values of SpatRaster Object `r` as matrix
+# Get values of SpatRaster Object `r` as matrix
 rm <- terra::values(r)
-#Create logic vector by condition
+# Create logic vector by condition
 log_vec <- rm[,1] > 0.5
-#Get length of TRUE values (grid value > 0.5) in logic vectors
+# Get length of TRUE values (grid value > 0.5) in logic vectors
 length(log_vec[log_vec== TRUE])
 
 ```
 
-It is apparent from the code example above that avoiding loops in R code makes code shorter and increases performance. Increase the size of your raster grid (e.g. ncol=100, nrow=100) and test respective code realizations to investigate the difference in code performance. More information on vectorization and parallelization of operations in R can be found [here.](https://tmieno2.github.io/R-as-GIS-for-Economists/repetitive-processes-and-looping.html#do-you-really-need-to-loop){target="_blank"}
+It is apparent from the code example above that avoiding loops in R code makes code shorter and increases performance. Increase the size of your raster grid (e.g. `ncol=100`, `nrow=100`) and test respective code realizations to investigate the difference in code performance. More information on vectorization and parallelization of operations in R can be found [here](https://tmieno2.github.io/R-as-GIS-for-Economists/repetitive-processes-and-looping.html#do-you-really-need-to-loop){target="_blank"}.
