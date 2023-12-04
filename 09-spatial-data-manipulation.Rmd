@@ -6,38 +6,31 @@ In this lesson we will....
 
 ## Acquire data
 
-In the first part of this lesson, we will work with vector data that are used to correctly identify agricultural land parcels in European Union countries. The Austrian Agricultural Agency [AMA](https://www.ama.at/intro){target="_blank"} gives data access through an [OGC Rest API - Feature](https://ogcapi.ogc.org/){target="_blank"} interface. The OGC API Features standard is the successor to the earlier OGC Web Feature Service (WFS) specification. 
+In the first part of this lesson, we will work with vector data that are used to correctly identify agricultural land parcels in European Union countries. The Austrian Agricultural Agency [AMA](https://www.ama.at/intro){target="_blank"} provides access to Austrian agricultural parcels through an [OGC Rest API - Feature](https://ogcapi.ogc.org/){target="_blank"} interface. The OGC API Features standard is the successor to the earlier OGC Web Feature Service (WFS) specification. 
 
-The syntax being used to interact with OGC APIs is the same as described in section "Data API" (see Lesson [Read and write data](#readwrite){target="_blank"}). Before we load the data into an R Script, let us take a look at API contents. On the [landing page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/){target="_blank"} of the web-service go to [collection page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml){target="_blank"}. On this site you will find an overview of available layers.
+Before we load the data into an R Script, let us take a look at API contents. On the [landing page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/){target="_blank"} of the web-service go to [collection page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml){target="_blank"}. On this site you will find an overview of available layers.
 
 Copy the following URL into your browser:
 
 ```{}
-
 https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon/items?f=json&limit=10
-
 ```
 
-The request returns the first ten features (parameter `limit=10`) of layer `ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon` (parcels of agricultural land as polygons) in a GeoJSON format (parameter `f=json`). GeoJSON is a JSON-based standard that represents simple feature geometries along with their non-spatial attributes.  
+The request returns the first ten features (parameter `limit=10`) of layer `ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon` (parcels of agricultural land as polygons) in a GeoJSON format (parameter `f=json`). 
+
+>GeoJSON is a JSON-based standard that represents simple feature geometries along with their non-spatial attributes.  
 
 On closer inspection of the GeoJSON, you will find coordinate vertices of polygon features as well as feature attributes like `fs_flaeche_ha` (area of parcel in hectares) or `fnar_bezeichnung` (land use).
 
-Alternatively, the parameter `bbox` may be used filtered the ressource by means of a bounding box:
+Alternatively, the parameter `bbox` can be used to filter available resources by means of a bounding box:
 
 ```{}
-
-# request with bbox
 https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon/items?f=json&bbox=14,48,14.02,48.02 
-
 ```
 
-```{block2, type = 'rmdtip'}
+To inspect the extent of the data request, paste the coordinates `14,48,14.02,48.02` into [linestrings.com](https://linestrings.com/bbox/){target="_blank"} and press "Display box". 
 
-It is recommended
-
-```
-
-enter coordinates to display bounding box: https://linestrings.com/bbox/
+Once you have specified the URL, the request can be executed in an R Script:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -54,9 +47,29 @@ invekos <- httr2::request(full_url) %>%   #Create request
 
 ```
 
+To code above returns 100 polygon features as sf-object that is named `invekos`. 
+
+```{block2, type = 'rmdtip'}
+
+The R-Syntax being used to interact with OGC APIs is the same as described in section "Data API" (see Lesson [Read and write data](#readwrite){target="_blank"}).
+  
+```
+
 ## Data Cleaning
 
-select columns and show attributes of polygon features 1 and 2:
+Once the data is load to R, we can inspect the structure of the data in more detail. 
+
+For instance, the `dplyr` function  `glimpse` may be used to see every column name and type:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+dplyr::glimpse(invekos)
+
+```
+
+> `dbl` stands for `double`, which allows you to store numbers as decimals.
+
+The following code returns a subset of sf-object `invekos` (2 features with 3 non-spatial attributes and geometries):
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -67,46 +80,38 @@ invekos %>%
 
 ```
 
-plot parcels of land:
+The next line creates a basic map in sf by means of plot():
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
-plot(invekos[1])
+plot(invekos)
 
 ```
 
-`glimpse` may be used to see every column name and type, dbl stands for double, which is a numeric data type
+By default this creates a multi-panel plot, one sub-plot for each attribute of the object. To constrain the number of sub-plots, use `plot(invekos[<index number>])` or `plot(invekos[<index number start>:<index number end>])`. e.g.:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
-
-dplyr::glimpse(invekos)
-
+plot(invekos[1:3])
 ```
 
 As a next step we can validate the geometry of sf polygons. Four point coordinates are required to create a closed polygon shape (*Remember:* First and last point need to be identical). A polygon with only three points is classified as having an invalid geometry. Sf-Function `st_is_valid` is used to detect invalid geometries:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
-sf::st_is_valid(invekos)
-summary(invekos)
+sf::st_is_valid(invekos) %>%
+  summary()
 
 ```
 
-The function returns a logical vector indicating for each geometry whether it is valid. The summary statistic shows that the vector is composed of 100 TRUE values. Accordingly, our geometries are valid. Given that function `st_is_valid` returns FALSE, `st_make_valid` can be used to return objects with topologically correct geometry.
+The function returns a logical vector indicating for each geometry whether it is valid. The summary statistic shows that the vector is composed of 100 TRUE values. Accordingly, our geometries are valid. Given that function `st_is_valid` returns FALSE, `st_make_valid` can be used to correct geometries.
 
 ```{block2, type = 'rmdexercise'}
 
+In this short exercise we will closely investigate a polygon geometry.
+
 The code below creates a single polygon feature. However, the validity check indicates an invalid geometry. What is problem with this polygon?
 
-<details closed>
-<summary><ins>**See solution!**</ins></summary>
-<p><font color="grey">
-  
-Plotting the polygon (`plot(error_sf)`) shows a [sliver polygon](https://en.wikipedia.org/wiki/Sliver_polygon){target="_blank"}. Another reason for a non-valid geometry may be the self-intersection of lines. 
-  
-</font>
-</p>
-</details>
+
 
 ```
 
@@ -127,7 +132,24 @@ sf::st_is_valid(error_sf)
 
 ```
 
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><font color="grey">
+  
+Plotting the polygon shows a [sliver polygon](https://en.wikipedia.org/wiki/Sliver_polygon){target="_blank"}. 
 
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+plot(error_sf)
+
+```
+
+Another reason for a non-valid geometry may be the self-intersection of lines. 
+
+</font>
+</p>
+</details>
+</br>
 
 german attribute names and notations (e.g. Ackerland) to english
 filter important information (e.g. fnar_bezeichnung, fs_flaeche_ha, geo_id, geometry), see above
