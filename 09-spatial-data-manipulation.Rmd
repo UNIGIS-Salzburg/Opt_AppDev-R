@@ -37,21 +37,91 @@ library(sf)
 
 full_url <- "https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon/items?f=json&bbox=14,48,14.02,48.02"
 
-sf <- httr2::request(full_url) %>%   #Create request
+invekos <- httr2::request(full_url) %>%   #Create request
   httr2::req_perform() %>%           #Execute request
   httr2::resp_body_string() %>%      #Extract JSON body as string
   geojsonsf::geojson_sf()            #JSON string to sf object
 
-#show polygon features 1 and 2
-sf %>%
+```
+
+## Data Cleaning
+
+select columns and show polygon features 1 and 2:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+invekos %>%
   head(2) %>%
   dplyr::select(fnar_bezeichnung, fs_flaeche_ha, geo_id, geometry) %>%
   knitr::kable(., format="html")
 
 ```
 
-## Data Cleaning
+`glimpse` may be used to see every column name and type, dbl stands for double, which is a numeric data type
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+dplyr::glimpse(invekos)
+
+```
+
+As a next step we can validate the geometry of sf polygons. Four point coordinates are required to create a closed polygon shape (*Remember:* First and last point need to be identical). A polygon with only three points is classified as having an invalid geometry. Sf-Function `st_is_valid` is used to detect invalid geometries:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+sf::st_is_valid(invekos)
+summary(invekos)
+
+```
+
+The function returns a logical vector indicating for each geometry whether it is valid. The summary statistic shows that the vector is composed of 100 TRUE values. Accordingly, our geometries are valid. Given that function `st_is_valid` returns FALSE, `st_make_valid` can be used to return objects with topologically correct geometry.
+
+```{block2, type = 'rmdexercise'}
+
+The code below creates a single polygon feature. However, the validity check indicates an invalid geometry. What is problem with this polygon?
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><font color="grey">
+  
+Plotting the polygon (`plot(error_sf)`) shows a [sliver polygon](https://en.wikipedia.org/wiki/Sliver_polygon){target="_blank"}. Another reason for a non-valid geometry may be the self-intersection of lines. 
+  
+</font>
+</p>
+</details>
+
+```
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+# Create a matrix of coordinates
+coords <- matrix(c(-1,-1, 1,-1, 1,1, 0,-1, -1, -1), ncol = 2, byrow = TRUE)
+
+# Create a list of matrices (in this case, just one matrix)
+list_of_coords <- list(coords)
+
+# Create the polygon
+polygon <- st_polygon(list_of_coords)
+
+# Convert to spatial feature
+error_sf <- st_sf(geometry = st_sfc(polygon))
+
+sf::st_is_valid(error_sf)
+
+```
+
+
 
 german attribute names and notations (e.g. Ackerland) to english
 filter important information (e.g. fnar_bezeichnung, fs_flaeche_ha, geo_id, geometry), see above
 check topology
+
+## Spatial filtering
+
+## Spatial joins
+
+## Geometrical operations
+
+See geometrical operations:
+https://r-spatial.github.io/sf/articles/sf3.html#geometrical-operations
+
+Union, buffer, intersect etc.
