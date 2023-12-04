@@ -10,7 +10,7 @@ In this lesson, we'll explore three fundamental concepts in programming:
 
 ## Variables
 
-Variables are essential for **storing data**. To define a variable, use an *identifier* (e.g., `a_variable`) on the left of an *assignment operator* `<-`, followed by the value you wish to assign (e.g., `1`):
+Variables are essential for **storing data**. To define a variable, use an *identifier* (e.g., `a_variable`) on the left of an *assignment operator* `<-`, followed by the value you wish to assign (e.g., 1):
 
 ```{r, echo=TRUE}
 a_variable <- 1

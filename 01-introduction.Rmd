@@ -74,7 +74,7 @@ With RStudio and R installed, let's dive into coding. The **Console Window** in 
 knitr::include_graphics('images/Console.png')
 ```
 
-Type in a **numeric value** (e.g. `3`) and press Enter. The interpreter returns a value in brackets and the input value. The value in brackets indicates that the input is composed of one single entity.
+Type in a **numeric value** (e.g. 3) and press Enter. The interpreter returns a value in brackets and the input value. The value in brackets indicates that the input is composed of one single entity.
 
 ```{block2, type = 'rmdexercise'}
 
@@ -113,9 +113,9 @@ The type 'logical' encodes the values `TRUE` or `FALSE`. Together these three si
 
 ```{block2, type = 'rmdexercise'}
 
-If you type a simple numeric operation in the console (e.g. `2 + 4`), the interpreter will return a result. This indicates that operations (e.g. mathematical calculations) can be carried out on these types.
+If you type a simple numeric operation in the console (e.g. 2 + 4), the interpreter will return a result. This indicates that operations (e.g. mathematical calculations) can be carried out on these types.
 
-Logical operations return values of type **logical**. What value is returned in the console when you type and execute the expression `2 < 3`? 
+Logical operations return values of type **logical**. What value is returned in the console when you type and execute the expression 2 < 3? 
     
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
@@ -150,18 +150,18 @@ Whereas mathematical operators are self-explanatory, the operators **Module** an
 ```
 
 ```{block2, type = 'rmdtip'}
-Note: In this web book, two hash symbols (`##`) highlight the values returned by the R Console. The code above returns a value of `2`. The number in squared brackets `[1]` indicates the line number of the return.
+Note: In this web book, two hash symbols (`##`) highlight the values returned by the R Console. The code above returns a value of 2. The number in squared brackets [1] indicates the line number of the return.
 ```
 
 ```{block2, type = 'rmdexercise'}
 
-Execute `5 %% 2` to test the 'Module' operator.
+Execute 5 %% 2 to test the 'Module' operator.
     
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
 <p><i><font color="grey">
   
-The 'Module' returns the remainder of the division, which is `1` in the example above.
+The 'Module' returns the remainder of the division, which is 1 in the example above.
 
 </font></i>
 </p>
@@ -190,9 +190,9 @@ Logical expressions are typically used to execute code dependent on the occurren
 
 What logical values are returned by the following expressions:    
 
-* `(3 != 5) | (3 == 4)`
-* `(2 >= 3) | (3 < 7)`
-* `(2 == 9) & (2 < 4)`
+* (3 != 5) | (3 == 4)
+* (2 >= 3) | (3 < 7)
+* (2 == 9) & (2 < 4)
 
 Type and execute (Enter button) in the RStudio console to validate your assumptions.
 

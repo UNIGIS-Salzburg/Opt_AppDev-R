@@ -1,6 +1,6 @@
 # Data Structures
 
-In this lesson, we expand upon the simple data types ('numeric', 'character' (string), and 'logical') discussed in [Lesson 1](#intro) by introducing more complex data structures.
+In this lesson, we expand upon the simple data types (**numeric**, **character** (string), and **logical**) discussed in [Lesson 1](#intro) by introducing more complex data structures.
 
 ```{block2, type = 'rmdtip'}
 In this lesson, you will get to know the following data structures in R:
@@ -31,7 +31,7 @@ a_vector
 ```
 
 ```{block2, type = 'rmdtip'}
-Note that the second line of the returned elements starts with `[5]`, as it begins with the fifth element of the vector.
+Note that the second line of the returned elements starts with [5], as it begins with the fifth element of the vector.
 ```
 
 Other functions for creating vectors include `seq()` and `rep()`:
@@ -158,7 +158,7 @@ all(numeric_vector >= 3)  # Checks if all elements are >= 3
 
 Matrices in R are two-dimensional data structures, where data is organized in rows and columns. They are particularly useful for performing a variety of mathematical operations.
 
-To create a matrix, use the matrix()` function, providing a vector of values and the desired dimensions:
+To create a matrix, use the `matrix()` function, providing a vector of values and the desired dimensions:
 
 ```{r, echo=TRUE}
 a_matrix <- matrix(c(3, 5, 7, 4, 3, 1), nrow=3, ncol=2)
