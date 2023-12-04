@@ -6,24 +6,34 @@ In this lesson we will....
 
 ## Acquire data
 
-Invekos Service Metadata: https://www.data.gv.at/katalog/dataset/56d93431-af47-4fc0-a014-012759d8db4e#applications
+In the first part of this lesson, we will work with vector data that are used to correctly identify agricultural land parcels in European Union countries. The Austrian Agricultural Agency [AMA](https://www.ama.at/intro){target="_blank"} gives data access through an [OGC Rest API - Feature](https://ogcapi.ogc.org/){target="_blank"} interface. The OGC API Features standard is the successor to the earlier OGC Web Feature Service (WFS) specification. 
 
-OGC API - Feature: https://gis.lfrz.gv.at/ogcapi009501/ogc/features/
+The syntax being used to interact with OGC APIs is the same as described in section "Data API" (see Lesson [Read and write data](#readwrite){target="_blank"}). Before we load the data into an R Script, let us take a look at API contents. On the [landing page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/){target="_blank"} of the web-service go to [collection page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml){target="_blank"}. On this site you will find an overview of available layers.
 
-Collection Page: https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml
+Copy the following URL into your browser:
 
 ```{}
 
-#get 10 features of INVEKOS feldstuecke
-#copy to browser
 https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon/items?f=json&limit=10
 
 ```
+
+The request returns the first ten features (parameter `limit=10`) of layer `ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon` (parcels of agricultural land as polygons) in a GeoJSON format (parameter `f=json`). GeoJSON is a JSON-based standard that represents simple feature geometries along with their non-spatial attributes.  
+
+On closer inspection of the GeoJSON, you will find coordinate vertices of polygon features as well as feature attributes like `fs_flaeche_ha` (area of parcel in hectares) or `fnar_bezeichnung` (land use).
+
+Alternatively, the parameter `bbox` may be used filtered the ressource by means of a bounding box:
 
 ```{}
 
 # request with bbox
 https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon/items?f=json&bbox=14,48,14.02,48.02 
+
+```
+
+```{block2, type = 'rmdtip'}
+
+It is recommended
 
 ```
 
@@ -46,7 +56,7 @@ invekos <- httr2::request(full_url) %>%   #Create request
 
 ## Data Cleaning
 
-select columns and show polygon features 1 and 2:
+select columns and show attributes of polygon features 1 and 2:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -54,6 +64,14 @@ invekos %>%
   head(2) %>%
   dplyr::select(fnar_bezeichnung, fs_flaeche_ha, geo_id, geometry) %>%
   knitr::kable(., format="html")
+
+```
+
+plot parcels of land:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+plot(invekos[1])
 
 ```
 
