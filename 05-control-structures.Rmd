@@ -277,11 +277,11 @@ As a last exercise in this lesson, you will implement a code that iterates over 
   
 ```
   
-1) Create a `SpatRaster` Object `r` with 20 rows and 20 columns and assign random values in a range between 0 and 1. Use the function `runif` as random value generator. It is recommended to make use of code snippets from lesson Spatial Data Structures. 
+1) Create a `SpatRaster Object` `r` with 20 rows and 20 columns and assign random values in a range between 0 and 1. Use the function `runif` as random value generator. It is recommended to make use of code snippets from lesson Spatial Data Structures. 
 
 2) Define a `variable` named `cnt` and assign a value of 0 to it.
 
-3) Iterate over the `SpatRaster` Object `r` by means of a nested for-loop:
+3) Iterate over the `SpatRaster Object` `r` by means of a nested for-loop:
 
 ```{r, eval=FALSE}
 
@@ -313,7 +313,7 @@ See [our code](Solution_Exercise_ForLoop.R){target="_blank"}.
 
 **Answer 1:**
 
-The *nested for-loop-structure* iterates through the SpatRaster Object in a **row-major order**. It starts its iteration in the leftmost cell of row 1, moves to the right through columns (e.g., col1, col2) until it reaches the last column in row 1. Then, it moves down to row 2 and repeats the process for each row in a similar manner. This row-major order ensures that it covers each element of the SpatRaster Object row by row.
+The *nested for-loop-structure* iterates through the `SpatRaster Object` in a **row-major order**. It starts its iteration in the leftmost cell of row 1, moves to the right through columns (e.g., col1, col2) until it reaches the last column in row 1. Then, it moves down to row 2 and repeats the process for each row in a similar manner. This row-major order ensures that it covers each element of the `SpatRaster Object` row by row.
 
 **Answer 2:**
 
