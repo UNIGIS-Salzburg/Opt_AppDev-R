@@ -409,7 +409,7 @@ The function `geom_sf()` is used to add US state polygons as an additional layer
 
 Eventually, we save a PDF version of the map, which keeps the best quality, and a PNG version of it for web purposes:
 
-```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+```{r, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 ggsave("data/map.pdf")
 ggsave("data/map_web.png", width = 10, height = 10, dpi = "screen")
 ```
