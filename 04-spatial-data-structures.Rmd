@@ -1,6 +1,6 @@
 # Spatial Data Structures 
 
-In the realm of geoinformatics, spatial data stands as a cornerstone, offering a lens through which we can view, analyze, and interpret the world around us. At this point in your Master's, you are already familiar with the basic spatial entities of points, lines, and polygons. These fundamental structures, while simple in concept, form the bedrock of complex spatial analyses and visualizations.
+In the realm of geoinformatics, spatial data stands as a cornerstone, offering a lens through which we can view, analyze, and interpret the world around us. At this point in your studies, you are already familiar with the basic spatial entities of points, lines, and polygons. These fundamental structures, while simple in concept, form the bedrock of complex spatial analyses and visualizations.
 
 R, with its rich ecosystem of packages, offers a unique perspective on spatial data. Packages like **sf**, **terra**, **stars**, and **spatstat** have been game-changers, allowing us to handle spatial vector, raster and multidimensional data with unprecedented ease and flexibility. 
 
@@ -64,7 +64,7 @@ To stay in GIS terms, records (rows) in a sf-object table may be called `feature
 
 ```{r}
 
-# Create three points at locations 3/4, 5/3 and 7/1 as multipoint geometry
+# Create three points as multipoint geometry
 point_multi <- sf::st_multipoint(matrix(c(3, 5, 7, 4, 3, 1), c(3, 2)), dim = "XY")
 
 # Convert to sf object
@@ -82,27 +82,18 @@ point_sf_multi
 
 ```
 
-Alternatively, the function `st_crs` may be used extract coordinate system information from an sf-object:
+To extract or set CRS information, use the `st_crs` function:
 
 ```{r}
 
-sf::st_crs(point_sf_multi)
-
-```
-
-In case when a CRS is missing or the wrong CRS is set, the function `st_crs` is used:
-
-```{r}
-
-# Assign WGS84 as CRS
-# 4326 is the EPSG code of WGS84
+# Assign WGS84 as CRS (EPSG code 4326)
 sf::st_crs(point_sf_multi) <- 4326
 
 ```
 
 ```{block2, type = 'rmdtip'}
 
-EPSG-Codes of other reference systems can be found [here.](https://spatialreference.org/ref/epsg/?search=4326&srtext=Search){target="_blank"}
+EPSG-Codes of other reference systems can be found [here](https://spatialreference.org/ref/epsg/?search=4326&srtext=Search){target="_blank"}.
 
 ```
 
@@ -113,18 +104,27 @@ Now we transform the sf-object to [EPSG 3416](https://spatialreference.org/ref/e
 # Assign NAD27 as CRS
 point_sf_multi_transform <- sf::st_transform(point_sf_multi, 3416)
 
+
 ```
 
 Eventually we can compare the two sf-objects with different coordinate systems:
 
 ```{r}
 
-par(mfrow=c(1,2)) # both plots together
-plot(sf::st_geometry(point_sf_multi_transform), main = "EPSG: 3416")
-plot(sf::st_geometry(point_sf_multi), main = "EPSG: 4326")
+# Plotting the original and transformed points side by side
+par(mfrow = c(1, 2)) # Arrange plots in 1 row, 2 columns
+
+# Plot original points with a coordinate grid and axes
+plot(sf::st_geometry(point_sf_multi), main = "Original Points (EPSG: 4326)", pch = 19, col = "blue", cex = 1.5)
+grid()
+box()
+
+# Plot transformed points
+plot(sf::st_geometry(point_sf_multi_transform), main = "Transformed Points (EPSG: 3416)", pch = 17, col = "red", cex = 1.5)
+grid()
+box()
 
 ```
-
 The same syntax and functions can be used to deal with **line or polygon** data. The following drop-downs contain two simple examples.
 
 <details closed>
