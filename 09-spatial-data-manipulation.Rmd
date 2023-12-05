@@ -4,9 +4,15 @@ In the previous lesson you have learned to get access to data on a server via Re
 
 In this lesson we will....
 
-## Acquire data
+## Data Acquisition
 
 In the first part of this lesson, we will work with vector data that are used to correctly identify agricultural land parcels in European Union countries. The Austrian Agricultural Agency [AMA](https://www.ama.at/intro){target="_blank"} provides access to Austrian agricultural parcels through an [OGC Rest API - Feature](https://ogcapi.ogc.org/){target="_blank"} interface. The OGC API Features standard is the successor to the earlier OGC Web Feature Service (WFS) specification. 
+
+```{block2, type = 'rmdtip'}
+
+The R-Syntax being used to interact with OGC APIs is the same as described in section "Data API" (see Lesson [Read and write data](#readwrite){target="_blank"}).
+  
+```
 
 Before we load the data into an R Script, let us take a look at API contents. On the [landing page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/){target="_blank"} of the web-service go to [collection page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml){target="_blank"}. On this site you will find an overview of available layers.
 
@@ -49,12 +55,6 @@ invekos <- httr2::request(full_url) %>%   #Create request
 
 To code above returns 100 polygon features as sf-object that is named `invekos`. 
 
-```{block2, type = 'rmdtip'}
-
-The R-Syntax being used to interact with OGC APIs is the same as described in section "Data API" (see Lesson [Read and write data](#readwrite){target="_blank"}).
-  
-```
-
 ## Data Cleaning
 
 Once the data is load to R, we can inspect the structure of the data in more detail. 
@@ -69,9 +69,11 @@ dplyr::glimpse(invekos)
 
 > `dbl` stands for `double`, which allows you to store numbers as decimals.
 
-The following code returns a subset of sf-object `invekos` (2 features with 3 non-spatial attributes and geometries):
+The following code returns a subset of sf-object `invekos`:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(dplyr)
 
 invekos %>%
   head(2) %>%
@@ -80,19 +82,45 @@ invekos %>%
 
 ```
 
-The next line creates a basic map in sf by means of plot():
+Field names and entries are in German language. The base R function `colnames()` can be used to rename fields:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
-plot(invekos)
+# take subset of invekos object
+invekos.sub <- invekos %>%
+  dplyr::select(fnar_bezeichnung, fs_flaeche_ha, geo_id, geometry)
+
+# rename fields
+colnames(invekos.sub)[1] <- "land_use"
+colnames(invekos.sub)[2] <- "area_ha"
 
 ```
 
-By default this creates a multi-panel plot, one sub-plot for each attribute of the object. To constrain the number of sub-plots, use `plot(invekos[<index number>])` or `plot(invekos[<index number start>:<index number end>])`. e.g.:
+Entries are renamed by means of `dplyr` functions `mutate` and `case_when`:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
-plot(invekos[1:3])
+
+unique(invekos.sub$land_use)  #query unique entries in field 'land_use'
+
+# rename entries 'ACKERLAND' and 'GRÜNLAND'
+invekos.sub <- dplyr::mutate(invekos.sub, land_use = 
+                               case_when(land_use == 'ACKERLAND' ~ 'arable land',
+                               land_use == 'GRÜNLAND' ~ 'grassland', TRUE ~ 'Other'))
+
+#show result
+invekos.sub %>%
+  head(2) %>%
+  knitr::kable(., format="html")
+
 ```
+
+To get a first visual impression, we can plot the sf-object by means of the base R `plot()` function:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+plot(invekos.sub[1], main="Land Use", key.pos = 1, key.width = lcm(1.3))
+```
+
+By default `plot()` creates a multi-panel plot, one sub-plot for each field of the object. `invekos.sub[1]` limits the output to a single plot of field `land_use`. The function parameter `key.pos = 1` aligns the legend below the map (1=below, 2=left, 3=above and 4=right). `key.width` defines the width of the legend. 
 
 As a next step we can validate the geometry of sf polygons. Four point coordinates are required to create a closed polygon shape (*Remember:* First and last point need to be identical). A polygon with only three points is classified as having an invalid geometry. Sf-Function `st_is_valid` is used to detect invalid geometries:
 
