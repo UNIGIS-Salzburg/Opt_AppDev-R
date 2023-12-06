@@ -181,15 +181,42 @@ Another reason for a non-valid geometry may be the self-intersection of lines.
 </font>
 </p>
 </details>
-</br>
 
-## Spatial filtering
+## Filtering and geometrical operations
 
-## Spatial joins
+Typically, GIS tools provide various methods to filter data by attribute or by location. The sf-object is similar in structure as data frames. Accordingly, filtering operations that are based on attributes can be carried out by the help of `dplyr` functions as described in lesson [Data manipulation](#datman){target="_blank"}.
 
-## Geometrical operations
+For instance, grassland parcels can be extracted using the `filter()` function:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+invekos.sub %>%
+  dplyr::filter(land_use=='grassland') %>%
+  {plot(.[1], main="Land Use", key.pos = 1, key.width = lcm(1.3))}
+```
+
+> Notice that the `plot()` function is in curly brackets. This is because the dot (used to set the position of the piped value) cannot be indexed directly (`.[1]`). A more comprehensive explanation of the problem can be found [here](https://stackoverflow.com/questions/42385010/using-the-pipe-and-dot-notation){target="_blank"}. 
+
+To carry out filter operations by location, we create a second sf-object that contains the location of farmsteads in our study area (`bbox=14,48,14.02,48.02`):
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+
+full_url <- "https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_hofstellen_aktuell_point/items?f=json&bbox=14,48,14.02,48.02"
+
+farms <- httr2::request(full_url) %>%   #Create request
+  httr2::req_perform() %>%           #Execute request
+  httr2::resp_body_string() %>%      #Extract JSON body as string
+  geojsonsf::geojson_sf()            #JSON string to sf object
+
+plot(farms[1])
+
+```
+
+
 
 See geometrical operations:
 https://r-spatial.github.io/sf/articles/sf3.html#geometrical-operations
 
 Union, buffer, intersect etc.
+
+## Spatial joins
