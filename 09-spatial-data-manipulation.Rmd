@@ -182,9 +182,9 @@ Another reason for a non-valid geometry may be the self-intersection of lines.
 </p>
 </details>
 
-## Filtering and geometrical operations
+## Filter by attribute
 
-Typically, GIS tools provide various methods to filter data by attribute or by location. The sf-object is similar in structure as data frames. Accordingly, filtering operations that are based on attributes can be carried out by the help of `dplyr` functions as described in lesson [Data manipulation](#datman){target="_blank"}.
+The sf-object is similar in structure as data frames. Accordingly, filtering operations that are based on attributes can be carried out by the help of `dplyr` functions as described in lesson [Data manipulation](#datman){target="_blank"}.
 
 For instance, grassland parcels can be extracted using the `filter()` function:
 
@@ -194,9 +194,25 @@ invekos.sub %>%
   {plot(.[1], main="Land Use", key.pos = 1, key.width = lcm(1.3))}
 ```
 
-> Notice that the `plot()` function is in curly brackets. This is because the dot (used to set the position of the piped value) cannot be indexed directly (`.[1]`). A more comprehensive explanation of the problem can be found [here](https://stackoverflow.com/questions/42385010/using-the-pipe-and-dot-notation){target="_blank"}. 
+> Notice that the `plot()` function is in curly brackets. This is because the dot (used to set the position of the piped value) cannot be indexed directly (`.[1]`). A more comprehensive explanation of the problem can be found [here](https://stackoverflow.com/questions/42385010/using-the-pipe-and-dot-notation){target="_blank"}.
 
-To carry out filter operations by location, we create a second sf-object that contains the location of farmsteads in our study area (`bbox=14,48,14.02,48.02`):
+## Geometrical operations
+
+`Sf` provides various geometric predicates such as `st_within`, `st_contains` or `st_crosses`. A full list of available predicates is available [here](https://r-spatial.github.io/sf/reference/geos_binary_pred.html){target="_blank"}. 
+
+Typically, we will use geometric predicates for pairs of simple feature geometry sets (e.g. `st_intersects(<sf-obj1>, <sf-obj2>)`). However, we can also carry out predicate operations based on an individual sf-object:  
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+sf::st_intersects(invekos.sub, sparse = TRUE)
+
+```
+
+As a result we get a sparse matrix that reveals numerous intersections between features of the same sf-object `invekos.sub`. For instance, the feature with ID 1 intersects the feature with ID 3. Feature 2 intersects features 22 and 62. In fact, intersections among feature polygons indicate topology errors. To fix these errors, it is recommended to make use of GIS software such as [QGIS](https://www.qgis.org/de/site/){target="_blank"}. R is not yet as advanced in handling topology errors as standard GIS software. 
+
+### Binary operations
+
+To carry out binary operations, we first create a second sf-object that contains the location of farmsteads in our study area (`bbox=14,48,14.02,48.02`). The data is in turn loaded via the [AMA Rest API service](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml){target="_blank"}:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -208,9 +224,13 @@ farms <- httr2::request(full_url) %>%   #Create request
   httr2::resp_body_string() %>%      #Extract JSON body as string
   geojsonsf::geojson_sf()            #JSON string to sf object
 
-plot(farms[1])
+plot(invekos.sub[1], main=NULL, key.pos=NULL, reset = FALSE, col_graticule = "grey")
+plot(farms[1], main=NULL, key.pos=NULL, pch = 7, col='red', add = TRUE, cex=1)
 
 ```
+
+> Farms were plotted in red together with land parcels. Notice that `plot()` was executed twice to add the farm layer on top of the land parcel layer. More examples on plotting sf-objects with `plot()` are available [here](https://r-spatial.github.io/sf/reference/plot.html){target="_blank"}.
+
 
 
 
