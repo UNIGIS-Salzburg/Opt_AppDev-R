@@ -3,9 +3,8 @@
 ```{block2, type = 'rmdtip'}
 In most instances the structure of the available data will not meet the specific requirements to perform the analyses you are interested in. Data analysts typically spend most of their time cleaning, filtering, restructuring data as well as harmonizing and joining data from different sources.
 
-This lesson introduces to the most common data wrangling operations by means of the dplyr library (part of the Tidyverse libraries), which offers a grammar for data manipulation.
+In this lesson, you will learn about the fundamental data wrangling operations using the `dplyr` library from the Tidyverse suite. You'll also be introduced to [tibbles](https://tibble.tidyverse.org/){target="_blank"}, a modern take on data frames in R. Tibbles are lightweight and work seamlessly within the Tidyverse ecosystem. For more on tibbles, see [Tibbles in R for Data Science](https://r4ds.had.co.nz/tibbles.html){target="_blank"}.
 
-You will also get to know [tibbles](https://tibble.tidyverse.org/){target="_blank"}, which is another data structure in R. Tibbles are basically a lightweight version of data frames (see [Tibbles in R for Data Science](https://r4ds.had.co.nz/tibbles.html){target="_blank"}). 
 ```
 
 ## Preparation
@@ -37,6 +36,8 @@ Alternatively, you may inspect `flights_from_nyc` by writing it to the console.
 
 The library `dplyr` provides a number of functions to investigate basic characteristics of inputs. For instance, the function `count()` can be used to count the number of rows of a data frame or tibble. The code below uses `flights_from_nyc` as input to this function. The returned row count `n` is represented in a table. 
 
+
+
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
 library(tidyverse)
@@ -47,11 +48,11 @@ flights_from_nyc %>%
   knitr::kable()
 ```
 
-You may wonder, how objects were passed as arguments from one function to the next: In the code example above, we use the so-called pipe operator `%>%`, which is included in `magrittr` (another library provided with the `tidyverse` collection).
+In the example above, we use the pipe operator `%>%`, a key feature of `magrittr` and `tidyverse` syntax. It links a sequence of analysis steps, passing `flights_from_nyc` through `count()` and then `kable()`. This makes the code simpler and more readable. For a deeper understanding, check out [this video](https://www.youtube.com/watch?v=sohARFx6aTo){target="_blank"}.
 
-The pipe operator allows us to link a sequence of analysis steps. In the example above, `flights_from_nyc` is passed as parameter into function `count()` and the output is passed into function `kable()` (library `knitr`) to render the output table.
+The same result could be achieved with a traditional approach using an intermediate variable or by nesting functions. However, these methods can make the code less readable compared to using the pipe operator:
 
-Alternatively, the same code could be written in a traditional way with an additional variable `cnt`: 
+**Intermediate Variable:**
 
 ```{r, eval=FALSE, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -60,7 +61,7 @@ knitr::kable(cnt)
 
 ```
 
-Or we could reformat the code by nesting functions (function in another function):
+**Nested Function:**
 
 ```{r, eval=FALSE, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -72,7 +73,7 @@ The result is the same. However, nested structures are harder to read. According
 
 The function `count()` can also be used to count the number of rows of a table that has the same value for a given column, usually representing a category.
 
-In the example below, the column name `origin` is provided as an argument to the function `count()`, so rows representing flights from the same origin are counted together – EWR is the Newark Liberty International Airport, JFK is the John F. Kennedy International Airport, and LGA is LaGuardia Airport.
+In the example below, the column name `origin` is provided as an argument to the function `count()`, so rows representing flights from the same origin are counted together – `EWR` is the Newark Liberty International Airport, `JFK` is the John F. Kennedy International Airport, and `LGA` is LaGuardia Airport.
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -82,17 +83,13 @@ flights_from_nyc %>%
 
 ```
 
-As you can see, the code goes to a new line after every `%>%`, and space is added at the beginning of new lines. That is very common in R programming (especially when functions have many parameters) as it makes the code more readable.
-
-Moreover, note that variable `flights_from_nyc` is passed as a first argument (before argument `origin`) in `dplyr::count(origin)`. 
-
-> Per default, the pipe passes the object on its left-hand side to the first argument of the function on the right-hand side. `%>%` allows you to change the placement with a `.` (see [Post by Hadley Wickham](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/){target="_blank"})
+Notice how the code becomes more readable with each operation on a new line after `%>%`. Remember, the pipe operator passes the left-hand object as the first argument to the right-hand function. To change the argument placement, use `.` within the function call.
 
 For example, you could explicitly pass variable `flights_from_nyc` as a first argument by `dplyr::count(., origin)`. Passing the variable as a second argument `dplyr::count(origin, .)` will return an error as the data frame is expected as a first input to function `count`.
 
 ### Summarise
 
-To carry out more complex aggregations, the function `summarise(`) can be used in combination with the function `group_by()` to summarise the values of the rows of a data frame or tibble. Rows having the same value for a selected column (in the example below, the same `origin`) are grouped together, then values are aggregated based on the defined function (using one or more columns in the calculation).
+To carry out more complex aggregations, the function `summarise()` can be used in combination with the function `group_by()` to summarise the values of the rows of a data frame or tibble. Rows having the same value for a selected column (in the example below, the same `origin`) are grouped together, then values are aggregated based on the defined function (using one or more columns in the calculation).
 
 In the example below, the function `mean()` is applied to the column `distance` to calculate a new column `mean_distance_traveled_from` (the mean distance travelled by flights starting from each airport).
 
@@ -105,7 +102,7 @@ flights_from_nyc %>%
   knitr::kable()
 ```
 
-The results show that the average distance covered by flights starting from JFK is significantly higher that flights departing from LGA or EWR.
+The results show that the average distance covered by flights starting from `JFK` is significantly higher that flights departing from `LGA` or `EWR`.
 
 ### Select and filter
 
@@ -189,20 +186,22 @@ The Food and Agriculture Organization (FAO) is a specialized agency of the Unite
 knitr::include_graphics('images/FAODataAfrica.png')
 ```
 
-3. Read data from comma-separated CSV ("Production_Crops_Livestock_E_Africa_NOFLAG.csv") into your Script.
+3. Read data from comma-separated CSV (`"Production_Crops_Livestock_E_Africa_NOFLAG.csv"`) into your Script.
 
 ```{echo=FALSE}
 fao_data <- read.csv(directory as string, header = TRUE, sep = ",")
 ```
 
 4. Use the pipe operator to perform the following operations:
-    a) Select columns Area, Item, Element, Unit and Y2019
-    b) Filter rows that contain sorghum production (Item == "Sorghum" & Element == "Production")
-    c) Sort the table based on yield in descending order (arrange)
+    a) Select columns `Area`, `Item`, `Element`, `Unit` and `Y2019`
+    b) Filter rows that contain sorghum production (`Item == "Sorghum" & Element == "Production"`)
+    c) Sort the table based on yield in descending order (`arrange`)
     d) remove rows including `No Data` by means of function `drop_na()`
     e) render the table using the function `kable()` of `library knitr`
   
 See [my solution](Solution_Exercise_DataWrangling1.R){target="_blank"}!
+
+**Note on Encoding:** When working with datasets from various sources, you may encounter encoding errors. If such an issue arises, a simple approach is to specify the encoding in the `read.csv()` function. For instance, you can use `read.csv(..., fileEncoding = "latin1")`. However, the best case would be, to check the original encoding of the data beforehand and match it in your `read.csv()` command. Encoding can be tricky, and while it's outside the scope of this exercise, being aware of it is crucial in data analysis.
 
 ## Join
 
@@ -246,7 +245,7 @@ Joins between two tables can be executed by different join operations. The `dply
 knitr::include_graphics('images/joins.png')
 ```
 
-Please take your time to understand the examples below that show different realizations of joins between table `city_telephone_prexix` and `table city_info_wide`. 
+Please take your time to understand the examples below that show different realizations of joins between table `city_telephone_prexix` and table `city_info_wide`. 
 
 The first four examples execute the exact same *full join* operation using three different syntaxes: with or without using the pipe operator and specifying the `by` argument or not. Note that all those approaches to writing the join are valid and produce the same result. The choice about which approach to use will depend on the code you are writing. In particular, you might find it useful to use the syntax that uses the pipe operator when the join operation is itself only one stem in a series of data manipulation steps. Using the `by` argument is usually advisable unless you are certain that you aim to join two tables with all and exactly the column that have the same names in the two table.
 
@@ -374,17 +373,20 @@ In the previous exercise we have created a table that shows national African sor
 ```
 
 1. Create an RScript and install and load the libraries `tidyverse`, `knitr`, `ggplot2` and `maps`, if not done yet.
-2. Copy the [code from the previous exercise](Solution_Exercise_DataWrangling1.R){target="_blank"} into your new RScript. Note that the result of the pipe operations is *not* saved to a variable. Save it to a variable. 
-3. Use the `ggplot2` function `map_data` to convert the built in sample dataset `world` (comes with library `maps`) to a data frame:
+
+2. Copy the [code from the previous exercise](Solution_Exercise_DataWrangling1.R){target="_blank"} into your new RScript. Note that the result of the pipe operations is *not* saved to a variable. Save it to a variable.
+
+3. Use the `ggplot2` function [map_data](https://ggplot2.tidyverse.org/reference/map_data.html){target="_blank"} to convert the built in sample dataset `world` (comes with library [maps](https://cran.r-project.org/web/packages/maps/index.html){target="_blank"}) to a data frame:
 
 ```{echo=FALSE}
 world_ctry <- map_data("world") 
 ```
 
 4. Inspect the structure of this data frame. Every row represents a node (defined by long/lat) of a polygon feature (national boundaries).
+
 5. Join tables (left table: geographic features, right table: sorghum production statistics) based on country names. Make sure to choose a join method (`full_join`, `inner_join`, `left_join` or `right_join`) that allows for retaining all the geographic features. 
 
-[My exercise solution](Solution_Exercise_DataWrangling2.R){target="_blank"} creates a simple output map. In a subsequent lesson we will cover visualization methods in more detail.  
+[Our exercise solution](Solution_Exercise_DataWrangling2.R){target="_blank"} creates a simple output map. Don't worry in [Chapter 10](#data-viz) we will cover visualization methods in more detail.  
 
 ```{block2, type = 'rmdtip'}
 

@@ -1,16 +1,16 @@
-library(ggplot2) #new
-library(maps)    #new
+library(ggplot2) # new
+library(maps)    # new
 library(tidyverse)
 library(knitr)
 
-fao_data <- read.csv("enter file directory", header = TRUE, sep = ",")   #enter file directory
+fao_data <- read.csv("file/directory", header = TRUE, sep = ",")   # enter file directory
 
 sorghum_production <- fao_data %>% 
   dplyr::select(Area, Item, Element, Unit, Y2019) %>%                  
   dplyr::filter(Item == "Sorghum", Element == "Production") %>%   
   dplyr::arrange(-Y2019)  
 
-#create data frame from maps dataset 'world'
+# create data frame from maps dataset 'world'
 world_ctry <- map_data("world") 
 
 # left table

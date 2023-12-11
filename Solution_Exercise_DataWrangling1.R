@@ -2,7 +2,7 @@ library(tidyverse)
 library(knitr)
 
 # Read data from comma-separated csv
-fao_data <- read.csv("enter file directory", header = TRUE, sep = ",")  
+fao_data <- read.csv("file/directory", header = TRUE, sep = ",")  
 
 fao_data %>% 
   dplyr::select(Area, Item, Element, Unit, Y2019) %>%              #limit columns    
