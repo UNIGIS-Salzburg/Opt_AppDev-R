@@ -200,7 +200,7 @@ You can also create **headings** using hash signs (#). The number of hash signs 
 
     ### Heading level 3
 
-**Tables** are created by using the symbols `|` and `-`. Do you remember in the first chapter, the [numeric operators table](#numop)? Figure \@ref(fig:L09-tables) illustrates the RMarkdown syntax being used to create this table. 
+**Tables** are created by using the symbols `|` and `-`. Do you remember in the first lesson, the [numeric operators table](#numop)? Figure \@ref(fig:L09-tables) illustrates the RMarkdown syntax being used to create this table. 
 
 ```{r L09-tables, echo=FALSE, fig.cap="How Tables are made in Markdown", out.width='100%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/tables.png')

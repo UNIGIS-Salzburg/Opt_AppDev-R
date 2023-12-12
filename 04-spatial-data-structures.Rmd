@@ -2,13 +2,13 @@
 
 In the realm of geoinformatics, spatial data stands as a cornerstone, offering a lens through which we can view, analyze, and interpret the world around us. At this point in your studies, you are already familiar with the basic spatial entities of points, lines, and polygons. These fundamental structures, while simple in concept, form the bedrock of complex spatial analyses and visualizations.
 
-R, with its rich ecosystem of packages, offers a unique perspective on spatial data. Packages like **sf**, **terra**, **stars**, and **spatstat** have been game-changers, allowing us to handle spatial vector, raster and multidimensional data with unprecedented ease and flexibility. 
+R, with its rich ecosystem of packages, offers a unique perspective on spatial data. Packages like `sf`, `terra`, `stars`, and `spatstat` have been game-changers, allowing us to handle spatial vector, raster, and multidimensional data with unprecedented ease and flexibility.
 
 ```{block2, type = 'rmdtip'}
 In this lesson, you will get to know the following spatial data structures in R:
 
-1) Vector data structures based on the simple feature specification implemented in package [sf](https://r-spatial.github.io/sf/){target="_blank"}
-2) Raster data structures as provided by the package [terra](https://rspatial.org/pkg/){target="_blank"}
+1) Vector data structures based on the simple feature specification implemented in the [`sf`](https://r-spatial.github.io/sf/){target="_blank"} package.
+2) Raster data structures as provided by the [`terra`](https://rspatial.org/pkg/){target="_blank"} package.
 
 You will also learn how to retrieve, assign, and modify coordinate systems, projections and transformations of spatial data structures.
 
@@ -18,7 +18,7 @@ You will also learn how to retrieve, assign, and modify coordinate systems, proj
 
 Spatial data structures are the foundation upon which geospatial information is built. They provide a systematic framework for organizing and representing geographical entities, ensuring that they can be efficiently processed, analyzed, and visualized. 
 
-In this section, we will use the library `sf` to work with vector data structures. The name (sf stands for **simple features**) already implies that `sf` supports simple feature access via R. Simple features is a widely supported data model that underlies data structures in many GIS applications including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other set-ups, for example importing from and exporting to spatial databases.
+In this section, we will use the `sf` library to work with vector data structures. The name `sf` (which stands for **simple features**) already implies that `sf` supports simple feature access via R. Simple features is a widely supported data model that underlies data structures in many GIS applications, including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other setups, for example, importing from and exporting to spatial databases.
 
 Simple features have spatial, geometric attributes as well as non-spatial attributes. The most common geometry types are points, lines, and polygons and their respective "multi" versions (see [Simple feature geometry types](https://r-spatial.github.io/sf/articles/sf1.html#simple-feature-geometry-types){target="_blank"}).
 
@@ -222,7 +222,7 @@ Whereas man-made infrastructures (streets, buildings, sewage systems etc.) can c
 
 Both packages, `sf` and `terra` can handle raster and vector data. Due to its comprehensive toolset and integration with the tidyverse ecosystem (tidyverse will be covered in lesson Data Manipulation), `sf` is predominantly used for discrete vector data structures. Until quite recently, the package [`raster`](https://cran.r-project.org/web/packages/raster/index.html){target="_blank"} has been the most popular resource to work with continuous data in R. This package is being replaced by `terra` (see [here](https://psfaculty.plantsciences.ucdavis.edu/plant/AdditionalTopics_Transition.pdf){target="_blank"} for more information). 
 
-Accordingly, in this chapter we will focus on the more modern `terra` package that offers several advantages over its predecessor: 
+Accordingly, in this lesson we will focus on the more modern `terra` package that offers several advantages over its predecessor: 
 
 - Efficiency: Terra is optimized for speed and uses less memory, making it more efficient for large datasets.
 - Flexibility: It supports raster, vector, and time-series data, providing a one-stop solution for various spatial data types.
@@ -244,9 +244,9 @@ x
 
 ```
 
-Per default the SpatRaster Object is initialized with a global extent and a spatial resolution of 1 degree. The coordinate reference system is WGS84.
+Per default the `SpatRaster Object` is initialized with a global extent and a spatial resolution of 1 degree. The coordinate reference system is WGS84.
 
-Alternatively, additional arguments may be provided in the function to customize the SpatRaster Object:
+Alternatively, additional arguments may be provided in the function to customize the `SpatRaster Object`:
 
 ```{r, warning=FALSE, message=FALSE}
 
@@ -262,7 +262,7 @@ According to the [documentation of the `rast` function](https://www.rdocumentati
 
 ```{block2, type = 'rmdexercise'}
 
-The SpatRaster Object `x` has an extent that covers the City of Salzburg, which is completely within UTM Zone 33N. Search for the `PROJ.4` encoding of `WGS84 UTM 33N` on the [Spatial Reference Site.](https://spatialreference.org/){target="_blank"}
+The `SpatRaster Object` `x` has an extent that covers the City of Salzburg, which is completely within UTM Zone 33N. Search for the `PROJ.4` encoding of `WGS84 UTM 33N` on the [Spatial Reference Site.](https://spatialreference.org/){target="_blank"}
 
 <details closed>
 <summary><ins>**Solution!**</ins></summary>
@@ -286,7 +286,7 @@ y
 
 ```
 
-Note that the number of rows and column was changed to enable a raster resolution of 100m. Also the bounding box coordinates of the SpatRaster Object have changed, which indicates a successful projection of the raster grid from `UTM 32` to `UTM 33`.
+Note that the number of rows and column was changed to enable a raster resolution of 100m. Also the bounding box coordinates of the `SpatRaster Object` have changed, which indicates a successful projection of the raster grid from `UTM 32` to `UTM 33`.
 
 ```{block2, type = 'rmdtip'}
 
@@ -294,7 +294,7 @@ Given that the SpatRaster Object has an undefined coordinate reference system, i
 
 ```
 
-So far, we have created two SpatRaster Objects (identifiers x and y). They only consist of a skeleton, meaning that they have location, extend, a spatial gird resolution and a certain number of grid rows and columns. However, there are not yet cell-values associated with it: 
+So far, we have created two `SpatRaster Objects` (identifiers `x` and `y`). They only consist of a skeleton, meaning that they have location, extend, a spatial gird resolution and a certain number of grid rows and columns. However, there are not yet cell-values associated with it: 
 
 ```{r, warning=FALSE, message=FALSE}
 
@@ -304,14 +304,14 @@ terra::hasValues(y)
 
 ```
 
-The function `hasValues()` returns a logical value `FALSE`, because no values were assigned to objects `x` and `y`. The code below shows how to assign values to empty SpatRaster Object `y`: 
+The function `hasValues()` returns a logical value `FALSE`, because no values were assigned to objects `x` and `y`. The code below shows how to assign values to empty `SpatRaster Object` `y`: 
 
 ```{r, warning=FALSE, message=FALSE}
 
-#assign random value between 0 and 1 to cells of SpatRaster Object y
+# assign random value between 0 and 1 to cells of SpatRaster Object y
 terra::values(y) <- stats::runif(terra::ncell(y),0,1)
 
-#get values with index 1 to index 5
+# get values with index 1 to index 5
 terra::values(y)[1:5]
 
 #plot grid, plot() is a generic function to plot R objects
@@ -319,13 +319,13 @@ plot(y, main='100m Raster, Salzburg')
 
 ```
 
-The function `runif` of package `stats` takes three arguments, `n`, `min` and `max`, to generate `n` random numbers in a range between `min` and `max`. In the example above argument `n` is derived from `terra` function `ncell`, which returns the number of cells of SpatRaster Object `y` as an integer value. As a result, we get a numeric vector of random values whose length corresponds to the number of grid cells of SpatRaster Object `y`. Accordingly, we can assign the numeric vector values to the grid.
+The function `runif` of package `stats` takes three arguments, `n`, `min` and `max`, to generate `n` random numbers in a range between `min` and `max`. In the example above argument `n` is derived from `terra` function `ncell`, which returns the number of cells of `SpatRaster Object` `y` as an integer value. As a result, we get a numeric vector of random values whose length corresponds to the number of grid cells of `SpatRaster Object` `y`. Accordingly, we can assign the numeric vector values to the grid.
 
 ```{block2, type = 'rmdexercise'}
 
-When assigning or accessing values, it is crucial to know the origin and orientation of raster values. Create a SpatRaster Object with 4 cells and assign a numeric vector that consists of 4 values `c(1,2,3,4)`  to it. 
+When assigning or accessing values, it is crucial to know the origin and orientation of raster values. Create a `SpatRaster Object` with 4 cells and assign a numeric vector that consists of 4 values `c(1,2,3,4)`  to it. 
 
-The syntax to select values from SpatRaster Objects is the same that we have use to select elements of matrix and array data structures:
+The syntax to select values from `SpatRaster Objects` is the same that we have use to select elements of matrix and array data structures:
 
 `raster-obj[<row index>, <column index>]`
 
@@ -341,7 +341,7 @@ terra::values(r) <- c(1,2,3,4)\
 plot(r)\
 r[1,1]
 
-r[1,1] returns value 1. Accordingly, the upper left corner is the origin of the SpatRaster Object. Values are stored left to right and top-down, i.e. r[2,2] returns value `4`.
+r[1,1] returns value 1. Accordingly, the upper left corner is the origin of the `SpatRaster Object`. Values are stored left to right and top-down, i.e. r[2,2] returns value `4`.
 
 </font></i>
 </p>
@@ -349,10 +349,10 @@ r[1,1] returns value 1. Accordingly, the upper left corner is the origin of the 
 
 ```
 
-Note that the layer number `lyr.1` is returned in the console, when accessing individual values of a SpatRaster Object. This implies that SpatRaster Objects can handle space-time and multivariable data. A useful example for integrating space and time in SpatRaster Objects is provided by Dominic Royé in his blog post [Use of multidimensional spatial data.](https://dominicroye.github.io/en/2022/use-of-multidimensional-spatial-data/){target="_blank"} For more sophisticated data cube applications, the use of the [stars package](https://r-spatial.github.io/stars/){target="_blank"} is recommended.
+Note that the layer number `lyr.1` is returned in the console, when accessing individual values of a `SpatRaster Object`. This implies that `SpatRaster Objects` can handle space-time and multivariable data. A useful example for integrating space and time in SpatRaster Objects is provided by Dominic Royé in his blog post [Use of multidimensional spatial data.](https://dominicroye.github.io/en/2022/use-of-multidimensional-spatial-data/){target="_blank"} For more sophisticated data cube applications, the use of the [`stars` package](https://r-spatial.github.io/stars/){target="_blank"} is recommended.
 
 ```{block2, type = 'rmdtip'}
 
-In this lesson you learned to handle spatial vector and raster structures in R. To get to know these structures, we built vector and raster objects from scratch. In many instances, however, objects may be created in R by loading vector and raster file formats (e.g. .shp or .tif). This topic will be covered in lesson Read and Write Data.
+In this lesson you learned to handle spatial vector and raster structures in R. To get to know these structures, we built vector and raster objects from scratch. In many instances, however, objects may be created in R by loading vector and raster file formats (e.g. `.shp` or `.tif`). This topic will be covered in lesson [8](#readwrite).
 
 ```

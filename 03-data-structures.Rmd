@@ -355,7 +355,7 @@ employees$Age[1]  # Selecting the first element in the 'Age' column
 
 Modifying a data frame:
 
-- Changing an element (e.g., updating 'Pete's age):
+- Changing an element (e.g., updating Pete's age):
 ```{r, echo=TRUE}
 employees$Age[2] <- 33
 ```

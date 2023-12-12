@@ -58,7 +58,7 @@ diff <- temp_A - temp_B
 
 After executing the code in RStudio, you should notice changes in the Environment Panel, located in the top right corner. The **Environment Panel** will display three memory slots with identifiers `diff`, `temp_A`, and `temp_B`, having values of -4, 24, and 28, respectively. Invoking the name of an identifier in the code (e.g., typing `diff` and running it) will return the value stored in that memory slot.
 
-To clear your workspace memory, click the broom icon in the Environment Panel's menu.
+To clear your workspace memory, click the "broom icon" in the Environment Panel's menu.
 
 </font></i>
 </p>

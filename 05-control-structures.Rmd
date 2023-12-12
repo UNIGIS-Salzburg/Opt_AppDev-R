@@ -16,9 +16,9 @@ We distinguish between two types of control structures:
 
 ## If
 
-The most fundamental conditional statement in R is the structure `if`, which is used to execute one or more instructions only if a certain condition is `TRUE`.
+The most fundamental conditional statement in R is the structure *if*, which is used to execute one or more instructions only if a certain condition is `TRUE`.
 
-To include an if-structure in your code, you need to use the following syntax:
+To include an "if-structure" in your code, you need to use the following syntax:
 
 ```{r, echo=TRUE}
 a_value <- -7
