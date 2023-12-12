@@ -97,11 +97,12 @@ You may have recognized that a dot (`.`) is used as a parameter in the function 
 ```
 
 In the next example, the `st_geometry()` retrieves the geometry attribute from variable `nc`, function `st_centroid()` calculates the centroid of the polygon geometry (`counties`) and function `st_write` writes the centroid point geometry to file. 
+
 ```{r, echo=TRUE, message=FALSE, warning = FALSE, results='hide'}
 
 sf::st_geometry(nc) %>%
   sf::st_centroid() %>%
-  sf::st_write("data/nc.shp", delete_dsn = TRUE) %>%
+  sf::st_write("data/nc-centroids.shp", delete_dsn = TRUE) %>%
   plot(pch = 3, col = 'red') 
   
 ```
