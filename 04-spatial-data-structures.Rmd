@@ -1,4 +1,4 @@
-# Spatial Data Structures 
+# Spatial Data Structures {#spds}
 
 In the realm of geoinformatics, spatial data stands as a cornerstone, offering a lens through which we can view, analyze, and interpret the world around us. At this point in your studies, you are already familiar with the basic spatial entities of points, lines, and polygons. These fundamental structures, while simple in concept, form the bedrock of complex spatial analyses and visualizations.
 
