@@ -6,73 +6,64 @@ R has a very rich set of graphical functions. The [R Graph Gallery](https://www.
 In this lesson you will get to know the [`ggplot2` library](https://ggplot2.tidyverse.org/){target="_blank"}, which is the most popular library for creating graphics in R. You will learn to create standard graphs such as histograms, boxplots or scatterplots as well as maps by means of the [`ggplot2` library](https://ggplot2.tidyverse.org/){target="_blank"}. 
 ```
 
-## The Grammar of Graphics
+## The Grammar of Graphics `ggplot2`
 
-The [ggplot2 library](https://ggplot2.tidyverse.org/){target="_blank"} is part of [Tidyverse](https://www.tidyverse.org/){target="_blank"} and offers a series of functions for creating graphics declaratively, based on the concepts outlined in the Grammar of Graphics by [Leland Wilkinson](https://en.wikipedia.org/wiki/Leland_Wilkinson){target="_blank"}.
+The [`ggplot2`](https://ggplot2.tidyverse.org/){target="_blank"} library, a part of the Tidyverse suite, is renowned for its comprehensive and intuitive approach to data visualization in R. Rooted in the principles of the Grammar of Graphics, conceptualized by [Leland Wilkinson](https://en.wikipedia.org/wiki/Leland_Wilkinson){target="_blank"},`ggplot2` enables users to construct graphics through a layered approach, incorporating seven distinct elements:
 
 The grammar of graphics is a schema that enables us to concisely describe the components of a graphic. These components are called **layers of grammatical elements.** Overall, the grammar comprises seven layers:
 
-1) Data - The data element is the dataset itself.
-2) Aesthetics - This layer defines how variables are mapped onto scales (see description below).
-3) Geometries - This element determines how our data is being displayed (e.g. bars, points, lines etc.)
-4) Facets - Faceting splits the data into subset and displays the same graph for every subset.
-5) Statistics - These are statistics derived from the data (add mean, median, quartile, etc.).
-6) Coordinates - This element determines the transformation of axes (e.g. change spacing of displayed data)
-7) Themes - This element determines the graphics background.
+1. **Data:** The core dataset to be visualized.
+2. **Aesthetics:** Mappings of variables to visual scales, like color or size.
+3. **Geometries:** The visual representation of data, such as points, lines, or bars.
+4. **Facets:** Creating subsets of data to generate similar graphs for each subset.
+5. **Statistics:** Applying statistical transformations to data (mean, median, etc.).
+6. **Coordinates:** Managing axes and spatial transformation.
+7. **Themes:** Customizing the graphical backdrop for enhanced visual appeal.
 
-The **aesthetics layer** offers a number of different options to map data onto visual variables. A **visual variable** is an aspect of a **mark** that can be controlled to change its appearance.
+In essence, these layers enable a structured and flexible approach to crafting visual narratives from data. For instance, the visual variables such as size, shape, and color offer nuanced ways to represent and differentiate data points.
 
-Visual variables are: 
+Consider the example below where the variables 'Gdp per capita' and 'Life Expectancy' are aligned along the x and y axes, respectively, while 'national population' and 'world regions' are visually differentiated through size and color.
 
-- Size
-- Shape 
-- Orientation
-- Colour (hue)
-- Colour value (brightness)
-- Texture
-- Position (map variable to x or y axis) 
-
-For instance, in Figure \@ref(fig:L07-colsize) variables 'Gdp per capita' and  'Life Expectancy' are mapped onto the x and y axes (visual variable **position**), variables 'national population' and 'world regions' are mapped onto visual variables **size** and **color**.
-
-```{r L07-colsize, echo=FALSE, fig.cap="Visual variables color and size", out.width='90%', fig.asp=.75, fig.align='center'}
+```{r L07-colsize, echo=FALSE, fig.cap="Visual variables color and size in a `ggplot2` graph", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/VisualVar.png')
 ```
 
-In order to make that concept clearer, a number of examples will be presented in upcoming sections.
+Upcoming sections will delve into practical examples, demonstrating the power and versatility of `ggplot2` in visualizing complex datasets.
 
 ```{block2, type = 'rmdtip'}
-The basic concept behind the grammar of graphics is described in an [article](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf){target="_blank"} by Hadley Wickham.  
+**Further Reading:** For a foundational understanding of the Grammar of Graphics as implemented in ggplot2`, refer to Hadley Wickham's insightful [article](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf){target="_blank"}.
 ```
 
 ## Visualization of distributions
 
-As already announced above, functions in the `ggplot2` library are structured according to the Grammar of Graphics. To create a graph in `ggplot2`, we need to provide input data, specify visual variables by means of an aesthetics element (`aes()`), specify the geometry of marks (e.g., `geom_point`) and apply transformations (axis spacing) and themes (background theme of the graph).
+As already announced above, functions in the `ggplot2` library are structured according to the Grammar of Graphics. When creating graphs with `ggplot2`, we start by setting up data and aesthetics (`aes()`), then defining the type of plot (geometry) like `geom_point`, and finally enhancing the plot with additional transformations and themes.
 
 We start the analysis with a simple histogram, to explore the distribution of air quality [**data**](data/AirQualityUpperAut.csv){target="_blank"} that has been measured at different locations in Upper Austria.
 
 ```{block2, type = 'rmdtip'}
 
-The data includes the following **variables**
+**Data Overview:**
 
-- **time** of measurement
-- ID of the measuring **station**
-- measured meteorological [**component**](data/MetadataAirqual.xlsx){target="_blank"}
-- [**meantype**](data/MetadataAirqual2.xlsx){target="_blank"}
-- **unit** of measurement
-- measurement **value**
+- **Time:** Timestamp of each measurement.
+- **Station:** Identifier for the measurement station.
+- [**Component](data/MetadataAirqual.xlsx){target="_blank"})):** The air quality component measured. 
+- [**Meantype]((data/MetadataAirqual2.xlsx){target="_blank"}):** The temporal resolution of measurements.
+- **Unit:** The unit of measurement.
+- **Value:** The measured value of air quality.
   
 ```
 
-The following code renders the first five lines of the dataset in a `knitr` table:
+Let's start by displaying the first few rows of this dataset:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
 library(tidyverse)
 library(knitr)
 
-#read csv data, Note: Semicolon seperated CSVs can be loaded by function 'read_delim()'
+# Read the dataset (Note: Semi-colon separated)
 airquality <- read_delim("data/AirQualityUpperAut.csv", delim = ";")
 
+# Display the first five rows
 airquality %>%
   dplyr::slice_head(n = 5) %>%
   knitr::kable()
@@ -83,28 +74,28 @@ The code below filters the airquality dataset by measurement component and tempo
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
-#filter NO2 measurements with temporal resolution 30min (HMW)
+# filter NO2 measurements with temporal resolution 30min (HMW)
 airquality %>%
   dplyr::filter(component == "NO2" & meantype == "HMW") %>%
 
-  #create plot  
-  ggplot2::ggplot(.,    #the dot '.' represents the piped value 
+  # create plot  
+  ggplot2::ggplot(.,    # the dot '.' represents the piped value 
     aes(            
-      x = value         #map variable 'value' onto x-axis
+      x = value         # map variable 'value' onto x-axis
     )
   ) +
-  ggplot2::geom_histogram() +    #define geometry
-  ggplot2::theme_bw()            #define theme
+  ggplot2::geom_histogram() +    # define geometry
+  ggplot2::theme_bw()            # define theme
 
 ```
 
-If we aim to distinguish between measurements of respective measurement stations, we can map the variable 'station' onto visual variable color:
+To differentiate between measurements from various stations, we can map the 'station' variable to the color attribute:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
 airquality %>%
   dplyr::filter(component == "NO2" & meantype == "HMW") %>%
-  dplyr::filter(station == "S125" | station == "S431" | station == "S270") %>%    #select 3 stations
+  dplyr::filter(station == "S125" | station == "S431" | station == "S270") %>%    # select 3 stations
 
   ggplot2::ggplot(.,    
     aes(            
@@ -114,15 +105,15 @@ airquality %>%
     )
   ) +
   
-  ggplot2::xlab("NO2 [mg/m^3]") +
-  ggplot2::ylab("Count") +
-  scale_fill_manual(name = "Measurement stations", values = c("grey20", "grey50", "grey80")) +
+  ggplot2::xlab("NO2 [mg/m^3]") + # add x-axis label
+  ggplot2::ylab("Count") +        # add y-axis label
+  scale_fill_manual(name = "Measurement stations", values = c("grey20", "grey50", "grey80")) + # add legend
   ggplot2::geom_histogram() +   
   ggplot2::theme_bw()            
 
 ```
 
-This is implemented by adding an attribute `fill = station` to the aesthetics element (`aes()`). `ggplot2` offers a number of [functions](https://ggplot2.tidyverse.org/reference/scale_manual.html){target="_blank"} to specify your own set of mappings from levels in the data to aesthetic values. In the example above the function `scale_fill_manual()` is used to map the three levels S125, S270 and S431 to the fill [colors](http://sape.inf.usi.ch/quick-reference/ggplot2/colour){target="_blank"} grey20, grey50 and grey80. Instead of ggplot colors, you can also use [hex color codes](https://htmlcolorcodes.com/){target="_blank"}.
+This is implemented by adding an attribute `fill = station` to the aesthetics element (`aes()`). `ggplot2` offers a number of [functions](https://ggplot2.tidyverse.org/reference/scale_manual.html){target="_blank"} to specify your own set of mappings from levels in the data to aesthetic values. In the example above the function `scale_fill_manual()` is used to map the three levels S125, S270 and S431 to the fill [colors](http://sape.inf.usi.ch/quick-reference/ggplot2/colour){target="_blank"} grey20, grey50 and grey80. Instead of 'ggplot colors', you can also use [hex color codes](https://htmlcolorcodes.com/){target="_blank"}.
 
 ```{block2, type = 'rmdexercise'}
 
@@ -131,10 +122,11 @@ Note that plot components are [added](https://ggplot2.tidyverse.org/reference/gg
 So far, we have added two axis labels. Create a new R-Script, download the [input data](data/AirQualityUpperAut.csv){target="_blank"}, recreate the histogram and insert one additional line of code to add a plot title (see [documentation](https://ggplot2.tidyverse.org/reference/labs.html){target="_blank"}).    
 
 <details closed>
-<summary><ins>**See solution!**</ins></summary>
+<summary><ins>**See the solution!**</ins></summary>
 <p><font color="grey">
 
-Insert title:  
+Insert a title by adding:
+
     
 ggplot2::ggtitle("Nitrogen dioxide concentration")
     
@@ -152,30 +144,30 @@ For instance, if we replace `geom_histogram()` by `geom_boxplot()`, the value di
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
-#filter NO2 measurements with temporal resolution 30min (HMW)
+# filter NO2 measurements with temporal resolution 30min (HMW)
 airquality %>%
   dplyr::filter(component == "NO2" & meantype == "HMW") %>%
 
-  #create plot  
-  ggplot2::ggplot(.,    #the dot '.' represents the piped value 
+  # create plot  
+  ggplot2::ggplot(.,    # the dot '.' represents the piped value 
     aes(            
-      x = value         #map variable 'value' onto x-axis
+      x = value         # map variable 'value' onto x-axis
     )
   ) +
   ggplot2::xlab("NO2 [mg/m^3]") +
-  ggplot2::geom_boxplot() +    #define geometry
+  ggplot2::geom_boxplot() +    # define geometry
   ggplot2::theme(
-    axis.text.y = element_blank(),    #remove text and ticks from y axis
+    axis.text.y = element_blank(),    # remove text and ticks from y axis
     axis.ticks.y = element_blank()
   )
 
 ```
 
-Note that the last two lines remove text and tick marks from the y-axis of the plot.
+**Note that:** the last two lines remove text and tick marks from the y-axis of the plot.
 
 ```{block2, type = 'rmdtip'}
 
-Just as histograms, box plots are used to inspect distributions in data. The [interpretation](https://ggplot2.tidyverse.org/reference/geom_boxplot.html){target="_blank"}, however, does require some additional information.  
+Just as histograms, box plots are used to inspect distributions in data. The [interpretation](https://ggplot2.tidyverse.org/reference/geom_boxplot.html){target="_blank"}, however, does require some additional information.
 
 The lower and upper edge of the box (the so-called lower and upper **hinges**) correspond to the first and third [quartiles](https://www.statisticshowto.com/probability-and-statistics/statistics-definitions/what-are-quartiles/){target="_blank"}. The vertical line that separates the box indicates the **median** value (second quartile). 
 
@@ -187,54 +179,43 @@ The upper **whisker** extends from the hinge to the largest value no further tha
 
 In our histogram examples, we have mapped the variable ‘station’ onto visual variable color to separately visualize measurements of different stations. Try to apply the same approach to render measurements of stations S125, S270 and S431 separately in a box plot. 
                                                                         
-See [my solution](Solution_Exercise_boxplots.R){target="_blank"}!                                                                           
+See [our solution](Solution_Exercise_boxplots.R){target="_blank"}!                                                                           
 ```
 
 ## Scatterplots
 
-While boxplots and histograms reveal distributions in data, scatterplots are used to illustrate relationships between variables. 
+Scatterplots serve as a pivotal tool in statistical analysis, particularly when it comes to exploring the interplay between two variables. Their strength lies in visually capturing the nature and strength of relationships.
 
-In the following example, air temperature (TEMP) and relative humidity (RF) measured in a 30min interval by station ‘S108‘ are filtered from data table ‘airquality‘. Then the two tables are joined by their common field ‘time‘. The joined table is used as data input to render a scatterplot with temperature on the x-axis and relative humidity on the y-axis.   
+Consider the scenario where we seek to understand the relationship between air temperature (TEMP) and relative humidity (RF). For this purpose, we delve into the `airquality` dataset, focusing on half-hourly readings from station ‘S108’. Our objective is to juxtapose the temperature and humidity readings and analyze their correlation. 
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
-#half-hourly temperature measurement of station S108 to data frame
+# Extract half-hourly temperature readings from station S108
 temp_tab <- airquality %>%
-  dplyr::filter(component == "TEMP" & meantype == "HMW" & station == "S108") 
+  dplyr::filter(component == "TEMP", meantype == "HMW", station == "S108") 
 
-#half-hourly relative humidity measurement of station S108 to data frame
+# Similarly, extract half-hourly humidity readings
 humidity_tab <- airquality %>%
-  dplyr::filter(component == "RF" & meantype == "HMW" & station == "S108") 
+  dplyr::filter(component == "RF", meantype == "HMW", station == "S108") 
 
-#join humidity and temperature tables by common field 'time'
-temp_tab %>%
-  dplyr::inner_join(
-  # right table
-  humidity_tab,
-  # columns to match
-  by = c("time" = "time")
-  ) %>%
-  
-  dplyr::select(time, value.x, value.y) %>%   #select relevant columns from joined table
+# Join the two datasets on 'time'
+temp_humidity_joined <- temp_tab %>%
+  dplyr::inner_join(humidity_tab, by = "time") %>%
+  dplyr::select(time, value.x, value.y) 
 
-  #create plot  
-  ggplot2::ggplot(.,    
-    aes(            
-      x = value.x,      
-      y = value.y
-    )
-  ) +
-  ggplot2::xlab("air temperature [°C]") +
-  ggplot2::ylab("relative humidity [%]") +
-  ggplot2::geom_point(color="blue")  +                                      #define geometry scatterplot, with point color blue
-  ggplot2::geom_smooth(method=lm , color="red", fill="#69b3a2", se=TRUE) +  #with linear trend and confidence interval
-  ggplot2::theme_minimal()               
+# Create the scatterplot
+ggplot(temp_humidity_joined, aes(x = value.x, y = value.y)) +
+  xlab("Air Temperature [°C]") +
+  ylab("Relative Humidity [%]") +
+  geom_point(color = "blue") +
+  geom_smooth(method = lm, color = "red", fill = "#69b3a2", se = TRUE) +
+  theme_minimal()          
 
 ```
 
-The plot reveals a trend between the two variables temperature and humidity. Relative humidity tends to increase as temperature decreases and vice versa. In [this video](https://www.youtube.com/watch?v=saojnBSBUuk){target="_blank"} you can find an explanation for the inverse proportional relationship between relative humidity and air temperature.
+The generated scatterplot vividly illustrates the relationship between air temperature and relative humidity. Typically, as the temperature drops, the relative humidity tends to rise, and vice versa. This inverse relationship, although not strictly linear, can be approximated using a linear regression model. Deviations from this model are captured within a 95% confidence interval, providing a more nuanced understanding of the data dynamics.
 
-Obviously, due to other predictors such as windspeed, evaporation etc., this relationship is not perfectly linear, however, it can be closely approximated by means of a linear regression line. Deviations from the linear model are indicated by a 95% confidence interval.  
+For a comprehensive explanation of the inverse relationship between relative humidity and temperature, refer to [this video](https://www.youtube.com/watch?v=saojnBSBUuk){target="_blank"}
 
 ```{block2, type = 'rmdexercise'}
 
@@ -242,19 +223,19 @@ Copy and run the code example from above in a new R-Script. Note that the air qu
 
 [Complete Script!](Solution_Scatterplot.R){target="_blank"}
 
-Go through the code example line by line and answer the following questions:
+While exploring, consider the following:
   
-1) How many measurements (records) are included in the scatterplot?
-2) What is value.x and value.y?
-3) We have used  the function `geom_smooth()` to fit a linear regression model (method = lm). What is the purpose of argument `se`?   
+1) How many individual measurements are visualized in the scatterplot?
+2) What do `value.x` and `value.y` represent in this context?
+3) The `geom_smooth()` function, with `method = lm`, fits a linear model. What is the significance of the `se` argument in this function?
 
 <details closed>
-<summary><ins>**See answers!**</ins></summary>
+<summary><ins>**Solution and Insights**</ins></summary>
 <p><font color="grey">
 
-1) Measurements between 21.10.2021 14:00 and 22.10.2021 12:00, half-hourly interval -> 45 records (see environment tab in RStudio)
-2) Temperature and humidity values in the data frame tables `humidity_tab` and `temp_tab` are both denoted `value`. In order to avoid ambiguities, the join function renames columns.
-3) The argument defines whether confidence bounds are displayed (`se` is TRUE by default).
+1) The scatterplot encompasses 45 records, corresponding to half-hourly measurements over approximately 24 hours.
+2) In the joined dataset, `value.x` and `value.y` represent the temperature and humidity values, respectively, after renaming to avoid duplication.
+3) The se argument controls the display of confidence bounds around the regression line, which are shown by default when se is set to `TRUE`.
     
 </font>
 </p>
