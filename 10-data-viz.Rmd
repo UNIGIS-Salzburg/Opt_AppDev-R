@@ -6,7 +6,7 @@ R has a very rich set of graphical functions. The [R Graph Gallery](https://www.
 In this lesson you will get to know the [`ggplot2` library](https://ggplot2.tidyverse.org/){target="_blank"}, which is the most popular library for creating graphics in R. You will learn to create standard graphs such as histograms, boxplots or scatterplots as well as maps by means of the [`ggplot2` library](https://ggplot2.tidyverse.org/){target="_blank"}. 
 ```
 
-## The Grammar of Graphics `ggplot2`
+## The Grammar of Graphics
 
 The [`ggplot2`](https://ggplot2.tidyverse.org/){target="_blank"} library, a part of the Tidyverse suite, is renowned for its comprehensive and intuitive approach to data visualization in R. Rooted in the principles of the Grammar of Graphics, conceptualized by [Leland Wilkinson](https://en.wikipedia.org/wiki/Leland_Wilkinson){target="_blank"},`ggplot2` enables users to construct graphics through a layered approach, incorporating seven distinct elements:
 
@@ -31,7 +31,48 @@ knitr::include_graphics('images/VisualVar.png')
 Upcoming sections will delve into practical examples, demonstrating the power and versatility of `ggplot2` in visualizing complex datasets.
 
 ```{block2, type = 'rmdtip'}
-**Further Reading:** For a foundational understanding of the Grammar of Graphics as implemented in ggplot2`, refer to Hadley Wickham's insightful [article](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf){target="_blank"}.
+**Further Reading:** For a foundational understanding of the Grammar of Graphics as implemented in `ggplot2`, refer to Hadley Wickham's insightful [article](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf){target="_blank"}.
+```
+
+## Understanding Wide and Long Data Formats in R
+
+When working with data in R, especially for visualization purposes, it's crucial to understand the structure of your dataset. Typically, datasets can be categorized into two main formats: **Wide** and **Long** (also known as **Tidy**) formats. The format of your data can significantly impact how you manipulate and visualize it.
+
+### Wide format
+- **Characteristics:** In a wide-format dataset, each subject or entity (such as a city) is represented once, with multiple columns for different variables or time periods.
+- **Example:** Consider a dataset representing annual rainfall measurements across different cities, measured in millimeters (mm). In this wide format, each row corresponds to a city, and the columns represent rainfall measurements for different years.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+# Example of a wide format dataset
+wide_data <- data.frame(
+  City = c("CityA", "CityB", "CityC", "CityD", "CityE"),
+  Rainfall_2015 = c(600, 500, 550, 450, 400),
+  Rainfall_2016 = c(650, 550, 600, 500, 450)
+)
+
+knitr::kable(wide_data)
+
+```
+### Long format:
+
+- **Characteristics:** In a long-format dataset, each row is a single observation for a single variable, often requiring multiple rows per subject or unit
+- **Example:** Using the same rainfall dataset, a long format would list each year's rainfall for each city as a separate row.
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
+# Example of long-format data:
+long_data <- tidyr::pivot_longer( 
+  wide_data,
+  cols = -City, 
+  names_to = "Year", 
+  values_to = "Rainfall"
+)
+knitr::kable(long_data)
+```
+
+Understanding these formats is crucial for effective data manipulation and visualization in R, especially when using libraries like `ggplot2` and `tidyverse`. Certain types of visualizations and statistical analyses are more straightforward with data in a specific format.
+
+```{block2, type = 'rmdtip'}
+**Note**: Transforming data between wide and long formats is often achieved using functions like `pivot_longer()` and `pivot_wider()` from the [`tidyr`](https://tidyr.tidyverse.org/reference/index.html){target="_blank"} package, which is in included in the Tidyverse.
 ```
 
 ## Visualization of distributions
@@ -46,8 +87,8 @@ We start the analysis with a simple histogram, to explore the distribution of ai
 
 - **Time:** Timestamp of each measurement.
 - **Station:** Identifier for the measurement station.
-- [**Component](data/MetadataAirqual.xlsx){target="_blank"})):** The air quality component measured. 
-- [**Meantype]((data/MetadataAirqual2.xlsx){target="_blank"}):** The temporal resolution of measurements.
+- **[Component](data/MetadataAirqual.xlsx){target="_blank"}:** The air quality component measured. 
+- **[Meantype](data/MetadataAirqual2.xlsx){target="_blank"}:** The temporal resolution of measurements.
 - **Unit:** The unit of measurement.
 - **Value:** The measured value of air quality.
   
@@ -89,7 +130,7 @@ airquality %>%
 
 ```
 
-To differentiate between measurements from various stations, we can map the 'station' variable to the color attribute:
+To differentiate between measurements from various stations, we can map the `station` variable to the color attribute:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
@@ -113,7 +154,7 @@ airquality %>%
 
 ```
 
-This is implemented by adding an attribute `fill = station` to the aesthetics element (`aes()`). `ggplot2` offers a number of [functions](https://ggplot2.tidyverse.org/reference/scale_manual.html){target="_blank"} to specify your own set of mappings from levels in the data to aesthetic values. In the example above the function `scale_fill_manual()` is used to map the three levels S125, S270 and S431 to the fill [colors](http://sape.inf.usi.ch/quick-reference/ggplot2/colour){target="_blank"} grey20, grey50 and grey80. Instead of 'ggplot colors', you can also use [hex color codes](https://htmlcolorcodes.com/){target="_blank"}.
+This is implemented by adding an attribute `fill = station` to the aesthetics element (`aes()`). `ggplot2` offers a number of [functions](https://ggplot2.tidyverse.org/reference/scale_manual.html){target="_blank"} to specify your own set of mappings from levels in the data to aesthetic values. In the example above the function `scale_fill_manual()` is used to map the three levels `S125`, `S270` and `S431` to the fill [colors](http://sape.inf.usi.ch/quick-reference/ggplot2/colour){target="_blank"} `grey20`, `grey50` and `grey80`. Instead of 'ggplot colors', you can also use [hex color codes](https://htmlcolorcodes.com/){target="_blank"}.
 
 ```{block2, type = 'rmdexercise'}
 
@@ -177,7 +218,7 @@ The upper **whisker** extends from the hinge to the largest value no further tha
 
 ```{block2, type = 'rmdexercise'}
 
-In our histogram examples, we have mapped the variable ‘station’ onto visual variable color to separately visualize measurements of different stations. Try to apply the same approach to render measurements of stations S125, S270 and S431 separately in a box plot. 
+In our histogram examples, we have mapped the variable ‘station’ onto visual variable `color` to separately visualize measurements of different stations. Try to apply the same approach to render measurements of stations `S125`, `S270` and `S431` separately in a box plot. 
                                                                         
 See [our solution](Solution_Exercise_boxplots.R){target="_blank"}!                                                                           
 ```
@@ -186,7 +227,7 @@ See [our solution](Solution_Exercise_boxplots.R){target="_blank"}!
 
 Scatterplots serve as a pivotal tool in statistical analysis, particularly when it comes to exploring the interplay between two variables. Their strength lies in visually capturing the nature and strength of relationships.
 
-Consider the scenario where we seek to understand the relationship between air temperature (TEMP) and relative humidity (RF). For this purpose, we delve into the `airquality` dataset, focusing on half-hourly readings from station ‘S108’. Our objective is to juxtapose the temperature and humidity readings and analyze their correlation. 
+Consider the scenario where we seek to understand the relationship between air temperature (`TEMP`) and relative humidity (`RF`). For this purpose, we delve into the `airquality` dataset, focusing on half-hourly readings from station `S108`. Our objective is to juxtapose the temperature and humidity readings and analyze their correlation. 
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 
@@ -243,61 +284,61 @@ While exploring, consider the following:
 
 ```
 
-## Map visualization
+## Map Visualization
 
-In the previous lesson you have already learned how to read vector data and create simple map layouts by means of the `plot()` function. In this concluding section, we will use the `ggplot()` library to create more complex map layouts.
+In our previous exploration, we learned how to employ the `plot()` function for basic map layouts. This section, however, elevates our cartographic journey by harnessing the versatility of the `ggplot2` library for more intricate map visualizations.
 
-In order to replicate the code examples below, you will have to install and load the libraries `sf()` (remember: sf stands for simple features and is used to read and write vector data) and `ggplot()`. Also download the [North Carolina](data/nc.zip){target="_blank"} and [US States](data/us-states.zip){target="_blank"} sample datasets.
+Before diving into the examples, ensure you have the `sf` and `ggplot2` libraries installed and loaded. Additionally, download the [North Carolina](data/nc.zip){target="_blank"} and [US States](data/us-states.zip){target="_blank"} datasets for practical implementation.
 
-First, let us start with creating a single-layer base map:
+Our first endeavor is to construct a foundational map of North Carolina:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide', fig.height = 2.5}
-
 library(sf)
-library("ggplot2")
+library(ggplot2)
 
+# Load North Carolina shapefile
 nc <- sf::st_read("data/nc.shp")
 
+# Basic map of North Carolina
 ggplot(data = nc) +
-    geom_sf() +
-    xlab("Longitude") + ylab("Latitude") +
-    ggtitle("North Carolina", subtitle = paste0("(", length(unique(nc$NAME)), " counties)"))
-
+  geom_sf() +
+  xlab("Longitude") + ylab("Latitude") +
+  ggtitle("North Carolina", subtitle = paste0("(", length(unique(nc$NAME)), " counties)"))
 
 ```
 
-In the code above, we first load the North Carolina shapefile as an `sf()` object and then assign the data to the `ggplot()` graph. The `geom_sf` function adds a geometry stored in a sf object. Other map components such as title and axis labels are added by means of a plus sign. Note that `length(unique(nc$NAME))` returns the count of table rows, which corresponds to the number of geometries/counties. Geometry count and string "counties" are concatenated by function `paste0()`.
+In the code above, we first load the North Carolina shapefile as an `sf()` object and then assign the data to the `ggplot()` graph. The `geom_sf` function adds a geometry stored in a `sf` object. Other map components such as title and axis labels are added by means of a plus sign. Note that `length(unique(nc$NAME))` returns the count of table rows, which corresponds to the number of geometries/counties. Geometry count and string "counties" are concatenated by function `paste0()`.
 
 The geometry element `geom_sf` provides a number of arguments to customize the appearance of vector features:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
-
+# Map with custom colors
 ggplot(data = nc) + 
-    geom_sf(color = "black", fill = "lightgreen")
+  geom_sf(color = "black", fill = "lightgreen")
 
 ```
 
-Data can also be mapped onto visual variables in the same way as with diagram plots. In the example below, the variable AREA is mapped onto visual variable fill color:
+Data attributes can be visually represented as well. In this example, the `AREA` variable influences the fill color:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
-
+# Map with fill based on AREA
 ggplot(data = nc) +
-    geom_sf(aes(fill = AREA)) +
-    scale_fill_viridis_c(option = "plasma", trans = "sqrt")
+  geom_sf(aes(fill = AREA)) +
+  scale_fill_viridis_c(option = "plasma", trans = "sqrt")
 
 ```
 
-The function `coord_sf()` allows to deal with the coordinate system, which includes both projection and extent of the map. By default, the map will use the coordinate system of the first layer or if the layer has no coordinate system, fall back on the geographic coordinate system WGS84. Using the argument crs, it is possible to override this setting, and project on the fly to any projection that has an [EPSG code](https://epsg.io/){target="_blank"}. For instance, we may change the coordinate system to EPSG 32618, which corresponds to WGS 84 / UTM zone 18N: 
+The function `coord_sf()` allows to deal with the coordinate system, which includes both projection and extent of the map. By default, the map will use the coordinate system of the first layer or if the layer has no coordinate system, fall back on the geographic coordinate system WGS84. Using the argument `crs`, it is possible to override this setting, and project on the fly to any projection that has an [EPSG code](https://epsg.io/){target="_blank"}. For instance, we may change the coordinate system to EPSG 32618, which corresponds to WGS 84 / UTM zone 18N: 
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
-
+# Map with changed coordinate system
 ggplot(data = nc) +
-    geom_sf() +
-    coord_sf(crs = st_crs(32618))
+  geom_sf() +
+  coord_sf(crs = st_crs(32618))  # Projecting to WGS 84 / UTM zone 18N
 
 ```
 
-The extent of the map can also be set in `coord_sf`, in practice allowing to “zoom” in the area of interest, provided by limits on the x-axis (xlim), and on the y-axis (ylim). The limits are automatically expanded by a fraction to ensure that data and axes do not overlap; it can also be turned off to exactly match the limits provided with expand = FALSE:
+The extent of the map can also be set in `coord_sf`, in practice allowing to “zoom” in the area of interest, provided by limits on the x-axis (`xlim`), and on the y-axis (`ylim`). The limits are automatically expanded by a fraction to ensure that data and axes do not overlap; it can also be turned off to exactly match the limits provided with `expand = FALSE`:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
 
@@ -315,7 +356,7 @@ ggplot(data = nc) +
 
 Note that scale bar and north arrow are available with package `ggspatial`.
 
-In the following example, we will assign labels to vector features. The function `geom_text()` can be used to add a layer of text to a map using geographic coordinates. The North Carolina dataset contains county names as column (column: NAME). In order to define label positions, we take the centroids of the county polygons (function `st_centroid()`), derive X and Y coordinates from centroids (function `st_coordinates()`), merge the new X and Y columns with the columns of `nc` and assign the output to a new variable identifier `nc_points`:    
+In the following example, we will assign labels to vector features. The function `geom_text()` can be used to add a layer of text to a map using geographic coordinates. The North Carolina dataset contains county names as column (`column: NAME`). In order to define label positions, we take the centroids of the county polygons (function `st_centroid()`), derive x and y coordinates from centroids (function `st_coordinates()`), merge the new x and y columns with the columns of `nc` and assign the output to a new variable identifier `nc_points`:    
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
 
@@ -325,9 +366,9 @@ nc_points <- cbind(nc, st_coordinates(st_centroid(nc$geometry)))
 
 ```{block2, type = 'rmdexercise'}
 
-I have used a standard syntax to create variabe `nc_points`. Convert the code to pipe operator syntax.
+we have used a standard syntax to create variabe `nc_points`. Convert the code to pipe operator syntax.
 
-By the way, pipe operators are available with library `magrittr`, which is part of `tidyverse`. So make sure to load `tidyverse` in your script.
+By the way, pipe operators are available with library `magrittr`, which is part of Tidyverse. So make sure to load it in your script.
 
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
@@ -345,7 +386,7 @@ Note that the reading direction of pipe syntax code is from left to right (more 
 
 ```
 
-After deriving centroid coordinates from `nc` geometries, we call the new variable `nc_points` in function `geom_text` and map X and Y columns (centroid coordinates) onto visual variables x and y (position in graph) and also map column NAME onto visual variable label. Moreover, we can insert individual text annotations manually by means of function `annotate()`:
+After deriving centroid coordinates from `nc` geometries, we call the new variable `nc_points` in function `geom_text` and map X and Y columns (centroid coordinates) onto visual variables x and y (position in graph) and also map column `NAME` onto visual variable label. Moreover, we can insert individual text annotations manually by means of function `annotate()`:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
 ggplot(data = nc) +
@@ -358,7 +399,8 @@ coord_sf(xlim = c(-78.9, -75.5), ylim = c(34, 34.85), expand = FALSE)
 
 ```
 
-In a final example, the methods introduced so far are combined to create a more comprehensive map visualization: 
+In our final example, we combine previously introduced methods to craft a detailed map visualization. This example layers data sources, customizes feature appearances, and adds informative annotations:
+
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, results='hide', fig.height = 6}
 
@@ -386,47 +428,33 @@ ggplot(data = nc) +
 
 ```
 
-The function `geom_sf()` is used to add US state polygons as an additional layer. The function `geom_label()` is used as an alternative to function `geom_text()`. Note that `nudge_x` of function `geom_label()` is introduced to offset labels horizontally.
-
-Eventually, we save a PDF version of the map, which keeps the best quality, and a PNG version of it for web purposes:
+Here, `geom_sf()` adds layers of US state polygons. `geom_label()` offers an alternative to `geom_text()` for feature labeling, with `nudge_x` providing horizontal label offset. The map is saved in both PDF for high-quality prints and PNG for web use. Remember to consult the [ggplot2 Cheatsheet](https://www.rstudio.com/resources/cheatsheets/){target="_blank"} for an overview of key ggplot2 operations.
 
 ```{r, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 ggsave("data/map.pdf")
 ggsave("data/map_web.png", width = 10, height = 10, dpi = "screen")
 ```
 
-```{block2, type = 'rmdtip'}
-
-Take a look at the [ggplot Cheatsheet](https://www.rstudio.com/resources/cheatsheets/){target="_blank"} which shows the most important ggplot operations at a glance.
-
-```
-
 ## Interactive Maps
 
 The [Leaflet library for R](https://cran.r-project.org/web/packages/leaflet/index.html){target="_blank"} makes it easy to create interactive web maps. Leaflet is one of the most popular open-source JavaScript libraries used by a number of websites such as [The New York Times](https://www.nytimes.com/projects/elections/2013/nyc-primary/mayor/map.html){target="_blank"}, [Flickr](https://www.flickr.com/map){target="_blank"} or [OpenStreetMap](https://www.openstreetmap.org/#map=14/53.7727/20.5526){target="_blank"}.
 
-The first step in creating a leaflet map is to initialize an empty map widget:
+Start by initializing a Leaflet map widget and augment it with base layers and interactive markers:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 library(leaflet)
-m <- leaflet()
+m <- leaflet() %>%
+    addTiles() %>%
+    addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
 ```
 
-The map widget can be supplemented with additional layers such as a basemap or clickable markers:
-
-```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
-m %>%
-  addTiles() %>%
-  addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
-```
-
-You may have recognized that layers can be simply appended by means of the pipe operator (%>%). This is because most functions in the leaflet package have an argument "map" as their first argument.
+The pipe operator (`%>%`) conveniently adds layers, thanks to Leaflet's function design.
 
 ```{block2, type = 'rmdtip'}
 The function `addTiles()`  per default adds OpenStreetMap map tiles. You may use the function `addProviderTiles()` to add other map tiles. Leaflet supports a large number of [basemap layers](http://leaflet-extras.github.io/leaflet-providers/preview/){target="_blank"}.
 ```
 
-The same pipe-syntax can be used to add [Markers](https://rstudio.github.io/leaflet/markers.html){target="_blank"} and HTML [Labels](https://rstudio.github.io/leaflet/popups.html){target="_blank"} or [ Popups](https://rstudio.github.io/leaflet/popups.html){target="_blank"}. In the following example, an HTML Popup locates a restaurant:
+The same pipe-syntax can be used to add [Markers](https://rstudio.github.io/leaflet/markers.html){target="_blank"} and HTML [Labels](https://rstudio.github.io/leaflet/popups.html){target="_blank"} or [Popups](https://rstudio.github.io/leaflet/popups.html){target="_blank"}. In the following example, an HTML Popup locates a restaurant:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 4}
 library(leaflet)
@@ -445,4 +473,4 @@ leaflet() %>%
             options = popupOptions(closeButton = TRUE))
 ```
 
-Moreover, leaflet offers numerous methods and functions for [manipulating the map widget](https://rstudio.github.io/leaflet/map_widget.html){target="_blank"} and integrating [lines and shapes](https://rstudio.github.io/leaflet/shapes.html){target="_blank"}, [GeoJSON](https://rstudio.github.io/leaflet/json.html){target="_blank"} and [Raster Images](https://rstudio.github.io/leaflet/raster.html){target="_blank"}. To get more information on creating interactive maps with R and leaflet, turn to the [Documentation](https://rstudio.github.io/leaflet/){target="_blank"}.    
+Moreover, Leaflet offers numerous methods and functions for [manipulating the map widget](https://rstudio.github.io/leaflet/map_widget.html){target="_blank"} and integrating [lines and shapes](https://rstudio.github.io/leaflet/shapes.html){target="_blank"}, [GeoJSON](https://rstudio.github.io/leaflet/json.html){target="_blank"} and [Raster Images](https://rstudio.github.io/leaflet/raster.html){target="_blank"}. To get more information on creating interactive maps with R and Leaflet, turn to the [Documentation](https://rstudio.github.io/leaflet/){target="_blank"}.    
