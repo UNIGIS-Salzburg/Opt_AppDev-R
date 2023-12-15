@@ -212,7 +212,7 @@ As a result we get a sparse matrix that reveals numerous intersections between f
 
 ### Binary operations
 
-To carry out binary operations, we first create a second sf-object that contains the location of farmsteads in our study area (`bbox=14,48,14.02,48.02`). The data is in turn loaded via the [AMA Rest API service](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml){target="_blank"}:
+To carry out binary operations, we first create a second sf-object that contains the location of farmsteads in our study area (`bbox=14,48,14.02,48.02`). The farm data is in turn loaded via the [AMA Rest API service](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml){target="_blank"}:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -231,6 +231,40 @@ plot(farms[1], main=NULL, key.pos=NULL, pch = 7, col='red', add = TRUE, cex=1)
 
 > Farms were plotted in red together with land parcels. Notice that `plot()` was executed twice to add the farm layer on top of the land parcel layer. More examples on plotting sf-objects with `plot()` are available [here](https://r-spatial.github.io/sf/reference/plot.html){target="_blank"}.
 
+As a next step, we can calculate geometric relations between farms and parcels. To illustrate the concept of binary geometric operations, parcels are allocated among farms based on euclidean distance. 
+
+First the euclidean distance between farms and parcels needs to be calculated:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+sf::st_distance(farms, invekos.sub) %>%
+  head(1)
+
+```
+
+Function `st_distance` returns the shortest distance matrix between geometries. The function `head` is used to limit displayed outputs to the first matrix, which contains the distance between farm 1 and the centroid of 100 parcels in meters.
+
+```{block2, type = 'rmdexercise'}
+
+You may wonder why distances are returned in meters even though reference system units are in degrees. 
+
+Use `sf::st_crs()` to query the reference system of sf-objects `farms` and `invekos`. This will reveal that objects use geographic coordinates (WGS 84).
+
+In this short exercise, we will take a closer look at the algorithm that is implemented in function `st_distance`.
+
+Open the [documentation of `st_distance`](https://r-spatial.github.io/sf/reference/geos_measures.html){target="_blank"} to find out how metric distances were derived from geographic coordinates.
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><font color="grey">
+
+According to the documentation, greater circle distances are computed for geodetic coordinates. Greater circle distance calculations use by default spherical distances. Alternatively, distances can be computed based on an ellipsoidal model. See [Algorithms for geodesics, Journal of Geodesy](https://link.springer.com/article/10.1007/s00190-012-0578-z){target="_blank"} for more information.
+  
+</font>
+</p>
+</details>
+
+```
 
 
 
@@ -239,4 +273,8 @@ https://r-spatial.github.io/sf/articles/sf3.html#geometrical-operations
 
 Union, buffer, intersect etc.
 
-## Spatial joins
+refer to igraph library for network analysis: 
+https://r.igraph.org/
+
+
+## Filter raster data
