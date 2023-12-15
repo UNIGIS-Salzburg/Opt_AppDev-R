@@ -237,12 +237,11 @@ First the euclidean distance between farms and parcels needs to be calculated:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
-sf::st_distance(farms, invekos.sub) %>%
-  head(1)
+dist_m <- sf::st_distance(farms, invekos.sub)
 
 ```
 
-Function `st_distance` returns the shortest distance matrix between geometries. The function `head` is used to limit displayed outputs to the first matrix, which contains the distance between farm 1 and the centroid of 100 parcels in meters.
+Function `st_distance` returns the shortest distance matrix between geometries.
 
 ```{block2, type = 'rmdexercise'}
 
@@ -266,15 +265,56 @@ According to the documentation, greater circle distances are computed for geodet
 
 ```
 
+When plotting the complete distance matrix `dist_m`, we see that column 1 contains the distances between the first feature (parcel 1) in sf-object `invekos` and the 10 farm features of sf-object `farms`. Accordingly, the matrix has 100 columns (one column for every parcel) and 10 rows (one row for every farm).
 
+The following line returns the first column of the distance matrix as vector:
 
-See geometrical operations:
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+dist_m[, 1]
+
+```
+
+To identify the farm that is located closest to parcel 1, we need to query the index of the minimum value in this vector:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+which(dist_m[, 1] == min(dist_m[, 1]))
+
+```
+
+This index is extracted by function `which`. `which` is a base R function that returns the index of elements that fulfill a condition. In the example above, the index of the minimum value (see function `min`) in vector `dist_m[, 1]` is returned. As a result, the code returns index `1`; i.e. parcel 1 is closest to farm 1.
+
+The demonstrated procedure for detecting closest farms can be executed for ever parcel in a for-loop. The number of the closest farm is appended to a vector `closest`. The vector is appended as a new column to sf-object `invekos.sub`. And `invekos.sub` is plotted together with `farms`:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+closest <- c()
+
+for (i in 1:100){
+  
+  out <- which(dist_m[, i] == min(dist_m[, i]))
+  
+  closest <- c(closest, out)
+  
+}
+
+cbind(invekos.sub, closest) %>%
+  {plot(.[4], main=NULL, key.pos=NULL, reset = FALSE)}
+
+plot(farms[1], main=NULL, key.pos=NULL, pch = 7, col='red', add = TRUE, cex=1)
+
+```
+
+The resulting map shows the shortest distance allocation of agricultural parcels.
+
+Other geometrical operations are designed to return new geometries....for instance; See geometrical operations:
 https://r-spatial.github.io/sf/articles/sf3.html#geometrical-operations
 
 Union, buffer, intersect etc.
 
-refer to igraph library for network analysis: 
+refer to igraph and Luc's library sfnetworks for network analysis: 
 https://r.igraph.org/
-
+https://luukvdmeer.github.io/sfnetworks/
 
 ## Filter raster data
