@@ -1,38 +1,38 @@
 # R Markdown
 
-This lesson is dedicated to the library `rmarkdown`. In fact, however, R Markdown is **more than only a library**. [RMarkdown](https://rmarkdown.rstudio.com/){target="_blank"} belongs to a set of tools that are designed to improve the reproducibility of your work. Other tools and platforms such as [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"} or preprint servers such as [ArXiv](https://arxiv.org/){target="_blank"} or [bioRxiv](https://www.biorxiv.org/){target="_blank"} facilitate reproducibility in many different ways. In this module, we will not cover the paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"} in detail. Instead, we will focus on those aspects that will helping you **make your analyses and reports** more appealing, interactive and **efficient** through the use of RMarkdown.
+This lesson is dedicated to the `rmarkdown` library. However, R Markdown is **more than just a library.** [RMarkdown](https://rmarkdown.rstudio.com/){target="_blank"}  is part of a set of tools designed to enhance the reproducibility of your work. Other tools and platforms such as [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"}, [ArXiv](https://arxiv.org/){target="_blank"}, and [bioRxiv](https://www.biorxiv.org/){target="_blank"} facilitate reproducibility in various ways. In this module, we won't cover the paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"} in detail. Instead, our focus will be on how to use RMarkdown to make your analyses and reports more appealing, interactive, and **efficient**.
 
 ```{block2, type = 'rmdtip'}
 
-In this lesson, we will weave together code and text in professionally rendered R Markdown documents. And we will use [GitHub](https://github.com/){target="_blank"} to safely store, share and administer our results.    
+In this lesson, we will weave together code and text in professionally rendered R Markdown documents and use [GitHub](https://github.com/){target="_blank"} to safely store, share, and administer our results.    
 
 ```
 
 ## Set up your work environment
 
-Before you will create your first R Markdown document, we have to **setup** the **GitHub** environment. GitHub was originally founded as a platform for software developers. The architecture of GitHub is designed to manage changes that are made to computer software in the process of software development. The same architecture, however, can also be used to control the versioning of documents or any other collection of information.
+Before creating your first R Markdown document, we need to **set up** the **GitHub** environment. Originally founded as a platform for software developers, GitHub's architecture is designed to manage changes made during software development. This architecture is also beneficial for version control of documents or any information collection.
 
-Version control is particularly important when working in teams to sync working steps among project participants. However, even when working individually, GitHub is a trustworthy and open online data dump that tracks changes and simplifies the documentation and sharing of your work and others.
+Version control is especially important when working in teams, as it helps synchronize efforts among project participants. However, GitHub is also a reliable and open online platform for individual work, providing change tracking, documentation, and sharing features.
 
 ```{block2, type = 'rmdexercise'}
+To set up your personal GitHub environment, follow these steps:
 
-To setup your personal GitHub environment, follow these steps:
-
-1) Read through the [Hello-World-Section](https://docs.github.com/en/get-started/quickstart/hello-world){target="_blank"} of GitHub's Quickstart Documentation. For now, reading is fine. You do not necessarily have to work through the tutorial.  
+1) Review the [Hello-World Section](https://docs.github.com/en/get-started/quickstart/hello-world){target="_blank"} in GitHub's Quickstart Documentation. Initially, reading it is sufficient—no need to complete the tutorial yet.
 2) [Create a GitHub account](https://github.com/){target="_blank"}.
-3) [Download and install Git](https://git-scm.com/downloads){target="_blank"}. [Git](https://docs.github.com/en/get-started/quickstart/set-up-git){target="_blank"} it is a distributed VCS (version control system), in which the codebase aswell as it's full history is mirrored on every computer. GitHub therefore, is a web-based interface that uses Git very well. If you are interested in its theory and practice, this [video](https://www.youtube.com/watch?v=uR6G2v_WsRA){target="_blank"} gives a very nice explanation of core concepts in Git.
-4) Open R Studio -> Tools -> Global Options -> Git / SVN: check "enable version control" and set the path to the git.exe (e.g. C:/Program Files/Git/bin/git.exe). Restart RStudio.
-5) [Create a repository](https://docs.github.com/en/get-started/quickstart/create-a-repo){target="_blank"} on GitHub. In the tutorial,  Skip section 'Commit your first changes'. 
-6) By default, your repository has one branch named `main`. Create an additional branch off the `main` and call this new branch `dev`. To do so, follow the instructions in the [Hello-World-Tutorial](https://docs.github.com/en/get-started/quickstart/hello-world){target="_blank"}.
-
+3) [Download and install Git](https://git-scm.com/downloads){target="_blank"}. Git is a distributed **VCS (version control system)** that mirrors the codebase and its full history on every computer. GitHub is a web-based interface that integrates seamlessly with Git. For a clear explanation of Git's core concepts, watch this [video](https://www.youtube.com/watch?v=uR6G2v_WsRA){target="_blank"}.
+4) In RStudio (under Tools > Global Options > Git / SVN), check "enable version control" and set the path to git.exe (e.g., C:/Program Files/Git/bin/git.exe). Restart RStudio afterward.
+5) [Create a repository](https://docs.github.com/en/get-started/quickstart/create-a-repo){target="_blank"} on GitHub. In the tutorial, skip the section 'Commit your first changes'.
+6) By default, your repository will have one branch named `main`. Create an additional branch called `dev` off the `main`. Follow the instructions in the [Hello-World Tutorial](https://docs.github.com/en/get-started/quickstart/hello-world){target="_blank"} for guidance.
 ```
 
-As next step, you will have to install the `rmarkdown` library as well as `tinytex` in RStudio as described in the [R Markdown Guide](https://bookdown.org/yihui/rmarkdown/installation.html){target="_blank"}.
+
+Next, install the `rmarkdown` library and `tinytex` in RStudio as described in the [R Markdown Guide](https://bookdown.org/yihui/rmarkdown/installation.html){target="_blank"}.
+
 
 ```{block2, type = 'rmdtip'}
 
-In order to correctly **install**`tinytex`, make sure to execute both lines in RStudio:
-  
+To properly **install**`tinytex`, execute both lines in RStudio:
+
 ```
 
 ```{r, echo=TRUE, eval = FALSE}
@@ -40,7 +40,7 @@ install.packages('tinytex')
 tinytex::install_tinytex()  # install TinyTeX
 ```
 
-If R Studio prompts you to install any dependencies, follow the instructions and install the necessary libraries. If you encounter any technical issues, please turn to the discussion forum for help.
+Follow RStudio's prompts to install any dependencies. For technical issues, please consult the discussion forum.
 
 ## Create a local clone
 
@@ -48,9 +48,10 @@ To work on your repository locally, you will need to create a local clone of you
 
 ```{block2, type = 'rmdexercise'}
 
-In RStudio: File -> New Project... -> Version Control -> Git.
+In RStudio, go to (File > New Project > Version Control > Git).
 
-Copy and paste the repository URL (you can find this by going to your online repository), browse to the local directory and click: `Create Project` (see Fig. \@ref(fig:L09-clone)).
+Enter the URL of your online repository (find this URL in your GitHub repository) and select a local directory for the clone. Then click `Create Project` (refer to Fig. \@ref(fig:L09-clone)).
+
 
 ```
 
@@ -64,19 +65,19 @@ Once you have cloned the online repository, the file contents of the repository 
 knitr::include_graphics('images/NewFeatures.png')
 ```
 
-Per default the repository contains three files:
+By default, the repository includes three files:
 
-1)  [`gitignore`](https://git-scm.com/docs/gitignore){target="_blank"}
-2)  An [RStudio Project File](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects){target="_blank"} (.Rproj)
-3)  A [ReadMe File](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes){target="_blank"} (.md = pure markdown)
+1) [`.gitignore`](https://git-scm.com/docs/gitignore){target="_blank"}: Specifies intentionally untracked files to ignore.
+2) [RStudio Project File](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects){target="_blank"} (`.Rproj`): Contains metadata for the RStudio project.
+3) [ReadMe File](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes){target="_blank"} (`.md`): A markdown file with information about the repository.
 
-[`gitignore`](https://git-scm.com/docs/gitignore){target="_blank"} and the [RStudio Project File](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects){target="_blank"} were created on project initialization, meaning that these files are new and not yet available in the online repository. Changes made to the original repository are listed in the `Git tab` (see Fig. \@ref(fig:L09-changes)).
+The [`gitignore`](https://git-scm.com/docs/gitignore){target="_blank"} and [`.Rproj`](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects){target="_blank"} files are created during project initialization and are not yet in the online repository. Modifications appear in the `Git` tab (Fig. \@ref(fig:L09-changes)).
 
 ```{r L09-changes, echo=FALSE, fig.cap="Changes in Git tab", out.width='80%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/Changes.png')
 ```
 
-Before we further modify our repository, switch to the `dev` branch (see Fig. \@ref(fig:L09-branch)). At the moment `dev` branch and `main` branch **are identical**.
+Before making further changes, switch to the `dev` branch (see Fig. \@ref(fig:L09-branch)). Currently, the `dev` branch is identical to the `main` branch.
 
 ```{r L09-branch, echo=FALSE, fig.cap="Switch branch", out.width='80%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/Branches.png')
@@ -84,17 +85,17 @@ knitr::include_graphics('images/Branches.png')
 
 ```{block2, type = 'rmdtip'}
 
-It his **highly recommended** to keep work in progress separate from the `main` branch by working in a separate developer branch. Later, branches may be unified by merging from `dev` into the `main` branch (see [Opening a pull request](https://docs.github.com/en/get-started/quickstart/hello-world#opening-a-pull-request){target="_blank"}).
+It is **highly recommended** to work in progress on a separate developer branch, like `dev`, and keep the `main` branch for stable versions. You can later merge changes from `dev` to `main` through a pull request (see [Opening a Pull Request](https://docs.github.com/en/get-started/quickstart/hello-world#opening-a-pull-request){target="_blank"}).
 
 ```
 
-## Create a first RMarkdown document
+## Creating Your First R Markdown Documen
 
-Now that the environment is set up, we can create a first simple R Markdown document.
+Now that the environment is set up, let's create our first R Markdown document.
 
 ```{block2, type = 'rmdexercise'}
 
-In RStudio: File -> New File -> R Markdown....
+In RStudio: (File > New File > R Markdown):
 
 Type in a title, keep the default settings and confirm with `OK`. As a result you get a minimal R Markdown sample file, with the file extension `.Rmd`.
 
@@ -132,11 +133,11 @@ The other code blocks in the RMarkdown sample file produce a summary output (see
 knitr::include_graphics('images/knit.png')
 ```
 
-You can also use the dropdown arrow next to the **Knit** button to compile PDF or .docx outputs, or choose from the [other](https://rmarkdown.rstudio.com/lesson-9.html){target="_blank"} supported formats.
+You can also use the dropdown arrow next to the **Knit** button to compile `PDF` or `.docx` outputs, or choose from the [other](https://rmarkdown.rstudio.com/lesson-9.html){target="_blank"} supported formats.
 
 ```{block2, type = 'rmdexercise'}
 
-When you **"knit"** an R Markdown document, the .Rmd file is processed by the knitr package, which executes the code chunks and creates a new markdown file containing the code and its output. This markdown file is then processed by pandoc, which creates the final output document in the specified format. This two-step process allows for a wide range of output options and enables you to easily create professional-quality documents from your R Markdown code.
+When you **"knit"** an R Markdown document, the `.Rmd` file is processed by the knitr package, which executes the code chunks and creates a new markdown file containing the code and its output. This markdown file is then processed by pandoc, which creates the final output document in the specified format. This two-step process allows for a wide range of output options and enables you to easily create professional-quality documents from your R Markdown code.
 
 ```
 
@@ -160,7 +161,7 @@ Before you can push your own changes to the online repository, you have to `Comm
 
 ```{block2, type = 'rmdexercise'}
 
-Save all documents in R Studio, then click the "Commit" button in the Git tab. The files that have been affected by changes will be listed in the commit window. You can click on one of the files to see the changes (green represents new content, red represents deleted content).
+Save all documents in R Studio, then click the `Commit` button in the Git tab. The files that have been affected by changes will be listed in the commit window. You can click on one of the files to see the changes (green represents new content, red represents deleted content).
 
 Manually select all the files by clicking the corresponding checkboxes. To make sure you have not missed a file, you may execute `git add -A` in the terminal window to add all files to the commit (see [this](https://github.com/joshnh/Git-Commands){target="_blank"} list of popular Git Commands.) Once this is done, enter a meaningful commit message that describes your revision and click the `Commit button`. 
 
@@ -191,7 +192,7 @@ knitr::include_graphics('images/CommitFinished.png')
 
 In R Markdown documents, you can use double asterisks (`**Text**`) to **bold** words and phrases, or single asterisks (`*Text*`) to *italicize* them.
 
-You can also create **headings** using hash signs (#). The number of hash signs you use corresponds to the heading level:
+You can also create **headings** using hash signs (`#`). The number of hash signs you use corresponds to the heading level:
 
 
     # Heading level 1
@@ -206,7 +207,7 @@ You can also create **headings** using hash signs (#). The number of hash signs 
 knitr::include_graphics('images/tables.png')
 ```
 
-To create an **ordered list**, use numbers followed by a period. The first item should start with the number 1:
+To create an **ordered list**, use numbers followed by a period. The first item should start with the number `1`:
     
     Code - Ordered List:
     1. item 1
@@ -215,6 +216,8 @@ To create an **ordered list**, use numbers followed by a period. The first item 
         + Item 3a
         + Item 3b
 
+**Will result in:**
+
 1. Item 1
 4. Item 2
 3. Item 3
@@ -222,13 +225,15 @@ To create an **ordered list**, use numbers followed by a period. The first item 
     + Item 3b
 
 
-To create an **unordered list**, use *, -, or +:
+To create an **unordered list**, use `*`, `-`, or `+`:
     
     Code - Unordered List:
     * item 1
     * item 2
       * Item 3.1
       - Item 3.2
+
+**Which will result in:**
 
 * Item 1
 * Item 2
@@ -239,7 +244,7 @@ The following syntax example illustrate how to create **hyperlinks** in RMarkdow
 
 `[Github](https://github.com/){target="_blank"}`
 
-Result looks like... [Github](https://github.com/){target="_blank"}
+Result looks like this [Github](https://github.com/){target="_blank"} link.
 
 By setting parameter `target="_blank`, the link is opened in a new browser tab.
 
@@ -255,7 +260,7 @@ By setting parameter `target="_blank`, the link is opened in a new browser tab.
 
 ```{block2, type = 'rmdtip'}
 
-Meanwhile, you know a number of characters that have a special meaning in RMarkdown syntax (like \# or \>). If you want these characters verbatim, you have to escape them. The way to **escape a special character** is to add a backslash before. For instance, \\# will not translate into a heading, but will return \#.
+Meanwhile, you know a number of characters that have a special meaning in RMarkdown syntax (like `#` or `>`). If you want these characters verbatim, you have to escape them. The way to **escape a special character** is to add a backslash before. For instance, `#` will not translate into a heading, but will return `#`.
 
 ```
 
@@ -277,8 +282,8 @@ See ["Mathematics in R Markdown"](https://rpruim.github.io/s341/S19/from-class/M
 
 ### References in RMarkdown
 
-R Markdown also comes with a time-saving method to insert **citations** and to build a **bibliography**. References are collected in a .bib-file. 
-Create a new document in a text editor such as Windows Editor. Save the file with a **.bib** extension (e.g. references.bib) in your RStudio project folder.
+R Markdown also comes with a time-saving method to insert **citations** and to build a **bibliography**. References are collected in a `.bib-file`. 
+Create a new document in a text editor such as Windows Editor. Save the file with a `.bib` extension (e.g. `references.bib`) in your RStudio project folder.
 
 ```{block2, type = 'rmdtip'}
 
@@ -286,7 +291,7 @@ You can use the RStudio project that you have cloned, modified and synchronized 
 
 ```
 
-Now you can **add references** to the .bib-file. References are encoded in BibTeX format. The easiest way to get the BibTeX description of a reference is to export from Google Scholar. To enable BibTeX export, change setting in Google Scholar (see Fig. \@ref(fig:L09-scholarsettings)).
+Now you can **add references** to the `.bib-file`. References are encoded in BibTeX format. The easiest way to get the BibTeX description of a reference is to export from Google Scholar. To enable BibTeX export, change setting in Google Scholar (see Fig. \@ref(fig:L09-scholarsettings)).
 
 ```{r L09-scholarsettings, echo=FALSE, fig.cap="Enable BibTeX in Firefox 106.0.1", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/ScholarSettings.png')
@@ -302,19 +307,19 @@ Once you have enabled BibTeX export in your browser, a new link `Import into Bib
 knitr::include_graphics('images/bibtexoption.png')
 ```
 
-Click the link in Google Scholar and copy & paste the BibTeX code into your .bib-file. As a next step, you have to specify the location of the .bib-file in the YAML metadata (YAML parameter `bibliography:<.bib file>`). Now you can use the BibTeX reference sources from `.bib` in your R Markdown file. Insert `@` and the first BibTeX parameter of a BibTeX reference source to add citations to your document (see Fig. \@ref(fig:L09-refs)).
+Click the link in Google Scholar and copy & paste the BibTeX code into your `.bib-file`. As a next step, you have to specify the location of the `.bib-file` in the YAML metadata (YAML parameter `bibliography:<.bib file>`). Now you can use the BibTeX reference sources from `.bib` in your R Markdown file. Insert `@` and the first BibTeX parameter of a BibTeX reference source to add citations to your document (see Fig. \@ref(fig:L09-refs)).
 
 ```{r L09-refs, echo=FALSE, fig.cap="Integrate BibTeX reference in RMarkdown document", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/refs.png')
 ```
 
-To compile your R Markdown document, `knit` as HTML, PDF or Word. The `rmarkdown` library renders references as indirect citations (*reference without squared brackets in .Rmd file*) and direct citations (*reference with squared brackets in .Rmd file*) and inserts a bibliography (see Fig. \@ref(fig:L09-pdfknit)).
+To compile your R Markdown document, `knit` as `HTML`, `PDF` or `Word`. The `rmarkdown` library renders references as indirect citations (*reference without squared brackets in `.Rmd` file*) and direct citations (*reference with squared brackets in `.Rmd` file*) and inserts a bibliography (see Fig. \@ref(fig:L09-pdfknit)).
 
 ```{r L09-pdfknit, echo=FALSE, fig.cap="Knit R Markdown as PDF", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/knit_pdf.png')
 ```
 
-[Here](data/ReferencesInRMarkdown.zip){target="_blank"} you can find a worked example for download. Unzip the folder and open the .Rproj file in RStudio.
+[Here](data/ReferencesInRMarkdown.zip){target="_blank"} you can find a worked example for download. Unzip the folder and open the `.Rproj` file in RStudio.
 
 ```{block2, type = 'rmdtip'}
 Other helpful R Markdown syntax examples can be looked up in the [RMarkdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf){target="_blank"}.
@@ -330,13 +335,13 @@ Data can be retrieved in real-time by means of [Alpha Ventage](https://www.alpha
 
 ```{block2, type = 'rmdexercise'}
 
-In this exercise you are provided with a first draft version of the finance data report. [Download](data/RMarkdownFinanceData.zip){target="_blank"} the draft version. Unzip the folder and open the .Rproj file in RStudio. 
+In this exercise you are provided with a first draft version of the finance data report. [Download](data/RMarkdownFinanceData.zip){target="_blank"} the draft version. Unzip the folder and open the `.Rproj` file in RStudio. 
 
-The project includes a .bib file that contains a BibTeX reference, a .csv file (see folder data) with more than 400 country names, national currencies and currency codes and an .Rmd file with inline R code that renders real-time currency exchange in a map.
+The project includes a `.bib` file that contains a BibTeX reference, a `.csv` file (see folder data) with more than 400 country names, national currencies and currency codes and an `.Rmd` file with inline R code that renders real-time currency exchange in a map.
 
-Carefully read through the .Rmd file **before you compile an HTML output**.
+Carefully read through the `.Rmd` file **before you compile an HTML output**.
 
-Important: The .Rmd file includes an interactive leaflet map, i.e. other outputs than HTML are not supported.
+**Important:** The `.Rmd` file includes an interactive leaflet map, i.e. other outputs than HTML are not supported.
 
 Once you have understood the structure of this document, try to supplement the finance data report with an additional spatial indicator (e.g. map of exchange rates from national currencies to Euro).
 
