@@ -1,8 +1,14 @@
 # Spatial Data Manipulation
 
-In the previous lesson you have learned to get access to data on a server via Rest API ... few words about OGC Rest API
+In the previous lesson you have learned to get access to data on a server via Rest API. Recently, the Open Geospatial Consortium OGC has transferred the Rest API paradigm to geospatial fields of application. Meanwhile various OGC API standards have been implemented to provide and use geospatial data on the web. An overview of the current status of implementation can be found [here](https://ogcapi.ogc.org/#standards){target="_blank"}.
 
-In this lesson we will....
+```{block2, type = 'rmdtip'}
+
+In this lesson, we will use online data resources in a workflow that involves data cleaning, spatial queries and analyses.
+
+In addition, you will learn to carry out basic raster manipulation operations on a sample raster dataset.
+
+```
 
 ## Data Acquisition
 
