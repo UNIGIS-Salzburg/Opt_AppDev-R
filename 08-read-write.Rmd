@@ -1,4 +1,4 @@
-# Read and write data{#readwrite}
+# Read and Write Data{#readwrite}
 
 In previous exercises we have **read** data from a CSV file into our script. Similarly we can also **write** code outputs to file.   
 

@@ -1,4 +1,4 @@
-# Control structures
+# Control Structures
 
 
 ```{block2, type = 'rmdtip'}
