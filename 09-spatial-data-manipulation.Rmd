@@ -196,7 +196,7 @@ invekos.sub %>%
 
 > Notice that the `plot()` function is in curly brackets. This is because the dot (used to set the position of the piped value) cannot be indexed directly (`.[1]`). A more comprehensive explanation of the problem can be found [here](https://stackoverflow.com/questions/42385010/using-the-pipe-and-dot-notation){target="_blank"}.
 
-## Geometrical operations
+### Geometrical operations
 
 `Sf` provides various geometric predicates such as `st_within`, `st_contains` or `st_crosses`. A full list of available predicates is available [here](https://r-spatial.github.io/sf/reference/geos_binary_pred.html){target="_blank"}. 
 
@@ -320,11 +320,11 @@ The second important spatial data type that was covered in this module is the `t
 
 > In the examples below, we will use a sample dataset that is provided with the `terra` package ([Download Sample Data](data/terra_sample.tif){target="_blank"}).  
 
-### Resampling Raster Data in Terra
+### Resampling
 
 Resampling is the process of changing the spatial resolution of a raster dataset. This is useful when you want to align multiple rasters that have different resolutions or when you want to change the level of detail in your analysis.
 
-The resampling process can be illustrated based on the sample terra sample:
+The resampling process can be illustrated based on the terra sample dataset:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -343,7 +343,7 @@ res(r)
 
 ```
 
-The terra resampling function takes a target raster as an input. If we do not have a target raster available, we can simply copy the original raster and assign a new raster resolution value to it:
+The terra resampling function takes a target raster as an input. As we do not have a target raster available, we simply copy the original raster and assign a new raster resolution value to it:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -364,9 +364,30 @@ plot(r_resampled, main='Resampled 80x80')
 
 ```
 
-The new values of raster `r_resampled` are calculated by method `bilinear` interpolation. Other methods are `nearest` or `cubic`. A discussion on what method to use for resampling raster data can be found [here](https://gis.stackexchange.com/questions/2587/deciding-what-interpolation-method-to-use-for-resampling-raster-data){target="_blank"}. 
+The new values of raster `r_resampled` are calculated by method `bilinear`. Other methods are `nearest` or `cubic`. A discussion on what interpolation method to use for resampling raster data can be found [here](https://gis.stackexchange.com/questions/2587/deciding-what-interpolation-method-to-use-for-resampling-raster-data){target="_blank"}. 
 
+### Crop raster
 
+Raster cropping is the process of selecting a specific area (or "extent") from a larger raster dataset. This is useful when you want to focus your analysis on a particular region.
 
+You can crop a `SpatRaster Object` with a `SpatExtent`, or with another object from which an extent can be obtained.
 
+To extract the extent of a `SpatRaster`, we can use the function `ext`:
 
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+terra::ext(r)
+
+```
+
+The extent of object `r` is returned in the format <xmin, xmax, ymin, ymax>. Once we know the extent of the original object, the cropping extent can be specified by function `ext` in function `crop`. The `SpatExtent` named `crop_ext` is then used as an input to function `crop`, which a subset of `r` as `SpatRaster Object`:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+crop_ext <- terra::ext(180000, 180200, 331000, 331250)
+subset_r <- terra::crop(r, crop_ext)
+plot(subset_r, main='Subset of r')
+
+```
+
+You may have noticed that the extent in y-direction of the returned subset is larger than specified in the code above (raster resolution = 40m). This is because only entire cells can be selected. To circumvent this problem we can either change the cropping extent (e.g. 180000, 180200, 331000, 331200) or modify the spatial resolution of `r`.
