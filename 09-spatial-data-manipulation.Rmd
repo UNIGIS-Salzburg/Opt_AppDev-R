@@ -231,9 +231,9 @@ plot(farms[1], main=NULL, key.pos=NULL, pch = 7, col='red', add = TRUE, cex=1)
 
 > Farms were plotted in red together with land parcels. Notice that `plot()` was executed twice to add the farm layer on top of the land parcel layer. More examples on plotting sf-objects with `plot()` are available [here](https://r-spatial.github.io/sf/reference/plot.html){target="_blank"}.
 
-As a next step, we can calculate geometric relations between farms and parcels. To illustrate the concept of binary geometric operations, parcels are allocated among farms based on euclidean distance. 
+As a next step, we can calculate geometric relations between farms and parcels. To illustrate the concept of binary geometric operations, parcels are allocated among farms based on their distance. 
 
-First the euclidean distance between farms and parcels needs to be calculated:
+First, we calculate the distance between farms and parcels:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -283,9 +283,9 @@ which(dist_m[, 1] == min(dist_m[, 1]))
 
 ```
 
-This index is extracted by function `which`. `which` is a base R function that returns the index of elements that fulfill a condition. In the example above, the index of the minimum value (see function `min`) in vector `dist_m[, 1]` is returned. As a result, the code returns index `1`; i.e. parcel 1 is closest to farm 1.
+The index is extracted by function `which`. `which` is a base R function that returns the index of elements that fulfill a condition. In the example above, the index of the minimum value (see function `min`) in vector `dist_m[, 1]` is returned. As a result, the code returns index `1`; i.e. parcel 1 is closest to farm 1.
 
-The demonstrated procedure for detecting closest farms can be executed for ever parcel in a for-loop. The number of the closest farm is appended to a vector `closest`. The vector is appended as a new column to sf-object `invekos.sub`. And `invekos.sub` is plotted together with `farms`:
+The demonstrated procedure for detecting closest farms can be executed for ever parcel in a for-loop. The number of the closest farm is appended to a vector named `closest`. This vector is in turn appended as a new column to sf-object `invekos.sub`. And `invekos.sub` is plotted together with `farms`:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -308,13 +308,12 @@ plot(farms[1], main=NULL, key.pos=NULL, pch = 7, col='red', add = TRUE, cex=1)
 
 The resulting map shows the shortest distance allocation of agricultural parcels.
 
-Other geometrical operations are designed to return new geometries....for instance; See geometrical operations:
-https://r-spatial.github.io/sf/articles/sf3.html#geometrical-operations
+In this chapter, we have focused on geometrical operations that return logical matrices (feature is within another feature -> `TRUE` or `FALSE` etc.). Other geometrical operations of the `sf` package are designed to *return new geometries*. For instance, function `st_union` unifies input geometries, `st_buffer` computes a buffer around an input geometry and `st_centroid` returns the center of a polygon as a point feature. 
 
-Union, buffer, intersect etc.
+> See [operations returning a geometry](https://r-spatial.github.io/sf/articles/sf3.html#operations-returning-a-geometry){target="_blank"} for more information.
 
-refer to igraph and Luc's library sfnetworks for network analysis: 
-https://r.igraph.org/
-https://luukvdmeer.github.io/sfnetworks/
+Moreover, in order to carry out *network operations* on sf-objects you may turn to the package `sfnetworks`. Alternatively, the `igraph` package may be used to work with networks in R. 
 
 ## Filter raster data
+
+The second large group of spatial data are `SpatRaster Objects` 
