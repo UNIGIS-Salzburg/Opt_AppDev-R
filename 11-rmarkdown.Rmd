@@ -89,7 +89,7 @@ It is **highly recommended** to work in progress on a separate developer branch,
 
 ```
 
-## Creating Your First R Markdown Documen
+## Creating Your First R Markdown Document
 
 Now that the environment is set up, let's create our first R Markdown document.
 
@@ -186,7 +186,7 @@ Your online repository on GitHub should now be updated (switch to `dev` branch i
 knitr::include_graphics('images/CommitFinished.png')
 ```
 
-## Basic RMarkdown Syntax
+## Basic R Markdown Syntax
 
 In R Markdown, you can apply text formatting using simple markers:
 
@@ -240,7 +240,7 @@ To create an **unordered list**, use `*`, `-`, or `+`:
     + Item 2a
     - Item 2b
 
-**Hyperlinks** are created with the format `[Text](URL)`, for example, `[GitHub](https://github.com/){target="_blank"}` becomes [Github](https://github.com/){target="_blank"}. The `target="_blank"` parameter opens the link in a new tab. Which is a good practice when linking to external websites.
+**Hyperlinks** are created with the format `[Text](URL)`, for example, `[GitHub](https://github.com/){target="_blank"}` becomes [Github](https://github.com/){target="_blank"}. The `target="_blank"` parameter opens the link in a new tab, which is a good practice when linking to external websites.
 
 **Blockquotes** are indicated by `>` and can be nested:
 
@@ -333,7 +333,7 @@ Explore more RMarkdown syntax examples in the [RMarkdown Cheatsheet](https://www
 
 R Markdown significantly enhances the efficiency of repetitive workflows. For instance, consider a scenario where a client requires daily updates on specific spatial economic indicators. Instead of manually generating a new report each day, R Markdown can automate this process, creating data reports with charts that update automatically upon compilation. This approach can save substantial time and effort.
 
-Real-time data retrieval is possible through [Alpha Ventage](https://www.alphavantage.co/){target="_blank"}, which provides financial market data via the [Alpha Ventage Rest API](https://www.alphavantage.co/documentation/){target="_blank"}.  The R library [`alphaventager`](https://cran.r-project.org/web/packages/alphavantager/index.html){target="_blank"} facilitates API access within R.
+Real-time data retrieval is possible through [Alpha Ventage](https://www.alphavantage.co/){target="_blank"}, which provides financial market data via the [Alpha Ventage Rest API](https://www.alphavantage.co/documentation/){target="_blank"}. The R library [`alphaventager`](https://cran.r-project.org/web/packages/alphavantager/index.html){target="_blank"} facilitates API access within R. The use of `alphaventager` enables the extraction of various types of financial data, including real-time stock prices, FX rates, and technical indicators, directly into R. This allows for efficient data processing and visualization, making it a good tool for finance-related reports and analyses in R Markdown.
 
 ```{block2, type = 'rmdexercise'}
 
@@ -355,10 +355,10 @@ Try enhancing the report with an additional spatial indicator, such as a map dis
 
 The vast functionalities of R Markdown extend beyond the scope of a single lesson. To fully leverage its capabilities, refer to the comprehensive online book [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/){target="_blank"}.
 
-This guide covers additional topics such as Notebooks, Presentations, support for languages like Python, C++, SQL, and more complex document creation with extensions like [BookDown](https://bookdown.org/){target="_blank"} or [ThesisDown](https://github.com/ismayc/thesisdown){target="_blank"}. Experimenting with these various features is key to mastering R Markdown.
+This guide covers additional topics such as Notebooks, Presentations, support for languages like Python, C++, SQL, and more complex document creation with extensions like [BookDown](https://bookdown.org/){target="_blank"} or [ThesisDown](https://github.com/ismayc/thesisdown){target="_blank"}. While R Markdown predominantly supports R, its flexibility extends to integrating other programming languages like Python, C++, and SQL. This integration is facilitated through specific settings in the code chunks of the R Markdown document. For instance, by specifying the `python` engine in a code chunk (e.g., ```{python}```), you can seamlessly run Python code within your document. Similar approaches are used for C++ (using the `cpp` engine) and SQL (using the `sql` engine). These capabilities are enabled by the `knitr` package, which supports various languages, allowing for a multi-language analytical workflow within a single R Markdown document. Experimenting with these various features is key to mastering R Markdown.
 
 ```{block2, type = 'rmdtip'}
-Fun Fact: This module was written using BookDown.
+**Fun Fact:** This module was written using BookDown.
 ```
 
 

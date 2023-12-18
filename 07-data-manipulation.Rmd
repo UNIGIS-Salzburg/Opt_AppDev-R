@@ -1,4 +1,4 @@
-# Data manipulation{#datman}
+# Data Manipulation{#datman}
 
 ```{block2, type = 'rmdtip'}
 In most instances the structure of the available data will not meet the specific requirements to perform the analyses you are interested in. Data analysts typically spend most of their time cleaning, filtering, restructuring data as well as harmonizing and joining data from different sources.

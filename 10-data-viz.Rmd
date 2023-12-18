@@ -1,4 +1,4 @@
-# Data visualization {#data-viz}
+# Data Visualization {#data-viz}
 
 R has a very rich set of graphical functions. The [R Graph Gallery](https://www.r-graph-gallery.com/){target="_blank"} provides a large number of examples (including code).  
 
