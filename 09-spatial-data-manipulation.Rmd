@@ -390,4 +390,40 @@ plot(subset_r, main='Subset of r')
 
 ```
 
-You may have noticed that the extent in y-direction of the returned subset is larger than specified in the code above (raster resolution = 40m). This is because only entire cells can be selected. To circumvent this problem we can either change the cropping extent (e.g. 180000, 180200, 331000, 331200) or modify the spatial resolution of `r`.
+You may have noticed that the extent in y-direction of the returned subset is larger than specified in the code above. This is because only entire cells can be selected. To circumvent this problem one can either change the cropping extent (e.g. 180000, 180200, 331000, 331200) or modify the spatial resolution of `r`.
+
+### Raster algebra
+
+Many generic function are implemented in `terra` that enable simple algebraic operations. This includes normal algebraic operators such as `+, -, *, /`, logical operators such as `<, <=, >, ==, !` and functions such as `abs`, `round` and others (see [here](https://rspatial.org/pkg/4-algebra.html){target="_blank"} to find a comprehensive list).
+
+For instance, raster operators can be used to modify values of cells:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+# add value 10 to every cell
+s <- r + 10
+# take the square root of values
+s <- sqrt(r)
+# return logical raster
+s1 <- s == 15
+
+plot(s1)
+
+```
+
+The first example `s <- r + 10` illustrates that `SpatRaster Object` can be mixed with numbers, as long as the first argument is a `SpatRaster Object`. Alternatively, you can also use algebraic operators with multiple `SpatRaster Objects`. However, these must have the same resolution and origin. Typically these objects will also have the same extent, but if they do not, the returned object covers the spatial intersection of the objects used. 
+
+Moreover, until recently also replacement function can be used: 
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+r[r == 255] <- 2550
+plot(r)
+
+```
+
+In the example above `value==255` is replaced by a value 2550.
+
+A few more useful raster algebra examples can be found in the [terra materials](https://rspatial.org/pkg/4-algebra.html){target="_blank"}. A more comprehensive overview of available vector and raster operations is given in [Chaper 5 - Geometry operations](https://bookdown.org/robinlovelace/geocompr/geometric-operations.html){target="_blank"} of the E-Book [Geocomputation with R](https://bookdown.org/robinlovelace/geocompr/){target="_blank"}.
+
+> Note: At the time of writing this module, Geocomputation with R uses package `raster` which is planned being replaced by `terra`.   
