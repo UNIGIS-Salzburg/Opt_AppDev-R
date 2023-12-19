@@ -91,7 +91,7 @@ area_rectangle(3, 2)
 
 ```{block2, type = 'rmdtip'}
 
-Default parameters can enhance a function's flexibility. Modify `area_rectangle` to default `width` to `3`. With only one input, the function should return `YOUR INPUT * 3`. Specifying both parameters overrides the default `width`.
+Default parameters can enhance a function's flexibility. Modify the function parameters as `(height, width = 3)`. With only one input, the function should return `YOUR INPUT * 3`. Specifying both parameters overrides the default `width`.
 
 ```
 
