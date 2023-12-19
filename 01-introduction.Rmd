@@ -2,14 +2,15 @@
 
 ## About this module
 
-This module will equip you with fundamental R programming skills, starting with core programming concepts universal to most languages, including **Datatypes**, **Operators**, **Variables**, **Functions**, **Control Structures**, and **Libraries**.
+This module will equip you with fundamental R programming skills, beginning with core programming concepts common to most languages. These include **Datatypes**, **Operators**, **Variables**, **Functions**, **Control Structures**, and **Libraries**. You will gain a solid understanding of these basics, forming a strong foundation for advanced programming.
 
-We will then delve into more advanced data types such as **Data Frames** and **Tibbles**, and learn methods to **Read and Write** both spatial and non-spatial datasets. You'll learn to manipulate data that may initially seem unsuitable for your analyses by **filtering, querying, subsetting, joining, and reshaping** it.
+We then progress to more complex data types like **Data Frames** and **Tibbles**, and explore how to **Read and Write** both spatial and non-spatial datasets. Special emphasis is placed on techniques to manipulate data, enabling you to adeptly handle datasets by **filtering**, **querying**, **subsetting**, **joining**, and **reshaping** them. This will be particularly useful for preparing and refining data for in-depth analysis.
 
-The module progresses to data **visualization**, teaching you to create informative diagrams (e.g., box plots, scatterplots, line plots) and maps. 
+The module also focuses on data **visualization**, where you'll learn to create informative and compelling visual representations, such as box plots, scatterplots, line plots, and maps. These skills are critical for data exploration and presenting your findings in an accessible manner.
 
-Upon completing this module, you'll possess foundational R programming skills, preparing you for advanced topics like Geospatial Data Analysis (covered in the "Spatial Statistics" module of the MSc program).
+Additionally, the course introduces the essentials of working with spatial data, setting the stage for advanced geospatial data analysis. This includes handling spatial data structures, performing spatial data manipulation, and understanding spatial relationships.
 
+Upon completing this module, you'll possess foundational R programming skills, preparing you for more advanced topics such as Geospatial Data Analysis, as covered in the "Spatial Statistics" module of the MSc program.
 
 ```{block2, type = 'rmdtip'}
 This module partly draws from [granolarr](https://github.com/sdesabbata/granolarr){target="_blank"}, developed by [Stefano de Sabbata](https://sdesabbata.github.io/){target="_blank"} at [University of Leicester](https://le.ac.uk/){target="_blank"}. For further exploration, refer to the Webbook [R for Geographic Data Science](https://sdesabbata.github.io/r-for-geographic-data-science/){target="_blank"}. We particularly recommend its chapters on **Statistical Analysis** and **Machine Learning** for those interested in advanced R applications.

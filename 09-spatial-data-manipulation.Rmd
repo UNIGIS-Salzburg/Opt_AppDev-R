@@ -1,48 +1,46 @@
-# Spatial Data Manipulation
+# Spatial Data Manipulation {#spm}
 
-In the previous lesson you have learned to get access to data on a server via Rest API. Recently, the Open Geospatial Consortium OGC has transferred the Rest API paradigm to geospatial fields of application. Meanwhile various OGC API standards have been implemented to provide and use geospatial data on the web. An overview of the current status of implementation can be found [here](https://ogcapi.ogc.org/#standards){target="_blank"}.
+In the previous lesson, you learned how to access data on a server via a REST API. The Open Geospatial Consortium (OGC) has adapted the REST API paradigm for geospatial applications. A variety of OGC API standards have been implemented to provide and utilize geospatial data on the web. An overview of the current implementation status can be found [here](https://ogcapi.ogc.org/#standards){target="_blank"}.
 
 ```{block2, type = 'rmdtip'}
 
-In this lesson, we will use online data resources in a workflow that involves data cleaning, spatial queries and analyses.
-
-In addition, you will learn to carry out basic raster manipulation operations on a sample raster dataset.
+In this lesson, we will utilize online data resources in workflows that involve data cleaning, spatial queries, and analyses. Additionally, you will learn to carry out basic raster manipulation operations on a sample raster dataset.
 
 ```
 
 ## Data Acquisition
 
-In the first part of this lesson, we will work with vector data that are used to correctly identify agricultural land parcels in European Union countries. The Austrian Agricultural Agency [AMA](https://www.ama.at/intro){target="_blank"} provides access to Austrian agricultural parcels through an [OGC Rest API - Feature](https://ogcapi.ogc.org/){target="_blank"} interface. The OGC API Features standard is the successor to the earlier OGC Web Feature Service (WFS) specification. 
+We will work with vector data to identify agricultural land parcels in European Union countries correctly. The Austrian Agricultural Agency ([AMA](https://www.ama.at/intro){target="_blank"}) provides access to Austrian agricultural parcels through an [OGC Rest API - Feature](https://ogcapi.ogc.org/){target="_blank"} interface. The OGC API Features standard is the successor to the OGC Web Feature Service (WFS) specification.
 
 ```{block2, type = 'rmdtip'}
 
-The R-Syntax being used to interact with OGC APIs is the same as described in section "Data API" (see Lesson [Read and write data](#readwrite){target="_blank"}).
-  
+The R syntax used to interact with OGC APIs is the same as described in the "Data API" section (see Lesson [8](#readwrite){target="_blank"}).
+
 ```
 
-Before we load the data into an R Script, let us take a look at API contents. On the [landing page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/){target="_blank"} of the web-service go to [collection page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml){target="_blank"}. On this site you will find an overview of available layers.
+efore loading the data into an R script, examine the API's contents. Visit the web service's [landing page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/){target="_blank"} and proceed to the [collection page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml){target="_blank"}. There you will find an overview of the available layers.
 
-Copy the following URL into your browser:
+Enter the following URL into your browser:
 
 ```{}
 https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon/items?f=json&limit=10
 ```
 
-The request returns the first ten features (parameter `limit=10`) of layer `ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon` (parcels of agricultural land as polygons) in a GeoJSON format (parameter `f=json`). 
+This request returns the first ten features of the `ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon` layer (agricultural land parcels as polygons) in GeoJSON format.
 
->GeoJSON is a JSON-based standard that represents simple feature geometries along with their non-spatial attributes.  
+> GeoJSON is a JSON-based standard for representing simple geographic features, along with their non-spatial attributes. 
 
-On closer inspection of the GeoJSON, you will find coordinate vertices of polygon features as well as feature attributes like `fs_flaeche_ha` (area of parcel in hectares) or `fnar_bezeichnung` (land use).
+Upon inspecting the GeoJSON, you will find the coordinate vertices of the polygon features and attributes such as `fs_flaeche_ha` (parcel area in hectares) and `fnar_bezeichnung` (land use).
 
-Alternatively, the parameter `bbox` can be used to filter available resources by means of a bounding box:
+Use the `bbox` parameter to filter resources within a specific area:
 
 ```{}
 https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon/items?f=json&bbox=14,48,14.02,48.02 
 ```
 
-To inspect the extent of the data request, paste the coordinates `14,48,14.02,48.02` into [linestrings.com](https://linestrings.com/bbox/){target="_blank"} and press "Display box". 
+For a visual representation of the bounding box, enter the coordinates `14,48,14.02,48.02` into  [linestrings.com](https://linestrings.com/bbox/){target="_blank"} and click "Display box".
 
-Once you have specified the URL, the request can be executed in an R Script:
+To execute the request in R, use the following script:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -52,34 +50,30 @@ library(sf)
 
 full_url <- "https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon/items?f=json&bbox=14,48,14.02,48.02"
 
-invekos <- httr2::request(full_url) %>%   #Create request
-  httr2::req_perform() %>%           #Execute request
-  httr2::resp_body_string() %>%      #Extract JSON body as string
-  geojsonsf::geojson_sf()            #JSON string to sf object
-
+# Make the request and convert the response to an sf object
+invekos <- httr2::request(full_url) %>%   # Create request
+  httr2::req_perform() %>%                # Execute request
+  httr2::resp_body_string() %>%           # Extract JSON body as string
+  geojsonsf::geojson_sf()                 # Convert JSON string to sf object
 ```
 
-To code above returns 100 polygon features as sf-object that is named `invekos`. 
+The above code retrieves 100 polygon features and stores them in an object named `invekos`.
 
 ## Data Cleaning
 
-Once the data is loaded to R, we can inspect the structure of the data in more detail. 
-
-For instance, the `dplyr` function  `glimpse` may be used to see every column name and type:
+Once the data is loaded into R, we can more closely examine its structure. The `dplyr` function `glimpse`, for instance, allows us to preview each column's name and type:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
-
+library(dplyr)
 dplyr::glimpse(invekos)
 
 ```
 
-> `dbl` stands for `double`, which allows you to store numbers as decimals.
+> The abbreviation `dbl` stands for `double`, a data type that stores numbers with decimal points.
 
-The following code returns a subset of sf-object `invekos`:
+To create a subset of the `invekos` sf-object, use the following code::
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
-
-library(dplyr)
 
 invekos %>%
   head(2) %>%
@@ -88,51 +82,47 @@ invekos %>%
 
 ```
 
-Field names and entries are in German language. The base R function `colnames()` can be used to rename fields:
+Field names and entries are in German. To rename them, use the base R function `colnames()`:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
-# take subset of invekos object
+# Subset of invekos object
 invekos.sub <- invekos %>%
   dplyr::select(fnar_bezeichnung, fs_flaeche_ha, geo_id, geometry)
 
-# rename fields
+# Renaming fields
 colnames(invekos.sub)[1] <- "land_use"
 colnames(invekos.sub)[2] <- "area_ha"
 
 ```
 
-Entries are renamed by means of `dplyr` functions `mutate` and `case_when`:
+Entries are renamed using `dplyr`'s `mutate` and `case_when` functions:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
-unique(invekos.sub$land_use)  #query unique entries in field 'land_use'
+unique(invekos.sub$land_use)  # Unique entries in 'land_use'
 
-# rename entries 'ACKERLAND' and 'GRÜNLAND'
+# Renaming entries 'ACKERLAND' and 'GRÜNLAND'
 invekos.sub <- dplyr::mutate(invekos.sub, land_use = 
                                case_when(land_use == 'ACKERLAND' ~ 'arable land',
                                land_use == 'GRÜNLAND' ~ 'grassland', TRUE ~ 'Other'))
 
-#show result
+# Display result
 invekos.sub %>%
   head(2) %>%
   knitr::kable(., format="html")
 
 ```
 
-To get a first visual impression, we can plot the sf-object by means of the base R `plot()` function:
+For an initial visual impression, plot the sf-object using the base R `plot()` function:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 plot(invekos.sub[1], main="Land Use", key.pos = 1, key.width = lcm(1.3))
 ```
 
-By default `plot()` creates a multi-panel plot, one sub-plot for each field of the object. `invekos.sub[1]` limits the output to a single plot of field `land_use`. The function parameter `key.pos = 1` aligns the legend below the map (1=below, 2=left, 3=above and 4=right). `key.width` defines the width of the legend. 
+By default, the `plot()` function generates a multi-panel plot, with one sub-plot for each field of the object. However, specifying `invekos.sub[1]` restricts the output to a single plot, specifically showcasing the `land_use` field. The function parameter `key.pos = 1` aligns the legend below the map (1=below, 2=left, 3=above and 4=right). `key.width` defines the width of the legend. 
 
-As a next step we can validate the geometry of sf polygons. 
-
-> Remember: Four point coordinates are required to create a closed polygon shape (first and last point need to be identical). A polygon with only three points is classified as having an invalid geometry. 
-
-Sf-Function `st_is_valid` is used to detect invalid geometries:
+Next, we can validate the geometry of sf polygons using `st_is_valid`:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -141,31 +131,28 @@ sf::st_is_valid(invekos) %>%
 
 ```
 
-The function returns a logical vector indicating for each geometry whether it is valid. The summary statistic shows that the vector is composed of 100 TRUE values. Accordingly, our geometries are valid. Given that function `st_is_valid` returns FALSE, `st_make_valid` can be used to correct geometries.
+The `st_is_valid` function checks the validity of each geometry, returning a logical vector. The summary confirms that all geometries in our dataset are valid. If any invalid geometries are detected, they can be corrected using the `st_make_valid` function.
 
 ```{block2, type = 'rmdexercise'}
 
-In this short exercise we will closely investigate a polygon geometry.
-
-The code below creates a single polygon feature. However, the validity check indicates an invalid geometry. What is problem with this polygon?
-
-
+Let's closely investigate a polygon geometry with the code below, which creates a single polygon feature. The validity check flags an invalid geometry. Can you identify the problem?
 
 ```
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
-# Create a matrix of coordinates
-coords <- matrix(c(-1,-1, 1,-1, 1,1, 0,-1, -1, -1), ncol = 2, byrow = TRUE)
+# Coordinates for the polygon
+coords <- matrix(c(-1, -1, 1, -1, 1, 1, 0, -1, -1, -1), ncol = 2, byrow = TRUE)
 
-# Create a list of matrices (in this case, just one matrix)
+# List of coordinate matrices
 list_of_coords <- list(coords)
 
-# Create the polygon
+# Constructing the polygon
 polygon <- st_polygon(list_of_coords)
 
-# Convert to spatial feature
+# Converting to an sf object
 error_sf <- st_sf(geometry = st_sfc(polygon))
 
+# Validity check
 sf::st_is_valid(error_sf)
 
 ```
@@ -174,7 +161,7 @@ sf::st_is_valid(error_sf)
 <summary><ins>**See solution!**</ins></summary>
 <p><font color="grey">
   
-Plotting the polygon shows a [sliver polygon](https://en.wikipedia.org/wiki/Sliver_polygon){target="_blank"}. 
+When plotted, the polygon reveals a [sliver polygon](https://en.wikipedia.org/wiki/Sliver_polygon){target="_blank"}, which is invalid due to its shape.
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -182,7 +169,9 @@ plot(error_sf)
 
 ```
 
-Another reason for a non-valid geometry may be the self-intersection of lines. 
+Another common cause of invalid geometries is self-intersection of lines.
+
+> Note: A valid polygon requires at least four coordinate points with the first and last points being identical. A polygon with only three points is considered to have an invalid geometry.
 
 </font>
 </p>
@@ -190,9 +179,9 @@ Another reason for a non-valid geometry may be the self-intersection of lines.
 
 ## Vector operations
 
-The sf-object is similar in structure as data frames. Accordingly, filtering operations that are based on attributes can be carried out by the help of `dplyr` functions as described in lesson [Data manipulation](#datman){target="_blank"}.
+The structure of an `sf` object is similar to that of data frames, enabling attribute-based filtering operations using `dplyr` functions, as described in Lesson [7](#datman){target="_blank"}.
 
-For instance, grassland parcels can be extracted using the `filter()` function:
+For example, to extract grassland parcels, the `filter()` function is used:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 invekos.sub %>%
@@ -200,13 +189,11 @@ invekos.sub %>%
   {plot(.[1], main="Land Use", key.pos = 1, key.width = lcm(1.3))}
 ```
 
-> Notice that the `plot()` function is in curly brackets. This is because the dot (used to set the position of the piped value) cannot be indexed directly (`.[1]`). A more comprehensive explanation of the problem can be found [here](https://stackoverflow.com/questions/42385010/using-the-pipe-and-dot-notation){target="_blank"}.
+> Note the use of curly brackets in plot() function. This is required because the dot notation (.) cannot directly index a piped value. For a deeper explanation, see this [Stack Overflow discussion](https://stackoverflow.com/questions/42385010/using-the-pipe-and-dot-notation){target="_blank"}.
 
 ### Geometrical operations
 
-`Sf` provides various geometric predicates such as `st_within`, `st_contains` or `st_crosses`. A full list of available predicates is available [here](https://r-spatial.github.io/sf/reference/geos_binary_pred.html){target="_blank"}. 
-
-Typically, we will use geometric predicates for pairs of simple feature geometry sets (e.g. `st_intersects(<sf-obj1>, <sf-obj2>)`). However, we can also carry out predicate operations based on an individual sf-object:  
+`sf` provides a range of geometric predicates such as `st_within`, `st_contains`, or `st_crosses`, with a complete list available [here](https://r-spatial.github.io/sf/reference/geos_binary_pred.html){target="_blank"}. While these are often used between pairs of simple feature geometry sets, they can also operate on a single `sf` object:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -214,32 +201,30 @@ sf::st_intersects(invekos.sub, sparse = TRUE)
 
 ```
 
-As a result we get a sparse matrix that reveals numerous intersections between features of the same sf-object `invekos.sub`. For instance, the feature with ID 1 intersects the feature with ID 3. Feature 2 intersects features 22 and 62. In fact, intersections among feature polygons indicate topology errors. To fix these errors, it is recommended to make use of GIS software such as [QGIS](https://www.qgis.org/de/site/){target="_blank"}. R is not yet as advanced in handling topology errors as standard GIS software. 
+This returns a sparse matrix revealing intersections within features of the same `sf` object `invekos.sub`, indicating possible topology errors. For correcting these errors, GIS software like [QGIS](https://www.qgis.org/de/site/){target="_blank"} is recommended as R's capabilities for handling topology errors are less advanced.
 
 ### Binary operations
 
-To carry out binary operations, we first create a second sf-object that contains the location of farmsteads in our study area (`bbox=14,48,14.02,48.02`). The farm data is in turn loaded via the [AMA Rest API service](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml){target="_blank"}:
+Binary operations are essential for analyzing spatial relationships between different datasets. Here, we demonstrate this by creating an `sf` object representing farmsteads using data from the [AMA Rest API service](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml){target="_blank"}:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
 
 full_url <- "https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_hofstellen_aktuell_point/items?f=json&bbox=14,48,14.02,48.02"
 
-farms <- httr2::request(full_url) %>%   #Create request
-  httr2::req_perform() %>%           #Execute request
-  httr2::resp_body_string() %>%      #Extract JSON body as string
-  geojsonsf::geojson_sf()            #JSON string to sf object
+farms <- httr2::request(full_url) %>%   # Create request
+  httr2::req_perform() %>%           # Execute request
+  httr2::resp_body_string() %>%      # Extract JSON body as string
+  geojsonsf::geojson_sf()            # JSON string to sf object
 
 plot(invekos.sub[1], main=NULL, key.pos=NULL, reset = FALSE, col_graticule = "grey")
 plot(farms[1], main=NULL, key.pos=NULL, pch = 7, col='red', add = TRUE, cex=1)
 
 ```
 
-> Farms were plotted in red together with land parcels. Notice that `plot()` was executed twice to add the farm layer on top of the land parcel layer. More examples on plotting sf-objects with `plot()` are available [here](https://r-spatial.github.io/sf/reference/plot.html){target="_blank"}.
+> Note: The `plot()` function is used sequentially to overlay farm points on top of the land parcel polygons. For advanced plotting techniques, refer to the [`plot()` documentation](https://r-spatial.github.io/sf/reference/plot.html){target="_blank"}.
 
-As a next step, we can calculate geometric relations between farms and parcels. To illustrate the concept of binary geometric operations, parcels are allocated among farms based on their distance. 
-
-First, we calculate the distance between farms and parcels:
+We proceed to calculate the distances between farms and land parcels to determine proximity:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -247,13 +232,11 @@ dist_m <- sf::st_distance(farms, invekos.sub)
 
 ```
 
-Function `st_distance` returns the shortest distance matrix between geometries.
+The `st_distance` function calculates the shortest distance matrix between the geometries of the two `sf` objects, with distances returned in meters.
 
 ```{block2, type = 'rmdexercise'}
 
-You may wonder why distances are returned in meters even though reference system units are in degrees. 
-
-Use `sf::st_crs()` to query the reference system of sf-objects `farms` and `invekos`. This will reveal that objects use geographic coordinates (WGS 84).
+Distances are computed in meters, which may seem unexpected since the reference system's units are in degrees. To understand the underlying calculations, examine the coordinate reference system of the `sf` objects `farms` and `invekos` using `sf::st_crs()`. This will reveal that objects use geographic coordinates (WGS 84).
 
 In this short exercise, we will take a closer look at the algorithm that is implemented in function `st_distance`.
 
@@ -289,7 +272,7 @@ which(dist_m[, 1] == min(dist_m[, 1]))
 
 ```
 
-The index is extracted by function `which`. `which` is a base R function that returns the index of elements that fulfill a condition. In the example above, the index of the minimum value (see function `min`) in vector `dist_m[, 1]` is returned. As a result, the code returns index `1`; i.e. parcel 1 is closest to farm 1.
+The `which` function, a base R utility, identifies the indices of elements that satisfy a given condition. In the example, it returns the index of the smallest value within the vector `dist_m[, 1]`. Consequently, it indicates that farm 1 is the closest to parcel 1.
 
 The demonstrated procedure for detecting closest farms can be executed for ever parcel in a for-loop. The number of the closest farm is appended to a vector named `closest`. This vector is in turn appended as a new column to sf-object `invekos.sub`. And `invekos.sub` is plotted together with `farms`:
 
@@ -312,36 +295,32 @@ plot(farms[1], main=NULL, key.pos=NULL, pch = 7, col='red', add = TRUE, cex=1)
 
 ```
 
-The resulting map shows the shortest distance allocation of agricultural parcels.
+The output map visualizes the closest farm to each agricultural parcel, highlighting the practical application of `sf` geometrical operations.
 
-In this chapter, we have focused on geometrical operations that return logical matrices (feature is within another feature -> `TRUE` or `FALSE` etc.). Other geometrical operations of the `sf` package are designed to *return new geometries*. For instance, function `st_union` unifies input geometries, `st_buffer` computes a buffer around an input geometry and `st_centroid` returns the center of a polygon as a point feature. 
-
-> See [operations returning a geometry](https://r-spatial.github.io/sf/articles/sf3.html#operations-returning-a-geometry){target="_blank"} for more information.
-
-Moreover, in order to carry out *network operations* on sf-objects you may turn to the package `sfnetworks`. Alternatively, the `igraph` package may be used to work with networks in R. 
+This chapter focuses on logical matrix outputs from geometric operations. For operations generating new geometries, such as `st_union`, `st_buffer`, and `st_centroid`, see [operations returning a geometry](https://r-spatial.github.io/sf/articles/sf3.html#operations-returning-a-geometry){target="_blank"}. For network operations on `sf` objects, consider using `sfnetworks` or the `igraph` package.
 
 ## Raster operations
 
-The second important spatial data type that was covered in this module is the `terra` `SpatRaster Object`. So far, we have discussed the structure of `SpatRaster Objects` in [Chapter Raster Data Structures](file:///C:/Users/b1045498/Documents/GitHubRepos/Opt_AppDev-R/docs/spds.html#raster-data-structures){target="_blank"} and how to read and write `SpatRaster Objects` in  [Chapter Read and Write Raster Data](file:///C:/Users/b1045498/Documents/GitHubRepos/Opt_AppDev-R/docs/readwrite.html#read-and-write-raster-data){target="_blank"}. In this section, we will focus on raster manipulation operations like *resampling* and *cropping*. 
+Having previously discussed the structure of `SpatRaster Objects` in Lesson [4](#spds){target="_blank"} and the reading and writing of such objects in Lesson [8](#readwrite){target="_blank"}, we now turn our attention to raster manipulation operations like *resampling* and *cropping*.
 
-> In the examples below, we will use a sample dataset that is provided with the `terra` package ([Download Sample Data](data/terra_sample.tif){target="_blank"}).  
+> For the following examples, we will utilize a sample dataset from the `terra` package. You can download the sample data [here](data/terra_sample.tif){target="_blank"}).  
 
 ### Resampling
 
-Resampling is the process of changing the spatial resolution of a raster dataset. This is useful when you want to align multiple rasters that have different resolutions or when you want to change the level of detail in your analysis.
+Resampling alters the spatial resolution of a raster dataset, which is necessary for aligning multiple rasters with different resolutions or adjusting the detail level in an analysis.
 
-The resampling process can be illustrated based on the terra sample dataset:
+Let's demonstrate resampling with the `terra` sample dataset:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
 library(terra)
 
-r <- terra::rast("data/terra_sample.tif") #path may be different on your machine
+r <- terra::rast("data/terra_sample.tif") # path may be different on your machine
 plot(r, main='SpatRaster from file')
 
 ```
 
-Before we change the raster resulution of `SpatRaster Object` r, it is important to know the original resolution of the raster. You can use the `res()` function to check this:
+Before we change the raster resolution of `SpatRaster Object`, it is important to know the original resolution of the raster. You can use the `res()` function to check this:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -349,36 +328,33 @@ res(r)
 
 ```
 
-The terra resampling function takes a target raster as an input. As we do not have a target raster available, we simply copy the original raster and assign a new raster resolution value to it:
+For resampling, we'll create a target raster by copying the original and setting a new resolution:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
 r2 <- r
-terra::res(r2) <- 80
+terra::res(r2) <- 80 # Assigning a new resolution of 80x80
 
 ```
 
-This will delete the values associated the `SpatRaster Object`. Nevertheless raster `r2` can be used as an input to function `resample`. The resolution of `r` will be aligned to the resolution of empty raster `r2`:
+Although this operation clears the raster values, `r2` can still be used as a target for resampling:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
 r_resampled <- terra::resample(r, r2, method="bilinear")
 
-res(r2)
-
+res(r2) # Verify the new resolution
 plot(r_resampled, main='Resampled 80x80')
 
 ```
 
-The new values of raster `r_resampled` are calculated by method `bilinear`. Other methods are `nearest` or `cubic`. A discussion on what interpolation method to use for resampling raster data can be found [here](https://gis.stackexchange.com/questions/2587/deciding-what-interpolation-method-to-use-for-resampling-raster-data){target="_blank"}. 
+The `bilinear` method is used for interpolating new values in `r_resampled`, with alternatives such as `nearest` or `cubic`. The choice of interpolation method for resampling raster data is a crucial consideration, discussed in further detail [here](https://gis.stackexchange.com/questions/2587/deciding-what-interpolation-method-to-use-for-resampling-raster-data){target="_blank"}. 
 
 ### Crop raster
 
-Raster cropping is the process of selecting a specific area (or "extent") from a larger raster dataset. This is useful when you want to focus your analysis on a particular region.
+Raster cropping allows you to select a specific area from a larger raster dataset for targeted analysis. Both `SpatRaster` and `SpatExtent` objects can be utilized for cropping operations.
 
-You can crop a `SpatRaster Object` with a `SpatExtent`, or with another object from which an extent can be obtained.
-
-To extract the extent of a `SpatRaster`, we can use the function `ext`:
+To derive an extent from a `SpatRaster`, the `ext` function is used:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -386,7 +362,7 @@ terra::ext(r)
 
 ```
 
-The extent of object `r` is returned in the format <xmin, xmax, ymin, ymax>. Once we know the extent of the original object, the cropping extent can be specified by function `ext` in function `crop`. The `SpatExtent` named `crop_ext` is then used as an input to function `crop`, which a subset of `r` as `SpatRaster Object`:
+The output format is `<xmin, xmax, ymin, ymax>`. Knowing this, we can define a cropping extent and apply it using the `crop` function:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -396,30 +372,30 @@ plot(subset_r, main='Subset of r')
 
 ```
 
-You may have noticed that the extent in y-direction of the returned subset is larger than specified in the code above. This is because only entire cells can be selected. To circumvent this problem one can either change the cropping extent (e.g. 180000, 180200, 331000, 331200) or modify the spatial resolution of `r`.
+If the resulting cropped area doesn't match expectations due to cell alignment, adjust the cropping extent or raster resolution as necessary.
 
 ### Raster algebra
 
-Many generic function are implemented in `terra` that enable simple algebraic operations. This includes normal algebraic operators such as `+, -, *, /`, logical operators such as `<, <=, >, ==, !` and functions such as `abs`, `round` and others (see [here](https://rspatial.org/pkg/4-algebra.html){target="_blank"} to find a comprehensive list).
+`Terra` provides functionality for algebraic operations on rasters, supporting standard arithmetic and logical operators, and functions like `abs` and `round`. For a full list, visit the [terra algebra documentation](https://rspatial.org/pkg/4-algebra.html){target="_blank"}.
 
-For instance, raster operators can be used to modify values of cells:
+Here's how you can perform some simple operations:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
-# add value 10 to every cell
+# Add a constant value to each cell
 s <- r + 10
-# take the square root of values
+# Calculate the square root of cell values
 s <- sqrt(r)
-# return logical raster
+# Generate a logical raster based on cell value equality
 s1 <- s == 15
 
 plot(s1)
 
 ```
 
-The first example `s <- r + 10` illustrates that `SpatRaster Object` can be mixed with numbers, as long as the first argument is a `SpatRaster Object`. Alternatively, you can also use algebraic operators with multiple `SpatRaster Objects`. However, these must have the same resolution and origin. Typically these objects will also have the same extent, but if they do not, the returned object covers the spatial intersection of the objects used. 
+Operators can be applied between `SpatRaster` objects with matching resolutions and origins. The result covers their spatial intersection.
 
-Moreover, until recently also replacement function can be used: 
+You can also perform in-place replacements:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -428,8 +404,10 @@ plot(r)
 
 ```
 
-In the example above `value==255` is replaced by a value 2550.
+Here, all cells with the value `255` are replaced with `2550`.
 
-A few more useful raster algebra examples can be found in the [terra materials](https://rspatial.org/pkg/4-algebra.html){target="_blank"}. A more comprehensive overview of available vector and raster operations is given in [Chaper 5 - Geometry operations](https://bookdown.org/robinlovelace/geocompr/geometric-operations.html){target="_blank"} of the E-Book [Geocomputation with R](https://bookdown.org/robinlovelace/geocompr/){target="_blank"}.
+A broader range of vector and raster operations can be found in [Chapter 5 - Geometry Operations, in the Book Geocomputation with R](https://bookdown.org/robinlovelace/geocompr/geometric-operations.html){target="_blank"}.
 
-> Note: At the time of writing this module, Geocomputation with R uses package `raster` which is planned being replaced by `terra`.   
+```{block2, type = 'rmdtip'}
+**Note:** As of writing this module, "Geocomputation with R" uses the `raster` package, which is expected to be superseded by `terra`.
+```
