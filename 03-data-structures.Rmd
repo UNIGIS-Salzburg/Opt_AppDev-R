@@ -1,4 +1,4 @@
-# Data Structures
+# Data Structures {#DS}
 
 In this lesson, we expand upon the simple data types (**numeric**, **character** (string), and **logical**) discussed in [Lesson 1](#intro) by introducing more complex data structures.
 

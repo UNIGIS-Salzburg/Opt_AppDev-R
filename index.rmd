@@ -27,5 +27,8 @@ This web-book is a text book with exercises that together form the learning mate
   <img src="images/UNIGIS_Educating.gif" alt="UNIGIS Distance Learning program">
 </a>  
 
-The web-book is published under an open licence. I welcome everybody to explore the contents and to work through the exercises. Only the related discussion forum and the assignments can exclusively be accessed by actively enrolled UNIGIS students, who signed up for this module.
+The web-book is published under an open licence. We welcome everybody to explore the contents and to work through the exercises. Only the related discussion forum and the assignments can exclusively be accessed by actively enrolled UNIGIS students, who signed up for this module.
 
+**Important Note for Learners:**
+
+To fully engage with the exercises and assignments in this module, it's essential to obtain an API key from Open Weather. The API key is required for accessing weather data, a crucial component of our practical exercises, particularly in Lesson 8. You can register and obtain your API key [here](https://openweathermap.org/appid){target="_blank"}. Please ensure you have this key ready before starting the relevant sections. This is especially important for UNIGIS students who will need it for the module assignments.
