@@ -101,7 +101,7 @@ Now we transform the sf-object to [EPSG 3416](https://spatialreference.org/ref/e
 
 ```{r}
 
-# Assign NAD27 as CRS
+# Assign Austrian Lambert Projection as CRS
 point_sf_multi_transform <- sf::st_transform(point_sf_multi, 3416)
 
 
