@@ -1,14 +1,14 @@
 # Spatial Data Structures {#spds}
 
-In the realm of geoinformatics, spatial data stands as a cornerstone, offering a lens through which we can view, analyze, and interpret the world around us. At this point in your studies, you are already familiar with the basic spatial entities of points, lines, and polygons. These fundamental structures, while simple in concept, form the bedrock of complex spatial analyses and visualizations.
+In the realm of geoinformatics, spatial data is a cornerstone, offering a lens through which we can view, analyze, and interpret the world around us. At this point in your studies, you are already familiar with the basic spatial entities of points, lines, and polygons. These fundamental structures, while simple in concept, form the bedrock of complex spatial analyses and visualizations.
 
 R, with its rich ecosystem of packages, offers a unique perspective on spatial data. Packages like `sf`, `terra`, `stars`, and `spatstat` have been game-changers, allowing us to handle spatial vector, raster, and multidimensional data with unprecedented ease and flexibility.
 
 ```{block2, type = 'rmdtip'}
 In this lesson, you will get to know the following spatial data structures in R:
 
-1) Vector data structures based on the simple feature specification implemented in the [`sf`](https://r-spatial.github.io/sf/){target="_blank"} package.
-2) Raster data structures as provided by the [`terra`](https://rspatial.org/pkg/){target="_blank"} package.
+1. Vector data structures based on the simple feature specification implemented in the [`sf`](https://r-spatial.github.io/sf/){target="_blank"} package.
+2. Raster data structures as provided by the [`terra`](https://rspatial.org/pkg/){target="_blank"} package.
 
 You will also learn how to retrieve, assign, and modify coordinate systems, projections and transformations of spatial data structures.
 
@@ -18,7 +18,7 @@ You will also learn how to retrieve, assign, and modify coordinate systems, proj
 
 Spatial data structures are the foundation upon which geospatial information is built. They provide a systematic framework for organizing and representing geographical entities, ensuring that they can be efficiently processed, analyzed, and visualized. 
 
-In this section, we will use the `sf` library to work with vector data structures. The name `sf` (which stands for **simple features**) already implies that `sf` supports simple feature access via R. Simple features is a widely supported data model that underlies data structures in many GIS applications, including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other setups, for example, importing from and exporting to spatial databases.
+In this section, we will use the `sf` library to work with vector data structures. The name `sf` (which stands for **simple features**) implies that `sf` supports simple feature access via R. Simple features is a widely supported data model that underlies data structures in many GIS applications, including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other setups, for example, importing from and exporting to spatial databases.
 
 Simple features have spatial, geometric attributes as well as non-spatial attributes. The most common geometry types are points, lines, and polygons and their respective "multi" versions (see [Simple feature geometry types](https://r-spatial.github.io/sf/articles/sf1.html#simple-feature-geometry-types){target="_blank"}).
 
@@ -39,7 +39,7 @@ point_sf <- sf::st_sf(geometry = sf::st_sfc(point))
 ```
 
 ```{block2, type = 'rmdtip'}
-The operator :: is used to indicate that the functions `st_point`, `st_sf` and `st_sfc` are situated within the library `sf`. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names.
+The operator `::` is used to indicate that the functions `st_point`, `st_sf`, and `st_sfc` are situated within the library `sf`. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names.
 ```
 
 The function `st_point` creates a simple feature object from a numeric vector. The object is of the same nature as the numeric vector `c(5,5)`. To convert to an sf-object, the function `st_sf` is used. 
@@ -97,7 +97,7 @@ EPSG-Codes of other reference systems can be found [here](https://spatialreferen
 
 ```
 
-Now we transform the sf-object to [EPSG 3416](https://spatialreference.org/ref/epsg/3416/){target="_blank"} (Austrian Lambert Projection) with function `st_transform`:
+Now we transform the sf-object to [EPSG 3416](https://spatialreference.org/ref/epsg/3416/){target="_blank"} (Austrian Lambert Projection) with the function `st_transform`:
 
 ```{r}
 
@@ -220,7 +220,7 @@ In practical terms, if you're creating or manipulating polygons, you need to ens
 
 Whereas man-made infrastructures (streets, buildings, sewage systems etc.) can clearly be delineated and modeled by discrete features, our natural-physical environment (temperature, soil moisture etc.) tends to be continuous by nature and best represented by raster data structures.
 
-Both packages, `sf` and `terra` can handle raster and vector data. Due to its comprehensive toolset and integration with the tidyverse ecosystem (tidyverse will be covered in lesson Data Manipulation), `sf` is predominantly used for discrete vector data structures. Until quite recently, the package [`raster`](https://cran.r-project.org/web/packages/raster/index.html){target="_blank"} has been the most popular resource to work with continuous data in R. This package is being replaced by `terra` (see [here](https://psfaculty.plantsciences.ucdavis.edu/plant/AdditionalTopics_Transition.pdf){target="_blank"} for more information). 
+Both packages `sf` and `terra`, can handle raster and vector data. Due to its comprehensive toolset and integration with the tidyverse ecosystem (tidyverse will be covered in lesson Data Manipulation), `sf` is predominantly used for discrete vector data structures. Until quite recently, the package [`raster`](https://cran.r-project.org/web/packages/raster/index.html){target="_blank"} has been the most popular resource to work with continuous data in R. This package is being replaced by `terra` (see [here](https://psfaculty.plantsciences.ucdavis.edu/plant/AdditionalTopics_Transition.pdf){target="_blank"} for more information). 
 
 Accordingly, in this lesson we will focus on the more modern `terra` package that offers several advantages over its predecessor: 
 
@@ -232,7 +232,7 @@ Accordingly, in this lesson we will focus on the more modern `terra` package tha
 
 ### Working with SpatRaster objects
 
-The `terra` `SpatRaster Object` can be created using function `rast`:
+The `terra` `SpatRaster Object` can be created using the function `rast`:
 
 ```{r, warning=FALSE, message=FALSE}
 # Load the terra package
@@ -244,7 +244,7 @@ x
 
 ```
 
-Per default the `SpatRaster Object` is initialized with a global extent and a spatial resolution of 1 degree. The coordinate reference system is WGS84.
+By default, the `SpatRaster Object` is initialized with a global extent and a spatial resolution of 1 degree. The coordinate reference system is WGS84.
 
 Alternatively, additional arguments may be provided in the function to customize the `SpatRaster Object`:
 
@@ -290,7 +290,7 @@ Note that the number of rows and column was changed to enable a raster resolutio
 
 ```{block2, type = 'rmdtip'}
 
-Given that the SpatRaster Object has an undefined coordinate reference system, it can be defined by means of [terra-function `crs`](https://rdrr.io/cran/terra/man/crs.html){target="_blank"}.
+Given that the `SpatRaster Object` has an undefined coordinate reference system, it can be defined by means of [terra-function `crs`](https://rdrr.io/cran/terra/man/crs.html){target="_blank"}.
 
 ```
 
@@ -325,11 +325,11 @@ The function `runif` of package `stats` takes three arguments, `n`, `min` and `m
 
 When assigning or accessing values, it is crucial to know the origin and orientation of raster values. Create a `SpatRaster Object` with 4 cells and assign a numeric vector that consists of 4 values `c(1,2,3,4)`  to it. 
 
-The syntax to select values from `SpatRaster Objects` is the same that we have use to select elements of matrix and array data structures:
+The syntax to select values from `SpatRaster Objects` is the same that we have used to select elements of matrix and array data structures:
 
 `raster-obj[<row index>, <column index>]`
 
-Where is the origin of the grid? In what order are the values `c(1,2,3,4)` stored in the vector grid?
+Where is the origin of the grid? In which order are the values `c(1,2,3,4)` stored in the vector grid?
 
 <details closed>
 <summary><ins>**Solution!**</ins></summary>
@@ -349,10 +349,10 @@ r[1,1] returns value 1. Accordingly, the upper left corner is the origin of the 
 
 ```
 
-Note that the layer number `lyr.1` is returned in the console, when accessing individual values of a `SpatRaster Object`. This implies that `SpatRaster Objects` can handle space-time and multivariable data. A useful example for integrating space and time in SpatRaster Objects is provided by Dominic Royé in his blog post [Use of multidimensional spatial data.](https://dominicroye.github.io/en/2022/use-of-multidimensional-spatial-data/){target="_blank"} For more sophisticated data cube applications, the use of the [`stars` package](https://r-spatial.github.io/stars/){target="_blank"} is recommended.
+Note that the layer number `lyr.1` is returned in the console, when accessing individual values of a `SpatRaster Object`. This implies that `SpatRaster Objects` can handle space-time and multivariable data. A useful example for integrating space and time in `SpatRaster Objects` is provided by Dominic Royé in his blog post [Use of multidimensional spatial data.](https://dominicroye.github.io/en/2022/use-of-multidimensional-spatial-data/){target="_blank"} For more sophisticated data cube applications, the use of the [`stars` package](https://r-spatial.github.io/stars/){target="_blank"} is recommended.
 
 ```{block2, type = 'rmdtip'}
 
-In this lesson you learned to handle spatial vector and raster structures in R. To get to know these structures, we built vector and raster objects from scratch. In many instances, however, objects may be created in R by loading vector and raster file formats (e.g. `.shp` or `.tif`). This topic will be covered in lesson [8](#readwrite).
+In this lesson, you learned to handle spatial vector and raster structures in R. To get to know these structures, we built vector and raster objects from scratch. In many instances, however, objects may be created in R by loading vector and raster file formats (e.g. `.shp` or `.tif`). This topic will be covered in lesson [8](#readwrite).
 
 ```

@@ -1,7 +1,7 @@
 # Functions
 
 ```{block2, type = 'rmdtip'}
-In previous lessons, we've used various functions (like `cat()`, `print()`) without delving deeply into their mechanics. This lesson aims to demystify functions, guiding you through creating and understanding custom functions. We'll also explore the concepts of global and local variable scopes.
+In previous lessons, we've used various functions (like `cat()`, `print()`) without delving deeply into their mechanics. This lesson aims to demystify functions by guiding you through the creation and understanding of custom functions. We'll also explore the concepts of global and local variable scopes.
 ```
 
 ## Defining Functions
@@ -21,7 +21,7 @@ add_one <- function (input_value) {
 add_one(3)
 ```
 
-Invoke this function by specifying its **identifier** and the necessary parameter(s). For instance, in our example `add_one(3)` returns `4`.
+Call this function by specifying its **identifier** and the necessary parameter(s). For instance, in our example `add_one(3)` returns `4`.
 
 ### Understanding the `return()` Function
 
@@ -51,7 +51,7 @@ add_one(3)  # Also returns 4
 
 ```
 
-In both examples, the function `add_one` returns 4. The explicit use of `return()` in the second example provides clarity about the intended output of the function.
+In both examples, calling `add_one(3)` returns 4. The explicit use of `return()` in the second example provides clarity about the intended output of the function.
 
 ```{block2, type = 'rmdtip'}
 
@@ -61,7 +61,7 @@ The choice between implicit and explicit return in R functions can depend on var
 
 **Early Return Example:**
 
-Sometimes, it's necessary to exit a function early, such as in error handling:
+Sometimes, it's necessary to exit a function early, for instance in error handling:
 
 ```{r, echo=TRUE}
 safe_divide <- function (numerator, denominator) {
@@ -91,9 +91,23 @@ area_rectangle(3, 2)
 
 ```{block2, type = 'rmdtip'}
 
-Default parameters can enhance a function's flexibility. Modify the function parameters as `(height, width = 3)`. With only one input, the function should return `YOUR INPUT * 3`. Specifying both parameters overrides the default `width`.
+Default parameters can enhance a function's flexibility. For instance, you can modify the `area_rectangle` function parameters as `(height, width = 3)`. Now, with only one input, the function should return `YOUR INPUT * 3`. Specifying both parameters overrides the default `width`. Here's how it looks:
 
 ```
+
+```{r, echo=TRUE}
+area_rectangle <- function (height, width = 3) {
+  return(height * width)
+}
+
+# Calling with one parameter uses the default width of 3
+area_rectangle(3)  # Returns 9
+
+# Calling with two parameters uses the specified width
+area_rectangle(3, 2)  # Returns 6
+
+```
+This approach allows the function to be more flexible and adaptable to different use cases.
 
 ## Returning Multiple Values
 
@@ -109,7 +123,7 @@ rectangle_metrics <- function (height, width) {
 
 ```
 
-Retrieve these values using list indices `[[1]]` and `[[2]]`, or by simply their names:
+Retrieve these values using list indices `[[1]]` and `[[2]]`, or by simply using their names:
 
 ```{r, echo=TRUE}
 
@@ -144,7 +158,8 @@ factorial <- function (input_value) {
 factorial(3)
 ```
 
-The function takes a single numeric value as an input, defines a variable named `result` that is equal to '1' and then creates a loop over all the numbers from 1 (variable `result`) to the `input_value`. In the loop, the current value of `result` is multiplied by the value of the iterator `i`.  
+The function takes a single numeric value as input, defines a variable named `result` that is equal to '1' and then creates a loop over all the numbers from 1 (variable `result`) to the `input_value`. In the loop, the current value of `result` is multiplied by the value of the iterator `i`.
+
 
 ```{block2, type = 'rmdtip'}
 Though technically possible, defining a function within loops or conditional statements is generally avoided.

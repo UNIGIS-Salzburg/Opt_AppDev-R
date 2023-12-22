@@ -1,10 +1,8 @@
 # Control Structures
 
-
 ```{block2, type = 'rmdtip'}
 
-In this lesson, you will get to know control structures as a significant structural element of code. Control structures allow our code to adapt its behavior depending on the value of the current variables in the environment.
-
+In this lesson, you will learn about control structures, a significant elements in coding that allows for dynamic behavior based on variable values.
 
 We distinguish between two types of control structures:
 
@@ -27,7 +25,7 @@ if (a_value < 0) {
 }
 ```
 
-The **statement** `cat("Negative")` gets executed and the text "Negative" is printed out, because the **condition** (`a_value < 0`) is `TRUE`.   
+The **statement** `cat("Negative")` is executed and the text "Negative" is printed out, because the **condition** (`a_value < 0`) is `TRUE`.   
 
 ```{block2, type = 'rmdtip'}
 
@@ -68,10 +66,10 @@ if (a_value < 0){
 }
 ```
 
-In the example above, the **condition** `a_value < 0` is `TRUE`, **statement 1** `cat("Negative")` gets executed and **statement 2** `cat("Positive")` is ignored. If you change `a_value` to a positive value, the interpreter will ignore statement 1 and execute statement 2.
+In the example above, the **condition** `a_value < 0` is `TRUE`, **statement 1** `cat("Negative")` is executed and **statement 2** `cat("Positive")` is ignored. If you change `a_value` to a positive value, the interpreter will ignore statement 1 and execute statement 2.
 
 ```{block2, type = 'rmdtip'}
-Note that statement 1 and statement 2 are in curly brackets! The indentation of statements is good programming practice, however does not affect the functioning of the code.
+Note that the statements are enclosed within curly brackets for clarity. While indentation doesn't affect code execution in R, it's essential for readability and maintaining code structure.
 
 However, inserting a line break before `else` returns an error. The reason for this behavior is explained in [a forum thread](https://stackoverflow.com/questions/37929184/if-else-does-the-line-break-between-and-else-really-matters){target="_blank"}. 
 ```
@@ -90,7 +88,7 @@ if (first_value > second_value) {
 }
 ```
 
-The line `cat("First is greater than second\n")` prints a text (string) and inserts a line break. The next line calculates the difference between first and second value. The third line in the code block concatenates two inputs (`"Their difference is"` and variable `difference`) and prints them to the console window.
+The line `cat("First is greater than second\n")` prints text (string) and inserts a line break. The next line calculates the difference between first and second value. The third line in the code block concatenates two inputs (`"Their difference is"` and variable `difference`) and prints them to the console window.
 
 ```{block2, type = 'rmdtip'}
 `if` and `else` are so called **reserved words**, meaning they cannot be used as variable names. 
@@ -105,9 +103,9 @@ There are two main types of loops:
 - **conditional** loops are executed as long as a defined condition holds true
     - construct `while`
     - construct `repeat`
+    
 - **deterministic** loops are executed a pre-determined number of times
     - construct `for`
-
 
 ### While and repeat
 
@@ -156,7 +154,7 @@ if (current_value == 3){             # if (variable == 3)...
 }
 ```
 
-The `break` statement is executed and stops (breaks) the `repeat` loop (also applicable to `while` or `for` loops) once the variable `current_value` is equal to three.  
+The `break` statement is executed and stops (or 'breaks') the `repeat` loop (also applicable to `while` or `for` loops) once the variable `current_value` is equal to three.  
 
 ### For
 
@@ -169,7 +167,7 @@ for (city in cities) {
 }
 ```
 
-In the first iteration of the for-loop the text string `"Derby"` is assigned to the iterator `city`. The function `cat()` uses the iterator value as an input. In the second iteration, the text string `"Leicester"` is assigned to the iterator `city` ... etc.
+In the first iteration of the for-loop, the text string `"Derby"` is assigned to the iterator `city`. The function `cat()` uses the iterator value as an input. In the second iteration, the text string `"Leicester"` is assigned to the iterator `city` ... etc.
 
 The code block below illustrates another example. 
 
@@ -223,7 +221,7 @@ However, the iterator 'i' returns the values 3, 4, and 5.
 
 ## Loops with conditional statements
 
-Now that we have seen both types of control structures, **conditional statements** and **loops**, we can combine these structures. R, as most other programming languages, allows you to include conditional statements within a loop or a loop within a conditional statement.
+Having explored both types of control structures, **conditional statements** and **loops**, we can combine these structures. R, as most other programming languages, allows you to include conditional statements within a loop or a loop within a conditional statement.
 
 A simple example is this bit of code that defines a countdown:
 
@@ -273,7 +271,7 @@ We need to load the library 'tidyverse' to make use of the function 'str_starts(
 
 ```{block2, type = 'rmdexercise'}
 
-As a last exercise in this lesson, you will implement a code that iterates over a two-dimensional `SpatRaster Object` and counts values in the raster grid that exceed a certain threshold.
+As a last exercise in this lesson, you will implement code that iterates over a two-dimensional `SpatRaster Object` and counts values in the raster grid that exceed a certain threshold.
   
 ```
   
