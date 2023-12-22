@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 11 R Markdown | Automated Data Processing with R</title>
+  <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 11 R Markdown | Automated Data Processing with R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/branding/Cover_epub.png" />
+  <meta property="og:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
+  <meta name="github-repo" content="UNIGIS-Salzburg/En_AppDev-R" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 11 R Markdown | Automated Data Processing with R" />
+  
+  <meta name="twitter:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
+  <meta name="twitter:image" content="/branding/Cover_epub.png" />
+
+<meta name="author" content="Christian Neuwirth &amp; Maximilian Elixhauser" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="data-viz.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://unigis.at/en" target="_blank"><img alt="UNIGIS Salzburg" src="branding/UNIGIS_Salzburg_Schriftlogo_globe_tra.png" width=100%></a></li>
+<li><a href="./">Automated Data Processing with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#about-this-module"><i class="fa fa-check"></i><b>1.1</b> About this module</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#r-programming-language"><i class="fa fa-check"></i><b>1.2</b> R programming language</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#installation-and-setup"><i class="fa fa-check"></i><b>1.3</b> Installation and Setup</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#interpreting-values"><i class="fa fa-check"></i><b>1.4</b> Interpreting Values</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#simple-data-types"><i class="fa fa-check"></i><b>1.5</b> Simple Data Types</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#numop"><i class="fa fa-check"></i><b>1.6</b> Numeric operators</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#logical-operators"><i class="fa fa-check"></i><b>1.7</b> Logical operators</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#references"><i class="fa fa-check"></i><b>1.8</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="core.html"><a href="core.html"><i class="fa fa-check"></i><b>2</b> Core Concepts</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="core.html"><a href="core.html#variables"><i class="fa fa-check"></i><b>2.1</b> Variables</a></li>
+<li class="chapter" data-level="2.2" data-path="core.html"><a href="core.html#algorithms-and-functions"><i class="fa fa-check"></i><b>2.2</b> Algorithms and Functions</a></li>
+<li class="chapter" data-level="2.3" data-path="core.html"><a href="core.html#libraries"><i class="fa fa-check"></i><b>2.3</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="DS.html"><a href="DS.html"><i class="fa fa-check"></i><b>3</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="DS.html"><a href="DS.html#vectors"><i class="fa fa-check"></i><b>3.1</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="DS.html"><a href="DS.html#vector-element-selection"><i class="fa fa-check"></i><b>3.1.1</b> Vector Element Selection</a></li>
+<li class="chapter" data-level="3.1.2" data-path="DS.html"><a href="DS.html#using-the-range-function-with-vectors"><i class="fa fa-check"></i><b>3.1.2</b> Using the range() Function with Vectors</a></li>
+<li class="chapter" data-level="3.1.3" data-path="DS.html"><a href="DS.html#applying-functions-to-vectors"><i class="fa fa-check"></i><b>3.1.3</b> Applying Functions to Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="DS.html"><a href="DS.html#multi-dimensional-data-types"><i class="fa fa-check"></i><b>3.2</b> Multi-dimensional Data Types</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="DS.html"><a href="DS.html#matrices"><i class="fa fa-check"></i><b>3.2.1</b> Matrices</a></li>
+<li class="chapter" data-level="3.2.2" data-path="DS.html"><a href="DS.html#arrays"><i class="fa fa-check"></i><b>3.2.2</b> Arrays</a></li>
+<li class="chapter" data-level="3.2.3" data-path="DS.html"><a href="DS.html#selection-in-multi-dimensional-data-types"><i class="fa fa-check"></i><b>3.2.3</b> Selection in Multi-Dimensional Data Types</a></li>
+<li class="chapter" data-level="3.2.4" data-path="DS.html"><a href="DS.html#lists"><i class="fa fa-check"></i><b>3.2.4</b> Lists</a></li>
+<li class="chapter" data-level="3.2.5" data-path="DS.html"><a href="DS.html#data-frame"><i class="fa fa-check"></i><b>3.2.5</b> Data Frame</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="spds.html"><a href="spds.html"><i class="fa fa-check"></i><b>4</b> Spatial Data Structures</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="spds.html"><a href="spds.html#vector-data-structures"><i class="fa fa-check"></i><b>4.1</b> Vector Data Structures</a></li>
+<li class="chapter" data-level="4.2" data-path="spds.html"><a href="spds.html#raster-data-structures"><i class="fa fa-check"></i><b>4.2</b> Raster Data Structures</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="spds.html"><a href="spds.html#working-with-spatraster-objects"><i class="fa fa-check"></i><b>4.2.1</b> Working with SpatRaster objects</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="control-structures.html"><a href="control-structures.html"><i class="fa fa-check"></i><b>5</b> Control Structures</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="control-structures.html"><a href="control-structures.html#if"><i class="fa fa-check"></i><b>5.1</b> If</a></li>
+<li class="chapter" data-level="5.2" data-path="control-structures.html"><a href="control-structures.html#else"><i class="fa fa-check"></i><b>5.2</b> Else</a></li>
+<li class="chapter" data-level="5.3" data-path="control-structures.html"><a href="control-structures.html#code-blocks"><i class="fa fa-check"></i><b>5.3</b> Code blocks</a></li>
+<li class="chapter" data-level="5.4" data-path="control-structures.html"><a href="control-structures.html#loops"><i class="fa fa-check"></i><b>5.4</b> Loops</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="control-structures.html"><a href="control-structures.html#while-and-repeat"><i class="fa fa-check"></i><b>5.4.1</b> While and repeat</a></li>
+<li class="chapter" data-level="5.4.2" data-path="control-structures.html"><a href="control-structures.html#for"><i class="fa fa-check"></i><b>5.4.2</b> For</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="control-structures.html"><a href="control-structures.html#loops-with-conditional-statements"><i class="fa fa-check"></i><b>5.5</b> Loops with conditional statements</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="control-structures.html"><a href="control-structures.html#exercise-loops-with-conditional-statements"><i class="fa fa-check"></i><b>5.5.1</b> Exercise: loops with conditional statements</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>6</b> Functions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="functions.html"><a href="functions.html#defining-functions"><i class="fa fa-check"></i><b>6.1</b> Defining Functions</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="functions.html"><a href="functions.html#understanding-the-return-function"><i class="fa fa-check"></i><b>6.1.1</b> Understanding the <code>return()</code> Function</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="functions.html"><a href="functions.html#more-parameters"><i class="fa fa-check"></i><b>6.2</b> More Parameters</a></li>
+<li class="chapter" data-level="6.3" data-path="functions.html"><a href="functions.html#returning-multiple-values"><i class="fa fa-check"></i><b>6.3</b> Returning Multiple Values</a></li>
+<li class="chapter" data-level="6.4" data-path="functions.html"><a href="functions.html#functions-and-control-structures"><i class="fa fa-check"></i><b>6.4</b> Functions and Control Structures</a></li>
+<li class="chapter" data-level="6.5" data-path="functions.html"><a href="functions.html#scope"><i class="fa fa-check"></i><b>6.5</b> Scope</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="datman.html"><a href="datman.html"><i class="fa fa-check"></i><b>7</b> Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="datman.html"><a href="datman.html#preparation"><i class="fa fa-check"></i><b>7.1</b> Preparation</a></li>
+<li class="chapter" data-level="7.2" data-path="datman.html"><a href="datman.html#data-manipulation"><i class="fa fa-check"></i><b>7.2</b> Data manipulation</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="datman.html"><a href="datman.html#summarise"><i class="fa fa-check"></i><b>7.2.1</b> Summarise</a></li>
+<li class="chapter" data-level="7.2.2" data-path="datman.html"><a href="datman.html#select-and-filter"><i class="fa fa-check"></i><b>7.2.2</b> Select and filter</a></li>
+<li class="chapter" data-level="7.2.3" data-path="datman.html"><a href="datman.html#mutate"><i class="fa fa-check"></i><b>7.2.3</b> Mutate</a></li>
+<li class="chapter" data-level="7.2.4" data-path="datman.html"><a href="datman.html#arrange"><i class="fa fa-check"></i><b>7.2.4</b> Arrange</a></li>
+<li class="chapter" data-level="7.2.5" data-path="datman.html"><a href="datman.html#exercise-data-manipulation"><i class="fa fa-check"></i><b>7.2.5</b> Exercise: data manipulation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="datman.html"><a href="datman.html#join"><i class="fa fa-check"></i><b>7.3</b> Join</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="datman.html"><a href="datman.html#exercise-join"><i class="fa fa-check"></i><b>7.3.1</b> Exercise: join</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="readwrite.html"><a href="readwrite.html"><i class="fa fa-check"></i><b>8</b> Read and Write Data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="readwrite.html"><a href="readwrite.html#read-and-write-tabular-data"><i class="fa fa-check"></i><b>8.1</b> Read and write tabular data</a></li>
+<li class="chapter" data-level="8.2" data-path="readwrite.html"><a href="readwrite.html#read-and-write-vector-data"><i class="fa fa-check"></i><b>8.2</b> Read and write vector data</a></li>
+<li class="chapter" data-level="8.3" data-path="readwrite.html"><a href="readwrite.html#read-and-write-raster-data"><i class="fa fa-check"></i><b>8.3</b> Read and write raster data</a></li>
+<li class="chapter" data-level="8.4" data-path="readwrite.html"><a href="readwrite.html#data-api"><i class="fa fa-check"></i><b>8.4</b> Data API</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="spm.html"><a href="spm.html"><i class="fa fa-check"></i><b>9</b> Spatial Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="spm.html"><a href="spm.html#data-acquisition"><i class="fa fa-check"></i><b>9.1</b> Data Acquisition</a></li>
+<li class="chapter" data-level="9.2" data-path="spm.html"><a href="spm.html#data-cleaning"><i class="fa fa-check"></i><b>9.2</b> Data Cleaning</a></li>
+<li class="chapter" data-level="9.3" data-path="spm.html"><a href="spm.html#vector-operations"><i class="fa fa-check"></i><b>9.3</b> Vector operations</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="spm.html"><a href="spm.html#geometrical-operations"><i class="fa fa-check"></i><b>9.3.1</b> Geometrical operations</a></li>
+<li class="chapter" data-level="9.3.2" data-path="spm.html"><a href="spm.html#binary-operations"><i class="fa fa-check"></i><b>9.3.2</b> Binary operations</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="spm.html"><a href="spm.html#raster-operations"><i class="fa fa-check"></i><b>9.4</b> Raster operations</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="spm.html"><a href="spm.html#resampling"><i class="fa fa-check"></i><b>9.4.1</b> Resampling</a></li>
+<li class="chapter" data-level="9.4.2" data-path="spm.html"><a href="spm.html#crop-raster"><i class="fa fa-check"></i><b>9.4.2</b> Crop raster</a></li>
+<li class="chapter" data-level="9.4.3" data-path="spm.html"><a href="spm.html#raster-algebra"><i class="fa fa-check"></i><b>9.4.3</b> Raster algebra</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-viz.html"><a href="data-viz.html"><i class="fa fa-check"></i><b>10</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-viz.html"><a href="data-viz.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>10.1</b> The Grammar of Graphics</a></li>
+<li class="chapter" data-level="10.2" data-path="data-viz.html"><a href="data-viz.html#understanding-wide-and-long-data-formats-in-r"><i class="fa fa-check"></i><b>10.2</b> Understanding Wide and Long Data Formats in R</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="data-viz.html"><a href="data-viz.html#wide-format"><i class="fa fa-check"></i><b>10.2.1</b> Wide format</a></li>
+<li class="chapter" data-level="10.2.2" data-path="data-viz.html"><a href="data-viz.html#long-format"><i class="fa fa-check"></i><b>10.2.2</b> Long format:</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="data-viz.html"><a href="data-viz.html#visualization-of-distributions"><i class="fa fa-check"></i><b>10.3</b> Visualization of distributions</a></li>
+<li class="chapter" data-level="10.4" data-path="data-viz.html"><a href="data-viz.html#boxplots"><i class="fa fa-check"></i><b>10.4</b> Boxplots</a></li>
+<li class="chapter" data-level="10.5" data-path="data-viz.html"><a href="data-viz.html#scatterplots"><i class="fa fa-check"></i><b>10.5</b> Scatterplots</a></li>
+<li class="chapter" data-level="10.6" data-path="data-viz.html"><a href="data-viz.html#map-visualization"><i class="fa fa-check"></i><b>10.6</b> Map Visualization</a></li>
+<li class="chapter" data-level="10.7" data-path="data-viz.html"><a href="data-viz.html#interactive-maps"><i class="fa fa-check"></i><b>10.7</b> Interactive Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>11</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="r-markdown.html"><a href="r-markdown.html#set-up-your-work-environment"><i class="fa fa-check"></i><b>11.1</b> Set up your work environment</a></li>
+<li class="chapter" data-level="11.2" data-path="r-markdown.html"><a href="r-markdown.html#create-a-local-clone"><i class="fa fa-check"></i><b>11.2</b> Create a local clone</a></li>
+<li class="chapter" data-level="11.3" data-path="r-markdown.html"><a href="r-markdown.html#creating-your-first-r-markdown-document"><i class="fa fa-check"></i><b>11.3</b> Creating Your First R Markdown Document</a></li>
+<li class="chapter" data-level="11.4" data-path="r-markdown.html"><a href="r-markdown.html#synchronizing-with-github"><i class="fa fa-check"></i><b>11.4</b> Synchronizing with GitHub</a></li>
+<li class="chapter" data-level="11.5" data-path="r-markdown.html"><a href="r-markdown.html#basic-r-markdown-syntax"><i class="fa fa-check"></i><b>11.5</b> Basic R Markdown Syntax</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="r-markdown.html"><a href="r-markdown.html#references-in-rmarkdown"><i class="fa fa-check"></i><b>11.5.1</b> References in RMarkdown</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="r-markdown.html"><a href="r-markdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>11.6</b> Speed up your workflows</a></li>
+<li class="chapter" data-level="11.7" data-path="r-markdown.html"><a href="r-markdown.html#self-study"><i class="fa fa-check"></i><b>11.7</b> Self-study</a></li>
+</ul></li>
+<li class="divider"></li>
+<li>Copyright © UNIGIS Salzburg.</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Automated Data Processing with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-markdown" class="section level1 hasAnchor" number="11">
+<h1><span class="header-section-number">Lesson 11</span> R Markdown<a href="r-markdown.html#r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This lesson is dedicated to the <code>rmarkdown</code> library. However, R Markdown is <strong>more than just a library.</strong> <a href="https://rmarkdown.rstudio.com/" target="_blank">RMarkdown</a> is part of a set of tools designed to enhance the reproducibility of your work. Other tools and platforms such as <a href="https://github.com/" target="_blank">GitHub</a>, <a href="https://jupyter.org/" target="_blank">Jupyter</a>, <a href="https://www.docker.com/" target="_blank">Docker</a>, <a href="https://arxiv.org/" target="_blank">ArXiv</a>, and <a href="https://www.biorxiv.org/" target="_blank">bioRxiv</a> facilitate reproducibility in various ways. In this module, we won’t cover the paradigm of <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801" target="_blank">reproducible research</a> in detail. Instead, our focus will be on how to use RMarkdown to make your analyses and reports more appealing, interactive, and <strong>efficient</strong>.</p>
+
+<div class="rmdtip">
+<p>In this lesson, we will weave together code and text in professionally rendered R Markdown documents and use <a href="https://github.com/" target="_blank">GitHub</a> to safely store, share, and administer our results.</p>
+</div>
+<div id="set-up-your-work-environment" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> Set up your work environment<a href="r-markdown.html#set-up-your-work-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before creating your first R Markdown document, we need to <strong>set up</strong> the <strong>GitHub</strong> environment. Originally founded as a platform for software developers, GitHub’s architecture is designed to manage changes made during software development. This architecture is also beneficial for version control of documents or any information collection.</p>
+<p>Version control is especially important when working in teams, as it helps synchronize efforts among project participants. However, GitHub is also a reliable and open online platform for individual work, providing change tracking, documentation, and sharing features.</p>
+
+<div class="rmdexercise">
+<p>To set up your personal GitHub environment, follow these steps:</p>
+<ol style="list-style-type: decimal">
+<li>Review the <a href="https://docs.github.com/en/get-started/quickstart/hello-world" target="_blank">Hello-World Section</a> in GitHub’s Quickstart Documentation. Initially, reading it is sufficient—no need to complete the tutorial yet.</li>
+<li><a href="https://github.com/" target="_blank">Create a GitHub account</a>.</li>
+<li><a href="https://git-scm.com/downloads" target="_blank">Download and install Git</a>. Git is a distributed <strong>VCS (version control system)</strong> that mirrors the codebase and its full history on every computer. GitHub is a web-based interface that integrates seamlessly with Git. For a clear explanation of Git’s core concepts, watch this <a href="https://www.youtube.com/watch?v=uR6G2v_WsRA" target="_blank">video</a>.</li>
+<li>In RStudio (under Tools &gt; Global Options &gt; Git / SVN), check “enable version control” and set the path to git.exe (e.g., C:/Program Files/Git/bin/git.exe). Restart RStudio afterward.</li>
+<li><a href="https://docs.github.com/en/get-started/quickstart/create-a-repo" target="_blank">Create a repository</a> on GitHub. In the tutorial, skip the section ‘Commit your first changes’.</li>
+<li>By default, your repository will have one branch named <code>main</code>. Create an additional branch called <code>dev</code> off the <code>main</code>. Follow the instructions in the <a href="https://docs.github.com/en/get-started/quickstart/hello-world" target="_blank">Hello-World Tutorial</a> for guidance.
+</div></li>
+</ol>
+<p>Next, install the <code>rmarkdown</code> library and <code>tinytex</code> in RStudio as described in the <a href="https://bookdown.org/yihui/rmarkdown/installation.html" target="_blank">R Markdown Guide</a>.</p>
+
+<div class="rmdtip">
+<p>To properly <strong>install</strong><code>tinytex</code>, execute both lines in RStudio:</p>
+</div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="r-markdown.html#cb273-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
+<span id="cb273-2"><a href="r-markdown.html#cb273-2" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
+<p>Follow RStudio’s prompts to install any dependencies. For technical issues, please consult the discussion forum.</p>
+</div>
+<div id="create-a-local-clone" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> Create a local clone<a href="r-markdown.html#create-a-local-clone" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To work on your repository locally, you will need to create a local clone of your online GitHub repository. Here’s how:</p>
+
+<div class="rmdexercise">
+<p>In RStudio, go to (File &gt; New Project &gt; Version Control &gt; Git).</p>
+<p>Enter the URL of your online repository (find this URL in your GitHub repository) and select a local directory for the clone. Then click <code>Create Project</code> (refer to Fig. <a href="r-markdown.html#fig:L09-clone">11.1</a>).</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-clone"></span>
+<img src="images/Gitclone.png" alt="Clone GitHub Repository" width="70%" />
+<p class="caption">
+Figure 11.1: Clone GitHub Repository
+</p>
+</div>
+<p>Once you have cloned the online repository, the file contents of the repository as well as a new tab called <code>Git</code> appears in RStudio (see Fig. <a href="r-markdown.html#fig:L09-features">11.2</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-features"></span>
+<img src="images/NewFeatures.png" alt="New features in RStudio" width="80%" />
+<p class="caption">
+Figure 11.2: New features in RStudio
+</p>
+</div>
+<p>By default, the repository includes three files:</p>
+<ol style="list-style-type: decimal">
+<li><a href="https://git-scm.com/docs/gitignore" target="_blank"><code>.gitignore</code></a>: Specifies intentionally untracked files to ignore.</li>
+<li><a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank">RStudio Project File</a> (<code>.Rproj</code>): Contains metadata for the RStudio project.</li>
+<li><a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes" target="_blank">ReadMe File</a> (<code>.md</code>): A markdown file with information about the repository.</li>
+</ol>
+<p>The <a href="https://git-scm.com/docs/gitignore" target="_blank"><code>gitignore</code></a> and <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank"><code>.Rproj</code></a> files are created during project initialization and are not yet in the online repository. Modifications appear in the <code>Git</code> tab (Fig. <a href="r-markdown.html#fig:L09-changes">11.3</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-changes"></span>
+<img src="images/Changes.png" alt="Changes in Git tab" width="80%" />
+<p class="caption">
+Figure 11.3: Changes in Git tab
+</p>
+</div>
+<p>Before making further changes, switch to the <code>dev</code> branch (see Fig. <a href="r-markdown.html#fig:L09-branch">11.4</a>). Currently, the <code>dev</code> branch is identical to the <code>main</code> branch.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-branch"></span>
+<img src="images/Branches.png" alt="Switch branch" width="80%" />
+<p class="caption">
+Figure 11.4: Switch branch
+</p>
+</div>
+
+<div class="rmdtip">
+<p>It is <strong>highly recommended</strong> to work in progress on a separate developer branch, like <code>dev</code>, and keep the <code>main</code> branch for stable versions. You can later merge changes from <code>dev</code> to <code>main</code> through a pull request (see <a href="https://docs.github.com/en/get-started/quickstart/hello-world#opening-a-pull-request" target="_blank">Opening a Pull Request</a>).</p>
+</div>
+</div>
+<div id="creating-your-first-r-markdown-document" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Creating Your First R Markdown Document<a href="r-markdown.html#creating-your-first-r-markdown-document" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that the environment is set up, let’s create our first R Markdown document.</p>
+
+<div class="rmdexercise">
+<p>In RStudio: Navigate to (File &gt; New File &gt; R Markdown). Enter a title for your document, accept the default settings, and click <code>OK</code>. You’ll receive a sample R Markdown file with the extension <code>.Rmd</code>.</p>
+</div>
+<p>An R Markdown document comprises three core components: <strong>metadata</strong>, <strong>text</strong> and <strong>code</strong> (see Fig. <a href="r-markdown.html#fig:L09-sample">11.5</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-sample"></span>
+<img src="images/SampleFile.png" alt="R Markdown sample file" width="80%" />
+<p class="caption">
+Figure 11.5: R Markdown sample file
+</p>
+</div>
+<p>The metadata, written in <a href="https://en.wikipedia.org/wiki/YAML" target="_blank">YAML</a> syntax, defines document properties like title, output format, and creation date. Explore more about YAML syntax and document properties <a href="https://cran.r-project.org/web/packages/ymlthis/vignettes/yaml-overview.html" target="_blank">here</a>.</p>
+
+<div class="rmdtip">
+<p>To automatically update the date in your document, insert <code>date: "```r format(Sys.time(), '%d %B, %Y')```"</code> in the metadata section. This outputs the current date based on your system’s time zone in a human-readable format.</p>
+</div>
+<p>After the metadata section an <strong>R inline code block</strong> starts and ends with three backticks (see Fig. <a href="r-markdown.html#fig:L09-sample">11.5</a>). The three <strong>parameters</strong> in curly brackets identify the code as R code. The <code>r</code> specifies the programming language, which is the default for R. Alternatively, you can also use parameter <code>{py}</code> to insert Python code into your markdown document (see Fig. <a href="r-markdown.html#fig:L09-python">11.6</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-python"></span>
+<img src="images/pyexample.png" alt="Python Example" width="90%" />
+<p class="caption">
+Figure 11.6: Python Example
+</p>
+</div>
+<p>The <code>setup</code> parameter specifies the name of the code block and (as we will see later) <code>include=FALSE</code> prevents the code and code results from being displayed in the compiled HTML output. Nevertheless, RMarkdown still runs the code in this block, which sets <code>echo=TRUE</code> as the default option for all code blocks in the RMarkdown document. This means that, by default, the code of all code blocks in the document will be displayed in the output file unless otherwise indicated.</p>
+
+<div class="rmdtip">
+<p>Explore more about code block options in the <a href="https://yihui.org/knitr/options/" target="_blank">knitr documentation</a>.</p>
+</div>
+<p>The other code blocks in the RMarkdown sample file produce a summary output (see line 17-19) or create a simple scatterplot (see line 25-27). To see how the compiled HTML output looks like, click <code>Knit</code> (see Fig. <a href="r-markdown.html#fig:L09-knit">11.7</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-knit"></span>
+<img src="images/knit.png" alt="Knit HTML Output " width="80%" />
+<p class="caption">
+Figure 11.7: Knit HTML Output
+</p>
+</div>
+<p>Use the dropdown next to the <strong>Knit</strong> button to compile into <code>PDF</code> or <code>.docx</code> formats, among <a href="https://rmarkdown.rstudio.com/lesson-9.html" target="_blank">others</a>.</p>
+
+<div class="rmdexercise">
+<p>Knitting an R Markdown document involves a two-step process. First, the <code>.Rmd</code> file is processed by the knitr package, which executes the code chunks and generates a new markdown file with the code and its output. Then, pandoc converts this markdown file into the final output document in the chosen format, allowing a wide range of output options for creating professional-quality documents.</p>
+</div>
+</div>
+<div id="synchronizing-with-github" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Synchronizing with GitHub<a href="r-markdown.html#synchronizing-with-github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Regular synchronization of your local changes with the online repository is a key practice in version control. Start by pulling any updates from the repository.</p>
+
+<div class="rmdexercise">
+<p>In the RStudio Git tab, click the <code>Pull</code> button (see Fig. <a href="r-markdown.html#fig:L09-pull">11.8</a>). A notification should indicate whether any new changes are available (e.g., <code>Already up to date</code>).</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-pull"></span>
+<img src="images/pull.png" alt="Make Pull" width="80%" />
+<p class="caption">
+Figure 11.8: Make Pull
+</p>
+</div>
+<p>Even if you’re working on your own, it’s a good idea to routinely start the sync process with a <code>Pull</code>.</p>
+<p>Next, commit your changes. Think of committing as taking a snapshot of your progress, accompanied by a descriptive message.</p>
+
+<div class="rmdexercise">
+<p>First, save all documents in RStudio. Then, hit the <code>Commit</code> button in the Git tab. The commit window will display a list of modified files. Green highlights indicate new content; red highlights show deleted content.</p>
+<p>Check the boxes next to each file to include them in the commit. Alternatively, run <code>git add -A</code> in the terminal to add all files at once (see this <a href="https://github.com/joshnh/Git-Commands" target="_blank">list of popular Git commands</a>). After selecting files, enter a meaningful commit message and click <code>Commit</code>.</p>
+<p>See Fig. <a href="r-markdown.html#fig:L09-commit">11.9</a>.</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-commit"></span>
+<img src="images/commit.png" alt="Make Commit" width="70%" />
+<p class="caption">
+Figure 11.9: Make Commit
+</p>
+</div>
+<p> </p>
+<p>Finally, push your committed changes to the online repository.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-push"></span>
+<img src="images/Push.png" alt="Make Push" width="70%" />
+<p class="caption">
+Figure 11.10: Make Push
+</p>
+</div>
+<p> </p>
+<p>Your online repository on GitHub should now be updated (switch to <code>dev</code> branch in your repository) (see Fig. <a href="r-markdown.html#fig:L09-updated">11.11</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-updated"></span>
+<img src="images/CommitFinished.png" alt="Commit with message 'describe sync process in github' was pushed to the developer branch a minute ago" width="90%" />
+<p class="caption">
+Figure 11.11: Commit with message ‘describe sync process in github’ was pushed to the developer branch a minute ago
+</p>
+</div>
+</div>
+<div id="basic-r-markdown-syntax" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Basic R Markdown Syntax<a href="r-markdown.html#basic-r-markdown-syntax" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In R Markdown, you can apply text formatting using simple markers:</p>
+<p><strong>Bold:</strong> Double asterisks <code>**Text**</code> turn text <strong>bold</strong>.
+<strong>Italicize:</strong> Single asterisks <code>*Text*</code> create <em>italicized</em> text.
+<strong>Headings:</strong> Use hash signs <code>#</code> for headings. The number of hashes denotes the heading level:</p>
+<pre><code># Heading level 1
+
+## Heading level 2
+
+### Heading level 3</code></pre>
+<p><strong>Tables</strong> are created by using the symbols <code>|</code> and <code>-</code>. Recall the <a href="intro.html#numop">numeric operators table</a> from the first lesson. Figure <a href="r-markdown.html#fig:L09-tables">11.12</a> shows the RMarkdown syntax used for that table:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-tables"></span>
+<img src="images/tables.png" alt="How Tables are made in Markdown" width="100%" />
+<p class="caption">
+Figure 11.12: How Tables are made in Markdown
+</p>
+</div>
+<p>To create an <strong>ordered list</strong>, use numbers followed by a period. The first item should start with the number <code>1</code>:</p>
+<pre><code>Code - Ordered List:
+1. item 1
+4. item 2
+3. Item 3
+    + Item 3a
+    + Item 3b</code></pre>
+<p><strong>Will result in:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3
+<ul>
+<li>Item 3a</li>
+<li>Item 3b</li>
+</ul></li>
+</ol>
+<p>To create an <strong>unordered list</strong>, use <code>*</code>, <code>-</code>, or <code>+</code>:</p>
+<pre><code>Code - Unordered List:
+* item 1
+* item 2
+  * Item 3.1
+  - Item 3.2</code></pre>
+<p><strong>Which will result in:</strong></p>
+<ul>
+<li>Item 1</li>
+<li>Item 2
+<ul>
+<li>Item 2a</li>
+<li>Item 2b</li>
+</ul></li>
+</ul>
+<p><strong>Hyperlinks</strong> are created with the format <code>[Text](URL)</code>, for example, <code>[GitHub](https://github.com/){target="_blank"}</code> becomes <a href="https://github.com/" target="_blank">Github</a>. The <code>target="_blank"</code> parameter opens the link in a new tab, which is a good practice when linking to external websites.</p>
+<p><strong>Blockquotes</strong> are indicated by <code>&gt;</code> and can be nested:</p>
+<pre><code>&gt;&quot;Everything is related to everything else, but near things are more related than distant things&quot;.
+&gt;
+&gt;&gt;The phenomenon external to an area of interest affects what goes on inside.</code></pre>
+<p><strong>Will result in:</strong></p>
+<blockquote>
+<p>The first law of geography is: “Everything is related to everything else, but near things are more related than distant things”</p>
+<blockquote>
+<p>The phenomenon external to an area of interest affects what goes on inside.</p>
+</blockquote>
+</blockquote>
+
+<div class="rmdtip">
+<p>Meanwhile, you know a number of characters that have a special meaning in RMarkdown syntax (like <code>#</code> or <code>&gt;</code>). If you want these characters verbatim, you have to escape them. The way to <strong>escape a special character</strong> is to add a backslash before. For instance, <code>#</code> will not translate into a heading, but will return <code>#</code>.</p>
+</div>
+<p>RMarkdown supports a large number of <strong>mathematical notations</strong> using dollar signs <code>$</code>:</p>
+<p><strong>Math. notation example 1:</strong></p>
+<p><code>$x = y$</code></p>
+<p><strong>Result looks like:</strong></p>
+<p><span class="math inline">\(x = y\)</span></p>
+<p><strong>Math. notation example 2:</strong></p>
+<p><code>$\frac{\partial f}{\partial x}$</code></p>
+<p><strong>Result looks like:</strong></p>
+<p><span class="math inline">\(\frac{\partial f}{\partial x}\)</span></p>
+<p>See <a href="https://rpruim.github.io/s341/S19/from-class/MathinRmd.html" target="_blank">“Mathematics in R Markdown”</a> for more.</p>
+<div id="references-in-rmarkdown" class="section level3 hasAnchor" number="11.5.1">
+<h3><span class="header-section-number">11.5.1</span> References in RMarkdown<a href="r-markdown.html#references-in-rmarkdown" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>R Markdown facilitates an efficient method for inserting <strong>citations</strong> and building a <strong>bibliography</strong>. References are organized in a <code>.bib</code> file.</p>
+<p>To begin, create a new document in a text editor, such as Windows Editor, and save it with a <code>.bib</code> extension (e.g., <code>references.bib</code>) in your RStudio project folder.</p>
+
+<div class="rmdtip">
+<p>Consider using the RStudio project that you previously cloned, modified, and synchronized.</p>
+</div>
+<ol style="list-style-type: decimal">
+<li><strong>Enable BibTeX Export:</strong> Modify your settings in Google Scholar to enable BibTeX export (see Fig. <a href="r-markdown.html#fig:L09-scholarsettings">11.13</a>).</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-scholarsettings"></span>
+<img src="images/ScholarSettings.png" alt="Enable BibTeX in Firefox 106.0.1" width="90%" />
+<p class="caption">
+Figure 11.13: Enable BibTeX in Firefox 106.0.1
+</p>
+</div>
+
+<div class="rmdtip">
+Browser versions may vary. For assistance, refer to the discussion forum if needed.
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Export BibTeX Entries:</strong> After enabling BibTeX export, a new link <code>Import into BibTeX</code> will appear in Google Scholar (see Fig. <a href="r-markdown.html#fig:L09-biboption">11.14</a>).</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-biboption"></span>
+<img src="images/bibtexoption.png" alt="BibTeX Link in Firefox 106.0.1" width="90%" />
+<p class="caption">
+Figure 11.14: BibTeX Link in Firefox 106.0.1
+</p>
+</div>
+<p>Click the link and copy the BibTeX code into your <code>.bib</code> file.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Integrate References in RMarkdown:</strong> Specify the location of your <code>.bib</code> file in the YAML metadata of your RMarkdown document (<code>bibliography: &lt;.bib file&gt;</code>). Insert <code>@</code> followed by the BibTeX key to add citations (see Fig. <a href="r-markdown.html#fig:L09-refs">11.15</a>).</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-refs"></span>
+<img src="images/refs.png" alt="Integrate BibTeX reference in RMarkdown document" width="90%" />
+<p class="caption">
+Figure 11.15: Integrate BibTeX reference in RMarkdown document
+</p>
+</div>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Compile the Document:</strong> Knit the R Markdown file as HTML, PDF, or Word. The <code>rmarkdown</code> package processes both indirect (without square brackets) and direct citations (with square brackets) and includes a bibliography (see Fig. <a href="r-markdown.html#fig:L09-pdfknit">11.16</a>).</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-pdfknit"></span>
+<img src="images/knit_pdf.png" alt="Knit R Markdown as PDF" width="90%" />
+<p class="caption">
+Figure 11.16: Knit R Markdown as PDF
+</p>
+</div>
+<p>For a practical demonstration, download and explore this <a href="data/ReferencesInRMarkdown.zip" target="_blank">RMarkdown reference example</a>. Unzip the folder and open the <code>.Rproj</code> file in RStudio.</p>
+
+<div class="rmdtip">
+Explore more RMarkdown syntax examples in the <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf" target="_blank">RMarkdown Cheatsheet</a>.
+</div>
+</div>
+</div>
+<div id="speed-up-your-workflows" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> Speed up your workflows<a href="r-markdown.html#speed-up-your-workflows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R Markdown significantly enhances the efficiency of repetitive workflows. For instance, consider a scenario where a client requires daily updates on specific spatial economic indicators. Instead of manually generating a new report each day, R Markdown can automate this process, creating data reports with charts that update automatically upon compilation. This approach can save substantial time and effort.</p>
+<p>Real-time data retrieval is possible through <a href="https://www.alphavantage.co/" target="_blank">Alpha Ventage</a>, which provides financial market data via the <a href="https://www.alphavantage.co/documentation/" target="_blank">Alpha Ventage Rest API</a>. The R library <a href="https://cran.r-project.org/web/packages/alphavantager/index.html" target="_blank"><code>alphaventager</code></a> facilitates API access within R. The use of <code>alphaventager</code> enables the extraction of various types of financial data, including real-time stock prices, FX rates, and technical indicators, directly into R. This allows for efficient data processing and visualization, making it a good tool for finance-related reports and analyses in R Markdown.</p>
+
+<div class="rmdexercise">
+<p>Explore a practical example by downloading this <a href="data/RMarkdownFinanceData.zip" target="_blank">draft finance data report</a>. Unzip the folder and open the <code>.Rproj</code> file in RStudio.</p>
+<p>The project includes:</p>
+<ul>
+<li>A <code>.bib</code> file with a BibTeX reference.</li>
+<li>A <code>.csv</code> file in the data folder, listing over 400 country names, national currencies, and currency codes.</li>
+<li>An <code>.Rmd</code> file with inline R code that renders real-time currency exchange rates in a map.</li>
+</ul>
+<p>Review the <code>.Rmd</code> file thoroughly before compiling an HTML output. Note that it includes an interactive Leaflet map, making HTML the only supported output format.</p>
+<p>Try enhancing the report with an additional spatial indicator, such as a map displaying exchange rates from national currencies to the Euro.</p>
+</div>
+</div>
+<div id="self-study" class="section level2 hasAnchor" number="11.7">
+<h2><span class="header-section-number">11.7</span> Self-study<a href="r-markdown.html#self-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The vast functionalities of R Markdown extend beyond the scope of a single lesson. To fully leverage its capabilities, refer to the comprehensive online book <a href="https://bookdown.org/yihui/rmarkdown/" target="_blank">R Markdown: The Definitive Guide</a>.</p>
+<p>This guide covers additional topics such as Notebooks, Presentations, support for languages like Python, C++, SQL, and more complex document creation with extensions like <a href="https://bookdown.org/" target="_blank">BookDown</a> or <a href="https://github.com/ismayc/thesisdown" target="_blank">ThesisDown</a>. While R Markdown predominantly supports R, its flexibility extends to integrating other programming languages like Python, C++, and SQL. This integration is facilitated through specific settings in the code chunks of the R Markdown document. For instance, by specifying the <code>python</code> engine in a code chunk (e.g., <code>{python}</code>), you can seamlessly run Python code within your document. Similar approaches are used for C++ (using the <code>cpp</code> engine) and SQL (using the <code>sql</code> engine). These capabilities are enabled by the <code>knitr</code> package, which supports various languages, allowing for a multi-language analytical workflow within a single R Markdown document. Experimenting with these various features is key to mastering R Markdown.</p>
+
+<div class="rmdtip">
+<strong>Fun Fact:</strong> This module was written using BookDown.
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-viz.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["UNIGIS-AppDev-R.pdf", "UNIGIS-AppDev-R.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
