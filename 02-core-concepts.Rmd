@@ -2,6 +2,7 @@
 
 ```{block2, type = 'rmdtip'}
 In this lesson, we'll explore three fundamental concepts in programming:
+
 1. Variables
 2. Functions
 3. Libraries
@@ -35,11 +36,11 @@ a_variable <- a_variable + 10
 another_variable <- a_variable
 ```
 
-Why use variables instead of direct input? They make your code reusable, scalable, and time-efficient, especially with complex data analyses or larger datasets.
+Why use variables instead of direct input? They make your code **reusable, scalable, and time-efficient**, especially with complex data analyses or larger datasets.
 
 **Let us consider the following example:**
   
-Meteorologists track water temperature gradients to forecast weather patterns. If location A's temperature is 22°C and B's is 26°C, calculating the difference as '26 - 22' in the RStudio console is straightforward. However, for ongoing real-time measurements, an algorithm using variables for each location's temperature can significantly speed up the process. Such an algorithm is adaptable to various data inputs, making it a robust tool for complex calculations.
+Meteorologists track water temperature gradients to forecast weather patterns. If location A's temperature is 22°C and B's is 26°C, calculating the difference as `26 - 22` in the RStudio console is straightforward. However, for ongoing real-time measurements, an algorithm using variables for each location's temperature can significantly speed up the process. Such an algorithm is adaptable to various data inputs, making it a robust tool for complex calculations.
 
 ```{block2, type = 'rmdexercise'}
 
@@ -68,7 +69,9 @@ To clear your workspace memory, click the "broom icon" in the Environment Panel'
 
 ## Algorithms and Functions
 
+```{block2, type = 'rmdtip'}  
 *"An algorithm is a mechanical rule, automatic method, or program for performing some mathematical operation"* (Cutland, 1980).
+```
 
 A *program* is a specific set of instructions that implements an abstract algorithm.
 
@@ -84,7 +87,9 @@ sqrt(2)
 
 ```{block2, type = 'rmdtip'}
 
-Each input value corresponds to a parameter defined in the function. Sometimes, the parameter name must be specified. This concept will become clearer when you write your own functions later in the module.
+Each input value corresponds to a parameter defined in the function.
+
+**Important:** In programming, the terms 'parameter' and 'argument' are often used interchangeably, but there is a subtle distinction. A **parameter** is the variable listed inside the parentheses in the function declaration, while an **argument** is the actual value passed to the function. For example, in the function definition `square(number)`, `number` is a parameter. When you call `square(4)`, the value 4 is the argument passed to the `number` parameter. Understanding this difference helps in comprehending how functions receive and process information.
    
 ```
 
@@ -138,7 +143,7 @@ round(sqrt(2), digits = 3)
 In this case, the intermediate step of storing the square root of 2 in a variable is skipped.
 
 ```{block2, type = 'rmdtip'}
-Using functions as arguments in other functions is often discouraged as it can make the code hard to understand.
+While using functions as arguments within other functions (nested functions) can sometimes reduce readability, they are a common and powerful practice in R. This approach can make your code more concise and expressive. However, it's essential to balance conciseness with clarity! 
 
 Moreover, to enhance the readability of R code, it is recommended to follow naming conventions for variables and functions:
   

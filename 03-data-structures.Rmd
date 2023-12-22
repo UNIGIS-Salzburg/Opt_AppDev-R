@@ -1,6 +1,6 @@
 # Data Structures {#DS}
 
-In this lesson, we expand upon the simple data types (**numeric**, **character** (string), and **logical**) discussed in [Lesson 1](#intro) by introducing more complex data structures.
+In this lesson, we expand upon the simple data types (**numeric**, **character** and **logical**) discussed in Lesson [1](#intro) by introducing more complex data structures.
 
 ```{block2, type = 'rmdtip'}
 In this lesson, you will get to know the following data structures in R:
@@ -101,7 +101,7 @@ selected_cities <- east_midlands_cities[my_indexes]
 
 ### Using the range() Function with Vectors
 
-The `range()` function in R is used to find the minimum and maximum values within a vector. This can be particularly helpful when analyzing the spread of data in a vector. For example:
+The `range()` function in R, is used to find the minimum and maximum values within a vector. This can be particularly helpful when analyzing the spread of data in a vector. For example:
 
 ```{r, echo=TRUE}
 # Create a numeric vector
@@ -140,12 +140,19 @@ logical_vector <- numeric_vector >= 3
 logical_vector  # Shows TRUE or FALSE for each element
 ```
 
-Moreover, functions like `any()` and `all()` provide overall evaluations of a vector based on a condition. `any()` returns `TRUE` if any elements satisfy the condition, while `all()` returns `TRUE` only if all elements satisfy it:
+Moreover, functions like `any()` and `all()` provide overall evaluations of a vector based on a condition. `any()` returns `TRUE` if any elements satisfy the condition, while `all()` returns `TRUE` only if all elements satisfy the condition:
 
 ```{r, echo=TRUE}
 numeric_vector <- 1:5
 any(numeric_vector >= 3)  # Checks if any element is >= 3
 all(numeric_vector >= 3)  # Checks if all elements are >= 3
+```
+
+Also, when creating vectors in R, it's important to understand the concept of **type coercion**. R is designed to be user-friendly, and when you combine different data types in a vector (e.g., mixing numbers and characters), R will automatically convert all elements to the same type. This process is known as type coercion. For example, if you combine numeric and character data in a vector, all elements will become characters.
+
+```{r, echo=TRUE}
+mixed_vector <- c(1, "text", TRUE)
+print(mixed_vector)  # Notice how all elements are coerced to the same type
 ```
 
 ```{block2, type = 'rmdtip'}
@@ -174,20 +181,34 @@ z <- x * y  # Element-wise multiplication
 z
 ```
 
-Using the `range()` function, you can dynamically select specific rows and columns from a matrix:
+When working with matrices, `range()` can help you quickly identify the lowest and highest values within a particular row or column. However, it's not typically used for selecting rows or columns. Instead, you'd use direct indexing or other functions for selection. Here's how to correctly utilize `range()` with matrices::
 
 ```{r, echo=TRUE}
+# Creating a matrix with numeric values
 matrix_data <- matrix(1:9, nrow=3)
-selected_data <- matrix_data[range(1:2), range(2:3)]
-selected_data
+
+# Finding the range of values in the first column
+first_column_range <- range(matrix_data[,1])
+print(first_column_range)  # Displays the minimum and maximum values of the first column
 ```
 
-Furthermore, you can exclude specific columns from a matrix, which is particularly useful for analysis or visualization:
+In the context of matrix selection, while range() is not used for selecting specific rows or columns, understanding the spread of data within a matrix can be crucial for informed data manipulation and analysis. Here's an example of how you might use this information:
 
 ```{r, echo=TRUE}
+# Assuming you want to know if the first column contains values within a specific range
+is_in_range <- first_column_range[1] >= 2 && first_column_range[2] <= 8
+print(is_in_range)  # Checks if the range of the first column is between 2 and 8
+```
+
+Or you can exclude specific columns or rows from a matrix using negative indexing. This is particularly useful for analysis or visualization when you want to focus on specific parts of the matrix:
+
+```{r, echo=TRUE}
+# Creating a matrix
 matrix_data <- matrix(1:9, nrow=3)
+
+# Excluding the first column from the matrix
 matrix_without_first_column <- matrix_data[, -1]  # Excludes the first column
-matrix_without_first_column
+print(matrix_without_first_column)
 ```
 
 For a detailed overview of matrix operations, refer to [Quick-R](https://www.statmethods.net/advstats/matrix.html){target="_blank"}. 
@@ -254,7 +275,9 @@ a_matrix <- a3dim_array[c(3, 4), c(1, 2), 2]
 
 ### Lists
 
-Lists in R can hold elements of different types, including vectors and matrices. Elements in lists are selected using double square brackets.
+Lists in R are incredibly versatile and can hold elements of different types, including vectors, matrices, other lists, and even functions. This makes lists a powerful tool for organizing and storing complex, heterogeneous collections of data. 
+
+Elements in lists are selected using double square brackets.
 
 Basic list:
 
@@ -288,7 +311,7 @@ numeric_ranges
 
 ### Data Frame
 
-Data frames are essential in R for representing tables of data. Each data frame is similar to a named list with each element being a vector of equal length. Below is an example of creating a data frame:
+Data frames are essential in R for representing tables of data. Each data frame is structured similarly to a named list with each element being a vector of equal length. Below is an example of creating a data frame:
 
 ```{r, echo=TRUE}
 employees <- data.frame(
@@ -298,7 +321,7 @@ employees <- data.frame(
 employees
 ```
 
-Data frames effectively function as tables, where each column represents a vector. 
+Data frames are similar to tables in that each column represents a variable, and each row represents an observation. 
 
 ```{block2, type = 'rmdexercise'}
 
@@ -356,6 +379,7 @@ employees$Age[1]  # Selecting the first element in the 'Age' column
 Modifying a data frame:
 
 - Changing an element (e.g., updating Pete's age):
+
 ```{r, echo=TRUE}
 employees$Age[2] <- 33
 ```
@@ -369,13 +393,13 @@ employees
 
 ```{block2, type = 'rmdexercise'}
 
-Perform operations on data frame columns as you would on vectors. Create a variable for the current year and use it to calculate the year of birth for each employee, adding this as a new column.
+Perform operations on data frame columns as you would on vectors. Create a variable to represent the current year and use it to calculate and add a new column for each employee's year of birth.
 
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
 <p><font color="grey">
 
-Creating a data frame 'employees':
+Creating a data frame `employees`:
 
 employees <- data.frame(
   EmployeeName = c("Maria", "Pete", "Sarah"),

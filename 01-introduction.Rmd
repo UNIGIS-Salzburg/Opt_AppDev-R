@@ -4,13 +4,13 @@
 
 This module will equip you with fundamental R programming skills, beginning with core programming concepts common to most languages. These include **Datatypes**, **Operators**, **Variables**, **Functions**, **Control Structures**, and **Libraries**. You will gain a solid understanding of these basics, forming a strong foundation for advanced programming.
 
-We then progress to more complex data types like **Data Frames** and **Tibbles**, and explore how to **Read and Write** both spatial and non-spatial datasets. Special emphasis is placed on techniques to manipulate data, enabling you to adeptly handle datasets by **filtering**, **querying**, **subsetting**, **joining**, and **reshaping** them. This will be particularly useful for preparing and refining data for in-depth analysis.
+We then progress to more complex data types like **Data Frames** and **Tibbles**, and explore how to **Read and Write** both spatial and non-spatial datasets. Special emphasis is placed on techniques to manipulate data, enabling you to adeptly manage and analyze datasets. This will be particularly useful for preparing and refining data for in-depth analysis.
 
-The module also focuses on data **visualization**, where you'll learn to create informative and compelling visual representations, such as box plots, scatterplots, line plots, and maps. These skills are critical for data exploration and presenting your findings in an accessible manner.
+The module also focuses on **data visualization**, where you'll learn to create informative and compelling visual representations, such as box plots, scatterplots, line plots, and maps. These skills are critical for data exploration and presenting your findings in an accessible manner.
 
-Additionally, the course introduces the essentials of working with spatial data, setting the stage for advanced geospatial data analysis. This includes handling spatial data structures, performing spatial data manipulation, and understanding spatial relationships.
+Additionally, the course introduces the essentials of working with **spatial data**. This includes handling **spatial data structures**, performing **spatial data manipulation**, and understanding **spatial relationships**.
 
-Upon completing this module, you'll possess foundational R programming skills, preparing you for more advanced topics such as Geospatial Data Analysis, as covered in the "Spatial Statistics" module of the MSc program.
+Upon completing this module, you'll possess foundational R programming skills, preparing you for more advanced topics such as "Geospatial Data Analysis", as covered in the "Spatial Statistics" module of the MSc program.
 
 ```{block2, type = 'rmdtip'}
 This module partly draws from [granolarr](https://github.com/sdesabbata/granolarr){target="_blank"}, developed by [Stefano de Sabbata](https://sdesabbata.github.io/){target="_blank"} at [University of Leicester](https://le.ac.uk/){target="_blank"}. For further exploration, refer to the Webbook [R for Geographic Data Science](https://sdesabbata.github.io/r-for-geographic-data-science/){target="_blank"}. We particularly recommend its chapters on **Statistical Analysis** and **Machine Learning** for those interested in advanced R applications.
@@ -18,7 +18,7 @@ This module partly draws from [granolarr](https://github.com/sdesabbata/granolar
 
 ## R programming language
     
-R is versatile in data science and analysis, with applications in:
+R is versatile in data science and analytics, with applications including:
 
 - Data wrangling
 - Statistical analysis
@@ -31,8 +31,8 @@ Why R stands out:
 
 - Free and open-source
 - Offers extensive functionality surpassing most proprietary tools
-- Available across Windows, Mac OS, and Linux
-- A general-purpose language, ideal for automating analyses and creating custom functions
+- Available across Windows, MacOS, and Linux
+- Primarily a domain-specific language with a focus on statistics and data analysis, it's also versatile enough for general-purpose programming, making it ideal for automating analyses and creating custom functions.
 - Large, supportive community, facilitating problem-solving and knowledge sharing
 
 R, a **high-level programming** or **scripting language**, relies on an **interpreter** instead of a compiler. This interpreter directly executes written instructions, requiring adherence to the programming language's grammar or **Syntax**.
@@ -46,7 +46,7 @@ Before you can run your code, you have to install R together with an **Integrate
 1. Download R from [R Archive Network (CRAN.)](http://cran.r-project.org){target="_blank"} 
 2. Install the latest version, choosing 'base' and the appropriate bit-version for your OS.
 
-The IDE is where you write, test and execute your R programs. We strongly recommend using **RStudio Desktop**, which is [freely available for download.](https://www.rstudio.com/){target="_blank"}
+The IDE is where you write, test, and execute your R programs, we strongly recommend using **RStudio Desktop**, which is [freely available for download.](https://www.rstudio.com/){target="_blank"}
 
 This video offers a concise RStudio overview:
 
@@ -75,7 +75,7 @@ With RStudio and R installed, let's dive into coding. The **Console Window** in 
 knitr::include_graphics('images/Console.png')
 ```
 
-Type in a **numeric value** (e.g. 3) and press Enter. The interpreter returns a value in brackets and the input value. The value in brackets indicates that the input is composed of one single entity.
+Type in a **numeric value** (e.g., 3) and press Enter. The interpreter returns the input value preceded by a bracketed number. The value in brackets indicates that the input is composed of one single entity.
 
 ```{block2, type = 'rmdexercise'}
 
@@ -85,7 +85,7 @@ What happens when you input a text value (e.g., 'test')?
 <summary><ins>**See solution!**</ins></summary>
 <p><i><font color="grey">
   
-The interpreter returns an error, because this datatype is unknown. Text is commonly reffered to as **String** or **String of Characters**. When apostrophes (i.e. <span>&quot;</span>Test<span>&quot;</span>) are added, the interpreter knows that this is a String.
+The interpreter returns an error when unquoted text is entered, as it's not recognized as a string. In R, text or strings must be enclosed in quotes (either single `'test'` or double `"test"`) to be understood as character data. Text is commonly referred to as **String** or **String of Characters**.
     
 </font></i>
 </p>
@@ -104,13 +104,13 @@ R's simple data types, essential for encoding information, include:
 - numeric 
     - both **integer** and **real numbers**
 - character 
-    - i.e., text, also called *strings*
+    - i.e., "text", also called *strings*
 - logical
     - Represents `TRUE` or `FALSE` values
 
 ```
 
-The type 'logical' encodes the values `TRUE` or `FALSE`. Together these three simple data types are the building blocks R uses to encode information.
+These `TRUE` or `FALSE` values are typically the result of evaluating logical expressions. Together these three **simple data types** are the building blocks R uses to encode information.
 
 ```{block2, type = 'rmdexercise'}
 
@@ -122,7 +122,7 @@ Logical operations return values of type **logical**. What value is returned in 
 <summary><ins>**See solution!**</ins></summary>
 <p><i><font color="grey">
   
-The interpreter returns `TRUE`, because it is 'true' that 2 is less than 3.
+The interpreter returns `TRUE`, because it is true that 2 is less than 3.
 
 </font></i>
 </p>
@@ -141,10 +141,10 @@ R provides a series of basic numeric operators.
 |*       |Product         |5 * 2    |`r 5 * 2`  |
 |/       |Division        |5 / 2    |`r 5 / 2`  |
 |%/%     |Integer division|5 %/% 2  |`r 5 %/% 2`|
-|%%      |Module          |5 %% 2   |`r 5 %% 2` |
+|%%      |Modulo          |5 %% 2   |`r 5 %% 2` |
 |^       |Power           |5^2      |`r 5^2`    |
 
-Whereas mathematical operators are self-explanatory, the operators **Module** and **Integer division** may be new to some of you. Integer division returns an integer quotient:
+Whereas mathematical operators are self-explanatory, the operators **Modulo** and **Integer division** may be new to some of you. Integer division returns an integer quotient:
 
 ```{r, echo=TRUE}
 5%/%2
@@ -156,13 +156,13 @@ Note: In this web book, two hash symbols (`##`) highlight the values returned by
 
 ```{block2, type = 'rmdexercise'}
 
-Execute 5 %% 2 to test the 'Module' operator.
+Execute 5 %% 2 to test the 'Modulo' operator.
     
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
 <p><i><font color="grey">
   
-The 'Module' returns the remainder of the division, which is 1 in the example above.
+The "Modulo" returns the remainder of the division, which is 1 in the example above.
 
 </font></i>
 </p>
@@ -183,7 +183,7 @@ R also provides a series of basic logical operators to create logical expression
 |< (<=)  |Less (or equal)   |5 <= 2            |`r 5 <= 2`         |
 |!       |Negation          |!TRUE             |`r !TRUE`          |
 |&       |Logical AND       |TRUE & FALSE      |`r FALSE`          |
-|\|      |Logical OR        |TRUE | FALSE      |`r TRUE | FALSE`   |
+|\|      |Logical OR        |TRUE \| FALSE      |`r TRUE | FALSE`   |
 
 Logical expressions are typically used to execute code dependent on the occurrence of conditions. 
 
@@ -195,7 +195,7 @@ What logical values are returned by the following expressions:
 * (2 >= 3) | (3 < 7)
 * (2 == 9) & (2 < 4)
 
-Type and execute (Enter button) in the RStudio console to validate your assumptions.
+Type and execute these expressions in the RStudio console to validate your assumptions.
 
 ```
 
@@ -214,6 +214,6 @@ Apart from [Stefano de Sabbata's](https://sdesabbata.github.io/){target="_blank"
 - *An Introduction to R for Spatial Analysis and Mapping* by Chris Brunsdon and Lex Comber, Sage, 2015. [See Book Webpage](https://us.sagepub.com/en-us/nam/an-introduction-to-r-for-spatial-analysis-and-mapping/book258267){target="_blank"}
 - *Geocomputation with R* by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. [See Online Book](https://bookdown.org/robinlovelace/geocompr/){target="_blank"}.
 - *Discovering Statistics Using R* by Andy Field, Jeremy Miles and Zoë Field, SAGE Publications Ltd, 2012. [See Book Webpage](https://us.sagepub.com/en-us/nam/discovering-statistics-using-r/book236067){target="_blank"}.
-- *The RStudio Cheatsheets - A collection of cheatsheets for various R functions and packages.* [View Collection on R Studio Website](https://www.rstudio.com/resources/cheatsheets/){target="_blank"}.
+- *The RStudio Cheatsheets - A collection of cheatsheets for various R functions and packages.* [View Collection on RStudio Website](https://www.rstudio.com/resources/cheatsheets/){target="_blank"}.
 - *The terra package - A comprehensive guide to the 'terra' package for spatial analysis in R.* [View Online Documentation](https://rspatial.org/pkg/index.html){target="_blank"}
 - *Sf - Simple Features for R - Documentation on using the 'sf' package for handling spatial data in R.* [View Online Documentation](https://r-spatial.github.io/sf/){target="_blank"}
