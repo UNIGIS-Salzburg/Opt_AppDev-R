@@ -1,0 +1,308 @@
+# Read and Write Data{#readwrite}
+
+In previous exercises we have **read** data from a CSV file into our script. Similarly we can also **write** code outputs to file.   
+
+```{block2, type = 'rmdtip'}
+
+In this lesson you will learn to read and write plain-text, spatial vector and raster file formats. Moreover, we will retrieve online data by means of a data API.
+
+```
+
+## Read and write tabular data
+
+A series of formats are based on plain-text files.
+
+For instance...
+
+- comma-separated values files `.csv`
+- semi-colon-separated values files `.csv`
+- tab-separated values files `.tsv`
+- other formats using custom delimiters
+- fix-width files `.fwf`
+
+The [`readr` library](https://readr.tidyverse.org/){target="_blank"} (also part of [Tidyverse](https://www.tidyverse.org/packages/#import){target="_blank"}) provides a series of functions that can be used to load from and save to such data formats. For instance, the `read_csv` function reads a comma delimited CSV file from the path provided as the first argument. 
+
+The code example below reads a CSV file that contains global fishery statistics provided by the [World Bank](https://datacatalog.worldbank.org/dataset/world-development-indicators){target="_blank"} and queries Norwegian entries. The function `writes_csv`  writes these entries to a new CSV file.  
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(tidyverse)
+
+fishery_data <- readr::read_csv("data/capture-fisheries-vs-aquaculture.csv")
+# print(fishery_data)
+
+# print(typeof(fishery_data$))
+
+fishery_data %>%
+  dplyr::filter(Entity == "Norway") %>%
+  readr::write_csv("data/capture-fisheries-vs-aquaculture-norway.csv", append=FALSE) %>%
+  
+  dplyr::slice_head(n = 3) %>%
+  knitr::kable()
+  
+```
+
+In order to run the script, [download the CSV file](data/capture-fisheries-vs-aquaculture.csv){target="_blank"}. Then copy and run the code in a new R-script.
+
+```{block2, type = 'rmdtip'}
+Other important packages for reading tabular data are [`readxl`](https://readxl.tidyverse.org/){target="_blank"} for Excel (`.xls` and `.xlsx`) and [`haven`](https://haven.tidyverse.org/){target="_blank"} for SPSS, Stata and SAS data.  
+```
+
+## Read and write vector data
+
+The library `sf` makes it easy to read and write vector datasets such as shapefiles. 
+
+```{block2, type = 'rmdtip'}
+Remember: We have used the `sf-library` in lesson [4](#spds) to build vector geometries from scratch, investigate their properties and assign and transform coordinate reference systems. The name sf stands for **simple features**, meaning that [sf-objects conform to the simple feature standard](https://r-spatial.github.io/sf/articles/sf1.html){target="_blank"}. Now we use the same library to load sf-objects from file.
+```
+
+In order to load vector data in an R-Script, we can use the function `st_read()`. In the code block below, a [shapefile](data/nc.zip){target="_blank"} ([North Carolina sample data](https://r-spatial.github.io/sf/reference/nc.html){target="_blank"}) is loaded and assigned to a variable `nc`. 
+
+The next line creates a basic map in `sf` by means of `plot()`. By default this creates a multi-panel plot, one sub-plot for each variable (attribute) of the sf-object. 
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE, results='hide'}
+
+library(sf)
+
+nc <- sf::st_read("data/nc.shp")
+
+plot(nc)
+
+```
+
+As you have learned in lesson [4](#spds), `sf` represents features as records in data-frame-like structures with an additional `geometry` list-column. The example below renders three features (rows) of variable `nc` including the `geometry` column of type `MULTIPOLYGON` (see [Simple feature geometry types](https://r-spatial.github.io/sf/articles/sf1.html#simple-feature-geometry-types){target="_blank"}) as well as the attributes `AREA` (feature area) and `NAME` (name of county):  
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+nc %>%
+  dplyr::select(AREA, NAME, geometry) %>%
+  dplyr::slice_head(n = 3) %>%
+  knitr::kable()
+
+```
+
+`sf` also includes a number of operations to manipulate the geometry of features such as `st_simplify`:  
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+sf::st_simplify(nc) %>%
+  plot(., max.plot = 1)
+
+```
+
+```{block2, type = 'rmdtip'}
+
+You may have recognized that a dot (`.`) is used as a parameter in the function `plot()`. The dot represents the piped value. In the example above the dot is used to define the simplified geometry of `nc` as first parameter of function `plot()` and `max.plot = 1` as the second.  
+
+```
+
+In the next example, the `st_geometry()` retrieves the geometry attribute from variable `nc`, function `st_centroid()` calculates the centroid of the polygon geometry (`counties`) and function `st_write` writes the centroid point geometry to file. 
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE, results='hide'}
+
+sf::st_geometry(nc) %>%
+  sf::st_centroid() %>%
+  sf::st_write("data/nc-centroids.shp", delete_dsn = TRUE) %>%
+  plot(pch = 3, col = 'red') 
+  
+```
+
+```{block2, type = 'rmdtip'}
+The online book [Geocomputation with R](https://r.geocompx.org/){target="_blank"} offers a more comprehensive explanation of available geometric, attribute and spatial data operations. For a quick overview, you may turn to the [sf cheatsheets](https://github.com/rstudio/cheatsheets/blob/master/sf.pdf){target="_blank"}. 
+```
+
+In order to test the code on your machine, [download](data/nc-centroids.zip){target="_blank"} the North Carolina dataset and install the libraries `sf` and `Rcpp` before you run the code in an R-Script.   
+
+```{block2, type = 'rmdexercise'}
+
+The `plot()` function offers a large number of arguments that can be used to customize your map. Replace 'AREA' in the map above by a more meaningful map title. Turn to the [documentation](https://r-spatial.github.io/sf/reference/plot.html){target="_blank"} for more information.    
+
+See [our solution](Solution_Miniexercise_plot.R){target="_blank"}!
+
+```
+
+## Read and write raster data
+
+The `terra` library provides functions to read and write raster data. In lesson [4](#spds) we have used `terra` to build `SpatRaster Objects` from scratch, investigated their properties and assigned and transformed coordinate reference systems.
+
+It is more common, however, to create a `SpatRaster Object` from a file. Supported file formats for reading are GeoTIFF, ESRI, ENVI, and ERDAS. Most formats supported for reading can also be written to (see [Creating `SpatRaster objects`](https://rspatial.org/pkg/3-objects.html){target="_blank"}).
+
+The following code reads a GeoTIFF (download [venice-Sentinel.tiff 712KB](data/venice-Sentinel.tiff){target="_blank"}) into memory and assigns it to a variable named `r`:
+
+```{r, warning=FALSE, message=FALSE}
+
+library(terra)
+
+r <- terra::rast("data/venice-Sentinel.tiff")
+
+```
+
+The function `hasValues` returns the logic value `TRUE`, which indicates that in-memory layers have cell values:   
+
+```{r, warning=FALSE, message=FALSE}
+
+terra::hasValues(r)
+
+```
+
+Executing the variable name `r` returns additional metadata information, which among others reveals that the image has 4 layers:
+
+```{r, warning=FALSE, message=FALSE}
+
+r
+
+```
+
+Layers 1-3 correspond to color bands red, green and blue. In order to plot the true color sentinel imagery, we can use `terra` function `plotRGB` and assign the numbers of respective color bands to attributes `r` (red), `g` (greeb), `b` (blue):
+
+```{r, warning=FALSE, message=FALSE}
+
+terra::plotRGB(r, r=1, g=2, b=3, main="Sentinel-2 image of Venice")
+
+```
+
+The following line converts the original CRS (which is WGS 84 / UTM zone 33N) to the Italian national CRS [Italy Zone 1:](https://spatialreference.org/ref/epsg/3003/){target="_blank"}
+
+```{r, warning=FALSE, message=FALSE}
+
+r_z1 <- terra::project(r, "+proj=tmerc +lat_0=0 +lon_0=9 +k=0.9996 +x_0=1500000 +y_0=0 +ellps=intl +units=m +no_defs")
+
+```
+
+Eventually, the modified `SpatRaster Object` is written to file by means of `terra` function `writeRaster`:
+
+```{r, warning=FALSE, message=FALSE}
+
+terra::writeRaster(r_z1, "data/venice_zone1.tif", overwrite=TRUE)
+
+```
+
+## Data API
+
+> API is the acronym for Application Programming Interface, which is a software intermediary that allows two applications to talk to each other.
+
+By means of an API we can read, write, and modify information on the web. The following video briefly introduces the technology behind it.
+
+```{r APIvideo, echo=FALSE, fig.align='center', fig.cap="Video (3:13 min): REST API concepts and examples."}
+
+knitr::include_url("https://www.youtube.com/embed/7YcW25PHnAA?end=194")
+
+``` 
+
+The most important take away messages are:
+
+1) With a REST API web data is accessible through a URL (Client-Server call via HTTP protocol)
+2) The HTTP **Get** Method delivers data (a Response) - i.e. is used to read data, the HTTP **Post** Method is used to create new REST API resources (write data).
+3) URL Parameters are used to filter specific data from a response.
+4) Typically, APIs can return data in a number of different formats. 
+5) JSON is a very popular format for transferring web data.
+6) The two primary elements that make up JSON are keys and values.
+
+The library [httr2](https://httr2.r-lib.org/){target="_blank"} offers functions to programmatically implement API calls in an R script. We will make use of this library to let our R script interact with the [APIs](https://openweathermap.org/api){target="_blank"} offered by [OpenWeather Map](https://openweathermap.org/){target="_blank"} that contains historical and real-time weather data for retrieval. In the upcoming example we will make a call to the [Current Weather API](https://openweathermap.org/current){target="_blank"}, which is one out of currently [10 free APIs](https://openweathermap.org/price){target="_blank"} provided by OpenWeather Map.
+
+For accessing the data with `httr2`, we'll construct a URL composed of a reference to the data source (`base`), an API key to get access, and parameters to filter the desired data subset (`lat` and `lon`). 
+
+```{block2, type = 'rmdtip'}
+Note: The OpenWeather API requires an API Key to be passed as a parameter in the call. Get your [personal Key](https://openweathermap.org/appid){target="_blank"} to implement your own API requests. 
+
+If your code returns an error 401, this most likely indicates that your key is not activated yet. According to the [FAQs](https://openweathermap.org/faq){target="_blank"}, it may take a couple of hours until your key is active. 
+
+```
+
+```{block2, type = 'rmdtip'} 
+**Security Note:**
+In general, when working with APIs, it's crucial to handle API keys securely. API keys are sensitive tokens that authenticate your requests to an API service. Exposing these keys publicly can lead to unauthorized access and potential misuse. Always keep your API keys confidential. Avoid hardcoding them directly into scripts, especially if the scripts are shared or stored in public repositories. Instead, consider using environment variables or secure vaults to store your API keys. For sharing scripts, you can instruct users to enter their own keys, ensuring that each user's key remains private.
+```
+
+First we will have to create an URL request. The function `sprintf()` assembles the URL request composed of `base URL`, `key` and `lat / lon`:
+
+```{block2, type = 'rmdtip'}
+**Note**: 
+The `sprintf()` function in R is used for string formatting. It allows you to combine, format, and interpolate variables into strings in a flexible way. For example, `sprintf("%s?lat=%s&lon=%s&appid=%s", base, lat, lon, apiKey)` constructs a URL string by inserting the values of `base`, `lat`, `lon`, and `apiKey` into the placeholders (`%s`). Each `%s` is replaced by the corresponding variable's value in the order they are listed. This function is particularly useful in scenarios where you need to dynamically generate strings or URLs with variable data.
+```
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(httr2)
+
+# Define the base URL and parameters
+base <- "http://api.openweathermap.org/data/2.5/weather"
+lat <- "47.81"    
+lon <- "13.03"
+apiKey <- "3f87141421b32590d50416aae5ca780c"
+
+# Construct the full URL with query parameters using sprintf
+full_url <- sprintf("%s?lat=%s&lon=%s&appid=%s", base, lat, lon, apiKey)
+
+# Display the constructed URL
+print(full_url)
+
+```
+
+As a next step, the URL is passed to the `request()` function to create a request object, and `req_perform()` is used to execute the HTTP Get method:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+# Create the request and perform it
+req <- httr2::request(full_url)
+resp <- httr2::req_perform(req)
+
+```
+
+By default, the `req_perform()` function returns a response object. Printing a response object provides useful information such as the actual URL used (after any redirects), the HTTP status, and the content type.
+
+You can extract important parts of the response with various helper functions such as `resp_status()` and `resp_body_json()`:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+# Check the status code of the response
+httr2::resp_status(resp)
+
+# View the content structure of the response in JSON
+str(httr2::resp_body_json(resp))
+
+```
+
+The Current Weather API call returned a number of real-time weather variables such as temperature, air pressure or humidity for the location of Salzburg. Current weather data may alternatively be retrieved by `City ID` or `City Name` (see the [documentation](https://openweathermap.org/current){target="_blank"} to get an overview of available API parameters).
+
+```{block2, type = 'rmdexercise'}
+
+Inspect the response object by means of a function called `headers()`. What methods are allowed when accessing the Current Weather API?
+
+<details closed>
+<summary><ins>**See solution!**</ins></summary>
+<p><i><font color="grey">
+  
+Only GET and POST methods are allowed.
+
+Other APIs allow to update existing REST API resources (PUT method) or to delete a REST API resource (DELETE method). 
+    
+</font></i>
+</p>
+</details>   
+  
+```
+
+To facilitate subsequent analyses and data visualization, we can convert the content of the return object to a data frame. With `httr2`, you can directly retrieve the JSON content and convert it to a data frame:
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(knitr)
+
+# Using resp_body_json to get the JSON content of the response
+response_content <- httr2::resp_body_json(resp)
+response_df <- as.data.frame(response_content)
+
+# Select columns 1:5 of response data frame 
+# and render data frame as html table
+response_df %>%
+  dplyr::select(1:5) %>%
+  knitr::kable(., format="html")
+
+```
+
+For purposes of presentation, the returned data frame was shortened to show only columns 1 to 5. The returned values contain a short description of current weather conditions at location `E: 13.03`, `N: 47.81`.
+
+```{block2, type = 'rmdexercise'}
+Copy the code snippets above to a new R-Script and make an API request. **Make sure to replace the key in the code example by your own API key!** If you need help, please turn to the discussion forum.
+```
