@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lesson 2 Core Concepts | Automated Data Processing with R</title>
+  <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lesson 2 Core Concepts | Automated Data Processing with R" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="/branding/Cover_epub.png" />
+  <meta property="og:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
+  <meta name="github-repo" content="UNIGIS-Salzburg/En_AppDev-R" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 2 Core Concepts | Automated Data Processing with R" />
+  
+  <meta name="twitter:description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
+  <meta name="twitter:image" content="/branding/Cover_epub.png" />
+
+<meta name="author" content="Christian Neuwirth &amp; Maximilian Elixhauser" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="DS.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/proj4-2.6.2/proj4.min.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="css/custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://unigis.at/en" target="_blank"><img alt="UNIGIS Salzburg" src="branding/UNIGIS_Salzburg_Schriftlogo_globe_tra.png" width=100%></a></li>
+<li><a href="./">Automated Data Processing with R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#about-this-module"><i class="fa fa-check"></i><b>1.1</b> About this module</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#r-programming-language"><i class="fa fa-check"></i><b>1.2</b> R programming language</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#installation-and-setup"><i class="fa fa-check"></i><b>1.3</b> Installation and Setup</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#interpreting-values"><i class="fa fa-check"></i><b>1.4</b> Interpreting Values</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#simple-data-types"><i class="fa fa-check"></i><b>1.5</b> Simple Data Types</a></li>
+<li class="chapter" data-level="1.6" data-path="intro.html"><a href="intro.html#numop"><i class="fa fa-check"></i><b>1.6</b> Numeric operators</a></li>
+<li class="chapter" data-level="1.7" data-path="intro.html"><a href="intro.html#logical-operators"><i class="fa fa-check"></i><b>1.7</b> Logical operators</a></li>
+<li class="chapter" data-level="1.8" data-path="intro.html"><a href="intro.html#references"><i class="fa fa-check"></i><b>1.8</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="core.html"><a href="core.html"><i class="fa fa-check"></i><b>2</b> Core Concepts</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="core.html"><a href="core.html#variables"><i class="fa fa-check"></i><b>2.1</b> Variables</a></li>
+<li class="chapter" data-level="2.2" data-path="core.html"><a href="core.html#algorithms-and-functions"><i class="fa fa-check"></i><b>2.2</b> Algorithms and Functions</a></li>
+<li class="chapter" data-level="2.3" data-path="core.html"><a href="core.html#libraries"><i class="fa fa-check"></i><b>2.3</b> Libraries</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="DS.html"><a href="DS.html"><i class="fa fa-check"></i><b>3</b> Data Structures</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="DS.html"><a href="DS.html#vectors"><i class="fa fa-check"></i><b>3.1</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="DS.html"><a href="DS.html#vector-element-selection"><i class="fa fa-check"></i><b>3.1.1</b> Vector Element Selection</a></li>
+<li class="chapter" data-level="3.1.2" data-path="DS.html"><a href="DS.html#using-the-range-function-with-vectors"><i class="fa fa-check"></i><b>3.1.2</b> Using the range() Function with Vectors</a></li>
+<li class="chapter" data-level="3.1.3" data-path="DS.html"><a href="DS.html#applying-functions-to-vectors"><i class="fa fa-check"></i><b>3.1.3</b> Applying Functions to Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="DS.html"><a href="DS.html#multi-dimensional-data-types"><i class="fa fa-check"></i><b>3.2</b> Multi-dimensional Data Types</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="DS.html"><a href="DS.html#matrices"><i class="fa fa-check"></i><b>3.2.1</b> Matrices</a></li>
+<li class="chapter" data-level="3.2.2" data-path="DS.html"><a href="DS.html#arrays"><i class="fa fa-check"></i><b>3.2.2</b> Arrays</a></li>
+<li class="chapter" data-level="3.2.3" data-path="DS.html"><a href="DS.html#selection-in-multi-dimensional-data-types"><i class="fa fa-check"></i><b>3.2.3</b> Selection in Multi-Dimensional Data Types</a></li>
+<li class="chapter" data-level="3.2.4" data-path="DS.html"><a href="DS.html#lists"><i class="fa fa-check"></i><b>3.2.4</b> Lists</a></li>
+<li class="chapter" data-level="3.2.5" data-path="DS.html"><a href="DS.html#data-frame"><i class="fa fa-check"></i><b>3.2.5</b> Data Frame</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="spds.html"><a href="spds.html"><i class="fa fa-check"></i><b>4</b> Spatial Data Structures</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="spds.html"><a href="spds.html#vector-data-structures"><i class="fa fa-check"></i><b>4.1</b> Vector Data Structures</a></li>
+<li class="chapter" data-level="4.2" data-path="spds.html"><a href="spds.html#raster-data-structures"><i class="fa fa-check"></i><b>4.2</b> Raster Data Structures</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="spds.html"><a href="spds.html#working-with-spatraster-objects"><i class="fa fa-check"></i><b>4.2.1</b> Working with SpatRaster objects</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="control-structures.html"><a href="control-structures.html"><i class="fa fa-check"></i><b>5</b> Control Structures</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="control-structures.html"><a href="control-structures.html#if"><i class="fa fa-check"></i><b>5.1</b> If</a></li>
+<li class="chapter" data-level="5.2" data-path="control-structures.html"><a href="control-structures.html#else"><i class="fa fa-check"></i><b>5.2</b> Else</a></li>
+<li class="chapter" data-level="5.3" data-path="control-structures.html"><a href="control-structures.html#code-blocks"><i class="fa fa-check"></i><b>5.3</b> Code blocks</a></li>
+<li class="chapter" data-level="5.4" data-path="control-structures.html"><a href="control-structures.html#loops"><i class="fa fa-check"></i><b>5.4</b> Loops</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="control-structures.html"><a href="control-structures.html#while-and-repeat"><i class="fa fa-check"></i><b>5.4.1</b> While and repeat</a></li>
+<li class="chapter" data-level="5.4.2" data-path="control-structures.html"><a href="control-structures.html#for"><i class="fa fa-check"></i><b>5.4.2</b> For</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="control-structures.html"><a href="control-structures.html#loops-with-conditional-statements"><i class="fa fa-check"></i><b>5.5</b> Loops with conditional statements</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="control-structures.html"><a href="control-structures.html#exercise-loops-with-conditional-statements"><i class="fa fa-check"></i><b>5.5.1</b> Exercise: loops with conditional statements</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>6</b> Functions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="functions.html"><a href="functions.html#defining-functions"><i class="fa fa-check"></i><b>6.1</b> Defining Functions</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="functions.html"><a href="functions.html#understanding-the-return-function"><i class="fa fa-check"></i><b>6.1.1</b> Understanding the <code>return()</code> Function</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="functions.html"><a href="functions.html#more-parameters"><i class="fa fa-check"></i><b>6.2</b> More Parameters</a></li>
+<li class="chapter" data-level="6.3" data-path="functions.html"><a href="functions.html#returning-multiple-values"><i class="fa fa-check"></i><b>6.3</b> Returning Multiple Values</a></li>
+<li class="chapter" data-level="6.4" data-path="functions.html"><a href="functions.html#functions-and-control-structures"><i class="fa fa-check"></i><b>6.4</b> Functions and Control Structures</a></li>
+<li class="chapter" data-level="6.5" data-path="functions.html"><a href="functions.html#scope"><i class="fa fa-check"></i><b>6.5</b> Scope</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="datman.html"><a href="datman.html"><i class="fa fa-check"></i><b>7</b> Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="datman.html"><a href="datman.html#preparation"><i class="fa fa-check"></i><b>7.1</b> Preparation</a></li>
+<li class="chapter" data-level="7.2" data-path="datman.html"><a href="datman.html#data-manipulation"><i class="fa fa-check"></i><b>7.2</b> Data manipulation</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="datman.html"><a href="datman.html#summarise"><i class="fa fa-check"></i><b>7.2.1</b> Summarise</a></li>
+<li class="chapter" data-level="7.2.2" data-path="datman.html"><a href="datman.html#select-and-filter"><i class="fa fa-check"></i><b>7.2.2</b> Select and filter</a></li>
+<li class="chapter" data-level="7.2.3" data-path="datman.html"><a href="datman.html#mutate"><i class="fa fa-check"></i><b>7.2.3</b> Mutate</a></li>
+<li class="chapter" data-level="7.2.4" data-path="datman.html"><a href="datman.html#arrange"><i class="fa fa-check"></i><b>7.2.4</b> Arrange</a></li>
+<li class="chapter" data-level="7.2.5" data-path="datman.html"><a href="datman.html#exercise-data-manipulation"><i class="fa fa-check"></i><b>7.2.5</b> Exercise: data manipulation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="datman.html"><a href="datman.html#join"><i class="fa fa-check"></i><b>7.3</b> Join</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="datman.html"><a href="datman.html#exercise-join"><i class="fa fa-check"></i><b>7.3.1</b> Exercise: join</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="readwrite.html"><a href="readwrite.html"><i class="fa fa-check"></i><b>8</b> Read and Write Data</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="readwrite.html"><a href="readwrite.html#read-and-write-tabular-data"><i class="fa fa-check"></i><b>8.1</b> Read and write tabular data</a></li>
+<li class="chapter" data-level="8.2" data-path="readwrite.html"><a href="readwrite.html#read-and-write-vector-data"><i class="fa fa-check"></i><b>8.2</b> Read and write vector data</a></li>
+<li class="chapter" data-level="8.3" data-path="readwrite.html"><a href="readwrite.html#read-and-write-raster-data"><i class="fa fa-check"></i><b>8.3</b> Read and write raster data</a></li>
+<li class="chapter" data-level="8.4" data-path="readwrite.html"><a href="readwrite.html#data-api"><i class="fa fa-check"></i><b>8.4</b> Data API</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="spm.html"><a href="spm.html"><i class="fa fa-check"></i><b>9</b> Spatial Data Manipulation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="spm.html"><a href="spm.html#data-acquisition"><i class="fa fa-check"></i><b>9.1</b> Data Acquisition</a></li>
+<li class="chapter" data-level="9.2" data-path="spm.html"><a href="spm.html#data-cleaning"><i class="fa fa-check"></i><b>9.2</b> Data Cleaning</a></li>
+<li class="chapter" data-level="9.3" data-path="spm.html"><a href="spm.html#vector-operations"><i class="fa fa-check"></i><b>9.3</b> Vector operations</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="spm.html"><a href="spm.html#geometrical-operations"><i class="fa fa-check"></i><b>9.3.1</b> Geometrical operations</a></li>
+<li class="chapter" data-level="9.3.2" data-path="spm.html"><a href="spm.html#binary-operations"><i class="fa fa-check"></i><b>9.3.2</b> Binary operations</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="spm.html"><a href="spm.html#raster-operations"><i class="fa fa-check"></i><b>9.4</b> Raster operations</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="spm.html"><a href="spm.html#resampling"><i class="fa fa-check"></i><b>9.4.1</b> Resampling</a></li>
+<li class="chapter" data-level="9.4.2" data-path="spm.html"><a href="spm.html#crop-raster"><i class="fa fa-check"></i><b>9.4.2</b> Crop raster</a></li>
+<li class="chapter" data-level="9.4.3" data-path="spm.html"><a href="spm.html#raster-algebra"><i class="fa fa-check"></i><b>9.4.3</b> Raster algebra</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-viz.html"><a href="data-viz.html"><i class="fa fa-check"></i><b>10</b> Data Visualization</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-viz.html"><a href="data-viz.html#the-grammar-of-graphics"><i class="fa fa-check"></i><b>10.1</b> The Grammar of Graphics</a></li>
+<li class="chapter" data-level="10.2" data-path="data-viz.html"><a href="data-viz.html#understanding-wide-and-long-data-formats-in-r"><i class="fa fa-check"></i><b>10.2</b> Understanding Wide and Long Data Formats in R</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="data-viz.html"><a href="data-viz.html#wide-format"><i class="fa fa-check"></i><b>10.2.1</b> Wide format</a></li>
+<li class="chapter" data-level="10.2.2" data-path="data-viz.html"><a href="data-viz.html#long-format"><i class="fa fa-check"></i><b>10.2.2</b> Long format:</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="data-viz.html"><a href="data-viz.html#visualization-of-distributions"><i class="fa fa-check"></i><b>10.3</b> Visualization of distributions</a></li>
+<li class="chapter" data-level="10.4" data-path="data-viz.html"><a href="data-viz.html#boxplots"><i class="fa fa-check"></i><b>10.4</b> Boxplots</a></li>
+<li class="chapter" data-level="10.5" data-path="data-viz.html"><a href="data-viz.html#scatterplots"><i class="fa fa-check"></i><b>10.5</b> Scatterplots</a></li>
+<li class="chapter" data-level="10.6" data-path="data-viz.html"><a href="data-viz.html#map-visualization"><i class="fa fa-check"></i><b>10.6</b> Map Visualization</a></li>
+<li class="chapter" data-level="10.7" data-path="data-viz.html"><a href="data-viz.html#interactive-maps"><i class="fa fa-check"></i><b>10.7</b> Interactive Maps</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="r-markdown.html"><a href="r-markdown.html"><i class="fa fa-check"></i><b>11</b> R Markdown</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="r-markdown.html"><a href="r-markdown.html#set-up-your-work-environment"><i class="fa fa-check"></i><b>11.1</b> Set up your work environment</a></li>
+<li class="chapter" data-level="11.2" data-path="r-markdown.html"><a href="r-markdown.html#create-a-local-clone"><i class="fa fa-check"></i><b>11.2</b> Create a local clone</a></li>
+<li class="chapter" data-level="11.3" data-path="r-markdown.html"><a href="r-markdown.html#creating-your-first-r-markdown-document"><i class="fa fa-check"></i><b>11.3</b> Creating Your First R Markdown Document</a></li>
+<li class="chapter" data-level="11.4" data-path="r-markdown.html"><a href="r-markdown.html#synchronizing-with-github"><i class="fa fa-check"></i><b>11.4</b> Synchronizing with GitHub</a></li>
+<li class="chapter" data-level="11.5" data-path="r-markdown.html"><a href="r-markdown.html#basic-r-markdown-syntax"><i class="fa fa-check"></i><b>11.5</b> Basic R Markdown Syntax</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="r-markdown.html"><a href="r-markdown.html#references-in-rmarkdown"><i class="fa fa-check"></i><b>11.5.1</b> References in RMarkdown</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="r-markdown.html"><a href="r-markdown.html#speed-up-your-workflows"><i class="fa fa-check"></i><b>11.6</b> Speed up your workflows</a></li>
+<li class="chapter" data-level="11.7" data-path="r-markdown.html"><a href="r-markdown.html#self-study"><i class="fa fa-check"></i><b>11.7</b> Self-study</a></li>
+</ul></li>
+<li class="divider"></li>
+<li>Copyright © UNIGIS Salzburg.</li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Automated Data Processing with R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="core" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Lesson 2</span> Core Concepts<a href="core.html#core" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+
+<div class="rmdtip">
+<p>In this lesson, we’ll explore three fundamental concepts in programming:</p>
+<ol style="list-style-type: decimal">
+<li>Variables</li>
+<li>Functions</li>
+<li>Libraries</li>
+</ol>
+</div>
+<div id="variables" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Variables<a href="core.html#variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Variables are essential for <strong>storing data</strong>. To define a variable, use an <em>identifier</em> (e.g., <code>a_variable</code>) on the left of an <em>assignment operator</em> <code>&lt;-</code>, followed by the value you wish to assign (e.g., 1):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="core.html#cb3-1" tabindex="-1"></a>a_variable <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
+<p>To retrieve the value of the variable, simply use its <strong>identifier</strong>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="core.html#cb4-1" tabindex="-1"></a>a_variable</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+
+<div class="rmdtip">
+To save and manage your code efficiently, create an <strong>R Script</strong> in RStudio (File &gt; New File &gt; R Script). Select the code in the R Script Window and click ‘Run’ to execute it. Scripts offer the advantage of running multiple lines of code at once and keeping a record of your work.
+</div>
+<p>Variables allow you to store computational results and later access them for further analysis. For instance:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="core.html#cb6-1" tabindex="-1"></a>a_variable <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb6-2"><a href="core.html#cb6-2" tabindex="-1"></a>a_variable <span class="ot">&lt;-</span> a_variable <span class="sc">+</span> <span class="dv">10</span></span>
+<span id="cb6-3"><a href="core.html#cb6-3" tabindex="-1"></a>another_variable <span class="ot">&lt;-</span> a_variable</span></code></pre></div>
+<p>Why use variables instead of direct input? They make your code <strong>reusable, scalable, and time-efficient</strong>, especially with complex data analyses or larger datasets.</p>
+<p><strong>Let us consider the following example:</strong></p>
+<p>Meteorologists track water temperature gradients to forecast weather patterns. If location A’s temperature is 22°C and B’s is 26°C, calculating the difference as <code>26 - 22</code> in the RStudio console is straightforward. However, for ongoing real-time measurements, an algorithm using variables for each location’s temperature can significantly speed up the process. Such an algorithm is adaptable to various data inputs, making it a robust tool for complex calculations.</p>
+
+<div class="rmdexercise">
+<ol style="list-style-type: decimal">
+<li>In RStudio, create a new R script (File &gt; New File &gt; R Script).</li>
+<li>Declare two variables (<code>temp_A</code> and <code>temp_B</code>) with temperature values.</li>
+<li>Declare a third variable (<code>diff</code>) to store their difference.</li>
+<li>Run your script and observe the changes in the Environment Panel.</li>
+</ol>
+<details closed>
+<summary>
+<ins>
+<strong>See solution!</strong>
+</ins>
+</summary>
+<p>
+<p><i><font color="grey"></p>
+<p>temp_A &lt;- 24
+temp_B &lt;- 28
+diff &lt;- temp_A - temp_B</p>
+<p>After executing the code in RStudio, you should notice changes in the Environment Panel, located in the top right corner. The <strong>Environment Panel</strong> will display three memory slots with identifiers <code>diff</code>, <code>temp_A</code>, and <code>temp_B</code>, having values of -4, 24, and 28, respectively. Invoking the name of an identifier in the code (e.g., typing <code>diff</code> and running it) will return the value stored in that memory slot.</p>
+<p>To clear your workspace memory, click the “broom icon” in the Environment Panel’s menu.</p>
+</font></i>
+</p>
+</details>
+</div>
+</div>
+<div id="algorithms-and-functions" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Algorithms and Functions<a href="core.html#algorithms-and-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+<div class="rmdtip">
+<em>“An algorithm is a mechanical rule, automatic method, or program for performing some mathematical operation”</em> (Cutland, 1980).
+</div>
+<p>A <em>program</em> is a specific set of instructions that implements an abstract algorithm.</p>
+<p>The definition of an algorithm (and thus a program) can consist of one or more functions. Functions are sets of instructions that perform a task, structuring code into functional, reusable units. Some functions receive values as inputs, while others return output values.</p>
+<p>Programming languages typically provide pre-defined functions that implement common algorithms (e.g., finding the square root of a number or calculating a linear regression).</p>
+<p>For example, the pre-defined function <code>sqrt()</code> calculates the square root of an input value. <strong>Like all functions</strong> in R, <code>sqrt()</code> is invoked by specifying the <em>function name</em> and <em>arguments</em> (input values) between parentheses:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="core.html#cb7-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1.414214</code></pre>
+
+<div class="rmdtip">
+<p>Each input value corresponds to a parameter defined in the function.</p>
+<strong>Important:</strong> In programming, the terms ‘parameter’ and ‘argument’ are often used interchangeably, but there is a subtle distinction. A <strong>parameter</strong> is the variable listed inside the parentheses in the function declaration, while an <strong>argument</strong> is the actual value passed to the function. For example, in the function definition <code>square(number)</code>, <code>number</code> is a parameter. When you call <code>square(4)</code>, the value 4 is the argument passed to the <code>number</code> parameter. Understanding this difference helps in comprehending how functions receive and process information.
+</div>
+<p><code>round()</code> is another predefined function in R:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="core.html#cb9-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">1.414214</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1.41</code></pre>
+<p>Note that the name of the second parameter (<code>digits</code>) needs to be specified. The <code>digits</code> parameter indicates the number of digits to keep after the decimal point.</p>
+<p>The return value of a function can be stored in a variable:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="core.html#cb11-1" tabindex="-1"></a>sqrt_of_two <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">2</span>)</span>
+<span id="cb11-2"><a href="core.html#cb11-2" tabindex="-1"></a>sqrt_of_two</span></code></pre></div>
+<pre><code>## [1] 1.414214</code></pre>
+<p>Here, the output value is stored in a memory slot with the identifier <code>sqrt_of_two</code>. We can use the identifier <code>sqrt_of_two</code> as an argument in other functions:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="core.html#cb13-1" tabindex="-1"></a>sqrt_of_two <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">2</span>)</span>
+<span id="cb13-2"><a href="core.html#cb13-2" tabindex="-1"></a><span class="fu">round</span>(sqrt_of_two, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 1.414</code></pre>
+<p>The first line calculates the square root of 2 and stores it in a variable named <code>sqrt_of_two</code>. The second line rounds the value stored in <code>sqrt_of_two</code> to three decimal places.</p>
+
+<div class="rmdexercise">
+<p>Can you store the output of the <code>round()</code> function in a second variable?</p>
+<details closed>
+<summary>
+<ins>
+<strong>See solution!</strong>
+</ins>
+</summary>
+<p>
+<p><i><font color="grey"></p>
+<p>sqrt_of_two &lt;- sqrt(2)
+rounded_sqrt_of_two &lt;- round(sqrt_of_two, digits = 3)</p>
+</font></i>
+</p>
+</details>
+</div>
+<p>Functions can also be used as arguments within other functions. For instance, we can use <code>sqrt()</code> as the first argument in <code>round()</code>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="core.html#cb15-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sqrt</span>(<span class="dv">2</span>), <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 1.414</code></pre>
+<p>In this case, the intermediate step of storing the square root of 2 in a variable is skipped.</p>
+
+<div class="rmdtip">
+<p>While using functions as arguments within other functions (nested functions) can sometimes reduce readability, they are a common and powerful practice in R. This approach can make your code more concise and expressive. However, it’s essential to balance conciseness with clarity!</p>
+<p>Moreover, to enhance the readability of R code, it is recommended to follow naming conventions for variables and functions:</p>
+<ul>
+<li>R is a <strong>case-sensitive</strong> language, meaning UPPER and lower case are treated as distinct.
+<ul>
+<li><code>a_variable</code> is not the same as <code>a_VARIABLE</code>.</li>
+</ul></li>
+<li>Valid names can include:
+<ul>
+<li>Alphanumeric characters, <code>.</code> and <code>_</code>.</li>
+</ul></li>
+<li>Names must start with a letter, not a number or a symbol.
+</div></li>
+</ul>
+</div>
+<div id="libraries" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Libraries<a href="core.html#libraries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Related, reusable functions in R can be grouped and stored in <strong>libraries</strong>, also known as <em>packages</em>.</p>
+<p>As of now, there are more than 10,000 R libraries available. These can be downloaded and installed using the <code>install.packages()</code> function. Once a library is installed, the <code>library()</code> function is used to make it accessible in a script.</p>
+<p>Libraries can vary greatly in size and complexity. For example:</p>
+<ul>
+<li><code>base</code>: This includes basic R functions, such as the sqrt function discussed earlier.</li>
+<li><code>sf</code>: A package providing <a href="https://en.wikipedia.org/wiki/Simple_Features" target="_blank">simple feature access</a>.</li>
+</ul>
+<p>The <code>stringr</code> library illustrates the use of libraries in R. It offers a consistent and well-defined set of functions for string manipulation. Assuming the library is already installed on your computer, you can load it as follows:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="core.html#cb17-1" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code></pre></div>
+<p>If not yet installed, you can download and install it with:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="core.html#cb18-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;stringr&#39;</span>)  <span class="co"># Note: the function takes a string argument (&#39;&#39;)</span></span></code></pre></div>
+
+<div class="rmdtip">
+<p>Alternatively, libraries (a.k.a. packages) can be installed through RStudio’s ‘Install Packages’ menu (Tools &gt; Install Packages…). You can choose to install from CRAN or a package archive file. The majority of libraries are available through <a href="https://cran.r-project.org/" target="_blank">CRAN - Comprehensive R Archive Network</a>, a vast collection of R resources and libraries.</p>
+<ul>
+<li>When using <code>install.packages()</code>, the package name must be a string, hence the quotes around ‘stringr’.</li>
+<li>To explore the functions provided by a library, like <code>stringr</code>, you can use <code>ls()</code> to list them. This command shows you what’s available to use once a library is loaded into your R session.
+</div></li>
+</ul>
+<p>Once installed and loaded, the library provides a new set of functions in your environment. For instance, <code>str_length</code> in the <code>stringr</code> library returns the number of characters in a string:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="core.html#cb19-1" tabindex="-1"></a><span class="fu">str_length</span>(<span class="st">&quot;UNIGIS&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p>The <code>str_detect()</code> function returns <code>TRUE</code> if the first argument (a string) contains the second argument (a character string). Otherwise, it returns <code>FALSE</code>:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="core.html#cb21-1" tabindex="-1"></a><span class="fu">str_detect</span>(<span class="st">&quot;UNIGIS&quot;</span>, <span class="st">&quot;I&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p><code>str_replace_all</code> replaces all instances of a specified character in a string with another character:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="core.html#cb23-1" tabindex="-1"></a><span class="fu">str_replace_all</span>(<span class="st">&quot;UNIGIS&quot;</span>, <span class="st">&quot;I&quot;</span>, <span class="st">&#39;X&#39;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;UNXGXS&quot;</code></pre>
+
+<div class="rmdtip">
+You can list all the functions available in the <code>stringr</code> library using the built-in function <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ls" target="_blank"><code>ls()</code></a>:
+</div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="core.html#cb25-1" tabindex="-1"></a><span class="fu">ls</span>(<span class="st">&quot;package:stringr&quot;</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;%&gt;%&quot;             &quot;boundary&quot;        &quot;coll&quot;            &quot;fixed&quot;          
+##  [5] &quot;fruit&quot;           &quot;invert_match&quot;    &quot;regex&quot;           &quot;sentences&quot;      
+##  [9] &quot;str_c&quot;           &quot;str_conv&quot;        &quot;str_count&quot;       &quot;str_detect&quot;     
+## [13] &quot;str_dup&quot;         &quot;str_ends&quot;        &quot;str_extract&quot;     &quot;str_extract_all&quot;
+## [17] &quot;str_flatten&quot;     &quot;str_glue&quot;        &quot;str_glue_data&quot;   &quot;str_interp&quot;     
+## [21] &quot;str_length&quot;      &quot;str_locate&quot;      &quot;str_locate_all&quot;  &quot;str_match&quot;      
+## [25] &quot;str_match_all&quot;   &quot;str_order&quot;       &quot;str_pad&quot;         &quot;str_remove&quot;     
+## [29] &quot;str_remove_all&quot;  &quot;str_replace&quot;     &quot;str_replace_all&quot; &quot;str_replace_na&quot; 
+## [33] &quot;str_sort&quot;        &quot;str_split&quot;       &quot;str_split_fixed&quot; &quot;str_squish&quot;     
+## [37] &quot;str_starts&quot;      &quot;str_sub&quot;         &quot;str_sub&lt;-&quot;       &quot;str_subset&quot;     
+## [41] &quot;str_to_lower&quot;    &quot;str_to_sentence&quot; &quot;str_to_title&quot;    &quot;str_to_upper&quot;   
+## [45] &quot;str_trim&quot;        &quot;str_trunc&quot;       &quot;str_view&quot;        &quot;str_view_all&quot;   
+## [49] &quot;str_which&quot;       &quot;str_wrap&quot;        &quot;word&quot;            &quot;words&quot;</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="DS.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["UNIGIS-AppDev-R.pdf", "UNIGIS-AppDev-R.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
