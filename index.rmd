@@ -29,8 +29,8 @@ This web-book is a text book with exercises that together form the learning mate
 
 The web-book is published under an open licence. We welcome everybody to explore the contents and to work through the exercises. A *certificate of completion* and *online support by a tutor* can exclusively be claimed by those who are signed up for this UNIGIS module. 
 
-> For more information, please get in contact with the [UNIGIS Office](https://unigis.at/en/contact/){target="_blank"} at the University of Salzburg.
-
 **Important Note for Learners:**
 
 To fully engage with the exercises and assignments in this module, it's essential to obtain an API key from Open Weather. The API key is required for accessing weather data, a crucial component of our practical exercises, particularly in Lesson 8. You can register and obtain your API key [here](https://openweathermap.org/appid){target="_blank"}. Please ensure you have this key ready before starting the relevant sections. This is especially important for UNIGIS students who will need it for the module assignments.
+
+> For more information, please get in contact with the [UNIGIS Office](https://unigis.at/en/contact/){target="_blank"} at the University of Salzburg.

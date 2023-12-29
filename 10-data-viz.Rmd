@@ -8,9 +8,9 @@ In this lesson you will get to know the [`ggplot2` library](https://ggplot2.tidy
 
 ## The Grammar of Graphics
 
-The [`ggplot2`](https://ggplot2.tidyverse.org/){target="_blank"} library, a part of the Tidyverse suite, is renowned for its comprehensive and intuitive approach to data visualization in R. Rooted in the principles of the Grammar of Graphics, conceptualized by [Leland Wilkinson](https://en.wikipedia.org/wiki/Leland_Wilkinson){target="_blank"},`ggplot2` enables users to construct graphics through a layered approach, incorporating seven distinct elements:
+The [`ggplot2`](https://ggplot2.tidyverse.org/){target="_blank"} library, a part of the Tidyverse suite, is renowned for its comprehensive and intuitive approach to data visualization in R. Rooted in the principles of "The Grammar of Graphics", conceptualized by [Leland Wilkinson](https://en.wikipedia.org/wiki/Leland_Wilkinson){target="_blank"}, `ggplot2` enables users to construct graphics through a layered approach, incorporating seven distinct elements:
 
-The grammar of graphics is a schema that enables us to concisely describe the components of a graphic. These components are called **layers of grammatical elements.** Overall, the grammar comprises seven layers:
+"The Grammar of Graphics" is a schema that enables us to concisely describe the components of a graphic. These components are called **layers of grammatical elements.** Overall, the grammar comprises seven layers:
 
 1. **Data:** The core dataset to be visualized.
 2. **Aesthetics:** Mappings of variables to visual scales, like color or size.
@@ -22,7 +22,7 @@ The grammar of graphics is a schema that enables us to concisely describe the co
 
 In essence, these layers enable a structured and flexible approach to crafting visual narratives from data. For instance, the visual variables such as size, shape, and color offer nuanced ways to represent and differentiate data points.
 
-Consider the example below where the variables 'Gdp per capita' and 'Life Expectancy' are aligned along the x and y axes, respectively, while 'national population' and 'world regions' are visually differentiated through size and color.
+In the example below, 'Gdp per capita' and 'Life Expectancy' align with the x and y axes, respectively, and 'national population' and 'world regions' are differentiated by size and color.
 
 ```{r L07-colsize, echo=FALSE, fig.cap="Visual variables color and size in a `ggplot2` graph", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/VisualVar.png')
@@ -31,7 +31,7 @@ knitr::include_graphics('images/VisualVar.png')
 Upcoming sections will delve into practical examples, demonstrating the power and versatility of `ggplot2` in visualizing complex datasets.
 
 ```{block2, type = 'rmdtip'}
-**Further Reading:** For a foundational understanding of the Grammar of Graphics as implemented in `ggplot2`, refer to Hadley Wickham's insightful [article](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf){target="_blank"}.
+**Further Reading:** For a foundational understanding of "The Grammar of Graphics" as implemented in `ggplot2`, refer to Hadley Wickham's insightful [article](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf){target="_blank"}.
 ```
 
 ## Understanding Wide and Long Data Formats in R
@@ -77,9 +77,9 @@ Understanding these formats is crucial for effective data manipulation and visua
 
 ## Visualization of distributions
 
-As already announced above, functions in the `ggplot2` library are structured according to the Grammar of Graphics. When creating graphs with `ggplot2`, we start by setting up data and aesthetics (`aes()`), then defining the type of plot (geometry) like `geom_point`, and finally enhancing the plot with additional transformations and themes.
+As already mentioned above, functions in the `ggplot2` library are structured according to "The Grammar of Graphics". When creating graphs with `ggplot2`, we start by setting up data and aesthetics (`aes()`), then defining the type of plot (geometry) like `geom_point`, and finally enhancing the plot with additional transformations and themes.
 
-We start the analysis with a simple histogram, to explore the distribution of air quality [**data**](data/AirQualityUpperAut.csv){target="_blank"} that has been measured at different locations in Upper Austria.
+We begin the analysis with a simple histogram, to explore the distribution of air quality [**data**](data/AirQualityUpperAut.csv){target="_blank"} that has been measured at different locations in Upper Austria, one of the nine states in Austria.
 
 ```{block2, type = 'rmdtip'}
 
@@ -328,7 +328,7 @@ ggplot(data = nc) +
 
 ```
 
-The function `coord_sf()` allows to deal with the coordinate system, which includes both projection and extent of the map. By default, the map will use the coordinate system of the first layer or if the layer has no coordinate system, fall back on the geographic coordinate system WGS84. Using the argument `crs`, it is possible to override this setting, and project on the fly to any projection that has an [EPSG code](https://epsg.io/){target="_blank"}. For instance, we may change the coordinate system to EPSG 32618, which corresponds to WGS 84 / UTM zone 18N: 
+The function `coord_sf()` allows you to work with the coordinate system, which includes both the projection and extent of the map. By default, the map will use the coordinate system of the first layer or if the layer has no coordinate system, fall back on the geographic coordinate system WGS84. Using the argument `crs`, it is possible to override this setting, and project on the fly to any projection that has an [EPSG code](https://epsg.io/){target="_blank"}. For instance, we may change the coordinate system to EPSG 32618, which corresponds to WGS 84 / UTM zone 18N: 
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, fig.height = 2}
 # Map with changed coordinate system
