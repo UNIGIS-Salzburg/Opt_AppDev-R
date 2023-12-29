@@ -20,9 +20,9 @@ For instance...
 - other formats using custom delimiters
 - fix-width files `.fwf`
 
-The [`readr` library](https://readr.tidyverse.org/){target="_blank"} (also part of [Tidyverse](https://www.tidyverse.org/packages/#import){target="_blank"}) provides a series of functions that can be used to load from and save to such data formats. For instance, the `read_csv` function reads a comma delimited CSV file from the path provided as the first argument. 
+The [`readr` library](https://readr.tidyverse.org/){target="_blank"} (also part of [Tidyverse](https://www.tidyverse.org/packages/#import){target="_blank"}) provides a series of functions that can be used to load from and save to such data formats. For instance, the `read_csv` function reads a comma-delimited CSV file from the path provided as the first argument. 
 
-The code example below reads a CSV file that contains global fishery statistics provided by the [World Bank](https://datacatalog.worldbank.org/dataset/world-development-indicators){target="_blank"} and queries Norwegian entries. The function `writes_csv`  writes these entries to a new CSV file.  
+The code example below reads a CSV file that contains global fishery statistics provided by the [World Bank](https://datacatalog.worldbank.org/dataset/world-development-indicators){target="_blank"} and queries Norwegian entries. The function `write_csv`  writes these entries to a new CSV file.  
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -53,7 +53,7 @@ Other important packages for reading tabular data are [`readxl`](https://readxl.
 The library `sf` makes it easy to read and write vector datasets such as shapefiles. 
 
 ```{block2, type = 'rmdtip'}
-Remember: We have used the `sf-library` in lesson [4](#spds) to build vector geometries from scratch, investigate their properties and assign and transform coordinate reference systems. The name sf stands for **simple features**, meaning that [sf-objects conform to the simple feature standard](https://r-spatial.github.io/sf/articles/sf1.html){target="_blank"}. Now we use the same library to load sf-objects from file.
+Remember: In lesson [4](#spds), we used the `sf` library to build vector geometries from scratch. Investigate their properties and assign and transform coordinate reference systems. The name sf stands for **simple features**, meaning that [sf-objects conform to the simple feature standard](https://r-spatial.github.io/sf/articles/sf1.html){target="_blank"}. Now we use the same library to load sf-objects from file.
 ```
 
 In order to load vector data in an R-Script, we can use the function `st_read()`. In the code block below, a [shapefile](data/nc.zip){target="_blank"} ([North Carolina sample data](https://r-spatial.github.io/sf/reference/nc.html){target="_blank"}) is loaded and assigned to a variable `nc`. 
@@ -123,7 +123,7 @@ See [our solution](Solution_Miniexercise_plot.R){target="_blank"}!
 
 ## Read and write raster data
 
-The `terra` library provides functions to read and write raster data. In lesson [4](#spds) we have used `terra` to build `SpatRaster Objects` from scratch, investigated their properties and assigned and transformed coordinate reference systems.
+The `terra` library provides functions to read and write raster data. In lesson [4](#spds), we used the `terra` library to build `SpatRaster Objects` from scratch, investigated their properties and assigned and transformed coordinate reference systems.
 
 It is more common, however, to create a `SpatRaster Object` from a file. Supported file formats for reading are GeoTIFF, ESRI, ENVI, and ERDAS. Most formats supported for reading can also be written to (see [Creating `SpatRaster objects`](https://rspatial.org/pkg/3-objects.html){target="_blank"}).
 
@@ -153,7 +153,7 @@ r
 
 ```
 
-Layers 1-3 correspond to color bands red, green and blue. In order to plot the true color sentinel imagery, we can use `terra` function `plotRGB` and assign the numbers of respective color bands to attributes `r` (red), `g` (greeb), `b` (blue):
+Layers 1-3 correspond to color bands red, green, and blue. In order to plot the true color sentinel imagery, we can use `terra` function `plotRGB` and assign the numbers of respective color bands to attributes `r` (red), `g` (greeb), `b` (blue):
 
 ```{r, warning=FALSE, message=FALSE}
 
@@ -189,9 +189,9 @@ knitr::include_url("https://www.youtube.com/embed/7YcW25PHnAA?end=194")
 
 ``` 
 
-The most important take away messages are:
+The most important takeaway messages are:
 
-1) With a REST API web data is accessible through a URL (Client-Server call via HTTP protocol)
+1) With a REST API, web data is accessible through a URL (Client-Server call via HTTP protocol)
 2) The HTTP **Get** Method delivers data (a Response) - i.e. is used to read data, the HTTP **Post** Method is used to create new REST API resources (write data).
 3) URL Parameters are used to filter specific data from a response.
 4) Typically, APIs can return data in a number of different formats. 
