@@ -96,5 +96,5 @@ Very debatable, ... ML workloads normally need a lot of foundation in mathematic
 - In this folder, I will add more and more examples, on how we might use the packages / libraries for examples. And what they do essentially. (will be modified into .rmd files.)
 
 ### Automation Tools
-- [packagechecker.R](https://github.com/UNIGIS-Salzburg/Opt_AppDev-R/blob/major-revision/packagechecker.R) - to lookup the packages used in the .RMD files
-- [broken_links.py](https://github.com/Secreez/task_scripts/tree/master/python/broken_links) - to check for any broken links in the .RMD files.
+- [packagechecker.R](https://github.com/Secreez/task_scripts/tree/master/R/package_checker) - to lookup the packages used in the .RMD files (R)
+- [broken_links.py](https://github.com/Secreez/task_scripts/tree/master/python/broken_links) - to check for any broken links in the .RMD files (Python)
