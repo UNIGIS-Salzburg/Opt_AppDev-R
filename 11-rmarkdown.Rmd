@@ -1,6 +1,6 @@
 # R Markdown
 
-This lesson is dedicated to the `rmarkdown` library. However, R Markdown is **more than just a library.** [RMarkdown](https://rmarkdown.rstudio.com/){target="_blank"}  is part of a set of tools designed to enhance the reproducibility of your work. Other tools and platforms such as [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"}, [ArXiv](https://arxiv.org/){target="_blank"}, and [bioRxiv](https://www.biorxiv.org/){target="_blank"} facilitate reproducibility in various ways. In this module, we won't cover the paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"} in detail. Instead, our focus will be on how to use RMarkdown to make your analyses and reports more appealing, interactive, and **efficient**.
+This lesson is dedicated to the `rmarkdown` library. However, R Markdown is **more than just a library**, [RMarkdown](https://rmarkdown.rstudio.com/){target="_blank"}  is part of a set of tools designed to enhance the reproducibility of your work. Other tools and platforms such as [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"}, [ArXiv](https://arxiv.org/){target="_blank"}, and [bioRxiv](https://www.biorxiv.org/){target="_blank"} can facilitate reproducibility in various ways. In this module, we won't explore the paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"} in detail. Instead, our focus will be on how to use RMarkdown to make your analyses and reports more appealing, interactive, and **efficient**.
 
 ```{block2, type = 'rmdtip'}
 
@@ -50,7 +50,7 @@ To work on your repository locally, you will need to create a local clone of you
 
 In RStudio, go to (File > New Project > Version Control > Git).
 
-Enter the URL of your online repository (find this URL in your GitHub repository) and select a local directory for the clone. Then click `Create Project` (refer to Fig. \@ref(fig:L09-clone)).
+Enter the URL of your online repository (find this URL in your GitHub repository) and select a local directory for the clone. Then click "Create Project" (refer to Fig. \@ref(fig:L09-clone)).
 
 
 ```
@@ -59,7 +59,7 @@ Enter the URL of your online repository (find this URL in your GitHub repository
 knitr::include_graphics('images/Gitclone.png')
 ```
 
-Once you have cloned the online repository, the file contents of the repository as well as a new tab called `Git` appears in RStudio (see Fig. \@ref(fig:L09-features)).
+Once you have cloned the online repository, the file contents of the repository as well as a new tab called "Git" appears in RStudio (see Fig. \@ref(fig:L09-features)).
 
 ```{r L09-features, echo=FALSE, fig.cap="New features in RStudio", out.width='80%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/NewFeatures.png')
@@ -71,13 +71,13 @@ By default, the repository includes three files:
 2) [RStudio Project File](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects){target="_blank"} (`.Rproj`): Contains metadata for the RStudio project.
 3) [ReadMe File](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes){target="_blank"} (`.md`): A markdown file with information about the repository.
 
-The [`gitignore`](https://git-scm.com/docs/gitignore){target="_blank"} and [`.Rproj`](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects){target="_blank"} files are created during project initialization and are not yet in the online repository. Modifications appear in the `Git` tab (Fig. \@ref(fig:L09-changes)).
+The [`gitignore`](https://git-scm.com/docs/gitignore){target="_blank"} and [`.Rproj`](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects){target="_blank"} files are created during project initialization and are not yet in the online repository. Modifications appear in the "Git" tab (Fig. \@ref(fig:L09-changes)).
 
 ```{r L09-changes, echo=FALSE, fig.cap="Changes in Git tab", out.width='80%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/Changes.png')
 ```
 
-Before making further changes, switch to the `dev` branch (see Fig. \@ref(fig:L09-branch)). Currently, the `dev` branch is identical to the `main` branch.
+Before making further changes, switch to the `dev` branch (see Fig. \@ref(fig:L09-branch)). At this point, the `dev` branch mirrors the `main` branch.
 
 ```{r L09-branch, echo=FALSE, fig.cap="Switch branch", out.width='80%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/Branches.png')
@@ -95,7 +95,7 @@ Now that the environment is set up, let's create our first R Markdown document.
 
 ```{block2, type = 'rmdexercise'}
 
-In RStudio: Navigate to (File > New File > R Markdown). Enter a title for your document, accept the default settings, and click `OK`. You'll receive a sample R Markdown file with the extension `.Rmd`.
+In RStudio: Navigate to (File > New File > R Markdown). Enter a title for your document, accept the default settings, and click "OK". You'll receive a sample R Markdown file with the extension `.Rmd`.
 
 ```
 An R Markdown document comprises three core components: **metadata**, **text** and **code** (see Fig. \@ref(fig:L09-sample)).
@@ -126,13 +126,13 @@ Explore more about code block options in the [knitr documentation](https://yihui
 
 ```
 
-The other code blocks in the RMarkdown sample file produce a summary output (see line 17-19) or create a simple scatterplot (see line 25-27). To see how the compiled HTML output looks like, click `Knit` (see Fig. \@ref(fig:L09-knit)).
+The other code blocks in the RMarkdown sample file produce a summary output (see line 17-19) or create a simple scatterplot (see line 25-27). To see how the compiled HTML output looks like, click "Knit" (see Fig. \@ref(fig:L09-knit)).
 
 ```{r L09-knit, echo=FALSE, fig.cap="Knit HTML Output ", out.width='80%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/knit.png')
 ```
 
-Use the dropdown next to the **Knit** button to compile into `PDF` or `.docx` formats, among [others](https://rmarkdown.rstudio.com/lesson-9.html){target="_blank"}.
+Use the dropdown next to the "Knit" button to compile into formats such as `PDF` or `.docx`, among [others](https://rmarkdown.rstudio.com/lesson-9.html){target="_blank"}.
 
 ```{block2, type = 'rmdexercise'}
 
@@ -146,7 +146,7 @@ Regular synchronization of your local changes with the online repository is a ke
 
 ```{block2, type = 'rmdexercise'}
 
-In the RStudio Git tab, click the `Pull` button (see Fig. \@ref(fig:L09-pull)). A notification should indicate whether any new changes are available (e.g., `Already up to date`).
+In the RStudio Git tab, click the "Pull" button (see Fig. \@ref(fig:L09-pull)). A notification should indicate whether any new changes are available (e.g., `Already up to date`).
 
 ```
 
@@ -154,15 +154,15 @@ In the RStudio Git tab, click the `Pull` button (see Fig. \@ref(fig:L09-pull)). 
 knitr::include_graphics('images/pull.png')
 ```
 
-Even if you're working on your own, it's a good idea to routinely start the sync process with a `Pull`.
+Even if you're working on your own, it's a good idea to routinely start the sync process with a "Pull".
 
 Next, commit your changes. Think of committing as taking a snapshot of your progress, accompanied by a descriptive message.
 
 ```{block2, type = 'rmdexercise'}
 
-First, save all documents in RStudio. Then, hit the `Commit` button in the Git tab. The commit window will display a list of modified files. Green highlights indicate new content; red highlights show deleted content.
+First, save all documents in RStudio. Then, hit the "Commit" button in the Git tab. The commit window will display a list of modified files. Green highlights indicate new content; red highlights show deleted content.
 
-Check the boxes next to each file to include them in the commit. Alternatively, run `git add -A` in the terminal to add all files at once (see this [list of popular Git commands](https://github.com/joshnh/Git-Commands){target="_blank"}). After selecting files, enter a meaningful commit message and click `Commit`.
+Check the boxes next to each file to include them in the commit. Alternatively, run `git add -A` in the terminal to add all files at once (see this [list of popular Git commands](https://github.com/joshnh/Git-Commands){target="_blank"}). After selecting files, enter a meaningful commit message and click "Commit".
 
 See Fig. \@ref(fig:L09-commit).
 
@@ -182,7 +182,7 @@ knitr::include_graphics('images/Push.png')
 
 Your online repository on GitHub should now be updated (switch to `dev` branch in your repository) (see Fig. \@ref(fig:L09-updated)).
 
-```{r L09-updated, echo=FALSE, fig.cap="Commit with message 'describe sync process in github' was pushed to the developer branch a minute ago", out.width='90%', fig.asp=.75, fig.align='center'}
+```{r L09-updated, echo=FALSE, fig.cap="Commit with message 'describe sync process in GitHub' was pushed to the developer branch a minute ago", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/CommitFinished.png')
 ```
 
@@ -240,7 +240,7 @@ To create an **unordered list**, use `*`, `-`, or `+`:
     + Item 2a
     - Item 2b
 
-**Hyperlinks** are created with the format `[Text](URL)`, for example, `[GitHub](https://github.com/){target="_blank"}` becomes [Github](https://github.com/){target="_blank"}. The `target="_blank"` parameter opens the link in a new tab, which is a good practice when linking to external websites.
+**Hyperlinks** are created with the format `[Text](URL)`, for example, `[GitHub](https://github.com/){target="_blank"}` becomes [GitHub](https://github.com/){target="_blank"}. The `target="_blank"` parameter opens the link in a new tab, which is a good practice when linking to external websites.
 
 **Blockquotes** are indicated by `>` and can be nested:
 
@@ -303,7 +303,7 @@ Browser versions may vary. For assistance, refer to the discussion forum if need
 ```
 
 
-2. **Export BibTeX Entries:** After enabling BibTeX export, a new link `Import into BibTeX` will appear in Google Scholar (see Fig. \@ref(fig:L09-biboption)).
+2. **Export BibTeX Entries:** After enabling BibTeX export, a new link "Import into BibTeX" will appear in Google Scholar (see Fig. \@ref(fig:L09-biboption)).
 
 ```{r L09-biboption, echo=FALSE, fig.cap="BibTeX Link in Firefox 106.0.1", out.width='90%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/bibtexoption.png')
@@ -353,13 +353,10 @@ Try enhancing the report with an additional spatial indicator, such as a map dis
 
 ## Self-study
 
-The vast functionalities of R Markdown extend beyond the scope of a single lesson. To fully leverage its capabilities, refer to the comprehensive online book [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/){target="_blank"}.
+The vast functionalities of R Markdown extend beyond the scope of a single lesson. To fully exploit its capabilities, refer to the comprehensive online book [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/){target="_blank"}.
 
 This guide covers additional topics such as Notebooks, Presentations, support for languages like Python, C++, SQL, and more complex document creation with extensions like [BookDown](https://bookdown.org/){target="_blank"} or [ThesisDown](https://github.com/ismayc/thesisdown){target="_blank"}. While R Markdown predominantly supports R, its flexibility extends to integrating other programming languages like Python, C++, and SQL. This integration is facilitated through specific settings in the code chunks of the R Markdown document. For instance, by specifying the `python` engine in a code chunk (e.g., ```{python}```), you can seamlessly run Python code within your document. Similar approaches are used for C++ (using the `cpp` engine) and SQL (using the `sql` engine). These capabilities are enabled by the `knitr` package, which supports various languages, allowing for a multi-language analytical workflow within a single R Markdown document. Experimenting with these various features is key to mastering R Markdown.
 
 ```{block2, type = 'rmdtip'}
 **Fun Fact:** This module was written using BookDown.
 ```
-
-
-

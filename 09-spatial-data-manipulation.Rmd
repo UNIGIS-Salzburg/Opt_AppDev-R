@@ -10,7 +10,7 @@ In this lesson, we will utilize online data resources in workflows that involve 
 
 ## Data Acquisition
 
-We will work with vector data to identify agricultural land parcels in European Union countries correctly. The Austrian Agricultural Agency ([AMA](https://www.ama.at/intro){target="_blank"}) provides access to Austrian agricultural parcels through an [OGC Rest API - Feature](https://ogcapi.ogc.org/){target="_blank"} interface. The OGC API Features standard is the successor to the OGC Web Feature Service (WFS) specification.
+We will work with vector data to correctly identify agricultural land parcels in European Union countries. The Austrian Agricultural Agency ([AMA](https://www.ama.at/intro){target="_blank"}) provides access to Austrian agricultural parcels through an [OGC Rest API - Feature](https://ogcapi.ogc.org/){target="_blank"} interface. The OGC API Features standard is the successor to the OGC Web Feature Service (WFS) specification.
 
 ```{block2, type = 'rmdtip'}
 
@@ -18,7 +18,7 @@ The R syntax used to interact with OGC APIs is the same as described in the "Dat
 
 ```
 
-efore loading the data into an R script, examine the API's contents. Visit the web service's [landing page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/){target="_blank"} and proceed to the [collection page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml){target="_blank"}. There you will find an overview of the available layers.
+Before loading the data into an R script, examine the API's contents. Visit the web service's [landing page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/){target="_blank"} and proceed to the [collection page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml){target="_blank"}. There you will find an overview of the available layers.
 
 Enter the following URL into your browser:
 
@@ -71,7 +71,7 @@ dplyr::glimpse(invekos)
 
 > The abbreviation `dbl` stands for `double`, a data type that stores numbers with decimal points.
 
-To create a subset of the `invekos` sf-object, use the following code::
+To create a subset of the `invekos` sf-object, use the following code:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -117,7 +117,7 @@ invekos.sub %>%
 For an initial visual impression, plot the sf-object using the base R `plot()` function:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
-plot(invekos.sub[1], main="Land Use", key.pos = 1, key.width = lcm(1.3))
+plot(invekos.sub[1], main="Land Use", key.pos = 1, key.width = lcm(1.8))
 ```
 
 By default, the `plot()` function generates a multi-panel plot, with one sub-plot for each field of the object. However, specifying `invekos.sub[1]` restricts the output to a single plot, specifically showcasing the `land_use` field. The function parameter `key.pos = 1` aligns the legend below the map (1=below, 2=left, 3=above and 4=right). `key.width` defines the width of the legend. 
@@ -186,10 +186,10 @@ For example, to extract grassland parcels, the `filter()` function is used:
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 invekos.sub %>%
   dplyr::filter(land_use=='grassland') %>%
-  {plot(.[1], main="Land Use", key.pos = 1, key.width = lcm(1.3))}
+  {plot(.[1], main="Land Use", key.pos = 1, key.width = lcm(1.8))}
 ```
 
-> Note the use of curly brackets in plot() function. This is required because the dot notation (.) cannot directly index a piped value. For a deeper explanation, see this [Stack Overflow discussion](https://stackoverflow.com/questions/42385010/using-the-pipe-and-dot-notation){target="_blank"}.
+> Note the use of curly brackets in the `plot()` function. This is required because the dot notation (.) cannot directly index a piped value. For a deeper explanation, see this [Stack Overflow discussion](https://stackoverflow.com/questions/42385010/using-the-pipe-and-dot-notation){target="_blank"}.
 
 ### Geometrical operations
 
@@ -295,7 +295,7 @@ plot(farms[1], main=NULL, key.pos=NULL, pch = 7, col='red', add = TRUE, cex=1)
 
 ```
 
-The output map visualizes the closest farm to each agricultural parcel, highlighting the practical application of `sf` geometrical operations.
+The output map visualizes the closest farm to each agricultural parcel, highlighting the practical application of `sf` Geometrical operations.
 
 This chapter focuses on logical matrix outputs from geometric operations. For operations generating new geometries, such as `st_union`, `st_buffer`, and `st_centroid`, see [operations returning a geometry](https://r-spatial.github.io/sf/articles/sf3.html#operations-returning-a-geometry){target="_blank"}. For network operations on `sf` objects, consider using `sfnetworks` or the `igraph` package.
 
@@ -307,7 +307,7 @@ Having previously discussed the structure of `SpatRaster Objects` in Lesson [4](
 
 ### Resampling
 
-Resampling alters the spatial resolution of a raster dataset, which is necessary for aligning multiple rasters with different resolutions or adjusting the detail level in an analysis.
+Resampling is crucial for working with raster datasets. It alters the spatial resolution, allowing you to align multiple rasters with different resolutions. Additionally, it adjusts the level of detail necessary for your analysis.
 
 Let's demonstrate resampling with the `terra` sample dataset:
 
@@ -320,7 +320,7 @@ plot(r, main='SpatRaster from file')
 
 ```
 
-Before we change the raster resolution of `SpatRaster Object`, it is important to know the original resolution of the raster. You can use the `res()` function to check this:
+Before we change the raster resolution of `SpatRaster Object`, it is important to know the original resolution of the raster. You can use the `res()` function to check the original resolution:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 

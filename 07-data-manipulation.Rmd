@@ -1,7 +1,7 @@
 # Data Manipulation{#datman}
 
 ```{block2, type = 'rmdtip'}
-In most instances the structure of the available data will not meet the specific requirements to perform the analyses you are interested in. Data analysts typically spend most of their time cleaning, filtering, restructuring data as well as harmonizing and joining data from different sources.
+In most instances, the structure of the available data will not meet the specific requirements needed to perform the analyses you are interested in. Data analysts typically spend most of their time cleaning, filtering, restructuring data as well as harmonizing and joining data from different sources.
 
 In this lesson, you will learn about the fundamental data wrangling operations using the `dplyr` library from the Tidyverse suite. You'll also be introduced to [tibbles](https://tibble.tidyverse.org/){target="_blank"}, a modern take on data frames in R. Tibbles are lightweight and work seamlessly within the Tidyverse ecosystem. For more on tibbles, see [Tibbles in R for Data Science](https://r4ds.had.co.nz/tibbles.html){target="_blank"}.
 
@@ -9,9 +9,9 @@ In this lesson, you will learn about the fundamental data wrangling operations u
 
 ## Preparation
 
-If not yet installed on your machine, install the libraries `tidyverse` as well as `nycflights13` (see Libraries in lesson [Core concepts](#core)).
+If not already installed on your machine, install both the `tidyverse` and `nycflights13` libraries. (see "libraries" in lesson [2](#core)).
 
-The code below, loads a sample dataset (a [tibble](https://tibble.tidyverse.org/){target="_blank"}) from the library `nycflights13` into the variable `flights_from_nyc`. We will use this sample data in this lesson. 
+The code below loads a sample dataset (a [tibble](https://tibble.tidyverse.org/){target="_blank"}) from the library `nycflights13` into the variable `flights_from_nyc`. We will use this sample data in this lesson. 
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -20,7 +20,7 @@ flights_from_nyc <- nycflights13::flights
 
 ```
 
-The operator `::` is used to indicate that the function `flights` (that returns our sample dataset) is situated within the library `nycflights13`. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names. 
+The operator `::` is used to indicate that the function `flights` (that returns our sample dataset) is situated within the library `nycflights13`. This helps avoid ambiguities when functions from different loaded libraries have the same names.
 
 In order to run the following data wrangling examples on your machine, add both lines above as well as the code snippets provided in the upcoming examples to a new R script file.
 
@@ -34,7 +34,7 @@ Alternatively, you may inspect `flights_from_nyc` by writing it to the console.
 
 ## Data manipulation
 
-The library `dplyr` provides a number of functions to investigate basic characteristics of inputs. For instance, the function `count()` can be used to count the number of rows of a data frame or tibble. The code below uses `flights_from_nyc` as input to this function. The returned row count `n` is represented in a table. 
+The `dplyr` library provides a number of functions to investigate the basic characteristics of inputs. For instance, the function `count()` can be used to count the number of rows of a data frame or tibble. The code below uses `flights_from_nyc` as input to this function. The returned row count `n` is represented in a table. 
 
 
 
@@ -48,7 +48,7 @@ flights_from_nyc %>%
   knitr::kable()
 ```
 
-In the example above, we use the pipe operator `%>%`, a key feature of `magrittr` and `tidyverse` syntax. It links a sequence of analysis steps, passing `flights_from_nyc` through `count()` and then `kable()`. This makes the code simpler and more readable. For a deeper understanding, check out [this video](https://www.youtube.com/watch?v=sohARFx6aTo){target="_blank"}.
+In the example above, we use the pipe operator `%>%`, a key feature of `magrittr` and `tidyverse` syntax. The operator links a sequence of analysis steps, passing `flights_from_nyc` through `count()` and then `kable()`. This makes the code simpler and more readable. For a deeper understanding, check out [this video](https://www.youtube.com/watch?v=sohARFx6aTo){target="_blank"}.
 
 The same result could be achieved with a traditional approach using an intermediate variable or by nesting functions. However, these methods can make the code less readable compared to using the pipe operator:
 
@@ -143,7 +143,7 @@ flights_from_nyc %>%
 
 ```{block2, type = 'rmdexercise'}
 
-Run the mutate example above in a new script and replace `dplyr::mutate` by `dplyr::transmute`. What happens to your results?
+Run the mutate example above in a new script and replace `dplyr::mutate` with `dplyr::transmute`. What happens to your results?
   
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
@@ -159,7 +159,7 @@ The `transmute` function creates a new data frame containing only column `air_ti
 
 ### Arrange
 
-The function `arrange()` sorts a tibble or data frame by ascending order of the values in the specified column. If a negative sign is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.
+The function `arrange()` sorts a `tibble or data frame in ascending order based on the values in the specified column. If a negative sign is specified before the column name, the descending order is used. The code below would produce a table showing all the rows when ordered by descending order of air time.
 
 ```{r, echo=TRUE}
 flights_from_nyc %>%
@@ -220,7 +220,7 @@ city_telephone_prexix %>%
   knitr::kable()
 ```
 
-That information can be combined with the data present in a second table `city_info_wide` (see below) through a join operation on the columns containing the city names. 
+That information can be combined with the data present in a second table `city_info_wide` (see below) through the join operation on the columns containing the city names. 
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
 city_info_wide <- data.frame(
@@ -236,7 +236,7 @@ city_info_wide %>%
 ```
 
 ```{block2, type = 'rmdtip'}
-Note that data frames in the code above are converted to [tibbles](https://tibble.tidyverse.org/){target="_blank"}. This step is needed as the function `kable()` takes `tibbles` as an input. 
+Note that data frames in the code above are converted to [tibbles](https://tibble.tidyverse.org/){target="_blank"}. This step is necessary because the `kable()` function requires `tibbles` as input.
 ```
 
 Joins between two tables can be executed by different join operations. The `dplyr` library offers join operations, which correspond to `SQL` joins illustrated in the image below. 
@@ -368,7 +368,7 @@ Compare the results of respective full, left, right and inner join operations. T
 
 ```{block2, type = 'rmdexercise'}
 
-In the previous exercise we have created a table that shows national African sorghum production in 2019. In this exercise we will join crop production statistics with a table that contains national boundaries and visualize sorghum production quantities in a simple map. 
+In the previous exercise, we created a table that shows national African sorghum production in 2019. In this exercise we will join crop production statistics with a table that contains national boundaries and visualize sorghum production quantities in a simple map. 
 
 ```
 
@@ -376,7 +376,7 @@ In the previous exercise we have created a table that shows national African sor
 
 2. Copy the [code from the previous exercise](Solution_Exercise_DataWrangling1.R){target="_blank"} into your new RScript. Note that the result of the pipe operations is *not* saved to a variable. Save it to a variable.
 
-3. Use the `ggplot2` function [map_data](https://ggplot2.tidyverse.org/reference/map_data.html){target="_blank"} to convert the built in sample dataset `world` (comes with library [maps](https://cran.r-project.org/web/packages/maps/index.html){target="_blank"}) to a data frame:
+3. Use the `ggplot2` function [`map_data`](https://ggplot2.tidyverse.org/reference/map_data.html){target="_blank"} to convert the built in sample dataset `world` (comes with library [`maps`](https://cran.r-project.org/web/packages/maps/index.html){target="_blank"}) to a data frame:
 
 ```{echo=FALSE}
 world_ctry <- map_data("world") 
