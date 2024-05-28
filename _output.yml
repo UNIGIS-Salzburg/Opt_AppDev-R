@@ -9,8 +9,8 @@ bookdown::gitbook:
         <li><a href="./">Automated Data Processing with R</a></li>
       after: |
         <li>Copyright © UNIGIS Salzburg.</li>
-    download: ["pdf", "epub"]
-bookdown::epub_book: default
+#download: ["pdf", "epub"]
+#bookdown::epub_book: default
 bookdown::word_document2:
   reference_docx: Template-word1.dotx
   toc: true
