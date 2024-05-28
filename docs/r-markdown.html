@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="r-markdown" class="section level1 hasAnchor" number="11">
 <h1><span class="header-section-number">Lesson 11</span> R Markdown<a href="r-markdown.html#r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This lesson is dedicated to the <code>rmarkdown</code> library. However, R Markdown is <strong>more than just a library.</strong> <a href="https://rmarkdown.rstudio.com/" target="_blank">RMarkdown</a> is part of a set of tools designed to enhance the reproducibility of your work. Other tools and platforms such as <a href="https://github.com/" target="_blank">GitHub</a>, <a href="https://jupyter.org/" target="_blank">Jupyter</a>, <a href="https://www.docker.com/" target="_blank">Docker</a>, <a href="https://arxiv.org/" target="_blank">ArXiv</a>, and <a href="https://www.biorxiv.org/" target="_blank">bioRxiv</a> facilitate reproducibility in various ways. In this module, we won’t cover the paradigm of <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801" target="_blank">reproducible research</a> in detail. Instead, our focus will be on how to use RMarkdown to make your analyses and reports more appealing, interactive, and <strong>efficient</strong>.</p>
+<p>This lesson is dedicated to the <code>rmarkdown</code> library. However, R Markdown is <strong>more than just a library</strong>, <a href="https://rmarkdown.rstudio.com/" target="_blank">RMarkdown</a> is part of a set of tools designed to enhance the reproducibility of your work. Other tools and platforms such as <a href="https://github.com/" target="_blank">GitHub</a>, <a href="https://jupyter.org/" target="_blank">Jupyter</a>, <a href="https://www.docker.com/" target="_blank">Docker</a>, <a href="https://arxiv.org/" target="_blank">ArXiv</a>, and <a href="https://www.biorxiv.org/" target="_blank">bioRxiv</a> can facilitate reproducibility in various ways. In this module, we won’t explore the paradigm of <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801" target="_blank">reproducible research</a> in detail. Instead, our focus will be on how to use RMarkdown to make your analyses and reports more appealing, interactive, and <strong>efficient</strong>.</p>
 
 <div class="rmdtip">
 <p>In this lesson, we will weave together code and text in professionally rendered R Markdown documents and use <a href="https://github.com/" target="_blank">GitHub</a> to safely store, share, and administer our results.</p>
@@ -329,8 +329,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="rmdtip">
 <p>To properly <strong>install</strong><code>tinytex</code>, execute both lines in RStudio:</p>
 </div>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="r-markdown.html#cb273-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
-<span id="cb273-2"><a href="r-markdown.html#cb273-2" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="r-markdown.html#cb274-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
+<span id="cb274-2"><a href="r-markdown.html#cb274-2" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
 <p>Follow RStudio’s prompts to install any dependencies. For technical issues, please consult the discussion forum.</p>
 </div>
 <div id="create-a-local-clone" class="section level2 hasAnchor" number="11.2">
@@ -339,7 +339,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div class="rmdexercise">
 <p>In RStudio, go to (File &gt; New Project &gt; Version Control &gt; Git).</p>
-<p>Enter the URL of your online repository (find this URL in your GitHub repository) and select a local directory for the clone. Then click <code>Create Project</code> (refer to Fig. <a href="r-markdown.html#fig:L09-clone">11.1</a>).</p>
+<p>Enter the URL of your online repository (find this URL in your GitHub repository) and select a local directory for the clone. Then click “Create Project” (refer to Fig. <a href="r-markdown.html#fig:L09-clone">11.1</a>).</p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-clone"></span>
 <img src="images/Gitclone.png" alt="Clone GitHub Repository" width="70%" />
@@ -347,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Figure 11.1: Clone GitHub Repository
 </p>
 </div>
-<p>Once you have cloned the online repository, the file contents of the repository as well as a new tab called <code>Git</code> appears in RStudio (see Fig. <a href="r-markdown.html#fig:L09-features">11.2</a>).</p>
+<p>Once you have cloned the online repository, the file contents of the repository as well as a new tab called “Git” appears in RStudio (see Fig. <a href="r-markdown.html#fig:L09-features">11.2</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-features"></span>
 <img src="images/NewFeatures.png" alt="New features in RStudio" width="80%" />
 <p class="caption">
@@ -360,14 +360,14 @@ Figure 11.2: New features in RStudio
 <li><a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank">RStudio Project File</a> (<code>.Rproj</code>): Contains metadata for the RStudio project.</li>
 <li><a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes" target="_blank">ReadMe File</a> (<code>.md</code>): A markdown file with information about the repository.</li>
 </ol>
-<p>The <a href="https://git-scm.com/docs/gitignore" target="_blank"><code>gitignore</code></a> and <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank"><code>.Rproj</code></a> files are created during project initialization and are not yet in the online repository. Modifications appear in the <code>Git</code> tab (Fig. <a href="r-markdown.html#fig:L09-changes">11.3</a>).</p>
+<p>The <a href="https://git-scm.com/docs/gitignore" target="_blank"><code>gitignore</code></a> and <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank"><code>.Rproj</code></a> files are created during project initialization and are not yet in the online repository. Modifications appear in the “Git” tab (Fig. <a href="r-markdown.html#fig:L09-changes">11.3</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-changes"></span>
 <img src="images/Changes.png" alt="Changes in Git tab" width="80%" />
 <p class="caption">
 Figure 11.3: Changes in Git tab
 </p>
 </div>
-<p>Before making further changes, switch to the <code>dev</code> branch (see Fig. <a href="r-markdown.html#fig:L09-branch">11.4</a>). Currently, the <code>dev</code> branch is identical to the <code>main</code> branch.</p>
+<p>Before making further changes, switch to the <code>dev</code> branch (see Fig. <a href="r-markdown.html#fig:L09-branch">11.4</a>). At this point, the <code>dev</code> branch mirrors the <code>main</code> branch.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-branch"></span>
 <img src="images/Branches.png" alt="Switch branch" width="80%" />
 <p class="caption">
@@ -384,7 +384,7 @@ Figure 11.4: Switch branch
 <p>Now that the environment is set up, let’s create our first R Markdown document.</p>
 
 <div class="rmdexercise">
-<p>In RStudio: Navigate to (File &gt; New File &gt; R Markdown). Enter a title for your document, accept the default settings, and click <code>OK</code>. You’ll receive a sample R Markdown file with the extension <code>.Rmd</code>.</p>
+<p>In RStudio: Navigate to (File &gt; New File &gt; R Markdown). Enter a title for your document, accept the default settings, and click “OK”. You’ll receive a sample R Markdown file with the extension <code>.Rmd</code>.</p>
 </div>
 <p>An R Markdown document comprises three core components: <strong>metadata</strong>, <strong>text</strong> and <strong>code</strong> (see Fig. <a href="r-markdown.html#fig:L09-sample">11.5</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-sample"></span>
@@ -410,14 +410,14 @@ Figure 11.6: Python Example
 <div class="rmdtip">
 <p>Explore more about code block options in the <a href="https://yihui.org/knitr/options/" target="_blank">knitr documentation</a>.</p>
 </div>
-<p>The other code blocks in the RMarkdown sample file produce a summary output (see line 17-19) or create a simple scatterplot (see line 25-27). To see how the compiled HTML output looks like, click <code>Knit</code> (see Fig. <a href="r-markdown.html#fig:L09-knit">11.7</a>).</p>
+<p>The other code blocks in the RMarkdown sample file produce a summary output (see line 17-19) or create a simple scatterplot (see line 25-27). To see how the compiled HTML output looks like, click “Knit” (see Fig. <a href="r-markdown.html#fig:L09-knit">11.7</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-knit"></span>
 <img src="images/knit.png" alt="Knit HTML Output " width="80%" />
 <p class="caption">
 Figure 11.7: Knit HTML Output
 </p>
 </div>
-<p>Use the dropdown next to the <strong>Knit</strong> button to compile into <code>PDF</code> or <code>.docx</code> formats, among <a href="https://rmarkdown.rstudio.com/lesson-9.html" target="_blank">others</a>.</p>
+<p>Use the dropdown next to the “Knit” button to compile into formats such as <code>PDF</code> or <code>.docx</code>, among <a href="https://rmarkdown.rstudio.com/lesson-9.html" target="_blank">others</a>.</p>
 
 <div class="rmdexercise">
 <p>Knitting an R Markdown document involves a two-step process. First, the <code>.Rmd</code> file is processed by the knitr package, which executes the code chunks and generates a new markdown file with the code and its output. Then, pandoc converts this markdown file into the final output document in the chosen format, allowing a wide range of output options for creating professional-quality documents.</p>
@@ -428,7 +428,7 @@ Figure 11.7: Knit HTML Output
 <p>Regular synchronization of your local changes with the online repository is a key practice in version control. Start by pulling any updates from the repository.</p>
 
 <div class="rmdexercise">
-<p>In the RStudio Git tab, click the <code>Pull</code> button (see Fig. <a href="r-markdown.html#fig:L09-pull">11.8</a>). A notification should indicate whether any new changes are available (e.g., <code>Already up to date</code>).</p>
+<p>In the RStudio Git tab, click the “Pull” button (see Fig. <a href="r-markdown.html#fig:L09-pull">11.8</a>). A notification should indicate whether any new changes are available (e.g., <code>Already up to date</code>).</p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-pull"></span>
 <img src="images/pull.png" alt="Make Pull" width="80%" />
@@ -436,12 +436,12 @@ Figure 11.7: Knit HTML Output
 Figure 11.8: Make Pull
 </p>
 </div>
-<p>Even if you’re working on your own, it’s a good idea to routinely start the sync process with a <code>Pull</code>.</p>
+<p>Even if you’re working on your own, it’s a good idea to routinely start the sync process with a “Pull”.</p>
 <p>Next, commit your changes. Think of committing as taking a snapshot of your progress, accompanied by a descriptive message.</p>
 
 <div class="rmdexercise">
-<p>First, save all documents in RStudio. Then, hit the <code>Commit</code> button in the Git tab. The commit window will display a list of modified files. Green highlights indicate new content; red highlights show deleted content.</p>
-<p>Check the boxes next to each file to include them in the commit. Alternatively, run <code>git add -A</code> in the terminal to add all files at once (see this <a href="https://github.com/joshnh/Git-Commands" target="_blank">list of popular Git commands</a>). After selecting files, enter a meaningful commit message and click <code>Commit</code>.</p>
+<p>First, save all documents in RStudio. Then, hit the “Commit” button in the Git tab. The commit window will display a list of modified files. Green highlights indicate new content; red highlights show deleted content.</p>
+<p>Check the boxes next to each file to include them in the commit. Alternatively, run <code>git add -A</code> in the terminal to add all files at once (see this <a href="https://github.com/joshnh/Git-Commands" target="_blank">list of popular Git commands</a>). After selecting files, enter a meaningful commit message and click “Commit”.</p>
 <p>See Fig. <a href="r-markdown.html#fig:L09-commit">11.9</a>.</p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-commit"></span>
@@ -461,9 +461,9 @@ Figure 11.10: Make Push
 <p> </p>
 <p>Your online repository on GitHub should now be updated (switch to <code>dev</code> branch in your repository) (see Fig. <a href="r-markdown.html#fig:L09-updated">11.11</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-updated"></span>
-<img src="images/CommitFinished.png" alt="Commit with message 'describe sync process in github' was pushed to the developer branch a minute ago" width="90%" />
+<img src="images/CommitFinished.png" alt="Commit with message 'describe sync process in GitHub' was pushed to the developer branch a minute ago" width="90%" />
 <p class="caption">
-Figure 11.11: Commit with message ‘describe sync process in github’ was pushed to the developer branch a minute ago
+Figure 11.11: Commit with message ‘describe sync process in GitHub’ was pushed to the developer branch a minute ago
 </p>
 </div>
 </div>
@@ -517,7 +517,7 @@ Figure 11.12: How Tables are made in Markdown
 <li>Item 2b</li>
 </ul></li>
 </ul>
-<p><strong>Hyperlinks</strong> are created with the format <code>[Text](URL)</code>, for example, <code>[GitHub](https://github.com/){target="_blank"}</code> becomes <a href="https://github.com/" target="_blank">Github</a>. The <code>target="_blank"</code> parameter opens the link in a new tab, which is a good practice when linking to external websites.</p>
+<p><strong>Hyperlinks</strong> are created with the format <code>[Text](URL)</code>, for example, <code>[GitHub](https://github.com/){target="_blank"}</code> becomes <a href="https://github.com/" target="_blank">GitHub</a>. The <code>target="_blank"</code> parameter opens the link in a new tab, which is a good practice when linking to external websites.</p>
 <p><strong>Blockquotes</strong> are indicated by <code>&gt;</code> and can be nested:</p>
 <pre><code>&gt;&quot;Everything is related to everything else, but near things are more related than distant things&quot;.
 &gt;
@@ -565,7 +565,7 @@ Figure 11.13: Enable BibTeX in Firefox 106.0.1
 Browser versions may vary. For assistance, refer to the discussion forum if needed.
 </div>
 <ol start="2" style="list-style-type: decimal">
-<li><strong>Export BibTeX Entries:</strong> After enabling BibTeX export, a new link <code>Import into BibTeX</code> will appear in Google Scholar (see Fig. <a href="r-markdown.html#fig:L09-biboption">11.14</a>).</li>
+<li><strong>Export BibTeX Entries:</strong> After enabling BibTeX export, a new link “Import into BibTeX” will appear in Google Scholar (see Fig. <a href="r-markdown.html#fig:L09-biboption">11.14</a>).</li>
 </ol>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:L09-biboption"></span>
 <img src="images/bibtexoption.png" alt="BibTeX Link in Firefox 106.0.1" width="90%" />
@@ -618,7 +618,7 @@ Explore more RMarkdown syntax examples in the <a href="https://www.rstudio.com/w
 </div>
 <div id="self-study" class="section level2 hasAnchor" number="11.7">
 <h2><span class="header-section-number">11.7</span> Self-study<a href="r-markdown.html#self-study" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The vast functionalities of R Markdown extend beyond the scope of a single lesson. To fully leverage its capabilities, refer to the comprehensive online book <a href="https://bookdown.org/yihui/rmarkdown/" target="_blank">R Markdown: The Definitive Guide</a>.</p>
+<p>The vast functionalities of R Markdown extend beyond the scope of a single lesson. To fully exploit its capabilities, refer to the comprehensive online book <a href="https://bookdown.org/yihui/rmarkdown/" target="_blank">R Markdown: The Definitive Guide</a>.</p>
 <p>This guide covers additional topics such as Notebooks, Presentations, support for languages like Python, C++, SQL, and more complex document creation with extensions like <a href="https://bookdown.org/" target="_blank">BookDown</a> or <a href="https://github.com/ismayc/thesisdown" target="_blank">ThesisDown</a>. While R Markdown predominantly supports R, its flexibility extends to integrating other programming languages like Python, C++, and SQL. This integration is facilitated through specific settings in the code chunks of the R Markdown document. For instance, by specifying the <code>python</code> engine in a code chunk (e.g., <code>{python}</code>), you can seamlessly run Python code within your document. Similar approaches are used for C++ (using the <code>cpp</code> engine) and SQL (using the <code>sql</code> engine). These capabilities are enabled by the <code>knitr</code> package, which supports various languages, allowing for a multi-language analytical workflow within a single R Markdown document. Experimenting with these various features is key to mastering R Markdown.</p>
 
 <div class="rmdtip">
@@ -675,7 +675,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["UNIGIS-AppDev-R.pdf", "UNIGIS-AppDev-R.epub"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null

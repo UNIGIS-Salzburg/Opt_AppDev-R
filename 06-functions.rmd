@@ -59,6 +59,10 @@ The choice between implicit and explicit return in R functions can depend on var
 
 ```
 
+
+<!-- Note from 01.03 for next Review: It might be good, to explain it more througly, see Discussion Forum - Jens about explicit vs. implicit and my answer: https://elearn.unigis.at/mod/forum/discuss.php?d=9284 -->
+
+
 **Early Return Example:**
 
 Sometimes, it's necessary to exit a function early, for instance in error handling:

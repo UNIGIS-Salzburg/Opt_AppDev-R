@@ -48,6 +48,10 @@ underscores the crucial role of spatial data wrangling in geoinformatics. It nav
 ## Chapter 12: Spatial Data Manipulation and (Advanced Spatial Statistics?)
 This chapter delves deeper, in the nuances between data wrangling and data manipulation in the spatial context. It covers a range of topics from filtering spatial data, performing spatial joins, executing geometric and raster operations, to exploring advanced spatial statistics with **spatstat**. The chapter could also provide insights into point pattern analysis, spatial clustering, and nearest neighbor analysis, offering a rounded perspective on spatial data manipulation and its statistical implications. Additionally, a comparative analysis of different spatial packages is included, allowing students to discern the strengths and weaknesses of each tool within the R ecosystem and in comparison to other open-source ecosystems like Python and computation via compiler...) (We could of course easily branch of the Spatial Statistics into an additional Chapter.. But I think the basics would be very beneficial.)
 
+### For the next review:
+- 01.03.2024 See Discussion Forum Question from Jens - made a comment in chapter 06 functions about it: https://elearn.unigis.at/mod/forum/discuss.php?d=9284
+
+
 ### Chapters to debate or just quick ideas:
 #### Chapter X: "ChatGPT and R":
 Has a high probability of changing way faster then state of the art packages or syntax of R language.
