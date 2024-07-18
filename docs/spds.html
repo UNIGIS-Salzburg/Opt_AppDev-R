@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Lesson 4 Spatial Data Structures | Automated Data Processing with R</title>
   <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Lesson 4 Spatial Data Structures | Automated Data Processing with R" />
   <meta property="og:type" content="book" />
@@ -28,7 +28,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="branding/unigis_globe_gruen_transparent.png" type="image/x-icon" />
 <link rel="prev" href="DS.html"/>
 <link rel="next" href="control-structures.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -51,21 +51,22 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -128,6 +129,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="css/custom.css" type="text/css" />
 </head>
@@ -142,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="https://unigis.at/en" target="_blank"><img alt="UNIGIS Salzburg" src="branding/UNIGIS_Salzburg_Schriftlogo_globe_tra.png" width=100%></a></li>
+<li><a href="https://unigis.at/en" target="_blank"><img alt="UNIGIS Salzburg" src="branding/UNIGIS_Salzburg_Schriftlogo_v05.png" width=100%></a></li>
 <li><a href="./">Automated Data Processing with R</a></li>
 
 <li class="divider"></li>
@@ -320,19 +325,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this section, we will use the <code>sf</code> library to work with vector data structures. The name <code>sf</code> (which stands for <strong>simple features</strong>) implies that <code>sf</code> supports simple feature access via R. Simple features is a widely supported data model that underlies data structures in many GIS applications, including QGIS and PostGIS. A major advantage of this is that using the data model ensures your work is cross-transferable to other setups, for example, importing from and exporting to spatial databases.</p>
 <p>Simple features have spatial, geometric attributes as well as non-spatial attributes. The most common geometry types are points, lines, and polygons and their respective “multi” versions (see <a href="https://r-spatial.github.io/sf/articles/sf1.html#simple-feature-geometry-types" target="_blank">Simple feature geometry types</a>).</p>
 <p><strong>Points</strong> are fundamental in geospatial analysis. They are the simplest spatial entities, representing a singular location in space. They have no dimensions, meaning they don’t possess length, width, or area. Using the <code>sf</code> package, you can create and manipulate point data with ease:</p>
-<pre><code>## Warning: Paket &#39;sf&#39; wurde unter R Version 4.2.3 erstellt</code></pre>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="spds.html#cb99-1" tabindex="-1"></a><span class="co"># Create a point</span></span>
-<span id="cb99-2"><a href="spds.html#cb99-2" tabindex="-1"></a>point <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_point</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
-<span id="cb99-3"><a href="spds.html#cb99-3" tabindex="-1"></a></span>
-<span id="cb99-4"><a href="spds.html#cb99-4" tabindex="-1"></a><span class="co"># Convert to sf object</span></span>
-<span id="cb99-5"><a href="spds.html#cb99-5" tabindex="-1"></a>point_sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sf</span>(<span class="at">geometry =</span> sf<span class="sc">::</span><span class="fu">st_sfc</span>(point))</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="spds.html#cb98-1" tabindex="-1"></a><span class="co"># Create a point</span></span>
+<span id="cb98-2"><a href="spds.html#cb98-2" tabindex="-1"></a>point <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_point</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb98-3"><a href="spds.html#cb98-3" tabindex="-1"></a></span>
+<span id="cb98-4"><a href="spds.html#cb98-4" tabindex="-1"></a><span class="co"># Convert to sf object</span></span>
+<span id="cb98-5"><a href="spds.html#cb98-5" tabindex="-1"></a>point_sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sf</span>(<span class="at">geometry =</span> sf<span class="sc">::</span><span class="fu">st_sfc</span>(point))</span></code></pre></div>
 
 <div class="rmdtip">
 The operator <code>::</code> is used to indicate that the functions <code>st_point</code>, <code>st_sf</code>, and <code>st_sfc</code> are situated within the library <code>sf</code>. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names.
 </div>
 <p>The function <code>st_point</code> creates a simple feature object from a numeric vector. The object is of the same nature as the numeric vector <code>c(5,5)</code>. To convert to an sf-object, the function <code>st_sf</code> is used.</p>
 <p>Sf-objects are similar in structure as data frames. However, in contrast to data frames, sf-objects have an additional geometry column. The sf-object <code>point_sf</code> (created by the code above) contains a single point geometry and no fields:</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="spds.html#cb100-1" tabindex="-1"></a>point_sf</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="spds.html#cb99-1" tabindex="-1"></a>point_sf</span></code></pre></div>
 <pre><code>## Simple feature collection with 1 feature and 0 fields
 ## Geometry type: POINT
 ## Dimension:     XY
@@ -341,18 +345,18 @@ The operator <code>::</code> is used to indicate that the functions <code>st_poi
 ##      geometry
 ## 1 POINT (5 5)</code></pre>
 <p>In principle sf-objects can be treated like data frames. Accordingly, data frame syntax is used to assign fields (table columns) to geometries:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="spds.html#cb102-1" tabindex="-1"></a>point_sf<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;my location&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="spds.html#cb101-1" tabindex="-1"></a>point_sf<span class="sc">$</span>name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;my location&quot;</span>)</span></code></pre></div>
 <p>To stay in GIS terms, records (rows) in a sf-object table may be called <code>features</code>. Features can be composed of multiple geometries:</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="spds.html#cb103-1" tabindex="-1"></a><span class="co"># Create three points as multipoint geometry</span></span>
-<span id="cb103-2"><a href="spds.html#cb103-2" tabindex="-1"></a>point_multi <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_multipoint</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>), <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)), <span class="at">dim =</span> <span class="st">&quot;XY&quot;</span>)</span>
-<span id="cb103-3"><a href="spds.html#cb103-3" tabindex="-1"></a></span>
-<span id="cb103-4"><a href="spds.html#cb103-4" tabindex="-1"></a><span class="co"># Convert to sf object</span></span>
-<span id="cb103-5"><a href="spds.html#cb103-5" tabindex="-1"></a>point_sf_multi <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sf</span>(<span class="at">geometry =</span> sf<span class="sc">::</span><span class="fu">st_sfc</span>(point_multi))</span>
-<span id="cb103-6"><a href="spds.html#cb103-6" tabindex="-1"></a></span>
-<span id="cb103-7"><a href="spds.html#cb103-7" tabindex="-1"></a><span class="fu">plot</span>(point_sf_multi)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="spds.html#cb102-1" tabindex="-1"></a><span class="co"># Create three points as multipoint geometry</span></span>
+<span id="cb102-2"><a href="spds.html#cb102-2" tabindex="-1"></a>point_multi <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_multipoint</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">1</span>), <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>)), <span class="at">dim =</span> <span class="st">&quot;XY&quot;</span>)</span>
+<span id="cb102-3"><a href="spds.html#cb102-3" tabindex="-1"></a></span>
+<span id="cb102-4"><a href="spds.html#cb102-4" tabindex="-1"></a><span class="co"># Convert to sf object</span></span>
+<span id="cb102-5"><a href="spds.html#cb102-5" tabindex="-1"></a>point_sf_multi <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sf</span>(<span class="at">geometry =</span> sf<span class="sc">::</span><span class="fu">st_sfc</span>(point_multi))</span>
+<span id="cb102-6"><a href="spds.html#cb102-6" tabindex="-1"></a></span>
+<span id="cb102-7"><a href="spds.html#cb102-7" tabindex="-1"></a><span class="fu">plot</span>(point_sf_multi)</span></code></pre></div>
 <p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
 <p>Plotting the metadata of sf-object <code>point_sf_multi</code> in the console reveals that <code>Geometry type</code> is <code>Multipoint</code> and that no coordinate reference system has been defined (<code>CRS: NA</code>):</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="spds.html#cb104-1" tabindex="-1"></a>point_sf_multi</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="spds.html#cb103-1" tabindex="-1"></a>point_sf_multi</span></code></pre></div>
 <pre><code>## Simple feature collection with 1 feature and 0 fields
 ## Geometry type: MULTIPOINT
 ## Dimension:     XY
@@ -361,28 +365,28 @@ The operator <code>::</code> is used to indicate that the functions <code>st_poi
 ##                         geometry
 ## 1 MULTIPOINT ((3 4), (5 3), (...</code></pre>
 <p>To extract or set CRS information, use the <code>st_crs</code> function:</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="spds.html#cb106-1" tabindex="-1"></a><span class="co"># Assign WGS84 as CRS (EPSG code 4326)</span></span>
-<span id="cb106-2"><a href="spds.html#cb106-2" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(point_sf_multi) <span class="ot">&lt;-</span> <span class="dv">4326</span></span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="spds.html#cb105-1" tabindex="-1"></a><span class="co"># Assign WGS84 as CRS (EPSG code 4326)</span></span>
+<span id="cb105-2"><a href="spds.html#cb105-2" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_crs</span>(point_sf_multi) <span class="ot">&lt;-</span> <span class="dv">4326</span></span></code></pre></div>
 
 <div class="rmdtip">
 <p>EPSG-Codes of other reference systems can be found <a href="https://spatialreference.org/ref/epsg/?search=4326&amp;srtext=Search" target="_blank">here</a>.</p>
 </div>
 <p>Now we transform the sf-object to <a href="https://spatialreference.org/ref/epsg/3416/" target="_blank">EPSG 3416</a> (Austrian Lambert Projection) with the function <code>st_transform</code>:</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="spds.html#cb107-1" tabindex="-1"></a><span class="co"># Assign Austrian Lambert Projection as CRS</span></span>
-<span id="cb107-2"><a href="spds.html#cb107-2" tabindex="-1"></a>point_sf_multi_transform <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(point_sf_multi, <span class="dv">3416</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="spds.html#cb106-1" tabindex="-1"></a><span class="co"># Assign Austrian Lambert Projection as CRS</span></span>
+<span id="cb106-2"><a href="spds.html#cb106-2" tabindex="-1"></a>point_sf_multi_transform <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_transform</span>(point_sf_multi, <span class="dv">3416</span>)</span></code></pre></div>
 <p>Eventually we can compare the two sf-objects with different coordinate systems:</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="spds.html#cb108-1" tabindex="-1"></a><span class="co"># Plotting the original and transformed points side by side</span></span>
-<span id="cb108-2"><a href="spds.html#cb108-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="co"># Arrange plots in 1 row, 2 columns</span></span>
-<span id="cb108-3"><a href="spds.html#cb108-3" tabindex="-1"></a></span>
-<span id="cb108-4"><a href="spds.html#cb108-4" tabindex="-1"></a><span class="co"># Plot original points with a coordinate grid and axes</span></span>
-<span id="cb108-5"><a href="spds.html#cb108-5" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(point_sf_multi), <span class="at">main =</span> <span class="st">&quot;Original Points (EPSG: 4326)&quot;</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
-<span id="cb108-6"><a href="spds.html#cb108-6" tabindex="-1"></a><span class="fu">grid</span>()</span>
-<span id="cb108-7"><a href="spds.html#cb108-7" tabindex="-1"></a><span class="fu">box</span>()</span>
-<span id="cb108-8"><a href="spds.html#cb108-8" tabindex="-1"></a></span>
-<span id="cb108-9"><a href="spds.html#cb108-9" tabindex="-1"></a><span class="co"># Plot transformed points</span></span>
-<span id="cb108-10"><a href="spds.html#cb108-10" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(point_sf_multi_transform), <span class="at">main =</span> <span class="st">&quot;Transformed Points (EPSG: 3416)&quot;</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
-<span id="cb108-11"><a href="spds.html#cb108-11" tabindex="-1"></a><span class="fu">grid</span>()</span>
-<span id="cb108-12"><a href="spds.html#cb108-12" tabindex="-1"></a><span class="fu">box</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="spds.html#cb107-1" tabindex="-1"></a><span class="co"># Plotting the original and transformed points side by side</span></span>
+<span id="cb107-2"><a href="spds.html#cb107-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="co"># Arrange plots in 1 row, 2 columns</span></span>
+<span id="cb107-3"><a href="spds.html#cb107-3" tabindex="-1"></a></span>
+<span id="cb107-4"><a href="spds.html#cb107-4" tabindex="-1"></a><span class="co"># Plot original points with a coordinate grid and axes</span></span>
+<span id="cb107-5"><a href="spds.html#cb107-5" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(point_sf_multi), <span class="at">main =</span> <span class="st">&quot;Original Points (EPSG: 4326)&quot;</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
+<span id="cb107-6"><a href="spds.html#cb107-6" tabindex="-1"></a><span class="fu">grid</span>()</span>
+<span id="cb107-7"><a href="spds.html#cb107-7" tabindex="-1"></a><span class="fu">box</span>()</span>
+<span id="cb107-8"><a href="spds.html#cb107-8" tabindex="-1"></a></span>
+<span id="cb107-9"><a href="spds.html#cb107-9" tabindex="-1"></a><span class="co"># Plot transformed points</span></span>
+<span id="cb107-10"><a href="spds.html#cb107-10" tabindex="-1"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_geometry</span>(point_sf_multi_transform), <span class="at">main =</span> <span class="st">&quot;Transformed Points (EPSG: 3416)&quot;</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)</span>
+<span id="cb107-11"><a href="spds.html#cb107-11" tabindex="-1"></a><span class="fu">grid</span>()</span>
+<span id="cb107-12"><a href="spds.html#cb107-12" tabindex="-1"></a><span class="fu">box</span>()</span></code></pre></div>
 <p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-83-1.png" width="1152" /></p>
 <p>The same syntax and functions can be used to deal with <strong>line or polygon</strong> data. The following drop-downs contain two simple examples.</p>
 <details closed>
@@ -394,14 +398,14 @@ The operator <code>::</code> is used to indicate that the functions <code>st_poi
 <p>
 <p><i><font color="grey"></p>
 <p>Lines are sequences of points. They’re instrumental in representing pathways, routes, or any linear feature. Here’s how you can create a line using <code>sf</code>:</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="spds.html#cb109-1" tabindex="-1"></a><span class="co"># Create a line from a matrix of coordinates</span></span>
-<span id="cb109-2"><a href="spds.html#cb109-2" tabindex="-1"></a>line <span class="ot">&lt;-</span> <span class="fu">st_linestring</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
-<span id="cb109-3"><a href="spds.html#cb109-3" tabindex="-1"></a></span>
-<span id="cb109-4"><a href="spds.html#cb109-4" tabindex="-1"></a><span class="co"># Convert to spatial feature</span></span>
-<span id="cb109-5"><a href="spds.html#cb109-5" tabindex="-1"></a>line_sf <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">geometry =</span> <span class="fu">st_sfc</span>(line))</span>
-<span id="cb109-6"><a href="spds.html#cb109-6" tabindex="-1"></a></span>
-<span id="cb109-7"><a href="spds.html#cb109-7" tabindex="-1"></a><span class="co"># Plot the line</span></span>
-<span id="cb109-8"><a href="spds.html#cb109-8" tabindex="-1"></a><span class="fu">plot</span>(line_sf)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="spds.html#cb108-1" tabindex="-1"></a><span class="co"># Create a line from a matrix of coordinates</span></span>
+<span id="cb108-2"><a href="spds.html#cb108-2" tabindex="-1"></a>line <span class="ot">&lt;-</span> <span class="fu">st_linestring</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb108-3"><a href="spds.html#cb108-3" tabindex="-1"></a></span>
+<span id="cb108-4"><a href="spds.html#cb108-4" tabindex="-1"></a><span class="co"># Convert to spatial feature</span></span>
+<span id="cb108-5"><a href="spds.html#cb108-5" tabindex="-1"></a>line_sf <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">geometry =</span> <span class="fu">st_sfc</span>(line))</span>
+<span id="cb108-6"><a href="spds.html#cb108-6" tabindex="-1"></a></span>
+<span id="cb108-7"><a href="spds.html#cb108-7" tabindex="-1"></a><span class="co"># Plot the line</span></span>
+<span id="cb108-8"><a href="spds.html#cb108-8" tabindex="-1"></a><span class="fu">plot</span>(line_sf)</span></code></pre></div>
 <p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
 </font></i>
 </p>
@@ -415,20 +419,20 @@ The operator <code>::</code> is used to indicate that the functions <code>st_poi
 <p>
 <p><i><font color="grey"></p>
 <p>Polygons are closed shapes, perfect for representing areas with defined boundaries. Here’s a demonstration using sf and its st_polygon function:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="spds.html#cb110-1" tabindex="-1"></a><span class="co"># Create a matrix of coordinates</span></span>
-<span id="cb110-2"><a href="spds.html#cb110-2" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>, <span class="dv">4</span>,<span class="dv">4</span>, <span class="dv">4</span>,<span class="dv">2</span>, <span class="dv">2</span>,<span class="dv">2</span>), <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb110-3"><a href="spds.html#cb110-3" tabindex="-1"></a></span>
-<span id="cb110-4"><a href="spds.html#cb110-4" tabindex="-1"></a><span class="co"># Create a list of matrices (in this case, just one matrix)</span></span>
-<span id="cb110-5"><a href="spds.html#cb110-5" tabindex="-1"></a>list_of_coords <span class="ot">&lt;-</span> <span class="fu">list</span>(coords)</span>
-<span id="cb110-6"><a href="spds.html#cb110-6" tabindex="-1"></a></span>
-<span id="cb110-7"><a href="spds.html#cb110-7" tabindex="-1"></a><span class="co"># Create the polygon</span></span>
-<span id="cb110-8"><a href="spds.html#cb110-8" tabindex="-1"></a>polygon <span class="ot">&lt;-</span> <span class="fu">st_polygon</span>(list_of_coords)</span>
-<span id="cb110-9"><a href="spds.html#cb110-9" tabindex="-1"></a></span>
-<span id="cb110-10"><a href="spds.html#cb110-10" tabindex="-1"></a><span class="co"># Convert to spatial feature</span></span>
-<span id="cb110-11"><a href="spds.html#cb110-11" tabindex="-1"></a>polygon_sf <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">geometry =</span> <span class="fu">st_sfc</span>(polygon))</span>
-<span id="cb110-12"><a href="spds.html#cb110-12" tabindex="-1"></a></span>
-<span id="cb110-13"><a href="spds.html#cb110-13" tabindex="-1"></a><span class="co"># Plot the polygon</span></span>
-<span id="cb110-14"><a href="spds.html#cb110-14" tabindex="-1"></a><span class="fu">plot</span>(polygon_sf)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="spds.html#cb109-1" tabindex="-1"></a><span class="co"># Create a matrix of coordinates</span></span>
+<span id="cb109-2"><a href="spds.html#cb109-2" tabindex="-1"></a>coords <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>, <span class="dv">4</span>,<span class="dv">4</span>, <span class="dv">4</span>,<span class="dv">2</span>, <span class="dv">2</span>,<span class="dv">2</span>), <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb109-3"><a href="spds.html#cb109-3" tabindex="-1"></a></span>
+<span id="cb109-4"><a href="spds.html#cb109-4" tabindex="-1"></a><span class="co"># Create a list of matrices (in this case, just one matrix)</span></span>
+<span id="cb109-5"><a href="spds.html#cb109-5" tabindex="-1"></a>list_of_coords <span class="ot">&lt;-</span> <span class="fu">list</span>(coords)</span>
+<span id="cb109-6"><a href="spds.html#cb109-6" tabindex="-1"></a></span>
+<span id="cb109-7"><a href="spds.html#cb109-7" tabindex="-1"></a><span class="co"># Create the polygon</span></span>
+<span id="cb109-8"><a href="spds.html#cb109-8" tabindex="-1"></a>polygon <span class="ot">&lt;-</span> <span class="fu">st_polygon</span>(list_of_coords)</span>
+<span id="cb109-9"><a href="spds.html#cb109-9" tabindex="-1"></a></span>
+<span id="cb109-10"><a href="spds.html#cb109-10" tabindex="-1"></a><span class="co"># Convert to spatial feature</span></span>
+<span id="cb109-11"><a href="spds.html#cb109-11" tabindex="-1"></a>polygon_sf <span class="ot">&lt;-</span> <span class="fu">st_sf</span>(<span class="at">geometry =</span> <span class="fu">st_sfc</span>(polygon))</span>
+<span id="cb109-12"><a href="spds.html#cb109-12" tabindex="-1"></a></span>
+<span id="cb109-13"><a href="spds.html#cb109-13" tabindex="-1"></a><span class="co"># Plot the polygon</span></span>
+<span id="cb109-14"><a href="spds.html#cb109-14" tabindex="-1"></a><span class="fu">plot</span>(polygon_sf)</span></code></pre></div>
 <p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
 </font></i>
 </p>
@@ -484,22 +488,22 @@ The operator <code>::</code> is used to indicate that the functions <code>st_poi
 <div id="working-with-spatraster-objects" class="section level3 hasAnchor" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Working with SpatRaster objects<a href="spds.html#working-with-spatraster-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>terra</code> <code>SpatRaster Object</code> can be created using the function <code>rast</code>:</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="spds.html#cb111-1" tabindex="-1"></a><span class="co"># Load the terra package</span></span>
-<span id="cb111-2"><a href="spds.html#cb111-2" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
-<span id="cb111-3"><a href="spds.html#cb111-3" tabindex="-1"></a></span>
-<span id="cb111-4"><a href="spds.html#cb111-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>()</span>
-<span id="cb111-5"><a href="spds.html#cb111-5" tabindex="-1"></a></span>
-<span id="cb111-6"><a href="spds.html#cb111-6" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="spds.html#cb110-1" tabindex="-1"></a><span class="co"># Load the terra package</span></span>
+<span id="cb110-2"><a href="spds.html#cb110-2" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb110-3"><a href="spds.html#cb110-3" tabindex="-1"></a></span>
+<span id="cb110-4"><a href="spds.html#cb110-4" tabindex="-1"></a>x <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>()</span>
+<span id="cb110-5"><a href="spds.html#cb110-5" tabindex="-1"></a></span>
+<span id="cb110-6"><a href="spds.html#cb110-6" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## class       : SpatRaster 
 ## dimensions  : 180, 360, 1  (nrow, ncol, nlyr)
 ## resolution  : 1, 1  (x, y)
 ## extent      : -180, 180, -90, 90  (xmin, xmax, ymin, ymax)
-## coord. ref. : lon/lat WGS 84</code></pre>
+## coord. ref. : lon/lat WGS 84 (CRS84) (OGC:CRS84)</code></pre>
 <p>By default, the <code>SpatRaster Object</code> is initialized with a global extent and a spatial resolution of 1 degree. The coordinate reference system is WGS84.</p>
 <p>Alternatively, additional arguments may be provided in the function to customize the <code>SpatRaster Object</code>:</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="spds.html#cb113-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="at">ncol=</span><span class="dv">100</span>, <span class="at">nrow=</span><span class="dv">100</span>, <span class="at">xmin=</span><span class="dv">797422</span>, <span class="at">xmax=</span><span class="dv">807387</span>, <span class="at">ymin=</span><span class="dv">5298037</span>, <span class="at">ymax=</span><span class="dv">5306341</span>, <span class="at">crs =</span> <span class="st">&quot;+proj=utm +zone=32 +ellps=WGS84 +datum=WGS84 +units=m +no_defs &quot;</span>)</span>
-<span id="cb113-2"><a href="spds.html#cb113-2" tabindex="-1"></a></span>
-<span id="cb113-3"><a href="spds.html#cb113-3" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="spds.html#cb112-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="at">ncol=</span><span class="dv">100</span>, <span class="at">nrow=</span><span class="dv">100</span>, <span class="at">xmin=</span><span class="dv">797422</span>, <span class="at">xmax=</span><span class="dv">807387</span>, <span class="at">ymin=</span><span class="dv">5298037</span>, <span class="at">ymax=</span><span class="dv">5306341</span>, <span class="at">crs =</span> <span class="st">&quot;+proj=utm +zone=32 +ellps=WGS84 +datum=WGS84 +units=m +no_defs &quot;</span>)</span>
+<span id="cb112-2"><a href="spds.html#cb112-2" tabindex="-1"></a></span>
+<span id="cb112-3"><a href="spds.html#cb112-3" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## class       : SpatRaster 
 ## dimensions  : 100, 100, 1  (nrow, ncol, nlyr)
 ## resolution  : 99.65, 83.04  (x, y)
@@ -524,9 +528,9 @@ The operator <code>::</code> is used to indicate that the functions <code>st_poi
 </details>
 </div>
 <p>In order to change the coordinate reference system from <code>WGS84 UTM 32N</code> to <code>WGS84 UTM 33N</code> and to change the spatial resolution to 100m, the terra-functions <code>project</code> and <code>res</code> can be used:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="spds.html#cb115-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">project</span>(x, <span class="st">&quot;+proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs&quot;</span>)</span>
-<span id="cb115-2"><a href="spds.html#cb115-2" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">res</span>(y) <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb115-3"><a href="spds.html#cb115-3" tabindex="-1"></a>y</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="spds.html#cb114-1" tabindex="-1"></a>y <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">project</span>(x, <span class="st">&quot;+proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs&quot;</span>)</span>
+<span id="cb114-2"><a href="spds.html#cb114-2" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">res</span>(y) <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb114-3"><a href="spds.html#cb114-3" tabindex="-1"></a>y</span></code></pre></div>
 <pre><code>## class       : SpatRaster 
 ## dimensions  : 91, 105, 1  (nrow, ncol, nlyr)
 ## resolution  : 100, 100  (x, y)
@@ -538,20 +542,20 @@ The operator <code>::</code> is used to indicate that the functions <code>st_poi
 <p>Given that the <code>SpatRaster Object</code> has an undefined coordinate reference system, it can be defined by means of <a href="https://rdrr.io/cran/terra/man/crs.html" target="_blank">terra-function <code>crs</code></a>.</p>
 </div>
 <p>So far, we have created two <code>SpatRaster Objects</code> (identifiers <code>x</code> and <code>y</code>). They only consist of a skeleton, meaning that they have location, extend, a spatial gird resolution and a certain number of grid rows and columns. However, there are not yet cell-values associated with it:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="spds.html#cb117-1" tabindex="-1"></a><span class="co">#check whether objects have values</span></span>
-<span id="cb117-2"><a href="spds.html#cb117-2" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">hasValues</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="spds.html#cb116-1" tabindex="-1"></a><span class="co">#check whether objects have values</span></span>
+<span id="cb116-2"><a href="spds.html#cb116-2" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">hasValues</span>(x)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="spds.html#cb119-1" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">hasValues</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="spds.html#cb118-1" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">hasValues</span>(y)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>The function <code>hasValues()</code> returns a logical value <code>FALSE</code>, because no values were assigned to objects <code>x</code> and <code>y</code>. The code below shows how to assign values to empty <code>SpatRaster Object</code> <code>y</code>:</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="spds.html#cb121-1" tabindex="-1"></a><span class="co"># assign random value between 0 and 1 to cells of SpatRaster Object y</span></span>
-<span id="cb121-2"><a href="spds.html#cb121-2" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">values</span>(y) <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">runif</span>(terra<span class="sc">::</span><span class="fu">ncell</span>(y),<span class="dv">0</span>,<span class="dv">1</span>)</span>
-<span id="cb121-3"><a href="spds.html#cb121-3" tabindex="-1"></a></span>
-<span id="cb121-4"><a href="spds.html#cb121-4" tabindex="-1"></a><span class="co"># get values with index 1 to index 5</span></span>
-<span id="cb121-5"><a href="spds.html#cb121-5" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">values</span>(y)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
-<pre><code>## [1] 0.879129463 0.576507220 0.082291754 0.452415732 0.004528422</code></pre>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="spds.html#cb123-1" tabindex="-1"></a><span class="co">#plot grid, plot() is a generic function to plot R objects</span></span>
-<span id="cb123-2"><a href="spds.html#cb123-2" tabindex="-1"></a><span class="fu">plot</span>(y, <span class="at">main=</span><span class="st">&#39;100m Raster, Salzburg&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="spds.html#cb120-1" tabindex="-1"></a><span class="co"># assign random value between 0 and 1 to cells of SpatRaster Object y</span></span>
+<span id="cb120-2"><a href="spds.html#cb120-2" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">values</span>(y) <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">runif</span>(terra<span class="sc">::</span><span class="fu">ncell</span>(y),<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb120-3"><a href="spds.html#cb120-3" tabindex="-1"></a></span>
+<span id="cb120-4"><a href="spds.html#cb120-4" tabindex="-1"></a><span class="co"># get values with index 1 to index 5</span></span>
+<span id="cb120-5"><a href="spds.html#cb120-5" tabindex="-1"></a>terra<span class="sc">::</span><span class="fu">values</span>(y)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span></code></pre></div>
+<pre><code>## [1] 0.77225100 0.03522596 0.18296947 0.54458766 0.80925493</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="spds.html#cb122-1" tabindex="-1"></a><span class="co">#plot grid, plot() is a generic function to plot R objects</span></span>
+<span id="cb122-2"><a href="spds.html#cb122-2" tabindex="-1"></a><span class="fu">plot</span>(y, <span class="at">main=</span><span class="st">&#39;100m Raster, Salzburg&#39;</span>)</span></code></pre></div>
 <p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
 <p>The function <code>runif</code> of package <code>stats</code> takes three arguments, <code>n</code>, <code>min</code> and <code>max</code>, to generate <code>n</code> random numbers in a range between <code>min</code> and <code>max</code>. In the example above argument <code>n</code> is derived from <code>terra</code> function <code>ncell</code>, which returns the number of cells of <code>SpatRaster Object</code> <code>y</code> as an integer value. As a result, we get a numeric vector of random values whose length corresponds to the number of grid cells of <code>SpatRaster Object</code> <code>y</code>. Accordingly, we can assign the numeric vector values to the grid.</p>
 
