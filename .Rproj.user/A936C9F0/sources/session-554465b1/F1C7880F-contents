@@ -1,0 +1,19 @@
+bookdown::gitbook:
+  css: css/custom.css
+  #css: style.css
+  config:
+    toc:
+      collapse: section
+      before: |
+        <li><a href="https://unigis.at/en" target="_blank"><img alt="UNIGIS Salzburg" src="branding/UNIGIS_Salzburg_Schriftlogo_v05.png" width=100%></a></li>
+        <li><a href="./">Automated Data Processing with R</a></li>
+      after: |
+        <li>Copyright © UNIGIS Salzburg.</li>
+#download: ["pdf", "epub"]
+#bookdown::epub_book: default
+bookdown::word_document2:
+  reference_docx: Template-word1.dotx
+  toc: true
+  toc_depth: 2
+
+  

@@ -1,0 +1,12 @@
+h1:data-viz Data Visualization
+h2:the-grammar-of-graphics The Grammar of Graphics
+fig:L07-colsize Visual variables color and size in a `ggplot2` graph
+h2:understanding-wide-and-long-data-formats-in-r Understanding Wide and Long Data Formats in R
+h3:wide-format Wide format
+h3:long-format Long format:
+h2:visualization-of-distributions Visualization of distributions
+h2:boxplots Boxplots
+h2:scatterplots Scatterplots
+h2:map-visualization Map Visualization
+h2:interactive-maps Interactive Maps
+

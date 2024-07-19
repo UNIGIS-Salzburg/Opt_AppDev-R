@@ -1,0 +1,52 @@
+library(httr2)
+library(httr)
+library(knitr)
+library(dplyr)
+
+# see API doc: https://dataset.api.hub.geosphere.at/v1/docs/
+# see endpoint structure: https://dataset.api.hub.geosphere.at/v1/docs/getting-started.html#endpoint-structure
+# see all datasets: https://dataset.api.hub.geosphere.at/v1/datasets
+# check API frontend for available parameters: https://dataset.api.hub.geosphere.at/app/frontend/raster/historical/inca-v1-1h-1km 
+
+# Define the base URL and parameters
+base <- "https://dataset.api.hub.geosphere.at/v1/timeseries/historical/inca-v1-1h-1km"
+latlon <- "47.81,13.03"  
+start_date <- "2023-06-01T22:00"
+end_date <- "2023-06-01T22:00"
+output_format <- "geojson"
+parameters <- "T2M"
+
+# Construct the full URL with query parameters using sprintf
+full_url <- sprintf("%s?parameters=%s&start=%s&end=%s&lat_lon=%s&output_format=%s", base, parameters, start_date, end_date, latlon, output_format)
+#alternatively you may use paste0
+
+
+# Display the constructed URL
+print(full_url)
+
+
+# Create the request and perform it
+req <- httr2::request(full_url)
+resp <- httr2::req_perform(req)
+
+# Check the status code of the response
+httr2::resp_status(resp)
+
+# View the content structure of the response in JSON
+str(httr2::resp_body_json(resp))
+
+httr::headers(resp)
+
+# Using resp_body_json to get the JSON content of the response
+response_content <- httr2::resp_body_json(resp)
+response_df <- as.data.frame(response_content)
+response_df$
+
+# Select columns 1:5 of response data frame 
+# and render data frame as html table
+names <- c("X", "Y", "unit", "temp")
+response_df %>%
+  dplyr::select(7, 8, 10, 11) %>%
+  setNames(., names) %>%
+  knitr::kable(., format="html")
+

@@ -1,0 +1,11 @@
+h2:introduction Introduction
+h2:installation-and-loading Installation and Loading
+h2:creating-a-raster Creating a Raster
+h2:reading-and-writing-raster-data Reading and Writing Raster Data
+h2:raster-operations Raster Operations
+h3:basic-arithmetic Basic Arithmetic
+h3:check-the-crs-and-reproject-it Check the CRS and Reproject it
+h3:aggregation Aggregation
+h2:conclusion Conclusion
+h2:references References
+
