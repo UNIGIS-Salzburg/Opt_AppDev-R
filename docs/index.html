@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Automated Data Processing with R</title>
   <meta name="description" content="BookDown materials for the UNIGIS module Application Development - Introduction to R." />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Automated Data Processing with R" />
   <meta property="og:type" content="book" />
@@ -28,7 +28,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
-  <link rel="shortcut icon" href="branding/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="branding/unigis_globe_gruen_transparent.png" type="image/x-icon" />
 
 <link rel="next" href="intro.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -51,21 +51,22 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
-<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -128,6 +129,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="css/custom.css" type="text/css" />
 </head>
@@ -142,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="https://unigis.at/en" target="_blank"><img alt="UNIGIS Salzburg" src="branding/UNIGIS_Salzburg_Schriftlogo_globe_tra.png" width=100%></a></li>
+<li><a href="https://unigis.at/en" target="_blank"><img alt="UNIGIS Salzburg" src="branding/UNIGIS_Salzburg_Schriftlogo_v05.png" width=100%></a></li>
 <li><a href="./">Automated Data Processing with R</a></li>
 
 <li class="divider"></li>
@@ -304,19 +309,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Automated Data Processing with R</h1>
 <p class="author"><em>Christian Neuwirth &amp; Maximilian Elixhauser</em></p>
-<p class="date"><em>28 Mai, 2024</em></p>
+<p class="date"><em>19 Juli, 2024</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered hasAnchor">
 <h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This web-book is a text book with exercises that together form the learning materials for “Automated Data Processing with R”, an elective module of the <a href="https://unigis.at" target="_blank">UNIGIS distance learning program in Geoinformatics</a> at the University of Salzburg.</p>
 <p><a href="https://unigis.at/en" target="_blank">
-<img src="images/UNIGIS_Educating.gif" alt="UNIGIS Distance Learning program">
+<img src="branding/UNIGIS_Salzburg_horizontal_mitSbg.png" alt="UNIGIS Distance Learning program">
 </a></p>
-<p>The web-book is published under an open licence. We welcome everybody to explore the contents and to work through the exercises. A <em>certificate of completion</em> and <em>online support by a tutor</em> can exclusively be claimed by those who are signed up for this UNIGIS module.</p>
-<p><strong>Important Note for Learners:</strong></p>
-<p>To fully engage with the exercises and assignments in this module, it’s essential to obtain an API key from Open Weather. The API key is required for accessing weather data, a crucial component of our practical exercises, particularly in Lesson 8. You can register and obtain your API key <a href="https://openweathermap.org/appid" target="_blank">here</a>. Please ensure you have this key ready before starting the relevant sections. This is especially important for UNIGIS students who will need it for the module assignments.</p>
+<p>The web-book is published under an open licence. We welcome everybody to explore the contents and to work through the exercises. A <em>certificate of completion</em> and <em>online support by a tutor</em> can exclusively be claimed by those who are signed up for this UNIGIS module at the University of Salzburg.</p>
 <blockquote>
-<p>For more information, please get in contact with the <a href="https://unigis.at/en/contact/" target="_blank">UNIGIS Office</a> at the University of Salzburg.</p>
+<p>For more information, please get in contact with the <a href="https://unigis.at/en/contact/" target="_blank">UNIGIS Office</a>.</p>
 </blockquote>
 
 </div>
