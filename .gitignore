@@ -2,9 +2,3 @@
 .Rhistory
 .RData
 .Ruserdata
-auto_scripts/Result_*.log
-
-_book/
-docs/
-_bookdown_files/
-__old__

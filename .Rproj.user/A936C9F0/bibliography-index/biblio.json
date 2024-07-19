@@ -1,0 +1,76 @@
+{
+    "sources": [
+        {
+            "DOI": "10.4018/978-1-4666-5888-2.ch307",
+            "URL": "http://dx.doi.org/10.4018/978-1-4666-5888-2.ch307",
+            "author": [
+                {
+                    "family": "Ayanlade",
+                    "given": "A."
+                },
+                {
+                    "family": "Jegede",
+                    "given": "M. O."
+                },
+                {
+                    "family": "Borisade",
+                    "given": "P. B."
+                }
+            ],
+            "container-title": "",
+            "id": "Ayanlade2015",
+            "issued": {
+                "date-parts": [
+                    [
+                        2015
+                    ]
+                ]
+            },
+            "page": "3136-3144",
+            "publisher": "IGI Global",
+            "title": "Geoinformatics in eco-climatic studies",
+            "type": "chapter"
+        },
+        {
+            "author": [
+                {
+                    "family": "Berry",
+                    "given": "JK"
+                }
+            ],
+            "container-title": "GeoWorld (December)",
+            "id": "berry2004",
+            "issued": {
+                "date-parts": [
+                    [
+                        2004
+                    ]
+                ]
+            },
+            "title": "Moving mapping to analysis of mapped data",
+            "type": "article-journal"
+        },
+        {
+            "author": [
+                {
+                    "family": "BKG"
+                }
+            ],
+            "id": "BKG2019",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019
+                    ]
+                ]
+            },
+            "note": "Accessed: 2019-10-12",
+            "publisher": "https://evrs.bkg.bund.de/Subsites/EVRS/EN/DefEVRS/evrs.html;jsessionid=F9064537C73F65EC98FE7CE4CC9F67D5.live21",
+            "title": "EVRS bundesamt für kartographie und geodäsie",
+            "type": ""
+        }
+    ],
+    "project_biblios": [
+        "refs.bib"
+    ]
+}
