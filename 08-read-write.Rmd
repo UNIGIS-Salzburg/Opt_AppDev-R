@@ -198,27 +198,13 @@ The most important takeaway messages are:
 5) JSON is a very popular format for transferring web data.
 6) The two primary elements that make up JSON are keys and values.
 
-The library [httr2](https://httr2.r-lib.org/){target="_blank"} offers functions to programmatically implement API calls in an R script. We will make use of this library to let our R script interact with the [APIs](https://openweathermap.org/api){target="_blank"} offered by [OpenWeather Map](https://openweathermap.org/){target="_blank"} that contains historical and real-time weather data for retrieval. In the upcoming example we will make a call to the [Current Weather API](https://openweathermap.org/current){target="_blank"}, which is one out of currently [10 free APIs](https://openweathermap.org/price){target="_blank"} provided by OpenWeather Map.
+The library [httr2](https://httr2.r-lib.org/){target="_blank"} offers functions to programmatically implement API calls in an R script. We will make use of this library to let our R script interact with the APIs offered by [Geosphere Austria](https://www.geosphere.at/de){target="_blank"} that contains historical weather data and weather forecasts in time series or gridded formats for retrieval. In the upcoming example we will make a call to the [INCA Dataset](https://data.hub.geosphere.at/dataset/inca-v1-1h-1km){target="_blank"}, which offers hourly data on temperature, precipitation, wind, solar radiation, humidity and air pressure.
 
-For accessing the data with `httr2`, we'll construct a URL composed of a reference to the data source (`base`), an API key to get access, and parameters to filter the desired data subset (`lat` and `lon`). 
-
-```{block2, type = 'rmdtip'}
-Note: The OpenWeather API requires an API Key to be passed as a parameter in the call. Get your [personal Key](https://openweathermap.org/appid){target="_blank"} to implement your own API requests. 
-
-If your code returns an error 401, this most likely indicates that your key is not activated yet. According to the [FAQs](https://openweathermap.org/faq){target="_blank"}, it may take a couple of hours until your key is active. 
-
-```
-
-```{block2, type = 'rmdtip'} 
-**Security Note:**
-In general, when working with APIs, it's crucial to handle API keys securely. API keys are sensitive tokens that authenticate your requests to an API service. Exposing these keys publicly can lead to unauthorized access and potential misuse. Always keep your API keys confidential. Avoid hardcoding them directly into scripts, especially if the scripts are shared or stored in public repositories. Instead, consider using environment variables or secure vaults to store your API keys. For sharing scripts, you can instruct users to enter their own keys, ensuring that each user's key remains private.
-```
-
-First we will have to create an URL request. The function `sprintf()` assembles the URL request composed of `base URL`, `key` and `lat / lon`:
+For accessing the data with `httr2`, we'll construct a URL composed of a reference to the data source (`base`), and parameters to filter the desired data subset. To assemble base URL and parameters we will use the function `sprintf()`.
 
 ```{block2, type = 'rmdtip'}
 **Note**: 
-The `sprintf()` function in R is used for string formatting. It allows you to combine, format, and interpolate variables into strings in a flexible way. For example, `sprintf("%s?lat=%s&lon=%s&appid=%s", base, lat, lon, apiKey)` constructs a URL string by inserting the values of `base`, `lat`, `lon`, and `apiKey` into the placeholders (`%s`). Each `%s` is replaced by the corresponding variable's value in the order they are listed. This function is particularly useful in scenarios where you need to dynamically generate strings or URLs with variable data.
+The `sprintf()` function in R is used for string formatting. It allows you to combine, format, and interpolate variables into strings in a flexible way. For example, `sprintf("%s?parameters=%s&start=%s", base, lat, lon)` constructs a URL string by inserting the values of `base`, `lat` and `lon` into the placeholders (`%s`). Each `%s` is replaced by the corresponding variable's value in the order they are listed. This function is particularly useful in scenarios where you need to dynamically generate strings or URLs with variable data.
 ```
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
@@ -227,11 +213,11 @@ library(httr2)
 
 # Define the base URL and parameters
 base <- "https://dataset.api.hub.geosphere.at/v1/timeseries/historical/inca-v1-1h-1km"
-latlon <- "47.81,13.03"  
-start_date <- "2023-06-01T22:00"
-end_date <- "2023-06-01T23:00"
-output_format <- "geojson"
 parameters <- "T2M"
+start_date <- "2023-06-01T22:00"
+end_date <- "2023-06-01T22:00"
+latlon <- "47.81,13.03"  
+output_format <- "geojson"
 
 # Construct the full URL with query parameters using sprintf
 full_url <- sprintf("%s?parameters=%s&start=%s&end=%s&lat_lon=%s&output_format=%s", base, parameters, start_date, end_date, latlon, output_format)
@@ -240,6 +226,16 @@ full_url <- sprintf("%s?parameters=%s&start=%s&end=%s&lat_lon=%s&output_format=%
 print(full_url)
 
 ```
+
+The base URL (`base`) in the code above specifies version (`v1`), type (`timeseries`), mode (`historical`) and resource-id (`inca-v1-1h-1km`) of the dataset being requested. This structure is described under [Endpoint Structure](https://dataset.api.hub.geosphere.at/v1/docs/getting-started.html#endpoint-structure){target="_blank"} in the [API Documentation](https://dataset.api.hub.geosphere.at/v1/docs/index.html){target="_blank"}.
+
+> All datasets as well as available types, modes and response formats can be listed via [https://dataset.api.hub.geosphere.at/v1/datasets](https://dataset.api.hub.geosphere.at/v1/datasets){target="_blank"}.
+
+Additional metadata of the endpoint can be requested by appending `/metadata` to the `base URL`. For instance, [https://dataset.api.hub.geosphere.at/v1/timeseries/historical/inca-v1-1h-1km/metadata](https://dataset.api.hub.geosphere.at/v1/timeseries/historical/inca-v1-1h-1km/metadata){target="_blank"} returns a `JSON` that lists information on the resolution (hourly), temporal and spatial extent of the data as well as variables (`parameters`) and formats (`output_format`) that are available with this endpoint.
+
+> Before you assemble request URLs, it is recommended to test different calibrations in the [FastAPI](https://dataset.api.hub.geosphere.at/v1/openapi-docs#/){target="_blank"} frontend.
+
+The assembled request URL `full_url` (see code above) retrieves air temperature 2m above ground (`T2M`) for an individual point in time (`2023-06-01T22:00`) as `geojson` from the INCA dataset, which is a time series with hourly resolution.
 
 As a next step, the URL is passed to the `request()` function to create a request object, and `req_perform()` is used to execute the HTTP Get method:
 
@@ -265,26 +261,6 @@ str(httr2::resp_body_json(resp))
 
 ```
 
-The Current Weather API call returned a number of real-time weather variables such as temperature, air pressure or humidity for the location of Salzburg. Current weather data may alternatively be retrieved by `City ID` or `City Name` (see the [documentation](https://openweathermap.org/current){target="_blank"} to get an overview of available API parameters).
-
-```{block2, type = 'rmdexercise'}
-
-Inspect the response object by means of a function called `headers()`. What methods are allowed when accessing the Current Weather API?
-
-<details closed>
-<summary><ins>**See solution!**</ins></summary>
-<p><i><font color="grey">
-  
-Only GET and POST methods are allowed.
-
-Other APIs allow to update existing REST API resources (PUT method) or to delete a REST API resource (DELETE method). 
-    
-</font></i>
-</p>
-</details>   
-  
-```
-
 To facilitate subsequent analyses and data visualization, we can convert the content of the return object to a data frame. With `httr2`, you can directly retrieve the JSON content and convert it to a data frame:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
@@ -295,16 +271,14 @@ library(knitr)
 response_content <- httr2::resp_body_json(resp)
 response_df <- as.data.frame(response_content)
 
-# Select columns 1:5 of response data frame 
-# and render data frame as html table
+# Select columns 7, 8, 10 and 11 of response data frame 
+# rename columns and render data frame as html table
+names <- c("X", "Y", "unit", "temp")
 response_df %>%
-  dplyr::select(1:5) %>%
+  dplyr::select(7, 8, 10, 11) %>%
+  setNames(., names) %>%
   knitr::kable(., format="html")
 
 ```
 
-For purposes of presentation, the returned data frame was shortened to show only columns 1 to 5. The returned values contain a short description of current weather conditions at location `E: 13.03`, `N: 47.81`.
-
-```{block2, type = 'rmdexercise'}
-Copy the code snippets above to a new R-Script and make an API request. **Make sure to replace the key in the code example by your own API key!** If you need help, please turn to the discussion forum.
-```
+For purposes of presentation, the returned data frame was shortened to show only four columns.

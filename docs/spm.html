@@ -353,7 +353,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Rows: 100
 ## Columns: 15
 ## $ fart_id           &lt;dbl&gt; 1783, 1783, 1783, 1783, 1783, 1783, 1783, 1783, 1783…
-## $ gml_geom          &lt;chr&gt; &quot;[B@5116a8da&quot;, &quot;[B@17588c86&quot;, &quot;[B@1dbaf4da&quot;, &quot;[B@4e3…
+## $ gml_geom          &lt;chr&gt; &quot;[B@2dccf10e&quot;, &quot;[B@5e6cb85c&quot;, &quot;[B@3f8c5a10&quot;, &quot;[B@39a…
 ## $ gml_length        &lt;dbl&gt; 786, 581, 550, 780, 754, 1160, 1090, 382, 448, 1535,…
 ## $ geom_date_created &lt;chr&gt; &quot;2022-10-01T04:48:30+02:00&quot;, &quot;2022-10-01T05:16:44+02…
 ## $ log_pkey          &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3…
@@ -493,7 +493,7 @@ POLYGON ((14.01353 48.02075…
 </table>
 <p>For an initial visual impression, plot the sf-object using the base R <code>plot()</code> function:</p>
 <div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="spm.html#cb227-1" tabindex="-1"></a><span class="fu">plot</span>(invekos.sub[<span class="dv">1</span>], <span class="at">main=</span><span class="st">&quot;Land Use&quot;</span>, <span class="at">key.pos =</span> <span class="dv">1</span>, <span class="at">key.width =</span> <span class="fu">lcm</span>(<span class="fl">1.8</span>))</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
 <p>By default, the <code>plot()</code> function generates a multi-panel plot, with one sub-plot for each field of the object. However, specifying <code>invekos.sub[1]</code> restricts the output to a single plot, specifically showcasing the <code>land_use</code> field. The function parameter <code>key.pos = 1</code> aligns the legend below the map (1=below, 2=left, 3=above and 4=right). <code>key.width</code> defines the width of the legend.</p>
 <p>Next, we can validate the geometry of sf polygons using <code>st_is_valid</code>:</p>
 <div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="spm.html#cb228-1" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_is_valid</span>(invekos) <span class="sc">%&gt;%</span></span>
@@ -530,7 +530,7 @@ POLYGON ((14.01353 48.02075…
 <p><font color="grey"></p>
 <p>When plotted, the polygon reveals a <a href="https://en.wikipedia.org/wiki/Sliver_polygon" target="_blank">sliver polygon</a>, which is invalid due to its shape.</p>
 <div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="spm.html#cb232-1" tabindex="-1"></a><span class="fu">plot</span>(error_sf)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-194-1.png" width="672" /></p>
 <p>Another common cause of invalid geometries is self-intersection of lines.</p>
 <blockquote>
 <p>Note: A valid polygon requires at least four coordinate points with the first and last points being identical. A polygon with only three points is considered to have an invalid geometry.</p>
@@ -546,7 +546,7 @@ POLYGON ((14.01353 48.02075…
 <div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="spm.html#cb233-1" tabindex="-1"></a>invekos.sub <span class="sc">%&gt;%</span></span>
 <span id="cb233-2"><a href="spm.html#cb233-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(land_use<span class="sc">==</span><span class="st">&#39;grassland&#39;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb233-3"><a href="spm.html#cb233-3" tabindex="-1"></a>  {<span class="fu">plot</span>(.[<span class="dv">1</span>], <span class="at">main=</span><span class="st">&quot;Land Use&quot;</span>, <span class="at">key.pos =</span> <span class="dv">1</span>, <span class="at">key.width =</span> <span class="fu">lcm</span>(<span class="fl">1.8</span>))}</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
 <blockquote>
 <p>Note the use of curly brackets in the <code>plot()</code> function. This is required because the dot notation (.) cannot directly index a piped value. For a deeper explanation, see this <a href="https://stackoverflow.com/questions/42385010/using-the-pipe-and-dot-notation" target="_blank">Stack Overflow discussion</a>.</p>
 </blockquote>
@@ -581,7 +581,7 @@ POLYGON ((14.01353 48.02075…
 <span id="cb236-7"><a href="spm.html#cb236-7" tabindex="-1"></a></span>
 <span id="cb236-8"><a href="spm.html#cb236-8" tabindex="-1"></a><span class="fu">plot</span>(invekos.sub[<span class="dv">1</span>], <span class="at">main=</span><span class="cn">NULL</span>, <span class="at">key.pos=</span><span class="cn">NULL</span>, <span class="at">reset =</span> <span class="cn">FALSE</span>, <span class="at">col_graticule =</span> <span class="st">&quot;grey&quot;</span>)</span>
 <span id="cb236-9"><a href="spm.html#cb236-9" tabindex="-1"></a><span class="fu">plot</span>(farms[<span class="dv">1</span>], <span class="at">main=</span><span class="cn">NULL</span>, <span class="at">key.pos=</span><span class="cn">NULL</span>, <span class="at">pch =</span> <span class="dv">7</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">cex=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
 <blockquote>
 <p>Note: The <code>plot()</code> function is used sequentially to overlay farm points on top of the land parcel polygons. For advanced plotting techniques, refer to the <a href="https://r-spatial.github.io/sf/reference/plot.html" target="_blank"><code>plot()</code> documentation</a>.</p>
 </blockquote>
@@ -631,7 +631,7 @@ POLYGON ((14.01353 48.02075…
 <span id="cb242-12"><a href="spm.html#cb242-12" tabindex="-1"></a>  {<span class="fu">plot</span>(.[<span class="dv">4</span>], <span class="at">main=</span><span class="cn">NULL</span>, <span class="at">key.pos=</span><span class="cn">NULL</span>, <span class="at">reset =</span> <span class="cn">FALSE</span>)}</span>
 <span id="cb242-13"><a href="spm.html#cb242-13" tabindex="-1"></a></span>
 <span id="cb242-14"><a href="spm.html#cb242-14" tabindex="-1"></a><span class="fu">plot</span>(farms[<span class="dv">1</span>], <span class="at">main=</span><span class="cn">NULL</span>, <span class="at">key.pos=</span><span class="cn">NULL</span>, <span class="at">pch =</span> <span class="dv">7</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">cex=</span><span class="dv">1</span>)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
 <p>The output map visualizes the closest farm to each agricultural parcel, highlighting the practical application of <code>sf</code> Geometrical operations.</p>
 <p>This chapter focuses on logical matrix outputs from geometric operations. For operations generating new geometries, such as <code>st_union</code>, <code>st_buffer</code>, and <code>st_centroid</code>, see <a href="https://r-spatial.github.io/sf/articles/sf3.html#operations-returning-a-geometry" target="_blank">operations returning a geometry</a>. For network operations on <code>sf</code> objects, consider using <code>sfnetworks</code> or the <code>igraph</code> package.</p>
 </div>
@@ -650,7 +650,7 @@ POLYGON ((14.01353 48.02075…
 <span id="cb243-2"><a href="spm.html#cb243-2" tabindex="-1"></a></span>
 <span id="cb243-3"><a href="spm.html#cb243-3" tabindex="-1"></a>r <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">rast</span>(<span class="st">&quot;data/terra_sample.tif&quot;</span>) <span class="co"># path may be different on your machine</span></span>
 <span id="cb243-4"><a href="spm.html#cb243-4" tabindex="-1"></a><span class="fu">plot</span>(r, <span class="at">main=</span><span class="st">&#39;SpatRaster from file&#39;</span>)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-207-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
 <p>Before we change the raster resolution of <code>SpatRaster Object</code>, it is important to know the original resolution of the raster. You can use the <code>res()</code> function to check the original resolution:</p>
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="spm.html#cb244-1" tabindex="-1"></a><span class="fu">res</span>(r)</span></code></pre></div>
 <pre><code>## [1] 40 40</code></pre>
@@ -663,7 +663,7 @@ POLYGON ((14.01353 48.02075…
 <span id="cb247-3"><a href="spm.html#cb247-3" tabindex="-1"></a><span class="fu">res</span>(r2) <span class="co"># Verify the new resolution</span></span></code></pre></div>
 <pre><code>## [1] 80 80</code></pre>
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="spm.html#cb249-1" tabindex="-1"></a><span class="fu">plot</span>(r_resampled, <span class="at">main=</span><span class="st">&#39;Resampled 80x80&#39;</span>)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-210-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
 <p>The <code>bilinear</code> method is used for interpolating new values in <code>r_resampled</code>, with alternatives such as <code>nearest</code> or <code>cubic</code>. The choice of interpolation method for resampling raster data is a crucial consideration, discussed in further detail <a href="https://gis.stackexchange.com/questions/2587/deciding-what-interpolation-method-to-use-for-resampling-raster-data" target="_blank">here</a>.</p>
 </div>
 <div id="crop-raster" class="section level3 hasAnchor" number="9.4.2">
@@ -676,7 +676,7 @@ POLYGON ((14.01353 48.02075…
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="spm.html#cb252-1" tabindex="-1"></a>crop_ext <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">ext</span>(<span class="dv">180000</span>, <span class="dv">180200</span>, <span class="dv">331000</span>, <span class="dv">331250</span>)</span>
 <span id="cb252-2"><a href="spm.html#cb252-2" tabindex="-1"></a>subset_r <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">crop</span>(r, crop_ext)</span>
 <span id="cb252-3"><a href="spm.html#cb252-3" tabindex="-1"></a><span class="fu">plot</span>(subset_r, <span class="at">main=</span><span class="st">&#39;Subset of r&#39;</span>)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
 <p>If the resulting cropped area doesn’t match expectations due to cell alignment, adjust the cropping extent or raster resolution as necessary.</p>
 </div>
 <div id="raster-algebra" class="section level3 hasAnchor" number="9.4.3">
@@ -691,12 +691,12 @@ POLYGON ((14.01353 48.02075…
 <span id="cb253-6"><a href="spm.html#cb253-6" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> s <span class="sc">==</span> <span class="dv">15</span></span>
 <span id="cb253-7"><a href="spm.html#cb253-7" tabindex="-1"></a></span>
 <span id="cb253-8"><a href="spm.html#cb253-8" tabindex="-1"></a><span class="fu">plot</span>(s1)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
 <p>Operators can be applied between <code>SpatRaster</code> objects with matching resolutions and origins. The result covers their spatial intersection.</p>
 <p>You can also perform in-place replacements:</p>
 <div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="spm.html#cb254-1" tabindex="-1"></a>r[r <span class="sc">==</span> <span class="dv">255</span>] <span class="ot">&lt;-</span> <span class="dv">2550</span></span>
 <span id="cb254-2"><a href="spm.html#cb254-2" tabindex="-1"></a><span class="fu">plot</span>(r)</span></code></pre></div>
-<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
+<p><img src="UNIGIS-AppDev-R_files/figure-html/unnamed-chunk-210-1.png" width="672" /></p>
 <p>Here, all cells with the value <code>255</code> are replaced with <code>2550</code>.</p>
 <p>A broader range of vector and raster operations can be found in <a href="https://bookdown.org/robinlovelace/geocompr/geometric-operations.html" target="_blank">Chapter 5 - Geometry Operations, in the Book Geocomputation with R</a>.</p>
 
