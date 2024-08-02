@@ -207,7 +207,7 @@ Apart from [Stefano de Sabbata's](https://sdesabbata.github.io/){target="_blank"
 - *ggplot2 - Overview.* [See Online Documentation](https://ggplot2.tidyverse.org/){target="_blank"}
 - *Getting started with httr2 - httr2 quickstart guide.* [See Online Tutorial](https://httr2.r-lib.org/articles/httr2.html){target="_blank"}
 - *Programming Skills for Data Science: Start Writing Code to Wrangle, Analyze, and Visualize Data with R* by Michael Freeman and Joel Ross, Addison-Wesley, 2019. [See Book Webpage](https://www.pearson.com/us/higher-education/program/Freeman-Programming-Skills-for-Data-Science-Start-Writing-Code-to-Wrangle-Analyze-and-Visualize-Data-with-R/PGM2047488.html){target="_blank"} and [Repository](https://programming-for-data-science.github.io/){target="_blank"}.
-- *R for Data Science* by Garrett Grolemund and Hadley Wickham, O'Reilly Media, 2016. [See Online Book](https://r4ds.had.co.nz/){target="_blank"}.
+- *R for Data Science (2e)* by Garrett Grolemund and Hadley Wickham, O'Reilly Media, 2016. [See Online Book](https://r4ds.hadley.nz/){target="_blank"}.
 - *Machine Learning with R: Expert techniques for predictive modeling* by Brett Lantz, Packt Publishing, 2019. [See Book Webpage](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788295864){target="_blank"}.
 - *Introduction to spatial data in R* by Nils Riach and Rafael Hologa. [See Online Tutorial](https://thinking-spatial.org/courses/angewandte_geodatenverarbeitung/kurs03/){target="_blank"}.
 - *The Art of R Programming: A Tour of Statistical Software Design* by Norman Matloff, No Starch Press, 2011. [See Book Webpage](https://nostarch.com/artofr.htm){target="_blank"}
