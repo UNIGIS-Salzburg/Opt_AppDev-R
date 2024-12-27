@@ -18,24 +18,26 @@ The R syntax used to interact with OGC APIs is the same as described in the "Dat
 
 ```
 
-Before loading the data into an R script, examine the API's contents. Visit the web service's [landing page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/){target="_blank"} and proceed to the [collection page](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml){target="_blank"}. There you will find an overview of the available layers.
+Before loading the data into an R script, examine the API's contents. Visit the web service's [landing page](https://gis.lfrz.gv.at/api/geodata/i009501/ogc/features/v1/){target="_blank"} and proceed to the [collection page](https://gis.lfrz.gv.at/api/geodata/i009501/ogc/features/v1/collections?f=text%2Fhtml){target="_blank"}. There you will find an overview of the available layers.
 
 Enter the following URL into your browser:
 
 ```{}
-https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon/items?f=json&limit=10
+https://gis.lfrz.gv.at/api/geodata/i009501/ogc/features/v1/collections/i009501:invekos_feldstuecke_2024_1/items?f=json&limit=10
 ```
 
-This request returns the first ten features of the `ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon` layer (agricultural land parcels as polygons) in GeoJSON format.
+This request returns the first ten features of the `i009501:invekos_feldstuecke_2024_1` layer (agricultural land parcels as polygons) in GeoJSON format.
+
 
 > GeoJSON is a JSON-based standard for representing simple geographic features, along with their non-spatial attributes. 
 
 Upon inspecting the GeoJSON, you will find the coordinate vertices of the polygon features and attributes such as `fs_flaeche_ha` (parcel area in hectares) and `fnar_bezeichnung` (land use).
 
+
 Use the `bbox` parameter to filter resources within a specific area:
 
 ```{}
-https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon/items?f=json&bbox=14,48,14.02,48.02 
+https://gis.lfrz.gv.at/api/geodata/i009501/ogc/features/v1/collections/i009501:invekos_feldstuecke_2024_1/items?f=json&bbox=14,48,14.02,48.02
 ```
 
 For a visual representation of the bounding box, enter the coordinates `14,48,14.02,48.02` into  [linestrings.com](https://linestrings.com/bbox/){target="_blank"} and click "Display box".
@@ -43,21 +45,25 @@ For a visual representation of the bounding box, enter the coordinates `14,48,14
 To execute the request in R, use the following script:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
-
 library(httr2)
 library(geojsonsf)
 library(sf)
 
-full_url <- "https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_feldstuecke_aktuell_polygon/items?f=json&bbox=14,48,14.02,48.02"
+# Define the new API endpoint
+full_url <- "https://gis.lfrz.gv.at/api/geodata/i009501/ogc/features/v1/collections/i009501:invekos_feldstuecke_2024_1/items?f=json&bbox=14,48,14.02,48.02"
 
 # Make the request and convert the response to an sf object
-invekos <- httr2::request(full_url) %>%   # Create request
-  httr2::req_perform() %>%                # Execute request
-  httr2::resp_body_string() %>%           # Extract JSON body as string
-  geojsonsf::geojson_sf()                 # Convert JSON string to sf object
+invekos <- request(full_url) %>%   # Create request
+  req_perform() %>%                # Execute request
+  resp_body_string() %>%           # Extract JSON body as string
+  geojsonsf::geojson_sf()          # Convert JSON string to sf object
+
+# View the first few rows of the data
+print(head(invekos))
+
 ```
 
-The above code retrieves 100 polygon features and stores them in an object named `invekos`.
+The above code retrieves polygon features within the specified bounding box and stores them in an object named `invekos`.
 
 ## Data Cleaning
 
@@ -74,7 +80,6 @@ dplyr::glimpse(invekos)
 To create a subset of the `invekos` sf-object, use the following code:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
-
 invekos %>%
   head(2) %>%
   dplyr::select(fnar_bezeichnung, fs_flaeche_ha, geo_id, geometry) %>%
@@ -99,7 +104,6 @@ colnames(invekos.sub)[2] <- "area_ha"
 Entries are renamed using `dplyr`'s `mutate` and `case_when` functions:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
-
 unique(invekos.sub$land_use)  # Unique entries in 'land_use'
 
 # Renaming entries 'ACKERLAND' and 'GRÜNLAND'
@@ -125,10 +129,8 @@ By default, the `plot()` function generates a multi-panel plot, with one sub-plo
 Next, we can validate the geometry of sf polygons using `st_is_valid`:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
-
 sf::st_is_valid(invekos) %>%
   summary()
-
 ```
 
 The `st_is_valid` function checks the validity of each geometry, returning a logical vector. The summary confirms that all geometries in our dataset are valid. If any invalid geometries are detected, they can be corrected using the `st_make_valid` function.
@@ -193,7 +195,7 @@ invekos.sub %>%
 
 ### Geometrical operations
 
-`sf` provides a range of geometric predicates such as `st_within`, `st_contains`, or `st_crosses`, with a complete list available [here](https://r-spatial.github.io/sf/reference/geos_binary_pred.html){target="_blank"}. While these are often used between pairs of simple feature geometry sets, they can also operate on a single `sf` object:
+The `sf` package provides a range of geometric predicates such as `st_within`, `st_contains`, or `st_crosses`. A complete list is available [here](https://r-spatial.github.io/sf/reference/geos_binary_pred.html){target="_blank"}. While these functions are often used between pairs of simple feature geometry sets, they can also operate on a single `sf` object:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -201,24 +203,26 @@ sf::st_intersects(invekos.sub, sparse = TRUE)
 
 ```
 
-This returns a sparse matrix revealing intersections within features of the same `sf` object `invekos.sub`, indicating possible topology errors. For correcting these errors, GIS software like [QGIS](https://www.qgis.org/de/site/){target="_blank"} is recommended as R's capabilities for handling topology errors are less advanced.
+This function returns a sparse matrix revealing intersections within features of the same `sf` object `invekos.sub`, indicating possible topology errors. For correcting these errors, GIS software like [QGIS](https://www.qgis.org/de/site/){target="_blank"} is recommended as R's capabilities for handling topology errors are less advanced.
 
 ### Binary operations
 
-Binary operations are essential for analyzing spatial relationships between different datasets. Here, we demonstrate this by creating an `sf` object representing farmsteads using data from the [AMA Rest API service](https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections?f=text%2Fhtml){target="_blank"}:
+Binary operations are essential for analyzing spatial relationships between different datasets. Here, we demonstrate this by creating an `sf` object representing farmsteads using data from the [AMA Rest API service](https://gis.lfrz.gv.at/api/geodata/i009501/ogc/features/v1/collections?f=text%2Fhtml){target="_blank"}:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
+# Define the new API endpoint for farmsteads
+farms_url <- "https://gis.lfrz.gv.at/api/geodata/i009501/ogc/features/v1/collections/i009501:invekos_hofstellen_2024_1/items?f=json&bbox=14,48,14.02,48.02&limit=100"
 
-full_url <- "https://gis.lfrz.gv.at/ogcapi009501/ogc/features/collections/ogcapi009501:INVEKOS_hofstellen_aktuell_point/items?f=json&bbox=14,48,14.02,48.02"
+# Make the request and convert the response to an sf object
+farms <- httr2::request(farms_url) %>%   # Create request
+  httr2::req_perform() %>%               # Execute request
+  httr2::resp_body_string() %>%          # Extract JSON body as string
+  geojsonsf::geojson_sf()                # Convert JSON string to sf object
 
-farms <- httr2::request(full_url) %>%   # Create request
-  httr2::req_perform() %>%           # Execute request
-  httr2::resp_body_string() %>%      # Extract JSON body as string
-  geojsonsf::geojson_sf()            # JSON string to sf object
-
-plot(invekos.sub[1], main=NULL, key.pos=NULL, reset = FALSE, col_graticule = "grey")
-plot(farms[1], main=NULL, key.pos=NULL, pch = 7, col='red', add = TRUE, cex=1)
+# Plot land parcels with farm points overlayed
+plot(invekos.sub[1], main = NULL, key.pos = NULL, reset = FALSE, col_graticule = "grey")
+plot(farms[1], main = NULL, key.pos = NULL, pch = 7, col = 'red', add = TRUE, cex = 1)
 
 ```
 
@@ -236,27 +240,29 @@ The `st_distance` function calculates the shortest distance matrix between the g
 
 ```{block2, type = 'rmdexercise'}
 
-Distances are computed in meters, which may seem unexpected since the reference system's units are in degrees. To understand the underlying calculations, examine the coordinate reference system of the `sf` objects `farms` and `invekos` using `sf::st_crs()`. This will reveal that objects use geographic coordinates (WGS 84).
+Distances are computed in meters, which may seem unexpected since the reference system's units are in degrees. To understand the underlying calculations, examine the coordinate reference system of the `sf` objects `farms` and `invekos.sub` using `sf::st_crs()`. This will reveal that objects use a projected coordinate system (EPSG:31287), which allows for metric distance calculations.
 
-In this short exercise, we will take a closer look at the algorithm that is implemented in function `st_distance`.
+In this short exercise, we will take a closer look at the algorithm that is implemented in the function `st_distance`.
 
-Open the [documentation of `st_distance`](https://r-spatial.github.io/sf/reference/geos_measures.html){target="_blank"} to find out how metric distances were derived from geographic coordinates.
+Open the [documentation of `st_distance`](https://r-spatial.github.io/sf/reference/geos_measures.html){target="_blank"} to find out how metric distances are derived from geographic coordinates.
 
 <details closed>
 <summary><ins>**See solution!**</ins></summary>
 <p><font color="grey">
 
-According to the documentation, greater circle distances are computed for geodetic coordinates. Greater circle distance calculations use by default spherical distances. Alternatively, distances can be computed based on an ellipsoidal model. See [Algorithms for geodesics, Journal of Geodesy](https://link.springer.com/article/10.1007/s00190-012-0578-z){target="_blank"} for more information.
-  
+According to the documentation, metric distances are computed based on the Coordinate Reference System (CRS) of the `sf` objects. Since both `farms` and `invekos.sub` use **EPSG:31287** (a projected CRS), the `st_distance` function calculates planar (Euclidean) distances in meters. This is possible because projected CRSs preserve distance relationships locally, unlike geographic CRSs which use degrees.
+
+For more detailed information on distance calculations, refer to [Algorithms for geodesics, Journal of Geodesy](https://link.springer.com/article/10.1007/s00190-012-0578-z){target="_blank"}.
+
 </font>
 </p>
 </details>
 
 ```
 
-When plotting the complete distance matrix `dist_m`, we see that column 1 contains the distances between the first feature (parcel 1) in sf-object `invekos` and the 10 farm features of sf-object `farms`. Accordingly, the matrix has 100 columns (one column for every parcel) and 10 rows (one row for every farm).
+When plotting the complete distance matrix `dist_m`, we see that column 1 contains the distances between the first feature (parcel 1) in the `invekos.sub` `sf` object and the 100 farm features of the farms sf object. Accordingly, the matrix has 100 columns (one for every parcel) and 100 rows (one for every farm).
 
-The following line returns the first column of the distance matrix as vector:
+The following line returns the first column of the distance matrix as a vector:
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -270,14 +276,49 @@ To identify the farm that is located closest to parcel 1, we need to query the i
 
 which(dist_m[, 1] == min(dist_m[, 1]))
 
+
 ```
 
-The `which` function, a base R utility, identifies the indices of elements that satisfy a given condition. In the example, it returns the index of the smallest value within the vector `dist_m[, 1]`. Consequently, it indicates that farm 1 is the closest to parcel 1.
+The `which` function, a base R utility, identifies the indices of elements that satisfy a given condition. In the example, it returns the index of the smallest value within the vector `dist_m[, 1]`. Consequently, it indicates which farm is the closest to parcel 1.
 
-The demonstrated procedure for detecting closest farms can be executed for ever parcel in a for-loop. The number of the closest farm is appended to a vector named `closest`. This vector is in turn appended as a new column to sf-object `invekos.sub`. And `invekos.sub` is plotted together with `farms`:
+The demonstrated procedure for detecting closest farms can be executed for every parcel in a for-loop. The number of the closest farm is appended to a vector named `closest`. This vector is in turn appended as a new column to the `sf` object `invekos.sub`. Finally, `invekos.sub` is plotted together with `farms`:
+
+There are now two approaches to perform this loop:
+
+**Approach 1: Dynamic Loop Using `ncol(dist_m)`**
+
+This method dynamically adjusts the loop to the number of parcels by using `ncol(dist_m)`. It's flexible and scalable, making it suitable for datasets where the number of parcels may change.
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
+
+# Approach 1: Dynamic Loop Using ncol(dist_m)
+closest <- c()
+
+for (i in 1:ncol(dist_m)){
+  
+  out <- which(dist_m[, i] == min(dist_m[, i]))
+  
+  closest <- c(closest, out)
+  
+}
+
+cbind(invekos.sub, closest) %>%
+  {plot(.[4], main = NULL, key.pos = NULL, reset = FALSE)}
+
+plot(farms[1], main = NULL, key.pos = NULL, pch = 7, col = 'red', add = TRUE, cex = 1)
+
+
+```
+
+**Approach 2: Fixed Loop Using a Hardcoded Value (e.g., 100)**
+
+This method uses a fixed number of iterations (100) based on prior knowledge of the dataset size. It's simpler but less flexible, as it requires manual adjustment if the number of parcels changes.
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+
+# Approach 2: Fixed Loop Using a Hardcoded Value (e.g., 100)
 closest <- c()
 
 for (i in 1:100){
@@ -289,9 +330,10 @@ for (i in 1:100){
 }
 
 cbind(invekos.sub, closest) %>%
-  {plot(.[4], main=NULL, key.pos=NULL, reset = FALSE)}
+  {plot(.[4], main = NULL, key.pos = NULL, reset = FALSE)}
 
-plot(farms[1], main=NULL, key.pos=NULL, pch = 7, col='red', add = TRUE, cex=1)
+plot(farms[1], main = NULL, key.pos = NULL, pch = 7, col = 'red', add = TRUE, cex = 1)
+
 
 ```
 
