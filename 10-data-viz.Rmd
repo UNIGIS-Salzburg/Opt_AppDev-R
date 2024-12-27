@@ -2,9 +2,9 @@
 
 R has a very rich set of graphical functions. The [R Graph Gallery](https://www.r-graph-gallery.com/){target="_blank"} provides a large number of examples (including code).  
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 In this lesson you will get to know the [`ggplot2` library](https://ggplot2.tidyverse.org/){target="_blank"}, which is the most popular library for creating graphics in R. You will learn to create standard graphs such as histograms, boxplots or scatterplots as well as maps by means of the [`ggplot2` library](https://ggplot2.tidyverse.org/){target="_blank"}. 
-```
+:::
 
 ## The Grammar of Graphics
 
@@ -30,9 +30,9 @@ knitr::include_graphics('images/VisualVar.png')
 
 Upcoming sections will delve into practical examples, demonstrating the power and versatility of `ggplot2` in visualizing complex datasets.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 **Further Reading:** For a foundational understanding of "The Grammar of Graphics" as implemented in `ggplot2`, refer to Hadley Wickham's insightful [article](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf){target="_blank"}.
-```
+:::
 
 ## Understanding Wide and Long Data Formats in R
 
@@ -71,9 +71,9 @@ knitr::kable(long_data)
 
 Understanding these formats is crucial for effective data manipulation and visualization in R, especially when using libraries like `ggplot2` and `tidyverse`. Certain types of visualizations and statistical analyses are more straightforward with data in a specific format.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 **Note**: Transforming data between wide and long formats is often achieved using functions like `pivot_longer()` and `pivot_wider()` from the [`tidyr`](https://tidyr.tidyverse.org/reference/index.html){target="_blank"} package, which is in included in the Tidyverse.
-```
+:::
 
 ## Visualization of distributions
 
@@ -81,7 +81,7 @@ As already mentioned above, functions in the `ggplot2` library are structured ac
 
 We begin the analysis with a simple histogram, to explore the distribution of air quality [**data**](data/AirQualityUpperAut.csv){target="_blank"} that has been measured at different locations in Upper Austria, one of the nine states in Austria.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 **Data Overview:**
 
@@ -92,7 +92,7 @@ We begin the analysis with a simple histogram, to explore the distribution of ai
 - **Unit:** The unit of measurement.
 - **Value:** The measured value of air quality.
   
-```
+:::
 
 Let's start by displaying the first few rows of this dataset:
 
@@ -156,7 +156,7 @@ airquality %>%
 
 This is implemented by adding an attribute `fill = station` to the aesthetics element (`aes()`). `ggplot2` offers a number of [functions](https://ggplot2.tidyverse.org/reference/scale_manual.html){target="_blank"} to specify your own set of mappings from levels in the data to aesthetic values. In the example above the function `scale_fill_manual()` is used to map the three levels `S125`, `S270` and `S431` to the fill [colors](http://sape.inf.usi.ch/quick-reference/ggplot2/colour){target="_blank"} `grey20`, `grey50` and `grey80`. Instead of 'ggplot colors', you can also use [hex color codes](https://htmlcolorcodes.com/){target="_blank"}.
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 Note that plot components are [added](https://ggplot2.tidyverse.org/reference/gg-add.html){target="_blank"} by means of a plus '+' sign. It allows you to start simple, and then get more and more complex.
 
@@ -175,7 +175,7 @@ ggplot2::ggtitle("Nitrogen dioxide concentration")
 </p>
 </details>
 
-```
+:::
 
 ## Boxplots
 
@@ -206,7 +206,7 @@ airquality %>%
 
 **Note that:** the last two lines remove text and tick marks from the y-axis of the plot.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 Just as histograms, box plots are used to inspect distributions in data. The [interpretation](https://ggplot2.tidyverse.org/reference/geom_boxplot.html){target="_blank"}, however, does require some additional information.
 
@@ -214,14 +214,14 @@ The lower and upper edge of the box (the so-called lower and upper **hinges**) c
 
 The upper **whisker** extends from the hinge to the largest value no further than 1.5 * IQR from the hinge (where IQR is the inter-quartile range, or distance between the first and third quartiles). The lower whisker extends from the hinge to the smallest value at most 1.5 * IQR of the hinge. Data beyond the end of the whiskers are called "outlying" points and are plotted individually.
 
-```
+:::
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 In our histogram examples, we have mapped the variable ‘station’ onto visual variable `color` to separately visualize measurements of different stations. Try to apply the same approach to render measurements of stations `S125`, `S270` and `S431` separately in a box plot. 
                                                                         
 See [our solution](Solution_Exercise_boxplots.R){target="_blank"}!                                                                           
-```
+:::
 
 ## Scatterplots
 
@@ -258,7 +258,7 @@ The generated scatterplot vividly illustrates the relationship between air tempe
 
 For a comprehensive explanation of the inverse relationship between relative humidity and temperature, refer to [this video](https://www.youtube.com/watch?v=saojnBSBUuk){target="_blank"}
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 Copy and run the code example from above in a new R-Script. Note that the air quality data as well as the `tidyverse` library must be loaded to run the code in a standalone R-script file. 
 
@@ -282,7 +282,7 @@ While exploring, consider the following:
 </p>
 </details> 
 
-```
+:::
 
 ## Map Visualization
 
@@ -364,7 +364,7 @@ nc_points <- cbind(nc, st_coordinates(st_centroid(nc$geometry)))
 
 ```
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 we have used a standard syntax to create variabe `nc_points`. Convert the code to pipe operator syntax.
 
@@ -384,7 +384,7 @@ Note that the reading direction of pipe syntax code is from left to right (more 
 </p>
 </details>
 
-```
+:::
 
 After deriving centroid coordinates from `nc` geometries, we call the new variable `nc_points` in function `geom_text` and map X and Y columns (centroid coordinates) onto visual variables x and y (position in graph) and also map column `NAME` onto visual variable label. Moreover, we can insert individual text annotations manually by means of function `annotate()`:
 
@@ -450,9 +450,9 @@ m <- leaflet() %>%
 
 The pipe operator (`%>%`) conveniently adds layers, thanks to Leaflet's function design.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 The function `addTiles()`  per default adds OpenStreetMap map tiles. You may use the function `addProviderTiles()` to add other map tiles. Leaflet supports a large number of [basemap layers](http://leaflet-extras.github.io/leaflet-providers/preview/){target="_blank"}.
-```
+:::
 
 The same pipe-syntax can be used to add [Markers](https://rstudio.github.io/leaflet/markers.html){target="_blank"} and HTML [Labels](https://rstudio.github.io/leaflet/popups.html){target="_blank"} or [Popups](https://rstudio.github.io/leaflet/popups.html){target="_blank"}. In the following example, an HTML Popup locates a restaurant:
 

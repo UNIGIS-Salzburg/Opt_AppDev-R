@@ -1,6 +1,6 @@
 # Control Structures
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 In this lesson, you will learn about control structures, a significant elements in coding that allows for dynamic behavior based on variable values.
 
@@ -10,7 +10,7 @@ We distinguish between two types of control structures:
 
 2) **Loops**, which allow repeating one or more instructions multiple times. Loops are commonly used to apply the same operation to a series of values stored in sequences such as vectors or lists.
 
-```
+:::
 
 ## If
 
@@ -27,17 +27,17 @@ if (a_value < 0) {
 
 The **statement** `cat("Negative")` is executed and the text "Negative" is printed out, because the **condition** (`a_value < 0`) is `TRUE`.   
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 The function [`cat()`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/cat){target="_blank"} concatenates and prints string inputs ("Negative" in the example above). Alternatively, you can use the function `print()` to write variable values to the console window. 
 
 These functions are highly useful to check whether variables take on expected values!
 
-```
+:::
 
 Note that every conditional statement (e.g. `a_value < 0`) returns a logical value that is either `TRUE` or `FALSE`. 
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 What result do you expect when you remove the negative sign in the code block above (`a_value <- 7`)? To evaluate your expectation, run the code in RStudio. 
 
@@ -51,7 +51,7 @@ The condition yields `FALSE`. The statement is not executed.
 </p>
 </details>  
 
-```
+:::
 
 ## Else
 
@@ -68,11 +68,11 @@ if (a_value < 0){
 
 In the example above, the **condition** `a_value < 0` is `TRUE`, **statement 1** `cat("Negative")` is executed and **statement 2** `cat("Positive")` is ignored. If you change `a_value` to a positive value, the interpreter will ignore statement 1 and execute statement 2.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 Note that the statements are enclosed within curly brackets for clarity. While indentation doesn't affect code execution in R, it's essential for readability and maintaining code structure.
 
 However, inserting a line break before `else` returns an error. The reason for this behavior is explained in [a forum thread](https://stackoverflow.com/questions/37929184/if-else-does-the-line-break-between-and-else-really-matters){target="_blank"}. 
-```
+:::
 
 ## Code blocks
 
@@ -90,9 +90,9 @@ if (first_value > second_value) {
 
 The line `cat("First is greater than second\n")` prints text (string) and inserts a line break. The next line calculates the difference between first and second value. The third line in the code block concatenates two inputs (`"Their difference is"` and variable `difference`) and prints them to the console window.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 `if` and `else` are so called **reserved words**, meaning they cannot be used as variable names. 
-```
+:::
 
 ## Loops
 
@@ -119,7 +119,7 @@ while (current_value < 3) {
 }
 ```
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 Go through the example above and try to verbalize the consecutive steps. 
 
@@ -139,7 +139,7 @@ Go through the example above and try to verbalize the consecutive steps.
 </p>
 </details>  
 
-```
+:::
 
 The same procedure can alternatively be implemented by means of the `repeat` construct:
 
@@ -182,13 +182,13 @@ print(letter_cnt)
 
 The for-loop iterates over the elements in vector `cities`. The base function `nchar()` counts the number of letters of every city name and appends the count to a new vector `letter_cnt`.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 Note that with every iteration a new value is appended to the right side of the vector. The syntax for appending elements to a vector in R is...
 
 `name vector <- c(name vector, element to append)`
 
-```
+:::
 
 There are some cases in which, for some reason, you just want to execute a certain sequence of steps a pre-defined number of times. In such cases, it is common practice to create a vector of integers on the spot. In the following example the for-loop is executed 3 times as it iterates over a vector composed of the three elements 1, 2, and 3 (vector is created on the spot by `1:3`):  
 
@@ -199,8 +199,7 @@ for (i in 1:3) {
 }
 ```
 
-```{block2, type = 'rmdexercise'}
-
+::: {.rmdexercise}
 
 Replace the vector `1:3` by a vector `3:5`. What is different?
 
@@ -217,7 +216,7 @@ However, the iterator 'i' returns the values 3, 4, and 5.
 </p>
 </details>  
 
-```
+:::
 
 ## Loops with conditional statements
 
@@ -269,11 +268,11 @@ We need to load the library 'tidyverse' to make use of the function 'str_starts(
 
 ### Exercise: loops with conditional statements
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 As a last exercise in this lesson, you will implement code that iterates over a two-dimensional `SpatRaster Object` and counts values in the raster grid that exceed a certain threshold.
   
-```
+:::
   
 1) Create a `SpatRaster Object` `r` with 20 rows and 20 columns and assign random values in a range between 0 and 1. Use the function `runif` as random value generator. It is recommended to make use of code snippets from lesson Spatial Data Structures. 
 

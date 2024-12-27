@@ -12,9 +12,9 @@ Additionally, the course introduces the essentials of working with **spatial dat
 
 Upon completing this module, you'll possess foundational R programming skills, preparing you for more advanced topics such as "Geospatial Data Analysis", as covered in the "Spatial Statistics" module of the MSc program.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 This module partly draws from [granolarr](https://github.com/sdesabbata/granolarr){target="_blank"}, developed by [Stefano de Sabbata](https://sdesabbata.github.io/){target="_blank"} at [University of Leicester](https://le.ac.uk/){target="_blank"}. For further exploration, refer to the Webbook [R for Geographic Data Science](https://sdesabbata.github.io/r-for-geographic-data-science/){target="_blank"}. We particularly recommend its chapters on **Statistical Analysis** and **Machine Learning** for those interested in advanced R applications.
-```
+:::
 
 ## R programming language
     
@@ -63,9 +63,9 @@ if (knitr::is_html_output(excludes='epub')) {
 
 ``` 
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 Encounter technical difficulties? Please consult the discussion forum!
-```
+:::
 
 ## Interpreting Values
 
@@ -77,7 +77,7 @@ knitr::include_graphics('images/Console.png')
 
 Type in a **numeric value** (e.g., 3) and press Enter. The interpreter returns the input value preceded by a bracketed number. The value in brackets indicates that the input is composed of one single entity.
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 What happens when you input a text value (e.g., 'test')?
     
@@ -91,13 +91,13 @@ The interpreter returns an error when unquoted text is entered, as it's not reco
 </p>
 </details>    
 
-```
+:::
 
 If you start your input with a hash symbol (`#`) the interpreter will consider that line as a comment. For instance, if you type in **# Test Test Test**, you will see that nothing is returned as an output. Comments are extremely important as they allow you to add explanations in plain language. Comments are fundamental to allow other people to understand your code and it will save you time interpreting your own code.     
 
 ## Simple Data Types
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 R's simple data types, essential for encoding information, include:
 
@@ -108,11 +108,11 @@ R's simple data types, essential for encoding information, include:
 - logical
     - Represents `TRUE` or `FALSE` values
 
-```
+:::
 
 These `TRUE` or `FALSE` values are typically the result of evaluating logical expressions. Together these three **simple data types** are the building blocks R uses to encode information.
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 If you type a simple numeric operation in the console (e.g. 2 + 4), the interpreter will return a result. This indicates that operations (e.g. mathematical calculations) can be carried out on these types.
 
@@ -128,7 +128,7 @@ The interpreter returns `TRUE`, because it is true that 2 is less than 3.
 </p>
 </details>    
 
-```
+:::
 
 ## Numeric operators{#numop}
 
@@ -150,11 +150,11 @@ Whereas mathematical operators are self-explanatory, the operators **Modulo** an
 5%/%2
 ```
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 Note: In this web book, two hash symbols (`##`) highlight the values returned by the R Console. The code above returns a value of 2. The number in squared brackets [1] indicates the line number of the return.
-```
+:::
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 Execute 5 %% 2 to test the 'Modulo' operator.
     
@@ -168,7 +168,7 @@ The "Modulo" returns the remainder of the division, which is 1 in the example ab
 </p>
 </details>    
 
-```
+:::
 
 ## Logical operators
 
@@ -187,7 +187,7 @@ R also provides a series of basic logical operators to create logical expression
 
 Logical expressions are typically used to execute code dependent on the occurrence of conditions. 
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 What logical values are returned by the following expressions:    
 
@@ -197,7 +197,7 @@ What logical values are returned by the following expressions:
 
 Type and execute these expressions in the RStudio console to validate your assumptions.
 
-```
+:::
 
 ## References
 

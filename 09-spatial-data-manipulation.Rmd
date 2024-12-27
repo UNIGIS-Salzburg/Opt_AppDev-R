@@ -2,21 +2,21 @@
 
 In the previous lesson, you learned how to access data on a server via a REST API. The Open Geospatial Consortium (OGC) has adapted the REST API paradigm for geospatial applications. A variety of OGC API standards have been implemented to provide and utilize geospatial data on the web. An overview of the current implementation status can be found [here](https://ogcapi.ogc.org/#standards){target="_blank"}.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 In this lesson, we will utilize online data resources in workflows that involve data cleaning, spatial queries, and analyses. Additionally, you will learn to carry out basic raster manipulation operations on a sample raster dataset.
 
-```
+:::
 
 ## Data Acquisition
 
 We will work with vector data to correctly identify agricultural land parcels in European Union countries. The Austrian Agricultural Agency ([AMA](https://www.ama.at/intro){target="_blank"}) provides access to Austrian agricultural parcels through an [OGC Rest API - Feature](https://ogcapi.ogc.org/){target="_blank"} interface. The OGC API Features standard is the successor to the OGC Web Feature Service (WFS) specification.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 The R syntax used to interact with OGC APIs is the same as described in the "Data API" section (see Lesson [8](#readwrite){target="_blank"}).
 
-```
+:::
 
 Before loading the data into an R script, examine the API's contents. Visit the web service's [landing page](https://gis.lfrz.gv.at/api/geodata/i009501/ogc/features/v1/){target="_blank"} and proceed to the [collection page](https://gis.lfrz.gv.at/api/geodata/i009501/ogc/features/v1/collections?f=text%2Fhtml){target="_blank"}. There you will find an overview of the available layers.
 
@@ -135,11 +135,11 @@ sf::st_is_valid(invekos) %>%
 
 The `st_is_valid` function checks the validity of each geometry, returning a logical vector. The summary confirms that all geometries in our dataset are valid. If any invalid geometries are detected, they can be corrected using the `st_make_valid` function.
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 Let's closely investigate a polygon geometry with the code below, which creates a single polygon feature. The validity check flags an invalid geometry. Can you identify the problem?
 
-```
+:::
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 # Coordinates for the polygon
@@ -238,7 +238,7 @@ dist_m <- sf::st_distance(farms, invekos.sub)
 
 The `st_distance` function calculates the shortest distance matrix between the geometries of the two `sf` objects, with distances returned in meters.
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 Distances are computed in meters, which may seem unexpected since the reference system's units are in degrees. To understand the underlying calculations, examine the coordinate reference system of the `sf` objects `farms` and `invekos.sub` using `sf::st_crs()`. This will reveal that objects use a projected coordinate system (EPSG:31287), which allows for metric distance calculations.
 
@@ -258,7 +258,7 @@ For more detailed information on distance calculations, refer to [Algorithms for
 </p>
 </details>
 
-```
+:::
 
 When plotting the complete distance matrix `dist_m`, we see that column 1 contains the distances between the first feature (parcel 1) in the `invekos.sub` `sf` object and the 100 farm features of the farms sf object. Accordingly, the matrix has 100 columns (one for every parcel) and 100 rows (one for every farm).
 
@@ -450,6 +450,6 @@ Here, all cells with the value `255` are replaced with `2550`.
 
 A broader range of vector and raster operations can be found in [Chapter 5 - Geometry Operations, in the Book Geocomputation with R](https://bookdown.org/robinlovelace/geocompr/geometric-operations.html){target="_blank"}.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 **Note:** As of writing this module, "Geocomputation with R" uses the `raster` package, which is expected to be superseded by `terra`.
-```
+:::

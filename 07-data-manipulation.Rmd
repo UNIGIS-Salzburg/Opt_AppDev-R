@@ -1,11 +1,11 @@
 # Data Manipulation{#datman}
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 In most instances, the structure of the available data will not meet the specific requirements needed to perform the analyses you are interested in. Data analysts typically spend most of their time cleaning, filtering, restructuring data as well as harmonizing and joining data from different sources.
 
 In this lesson, you will learn about the fundamental data wrangling operations using the `dplyr` library from the Tidyverse suite. You'll also be introduced to [tibbles](https://tibble.tidyverse.org/){target="_blank"}, a modern take on data frames in R. Tibbles are lightweight and work seamlessly within the Tidyverse ecosystem. For more on tibbles, see [Tibbles in R for Data Science](https://r4ds.had.co.nz/tibbles.html){target="_blank"}.
 
-```
+:::
 
 ## Preparation
 
@@ -24,19 +24,17 @@ The operator `::` is used to indicate that the function `flights` (that returns 
 
 In order to run the following data wrangling examples on your machine, add both lines above as well as the code snippets provided in the upcoming examples to a new R script file.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 Once you have loaded the flights table, open the **Environment Tab** in RStudio and double-click variable `flights_from_nyc` to inspect the variable contents.
 
 Alternatively, you may inspect `flights_from_nyc` by writing it to the console.
 
-```
+:::
 
 ## Data manipulation
 
 The `dplyr` library provides a number of functions to investigate the basic characteristics of inputs. For instance, the function `count()` can be used to count the number of rows of a data frame or tibble. The code below uses `flights_from_nyc` as input to this function. The returned row count `n` is represented in a table. 
-
-
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 
@@ -141,7 +139,7 @@ flights_from_nyc %>%
   knitr::kable()
 ```
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 Run the mutate example above in a new script and replace `dplyr::mutate` with `dplyr::transmute`. What happens to your results?
   
@@ -155,7 +153,7 @@ The `transmute` function creates a new data frame containing only column `air_ti
 </p>
 </details> 
 
-```
+:::
 
 ### Arrange
 
@@ -173,11 +171,11 @@ In the examples above, we have used `slice_head` to present only the first `n` r
 
 ### Exercise: data manipulation
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 The Food and Agriculture Organization (FAO) is a specialized agency of the United Nations that leads international efforts to defeat hunger. On their [Website](http://www.fao.org/home/en/){target="_blank"} they provide comprehensive datasets on global crop and livestock production. Your task in this exercise is to create a table that shows national African sorghum production in 2019. 
 
-```
+:::
 
 1. Create an RScript and install or load the libraries `tidyverse` and `knitr`, if not done yet.
 2. Bulk download [African Crop and Livestock Production](http://www.fao.org/faostat/en/#data/QCL){target="_blank"} data as CSV:
@@ -235,9 +233,9 @@ city_info_wide %>%
  knitr::kable()
 ```
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 Note that data frames in the code above are converted to [tibbles](https://tibble.tidyverse.org/){target="_blank"}. This step is necessary because the `kable()` function requires `tibbles` as input.
-```
+:::
 
 Joins between two tables can be executed by different join operations. The `dplyr` library offers join operations, which correspond to `SQL` joins illustrated in the image below. 
 
@@ -366,11 +364,11 @@ Compare the results of respective full, left, right and inner join operations. T
 
 ### Exercise: join
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 In the previous exercise, we created a table that shows national African sorghum production in 2019. In this exercise we will join crop production statistics with a table that contains national boundaries and visualize sorghum production quantities in a simple map. 
 
-```
+:::
 
 1. Create an RScript and install and load the libraries `tidyverse`, `knitr`, `ggplot2` and `maps`, if not done yet.
 
@@ -388,8 +386,8 @@ world_ctry <- map_data("world")
 
 [Our exercise solution](Solution_Exercise_DataWrangling2.R){target="_blank"} creates a simple output map. Don't worry in [Lesson 10](#data-viz) we will cover visualization methods in more detail.  
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 Take a look at the [dplyr Cheatsheet](https://www.rstudio.com/resources/cheatsheets/){target="_blank"} which shows the most important dplyr operations at a glance.
 
-```
+:::

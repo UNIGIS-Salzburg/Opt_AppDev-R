@@ -2,11 +2,11 @@
 
 In previous exercises we have **read** data from a CSV file into our script. Similarly we can also **write** code outputs to file.   
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 In this lesson you will learn to read and write plain-text, spatial vector and raster file formats. Moreover, we will retrieve online data by means of a data API.
 
-```
+:::
 
 ## Read and write tabular data
 
@@ -44,17 +44,17 @@ fishery_data %>%
 
 In order to run the script, [download the CSV file](data/capture-fisheries-vs-aquaculture.csv){target="_blank"}. Then copy and run the code in a new R-script.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 Other important packages for reading tabular data are [`readxl`](https://readxl.tidyverse.org/){target="_blank"} for Excel (`.xls` and `.xlsx`) and [`haven`](https://haven.tidyverse.org/){target="_blank"} for SPSS, Stata and SAS data.  
-```
+:::
 
 ## Read and write vector data
 
 The library `sf` makes it easy to read and write vector datasets such as shapefiles. 
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 Remember: In lesson [4](#spds), we used the `sf` library to build vector geometries from scratch. Investigate their properties and assign and transform coordinate reference systems. The name sf stands for **simple features**, meaning that [sf-objects conform to the simple feature standard](https://r-spatial.github.io/sf/articles/sf1.html){target="_blank"}. Now we use the same library to load sf-objects from file.
-```
+:::
 
 In order to load vector data in an R-Script, we can use the function `st_read()`. In the code block below, a [shapefile](data/nc.zip){target="_blank"} ([North Carolina sample data](https://r-spatial.github.io/sf/reference/nc.html){target="_blank"}) is loaded and assigned to a variable `nc`. 
 
@@ -90,11 +90,11 @@ sf::st_simplify(nc) %>%
 
 ```
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 You may have recognized that a dot (`.`) is used as a parameter in the function `plot()`. The dot represents the piped value. In the example above the dot is used to define the simplified geometry of `nc` as first parameter of function `plot()` and `max.plot = 1` as the second.  
 
-```
+:::
 
 In the next example, the `st_geometry()` retrieves the geometry attribute from variable `nc`, function `st_centroid()` calculates the centroid of the polygon geometry (`counties`) and function `st_write` writes the centroid point geometry to file. 
 
@@ -107,19 +107,19 @@ sf::st_geometry(nc) %>%
   
 ```
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 The online book [Geocomputation with R](https://r.geocompx.org/){target="_blank"} offers a more comprehensive explanation of available geometric, attribute and spatial data operations. For a quick overview, you may turn to the [sf cheatsheets](https://github.com/rstudio/cheatsheets/blob/master/sf.pdf){target="_blank"}. 
-```
+:::
 
 In order to test the code on your machine, [download](data/nc-centroids.zip){target="_blank"} the North Carolina dataset and install the libraries `sf` and `Rcpp` before you run the code in an R-Script.   
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 The `plot()` function offers a large number of arguments that can be used to customize your map. Replace 'AREA' in the map above by a more meaningful map title. Turn to the [documentation](https://r-spatial.github.io/sf/reference/plot.html){target="_blank"} for more information.    
 
 See [our solution](Solution_Miniexercise_plot.R){target="_blank"}!
 
-```
+:::
 
 ## Read and write raster data
 
@@ -202,10 +202,10 @@ The library [httr2](https://httr2.r-lib.org/){target="_blank"} offers functions 
 
 For accessing the data with `httr2`, we'll construct a URL composed of a reference to the data source (`base`), and parameters to filter the desired data subset. To assemble base URL and parameters we will use the function `sprintf()`.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 **Note**: 
 The `sprintf()` function in R is used for string formatting. It allows you to combine, format, and interpolate variables into strings in a flexible way. For example, `sprintf("%s?parameters=%s&start=%s", base, lat, lon)` constructs a URL string by inserting the values of `base`, `lat` and `lon` into the placeholders (`%s`). Each `%s` is replaced by the corresponding variable's value in the order they are listed. This function is particularly useful in scenarios where you need to dynamically generate strings or URLs with variable data.
-```
+:::
 
 ```{r, echo=TRUE, message=FALSE, warning = FALSE}
 

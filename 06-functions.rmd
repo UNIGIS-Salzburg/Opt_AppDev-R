@@ -1,8 +1,8 @@
 # Functions
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 In previous lessons, we've used various functions (like `cat()`, `print()`) without delving deeply into their mechanics. This lesson aims to demystify functions by guiding you through the creation and understanding of custom functions. We'll also explore the concepts of global and local variable scopes.
-```
+:::
 
 ## Defining Functions
 
@@ -53,11 +53,11 @@ add_one(3)  # Also returns 4
 
 In both examples, calling `add_one(3)` returns 4. The explicit use of `return()` in the second example provides clarity about the intended output of the function.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 The choice between implicit and explicit return in R functions can depend on various factors, including the complexity of the function and the coding standards of your team or organization. In GIS and similar fields, it's important to understand both approaches and adapt to the coding practices of your workplace. Always consider the context and ask, "What is the standard here?" 
 
-```
+:::
 
 
 <!-- Note from 01.03 for next Review: It might be good, to explain it more througly, see Discussion Forum - Jens about explicit vs. implicit and my answer: https://elearn.unigis.at/mod/forum/discuss.php?d=9284 -->
@@ -93,11 +93,11 @@ area_rectangle <- function (height, width) {
 area_rectangle(3, 2)
 ```
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 Default parameters can enhance a function's flexibility. For instance, you can modify the `area_rectangle` function parameters as `(height, width = 3)`. Now, with only one input, the function should return `YOUR INPUT * 3`. Specifying both parameters overrides the default `width`. Here's how it looks:
 
-```
+:::
 
 ```{r, echo=TRUE}
 area_rectangle <- function (height, width = 3) {
@@ -165,9 +165,9 @@ factorial(3)
 The function takes a single numeric value as input, defines a variable named `result` that is equal to '1' and then creates a loop over all the numbers from 1 (variable `result`) to the `input_value`. In the loop, the current value of `result` is multiplied by the value of the iterator `i`.
 
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 Though technically possible, defining a function within loops or conditional statements is generally avoided.
-```
+:::
 
 ## Scope
 
@@ -199,7 +199,7 @@ times_x(2)
 
 Understanding these distinctions is essential for writing robust and error-free R code, especially in more complex data analysis or GIS projects.
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 Referring to external global variables in a function is possible but can be dangerous. At the time of execution, one cannot be sure what the value of the global variable is. For instance, other processes might have changed its value, which affects the behavior of the function. In order to fix this problem, define the variable `x_value` as a default attribute of function `times_x`. 
 
 <details closed>
@@ -214,11 +214,10 @@ times_x <- function (input_value, x_value = 10) {
 </p>
 </details> 
 
+:::
 
-```
-
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 These lessons have introduced fundamental R programming concepts. The [Base R Cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/base-r.pdf){target="_blank"} offers a concise summary of key operations.
 
-```
+:::

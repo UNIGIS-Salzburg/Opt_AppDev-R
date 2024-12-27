@@ -1,13 +1,13 @@
 # Core Concepts{#core}
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 In this lesson, we'll explore three fundamental concepts in programming:
 
 1. Variables
 2. Functions
 3. Libraries
 
-```
+:::
 
 ## Variables
 
@@ -23,10 +23,10 @@ To retrieve the value of the variable, simply use its **identifier**:
 a_variable
 ```
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 To save and manage your code efficiently, create an **R Script** in RStudio (File > New File > R Script). Select the code in the R Script Window and click 'Run' to execute it. Scripts offer the advantage of running multiple lines of code at once and keeping a record of your work.
-```
+:::
 
 Variables allow you to store computational results and later access them for further analysis. For instance:
 
@@ -42,7 +42,7 @@ Why use variables instead of direct input? They make your code **reusable, scala
   
 Meteorologists track water temperature gradients to forecast weather patterns. If location A's temperature is 22°C and B's is 26°C, calculating the difference as `26 - 22` in the RStudio console is straightforward. However, for ongoing real-time measurements, an algorithm using variables for each location's temperature can significantly speed up the process. Such an algorithm is adaptable to various data inputs, making it a robust tool for complex calculations.
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 1) In RStudio, create a new R script (File > New File > R Script).
 2) Declare two variables (`temp_A` and `temp_B`) with temperature values.
@@ -65,13 +65,13 @@ To clear your workspace memory, click the "broom icon" in the Environment Panel'
 </p>
 </details> 
 
-```
+:::
 
 ## Algorithms and Functions
 
-```{block2, type = 'rmdtip'}  
+::: {.rmdtip} 
 *"An algorithm is a mechanical rule, automatic method, or program for performing some mathematical operation"* (Cutland, 1980).
-```
+:::
 
 A *program* is a specific set of instructions that implements an abstract algorithm.
 
@@ -85,13 +85,13 @@ For example, the pre-defined function `sqrt()` calculates the square root of an 
 sqrt(2)
 ```
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 Each input value corresponds to a parameter defined in the function.
 
 **Important:** In programming, the terms 'parameter' and 'argument' are often used interchangeably, but there is a subtle distinction. A **parameter** is the variable listed inside the parentheses in the function declaration, while an **argument** is the actual value passed to the function. For example, in the function definition `square(number)`, `number` is a parameter. When you call `square(4)`, the value 4 is the argument passed to the `number` parameter. Understanding this difference helps in comprehending how functions receive and process information.
    
-```
+:::
 
 `round()` is another predefined function in R:
 
@@ -117,7 +117,7 @@ round(sqrt_of_two, digits = 3)
 
 The first line calculates the square root of 2 and stores it in a variable named `sqrt_of_two`. The second line rounds the value stored in `sqrt_of_two` to three decimal places.
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 Can you store the output of the `round()` function in a second variable?
 
@@ -132,7 +132,7 @@ rounded_sqrt_of_two <- round(sqrt_of_two, digits = 3)
 </p>
 </details> 
 
-```
+:::
 
 Functions can also be used as arguments within other functions. For instance, we can use `sqrt()` as the first argument in `round()`:
 
@@ -142,7 +142,7 @@ round(sqrt(2), digits = 3)
 
 In this case, the intermediate step of storing the square root of 2 in a variable is skipped.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 While using functions as arguments within other functions (nested functions) can sometimes reduce readability, they are a common and powerful practice in R. This approach can make your code more concise and expressive. However, it's essential to balance conciseness with clarity! 
 
 Moreover, to enhance the readability of R code, it is recommended to follow naming conventions for variables and functions:
@@ -152,7 +152,7 @@ Moreover, to enhance the readability of R code, it is recommended to follow nami
 - Valid names can include:
     - Alphanumeric characters, `.` and `_`.
 - Names must start with a letter, not a number or a symbol.
-```
+:::
 
 ## Libraries
 
@@ -177,12 +177,12 @@ If not yet installed, you can download and install it with:
 install.packages('stringr')  # Note: the function takes a string argument ('')
 ```
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 Alternatively, libraries (a.k.a. packages) can be installed through RStudio's 'Install Packages' menu (Tools > Install Packages...). You can choose to install from CRAN or a package archive file. The majority of libraries are available through [CRAN - Comprehensive R Archive Network](https://cran.r-project.org/){target="_blank"}, a vast collection of R resources and libraries.
 
 - When using `install.packages()`, the package name must be a string, hence the quotes around 'stringr'.
 - To explore the functions provided by a library, like `stringr`, you can use `ls()` to list them. This command shows you what's available to use once a library is loaded into your R session.
-```
+:::
 
 Once installed and loaded, the library provides a new set of functions in your environment. For instance, `str_length` in the `stringr` library returns the number of characters in a string:
 
@@ -202,10 +202,10 @@ str_detect("UNIGIS", "I")
 str_replace_all("UNIGIS", "I", 'X')
 ```
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 You can list all the functions available in the `stringr` library using the built-in function [`ls()`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ls){target="_blank"}:
-```
+:::
 
 ```{r, echo=TRUE}
 ls("package:stringr")

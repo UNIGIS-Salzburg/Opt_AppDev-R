@@ -2,11 +2,11 @@
 
 This lesson is dedicated to the `rmarkdown` library. However, R Markdown is **more than just a library**, [RMarkdown](https://rmarkdown.rstudio.com/){target="_blank"}  is part of a set of tools designed to enhance the reproducibility of your work. Other tools and platforms such as [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"}, [ArXiv](https://arxiv.org/){target="_blank"}, and [bioRxiv](https://www.biorxiv.org/){target="_blank"} can facilitate reproducibility in various ways. In this module, we won't explore the paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"} in detail. Instead, our focus will be on how to use RMarkdown to make your analyses and reports more appealing, interactive, and **efficient**.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 In this lesson, we will weave together code and text in professionally rendered R Markdown documents and use [GitHub](https://github.com/){target="_blank"} to safely store, share, and administer our results.    
 
-```
+:::
 
 ## Set up your work environment
 
@@ -14,7 +14,7 @@ Before creating your first R Markdown document, we need to **set up** the **GitH
 
 Version control is especially important when working in teams, as it helps synchronize efforts among project participants. However, GitHub is also a reliable and open online platform for individual work, providing change tracking, documentation, and sharing features.
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 To set up your personal GitHub environment, follow these steps:
 
 1) Review the [Hello-World Section](https://docs.github.com/en/get-started/quickstart/hello-world){target="_blank"} in GitHub's Quickstart Documentation. Initially, reading it is sufficient—no need to complete the tutorial yet.
@@ -23,17 +23,17 @@ To set up your personal GitHub environment, follow these steps:
 4) In RStudio (under Tools > Global Options > Git / SVN), check "enable version control" and set the path to git.exe (e.g., C:/Program Files/Git/bin/git.exe). Restart RStudio afterward.
 5) [Create a repository](https://docs.github.com/en/get-started/quickstart/create-a-repo){target="_blank"} on GitHub. In the tutorial, skip the section 'Commit your first changes'.
 6) By default, your repository will have one branch named `main`. Create an additional branch called `dev` off the `main`. Follow the instructions in the [Hello-World Tutorial](https://docs.github.com/en/get-started/quickstart/hello-world){target="_blank"} for guidance.
-```
+:::
 
 
 Next, install the `rmarkdown` library and `tinytex` in RStudio as described in the [R Markdown Guide](https://bookdown.org/yihui/rmarkdown/installation.html){target="_blank"}.
 
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 To properly **install**`tinytex`, execute both lines in RStudio:
 
-```
+:::
 
 ```{r, echo=TRUE, eval = FALSE}
 install.packages('tinytex')
@@ -46,14 +46,13 @@ Follow RStudio's prompts to install any dependencies. For technical issues, plea
 
 To work on your repository locally, you will need to create a local clone of your online GitHub repository. Here's how:
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 In RStudio, go to (File > New Project > Version Control > Git).
 
 Enter the URL of your online repository (find this URL in your GitHub repository) and select a local directory for the clone. Then click "Create Project" (refer to Fig. \@ref(fig:L09-clone)).
 
-
-```
+:::
 
 ```{r L09-clone, echo=FALSE, fig.cap="Clone GitHub Repository", out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/Gitclone.png')
@@ -83,21 +82,22 @@ Before making further changes, switch to the `dev` branch (see Fig. \@ref(fig:L0
 knitr::include_graphics('images/Branches.png')
 ```
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 It is **highly recommended** to work in progress on a separate developer branch, like `dev`, and keep the `main` branch for stable versions. You can later merge changes from `dev` to `main` through a pull request (see [Opening a Pull Request](https://docs.github.com/en/get-started/quickstart/hello-world#opening-a-pull-request){target="_blank"}).
 
-```
+:::
 
 ## Creating Your First R Markdown Document
 
 Now that the environment is set up, let's create our first R Markdown document.
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 In RStudio: Navigate to (File > New File > R Markdown). Enter a title for your document, accept the default settings, and click "OK". You'll receive a sample R Markdown file with the extension `.Rmd`.
 
-```
+:::
+
 An R Markdown document comprises three core components: **metadata**, **text** and **code** (see Fig. \@ref(fig:L09-sample)).
 
 ```{r L09-sample, echo=FALSE, fig.cap="R Markdown sample file", out.width='80%', fig.asp=.75, fig.align='center'}
@@ -106,11 +106,11 @@ knitr::include_graphics('images/SampleFile.png')
 
 The metadata, written in [YAML](https://en.wikipedia.org/wiki/YAML){target="_blank"} syntax, defines document properties like title, output format, and creation date. Explore more about YAML syntax and document properties [here](https://cran.r-project.org/web/packages/ymlthis/vignettes/yaml-overview.html){target="_blank"}.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 To automatically update the date in your document, insert `date: "```r format(Sys.time(), '%d %B, %Y')```"` in the metadata section. This outputs the current date based on your system's time zone in a human-readable format.
 
-```
+:::
 
 After the metadata section an **R inline code block** starts and ends with three backticks (see Fig. \@ref(fig:L09-sample)). The three **parameters** in curly brackets identify the code as R code. The `r` specifies the programming language, which is the default for R. Alternatively, you can also use parameter `{py}` to insert Python code into your markdown document (see Fig. \@ref(fig:L09-python)).
 
@@ -120,11 +120,11 @@ knitr::include_graphics('images/pyexample.png')
 
 The `setup` parameter specifies the name of the code block and (as we will see later) `include=FALSE` prevents the code and code results from being displayed in the compiled HTML output. Nevertheless, RMarkdown still runs the code in this block, which sets `echo=TRUE` as the default option for all code blocks in the RMarkdown document. This means that, by default, the code of all code blocks in the document will be displayed in the output file unless otherwise indicated. 
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 Explore more about code block options in the [knitr documentation](https://yihui.org/knitr/options/){target="_blank"}.
 
-```
+:::
 
 The other code blocks in the RMarkdown sample file produce a summary output (see line 17-19) or create a simple scatterplot (see line 25-27). To see how the compiled HTML output looks like, click "Knit" (see Fig. \@ref(fig:L09-knit)).
 
@@ -134,21 +134,21 @@ knitr::include_graphics('images/knit.png')
 
 Use the dropdown next to the "Knit" button to compile into formats such as `PDF` or `.docx`, among [others](https://rmarkdown.rstudio.com/lesson-9.html){target="_blank"}.
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 Knitting an R Markdown document involves a two-step process. First, the `.Rmd` file is processed by the knitr package, which executes the code chunks and generates a new markdown file with the code and its output. Then, pandoc converts this markdown file into the final output document in the chosen format, allowing a wide range of output options for creating professional-quality documents.
 
-```
+:::
 
 ## Synchronizing with GitHub
 
 Regular synchronization of your local changes with the online repository is a key practice in version control. Start by pulling any updates from the repository.
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 In the RStudio Git tab, click the "Pull" button (see Fig. \@ref(fig:L09-pull)). A notification should indicate whether any new changes are available (e.g., `Already up to date`).
 
-```
+:::
 
 ```{r L09-pull, echo=FALSE, fig.cap="Make Pull", out.width='80%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/pull.png')
@@ -158,7 +158,7 @@ Even if you're working on your own, it's a good idea to routinely start the sync
 
 Next, commit your changes. Think of committing as taking a snapshot of your progress, accompanied by a descriptive message.
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 First, save all documents in RStudio. Then, hit the "Commit" button in the Git tab. The commit window will display a list of modified files. Green highlights indicate new content; red highlights show deleted content.
 
@@ -166,7 +166,7 @@ Check the boxes next to each file to include them in the commit. Alternatively, 
 
 See Fig. \@ref(fig:L09-commit).
 
-```
+:::
 
 ```{r L09-commit, echo=FALSE, fig.cap="Make Commit", out.width='70%', fig.asp=.75, fig.align='center'}
 knitr::include_graphics('images/commit.png')
@@ -254,11 +254,11 @@ To create an **unordered list**, use `*`, `-`, or `+`:
 >
 >>The phenomenon external to an area of interest affects what goes on inside.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 Meanwhile, you know a number of characters that have a special meaning in RMarkdown syntax (like `#` or `>`). If you want these characters verbatim, you have to escape them. The way to **escape a special character** is to add a backslash before. For instance, `#` will not translate into a heading, but will return `#`.
 
-```
+:::
 
 RMarkdown supports a large number of **mathematical notations** using dollar signs `$`:   
 
@@ -286,11 +286,11 @@ R Markdown facilitates an efficient method for inserting **citations** and build
 
 To begin, create a new document in a text editor, such as Windows Editor, and save it with a `.bib` extension (e.g., `references.bib`) in your RStudio project folder.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 Consider using the RStudio project that you previously cloned, modified, and synchronized.
 
-```
+:::
 
 1. **Enable BibTeX Export:** Modify your settings in Google Scholar to enable BibTeX export (see Fig. \@ref(fig:L09-scholarsettings)).
 
@@ -298,9 +298,9 @@ Consider using the RStudio project that you previously cloned, modified, and syn
 knitr::include_graphics('images/ScholarSettings.png')
 ```
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 Browser versions may vary. For assistance, refer to the discussion forum if needed.
-```
+:::
 
 
 2. **Export BibTeX Entries:** After enabling BibTeX export, a new link "Import into BibTeX" will appear in Google Scholar (see Fig. \@ref(fig:L09-biboption)).
@@ -325,9 +325,9 @@ knitr::include_graphics('images/knit_pdf.png')
 
 For a practical demonstration, download and explore this [RMarkdown reference example](data/ReferencesInRMarkdown.zip){target="_blank"}.  Unzip the folder and open the `.Rproj` file in RStudio.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 Explore more RMarkdown syntax examples in the [RMarkdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf){target="_blank"}.
-```
+:::
 
 ## Speed up your workflows
 
@@ -335,7 +335,7 @@ R Markdown significantly enhances the efficiency of repetitive workflows. For in
 
 Real-time data retrieval is possible through [Alpha Ventage](https://www.alphavantage.co/){target="_blank"}, which provides financial market data via the [Alpha Ventage Rest API](https://www.alphavantage.co/documentation/){target="_blank"}. The R library [`alphaventager`](https://cran.r-project.org/web/packages/alphavantager/index.html){target="_blank"} facilitates API access within R. The use of `alphaventager` enables the extraction of various types of financial data, including real-time stock prices, FX rates, and technical indicators, directly into R. This allows for efficient data processing and visualization, making it a good tool for finance-related reports and analyses in R Markdown.
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 Explore a practical example by downloading this [draft finance data report](data/RMarkdownFinanceData.zip){target="_blank"}. Unzip the folder and open the `.Rproj` file in RStudio.
 
@@ -349,7 +349,7 @@ Review the `.Rmd` file thoroughly before compiling an HTML output. Note that it 
 
 Try enhancing the report with an additional spatial indicator, such as a map displaying exchange rates from national currencies to the Euro.
 
-```
+:::
 
 ## Self-study
 
@@ -357,6 +357,6 @@ The vast functionalities of R Markdown extend beyond the scope of a single lesso
 
 This guide covers additional topics such as Notebooks, Presentations, support for languages like Python, C++, SQL, and more complex document creation with extensions like [BookDown](https://bookdown.org/){target="_blank"} or [ThesisDown](https://github.com/ismayc/thesisdown){target="_blank"}. While R Markdown predominantly supports R, its flexibility extends to integrating other programming languages like Python, C++, and SQL. This integration is facilitated through specific settings in the code chunks of the R Markdown document. For instance, by specifying the `python` engine in a code chunk (e.g., ```{python}```), you can seamlessly run Python code within your document. Similar approaches are used for C++ (using the `cpp` engine) and SQL (using the `sql` engine). These capabilities are enabled by the `knitr` package, which supports various languages, allowing for a multi-language analytical workflow within a single R Markdown document. Experimenting with these various features is key to mastering R Markdown.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 **Fun Fact:** This module was written using BookDown.
-```
+:::

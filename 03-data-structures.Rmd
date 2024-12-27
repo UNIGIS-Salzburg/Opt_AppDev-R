@@ -2,7 +2,7 @@
 
 In this lesson, we expand upon the simple data types (**numeric**, **character** and **logical**) discussed in Lesson [1](#intro) by introducing more complex data structures.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 In this lesson, you will get to know the following data structures in R:
 
 1. Vectors
@@ -10,7 +10,7 @@ In this lesson, you will get to know the following data structures in R:
 3. Lists
 4. Data Frames
 
-```
+:::
 
 ## Vectors
 
@@ -30,9 +30,9 @@ a_vector <- c("Birmingham", "Derby", "Leicester", "Lincoln", "Nottingham", "Wolv
 a_vector
 ```
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 Note that the second line of the returned elements starts with [5], as it begins with the fifth element of the vector.
-```
+:::
 
 Other functions for creating vectors include `seq()` and `rep()`:
 
@@ -74,7 +74,7 @@ a_vector[c(2, 4)]  # Retrieves the second and fourth elements
 
 In this case, the values 4 and 6 are returned, corresponding to indices 2 and 4 in `a_vector`. Note that the vector of indices (`c(2, 4)`) is created on the fly.
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 Try creating and selecting elements from a vector yourself. Follow these steps:
 
@@ -96,7 +96,7 @@ selected_cities <- east_midlands_cities[my_indexes]
 </p>
 </details>
 
-```
+:::
 
 
 ### Using the range() Function with Vectors
@@ -155,9 +155,9 @@ mixed_vector <- c(1, "text", TRUE)
 print(mixed_vector)  # Notice how all elements are coerced to the same type
 ```
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 **Factors** are a special data type in R, similar to vectors but limited to predefined values called **levels**. Factors are not covered in this module, but you can learn more about them in the [Programming with R](https://swcarpentry.github.io/r-novice-inflammation/12-supp-factors.html){target="_blank"} tutorial.
-```
+:::
 
 ## Multi-dimensional Data Types
 
@@ -222,9 +222,9 @@ a3dim_array <- array(1:24, dim=c(4, 3, 2))  # Creates a 3-dimensional array
 a3dim_array
 ```
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 Note: An array can have a single dimension, resembling a vector. However, arrays have additional attributes like `dim` and offer different functionalities.
-```
+:::
 
 ### Selection in Multi-Dimensional Data Types
 
@@ -252,7 +252,7 @@ an_array
 an_array[2, c(1, 2), 2]
 ```
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 Create a 3-dimensional array, extract 2 elements to form a vector, and 4 elements to form a matrix.
 
 <details closed>
@@ -271,7 +271,7 @@ a_matrix <- a3dim_array[c(3, 4), c(1, 2), 2]
 </font></i>
 </p>
 </details> 
-```
+:::
 
 ### Lists
 
@@ -323,7 +323,7 @@ employees
 
 Data frames are similar to tables in that each column represents a variable, and each row represents an observation. 
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 Can elements of different types be mixed within a single vector or data frame column?
 
@@ -337,16 +337,16 @@ Vector elements (and by extension, data frame columns) must be of the same type 
 </p>
 </details> 
 
-```
+:::
 
 Elements in each column of a data frame correspond to a row. The first element in `EmployeeName` represents the name of the first employee, and similarly for other columns.
 
-```{block2, type = 'rmdtip'}
+::: {.rmdtip}
 
 To rename columns, use the 'names()' function:
 **names(data frame)[column index] = "new name"**
  
-```
+:::
 
 Selecting data from a data frame is analogous to vector and list selection, but with a focus on the data frame's two-dimensional structure. You typically need two indices to extract data.
 
@@ -391,7 +391,7 @@ employees$Place <- c("Salzburg", "Salzburg", "Salzburg")
 employees
 ```
 
-```{block2, type = 'rmdexercise'}
+::: {.rmdexercise}
 
 Perform operations on data frame columns as you would on vectors. Create a variable to represent the current year and use it to calculate and add a new column for each employee's year of birth.
 
@@ -419,5 +419,5 @@ employees
 </p>
 </details>
 
-```
+:::
 
