@@ -107,9 +107,13 @@ knitr::include_graphics('images/SampleFile.png')
 The metadata, written in [YAML](https://en.wikipedia.org/wiki/YAML){target="_blank"} syntax, defines document properties like title, output format, and creation date. Explore more about YAML syntax and document properties [here](https://cran.r-project.org/web/packages/ymlthis/vignettes/yaml-overview.html){target="_blank"}.
 
 ::: {.rmdtip}
+To automatically update the date in your document based on your system time, insert the following in the metadata section:
 
-To automatically update the date in your document, insert `date: "```r format(Sys.time(), '%d %B, %Y')```"` in the metadata section. This outputs the current date based on your system's time zone in a human-readable format.
+`` date: "`x format(Sys.time(), '%d %B, %Y')`"``
 
+This outputs the current date based on your system's time zone in a human-readable format.
+
+**Note:** Replace `x` with `r` to indicate an R code block that will be evaluated.
 :::
 
 After the metadata section an **R inline code block** starts and ends with three backticks (see Fig. \@ref(fig:L09-sample)). The three **parameters** in curly brackets identify the code as R code. The `r` specifies the programming language, which is the default for R. Alternatively, you can also use parameter `{py}` to insert Python code into your markdown document (see Fig. \@ref(fig:L09-python)).
@@ -333,7 +337,7 @@ Explore more RMarkdown syntax examples in the [RMarkdown Cheatsheet](https://www
 
 R Markdown significantly enhances the efficiency of repetitive workflows. For instance, consider a scenario where a client requires daily updates on specific spatial economic indicators. Instead of manually generating a new report each day, R Markdown can automate this process, creating data reports with charts that update automatically upon compilation. This approach can save substantial time and effort.
 
-Real-time data retrieval is possible through [Alpha Ventage](https://www.alphavantage.co/){target="_blank"}, which provides financial market data via the [Alpha Ventage Rest API](https://www.alphavantage.co/documentation/){target="_blank"}. The R library [`alphaventager`](https://cran.r-project.org/web/packages/alphavantager/index.html){target="_blank"} facilitates API access within R. The use of `alphaventager` enables the extraction of various types of financial data, including real-time stock prices, FX rates, and technical indicators, directly into R. This allows for efficient data processing and visualization, making it a good tool for finance-related reports and analyses in R Markdown.
+Real-time data retrieval is possible through [Alpha Vantage](https://www.alphavantage.co/){target="_blank"}, which provides financial market data via the [Alpha Vantage Rest API](https://www.alphavantage.co/documentation/){target="_blank"}. The R library [`alphavantager`](https://cran.r-project.org/web/packages/alphavantager/index.html){target="_blank"} facilitates API access within R. The use of `alphavantager` enables the extraction of various types of financial data, including real-time stock prices, FX rates, and technical indicators, directly into R. This allows for efficient data processing and visualization, making it a good tool for finance-related reports and analyses in R Markdown.
 
 ::: {.rmdexercise}
 
