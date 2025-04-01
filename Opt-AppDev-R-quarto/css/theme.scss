@@ -1,0 +1,412 @@
+/*-- scss:defaults --*/
+
+$primary: #006847 !default; // UNIGIS primary color
+$content-bg: #f8f9fa !default; // Content background color
+$body-bg: #f0f0f0 !default; // Light background for readability (center excluded.)
+$sidebar-bg: #f0f0f0 !default; // Background for sidebars (TOC and Nav)
+$body-color: #333333 !default; // Body text color
+$link-color: #006847 !default; // Link color matching brand
+$font-size-root: 18px !default; // Base font size
+
+/*-- scss:rules --*/
+
+/* Quarto Main Navigation Styling Inherited by Quarto Render ------------------------------------------------------ */
+
+@media (min-width: 992px) {
+  body.floating .page-columns {
+    display: grid;
+    gap: 0;
+    grid-template-columns:
+      [screen-start] 1.5em /* Left margin */
+      [screen-start-inset] 5fr /* Left sidebar */
+      [page-start] minmax(25px, 50px) /* Left padding */
+      [page-start-inset] minmax(50px, 150px) /* Additional left padding */
+      [body-start-outset] minmax(25px, 50px) /* Content outset */
+      [body-start] 1.5em /* Inner left padding */
+      [body-content-start] minmax(
+        500px,
+        calc(850px - 3em)
+      ) /* Main content area */
+      [body-content-end] 1.5em /* Inner right padding */
+      [body-end] minmax(25px, 50px) /* Content outset */
+      [body-end-outset] minmax(50px, 150px) /* Additional right padding */
+      [page-end-inset] minmax(25px, 50px) /* Right padding */
+      [page-end] 5fr /* Right sidebar */
+      [screen-end-inset] 1.5em /* Right margin */
+      [screen-end]; /* End of screen */
+  }
+}
+
+/* Headings ------------------------------------------------------ */
+
+#title-block-header.quarto-title-block.default .quarto-title h1.title {
+  margin-bottom: 1rem; /* A little more space below the title */
+  font-weight: 500;
+}
+
+h2 {
+  margin-top: 5rem; /* More space above the heading */
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+h3 {
+  margin-top: 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+h4 {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+h5 {
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* A little more space below the heading */
+.caption + h2,
+.caption + h3,
+*:not(h1) + h2,
+*:not(h2) + h3 {
+  margin-top: 2.5rem;
+}
+
+/* For headings that follow a paragraph */
+p + h2,
+p + h3 {
+  margin-top: 2rem;
+}
+
+.quarto-section-identifier {
+  color: #6c6c6c;
+  font-weight: normal;
+}
+
+/* Whole Body Styling ------------------------------------------------------ */
+body {
+  background-color: $body-bg;
+  color: $body-color;
+}
+
+/* Left Sidebar (Main Navigation) ------------------------------------------------------ */
+#quarto-sidebar {
+  left: 1rem;
+  padding: 0;
+}
+
+.sidebar.sidebar-navigation:not(.rollup) {
+  border-right: none !important;
+}
+
+div.sidebar-search input {
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+#quarto-sidebar .sidebar-title {
+  color: $primary;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+#quarto-sidebar .sidebar-item-container {
+  padding: 0.1rem;
+  border-radius: 5px;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  width: 100%;
+}
+
+#quarto-sidebar .sidebar-item-container a {
+  text-decoration: none;
+  display: block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.85rem;
+
+  transition: background-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#quarto-sidebar .sidebar-item-container a:hover {
+  background-color: rgba(0, 104, 71, 0.05);
+  color: $primary;
+}
+
+#quarto-sidebar .sidebar-item-container a.active {
+  background-color: rgba(0, 104, 71, 0.1);
+  color: $primary;
+  padding: 0.3rem 0.6rem;
+  border-left: 4px solid #d0d0d0;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+/* TOC (Right Sidebar) */
+#quarto-margin-sidebar {
+  overflow-y: auto;
+  background-color: $sidebar-bg;
+}
+
+#quarto-margin-sidebar h2#toc-title {
+  font-size: 1.1rem;
+  color: $primary;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+#quarto-margin-sidebar nav[role="doc-toc"] ul > li > a {
+  padding: 0.2rem 0.6rem;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333333;
+  font-weight: 400;
+  line-height: 1.5;
+  transition: background-color 0.3s, color 0.3s;
+  border-left: 0.5px solid rgba(34, 34, 34, 0.3); /* Slight border for better separation */
+}
+
+#quarto-margin-sidebar nav[role="doc-toc"] ul > li > a.active {
+  color: $primary;
+  font-weight: 700;
+  background-color: rgba(0, 104, 71, 0.1);
+  border-left: 2px solid #006847; /* Highlight active item */
+
+  border-radius: 5px;
+}
+
+#quarto-margin-sidebar nav[role="doc-toc"] ul > li > a:hover {
+  background-color: rgba(0, 104, 71, 0.05);
+  color: $primary;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#quarto-margin-sidebar nav[role="doc-toc"] ul > li > ul > li > a {
+  font-size: 0.85rem;
+  color: #555555;
+  font-weight: 400;
+}
+
+/* Main Content ------------------------------------------------------ */
+#quarto-document-content {
+  max-width: 100%;
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0 auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: $content-bg;
+}
+
+/* Callout Styling ------------------------------------------------------ */
+
+.callout h2,
+.callout h3 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Img Styling Background ------------------------------------------------------ */
+
+.quarto-figure {
+  padding: 0 !important;
+  margin: 20px auto 30px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.quarto-layout-panel {
+  padding: 0 !important;
+  margin: 20px auto 30px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.quarto-figure img.img-fluid.figure-img {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  padding: 8px;
+}
+
+.quarto-figure figcaption.quarto-float-caption {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 15px;
+  padding-bottom: 10px;
+}
+
+/* Code ------------------------------------------------------ */
+code {
+  color: #373a3c;
+}
+
+code a:any-link {
+  text-decoration: underline;
+  text-decoration-color: #ccc;
+}
+
+div.cell {
+  word-wrap: break-word;
+  overflow-x: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Figures */
+/* Centralize figcaption elements within figure with the class .quarto-float-caption-bottom */
+figure > figcaption.quarto-float-caption-bottom {
+  text-align: center !important;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+/* iframe Styling ------------------------------------------------------ */
+iframe {
+  aspect-ratio: 16 / 9; /* Always 16:9 aspect ratio */
+  width: 100%;
+  margin: 10px auto;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Media Queries ------------------------------------------------------ */
+
+#quarto-document-content {
+  margin: 0 auto;
+}
+
+body {
+  line-height: 1.5;
+}
+
+@media (min-width: 1920px) {
+  body {
+    font-size: 20px; /* Bigger font size for large screens */
+  }
+
+  #quarto-margin-sidebar nav[role="doc-toc"] ul > li > a {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #quarto-document-content {
+    box-shadow: none;
+    border: none;
+    background-color: inherit;
+  }
+
+  #quarto-sidebar {
+    padding: 8px;
+    left: 0; /* Align to the left */
+  }
+}
+
+@media (max-width: 768px) {
+  #quarto-margin-sidebar {
+    display: none; /* TOC off */
+  }
+
+  #quarto-document-content {
+    grid-column: screen-start / screen-end;
+    max-width: 100%;
+  }
+
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.6rem;
+  }
+  h3 {
+    font-size: 1.4rem;
+  }
+  h4 {
+    font-size: 1.2rem;
+  }
+  h5,
+  h6 {
+    font-size: 1rem;
+  }
+
+  p,
+  li {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  #quarto-margin-sidebar {
+    display: none;
+  }
+
+  #quarto-document-content {
+    grid-column: screen-start / screen-end;
+    max-width: 100%;
+    padding: 0.5rem;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+  h3 {
+    font-size: 1.1rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  h5,
+  h6 {
+    font-size: 0.9rem;
+  }
+
+  p,
+  li {
+    font-size: 0.9rem;
+  }
+}
