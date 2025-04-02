@@ -15,15 +15,23 @@ project:
     - "*.gitkeep" # Ensures folder structure (like _book) remains intact in version control
 
 book:
-  title: "Template Quarto"
-  author: "Team UNIGIS"
+  title: "Automated Data Processing with R"
+  author: "Christian Neuwirth & Maximilian Elixhauser"
   date: last-modified # Uses the last modified date for the build
   chapters:
     # List of chapters (each one is a .qmd file)
     - index.qmd
-    - prerequisities.qmd
-    - styles.qmd
-    - other.qmd
+    - 01-introduction.qmd
+    - 02-core-concepts.qmd
+    - 03-data-structures.qmd
+    - 04-spatial-data-structures.qmd
+    - 05-control-structures.qmd
+    - 06-functions.qmd
+    - 07-data-manipulation.qmd
+    - 08-read-write.qmd
+    - 09-spatial-data-manipulation.qmd
+    - 10-data-viz.qmd
+    - 11-quarto.qmd
     - references.qmd
   page-navigation: true # Enables navigation between pages in the HTML output
 
@@ -67,21 +75,10 @@ format:
       #sidebar-width: 0% # Sets the sidebar width in the HTML output
 
 
-  pdf:
-    documentclass: scrreprt
-    pdf-engine: xelatex
-    header-includes:
-      - \usepackage{eso-pic} # Use eso-pic for image watermark
-      - \AddToShipoutPictureBG{
-          \AtPageLowerLeft{
-            \put(120,300){\includegraphics[width=0.6\paperwidth,keepaspectratio]{branding/unigis_salzburg_globe_transparent.png}}
-          }
-        }
-
 # Build commands to render both HTML and PDF versions with one command
 build:
   commands:
-    - quarto render --to html,pdf # Renders both HTML and PDF formats
+    - quarto render --to html # Renders HTML 
 
 custom-callout:
   exercisebox:
