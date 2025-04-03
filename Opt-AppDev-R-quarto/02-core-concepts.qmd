@@ -1,1 +1,207 @@
-# Core Concepts{#core}
+# Core Concepts {#core}
+
+
+In this lesson, we'll explore three fundamental concepts in programming:
+
+1. Variables
+2. Functions
+3. Libraries
+
+## Variables
+
+Variables are essential for **storing data**. To define a variable, use an *identifier* (e.g., `a_variable`) on the left of an *assignment operator* `<-`, followed by the value you wish to assign (e.g., 1):
+
+```{r, echo=TRUE}
+a_variable <- 1
+```
+
+To retrieve the value of the variable, simply use its **identifier**:
+
+```{r, echo=TRUE}
+a_variable
+```
+
+::: callout-tip
+
+To save and manage your code efficiently, create an **R Script** in RStudio (File > New File > R Script). Select the code in the R Script Window and click 'Run' to execute it. Scripts offer the advantage of running multiple lines of code at once and keeping a record of your work.
+
+:::
+
+Variables allow you to store computational results and later access them for further analysis. For instance:
+
+```{r, echo=TRUE}
+a_variable <- 1
+a_variable <- a_variable + 10
+another_variable <- a_variable
+```
+
+Why use variables instead of direct input? They make your code **reusable, scalable, and time-efficient**, especially with complex data analyses or larger datasets.
+
+**Let us consider the following example:**
+  
+Meteorologists track water temperature gradients to forecast weather patterns. If location A's temperature is 22°C and B's is 26°C, calculating the difference as `26 - 22` in the RStudio console is straightforward. However, for ongoing real-time measurements, an algorithm using variables for each location's temperature can significantly speed up the process. Such an algorithm is adaptable to various data inputs, making it a robust tool for complex calculations.
+
+::: {.exercisebox title="Exercise"}
+
+1) In RStudio, create a new R script (File > New File > R Script).
+2) Declare two variables (`temp_A` and `temp_B`) with temperature values.
+3) Declare a third variable (`diff`) to store their difference.
+4) Run your script and observe the changes in the Environment Panel.
+
+:::
+
+::: {.exercisebox title="Solution" collapse="true" appearance="simple"}
+
+```{r, echo=TRUE}
+temp_A <- 24
+temp_B <- 28
+diff <- temp_A - temp_B
+```
+
+After executing the code in RStudio, you should notice changes in the Environment Panel, located in the top right corner. The **Environment Panel** will display three memory slots with identifiers `diff`, `temp_A`, and `temp_B`, having values of -4, 24, and 28, respectively. Invoking the name of an identifier in the code (e.g., typing `diff` and running it) will return the value stored in that memory slot.
+
+To clear your workspace memory, click the "broom icon" in the Environment Panel's menu.
+
+:::
+
+## Algorithms and Functions
+
+> *"An algorithm is a mechanical rule, automatic method, or program for performing some mathematical operation"* (Cutland, 1980).
+
+A *program* is a specific set of instructions that implements an abstract algorithm.
+
+The definition of an algorithm (and thus a program) can consist of one or more functions. Functions are sets of instructions that perform a task, structuring code into functional, reusable units. Some functions receive values as inputs, while others return output values.
+
+Programming languages typically provide pre-defined functions that implement common algorithms (e.g., finding the square root of a number or calculating a linear regression).
+
+For example, the pre-defined function `sqrt()` calculates the square root of an input value. **Like all functions** in R, `sqrt()` is invoked by specifying the *function name* and *arguments* (input values) between parentheses:
+
+```{r, echo=TRUE}
+sqrt(2)
+```
+
+
+
+Each input value corresponds to a parameter defined in the function.
+
+::: callout-tip
+
+In programming, the terms 'parameter' and 'argument' are often used interchangeably, but there is a subtle distinction. A **parameter** is the variable listed inside the parentheses in the function declaration, while an **argument** is the actual value passed to the function. For example, in the function definition `square(number)`, `number` is a parameter. When you call `square(4)`, the value 4 is the argument passed to the `number` parameter. Understanding this difference helps in comprehending how functions receive and process information.
+   
+:::
+
+`round()` is another predefined function in R:
+
+```{r, echo=TRUE}
+round(1.414214, digits = 2)
+```
+
+Note that the name of the second parameter (`digits`) needs to be specified. The `digits` parameter indicates the number of digits to keep after the decimal point.
+
+The return value of a function can be stored in a variable:
+
+```{r, echo=TRUE}
+sqrt_of_two <- sqrt(2)
+sqrt_of_two
+```
+
+Here, the output value is stored in a memory slot with the identifier `sqrt_of_two`. We can use the identifier `sqrt_of_two` as an argument in other functions:
+
+```{r, echo=TRUE}
+sqrt_of_two <- sqrt(2)
+round(sqrt_of_two, digits = 3)
+```
+
+The first line calculates the square root of 2 and stores it in a variable named `sqrt_of_two`. The second line rounds the value stored in `sqrt_of_two` to three decimal places.
+
+::: {.exercisebox title="Exercise"}
+
+Can you store the output of the `round()` function in a second variable?
+
+:::
+
+::: {.exercisebox title="Solution" collapse="true" appearance="simple"}
+
+```{r, echo=TRUE}
+  
+sqrt_of_two <- sqrt(2)
+rounded_sqrt_of_two <- round(sqrt_of_two, digits = 3)
+```
+    
+:::
+
+Functions can also be used as arguments within other functions. For instance, we can use `sqrt()` as the first argument in `round()`:
+
+```{r, echo=TRUE}
+round(sqrt(2), digits = 3)
+```
+
+In this case, the intermediate step of storing the square root of 2 in a variable is skipped.
+
+While using functions as arguments within other functions (nested functions) can sometimes reduce readability, they are a common and powerful practice in R. This approach can make your code more concise and expressive. However, it's essential to balance conciseness with clarity! 
+
+Moreover, to enhance the readability of R code, it is recommended to follow naming conventions for variables and functions:
+  
+- R is a **case-sensitive** language, meaning UPPER and lower case are treated as distinct.
+    - `a_variable` is not the same as `a_VARIABLE`.
+- Valid names can include:
+    - Alphanumeric characters, `.` and `_`.
+- Names must start with a letter, not a number or a symbol.
+
+
+## Libraries
+
+Related, reusable functions in R can be grouped and stored in **libraries**, also known as *packages*.
+
+As of now, there are more than 10,000 R libraries available. These can be downloaded and installed using the `install.packages()` function. Once a library is installed, the `library()` function is used to make it accessible in a script.
+
+Libraries can vary greatly in size and complexity. For example:
+
+- `base`: This includes basic R functions, such as the `sqrt()` function discussed earlier.
+- `sf`: A package providing [simple feature access](https://en.wikipedia.org/wiki/Simple_Features){target="_blank"}.
+
+The `stringr` library illustrates the use of libraries in R. It offers a consistent and well-defined set of functions for string manipulation. Assuming the library is already installed on your computer, you can load it as follows:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+library(stringr)
+```
+
+If not yet installed, you can download and install it with:
+
+```{r, echo=TRUE, message=FALSE, warning=FALSE}
+install.packages('stringr')  # Note: the function takes a string argument ('')
+```
+
+::: callout-tip
+Alternatively, libraries (a.k.a. packages) can be installed through RStudio's 'Install Packages' menu (Tools > Install Packages...). You can choose to install from CRAN or a package archive file. 
+::: 
+
+The majority of libraries are available through [CRAN - Comprehensive R Archive Network](https://cran.r-project.org/){target="_blank"}, a vast collection of R resources and libraries.
+
+- When using `install.packages()`, the package name must be a string, hence the quotes around 'stringr'.
+- To explore the functions provided by a library, like `stringr`, you can use `ls()` to list them. This command shows you what's available to use once a library is loaded into your R session.
+
+
+Once installed and loaded, the library provides a new set of functions in your environment. For instance, `str_length` in the `stringr` library returns the number of characters in a string:
+
+```{r, echo=TRUE}
+str_length("UNIGIS")
+```
+
+The `str_detect()` function returns `TRUE` if the first argument (a string) contains the second argument (a character string). Otherwise, it returns `FALSE`:
+
+```{r, echo=TRUE}
+str_detect("UNIGIS", "I")
+```
+
+`str_replace_all` replaces all instances of a specified character in a string with another character:
+
+```{r, echo=TRUE}
+str_replace_all("UNIGIS", "I", 'X')
+```
+
+You can list all the functions available in the `stringr` library using the built-in function [`ls()`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ls){target="_blank"}:
+
+```{r, echo=TRUE}
+ls("package:stringr")
+```
