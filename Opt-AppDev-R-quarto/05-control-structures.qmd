@@ -1,1 +1,307 @@
 # Control Structures
+
+In this lesson, you will learn about control structures, a significant elements in coding that allows for dynamic behavior based on variable values.
+
+We distinguish between two types of control structures:
+
+1) **Conditional statements**, which allow executing instructions only if a certain condition is satisfied.
+
+2) **Loops**, which allow repeating one or more instructions multiple times. Loops are commonly used to apply the same operation to a series of values stored in sequences such as vectors or lists.
+
+
+## If
+
+The most fundamental conditional statement in R is the structure *if*, which is used to execute one or more instructions only if a certain condition is `TRUE`.
+
+To include an "if-structure" in your code, you need to use the following syntax:
+
+```{r, echo=TRUE}
+a_value <- -7
+if (a_value < 0) {
+  cat("Negative")
+}
+```
+
+The **statement** `cat("Negative")` is executed and the text "Negative" is printed out, because the **condition** (`a_value < 0`) is `TRUE`.   
+
+The function [`cat()`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/cat){target="_blank"} concatenates and prints string inputs ("Negative" in the example above). Alternatively, you can use the function `print()` to write variable values to the console window. 
+
+These functions are highly useful to check whether variables take on expected values!
+
+> Note that every conditional statement (e.g. `a_value < 0`) returns a logical value that is either `TRUE` or `FALSE`. 
+
+::: {.exercisebox title="Exercise"}
+
+What result do you expect when you remove the negative sign in the code block above (`a_value <- 7`)? To evaluate your expectation, run the code in RStudio. 
+
+:::
+
+::: {.exercisebox title="Solution" collapse="true" appearance="simple"}
+  
+The condition yields `FALSE`. The statement is not executed. 
+    
+:::
+
+## Else
+
+In many cases, we want the interpreter to do something if the condition is satisfied or do something *else*, if the condition is not satisfied. In this case, we can use `if` together with `else`:
+
+```{r, echo=TRUE}
+a_value <- -7
+if (a_value < 0){
+  cat("Negative")
+} else {
+  cat("Positive")
+}
+```
+
+In the example above, the **condition** `a_value < 0` is `TRUE`, **statement 1** `cat("Negative")` is executed and **statement 2** `cat("Positive")` is ignored. If you change `a_value` to a positive value, the interpreter will ignore statement 1 and execute statement 2.
+
+> Note that the statements are enclosed within curly brackets for clarity. While indentation doesn't affect code execution in R, it's essential for readability and maintaining code structure. However, inserting a line break before `else` returns an error. The reason for this behavior is explained in [a forum thread](https://stackoverflow.com/questions/37929184/if-else-does-the-line-break-between-and-else-really-matters){target="_blank"}. 
+
+## Code blocks
+
+Conditional structures have a wide range of applications. Almost everything what a computer does requires an input. Each time you click a button the computer responds accordingly. The code that dictates the response typically has an if-else control structure or something very similar that tells the computer what to do depending on the input it got. Obviously in most cases the response won't be defined by a single instruction, but a code block that is composed of multiple instructions. **Code blocks** allow encapsulating **several** statements in a single group. The condition in the following example yields `TRUE` and the code block is executed:
+
+```{r, echo=TRUE}
+first_value <- 8
+second_value <- 5
+if (first_value > second_value) {
+  cat("First is greater than second\n") 
+  difference <- first_value - second_value
+  cat("Their difference is", difference)
+}
+```
+
+The line `cat("First is greater than second\n")` prints text (string) and inserts a line break. The next line calculates the difference between first and second value. The third line in the code block concatenates two inputs (`"Their difference is"` and variable `difference`) and prints them to the console window.
+
+> `if` and `else` are so called **reserved words**, meaning they cannot be used as variable names. 
+
+## Loops
+
+The second family of control structures that we are going to discuss in this lesson are loops. Loops are a fundamental component of (procedural) programming. They allow repeating one or more instructions multiple times.
+
+There are two main types of loops:
+
+- **conditional** loops are executed as long as a defined condition holds true
+    - construct `while`
+    - construct `repeat`
+    
+- **deterministic** loops are executed a pre-determined number of times
+    - construct `for`
+
+### While and repeat
+
+The *while* construct can be defined using the `while` reserved word, followed by a condition between simple brackets, and a code block. The instructions in the code block are re-executed as long as the result of the evaluation of the condition is `TRUE`.
+
+```{r, echo=TRUE}
+current_value <- 0
+while (current_value < 3) {
+  cat("Current value is", current_value, "\n")
+  current_value <- current_value + 1
+}
+```
+
+::: {.exercisebox title="Exercise"}
+
+Go through the example above and try to verbalize the consecutive steps. 
+
+:::
+
+::: {.exercisebox title="Solution" collapse="true" appearance="simple"}
+  
+1. The variable `current_value` takes on a value of zero.
+2. The condition of the `while`-loop returns `TRUE`.
+3. The `cat()` function is executed and prints a text as well as `current_value`.
+4. The variable `current_value` is incremented by +1.
+5. The condition of the `while`-loop returns `TRUE` (`current_value = 1`), the code block is executed again (see 3 and 4).
+6. `current_value = 2`, the code block is executed again (see 3 and 4).
+7. `current_value = 3`, the condition returns `FALSE`, the loop ends.
+
+:::
+
+The same procedure can alternatively be implemented by means of the `repeat` construct:
+
+```{r, echo=TRUE}
+current_value <- 0 
+repeat { 
+  cat("Current value is", current_value, "\n") 
+  current_value = current_value + 1 
+if (current_value == 3){             # if (variable == 3)... 
+  break                              # the loop will break!
+  }
+}
+```
+
+The `break` statement is executed and stops (or 'breaks') the `repeat` loop (also applicable to `while` or `for` loops) once the variable `current_value` is equal to three.  
+
+### For
+
+The *for* construct can be defined using the `for` reserved word, followed by the definition of an **iterator**. The iterator is a variable, which is temporarily assigned with the current element of a vector, as the construct iterates through all elements of the vector. This definition is followed by a code block, whose instructions are re-executed once for each element of the vector.
+
+```{r, echo=TRUE}
+cities <- c("Derby", "Leicester", "Lincoln", "Nottingham")
+for (city in cities) {
+  cat("Do you live in ", city, "?\n", sep="")
+}
+```
+
+In the first iteration of the for-loop, the text string `"Derby"` is assigned to the iterator `city`. The function `cat()` uses the iterator value as an input. In the second iteration, the text string `"Leicester"` is assigned to the iterator `city` ... etc.
+
+The code block below illustrates another example. 
+
+```{r, echo=TRUE}
+cities <- c("Derby", "Leicester", "Lincoln", "Nottingham")
+letter_cnt <- c()
+for (city in cities) {
+  letter_cnt <- c(letter_cnt, nchar(city))
+}
+print(letter_cnt)
+```
+
+The for-loop iterates over the elements in vector `cities`. The base function `nchar()` counts the number of letters of every city name and appends the count to a new vector `letter_cnt`.
+
+> Note that with every iteration a new value is appended to the right side of the vector. The syntax for appending elements to a vector in R is...
+
+> `name vector <- c(name vector, element to append)`
+
+There are some cases in which, for some reason, you just want to execute a certain sequence of steps a pre-defined number of times. In such cases, it is common practice to create a vector of integers on the spot. In the following example the for-loop is executed 3 times as it iterates over a vector composed of the three elements 1, 2, and 3 (vector is created on the spot by `1:3`):  
+
+```{r, echo=TRUE}
+for (i in 1:3) {
+  cat("This is iteration number", i, ":\n")
+  cat("    See you later!\n")
+}
+```
+
+::: {.exercisebox title="Exercise"}
+
+Replace the vector `1:3` by a vector `3:5`. What is different?
+
+:::
+
+::: {.exercisebox title="Solution" collapse="true" appearance="simple"}
+
+The for-loop is still executed 3 times. 
+  
+However, the iterator 'i' returns the values 3, 4, and 5.
+
+:::
+
+## Loops with conditional statements
+
+Having explored both types of control structures, **conditional statements** and **loops**, we can combine these structures. R, as most other programming languages, allows you to include conditional statements within a loop or a loop within a conditional statement.
+
+A simple example is this bit of code that defines a countdown:
+
+```{r, echo=TRUE}
+# Example: countdown!
+for (i in 3:0) {
+  if (i == 0) {
+    cat("Go!\n")
+  } else {
+    cat(i, "\n")
+  }
+}
+```
+
+The deterministic loop runs 4 time on the values 3, 2, 1, and 0. If the iterator `i` takes on a value of 0 the print `"Go!"` otherwise print the current value of the iterator `i`. The result will be 3, 2, 1, Go!
+
+<details closed>
+<summary><ins>**See another example!**</ins></summary>
+<p><i><font color="grey">
+
+```{r, echo=TRUE, message=FALSE, warning = FALSE}
+
+library(tidyverse)
+
+cities <- c("Salzburg", "Linz", "Wien", "Eisenstadt", "Innsbruck", "Graz")
+
+for (city in cities){
+  if (str_starts(city, "S")){
+    print("City name starts with S")
+  } else{
+    print("City name starts with other letter")
+  }
+  
+}
+
+```
+
+We need to load the library 'tidyverse' to make use of the function 'str_starts()'. You may have to install 'tidyverse' (see Libraries in lesson [core Concepts](#core)). 
+
+`cities` is a vector of strings that includes the names of some Austrian federal capitals. The for-loop iterates over these vector elements. The function `str_starts` takes the value of the iterator `city` as well as a string `"S"` as inputs. If the city starts with letter S, the function returns `TRUE` and `"City name starts with S"` is printed to the console window, otherwise the function returns `FALSE` and `"City name starts with other letter"` is printed. 
+
+</font></i>
+</p>
+</details> 
+
+### Exercise: loops with conditional statements
+
+::: {.exercisebox title="Exercise"}
+
+As a last exercise in this lesson, you will implement code that iterates over a two-dimensional `SpatRaster Object` and counts values in the raster grid that exceed a certain threshold.
+  
+:::
+  
+1) Create a `SpatRaster Object` `r` with 20 rows and 20 columns and assign random values in a range between 0 and 1. Use the function `runif` as random value generator. It is recommended to make use of code snippets from lesson [Spatial Data Structures](#spds){target="_blank"}. 
+
+2) Define a `variable` named `cnt` and assign a value of 0 to it.
+
+3) Iterate over the `SpatRaster Object` `r` by means of a nested for-loop:
+
+```{r, eval=FALSE}
+
+for(row in c(1:nrow(r))) {               
+  for(col in 1:ncol(r)) {                 
+     
+    print(r[row, col])             
+ 
+  }
+}
+```
+
+4) Add a conditional statement within the for-loops that increases the value of `cnt` by one, given that `r[row, col]` is > 0.5. Eventually, variable `cnt` will hold the number of raster grid values that exceed a threshold of 0.5. 
+
+**Task 1:**
+
+Try to find out, in what order the nested-for-loop-structure iterates over the `SpatRaster Object` `r`. 
+
+**Task 2:**
+
+`SpatRaster Object` `r` contains randomly generated values in a range between 0 and 1. Change the threshold value in your conditional statement a couple of times to investigate the distribution of random values. Does the algorithm in function `runif` draw values from a normal or from a uniform distribution?
+
+
+::: {.exercisebox title="Solution" collapse="true" appearance="simple"}
+
+See [our code](Solution_Exercise_ForLoop.R){target="_blank"}.
+
+**Answer 1:**
+
+The *nested for-loop-structure* iterates through the `SpatRaster Object` in a **row-major order**. It starts its iteration in the leftmost cell of row 1, moves to the right through columns (e.g., col1, col2) until it reaches the last column in row 1. Then, it moves down to row 2 and repeats the process for each row in a similar manner. This row-major order ensures that it covers each element of the `SpatRaster Object` row by row.
+
+**Answer 2:**
+
+A threshold value of 0.9 returns a count of about 40, which indicates that about 10% of values are greater than 0.9. It seems like random values are uniformly distributed in a range between 0 and 1. Other R functions like [`rnorm()`](https://www.rdocumentation.org/packages/compositions/versions/2.0-6/topics/rnorm){target="_blank"} generate numbers from a normal distribution. 
+
+::: 
+
+As an alternative, the same functionality may be implemented without loop. Instead, operations can be vectorized:
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+
+library(terra)
+
+r <- terra::rast(ncol=20, nrow=20)
+terra::values(r) <- stats::runif(terra::ncell(r),0,1)
+
+# Get values of SpatRaster Object `r` as matrix
+rm <- terra::values(r)
+# Create logic vector by condition
+log_vec <- rm[,1] > 0.5
+# Get length of TRUE values (grid value > 0.5) in logic vectors
+length(log_vec[log_vec== TRUE])
+
+```
+
+It is apparent from the code example above that avoiding loops in R code makes code shorter and increases performance. Increase the size of your raster grid (e.g. `ncol=100`, `nrow=100`) and test respective code realizations to investigate the difference in code performance. More information on vectorization and parallelization of operations in R can be found [here](https://tmieno2.github.io/R-as-GIS-for-Economists/repetitive-processes-and-looping.html#do-you-really-need-to-loop){target="_blank"}.

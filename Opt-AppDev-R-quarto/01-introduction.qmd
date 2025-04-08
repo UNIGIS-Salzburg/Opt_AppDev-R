@@ -12,9 +12,7 @@ Additionally, the course introduces the essentials of working with **spatial dat
 
 Upon completing this module, you'll possess foundational R programming skills, preparing you for more advanced topics such as "Geospatial Data Analysis", as covered in the "Spatial Statistics" module of the MSc program.
 
-::: callout-tip
-This module partly draws from [granolarr](https://github.com/sdesabbata/granolarr){target="_blank"}, developed by [Stefano de Sabbata](https://sdesabbata.github.io/){target="_blank"} at [University of Leicester](https://le.ac.uk/){target="_blank"}. For further exploration, refer to the Webbook [R for Geographic Data Science](https://sdesabbata.github.io/r-for-geographic-data-science/){target="_blank"}. We particularly recommend its chapters on **Statistical Analysis** and **Machine Learning** for those interested in advanced R applications.
-:::
+> This module partly draws from [granolarr](https://github.com/sdesabbata/granolarr){target="_blank"}, developed by [Stefano de Sabbata](https://sdesabbata.github.io/){target="_blank"} at [University of Leicester](https://le.ac.uk/){target="_blank"}. For further exploration, refer to the Webbook [R for Geographic Data Science](https://sdesabbata.github.io/r-for-geographic-data-science/){target="_blank"}. We particularly recommend its chapters on **Statistical Analysis** and **Machine Learning** for those interested in advanced R applications.
 
 ## R programming language
 
@@ -59,7 +57,9 @@ Video (6:09 min): RStudio for the Total Beginner.
 :::
 
 ::: callout-tip
+
 Encounter technical difficulties? Please consult the discussion forum!
+
 :::
 
 ## Interpreting Values

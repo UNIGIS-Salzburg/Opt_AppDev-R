@@ -219,11 +219,7 @@ a3dim_array <- array(1:24, dim=c(4, 3, 2))  # Creates a 3-dimensional array
 a3dim_array
 ```
 
-::: callout-tip
-
-Note: An array can have a single dimension, resembling a vector. However, arrays have additional attributes like `dim` and offer different functionalities.
-
-:::
+> Note: An array can have a single dimension, resembling a vector. However, arrays have additional attributes like `dim` and offer different functionalities.
 
 ### Selection in Multi-Dimensional Data Types
 

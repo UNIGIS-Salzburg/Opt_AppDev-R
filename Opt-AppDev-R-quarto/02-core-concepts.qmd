@@ -87,7 +87,7 @@ Each input value corresponds to a parameter defined in the function.
 ::: callout-tip
 
 In programming, the terms 'parameter' and 'argument' are often used interchangeably, but there is a subtle distinction. A **parameter** is the variable listed inside the parentheses in the function declaration, while an **argument** is the actual value passed to the function. For example, in the function definition `square(number)`, `number` is a parameter. When you call `square(4)`, the value 4 is the argument passed to the `number` parameter. Understanding this difference helps in comprehending how functions receive and process information.
-   
+
 :::
 
 `round()` is another predefined function in R:
@@ -173,8 +173,10 @@ install.packages('stringr')  # Note: the function takes a string argument ('')
 ```
 
 ::: callout-tip
+
 Alternatively, libraries (a.k.a. packages) can be installed through RStudio's 'Install Packages' menu (Tools > Install Packages...). You can choose to install from CRAN or a package archive file. 
-::: 
+
+:::
 
 The majority of libraries are available through [CRAN - Comprehensive R Archive Network](https://cran.r-project.org/){target="_blank"}, a vast collection of R resources and libraries.
 
