@@ -384,8 +384,4 @@ r[1,1]
 
 Note that the layer number `lyr.1` is returned in the console, when accessing individual values of a `SpatRaster Object`. This implies that `SpatRaster Objects` can handle space-time and multivariable data. A useful example for integrating space and time in `SpatRaster Objects` is provided by Dominic Royé in his blog post [Use of multidimensional spatial data.](https://dominicroye.github.io/en/2022/use-of-multidimensional-spatial-data/){target="_blank"} For more sophisticated data cube applications, the use of the [`stars` package](https://r-spatial.github.io/stars/){target="_blank"} is recommended.
 
-::: {.rmdtip}
-
 In this lesson, you learned to handle spatial vector and raster structures in R. To get to know these structures, we built vector and raster objects from scratch. In many instances, however, objects may be created in R by loading vector and raster file formats (e.g. `.shp` or `.tif`). This topic will be covered in lesson [8](#readwrite).
-
-:::

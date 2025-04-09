@@ -1,0 +1,21 @@
+---
+title: 'Worked example: references in RMarkdown'
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+date: '2022-10-27'
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## First law of geography 
+
+According to @tobler1970computer, nearer things are more related than distant...
+
+Nearer things are more related than distant things [@tobler1970computer]...
+
+## References
