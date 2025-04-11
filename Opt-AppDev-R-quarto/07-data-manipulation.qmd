@@ -40,7 +40,7 @@ flights_from_nyc %>%
   knitr::kable()
 ```
 
-In the example above, we use the pipe operator `%>%`, a key feature of `magrittr` and `tidyverse` syntax. The operator links a sequence of analysis steps, passing `flights_from_nyc` through `count()` and then `kable()`. This makes the code simpler and more readable. 
+In the example above, we use the pipe operator `%>%`, a key feature of `magrittr` and `tidyverse` syntax. The operator links a sequence of analysis steps, passing `flights_from_nyc` through `count()` and then `kable()`. More specifically, the pipe operator passes the left-hand object as the first argument to the right-hand function. This makes the code simpler and more readable. 
 
 The same result could be achieved with a traditional approach using an intermediate variable or by nesting functions. However, these methods can make the code less readable compared to using the pipe operator:
 
@@ -75,7 +75,7 @@ flights_from_nyc %>%
 
 ```
 
-Notice how the code becomes more readable with each operation on a new line after `%>%`. Remember, the pipe operator passes the left-hand object as the first argument to the right-hand function. 
+Notice how the code becomes more readable with each operation on a new line after `%>%`. 
 
 For a deeper understanding of pipe operators, check out the following video.
 
