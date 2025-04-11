@@ -40,7 +40,7 @@ flights_from_nyc %>%
   knitr::kable()
 ```
 
-In the example above, we use the pipe operator `%>%`, a key feature of `magrittr` and `tidyverse` syntax. The operator links a sequence of analysis steps, passing `flights_from_nyc` through `count()` and then `kable()`. This makes the code simpler and more readable. For a deeper understanding, check out [this video](https://www.youtube.com/watch?v=sohARFx6aTo){target="_blank"}.
+In the example above, we use the pipe operator `%>%`, a key feature of `magrittr` and `tidyverse` syntax. The operator links a sequence of analysis steps, passing `flights_from_nyc` through `count()` and then `kable()`. This makes the code simpler and more readable. 
 
 The same result could be achieved with a traditional approach using an intermediate variable or by nesting functions. However, these methods can make the code less readable compared to using the pipe operator:
 
@@ -61,7 +61,7 @@ knitr::kable(dplyr::count(flights_from_nyc))
 
 ```
 
-The result is the same. However, nested structures are harder to read. Accordingly, the pipe operator is a powerful tool to simplify your code. See [this video](https://www.youtube.com/watch?v=sohARFx6aTo){target="_blank"} to learn more about it.
+The result is the same. However, nested structures are harder to read. Accordingly, the pipe operator is a powerful tool to simplify your code. 
 
 The function `count()` can also be used to count the number of rows of a table that has the same value for a given column, usually representing a category.
 
@@ -76,6 +76,18 @@ flights_from_nyc %>%
 ```
 
 Notice how the code becomes more readable with each operation on a new line after `%>%`. Remember, the pipe operator passes the left-hand object as the first argument to the right-hand function. 
+
+For a deeper understanding of pipe operators, check out the following video.
+
+::: {#fig-vidpip}
+<iframe src="https://vimeo.com/1074652888/be7c285395?share=copy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+Worked examples - `magrittr` and `Base R` pipe operators
+:::
+
+ > [Download Worked Example](data/pipe.R){target="_blank"}
 
 ::: callout-tip
 
