@@ -1,6 +1,6 @@
 # Quarto
 
-According to the [Quarto Website](https://quarto.org/){target="_blank"}, *Quarto is an open-source scientific and technical publishing system*, and it is already on your machines because you installed it together with RStudio.
+According to the [Quarto Website](https://quarto.org/){target="_blank"}, *Quarto is an open-source scientific and technical publishing system*, and it is already available on your machines because you installed it together with RStudio.
 
 Quarto is part of a set of tools designed to enhance the reproducibility of your work. Other tools and platforms such as [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"}, [ArXiv](https://arxiv.org/){target="_blank"}, and [bioRxiv](https://www.biorxiv.org/){target="_blank"} can facilitate reproducibility in various ways. In this module, we won't explore the paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"} in detail. Instead, our focus will be on how to use Quarto to make your analyses and reports more appealing, interactive, and efficient.
 
@@ -100,7 +100,20 @@ Now that the environment is set up, let's create our first Quarto document.
 
 In RStudio: Navigate to (File > New File > Quarto Document). Enter a title for your document, accept the default settings, click "OK", and save the file. You'll receive a sample Quarto file with the extension `.qmd`.
 
-Quarto documents include three core components: **metadata**, **text** and **code**:
+By default, Quarto is in [Visual Editing](https://quarto.org/docs/visual-editor/){target="_blank"} mode, which provides a [WYSIWYM-style](https://en.wikipedia.org/wiki/WYSIWYM){target="_blank"} editing interface for Quarto documents. Switch to the Source Editor: 
+
+::: {#fig-schem}
+
+![](images/VisEditor.png){width="70%" fig-align="center"} 
+/newline
+
+Switch mode in RStudio
+
+:::
+
+> While the Visual Editor interface is more intuitive, the source editor promotes a deeper understanding of underlying structures. Moreover, errors can be spotted and debugged more easily in Source Editor mode. 
+
+Quarto documents include three core components. **Metadata**, **text** and **code**:
 
 ::: {#fig-schem}
 
@@ -140,7 +153,7 @@ Similarly, you may change the output format under YAML parameter `format`. Quart
 
 ::: callout-tip
 
-Alternatively, YAML-configurations may be specified on on a project level (seperate file named _quarto.yml) or on a code chunk level (see [YAML Locations](https://rstudio-pubs-static.s3.amazonaws.com/1266674_7e6d2e9a96b648ffac1826f4f1787f31.html#yaml-locations){target="_blank"}).
+Alternatively, YAML-configurations may be specified on a project level (separate file named _quarto.yml) or on a code chunk level (see [YAML Locations](https://rstudio-pubs-static.s3.amazonaws.com/1266674_7e6d2e9a96b648ffac1826f4f1787f31.html#yaml-locations){target="_blank"}).
 
 :::
 
@@ -201,7 +214,7 @@ Make Commit
 
 Finally, push your committed changes to the online repository:
 
-::: {#fig-commit}
+::: {#fig-push}
 
 ![](images/Push.png){width="70%" fig-align="center"}
 /newline
@@ -214,16 +227,18 @@ Your online repository on GitHub should now be updated (switch to `dev` branch i
 
 ::: {#fig-commitfin}
 
-![](images/CommitFinished.png){width="70%" fig-align="center"}
+![](images/CommitFinished.png){width="80%" fig-align="center"}
 /newline
 
-Commit with message 'describe sync process in GitHub' was pushed to the developer branch a minute ago
+Commit with message 'test' was pushed to the dev branch a minute ago
 
 :::
 
+In our example the `dev` branch is two commits ahead of the `main` branch. You may [open a pull request](https://docs.github.com/en/get-started/quickstart/hello-world#opening-a-pull-request){target="_blank"} to merge changes from `dev` to `main` branch.
+
 ## Basic Markdown Syntax
 
-In Quarto text is formatted by means of the Markdown syntax. commonly used markers are... 
+In Quarto text is formatted by means of the Markdown syntax. Commonly used markers are... 
 
 **Bold:** Double asterisks `**Text**` turn text **bold**.
 
@@ -296,7 +311,7 @@ To create an **unordered list**, use `*`, `-`, or `+`:
 >
 >>The phenomenon external to an area of interest affects what goes on inside.
 
-Meanwhile, you know a number of characters that have a special meaning in Markdown syntax (like `#` or `>`). If you want these characters verbatim, you have to escape them. The way to **escape a special character** is to add a backslash before. For instance, `\#` will not translate into a heading, but will return `#`.
+Meanwhile, you know several characters that have a special meaning in Markdown syntax (like `#` or `>`). If you want these characters verbatim, you have to escape them. The way to **escape a special character** is to add a backslash before. For instance, `\#` will not translate into a heading, but will return `#`.
 
 RMarkdown supports a large number of **mathematical notations** using dollar signs `$`:   
 
@@ -406,3 +421,9 @@ Try enhancing the report with an additional spatial indicator, such as a map dis
 The vast functionalities of Quarto extend beyond the scope of a single lesson. To fully exploit its capabilities, refer to the comprehensive [Quarto Guide](https://quarto.org/docs/guide/){target="_blank"}.
 
 This guide covers additional topics such as the integration of figures or cross references, computations in various languages such as R, Julia and Observable and formats such as quarto projects, presentations, dashboards, websites, books or manuscripts. 
+
+::: callout-tip
+
+To find inspiration for your own projects you may consult the [Quarto Gallery](https://quarto.org/docs/gallery/){target="_blank"} that provides a variety of Quarto best practice examples.
+
+:::
