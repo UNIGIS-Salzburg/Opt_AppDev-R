@@ -1,1 +1,0 @@
-# Showcase of spData library

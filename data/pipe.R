@@ -15,7 +15,7 @@ dplyr::filter(dplyr::select(nycflights13::flights, dep_time, origin), dep_time <
 
 
 #pipe operators
-new_var <- nycflights13::flights %>%
+nycflights13::flights %>%
   dplyr::select(dep_time, origin) %>%
   dplyr::filter(dep_time <= 600) %>%
   dplyr::count(origin)

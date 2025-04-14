@@ -1,7 +1,0 @@
-book_filename: "UNIGIS-AppDev-R"
-language:
-  ui:
-    chapter_name: "Lesson "
-output_dir: docs 
-delete_merged_file: true
-
