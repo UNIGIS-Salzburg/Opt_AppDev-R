@@ -1,7 +1,0 @@
-h1:readwrite Read and Write Data
-h2:read-and-write-tabular-data Read and write tabular data
-h2:read-and-write-vector-data Read and write vector data
-h2:read-and-write-raster-data Read and write raster data
-h2:data-api Data API
-fig:APIvideo Video (3:13 min): REST API concepts and examples.
-

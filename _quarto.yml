@@ -1,0 +1,93 @@
+project:
+  type: book
+  # Pre-render and post-render commands (e.g., scripts you might use for preprocessing)
+  # pre-render: python script_test.py
+  # post-render: quarto render combined.qmd
+
+  resources:
+    # Specifies resources to include, such as images and scripts
+    - "*.png" # Include all PNG files
+    - "*.jpg" # Include all JPG files
+    - "*.jpeg" # Include all JPEG files
+    - "*.js" # Include all JavaScript files
+    - "*.html" # Include all HTML files
+    - "*.css" # Include all CSS files
+    - "*.gitkeep" # Ensures folder structure (like _book) remains intact in version control
+
+book:
+  title: "Automated Data Processing with R"
+  author: "Christian Neuwirth & Maximilian Elixhauser"
+  date: last-modified # Uses the last modified date for the build
+  chapters:
+    # List of chapters (each one is a .qmd file)
+    - index.qmd
+    - 01-introduction.qmd
+    - 02-core-concepts.qmd
+    - 03-data-structures.qmd
+    - 04-spatial-data-structures.qmd
+    - 05-control-structures.qmd
+    - 06-functions.qmd
+    - 07-data-manipulation.qmd
+    - 08-read-write.qmd
+    - 09-spatial-data-manipulation.qmd
+    - 10-data-viz.qmd
+    - 11-quarto.qmd
+    - references.qmd
+  page-navigation: true # Enables navigation between pages in the HTML output
+
+  # Footer settings for copyright
+  page-footer:
+    center: "Copyright ©, UNIGIS Salzburg"
+
+  # Sidebar settings for the HTML format
+  sidebar:
+    #style: "docked"
+    search: true # Enables a search field in the sidebar
+    logo: "branding/UNIGIS_Salzburg_Schriftlogo_v05.png" # Sidebar logo
+    
+
+bibliography: references.bib # Path to the bibliography file
+
+format:
+  html:
+    # HTML-specific options
+    css: css/custom.css # Custom CSS file for styling
+    theme: 
+      - cosmo
+      - css/theme.scss # Adds additional theme customizations
+    #toc-title: "Kapitelübersicht" # Sets the title of the table of contents in German!
+    toc-title: "Chapter Overview" # Sets the title of the table of contents in English!
+    
+    toc: true # Enables a table of contents in the HTML output
+    toc-location: right
+    toc-depth: 3 # Sets the depth of the table of contents
+    code-fold: false # Code blocks are not folded by default
+    highlight: github # Code highlighting style
+    code-link: true
+
+
+    # Performance and user experience enhancements
+    html-math-method: katex # Uses KaTeX for math rendering (faster than MathJax)
+    smooth-scroll: true # Enables smooth scrolling
+
+    # Grid settings for page layout
+    #grid: 
+      #sidebar-width: 0% # Sets the sidebar width in the HTML output
+
+
+# Build commands to render both HTML and PDF versions with one command
+build:
+  commands:
+    - quarto render --to html # Renders HTML 
+
+custom-callout:
+  exercisebox:
+    icon: true # Enables the icon (but customized via CSS)
+
+editor: source # Specifies the editor as source code
+
+filters:
+  - webr # Filter for handling web-based R content
+  - custom-callout # Filter for custom callouts
+
+

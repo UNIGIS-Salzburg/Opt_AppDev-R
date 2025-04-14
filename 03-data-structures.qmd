@@ -1,0 +1,428 @@
+# Data Structures {#DS}
+
+In this lesson, we expand upon the simple data types (**numeric**, **character** and **logical**) discussed in Lesson [1](#intro) by introducing more complex data structures.
+
+In this lesson, you will get to know the following data structures in R:
+
+1. Vectors
+2. Matrices and Arrays
+3. Lists
+4. Data Frames
+
+## Vectors
+
+A **Vector** is an ordered list of values. Vectors can be of any of the following simple types:
+  
+- Numeric
+- Character
+- Logical
+
+However, all items in a vector must be of the same type. A vector can be of any length.
+
+Defining a **vector variable** is similar to declaring a simple type variable, but the vector is created using the function `c()`, which combines values into a vector:
+
+```{r, echo=TRUE}
+# Declare a vector variable of strings
+a_vector <- c("Birmingham", "Derby", "Leicester", "Lincoln", "Nottingham", "Wolverhampton")
+a_vector
+```
+
+Note that the second line of the returned elements starts with [5], as it begins with the fifth element of the vector.
+
+Other functions for creating vectors include `seq()` and `rep()`:
+
+```{r, echo=TRUE}
+# Create a vector of real numbers with an interval of 0.5 between 1 and 7
+a_vector <- seq(1, 7, by = 0.5)
+a_vector
+```
+
+```{r, echo=TRUE}
+# Create a vector with four identical character string values
+a_vector <- rep("Ciao", 4)
+a_vector
+```
+
+Numeric vectors can also be created using a simple syntax:
+
+```{r, echo=TRUE}
+# Create a vector of integer numbers from 1 to 10
+a_vector <- 1:10
+a_vector
+```
+
+### Vector Element Selection
+
+You can access individual elements of a vector by specifying the **index** of the element between square brackets, following the vector's identifier. Remember, in R, the **first element** of a vector has an **index of 1**. For example, to retrieve the third element of a vector named `a_vector`:
+
+```{r, echo=TRUE}
+a_vector <- 3:8
+a_vector[3]  # Retrieves the third element
+```
+
+To retrieve multiple elements, use a vector of indices:
+
+```{r, echo=TRUE}
+a_vector <- 3:8
+a_vector[c(2, 4)]  # Retrieves the second and fourth elements
+```
+
+In this case, the values 4 and 6 are returned, corresponding to indices 2 and 4 in `a_vector`. 
+
+> Note that the vector of indices (`c(2, 4)`) is created on the fly without declaring a variable name.
+
+::: {.exercisebox title="Exercise"}
+
+Try creating and selecting elements from a vector yourself. Follow these steps:
+
+1. Create a vector named `east_midlands_cities` containing the cities: Derby, Leicester, Lincoln, Nottingham.
+2. Select the last three cities and assign them to a new vector named `selected_cities`.
+
+:::
+
+::: {.exercisebox title="Solution" collapse="true" appearance="simple"}
+
+```{r, echo=TRUE}
+
+east_midlands_cities <- c("Derby", "Leicester", "Lincoln", "Nottingham")
+
+my_indexes <- 2:4
+
+selected_cities <- east_midlands_cities[my_indexes]
+
+```
+  
+:::
+
+### Using the range() Function with Vectors
+
+The `range()` function in R, is used to find the minimum and maximum values within a vector. This can be particularly helpful when analyzing the spread of data in a vector. For example:
+
+```{r, echo=TRUE}
+# Create a numeric vector
+numeric_vector <- c(2, 8, 4, 16, 6)
+
+# Apply the range() function
+vector_range <- range(numeric_vector)
+vector_range  # Displays the minimum and maximum values
+```
+
+### Applying Functions to Vectors
+
+In R, functions can be applied to vectors just like they are with individual variables. When a function is applied to a vector, it typically processes each element of the vector, resulting in a new vector of the same length as the input.
+
+For instance, adding a value (like 10) to a numeric vector will add that value to each element of the vector:
+
+```{r, echo=TRUE}
+numeric_vector <- 1:5
+numeric_vector <- numeric_vector + 10  # Adds 10 to each element
+numeric_vector
+```
+
+Similarly, applying a function like `sqrt()` to a numeric vector will compute the square root of each element:
+
+```{r, echo=TRUE}
+numeric_vector <- 1:5
+numeric_vector <- sqrt(numeric_vector)
+numeric_vector  # Displays the square roots
+```
+
+A logical condition applied to a vector will return a logical vector indicating whether each element meets the condition:
+
+```{r, echo=TRUE}
+numeric_vector <- 1:5
+logical_vector <- numeric_vector >= 3
+logical_vector  # Shows TRUE or FALSE for each element
+```
+
+Moreover, functions like `any()` and `all()` provide overall evaluations of a vector based on a condition. `any()` returns `TRUE` if any elements satisfy the condition, while `all()` returns `TRUE` only if all elements satisfy the condition:
+
+```{r, echo=TRUE}
+numeric_vector <- 1:5
+any(numeric_vector >= 3)  # Checks if any element is >= 3
+all(numeric_vector >= 3)  # Checks if all elements are >= 3
+```
+
+Also, when creating vectors in R, it's important to understand the concept of **type coercion**. R is designed to be user-friendly, and when you combine different data types in a vector (e.g., mixing numbers and characters), R will automatically convert all elements to the same type. This process is known as type coercion. For example, if you combine numeric and character data in a vector, all elements will become characters.
+
+```{r, echo=TRUE}
+mixed_vector <- c(1, "text", TRUE)
+print(mixed_vector)  # Notice how all elements are coerced to the same type
+```
+
+::: callout-tip
+
+**Factors** are a special data type in R, similar to vectors but limited to predefined values called **levels**. Factors are not covered in this module, but you can learn more about them in the [Programming with R](https://swcarpentry.github.io/r-novice-inflammation/12-supp-factors.html){target="_blank"} tutorial.
+
+:::
+
+## Multi-dimensional Data Types
+
+### Matrices
+
+Matrices in R are two-dimensional data structures, where data is organized in rows and columns. They are particularly useful for performing a variety of mathematical operations.
+
+To create a matrix, use the `matrix()` function, providing a vector of values and the desired dimensions:
+
+```{r, echo=TRUE}
+a_matrix <- matrix(c(3, 5, 7, 4, 3, 1), nrow=3, ncol=2)
+a_matrix
+```
+
+R supports numerous operators and functions for matrix algebra. For example, basic arithmetic operations can be performed on matrices:
+
+```{r, echo=TRUE}
+x <- matrix(c(3, 5, 7, 4, 3, 1), nrow=3, ncol=2)
+y <- matrix(c(1, 2, 3, 4, 5, 6), nrow=3, ncol=2)
+z <- x * y  # Element-wise multiplication
+z
+```
+
+When working with matrices, `range()` can help you quickly identify the lowest and highest values within a particular row or column. However, it's not typically used for selecting rows or columns. Instead, you'd use direct indexing or other functions for selection. Here's how to correctly utilize `range()` with matrices::
+
+```{r, echo=TRUE}
+# Creating a matrix with numeric values
+matrix_data <- matrix(1:9, nrow=3)
+
+# Finding the range of values in the first column
+first_column_range <- range(matrix_data[,1])
+print(first_column_range)  # Displays the minimum and maximum values of the first column
+```
+
+In the context of matrix selection, while range() is not used for selecting specific rows or columns, understanding the spread of data within a matrix can be crucial for informed data manipulation and analysis. Here's an example of how you might use this information:
+
+```{r, echo=TRUE}
+# Assuming you want to know if the first column contains values within a specific range
+is_in_range <- first_column_range[1] >= 2 && first_column_range[2] <= 8
+print(is_in_range)  # Checks if the range of the first column is between 2 and 8
+```
+
+Or you can exclude specific columns or rows from a matrix using negative indexing. This is particularly useful for analysis or visualization when you want to focus on specific parts of the matrix:
+
+```{r, echo=TRUE}
+# Creating a matrix
+matrix_data <- matrix(1:9, nrow=3)
+
+# Excluding the first column from the matrix
+matrix_without_first_column <- matrix_data[, -1]  # Excludes the first column
+print(matrix_without_first_column)
+```
+
+For a detailed overview of matrix operations, refer to [Quick-R](https://www.statmethods.net/advstats/matrix.html){target="_blank"}. 
+
+### Arrays
+
+Arrays in R are like higher-dimensional matrices, capable of storing data in multiple dimensions. Creating an array requires specifying the values and the dimensions for each axis:
+
+```{r, echo=TRUE}
+a3dim_array <- array(1:24, dim=c(4, 3, 2))  # Creates a 3-dimensional array
+a3dim_array
+```
+
+> Note: An array can have a single dimension, resembling a vector. However, arrays have additional attributes like `dim` and offer different functionalities.
+
+### Selection in Multi-Dimensional Data Types
+
+Selecting elements from matrices and arrays in R is similar to vector selection, but requires specifying an index for each dimension.
+
+For matrices:
+
+```{r, echo=TRUE}
+# Example matrix
+a_matrix <- matrix(c(3, 5, 7, 4, 3, 1), nrow=3, ncol=2)
+a_matrix
+
+# Selecting the second row, first and second columns
+a_matrix[2, c(1, 2)]
+```
+
+For arrays with multiple dimensions:
+
+```{r, echo=TRUE}
+# Example 3-dimensional array
+an_array <- array(1:12, dim=c(3, 2, 2))
+an_array
+
+# Selecting elements with specific indices
+an_array[2, c(1, 2), 2]
+```
+
+::: {.exercisebox title="Exercise"}
+
+Create a 3-dimensional array, extract 2 elements to form a vector, and 4 elements to form a matrix.
+
+:::
+
+::: {.exercisebox title="Solution" collapse="true" appearance="simple"}
+  
+Array creation:
+
+```{r, echo=TRUE}
+
+a3dim_array <- array(1:24, dim=c(4, 3, 2))
+
+```
+
+Extracting elements:
+
+```{r, echo=TRUE}
+
+a_vector <- a3dim_array[3, c(1, 2), 2]
+a_matrix <- a3dim_array[c(3, 4), c(1, 2), 2]
+
+```
+    
+:::
+
+### Lists
+
+Lists in R are incredibly versatile and can hold elements of different types, including vectors, matrices, other lists, and even functions. This makes lists a powerful tool for organizing and storing complex, heterogeneous collections of data. 
+
+Elements in lists are selected using double square brackets.
+
+Basic list:
+
+```{r, echo=TRUE}
+employee <- list("Christian", 2017)
+employee
+# Selecting the first element
+employee[[1]]
+```
+
+Named lists allow selection using the `$` symbol:
+
+```{r, echo=TRUE}
+# Named list
+employee <- list(employee_name = "Christian", start_year = 2017)
+employee
+# Selecting by name
+employee$employee_name
+```
+
+### Data Frame
+
+Data frames are essential in R for representing tables of data. Each data frame is structured similarly to a named list with each element being a vector of equal length. Below is an example of creating a data frame:
+
+```{r, echo=TRUE}
+employees <- data.frame(
+  EmployeeName = c("Maria", "Pete", "Sarah"),
+  Age = c(47, 34, 32),
+  Role = c("Professor", "Researcher", "Researcher"))
+employees
+```
+
+Data frames are similar to tables in that each column represents a variable, and each row represents an observation. 
+
+::: {.exercisebox title="Exercise"}
+
+Can elements of different types be mixed within a single vector or data frame column?
+
+:::
+
+::: {.exercisebox title="Solution" collapse="true" appearance="simple"}
+  
+Vector elements (and by extension, data frame columns) must be of the same type (character, logical, or numeric). For example, `EmployeeName` contains characters, while `Age` contains numerics.
+    
+:::
+
+Elements in each column of a data frame correspond to a row. The first element in `EmployeeName` represents the name of the first employee, and similarly for other columns.
+
+::: callout-tip
+
+To rename columns, use the 'names()' function:
+**names(data frame)[column index] = "new name"**
+
+:::
+ 
+Selecting data from a data frame is analogous to vector and list selection, but with a focus on the data frame's two-dimensional structure. You typically need two indices to extract data.
+
+Example of selecting the first element in the first column:
+
+```{r, echo=TRUE}
+employees[1, 1]
+
+```
+
+Selecting whole rows:
+
+```{r, echo=TRUE}
+employees[1, ]
+```
+
+Selecting whole columns:
+
+```{r, echo=TRUE}
+employees[, 1]
+```
+
+Columns can also be selected using dollar signs and column names:
+
+```{r, echo=TRUE}
+employees$Age
+employees$Age[1]  # Selecting the first element in the 'Age' column
+```
+
+Modifying a data frame:
+
+- Changing an element (e.g., updating Pete's age):
+
+```{r, echo=TRUE}
+employees$Age[2] <- 33
+```
+
+- Adding a new column:
+
+```{r, echo=TRUE}
+employees$Place <- c("Salzburg", "Salzburg", "Salzburg")
+employees
+```
+
+::: {.exercisebox title="Exercise"}
+
+Our simple data frame includes columns `EmployeeName`, `Age` and `Role`:
+
+```{r, echo=TRUE}
+employees <- data.frame(
+  EmployeeName = c("Maria", "Pete", "Sarah"),
+  Age = c(47, 34, 32),
+  Role = c("Professor", "Researcher", "Researcher"))
+```
+
+In this exercise you are asked to include an additional column in the data frame that contains the year of birth of employees. This new column can be derived from column `age`.
+
+This step will most likely require consultation of other online resources.
+
+:::
+
+::: {.exercisebox title="Solution" collapse="true" appearance="simple"}
+
+Creating a data frame `employees`:
+
+```{r, echo=TRUE}
+
+employees <- data.frame(
+  EmployeeName = c("Maria", "Pete", "Sarah"),
+  Age = c(47, 34, 32),
+  Role = c("Professor", "Researcher", "Researcher"))
+
+```
+
+Calculating the `current_year`:
+
+```{r, echo=TRUE}
+
+current_year <- as.integer(format(Sys.Date(), "%Y"))
+
+```
+
+Calculating `Year_of_birth` as extra data frame column:
+
+```{r, echo=TRUE}
+
+employees$Year_of_birth <- current_year - employees$Age
+employees
+
+```
+
+:::
+
