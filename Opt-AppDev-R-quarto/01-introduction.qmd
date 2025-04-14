@@ -49,7 +49,7 @@ The IDE is where you write, test, and execute your R programs, we strongly recom
 This video offers a concise RStudio overview @fig-vid:
 
 ::: {#fig-vid}
-<iframe src="https://youtu.be/FIrsOBy5k58?si=xOVK37QKWTBsAnJ1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+<iframe src="https://www.youtube.com/embed/FIrsOBy5k58?si=pvrG1iZtZFfjG2G5" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
 
 </iframe>
 

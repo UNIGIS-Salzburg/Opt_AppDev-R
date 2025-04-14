@@ -80,8 +80,7 @@ Notice how the code becomes more readable with each operation on a new line afte
 For a deeper understanding of pipe operators, check out the following video.
 
 ::: {#fig-vidpip}
-<iframe src="https://vimeo.com/1074652888/be7c285395?share=copy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
-
+<iframe src="https://player.vimeo.com/video/1074652888?h=be7c285395&amp" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
 </iframe>
 
 Worked examples - `magrittr` and `Base R` pipe operators
