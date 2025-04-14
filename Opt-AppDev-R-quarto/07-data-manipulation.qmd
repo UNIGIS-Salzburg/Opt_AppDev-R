@@ -248,9 +248,9 @@ Joins between two tables can be executed by different join operations. The `dply
 
 ::: {#fig-joins}
 
-![](images/joins.png)
+![](images/joins.png){width="60%" fig-align="center"}
 
-Join types
+Join types. Source: [R for Geographic Data Science](https://sdesabbata.github.io/r-for-geographic-data-science/table-operations.html){target="_blank"}
 
 :::
 
