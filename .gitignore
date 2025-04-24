@@ -14,9 +14,8 @@ index.log
 index.tex
 
 # Ignore the entire _book directory except .gitkeep
-_book/*
+/docs/*
 .log
-!_book/.gitkeep
 
 # What is .gitkeep?
 ## .gitkeep is a Git-specific option that tells the repository to please keep an empty folder in the repo.
