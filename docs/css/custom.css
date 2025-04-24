@@ -1,0 +1,96 @@
+/* Our Branding CSS - please keep these in place */
+
+.caption {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* The background-color should be the same color as above */
+
+/* Custom Exercisebox Styling */
+div.callout-exercisebox.callout-titled .callout-icon::before {
+    background-image: url('../branding/exercise_icon.png'); /* Dein eigenes Icon */
+}
+
+.callout-exercisebox {
+    border-left-color: #006847 !important; /* UNIGIS Hexcode für den grünen Rand */
+    background-color: #e6f4ea !important; /* Grüner Hintergrund */
+}
+
+/* Header der Exercisebox */
+div.callout-exercisebox > .callout-header {
+    background-color: #e6f4ea !important; /* Grüner Hintergrund */
+}
+
+/* Body der Exercisebox */
+div.callout-exercisebox > .callout-body {
+    background-color: #e6f4ea !important; /* Grüner Hintergrund */
+}
+
+/* Geöffneter Zustand der collapsible Box */
+div.callout-collapse.collapse.show {
+    background-color: #e6f4ea !important; /* Grüner Hintergrund */
+    border-left-color: #006847 !important; /* Grüner Rand */
+}
+
+/* Geschlossener Zustand der collapsible Box */
+div.callout-collapse.collapse {
+    background-color: #e6f4ea !important; /* Grüner Hintergrund */
+}
+
+/* Entfernt das Icon aus collapsible Callouts (Solution) */
+div.callout.callout-exercisebox.callout-style-simple .callout-icon-container {
+    display: none;
+}
+
+/* Entfernt unnötiges Padding im collapsible Body */
+div.callout:not(.no-icon).callout-titled.callout-style-simple .callout-body {
+    padding-left: 0;
+}
+
+
+/* Changed the Note into a simple blue with nice contrast */
+
+.callout-note {
+  border-left-color: #007BA7 !important;
+}
+
+div.callout-note.callout-style-default>.callout-header,
+div.callout-note.callout-style-default > .callout-body {
+    background-color: #e9f2fc;
+}
+
+/* change warning to a more visible red and lighter red for the header */
+
+.callout-warning {
+  border-left-color: #FF4500 !important; /* Sanftes Orangerot */
+}
+
+div.callout-warning.callout-style-default > .callout-header,
+div.callout-warning.callout-style-default > .callout-body {
+    background-color: #FFE6E6; /* Einheitliches sanftes Rot */
+}
+
+
+/* Styling für custom-callout */
+div.callout-exercisebox.callout {
+  border-left-color: #006847; /* Setzt die grüne Farbe */
+}
+
+/* Changed Callout Tip's Image into Orange and changed the overall color palette */
+
+div.callout-tip.callout-titled .callout-icon::before {
+    background-image: url('../branding/tip_icon.png');
+}
+
+.callout-tip {
+    border-left-color: #FFA500 !important; /* Markantes Orange */
+}
+
+div.callout-tip.callout-style-default > .callout-header,
+div.callout-tip.callout-style-default > .callout-body {
+    background-color: #fff4e5; /* Dezentes Hellorange */
+}
+
