@@ -18,20 +18,27 @@ The Grammar of Graphics is a schema that enables us to concisely describe the co
 6. **Coordinates:** Managing axes and spatial transformation.
 7. **Themes:** Customizing the graphical backdrop for enhanced visual appeal.
 
-In essence, these layers enable a structured and flexible approach to crafting visual narratives from data. For instance, the visual variables such as size, shape, and color offer nuanced ways to represent and differentiate data points.
+In essence, these layers enable a structured and flexible approach to crafting visual narratives from data. 
 
-In the example below, 'Gdp per capita' and 'Life Expectancy' align with the x and y axes, respectively, and 'national population' and 'world regions' are differentiated by size and color.
+For instance, the **visual variables** such as size, shape, and color offer nuanced ways to represent and differentiate data points. In the example below, 'GPD per capita' and 'Life Expectancy' align with the x and y axes, respectively, and 'national population' and 'world regions' are differentiated by size and color.
 
-::: {#fig-visual}
+::: {#fig-gapm}
 
-![](images/VisualVar.png)
+<iframe src="//www.gapminder.org/tools/?embedded=true#$chart-type=bubbles&url=v2" style="width: 100%; height: 500px; margin: 0 0 0 0; border: 1px solid grey;" allowfullscreen></iframe>
 
-Visual variables
-
+Visual variables in Bubble Chart. Source: [Gapminder](https://www.gapminder.org/){target="_blank"}
 
 :::
 
-Upcoming sections will delve into practical examples, demonstrating the power and versatility of `ggplot2` in visualizing complex datasets.
+::: {.exercisebox title="Exercise"}
+
+In the interactive window above, click `Options`. You will find settings for specifying visual variables like `X and Y`, `Size` and `Color`. 
+
+The [Gapminder Project](https://www.gapminder.org/){target="_blank"} makes data from various sources like UN, FAO or World Bank accessible. You may select from those databases and assign other variables to X and Y, size or color.
+
+In the upcoming examples, we will use `ggplot2` together with function `aes()` to programmatically set mappings of visual variables in diagrams and maps. 
+
+:::
 
 ::: callout-tip
 

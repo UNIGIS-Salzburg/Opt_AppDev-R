@@ -3,7 +3,7 @@ project:
   # Pre-render and post-render commands (e.g., scripts you might use for preprocessing)
   # pre-render: python script_test.py
   # post-render: quarto render combined.qmd
-
+  output-dir: docs # Directory where the output files will be saved
   resources:
     # Specifies resources to include, such as images and scripts
     - "*.png" # Include all PNG files
@@ -13,6 +13,7 @@ project:
     - "*.html" # Include all HTML files
     - "*.css" # Include all CSS files
     - "*.gitkeep" # Ensures folder structure (like _book) remains intact in version control
+    - ".nojekyll" # Prevents Jekyll processing on GitHub Pages
 
 book:
   title: "Automated Data Processing with R"
