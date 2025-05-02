@@ -45,6 +45,7 @@ book:
     #style: "docked"
     search: true # Enables a search field in the sidebar
     logo: "branding/UNIGIS_Salzburg_Schriftlogo_v05.png" # Sidebar logo
+    logo-href: https://unigis.at/
     
 
 bibliography: references.bib # Path to the bibliography file
