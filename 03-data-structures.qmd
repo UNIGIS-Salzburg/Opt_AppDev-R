@@ -150,7 +150,7 @@ mixed_vector <- c(1, "text", TRUE)
 print(mixed_vector)  # Notice how all elements are coerced to the same type
 ```
 
-::: callout-tip
+::: callout-note
 
 **Factors** are a special data type in R, similar to vectors but limited to predefined values called **levels**. Factors are not covered in this module, but you can learn more about them in the [Programming with R](https://swcarpentry.github.io/r-novice-inflammation/12-supp-factors.html){target="_blank"} tutorial.
 
@@ -327,10 +327,10 @@ Vector elements (and by extension, data frame columns) must be of the same type 
 
 Elements in each column of a data frame correspond to a row. The first element in `EmployeeName` represents the name of the first employee, and similarly for other columns.
 
-::: callout-tip
+::: callout-note
 
-To rename columns, use the 'names()' function:
-**names(data frame)[column index] = "new name"**
+To rename columns, use the `names()` function:
+`names(data frame)[column index] = "new name"`
 
 :::
  

@@ -1,2 +1,0 @@
-lang: en # Identifies language of the document via. IETF language tag - switch to 'de' if german: https://quarto.org/docs/authoring/language.html
-# switch to de -> if you want Abbildung instead of Figure etc.

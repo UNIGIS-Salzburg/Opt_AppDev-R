@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>5&nbsp; Control Structures – Automated Data Processing with R</title>
 <style>
@@ -67,10 +67,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-824a17b5ea7ef7f1a4a8c2087855faa7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -204,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
@@ -212,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Chapter Overview</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Lesson Content</h2>
    
   <ul>
 <li><a href="#if" id="toc-if" class="nav-link active" data-scroll-target="#if"><span class="header-section-number">5.1</span> If</a></li>
@@ -251,7 +251,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>In this lesson, you will learn about control structures, a significant elements in coding that allows for dynamic behavior based on variable values.</p>
+</header><p>In this lesson, you will learn about control structures, significant elements in coding that allows for dynamic behavior based on variable values.</p>
 <p>We distinguish between two types of control structures:</p>
 <ol type="1">
 <li><p><strong>Conditional statements</strong>, which allow executing instructions only if a certain condition is satisfied.</p></li>
@@ -259,8 +259,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <section id="if" class="level2" data-number="5.1"><h2 data-number="5.1" class="anchored" data-anchor-id="if">
 <span class="header-section-number">5.1</span> If</h2>
-<p>The most fundamental conditional statement in R is the structure <em>if</em>, which is used to execute one or more instructions only if a certain condition is <code>TRUE</code>.</p>
-<p>To include an “if-structure” in your code, you need to use the following syntax:</p>
+<p>The most fundamental conditional statement in R is the structure <code>if</code>, which is used to execute one or more instructions only if a certain condition is <code>TRUE</code>.</p>
+<p>To include an <code>if</code> structure in your code, you need to use the following syntax:</p>
 <div class="cell">
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a_value</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fl">7</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="va">a_value</span> <span class="op">&lt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
@@ -639,7 +639,7 @@ Solution
 <span><span class="co"># Get length of TRUE values (grid value &gt; 0.5) in logic vectors</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">log_vec</span><span class="op">[</span><span class="va">log_vec</span><span class="op">==</span> <span class="cn">TRUE</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 192</code></pre>
+<pre><code>[1] 209</code></pre>
 </div>
 </div>
 <p>It is apparent from the code example above that avoiding loops in R code makes code shorter and increases performance. Increase the size of your raster grid (e.g.&nbsp;<code>ncol=100</code>, <code>nrow=100</code>) and test respective code realizations to investigate the difference in code performance. More information on vectorization and parallelization of operations in R can be found <a href="https://tmieno2.github.io/R-as-GIS-for-Economists/repetitive-processes-and-looping.html#do-you-really-need-to-loop" target="_blank">here</a>.</p>
@@ -727,8 +727,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -839,7 +837,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

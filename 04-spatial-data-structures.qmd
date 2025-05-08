@@ -35,15 +35,15 @@ point_sf <- sf::st_sf(geometry = sf::st_sfc(point))
 
 ```
 
-::: callout-tip
+::: callout-note
 
 The operator `::` is used to indicate that the functions `st_point`, `st_sf`, and `st_sfc` are situated within the library `sf`. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names.
 
 :::
 
-The function `st_point` creates a simple feature object from a numeric vector. The object is of the same nature as the numeric vector `c(5,5)`. To convert to an sf-object, the function `st_sf` is used. 
+The function `st_point` creates a simple feature object from a numeric vector. The object is of the same nature as the numeric vector `c(5,5)`. To convert to an `sf` object, the function `st_sf` is used. 
 
-Sf-objects are similar in structure as data frames. However, in contrast to data frames, sf-objects have an additional geometry column. The sf-object `point_sf` (created by the code above) contains a single point geometry and no fields:
+`sf` objects are similar in structure to data frames. However, unlike data frames, `sf` objects include an additional geometry column. The `sf` object `point_sf` (created in the code above) contains a single point geometry and no attribute fields:
 
 ```{r}
 
@@ -51,7 +51,7 @@ point_sf
 
 ```
 
-In principle sf-objects can be treated like data frames. Accordingly, data frame syntax is used to assign fields (table columns) to geometries: 
+In principle `sf` objects can be treated like data frames. Accordingly, data frame syntax is used to assign fields (table columns) to geometries: 
 
 ```{r}
 
@@ -59,13 +59,13 @@ point_sf$name <- c("my location")
 
 ```
 
-To stay in GIS terms, records (rows) in a sf-object table may be called `features`.
+To stay in GIS terms, records (rows) in a `sf` object table may be called `features`.
 
 ::: {.exercisebox title="Exercise"}
 
-Execute the code above in an R Script. Go to the *Environment tab* in RStudio and click on `point_sf`. The sf-object contains a single feature that is composed of a point geometry and the field `name`. 
+Execute the code above in an R Script. Go to the *Environment tab* in RStudio and click on `point_sf`. The `sf` object contains a single feature that is composed of a point geometry and the field `name`. 
 
-Add one more feature with `name` value "your location" and arbitrary point geometry value. You may use function `rbind` (see [here](https://r-spatial.github.io/sf/reference/bind.html){target="_blank"}) to append features to sf-objects.
+Add one more feature with `name` value "your location" and arbitrary point geometry value. You may use function `rbind` (see [here](https://r-spatial.github.io/sf/reference/bind.html){target="_blank"}) to append features to `sf` objects.
 
 :::
 
@@ -91,7 +91,7 @@ sec_point_sf <- sf::st_sf(geometry = geom, name = n)
 
 ```{r, echo=TRUE}
 
-#merge two features into sf-object two_points_sf
+# merge two features into sf object two_points_sf
 two_points_sf <- rbind(point_sf, sec_point_sf)
 
 ```
@@ -112,7 +112,7 @@ plot(point_sf_multi)
 
 ```
 
-Plotting the metadata of sf-object `point_sf_multi` in the console reveals that `Geometry type` is `Multipoint` and that no coordinate reference system has been defined (`CRS: NA`):
+Plotting the metadata of `sf` object `point_sf_multi` in the console reveals that `Geometry type` is `Multipoint` and that no coordinate reference system has been defined (`CRS: NA`):
 
 ```{r}
 
@@ -129,13 +129,13 @@ sf::st_crs(point_sf_multi) <- 4326
 
 ```
 
-::: callout-tip
+::: callout-note
 
 EPSG-Codes of other reference systems can be found [here](https://spatialreference.org/ref/epsg/?search=4326&srtext=Search){target="_blank"}.
 
 :::
 
-Now we transform the sf-object to [EPSG 3416](https://spatialreference.org/ref/epsg/3416/){target="_blank"} (Austrian Lambert Projection) with the function `st_transform`:
+Now we transform the `sf` object to [EPSG 3416](https://spatialreference.org/ref/epsg/3416/){target="_blank"} (Austrian Lambert Projection) with the function `st_transform`:
 
 ```{r}
 
@@ -145,7 +145,7 @@ point_sf_multi_transform <- sf::st_transform(point_sf_multi, 3416)
 
 ```
 
-Eventually we can compare the two sf-objects with different coordinate systems:
+Finally, we can compare the two `sf` objects with different coordinate systems:
 
 ```{r, fig.height=6, fig.width=12}
 
@@ -193,7 +193,7 @@ plot(line_sf)
 <summary><ins>**Create Polygon Feature!**</ins></summary>
 <p><i><font color="grey">
 
-Polygons are closed shapes, perfect for representing areas with defined boundaries. Here's a demonstration using sf and its st_polygon function:
+Polygons are closed shapes, perfect for representing areas with defined boundaries. Here's a demonstration using `sf` and its `st_polygon` function:
 
 ```{r}
 
@@ -304,7 +304,7 @@ The `SpatRaster Object` `x` has an extent that covers the City of Salzburg, whic
 
 ```{}
 
-+proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs 
+`+proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs`
 
 ```
 
@@ -322,7 +322,7 @@ y
 
 Note that the number of rows and column was changed to enable a raster resolution of 100m. Also the bounding box coordinates of the `SpatRaster Object` have changed, which indicates a successful projection of the raster grid from `UTM 32` to `UTM 33`.
 
-::: callout-tip
+::: callout-note
 
 Given that the `SpatRaster Object` has an undefined coordinate reference system, it can be defined by means of [terra-function `crs`](https://rdrr.io/cran/terra/man/crs.html){target="_blank"}.
 
@@ -384,4 +384,4 @@ r[1,1]
 
 Note that the layer number `lyr.1` is returned in the console, when accessing individual values of a `SpatRaster Object`. This implies that `SpatRaster Objects` can handle space-time and multivariable data. A useful example for integrating space and time in `SpatRaster Objects` is provided by Dominic Royé in his blog post [Use of multidimensional spatial data.](https://dominicroye.github.io/en/2022/use-of-multidimensional-spatial-data/){target="_blank"} For more sophisticated data cube applications, the use of the [`stars` package](https://r-spatial.github.io/stars/){target="_blank"} is recommended.
 
-In this lesson, you learned to handle spatial vector and raster structures in R. To get to know these structures, we built vector and raster objects from scratch. In many instances, however, objects may be created in R by loading vector and raster file formats (e.g. `.shp` or `.tif`). This topic will be covered in lesson [8](#readwrite).
+In this lesson, you learned to handle spatial vector and raster structures in R. To get to know these structures, we built vector and raster objects from scratch. In many instances, however, objects may be created in R by loading vector and raster file formats (e.g. `.shp` or `.tiff`). This topic will be covered in lesson [8](#readwrite).

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>1&nbsp; Introduction to R – Automated Data Processing with R</title>
 <style>
@@ -67,10 +67,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-824a17b5ea7ef7f1a4a8c2087855faa7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -204,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
@@ -212,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Chapter Overview</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Lesson Content</h2>
    
   <ul>
 <li><a href="#about-this-module" id="toc-about-this-module" class="nav-link active" data-scroll-target="#about-this-module"><span class="header-section-number">1.1</span> About this module</a></li>
@@ -249,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Additionally, the course introduces the essentials of working with <strong>spatial data</strong>. This includes handling <strong>spatial data structures</strong>, performing <strong>spatial data manipulation</strong>, and understanding <strong>spatial relationships</strong>.</p>
 <p>Upon completing this module, you’ll possess foundational R programming skills, preparing you for more advanced topics such as “Geospatial Data Analysis”, as covered in the “Spatial Statistics” module of the MSc program.</p>
 <blockquote class="blockquote">
-<p>This module partly draws from <a href="https://github.com/sdesabbata/granolarr" target="_blank">granolarr</a>, developed by <a href="https://sdesabbata.github.io/" target="_blank">Stefano de Sabbata</a> at <a href="https://le.ac.uk/" target="_blank">University of Leicester</a>. For further exploration, refer to the Webbook <a href="https://sdesabbata.github.io/r-for-geographic-data-science/" target="_blank">R for Geographic Data Science</a>. We particularly recommend its chapters on <strong>Statistical Analysis</strong> and <strong>Machine Learning</strong> for those interested in advanced R applications.</p>
+<p>This module partly draws from <a href="https://github.com/sdesabbata/granolarr" target="_blank">granolarr</a>, developed by <a href="https://sdesabbata.github.io/" target="_blank">Stef de Sabbata</a> at <a href="https://le.ac.uk/" target="_blank">University of Leicester</a>. For further exploration, refer to the Webbook <a href="https://sdesabbata.github.io/r-for-geographic-data-science/" target="_blank">R for Geographic Data Science</a>. We particularly recommend its chapters on <strong>Statistical Analysis</strong> and <strong>Machine Learning</strong> for those interested in advanced R applications.</p>
 </blockquote>
 </section><section id="r-programming-language" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="r-programming-language">
 <span class="header-section-number">1.2</span> R programming language</h2>
@@ -278,7 +278,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>Download R from <a href="http://cran.r-project.org" target="_blank">R Archive Network (CRAN.)</a>
 </li>
-<li>Install the latest version, choosing ‘base’ and the appropriate bit-version for your OS.</li>
+<li>Install the latest version, choosing “base” and the appropriate bit version for your OS.</li>
 </ol>
 <p>The IDE is where you write, test, and execute your R programs, we strongly recommend using <strong>RStudio Desktop</strong>, which is <a href="https://posit.co/download/rstudio-desktop/" target="_blank">freely available for download.</a></p>
 <p>This video offers a concise RStudio overview <a href="#fig-vid" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>:</p>
@@ -291,13 +291,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Figure&nbsp;1.1: Video (6:09 min): RStudio for the Total Beginner.
 </figcaption></figure>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -571,7 +571,7 @@ Exercise
 </div>
 </section><section id="references" class="level2" data-number="1.8"><h2 data-number="1.8" class="anchored" data-anchor-id="references">
 <span class="header-section-number">1.8</span> References</h2>
-<p>Apart from <a href="https://sdesabbata.github.io/" target="_blank">Stefano de Sabbata’s</a> teaching materials, this module draws from various sources, most of which are available online:</p>
+<p>Apart from <a href="https://sdesabbata.github.io/" target="_blank">Stef de Sabbata’s</a> teaching materials, this module draws from various sources, most of which are available online:</p>
 <ul>
 <li>
 <em>The Grammar Of Graphics – All You Need to Know About ggplot2 and Pokemons</em> by Pascal Schmidt. <a href="https://thatdatatho.com/grammar-of-graphics-ggplot2/" target="_blank">See Online Tutorial</a>
@@ -693,8 +693,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -805,7 +803,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

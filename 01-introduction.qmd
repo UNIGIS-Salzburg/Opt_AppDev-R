@@ -12,7 +12,7 @@ Additionally, the course introduces the essentials of working with **spatial dat
 
 Upon completing this module, you'll possess foundational R programming skills, preparing you for more advanced topics such as "Geospatial Data Analysis", as covered in the "Spatial Statistics" module of the MSc program.
 
-> This module partly draws from [granolarr](https://github.com/sdesabbata/granolarr){target="_blank"}, developed by [Stefano de Sabbata](https://sdesabbata.github.io/){target="_blank"} at [University of Leicester](https://le.ac.uk/){target="_blank"}. For further exploration, refer to the Webbook [R for Geographic Data Science](https://sdesabbata.github.io/r-for-geographic-data-science/){target="_blank"}. We particularly recommend its chapters on **Statistical Analysis** and **Machine Learning** for those interested in advanced R applications.
+> This module partly draws from [granolarr](https://github.com/sdesabbata/granolarr){target="_blank"}, developed by [Stef de Sabbata](https://sdesabbata.github.io/){target="_blank"} at [University of Leicester](https://le.ac.uk/){target="_blank"}. For further exploration, refer to the Webbook [R for Geographic Data Science](https://sdesabbata.github.io/r-for-geographic-data-science/){target="_blank"}. We particularly recommend its chapters on **Statistical Analysis** and **Machine Learning** for those interested in advanced R applications.
 
 ## R programming language
 
@@ -42,7 +42,7 @@ In this lesson we will focus on some key principles of the R syntax and logic.
 Before you can run your code, you have to install R together with an **Integrated Development Environment (IDE)** on your machine:
 
 1.  Download R from [R Archive Network (CRAN.)](http://cran.r-project.org){target="_blank"}
-2.  Install the latest version, choosing 'base' and the appropriate bit-version for your OS.
+2.  Install the latest version, choosing “base” and the appropriate bit version for your OS.
 
 The IDE is where you write, test, and execute your R programs, we strongly recommend using **RStudio Desktop**, which is [freely available for download.](https://posit.co/download/rstudio-desktop/){target="_blank"}
 
@@ -56,7 +56,7 @@ This video offers a concise RStudio overview @fig-vid:
 Video (6:09 min): RStudio for the Total Beginner.
 :::
 
-::: callout-tip
+::: callout-note
 
 Encounter technical difficulties? Please consult the discussion forum!
 
@@ -169,7 +169,7 @@ Type and execute these expressions in the RStudio console to validate your assum
 
 ## References
 
-Apart from [Stefano de Sabbata's](https://sdesabbata.github.io/){target="_blank"} teaching materials, this module draws from various sources, most of which are available online:
+Apart from [Stef de Sabbata's](https://sdesabbata.github.io/){target="_blank"} teaching materials, this module draws from various sources, most of which are available online:
 
 -   *The Grammar Of Graphics – All You Need to Know About ggplot2 and Pokemons* by Pascal Schmidt. [See Online Tutorial](https://thatdatatho.com/grammar-of-graphics-ggplot2/){target="_blank"}
 -   *ggplot2 - Overview.* [See Online Documentation](https://ggplot2.tidyverse.org/){target="_blank"}

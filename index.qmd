@@ -1,4 +1,3 @@
-
 # Preface {-}
 
 This web-book is a text book with exercises that together form the learning materials for "Automated Data Processing with R", an elective module  of the <a href="https://unigis.at" target="_blank">UNIGIS distance learning program in Geoinformatics</a> at the University of Salzburg. 

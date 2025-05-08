@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>4&nbsp; Spatial Data Structures – Automated Data Processing with R</title>
 <style>
@@ -67,10 +67,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-824a17b5ea7ef7f1a4a8c2087855faa7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -204,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+ <span class="menu-text">References</span></a>
   </div>
 </li>
     </ul>
@@ -212,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Chapter Overview</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Lesson Content</h2>
    
   <ul>
 <li><a href="#vector-data-structures" id="toc-vector-data-structures" class="nav-link active" data-scroll-target="#vector-data-structures"><span class="header-section-number">4.1</span> Vector Data Structures</a></li>
@@ -261,21 +261,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span><span class="co"># Convert to sf object</span></span>
 <span><span class="va">point_sf</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf.html">st_sf</a></span><span class="op">(</span>geometry <span class="op">=</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html">st_sfc</a></span><span class="op">(</span><span class="va">point</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>The operator <code>::</code> is used to indicate that the functions <code>st_point</code>, <code>st_sf</code>, and <code>st_sfc</code> are situated within the library <code>sf</code>. This helps avoiding ambiguities in the case functions from different loaded libraries have identical names.</p>
 </div>
 </div>
-<p>The function <code>st_point</code> creates a simple feature object from a numeric vector. The object is of the same nature as the numeric vector <code>c(5,5)</code>. To convert to an sf-object, the function <code>st_sf</code> is used.</p>
-<p>Sf-objects are similar in structure as data frames. However, in contrast to data frames, sf-objects have an additional geometry column. The sf-object <code>point_sf</code> (created by the code above) contains a single point geometry and no fields:</p>
+<p>The function <code>st_point</code> creates a simple feature object from a numeric vector. The object is of the same nature as the numeric vector <code>c(5,5)</code>. To convert to an <code>sf</code> object, the function <code>st_sf</code> is used.</p>
+<p><code>sf</code> objects are similar in structure to data frames. However, unlike data frames, <code>sf</code> objects include an additional geometry column. The <code>sf</code> object <code>point_sf</code> (created in the code above) contains a single point geometry and no attribute fields:</p>
 <div class="cell">
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">point_sf</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -288,11 +288,11 @@ CRS:           NA
 1 POINT (5 5)</code></pre>
 </div>
 </div>
-<p>In principle sf-objects can be treated like data frames. Accordingly, data frame syntax is used to assign fields (table columns) to geometries:</p>
+<p>In principle <code>sf</code> objects can be treated like data frames. Accordingly, data frame syntax is used to assign fields (table columns) to geometries:</p>
 <div class="cell">
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">point_sf</span><span class="op">$</span><span class="va">name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"my location"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>To stay in GIS terms, records (rows) in a sf-object table may be called <code>features</code>.</p>
+<p>To stay in GIS terms, records (rows) in a <code>sf</code> object table may be called <code>features</code>.</p>
 <div class="callout callout-style-default callout-exercisebox callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -303,8 +303,8 @@ Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Execute the code above in an R Script. Go to the <em>Environment tab</em> in RStudio and click on <code>point_sf</code>. The sf-object contains a single feature that is composed of a point geometry and the field <code>name</code>.</p>
-<p>Add one more feature with <code>name</code> value “your location” and arbitrary point geometry value. You may use function <code>rbind</code> (see <a href="https://r-spatial.github.io/sf/reference/bind.html" target="_blank">here</a>) to append features to sf-objects.</p>
+<p>Execute the code above in an R Script. Go to the <em>Environment tab</em> in RStudio and click on <code>point_sf</code>. The <code>sf</code> object contains a single feature that is composed of a point geometry and the field <code>name</code>.</p>
+<p>Add one more feature with <code>name</code> value “your location” and arbitrary point geometry value. You may use function <code>rbind</code> (see <a href="https://r-spatial.github.io/sf/reference/bind.html" target="_blank">here</a>) to append features to <code>sf</code> objects.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-exercisebox callout-titled">
@@ -332,7 +332,7 @@ Solution
 <span><span class="va">sec_point_sf</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf.html">st_sf</a></span><span class="op">(</span>geometry <span class="op">=</span> <span class="va">geom</span>, name <span class="op">=</span> <span class="va">n</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#merge two features into sf-object two_points_sf</span></span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># merge two features into sf object two_points_sf</span></span>
 <span><span class="va">two_points_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">point_sf</span>, <span class="va">sec_point_sf</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -354,7 +354,7 @@ Solution
 </div>
 </div>
 </div>
-<p>Plotting the metadata of sf-object <code>point_sf_multi</code> in the console reveals that <code>Geometry type</code> is <code>Multipoint</code> and that no coordinate reference system has been defined (<code>CRS: NA</code>):</p>
+<p>Plotting the metadata of <code>sf</code> object <code>point_sf_multi</code> in the console reveals that <code>Geometry type</code> is <code>Multipoint</code> and that no coordinate reference system has been defined (<code>CRS: NA</code>):</p>
 <div class="cell">
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">point_sf_multi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -372,25 +372,25 @@ CRS:           NA
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Assign WGS84 as CRS (EPSG code 4326)</span></span>
 <span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="va">point_sf_multi</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">4326</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>EPSG-Codes of other reference systems can be found <a href="https://spatialreference.org/ref/epsg/?search=4326&amp;srtext=Search" target="_blank">here</a>.</p>
 </div>
 </div>
-<p>Now we transform the sf-object to <a href="https://spatialreference.org/ref/epsg/3416/" target="_blank">EPSG 3416</a> (Austrian Lambert Projection) with the function <code>st_transform</code>:</p>
+<p>Now we transform the <code>sf</code> object to <a href="https://spatialreference.org/ref/epsg/3416/" target="_blank">EPSG 3416</a> (Austrian Lambert Projection) with the function <code>st_transform</code>:</p>
 <div class="cell">
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Assign Austrian Lambert Projection as CRS</span></span>
 <span><span class="va">point_sf_multi_transform</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">point_sf_multi</span>, <span class="fl">3416</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Eventually we can compare the two sf-objects with different coordinate systems:</p>
+<p>Finally, we can compare the two <code>sf</code> objects with different coordinate systems:</p>
 <div class="cell">
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Plotting the original and transformed points side by side</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="co"># Arrange plots in 1 row, 2 columns</span></span>
@@ -443,7 +443,7 @@ Tip
 </summary><p>
 </p>
 <p><i><font color="grey"></font></i></p>
-<p>Polygons are closed shapes, perfect for representing areas with defined boundaries. Here’s a demonstration using sf and its st_polygon function:</p>
+<p>Polygons are closed shapes, perfect for representing areas with defined boundaries. Here’s a demonstration using <code>sf</code> and its <code>st_polygon</code> function:</p>
 <div class="cell">
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Create a matrix of coordinates</span></span>
 <span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">2</span>, <span class="fl">4</span>,<span class="fl">4</span>, <span class="fl">4</span>,<span class="fl">2</span>, <span class="fl">2</span>,<span class="fl">2</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -584,7 +584,7 @@ Solution
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <pre><code>
-+proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs 
+`+proj=utm +zone=33 +ellps=WGS84 +datum=WGS84 +units=m +no_defs`
 </code></pre>
 </div>
 </div>
@@ -603,13 +603,13 @@ coord. ref. : +proj=utm +zone=33 +datum=WGS84 +units=m +no_defs </code></pre>
 </div>
 </div>
 <p>Note that the number of rows and column was changed to enable a raster resolution of 100m. Also the bounding box coordinates of the <code>SpatRaster Object</code> have changed, which indicates a successful projection of the raster grid from <code>UTM 32</code> to <code>UTM 33</code>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -636,7 +636,7 @@ Tip
 <span><span class="co"># get values with index 1 to index 5</span></span>
 <span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/values.html">values</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3941960 0.6759190 0.3109030 0.2603980 0.1921521</code></pre>
+<pre><code>[1] 0.72423057 0.17138610 0.24961999 0.07629647 0.37173945</code></pre>
 </div>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#plot grid, plot() is a generic function to plot R objects</span></span>
 <span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">y</span>, main<span class="op">=</span><span class="st">'100m Raster, Salzburg'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -697,7 +697,7 @@ Solution
 </div>
 </div>
 <p>Note that the layer number <code>lyr.1</code> is returned in the console, when accessing individual values of a <code>SpatRaster Object</code>. This implies that <code>SpatRaster Objects</code> can handle space-time and multivariable data. A useful example for integrating space and time in <code>SpatRaster Objects</code> is provided by Dominic Royé in his blog post <a href="https://dominicroye.github.io/en/2022/use-of-multidimensional-spatial-data/" target="_blank">Use of multidimensional spatial data.</a> For more sophisticated data cube applications, the use of the <a href="https://r-spatial.github.io/stars/" target="_blank"><code>stars</code> package</a> is recommended.</p>
-<p>In this lesson, you learned to handle spatial vector and raster structures in R. To get to know these structures, we built vector and raster objects from scratch. In many instances, however, objects may be created in R by loading vector and raster file formats (e.g.&nbsp;<code>.shp</code> or <code>.tif</code>). This topic will be covered in lesson <a href="08-read-write.html">8</a>.</p>
+<p>In this lesson, you learned to handle spatial vector and raster structures in R. To get to know these structures, we built vector and raster objects from scratch. In many instances, however, objects may be created in R by loading vector and raster file formats (e.g.&nbsp;<code>.shp</code> or <code>.tiff</code>). This topic will be covered in lesson <a href="08-read-write.html">8</a>.</p>
 
 
 </section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
@@ -782,8 +782,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -894,7 +892,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
