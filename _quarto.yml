@@ -1,26 +1,23 @@
 project:
   type: book
-  # Pre-render and post-render commands (e.g., scripts you might use for preprocessing)
-  # pre-render: python script_test.py
-  # post-render: quarto render combined.qmd
-  output-dir: docs # Directory where the output files will be saved
+
+  output-dir: docs
   resources:
-    # Specifies resources to include, such as images and scripts
-    - "*.png" # Include all PNG files
-    - "*.jpg" # Include all JPG files
-    - "*.jpeg" # Include all JPEG files
-    - "*.js" # Include all JavaScript files
-    - "*.html" # Include all HTML files
-    - "*.css" # Include all CSS files
-    - "*.gitkeep" # Ensures folder structure (like _book) remains intact in version control
+    # Automatically include static files like images, CSS, JS
+    - "*.png"
+    - "*.jpg"
+    - "*.jpeg"
+    - "*.js"
+    - "*.html"
+    - "*.css"
+    - "*.gitkeep"
     - ".nojekyll" # Prevents Jekyll processing on GitHub Pages
 
 book:
   title: "Automated Data Processing with R"
   author: "Christian Neuwirth & Maximilian Elixhauser"
-  date: last-modified # Uses the last modified date for the build
+  date: last-modified
   chapters:
-    # List of chapters (each one is a .qmd file)
     - index.qmd
     - 01-introduction.qmd
     - 02-core-concepts.qmd
@@ -34,62 +31,57 @@ book:
     - 10-data-viz.qmd
     - 11-quarto.qmd
     - references.qmd
-  page-navigation: true # Enables navigation between pages in the HTML output
+  page-navigation: true
 
-  # Footer settings for copyright
   page-footer:
     center: "Copyright ©, UNIGIS Salzburg"
 
-  # Sidebar settings for the HTML format
   sidebar:
-    #style: "docked"
-    search: true # Enables a search field in the sidebar
-    logo: "branding/UNIGIS_Salzburg_Schriftlogo_v05.png" # Sidebar logo
-    logo-href: https://unigis.at/
-    
+    search: true
+    logo: "branding/UNIGIS_Salzburg_Schriftlogo_v05.png"
+    logo-href: "https://unigis.at/"
 
-bibliography: references.bib # Path to the bibliography file
+bibliography: references.bib
 
 format:
   html:
-    # HTML-specific options
-    css: css/custom.css # Custom CSS file for styling
-    theme: 
+    css: css/custom.css
+    theme:
       - cosmo
-      - css/theme.scss # Adds additional theme customizations
-    #toc-title: "Kapitelübersicht" # Sets the title of the table of contents in German!
-    toc-title: "Chapter Overview" # Sets the title of the table of contents in English!
-    
-    toc: true # Enables a table of contents in the HTML output
+      - css/theme.scss
+    # Set this based on the module language:
+    # toc-title: "Lektionsinhalt" # ← Uncomment for German
+    toc-title: "Lesson Content" # ← Default for English
+    toc: true
     toc-location: right
-    toc-depth: 3 # Sets the depth of the table of contents
-    code-fold: false # Code blocks are not folded by default
-    highlight: github # Code highlighting style
+    toc-depth: 3
+    code-fold: false
+    highlight: github
     code-link: true
+    html-math-method: katex
+    smooth-scroll: true
 
-
-    # Performance and user experience enhancements
-    html-math-method: katex # Uses KaTeX for math rendering (faster than MathJax)
-    smooth-scroll: true # Enables smooth scrolling
-
-    # Grid settings for page layout
-    #grid: 
-      #sidebar-width: 0% # Sets the sidebar width in the HTML output
-
-
-# Build commands to render both HTML and PDF versions with one command
 build:
   commands:
-    - quarto render --to html # Renders HTML 
+    - quarto render --to html
 
 custom-callout:
   exercisebox:
-    icon: true # Enables the icon (but customized via CSS)
+    icon: true
+  assignmentbox:
+    icon: true
 
-editor: source # Specifies the editor as source code
+editor: source
+lang: en
+
+language:
+  en:
+    callout-tip-title: "Learning Objectives"
+    callout-note-title: "Note"
+  de:
+    callout-tip-title: "Lernziele"
+    callout-note-title: "Hinweis"
 
 filters:
-  - webr # Filter for handling web-based R content
-  - custom-callout # Filter for custom callouts
-
-
+  - webr # a extension which allows to run R code in a web browser
+  - custom-callout # a extension which allows to create custom callouts

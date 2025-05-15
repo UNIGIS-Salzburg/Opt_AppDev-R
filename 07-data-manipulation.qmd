@@ -88,7 +88,7 @@ Worked examples - `magrittr` and `Base R` pipe operators
 
  > [Download Worked Example](data/pipe.R){target="_blank"}
 
-::: callout-tip
+::: callout-note
 
 To change the argument placement, use `.` within the function call. For example, you could explicitly pass variable `flights_from_nyc` as a first argument by `dplyr::count(., origin)`. Passing the variable as a second argument `dplyr::count(origin, .)` will return an error as the data frame is expected as a first input to function `count`.
 
@@ -214,16 +214,16 @@ See [our solution](Solution_Exercise_DataWrangling1.R){target="_blank"}!
 
 A join operation combines two tables into one by matching rows that have the same values in a specified column. This operation is usually executed on columns containing identifiers, which are matched through different tables containing different data about the same real-world entities. 
 
-For instance, the table created below (data frame `city_telephone_prexix`) contains the telephone prefixes of three cities. 
+For instance, the table created below (data frame `city_telephone_prefix`) contains the telephone prefixes of three cities. 
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
-city_telephone_prexix <- data.frame(
+city_telephone_prefix <- data.frame(
     city = c("Leicester", "Birmingham", "London"),
     telephon_prefix = c("0116", "0121", "0171")
   ) %>%
   tibble::as_tibble()
 
-city_telephone_prexix %>%
+city_telephone_prefix %>%
   knitr::kable()
 ```
 
@@ -254,7 +254,7 @@ Join types. Source: [R for Geographic Data Science](https://sdesabbata.github.io
 
 :::
 
-Please take your time to understand the examples below that show different realizations of joins between table `city_telephone_prexix` and table `city_info_wide`. 
+Please take your time to understand the examples below that show different realizations of joins between table `city_telephone_prefix` and table `city_info_wide`. 
 
 The first four examples execute the exact same *full join* operation using three different syntaxes: with or without using the pipe operator and specifying the `by` argument or not. Note that all those approaches to writing the join are valid and produce the same result. The choice about which approach to use will depend on the code you are writing. In particular, you might find it useful to use the syntax that uses the pipe operator when the join operation is itself only one stem in a series of data manipulation steps. Using the `by` argument is usually advisable unless you are certain that you aim to join two tables with all and exactly the column that have the same names in the two table.
 
@@ -269,7 +269,7 @@ dplyr::full_join(
     # left table
     city_info_wide,
     # right table
-    city_telephone_prexix,
+    city_telephone_prefix,
     # columns to match
     by = c("city" = "city")
   ) %>%
@@ -287,7 +287,7 @@ dplyr::full_join(
     # left table
     city_info_wide,
     # right table
-    city_telephone_prexix
+    city_telephone_prefix
   ) %>%
   knitr::kable()
 ```
@@ -305,7 +305,7 @@ city_info_wide %>%
   # full join verb
   dplyr::full_join(
     # right table
-    city_telephone_prexix
+    city_telephone_prefix
   ) %>%
   knitr::kable()
 ```
@@ -319,7 +319,7 @@ city_info_wide %>%
   # full join verb
   dplyr::full_join(
     # right table
-    city_telephone_prexix,
+    city_telephone_prefix,
     # columns to match
     by = c("city" = "city")
   ) %>%
@@ -336,7 +336,7 @@ dplyr::left_join(
     # left table
     city_info_wide, 
     # right table
-    city_telephone_prexix,
+    city_telephone_prefix,
     # columns to match
     by = c("city" = "city")
   ) %>%
@@ -351,7 +351,7 @@ dplyr::right_join(
     # left table
     city_info_wide, 
     # right table
-    city_telephone_prexix
+    city_telephone_prefix
   ) %>%
   knitr::kable()
 ```
@@ -366,7 +366,7 @@ city_info_wide %>%
   # inner join
   dplyr::inner_join(
     # right table
-    city_telephone_prexix
+    city_telephone_prefix
   ) %>%
   knitr::kable()
 ```
@@ -397,7 +397,7 @@ world_ctry <- map_data("world")
 
 [Our exercise solution](Solution_Exercise_DataWrangling2.R){target="_blank"} creates a simple output map. Don't worry in Lesson [Data Visualization](#data-viz){target="_blank"} we will cover visualization methods in more detail.  
 
-::: callout-tip
+::: callout-note
 
 Take a look at the [dplyr Cheatsheet](https://www.rstudio.com/resources/cheatsheets/){target="_blank"} which shows the most important dplyr operations at a glance.
 

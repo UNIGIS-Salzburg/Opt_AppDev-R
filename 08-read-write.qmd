@@ -29,10 +29,12 @@ fishery_data <- readr::read_csv("data/capture-fisheries-vs-aquaculture.csv")
 
 # print(typeof(fishery_data$))
 
-fishery_data %>%
-  dplyr::filter(Entity == "Norway") %>%
-  readr::write_csv("data/capture-fisheries-vs-aquaculture-norway.csv", append=FALSE) %>%
-  
+norway_data <- fishery_data %>%
+  dplyr::filter(Entity == "Norway")
+
+readr::write_csv(norway_data, "data/capture-fisheries-vs-aquaculture-norway.csv", append = FALSE)
+
+norway_data %>%
   dplyr::slice_head(n = 3) %>%
   knitr::kable()
   
@@ -40,7 +42,7 @@ fishery_data %>%
 
 In order to run the script, [download the CSV file](data/capture-fisheries-vs-aquaculture.csv){target="_blank"}. Then copy and run the code in a new R-script.
 
-::: callout-tip
+::: callout-note
 
 Other important packages for reading tabular data are [`readxl`](https://readxl.tidyverse.org/){target="_blank"} for Excel (`.xls` and `.xlsx`) and [`haven`](https://haven.tidyverse.org/){target="_blank"} for SPSS, Stata and SAS data.  
 
@@ -99,7 +101,7 @@ sf::st_geometry(nc) %>%
   
 ```
 
-::: callout-tip
+::: callout-note
 
 The online book [Geocomputation with R](https://r.geocompx.org/){target="_blank"} offers a more comprehensive explanation of available geometric, attribute and spatial data operations. For a quick overview, you may turn to the [sf cheatsheets](https://github.com/rstudio/cheatsheets/blob/master/sf.pdf){target="_blank"}. 
 
@@ -147,7 +149,7 @@ r
 
 ```
 
-Layers 1-3 correspond to color bands red, green, and blue. In order to plot the true color sentinel imagery, we can use `terra` function `plotRGB` and assign the numbers of respective color bands to attributes `r` (red), `g` (greeb), `b` (blue):
+Layers 1-3 correspond to color bands red, green, and blue. In order to plot the true color sentinel imagery, we can use `terra` function `plotRGB` and assign the numbers of respective color bands to attributes `r` (red), `g` (green), `b` (blue):
 
 ```{r, warning=FALSE, message=FALSE, out.width= '70%', fig.align='center'}
 
@@ -220,7 +222,7 @@ print(full_url)
 
 The base URL (`base`) in the code above specifies version (`v1`), type (`timeseries`), mode (`historical`) and resource-id (`inca-v1-1h-1km`) of the dataset being requested. This structure is described under [Endpoint Structure](https://dataset.api.hub.geosphere.at/v1/docs/getting-started.html#endpoint-structure){target="_blank"} in the [API Documentation](https://dataset.api.hub.geosphere.at/v1/docs/index.html){target="_blank"}.
 
-::: callout-tip
+::: callout-note
 
 All Geosphere datasets as well as available types, modes and response formats can be listed via [https://dataset.api.hub.geosphere.at/v1/datasets](https://dataset.api.hub.geosphere.at/v1/datasets){target="_blank"}.
 

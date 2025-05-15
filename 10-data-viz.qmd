@@ -40,7 +40,7 @@ In the upcoming examples, we will use `ggplot2` together with function `aes()` t
 
 :::
 
-::: callout-tip
+::: callout-note
 
 For a foundational understanding of "The Grammar of Graphics" as implemented in `ggplot2`, refer to Hadley Wickham's insightful [article](https://byrneslab.net/classes/biol607/readings/wickham_layered-grammar.pdf){target="_blank"}.
 
@@ -87,7 +87,7 @@ knitr::kable(long_data)
 
 Understanding these formats is crucial for effective data manipulation and visualization in R, especially when using libraries like `ggplot2` and `tidyverse`. Certain types of visualizations and statistical analyses are more straightforward with data in a specific format.
 
-::: callout-tip
+::: callout-note
 
 Transforming data between wide and long formats is often achieved using functions like `pivot_longer()` and `pivot_wider()` from the [`tidyr`](https://tidyr.tidyverse.org/reference/index.html){target="_blank"} package, which is included in the Tidyverse.
 
@@ -448,7 +448,7 @@ ggsave("data/map.pdf")
 ggsave("data/map_web.png", width = 10, height = 10, dpi = "screen")
 ```
 
-::: callout-tip
+::: callout-note
 
 Remember to consult the [ggplot2 Cheatsheet](https://www.rstudio.com/resources/cheatsheets/){target="_blank"} for an overview of key ggplot2 operations.
 
@@ -469,7 +469,7 @@ m <- leaflet() %>%
 
 The pipe operator (`%>%`) conveniently adds layers, thanks to Leaflet's function design.
 
-::: callout-tip
+::: callout-note
 
 The function `addTiles()`  per default adds OpenStreetMap map tiles. You may use the function `addProviderTiles()` to add other map tiles. Leaflet supports a large number of [basemap layers](http://leaflet-extras.github.io/leaflet-providers/preview/){target="_blank"}.
 

@@ -132,7 +132,7 @@ cat("Area (name): ", metrics$area, "\n")
 cat("Perimeter (name): ", metrics$perimeter, "\n")
 ```
 
-::: callout-tip
+::: callout-note
 
 Upon defining a function in R, it appears in the Environment Window of RStudio, similar to a variable. When invoked, the R interpreter executes the function stored in memory.
 
@@ -156,7 +156,7 @@ factorial(3)
 
 The function takes a single numeric value as input, defines a variable named `result` that is equal to '1' and then creates a loop over all the numbers from 1 (variable `result`) to the `input_value`. In the loop, the current value of `result` is multiplied by the value of the iterator `i`.
 
-> Though technically possible, defining a function within loops or conditional statements is generally avoided.
+> Though technically possible, defining a function within loops or conditional statements is generally avoided. This can lead to unexpected behavior and makes the code harder to debug or read. It's usually better to define functions at the top of your script, where their structure and purpose are clear.
 
 ## Scope
 

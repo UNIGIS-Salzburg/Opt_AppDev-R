@@ -8,7 +8,7 @@ In this lesson, we will utilize online data resources in workflows that involve 
 
 We will work with vector data to correctly identify agricultural land parcels in European Union countries. The Austrian Agricultural Agency ([AMA](https://www.ama.at/intro){target="_blank"}) provides access to Austrian agricultural parcels through an [OGC Rest API - Feature](https://ogcapi.ogc.org/){target="_blank"} interface. The OGC API Features standard is the successor to the OGC Web Feature Service (WFS) specification.
 
-::: callout-tip
+::: callout-note
 
 The R syntax used to interact with OGC APIs is the same as described in the "Data API" section of Lesson [Read and Write Data](#readwrite){target="_blank"}.
 
@@ -325,7 +325,7 @@ plot(farms[1], main = NULL, key.pos = NULL, pch = 7, col = 'red', add = TRUE, ce
 
 The output map visualizes the closest farm to each agricultural parcel, highlighting the practical application of `sf` Geometrical operations.
 
-::: callout-tip
+::: callout-note
 
 This chapter focuses on logical matrix outputs from geometric operations. For operations generating new geometries, such as `st_union`, `st_buffer`, and `st_centroid`, see [operations returning a geometry](https://r-spatial.github.io/sf/articles/sf3.html#operations-returning-a-geometry){target="_blank"}. For network operations on `sf` objects, consider using `sfnetworks` or the `igraph` package.
 
@@ -438,7 +438,7 @@ plot(r)
 
 Here, all cells with the value `255` are replaced with `2550`.
 
-::: callout-tip
+::: callout-note
 
 A broader range of vector and raster operations can be found in [Chapter 5 - Geometry Operations, in the Book Geocomputation with R](https://bookdown.org/robinlovelace/geocompr/geometric-operations.html){target="_blank"}.
 
