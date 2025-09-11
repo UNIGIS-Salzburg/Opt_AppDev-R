@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.42">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>1&nbsp; Introduction to R – Automated Data Processing with R</title>
 <style>
 code{white-space: pre-wrap;}
@@ -53,6 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -70,7 +74,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a7001429fb728b692d743f19cb87ea92.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-a7001429fb728b692d743f19cb87ea92.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -96,13 +101,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><style>html{ scroll-behavior: smooth; }</style>
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
 <link rel="stylesheet" href="css/custom.css">
 </head>
+
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -113,11 +124,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="https://unigis.at/" class="sidebar-logo-link">
-      <img src="./branding/UNIGIS_Salzburg_Schriftlogo_v05.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="./branding/UNIGIS_Salzburg_Schriftlogo_v05.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Automated Data Processing with R</a> 
     </div>
@@ -129,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -201,21 +217,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Lesson Content</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Lesson Content</h2>
    
   <ul>
-<li><a href="#about-this-module" id="toc-about-this-module" class="nav-link active" data-scroll-target="#about-this-module"><span class="header-section-number">1.1</span> About this module</a></li>
+  <li><a href="#about-this-module" id="toc-about-this-module" class="nav-link active" data-scroll-target="#about-this-module"><span class="header-section-number">1.1</span> About this module</a></li>
   <li><a href="#r-programming-language" id="toc-r-programming-language" class="nav-link" data-scroll-target="#r-programming-language"><span class="header-section-number">1.2</span> R programming language</a></li>
   <li><a href="#installation-and-setup" id="toc-installation-and-setup" class="nav-link" data-scroll-target="#installation-and-setup"><span class="header-section-number">1.3</span> Installation and Setup</a></li>
   <li><a href="#interpreting-values" id="toc-interpreting-values" class="nav-link" data-scroll-target="#interpreting-values"><span class="header-section-number">1.4</span> Interpreting Values</a></li>
@@ -223,10 +235,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#numop" id="toc-numop" class="nav-link" data-scroll-target="#numop"><span class="header-section-number">1.6</span> Numeric operators</a></li>
   <li><a href="#logical-operators" id="toc-logical-operators" class="nav-link" data-scroll-target="#logical-operators"><span class="header-section-number">1.7</span> Logical operators</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">1.8</span> References</a></li>
-  </ul></nav>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title"><span id="intro" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to R</span></span></h1>
 </div>
 
@@ -241,8 +257,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><section id="about-this-module" class="level2" data-number="1.1"><h2 data-number="1.1" class="anchored" data-anchor-id="about-this-module">
-<span class="header-section-number">1.1</span> About this module</h2>
+</header>
+
+
+<section id="about-this-module" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="about-this-module"><span class="header-section-number">1.1</span> About this module</h2>
 <p>This module will equip you with fundamental R programming skills, beginning with core programming concepts common to most languages. These include <strong>Datatypes</strong>, <strong>Operators</strong>, <strong>Variables</strong>, <strong>Functions</strong>, <strong>Control Structures</strong>, and <strong>Libraries</strong>. You will gain a solid understanding of these basics, forming a strong foundation for advanced programming.</p>
 <p>We then progress to more complex data types like <strong>Data Frames</strong> and <strong>Tibbles</strong>, and explore how to <strong>Read and Write</strong> both spatial and non-spatial datasets. Special emphasis is placed on techniques to manipulate data, enabling you to adeptly manage and analyze datasets. This will be particularly useful for preparing and refining data for in-depth analysis.</p>
 <p>The module also focuses on <strong>data visualization</strong>, where you’ll learn to create informative and compelling visual representations, such as box plots, scatterplots, line plots, and maps. These skills are critical for data exploration and presenting your findings in an accessible manner.</p>
@@ -251,8 +270,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>This module partly draws from <a href="https://github.com/sdesabbata/granolarr" target="_blank">granolarr</a>, developed by <a href="https://sdesabbata.github.io/" target="_blank">Stef de Sabbata</a> at <a href="https://le.ac.uk/" target="_blank">University of Leicester</a>. For further exploration, refer to the Webbook <a href="https://sdesabbata.github.io/r-for-geographic-data-science/" target="_blank">R for Geographic Data Science</a>. We particularly recommend its chapters on <strong>Statistical Analysis</strong> and <strong>Machine Learning</strong> for those interested in advanced R applications.</p>
 </blockquote>
-</section><section id="r-programming-language" class="level2" data-number="1.2"><h2 data-number="1.2" class="anchored" data-anchor-id="r-programming-language">
-<span class="header-section-number">1.2</span> R programming language</h2>
+</section>
+<section id="r-programming-language" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="r-programming-language"><span class="header-section-number">1.2</span> R programming language</h2>
 <p>R is versatile in data science and analytics, with applications including:</p>
 <ul>
 <li>Data wrangling</li>
@@ -272,24 +292,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>R, a <strong>high-level programming</strong> or <strong>scripting language</strong>, relies on an <strong>interpreter</strong> instead of a compiler. This interpreter directly executes written instructions, requiring adherence to the programming language’s grammar or <strong>Syntax</strong>.</p>
 <p>In this lesson we will focus on some key principles of the R syntax and logic.</p>
-</section><section id="installation-and-setup" class="level2" data-number="1.3"><h2 data-number="1.3" class="anchored" data-anchor-id="installation-and-setup">
-<span class="header-section-number">1.3</span> Installation and Setup</h2>
+</section>
+<section id="installation-and-setup" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="installation-and-setup"><span class="header-section-number">1.3</span> Installation and Setup</h2>
 <p>Before you can run your code, you have to install R together with an <strong>Integrated Development Environment (IDE)</strong> on your machine:</p>
 <ol type="1">
-<li>Download R from <a href="http://cran.r-project.org" target="_blank">R Archive Network (CRAN.)</a>
-</li>
+<li>Download R from <a href="http://cran.r-project.org" target="_blank">R Archive Network (CRAN.)</a></li>
 <li>Install the latest version, choosing “base” and the appropriate bit version for your OS.</li>
 </ol>
 <p>The IDE is where you write, test, and execute your R programs, we strongly recommend using <strong>RStudio Desktop</strong>, which is <a href="https://posit.co/download/rstudio-desktop/" target="_blank">freely available for download.</a></p>
 <p>This video offers a concise RStudio overview <a href="#fig-vid" class="quarto-xref">Figure&nbsp;<span>1.1</span></a>:</p>
 <div id="fig-vid" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-vid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <iframe src="https://www.youtube.com/embed/FIrsOBy5k58?si=pvrG1iZtZFfjG2G5" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen="">
 </iframe>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.1: Video (6:09 min): RStudio for the Total Beginner.
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -304,16 +326,19 @@ Note
 <p>Encounter technical difficulties? Please consult the discussion forum!</p>
 </div>
 </div>
-</section><section id="interpreting-values" class="level2" data-number="1.4"><h2 data-number="1.4" class="anchored" data-anchor-id="interpreting-values">
-<span class="header-section-number">1.4</span> Interpreting Values</h2>
+</section>
+<section id="interpreting-values" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="interpreting-values"><span class="header-section-number">1.4</span> Interpreting Values</h2>
 <p>With RStudio and R installed, let’s dive into coding. The <strong>Console Window</strong> in <a href="#fig-console" class="quarto-xref">Figure&nbsp;<span>1.2</span></a> is where the interpreter outputs results based on your input.</p>
 <div id="fig-console" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Console.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-console-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1.2: Console Window in RStudio
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p>Type in a <strong>numeric value</strong> (e.g., 3) and press Enter. The interpreter returns the input value preceded by a bracketed number. The value in brackets indicates that the input is composed of one single entity.</p>
 <div class="callout callout-style-default callout-exercisebox callout-titled">
@@ -346,27 +371,23 @@ Solution
 </div>
 </div>
 <p>If you start your input with a hash symbol (<code>#</code>) the interpreter will consider that line as a comment. For instance, if you type in <strong># Test Test Test</strong>, you will see that nothing is returned as an output. Comments are extremely important as they allow you to add explanations in plain language. Comments are fundamental to allow other people to understand your code and it will save you time interpreting your own code.</p>
-</section><section id="simple-data-types" class="level2" data-number="1.5"><h2 data-number="1.5" class="anchored" data-anchor-id="simple-data-types">
-<span class="header-section-number">1.5</span> Simple Data Types</h2>
+</section>
+<section id="simple-data-types" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="simple-data-types"><span class="header-section-number">1.5</span> Simple Data Types</h2>
 <p>R’s simple data types, essential for encoding information, include:</p>
 <ul>
 <li>numeric
 <ul>
-<li>both <strong>integer</strong> and <strong>real numbers</strong>
-</li>
-</ul>
-</li>
+<li>both <strong>integer</strong> and <strong>real numbers</strong></li>
+</ul></li>
 <li>character
 <ul>
-<li>i.e., “text”, also called <em>strings</em>
-</li>
-</ul>
-</li>
+<li>i.e., “text”, also called <em>strings</em></li>
+</ul></li>
 <li>logical
 <ul>
 <li>Represents <code>TRUE</code> or <code>FALSE</code> values</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>Logical <code>TRUE</code> or <code>FALSE</code> values are typically the result of evaluating logical expressions.</p>
 <p>Together these three <strong>simple data types</strong> are the building blocks R uses to encode information.</p>
@@ -400,16 +421,19 @@ Solution
 </div>
 </div>
 </div>
-</section><section id="numop" class="level2" data-number="1.6"><h2 data-number="1.6" class="anchored" data-anchor-id="numop">
-<span class="header-section-number">1.6</span> Numeric operators</h2>
+</section>
+<section id="numop" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="numop"><span class="header-section-number">1.6</span> Numeric operators</h2>
 <p>R provides a series of basic numeric operators:</p>
 <table class="caption-top table">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th>Operator</th>
 <th>Meaning</th>
 <th>Example</th>
 <th>Output</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td>+</td>
@@ -457,7 +481,7 @@ Solution
 </table>
 <p>Whereas mathematical operators are self-explanatory, the operators <strong>Modulo</strong> and <strong>Integer division</strong> may be new to some of you. Integer division returns an integer quotient:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">5</span><span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span><span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">%/%</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
@@ -494,16 +518,19 @@ Solution
 </div>
 </div>
 </div>
-</section><section id="logical-operators" class="level2" data-number="1.7"><h2 data-number="1.7" class="anchored" data-anchor-id="logical-operators">
-<span class="header-section-number">1.7</span> Logical operators</h2>
+</section>
+<section id="logical-operators" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="logical-operators"><span class="header-section-number">1.7</span> Logical operators</h2>
 <p>R also provides a series of basic logical operators to create logical expressions:</p>
 <table class="caption-top table">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th>Operator</th>
 <th>Meaning</th>
 <th>Example</th>
 <th>Output</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td>==</td>
@@ -569,49 +596,32 @@ Exercise
 <p>Type and execute these expressions in the RStudio console to validate your assumptions.</p>
 </div>
 </div>
-</section><section id="references" class="level2" data-number="1.8"><h2 data-number="1.8" class="anchored" data-anchor-id="references">
-<span class="header-section-number">1.8</span> References</h2>
+</section>
+<section id="references" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="references"><span class="header-section-number">1.8</span> References</h2>
 <p>Apart from <a href="https://sdesabbata.github.io/" target="_blank">Stef de Sabbata’s</a> teaching materials, this module draws from various sources, most of which are available online:</p>
 <ul>
-<li>
-<em>The Grammar Of Graphics – All You Need to Know About ggplot2 and Pokemons</em> by Pascal Schmidt. <a href="https://thatdatatho.com/grammar-of-graphics-ggplot2/" target="_blank">See Online Tutorial</a>
-</li>
-<li>
-<em>ggplot2 - Overview.</em> <a href="https://ggplot2.tidyverse.org/" target="_blank">See Online Documentation</a>
-</li>
-<li>
-<em>Getting started with httr2 - httr2 quickstart guide.</em> <a href="https://httr2.r-lib.org/articles/httr2.html" target="_blank">See Online Tutorial</a>
-</li>
-<li>
-<em>Programming Skills for Data Science: Start Writing Code to Wrangle, Analyze, and Visualize Data with R</em> by Michael Freeman and Joel Ross, Addison-Wesley, 2019. <a href="https://www.pearson.com/us/higher-education/program/Freeman-Programming-Skills-for-Data-Science-Start-Writing-Code-to-Wrangle-Analyze-and-Visualize-Data-with-R/PGM2047488.html" target="_blank">See Book Webpage</a> and <a href="https://programming-for-data-science.github.io/" target="_blank">Repository</a>.</li>
-<li>
-<em>R for Data Science (2e)</em> by Garrett Grolemund and Hadley Wickham, O’Reilly Media, 2016. <a href="https://r4ds.hadley.nz/" target="_blank">See Online Book</a>.</li>
-<li>
-<em>Machine Learning with R: Expert techniques for predictive modeling</em> by Brett Lantz, Packt Publishing, 2019. <a href="https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788295864" target="_blank">See Book Webpage</a>.</li>
-<li>
-<em>Introduction to spatial data in R</em> by Nils Riach and Rafael Hologa. <a href="https://thinking-spatial.org/courses/angewandte_geodatenverarbeitung/kurs03/" target="_blank">See Online Tutorial</a>.</li>
-<li>
-<em>The Art of R Programming: A Tour of Statistical Software Design</em> by Norman Matloff, No Starch Press, 2011. <a href="https://nostarch.com/artofr.htm" target="_blank">See Book Webpage</a>
-</li>
-<li>
-<em>An Introduction to R for Spatial Analysis and Mapping</em> by Chris Brunsdon and Lex Comber, Sage, 2015. <a href="https://us.sagepub.com/en-us/nam/an-introduction-to-r-for-spatial-analysis-and-mapping/book258267" target="_blank">See Book Webpage</a>
-</li>
-<li>
-<em>Geocomputation with R</em> by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. <a href="https://bookdown.org/robinlovelace/geocompr/" target="_blank">See Online Book</a>.</li>
-<li>
-<em>Discovering Statistics Using R</em> by Andy Field, Jeremy Miles and Zoë Field, SAGE Publications Ltd, 2012. <a href="https://us.sagepub.com/en-us/nam/discovering-statistics-using-r/book236067" target="_blank">See Book Webpage</a>.</li>
-<li>
-<em>The RStudio Cheatsheets - A collection of cheatsheets for various R functions and packages.</em> <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">View Collection on RStudio Website</a>.</li>
-<li>
-<em>The terra package - A comprehensive guide to the ‘terra’ package for spatial analysis in R.</em> <a href="https://rspatial.org/pkg/index.html" target="_blank">View Online Documentation</a>
-</li>
-<li>
-<em>Sf - Simple Features for R - Documentation on using the ‘sf’ package for handling spatial data in R.</em> <a href="https://r-spatial.github.io/sf/" target="_blank">View Online Documentation</a>
-</li>
+<li><em>The Grammar Of Graphics – All You Need to Know About ggplot2 and Pokemons</em> by Pascal Schmidt. <a href="https://thatdatatho.com/grammar-of-graphics-ggplot2/" target="_blank">See Online Tutorial</a></li>
+<li><em>ggplot2 - Overview.</em> <a href="https://ggplot2.tidyverse.org/" target="_blank">See Online Documentation</a></li>
+<li><em>Getting started with httr2 - httr2 quickstart guide.</em> <a href="https://httr2.r-lib.org/articles/httr2.html" target="_blank">See Online Tutorial</a></li>
+<li><em>Programming Skills for Data Science: Start Writing Code to Wrangle, Analyze, and Visualize Data with R</em> by Michael Freeman and Joel Ross, Addison-Wesley, 2019. <a href="https://www.pearson.com/us/higher-education/program/Freeman-Programming-Skills-for-Data-Science-Start-Writing-Code-to-Wrangle-Analyze-and-Visualize-Data-with-R/PGM2047488.html" target="_blank">See Book Webpage</a> and <a href="https://programming-for-data-science.github.io/" target="_blank">Repository</a>.</li>
+<li><em>R for Data Science (2e)</em> by Garrett Grolemund and Hadley Wickham, O’Reilly Media, 2016. <a href="https://r4ds.hadley.nz/" target="_blank">See Online Book</a>.</li>
+<li><em>Machine Learning with R: Expert techniques for predictive modeling</em> by Brett Lantz, Packt Publishing, 2019. <a href="https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788295864" target="_blank">See Book Webpage</a>.</li>
+<li><em>Introduction to spatial data in R</em> by Nils Riach and Rafael Hologa. <a href="https://thinking-spatial.org/courses/angewandte_geodatenverarbeitung/kurs03/" target="_blank">See Online Tutorial</a>.</li>
+<li><em>The Art of R Programming: A Tour of Statistical Software Design</em> by Norman Matloff, No Starch Press, 2011. <a href="https://nostarch.com/artofr.htm" target="_blank">See Book Webpage</a></li>
+<li><em>An Introduction to R for Spatial Analysis and Mapping</em> by Chris Brunsdon and Lex Comber, Sage, 2015. <a href="https://us.sagepub.com/en-us/nam/an-introduction-to-r-for-spatial-analysis-and-mapping/book258267" target="_blank">See Book Webpage</a></li>
+<li><em>Geocomputation with R</em> by Robin Lovelace, Jakub Nowosad, Jannes Muenchow, CRC Press, 2019. <a href="https://bookdown.org/robinlovelace/geocompr/" target="_blank">See Online Book</a>.</li>
+<li><em>Discovering Statistics Using R</em> by Andy Field, Jeremy Miles and Zoë Field, SAGE Publications Ltd, 2012. <a href="https://us.sagepub.com/en-us/nam/discovering-statistics-using-r/book236067" target="_blank">See Book Webpage</a>.</li>
+<li><em>The RStudio Cheatsheets - A collection of cheatsheets for various R functions and packages.</em> <a href="https://www.rstudio.com/resources/cheatsheets/" target="_blank">View Collection on RStudio Website</a>.</li>
+<li><em>The terra package - A comprehensive guide to the ‘terra’ package for spatial analysis in R.</em> <a href="https://rspatial.org/pkg/index.html" target="_blank">View Online Documentation</a></li>
+<li><em>Sf - Simple Features for R - Documentation on using the ‘sf’ package for handling spatial data in R.</em> <a href="https://r-spatial.github.io/sf/" target="_blank">View Online Documentation</a></li>
 </ul>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1027,7 +1037,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
       <a href="./index.html" class="pagination-link" aria-label="Preface">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
       </a>          
@@ -1039,7 +1051,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
@@ -1051,6 +1064,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
+
 
 
 <script src="site_libs/quarto-html/zenscroll-min.js"></script>
