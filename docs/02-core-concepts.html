@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.42">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>2&nbsp; Core Concepts – Automated Data Processing with R</title>
 <style>
 code{white-space: pre-wrap;}
@@ -53,6 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -70,7 +74,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a7001429fb728b692d743f19cb87ea92.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-a7001429fb728b692d743f19cb87ea92.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -96,13 +101,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><style>html{ scroll-behavior: smooth; }</style>
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
 <link rel="stylesheet" href="css/custom.css">
 </head>
+
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -113,11 +124,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="https://unigis.at/" class="sidebar-logo-link">
-      <img src="./branding/UNIGIS_Salzburg_Schriftlogo_v05.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="./branding/UNIGIS_Salzburg_Schriftlogo_v05.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Automated Data Processing with R</a> 
     </div>
@@ -129,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -201,27 +217,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Lesson Content</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Lesson Content</h2>
    
   <ul>
-<li><a href="#variables" id="toc-variables" class="nav-link active" data-scroll-target="#variables"><span class="header-section-number">2.1</span> Variables</a></li>
+  <li><a href="#variables" id="toc-variables" class="nav-link active" data-scroll-target="#variables"><span class="header-section-number">2.1</span> Variables</a></li>
   <li><a href="#algorithms-and-functions" id="toc-algorithms-and-functions" class="nav-link" data-scroll-target="#algorithms-and-functions"><span class="header-section-number">2.2</span> Algorithms and Functions</a></li>
   <li><a href="#libraries" id="toc-libraries" class="nav-link" data-scroll-target="#libraries"><span class="header-section-number">2.3</span> Libraries</a></li>
-  </ul></nav>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
 <h1 class="title"><span id="core" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Core Concepts</span></span></h1>
 </div>
 
@@ -236,21 +252,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   
 
 
-</header><p>In this lesson, we’ll explore three fundamental concepts in programming:</p>
+</header>
+
+
+<p>In this lesson, we’ll explore three fundamental concepts in programming:</p>
 <ol type="1">
 <li>Variables</li>
 <li>Functions</li>
 <li>Libraries</li>
 </ol>
-<section id="variables" class="level2" data-number="2.1"><h2 data-number="2.1" class="anchored" data-anchor-id="variables">
-<span class="header-section-number">2.1</span> Variables</h2>
+<section id="variables" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="variables"><span class="header-section-number">2.1</span> Variables</h2>
 <p>Variables are essential for <strong>storing data</strong>. To define a variable, use an <em>identifier</em> (e.g., <code>a_variable</code>) on the left of an <em>assignment operator</em> <code>&lt;-</code>, followed by the value you wish to assign (e.g., 1):</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a_variable</span> <span class="op">&lt;-</span> <span class="fl">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>a_variable <span class="ot">&lt;-</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To retrieve the value of the variable, simply use its <strong>identifier</strong>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a_variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>a_variable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
@@ -270,9 +289,9 @@ Note
 </div>
 <p>Variables allow you to store computational results and later access them for further analysis. For instance:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a_variable</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
-<span><span class="va">a_variable</span> <span class="op">&lt;-</span> <span class="va">a_variable</span> <span class="op">+</span> <span class="fl">10</span></span>
-<span><span class="va">another_variable</span> <span class="op">&lt;-</span> <span class="va">a_variable</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a_variable <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>a_variable <span class="ot">&lt;-</span> a_variable <span class="sc">+</span> <span class="dv">10</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>another_variable <span class="ot">&lt;-</span> a_variable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Why use variables instead of direct input? They make your code <strong>reusable, scalable, and time-efficient</strong>, especially with complex data analyses or larger datasets.</p>
 <p><strong>Let us consider the following example:</strong></p>
@@ -308,26 +327,27 @@ Solution
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">temp_A</span> <span class="op">&lt;-</span> <span class="fl">24</span></span>
-<span><span class="va">temp_B</span> <span class="op">&lt;-</span> <span class="fl">28</span></span>
-<span><span class="va">diff</span> <span class="op">&lt;-</span> <span class="va">temp_A</span> <span class="op">-</span> <span class="va">temp_B</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>temp_A <span class="ot">&lt;-</span> <span class="dv">24</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>temp_B <span class="ot">&lt;-</span> <span class="dv">28</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>diff <span class="ot">&lt;-</span> temp_A <span class="sc">-</span> temp_B</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>After executing the code in RStudio, you should notice changes in the Environment Panel, located in the top right corner. The <strong>Environment Panel</strong> will display three memory slots with identifiers <code>diff</code>, <code>temp_A</code>, and <code>temp_B</code>, having values of -4, 24, and 28, respectively. Invoking the name of an identifier in the code (e.g., typing <code>diff</code> and running it) will return the value stored in that memory slot.</p>
 <p>To clear your workspace memory, click the “broom icon” in the Environment Panel’s menu.</p>
 </div>
 </div>
 </div>
-</section><section id="algorithms-and-functions" class="level2" data-number="2.2"><h2 data-number="2.2" class="anchored" data-anchor-id="algorithms-and-functions">
-<span class="header-section-number">2.2</span> Algorithms and Functions</h2>
+</section>
+<section id="algorithms-and-functions" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="algorithms-and-functions"><span class="header-section-number">2.2</span> Algorithms and Functions</h2>
 <blockquote class="blockquote">
 <p><em>“An algorithm is a mechanical rule, automatic method, or program for performing some mathematical operation”</em> (Cutland, 1980).</p>
 </blockquote>
 <p>A <em>program</em> is a specific set of instructions that implements an abstract algorithm.</p>
 <p>The definition of an algorithm (and thus a program) can consist of one or more functions. Functions are sets of instructions that perform a task, structuring code into functional, reusable units. Some functions receive values as inputs, while others return output values.</p>
 <p>Programming languages typically provide pre-defined functions that implement common algorithms (e.g., finding the square root of a number or calculating a linear regression).</p>
-<p>For example, the pre-defined function <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code> calculates the square root of an input value. <strong>Like all functions</strong> in R, <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code> is invoked by specifying the <em>function name</em> and <em>arguments</em> (input values) between parentheses:</p>
+<p>For example, the pre-defined function <code>sqrt()</code> calculates the square root of an input value. <strong>Like all functions</strong> in R, <code>sqrt()</code> is invoked by specifying the <em>function name</em> and <em>arguments</em> (input values) between parentheses:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.414214</code></pre>
 </div>
@@ -346,9 +366,9 @@ Note
 <p>In programming, the terms ‘parameter’ and ‘argument’ are often used interchangeably, but there is a subtle distinction. A <strong>parameter</strong> is the variable listed inside the parentheses in the function declaration, while an <strong>argument</strong> is the actual value passed to the function. For example, in the function definition <code>square(number)</code>, <code>number</code> is a parameter. When you call <code>square(4)</code>, the value 4 is the argument passed to the <code>number</code> parameter. Understanding this difference helps in comprehending how functions receive and process information.</p>
 </div>
 </div>
-<p><code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> is another predefined function in R:</p>
+<p><code>round()</code> is another predefined function in R:</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fl">1.414214</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">1.414214</span>, <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.41</code></pre>
 </div>
@@ -356,16 +376,16 @@ Note
 <p>Note that the name of the second parameter (<code>digits</code>) needs to be specified. The <code>digits</code> parameter indicates the number of digits to keep after the decimal point.</p>
 <p>The return value of a function can be stored in a variable:</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sqrt_of_two</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="va">sqrt_of_two</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sqrt_of_two <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">2</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sqrt_of_two</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.414214</code></pre>
 </div>
 </div>
 <p>Here, the output value is stored in a memory slot with the identifier <code>sqrt_of_two</code>. We can use the identifier <code>sqrt_of_two</code> as an argument in other functions:</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sqrt_of_two</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">sqrt_of_two</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sqrt_of_two <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">2</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(sqrt_of_two, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.414</code></pre>
 </div>
@@ -381,7 +401,7 @@ Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Can you store the output of the <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code> function in a second variable?</p>
+<p>Can you store the output of the <code>round()</code> function in a second variable?</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-exercisebox callout-titled">
@@ -397,15 +417,15 @@ Solution
 <div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">sqrt_of_two</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="va">rounded_sqrt_of_two</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">sqrt_of_two</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sqrt_of_two <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">2</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>rounded_sqrt_of_two <span class="ot">&lt;-</span> <span class="fu">round</span>(sqrt_of_two, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 </div>
-<p>Functions can also be used as arguments within other functions. For instance, we can use <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code> as the first argument in <code><a href="https://rdrr.io/r/base/Round.html">round()</a></code>:</p>
+<p>Functions can also be used as arguments within other functions. For instance, we can use <code>sqrt()</code> as the first argument in <code>round()</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sqrt</span>(<span class="dv">2</span>), <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.414</code></pre>
 </div>
@@ -416,34 +436,31 @@ Solution
 <ul>
 <li>R is a <strong>case-sensitive</strong> language, meaning UPPER and lower case are treated as distinct.
 <ul>
-<li>
-<code>a_variable</code> is not the same as <code>a_VARIABLE</code>.</li>
-</ul>
-</li>
+<li><code>a_variable</code> is not the same as <code>a_VARIABLE</code>.</li>
+</ul></li>
 <li>Valid names can include:
 <ul>
 <li>Alphanumeric characters, <code>.</code> and <code>_</code>.</li>
-</ul>
-</li>
+</ul></li>
 <li>Names must start with a letter, not a number or a symbol.</li>
-</ul></section><section id="libraries" class="level2" data-number="2.3"><h2 data-number="2.3" class="anchored" data-anchor-id="libraries">
-<span class="header-section-number">2.3</span> Libraries</h2>
+</ul>
+</section>
+<section id="libraries" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="libraries"><span class="header-section-number">2.3</span> Libraries</h2>
 <p>In R, related and reusable functions are grouped into <strong>libraries</strong>, also called <em>packages</em>.</p>
-<p>As of now, there are more than 10,000 R libraries available. These can be downloaded and installed using the <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code> function. Once a library is installed, the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> function is used to make it accessible in a script.</p>
+<p>As of now, there are more than 10,000 R libraries available. These can be downloaded and installed using the <code>install.packages()</code> function. Once a library is installed, the <code>library()</code> function is used to make it accessible in a script.</p>
 <p>Libraries can vary greatly in size and complexity. For example:</p>
 <ul>
-<li>
-<code>base</code>: This includes basic R functions, such as the <code><a href="https://rdrr.io/r/base/MathFun.html">sqrt()</a></code> function discussed earlier.</li>
-<li>
-<code>sf</code>: A package providing <a href="https://en.wikipedia.org/wiki/Simple_Features" target="_blank">simple feature access</a>.</li>
+<li><code>base</code>: This includes basic R functions, such as the <code>sqrt()</code> function discussed earlier.</li>
+<li><code>sf</code>: A package providing <a href="https://en.wikipedia.org/wiki/Simple_Features" target="_blank">simple feature access</a>.</li>
 </ul>
 <p>The <code>stringr</code> library illustrates the use of libraries in R. It offers a consistent and well-defined set of functions for string manipulation. Assuming the library is already installed on your computer, you can load it as follows:</p>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org">stringr</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If not yet installed, you can download and install it with:</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'stringr'</span><span class="op">)</span>  <span class="co"># Note: the function takes a string argument ('')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">'stringr'</span>)  <span class="co"># Note: the function takes a string argument ('')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -460,33 +477,33 @@ Note
 </div>
 <p>The majority of libraries are available through <a href="https://cran.r-project.org/" target="_blank">CRAN - Comprehensive R Archive Network</a>, a vast collection of R resources and libraries.</p>
 <ul>
-<li>When using <code><a href="https://rdrr.io/r/utils/install.packages.html">install.packages()</a></code>, the package name must be a string, hence the quotes around ‘stringr’.</li>
-<li>To explore the functions provided by a library, like <code>stringr</code>, you can use <code><a href="https://rdrr.io/r/base/ls.html">ls()</a></code> to list them. This command shows you what’s available to use once a library is loaded into your R session.</li>
+<li>When using <code>install.packages()</code>, the package name must be a string, hence the quotes around ‘stringr’.</li>
+<li>To explore the functions provided by a library, like <code>stringr</code>, you can use <code>ls()</code> to list them. This command shows you what’s available to use once a library is loaded into your R session.</li>
 </ul>
 <p>Once installed and loaded, the library provides a new set of functions in your environment. For instance, <code>str_length</code> in the <code>stringr</code> library returns the number of characters in a string:</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_length.html">str_length</a></span><span class="op">(</span><span class="st">"UNIGIS"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(<span class="st">"UNIGIS"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6</code></pre>
 </div>
 </div>
-<p>The <code><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect()</a></code> function returns <code>TRUE</code> if the first argument (a string) contains the second argument (a character string). Otherwise, it returns <code>FALSE</code>:</p>
+<p>The <code>str_detect()</code> function returns <code>TRUE</code> if the first argument (a string) contains the second argument (a character string). Otherwise, it returns <code>FALSE</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html">str_detect</a></span><span class="op">(</span><span class="st">"UNIGIS"</span>, <span class="st">"I"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(<span class="st">"UNIGIS"</span>, <span class="st">"I"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <p><code>str_replace_all</code> replaces all instances of a specified character in a string with another character:</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span><span class="op">(</span><span class="st">"UNIGIS"</span>, <span class="st">"I"</span>, <span class="st">'X'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace_all</span>(<span class="st">"UNIGIS"</span>, <span class="st">"I"</span>, <span class="st">'X'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "UNXGXS"</code></pre>
 </div>
 </div>
 <p>You can list all the functions available in the <code>stringr</code> library using the built-in function <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ls" target="_blank"><code>ls()</code></a>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="st">"package:stringr"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(<span class="st">"package:stringr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "%&gt;%"               "boundary"          "coll"             
  [4] "fixed"             "fruit"             "invert_match"     
@@ -513,7 +530,10 @@ Note
 </div>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -929,7 +949,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
       <a href="./01-introduction.html" class="pagination-link" aria-label="Introduction to R">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to R</span></span>
       </a>          
@@ -941,7 +963,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
@@ -953,6 +976,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
+
 
 
 <script src="site_libs/quarto-html/zenscroll-min.js"></script>

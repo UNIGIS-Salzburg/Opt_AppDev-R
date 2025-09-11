@@ -30,7 +30,6 @@ book:
     - 09-spatial-data-manipulation.qmd
     - 10-data-viz.qmd
     - 11-quarto.qmd
-    - references.qmd
   page-navigation: true
 
   page-footer:

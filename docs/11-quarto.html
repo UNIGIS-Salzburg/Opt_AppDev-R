@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.6.42">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
 <title>11&nbsp; Quarto – Automated Data Processing with R</title>
 <style>
 code{white-space: pre-wrap;}
@@ -53,6 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
+
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -60,7 +64,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
 <link href="./10-data-viz.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -70,7 +73,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a7001429fb728b692d743f19cb87ea92.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-a7001429fb728b692d743f19cb87ea92.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -96,8 +100,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script><style>html{ scroll-behavior: smooth; }</style>
-<script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
  for (var i = 0; i < mathElements.length; i++) {
@@ -110,7 +117,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     fleqn: false
    });
 }}});
-  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -136,12 +145,17 @@ const typesetMath = (el) => {
 window.Quarto = {
   typesetMath
 };
-</script><link rel="stylesheet" href="css/custom.css">
+</script>
+
+<link rel="stylesheet" href="css/custom.css">
 </head>
+
 <body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -152,11 +166,16 @@ window.Quarto = {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="https://unigis.at/" class="sidebar-logo-link">
-      <img src="./branding/UNIGIS_Salzburg_Schriftlogo_v05.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="./branding/UNIGIS_Salzburg_Schriftlogo_v05.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Automated Data Processing with R</a> 
     </div>
@@ -168,7 +187,7 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-<li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -240,59 +259,49 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quarto</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
-  </div>
-</li>
     </ul>
-</div>
-</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Lesson Content</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Lesson Content</h2>
    
   <ul>
-<li>
-<a href="#set-up-your-work-environment" id="toc-set-up-your-work-environment" class="nav-link active" data-scroll-target="#set-up-your-work-environment"><span class="header-section-number">11.1</span> Set up your work environment</a>
+  <li><a href="#set-up-your-work-environment" id="toc-set-up-your-work-environment" class="nav-link active" data-scroll-target="#set-up-your-work-environment"><span class="header-section-number">11.1</span> Set up your work environment</a>
   <ul class="collapse">
-<li><a href="#tell-git-who-you-are-one-time-setup" id="toc-tell-git-who-you-are-one-time-setup" class="nav-link" data-scroll-target="#tell-git-who-you-are-one-time-setup"><span class="header-section-number">11.1.1</span> Tell Git who you are (one-time setup)</a></li>
+  <li><a href="#tell-git-who-you-are-one-time-setup" id="toc-tell-git-who-you-are-one-time-setup" class="nav-link" data-scroll-target="#tell-git-who-you-are-one-time-setup"><span class="header-section-number">11.1.1</span> Tell Git who you are (one-time setup)</a></li>
   <li><a href="#authenticating-with-github" id="toc-authenticating-with-github" class="nav-link" data-scroll-target="#authenticating-with-github"><span class="header-section-number">11.1.2</span> Authenticating with GitHub</a></li>
   <li><a href="#switching-your-remote-from-https-to-ssh" id="toc-switching-your-remote-from-https-to-ssh" class="nav-link" data-scroll-target="#switching-your-remote-from-https-to-ssh"><span class="header-section-number">11.1.3</span> Switching your remote from HTTPS to SSH</a></li>
   <li><a href="#common-troubleshooting-checklist" id="toc-common-troubleshooting-checklist" class="nav-link" data-scroll-target="#common-troubleshooting-checklist"><span class="header-section-number">11.1.4</span> Common troubleshooting checklist</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#create-a-local-clone" id="toc-create-a-local-clone" class="nav-link" data-scroll-target="#create-a-local-clone"><span class="header-section-number">11.2</span> Create a local clone</a></li>
-  <li>
-<a href="#creating-your-first-quarto-document" id="toc-creating-your-first-quarto-document" class="nav-link" data-scroll-target="#creating-your-first-quarto-document"><span class="header-section-number">11.3</span> Creating Your First Quarto Document</a>
+  <li><a href="#creating-your-first-quarto-document" id="toc-creating-your-first-quarto-document" class="nav-link" data-scroll-target="#creating-your-first-quarto-document"><span class="header-section-number">11.3</span> Creating Your First Quarto Document</a>
   <ul class="collapse">
-<li><a href="#under-the-hood---the-render-pipeline" id="toc-under-the-hood---the-render-pipeline" class="nav-link" data-scroll-target="#under-the-hood---the-render-pipeline"><span class="header-section-number">11.3.1</span> Under the Hood - the Render Pipeline</a></li>
-  </ul>
-</li>
+  <li><a href="#under-the-hood---the-render-pipeline" id="toc-under-the-hood---the-render-pipeline" class="nav-link" data-scroll-target="#under-the-hood---the-render-pipeline"><span class="header-section-number">11.3.1</span> Under the Hood - the Render Pipeline</a></li>
+  </ul></li>
   <li><a href="#synchronizing-with-github" id="toc-synchronizing-with-github" class="nav-link" data-scroll-target="#synchronizing-with-github"><span class="header-section-number">11.4</span> Synchronizing with GitHub</a></li>
-  <li>
-<a href="#basic-markdown-syntax" id="toc-basic-markdown-syntax" class="nav-link" data-scroll-target="#basic-markdown-syntax"><span class="header-section-number">11.5</span> Basic Markdown Syntax</a>
+  <li><a href="#basic-markdown-syntax" id="toc-basic-markdown-syntax" class="nav-link" data-scroll-target="#basic-markdown-syntax"><span class="header-section-number">11.5</span> Basic Markdown Syntax</a>
   <ul class="collapse">
-<li><a href="#references-in-quarto" id="toc-references-in-quarto" class="nav-link" data-scroll-target="#references-in-quarto"><span class="header-section-number">11.5.1</span> References in Quarto</a></li>
-  </ul>
-</li>
-  <li>
-<a href="#extending-quarto-with-extensions-and-filters" id="toc-extending-quarto-with-extensions-and-filters" class="nav-link" data-scroll-target="#extending-quarto-with-extensions-and-filters"><span class="header-section-number">11.6</span> Extending Quarto with Extensions and Filters</a>
+  <li><a href="#references-in-quarto" id="toc-references-in-quarto" class="nav-link" data-scroll-target="#references-in-quarto"><span class="header-section-number">11.5.1</span> References in Quarto</a></li>
+  </ul></li>
+  <li><a href="#extending-quarto-with-extensions-and-filters" id="toc-extending-quarto-with-extensions-and-filters" class="nav-link" data-scroll-target="#extending-quarto-with-extensions-and-filters"><span class="header-section-number">11.6</span> Extending Quarto with Extensions and Filters</a>
   <ul class="collapse">
-<li><a href="#how-it-works-under-the-hood" id="toc-how-it-works-under-the-hood" class="nav-link" data-scroll-target="#how-it-works-under-the-hood"><span class="header-section-number">11.6.1</span> How it works under the hood</a></li>
+  <li><a href="#how-it-works-under-the-hood" id="toc-how-it-works-under-the-hood" class="nav-link" data-scroll-target="#how-it-works-under-the-hood"><span class="header-section-number">11.6.1</span> How it works under the hood</a></li>
   <li><a href="#one-line-install-example" id="toc-one-line-install-example" class="nav-link" data-scroll-target="#one-line-install-example"><span class="header-section-number">11.6.2</span> One-line install example</a></li>
-  </ul>
-</li>
+  </ul></li>
   <li><a href="#speed-up-your-workflows" id="toc-speed-up-your-workflows" class="nav-link" data-scroll-target="#speed-up-your-workflows"><span class="header-section-number">11.7</span> Speed up your workflows</a></li>
   <li><a href="#self-study" id="toc-self-study" class="nav-link" data-scroll-target="#self-study"><span class="header-section-number">11.8</span> Self-study</a></li>
-  </ul></nav>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<h1 class="title">
-<span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quarto</span>
-</h1>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quarto</span></h1>
 </div>
 
 
@@ -306,23 +315,23 @@ window.Quarto = {
   
 
 
-</header><p>According to the <a href="https://quarto.org/" target="_blank">Quarto Website</a>, <em>Quarto is an open-source scientific and technical publishing system</em>, and it is already available on your machines because it is bundled with recent versions of RStudio (version 2022.07 or later).</p>
+</header>
+
+
+<p>According to the <a href="https://quarto.org/" target="_blank">Quarto Website</a>, <em>Quarto is an open-source scientific and technical publishing system</em>, and it is already available on your machines because it is bundled with recent versions of RStudio (version 2022.07 or later).</p>
 <p>Quarto is part of a set of tools designed to enhance the reproducibility of your work. Other tools and platforms such as <a href="https://github.com/" target="_blank">GitHub</a>, <a href="https://jupyter.org/" target="_blank">Jupyter</a>, <a href="https://www.docker.com/" target="_blank">Docker</a>, <a href="https://arxiv.org/" target="_blank">ArXiv</a>, and <a href="https://www.biorxiv.org/" target="_blank">bioRxiv</a> can facilitate reproducibility in various ways. In this module, we won’t explore the paradigm of <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801" target="_blank">reproducible research</a> in detail. Instead, our focus will be on how to use Quarto to make your analyses and reports more appealing, interactive, and efficient.</p>
 <p>In this lesson, we’ll weave code and narrative into professionally rendered Quarto documents and use <a href="https://github.com/" target="_blank">GitHub</a> to safely store, share, and administer our results.</p>
-<section id="set-up-your-work-environment" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="set-up-your-work-environment">
-<span class="header-section-number">11.1</span> Set up your work environment</h2>
+<section id="set-up-your-work-environment" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="set-up-your-work-environment"><span class="header-section-number">11.1</span> Set up your work environment</h2>
 <p>Before creating your first Quarto document, we need to <strong>set up</strong> the <strong>GitHub</strong> environment. Originally founded as a platform for software developers, GitHub’s architecture is designed to manage changes made during software development. This architecture is also beneficial for version control of documents or any information collection.</p>
 <p>Version control is especially important when working in teams, as it helps synchronize efforts among project participants. However, GitHub is also a reliable and open online platform for individual work, providing change tracking, documentation, and sharing features.</p>
 <p>To set up your personal GitHub environment, follow these steps:</p>
 <ol type="1">
 <li>Review the <a href="https://docs.github.com/en/get-started/quickstart/hello-world" target="_blank">Hello-World Section</a> in GitHub’s Quickstart Documentation. Initially, reading it is sufficient—no need to complete the tutorial yet.</li>
-<li>
-<a href="https://github.com/" target="_blank">Create a GitHub account</a>.</li>
-<li>
-<a href="https://git-scm.com/downloads" target="_blank">Download and install Git</a>. Git is a distributed <strong>VCS (version control system)</strong> that mirrors the codebase and its full history on every computer. GitHub is a web-based interface that integrates seamlessly with Git. For a clear explanation of Git’s core concepts, watch this <a href="https://www.youtube.com/watch?v=uR6G2v_WsRA" target="_blank">video</a>.</li>
+<li><a href="https://github.com/" target="_blank">Create a GitHub account</a>.</li>
+<li><a href="https://git-scm.com/downloads" target="_blank">Download and install Git</a>. Git is a distributed <strong>VCS (version control system)</strong> that mirrors the codebase and its full history on every computer. GitHub is a web-based interface that integrates seamlessly with Git. For a clear explanation of Git’s core concepts, watch this <a href="https://www.youtube.com/watch?v=uR6G2v_WsRA" target="_blank">video</a>.</li>
 <li>In RStudio (under Tools &gt; Global Options &gt; Git / SVN), check “enable version control” and set the path to <code>git</code>. On Windows: <code>C:\Program Files\Git\bin\git.exe</code>. On macOS/Linux, the path is usually set automatically (e.g., <code>/usr/bin/git</code> or <code>/opt/homebrew/bin/git</code> if installed via Homebrew). After setting the path, restart RStudio.</li>
-<li>
-<a href="https://docs.github.com/en/get-started/quickstart/create-a-repo" target="_blank">Create a repository</a> on GitHub. In the tutorial, skip the section ‘Commit your first changes’.</li>
+<li><a href="https://docs.github.com/en/get-started/quickstart/create-a-repo" target="_blank">Create a repository</a> on GitHub. In the tutorial, skip the section ‘Commit your first changes’.</li>
 <li>By default, your repository will have one branch named <code>main</code>. Create an additional branch called <code>dev</code> off the <code>main</code>. Follow the instructions in the <a href="https://docs.github.com/en/get-started/quickstart/hello-world" target="_blank">Hello-World Tutorial</a> for guidance.</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -338,8 +347,8 @@ Note
 <p>For technical issues, please consult the discussion forum.</p>
 </div>
 </div>
-<section id="tell-git-who-you-are-one-time-setup" class="level3" data-number="11.1.1"><h3 data-number="11.1.1" class="anchored" data-anchor-id="tell-git-who-you-are-one-time-setup">
-<span class="header-section-number">11.1.1</span> Tell Git who you are (one-time setup)</h3>
+<section id="tell-git-who-you-are-one-time-setup" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="tell-git-who-you-are-one-time-setup"><span class="header-section-number">11.1.1</span> Tell Git who you are (one-time setup)</h3>
 <p>Before your first commit, set your identity in the Terminal Tab:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name  <span class="st">"Jane Doe"</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"jane.doe@example.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -347,8 +356,9 @@ Note
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> <span class="at">--list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>These values are stored locally and appear in every commit.<br>
 They are independent of the token or SSH key you’ll use when pushing.</p>
-</section><section id="authenticating-with-github" class="level3" data-number="11.1.2"><h3 data-number="11.1.2" class="anchored" data-anchor-id="authenticating-with-github">
-<span class="header-section-number">11.1.2</span> Authenticating with GitHub</h3>
+</section>
+<section id="authenticating-with-github" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="authenticating-with-github"><span class="header-section-number">11.1.2</span> Authenticating with GitHub</h3>
 <p>Most “<em>push rejected: authentication failed</em>” errors disappear once you pick <strong>one</strong> modern login method and finish a short, two-step setup. Password-based Git access was turned off in 2021, so every workflow now relies on either a <strong>personal-access token (PAT)</strong> carried over HTTPS or an <strong>SSH key-pair</strong>.</p>
 <table class="caption-top table">
 <colgroup>
@@ -356,11 +366,13 @@ They are independent of the token or SSH key you’ll use when pushing.</p>
 <col style="width: 50%">
 <col style="width: 33%">
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th>Method</th>
 <th>2-step quick-start</th>
 <th>Good to know</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td><strong>Fine-grained PAT&nbsp;(HTTPS)</strong></td>
@@ -392,27 +404,30 @@ Note
 <p>See or wipe cached secrets anytime via <strong>RStudio &gt; Tools &gt; Global Options &gt; Git/SVN &gt; Credentials</strong> (on Windows, these are stored in the Credential Manager; on macOS, in the Keychain Access utility).</p>
 </div>
 </div>
-</section><section id="switching-your-remote-from-https-to-ssh" class="level3" data-number="11.1.3"><h3 data-number="11.1.3" class="anchored" data-anchor-id="switching-your-remote-from-https-to-ssh">
-<span class="header-section-number">11.1.3</span> Switching your remote from HTTPS to SSH</h3>
+</section>
+<section id="switching-your-remote-from-https-to-ssh" class="level3" data-number="11.1.3">
+<h3 data-number="11.1.3" class="anchored" data-anchor-id="switching-your-remote-from-https-to-ssh"><span class="header-section-number">11.1.3</span> Switching your remote from HTTPS to SSH</h3>
 <p>If you cloned over HTTPS but later add a key:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote set-url origin git@github.com:<span class="op">&lt;</span>USER<span class="op">&gt;</span>/<span class="op">&lt;</span>REPO<span class="op">&gt;</span>.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>…and vice-versa for HTTPS:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote set-url origin https://github.com/<span class="op">&lt;</span>USER<span class="op">&gt;</span>/<span class="op">&lt;</span>REPO<span class="op">&gt;</span>.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="common-troubleshooting-checklist" class="level3" data-number="11.1.4"><h3 data-number="11.1.4" class="anchored" data-anchor-id="common-troubleshooting-checklist">
-<span class="header-section-number">11.1.4</span> Common troubleshooting checklist</h3>
+</section>
+<section id="common-troubleshooting-checklist" class="level3" data-number="11.1.4">
+<h3 data-number="11.1.4" class="anchored" data-anchor-id="common-troubleshooting-checklist"><span class="header-section-number">11.1.4</span> Common troubleshooting checklist</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th>Symptom</th>
 <th>Fix</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
-<td>
-<code>fatal: Authentication failed</code> immediately after token paste</td>
+<td><code>fatal: Authentication failed</code> immediately after token paste</td>
 <td>Token expired or wrong scope; generate a new fine-grained PAT with <strong><code>repo</code></strong> access.</td>
 </tr>
 <tr class="even">
@@ -420,8 +435,7 @@ Note
 <td>Enable credential caching: <code>git config --global credential.helper manager-core</code> (GCM) or <code>store</code> (plain-text fallback).</td>
 </tr>
 <tr class="odd">
-<td>
-<code>Permission denied (publickey)</code> with SSH</td>
+<td><code>Permission denied (publickey)</code> with SSH</td>
 <td>1) Run <code>ssh -T git@github.com</code> for a verbose test.<br>2) Make sure the key is in your agent: <code>ssh-add ~/.ssh/id_ed25519</code>.<br>3) If you’re behind a corporate proxy, add to <code>~/.ssh/config</code>: <code>Host github.com</code> / <code>Hostname ssh.github.com</code> / <code>Port 443</code>.</td>
 </tr>
 <tr class="even">
@@ -432,54 +446,61 @@ Note
 </table>
 <p>Once your first push succeeds, Git stores your chosen credentials, and the warnings usually disappear for good.</p>
 <p>Need more depth? Jenny Bryan’s <em>Happy Git with R</em> chapter on “<a href="https://happygitwithr.com/credential-caching.html" target="_blank">Credential caching</a>” walks through platform-specific storage back-ends.</p>
-</section></section><section id="create-a-local-clone" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="create-a-local-clone">
-<span class="header-section-number">11.2</span> Create a local clone</h2>
+</section>
+</section>
+<section id="create-a-local-clone" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="create-a-local-clone"><span class="header-section-number">11.2</span> Create a local clone</h2>
 <p>Cloning means copying the contents of a GitHub repository (including version history) to your computer, so you can work on it locally in RStudio. To work on your project locally, you need to clone your GitHub repository to your computer. Here’s how:</p>
 <p>In RStudio, go to (File &gt; New Project &gt; Version Control &gt; Git).</p>
 <p>Use the HTTPS or SSH link from your GitHub repository, depending on which authentication method you’ve configured and select a local directory for the clone. Then click “Create Project”:</p>
 <div id="fig-clone" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-clone-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-clone-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Gitclone.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clone-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.1: Clone GitHub Repository
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p>Once you have cloned the online repository, you’ll see the contents of the repository in the Files pane, and a new Git tab will appear in the RStudio interface.</p>
 <div id="fig-newinstud" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-newinstud-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-newinstud-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/NewFeatures.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-newinstud-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.2: New features in RStudio
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p>By default, the repository includes three files:</p>
 <ol type="1">
-<li>
-<a href="https://git-scm.com/docs/gitignore" target="_blank"><code>.gitignore</code></a>: Specifies intentionally untracked files to ignore.</li>
-<li>
-<a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank">RStudio Project File</a> (<code>.Rproj</code>): Contains metadata for the RStudio project.</li>
-<li>
-<a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes" target="_blank">ReadMe File</a> (<code>.md</code>): A markdown file with information about the repository.</li>
+<li><a href="https://git-scm.com/docs/gitignore" target="_blank"><code>.gitignore</code></a>: Specifies intentionally untracked files to ignore.</li>
+<li><a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank">RStudio Project File</a> (<code>.Rproj</code>): Contains metadata for the RStudio project.</li>
+<li><a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes" target="_blank">ReadMe File</a> (<code>.md</code>): A markdown file with information about the repository.</li>
 </ol>
 <p>The <a href="https://git-scm.com/docs/gitignore" target="_blank"><code>gitignore</code></a> and <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank"><code>.Rproj</code></a> files are created locally when initializing the project in RStudio. These files may not yet exist on GitHub, depending on how the online repository was set up.</p>
 <div id="fig-change" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Changes.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.3: Changes in Git tab
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p>Before making further changes, switch to the <code>dev</code> branch:</p>
 <div id="fig-branch" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-branch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-branch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Branches.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-branch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.4: Switch branch
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p>At this point, the <code>dev</code> branch mirrors the <code>main</code> branch.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -495,18 +516,21 @@ Note
 <p>It is highly recommended to work in progress on a separate developer branch, like <code>dev</code>, and keep the <code>main</code> branch for stable versions. You can later merge changes from <code>dev</code> to <code>main</code> through a pull request (see <a href="https://docs.github.com/en/get-started/quickstart/hello-world#opening-a-pull-request" target="_blank">Opening a Pull Request</a>).</p>
 </div>
 </div>
-</section><section id="creating-your-first-quarto-document" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="creating-your-first-quarto-document">
-<span class="header-section-number">11.3</span> Creating Your First Quarto Document</h2>
+</section>
+<section id="creating-your-first-quarto-document" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="creating-your-first-quarto-document"><span class="header-section-number">11.3</span> Creating Your First Quarto Document</h2>
 <p>Now that the environment is set up, let’s create our first Quarto document.</p>
 <p>In RStudio: Navigate to (File &gt; New File &gt; Quarto Document). Enter a title for your document, accept the default settings, click “OK”, and save the file. You’ll receive a sample Quarto file with the extension <code>.qmd</code>.</p>
 <p>By default, Quarto is in <a href="https://quarto.org/docs/visual-editor/" target="_blank">Visual Editing</a> mode, which provides a <a href="https://en.wikipedia.org/wiki/WYSIWYM" target="_blank">WYSIWYM-style</a> editing interface for Quarto documents. Switch to the Source Editor:</p>
 <div id="fig-schem1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-schem1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-schem1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/VisEditor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schem1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.5: Switch mode in RStudio
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <blockquote class="blockquote">
 <p>While the Visual Editor interface is more intuitive, the source editor promotes a deeper understanding of underlying structures. Moreover, errors can be spotted and debugged more easily in Source Editor mode.</p>
@@ -518,11 +542,13 @@ Figure&nbsp;11.5: Switch mode in RStudio
 <col style="width: 32%">
 <col style="width: 48%">
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th>Mode</th>
 <th>Best for</th>
 <th>How to toggle</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td><strong>Visual (WYSIWYM)</strong></td>
@@ -541,12 +567,14 @@ Figure&nbsp;11.5: Switch mode in RStudio
 </blockquote>
 <p>Quarto documents include three core components. <strong>Metadata</strong>, <strong>text</strong> and <strong>code</strong>:</p>
 <div id="fig-schem2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-schem2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-schem2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/SampleFile.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schem2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.6: Quarto sample file
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p>Metadata is written in YAML syntax and defines document properties like the title, output format, or creation date.</p>
 <div class="callout callout-style-default callout-exercisebox callout-titled">
@@ -602,7 +630,7 @@ Note
 </div>
 <p>In Quarto, code blocks start and end with three backticks. To identify an R code block, use <code>{r}</code> right after the opening backticks. For example:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     speed           dist       
  Min.   : 4.0   Min.   :  2.00  
@@ -627,16 +655,16 @@ Exercise
 <div class="callout-body-container callout-body">
 <p>Insert the following code into your Quarto document, add some explanatory text below the chart of results and render as HTML:</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">cars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">speed</span>, y<span class="op">=</span><span class="va">dist</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>cars, <span class="fu">aes</span>(<span class="at">x=</span>speed, <span class="at">y=</span>dist)) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <p>This simple exercise illustrates the fundamental benefit of Quarto. It facilitates weaving together narrative text and code into data reports and documents that can be exported in various formats.</p>
-<section id="under-the-hood---the-render-pipeline" class="level3" data-number="11.3.1"><h3 data-number="11.3.1" class="anchored" data-anchor-id="under-the-hood---the-render-pipeline">
-<span class="header-section-number">11.3.1</span> Under the Hood - the Render Pipeline</h3>
+<section id="under-the-hood---the-render-pipeline" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="under-the-hood---the-render-pipeline"><span class="header-section-number">11.3.1</span> Under the Hood - the Render Pipeline</h3>
 <p>When you click <strong>Render</strong>, Quarto runs a processing pipeline behind the scenes that converts your <code>.qmd</code> file into the final document. This happens in three steps:</p>
 <ol type="1">
 <li><p><strong>knitr</strong> executes your code chunks and generates a Markdown (<code>.md</code>) file. This intermediate file combines your code, output, and written content into a single Markdown document.</p></li>
@@ -651,17 +679,21 @@ Exercise
 <blockquote class="blockquote">
 <p>For more details, see the <a href="https://quarto.org/docs/get-started/hello/rstudio.html#how-it-works" target="_blank">Quarto Documentation</a>.</p>
 </blockquote>
-</section></section><section id="synchronizing-with-github" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="synchronizing-with-github">
-<span class="header-section-number">11.4</span> Synchronizing with GitHub</h2>
+</section>
+</section>
+<section id="synchronizing-with-github" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="synchronizing-with-github"><span class="header-section-number">11.4</span> Synchronizing with GitHub</h2>
 <p>Regular synchronization of your local changes with the online repository is a key practice in version control. Start by pulling any updates from the repository.</p>
 <p>In the RStudio Git tab, click the “Pull” button (see <a href="#fig-pull" class="quarto-xref">Figure&nbsp;<span>11.7</span></a>). A notification should indicate whether any new changes are available (e.g., <code>Already up to date</code>).</p>
 <div id="fig-pull" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pull-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pull-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/pull.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pull-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.7: Make Pull
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p>Even if you’re working on your own, it’s a good idea to routinely start the sync process with a “Pull”.</p>
 <p>Next, commit your changes. Think of committing as taking a snapshot of your progress, accompanied by a descriptive message.</p>
@@ -669,34 +701,41 @@ Figure&nbsp;11.7: Make Pull
 <p>Check the boxes next to each file you want to include, then enter a commit message describing the changes. Alternatively, run <code>git add -A</code> in the terminal to add all files at once (see this <a href="https://github.com/joshnh/Git-Commands" target="_blank">list of popular Git commands</a>). After selecting files, enter a meaningful commit message and click “Commit”.</p>
 <p>See <a href="#fig-commit" class="quarto-xref">Figure&nbsp;<span>11.8</span></a>.</p>
 <div id="fig-commit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-commit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-commit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/commit.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-commit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.8: Make Commit
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p>Finally, push your committed changes to the online repository:</p>
 <div id="fig-push" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-push-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-push-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Push.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-push-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.9: Make Push
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p>Your online repository on GitHub should now be updated (switch to <code>dev</code> branch in your repository) (see <a href="#fig-commitfin" class="quarto-xref">Figure&nbsp;<span>11.10</span></a>).</p>
 <div id="fig-commitfin" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-commitfin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-commitfin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/CommitFinished.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-commitfin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.10: Commit with message ‘test’ was pushed to the dev branch a minute ago
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p>In our example, the dev branch is two commits ahead of the main branch. To share your updates or integrate them into the stable version, you can <a href="https://docs.github.com/en/get-started/quickstart/hello-world#opening-a-pull-request" target="_blank">open a pull request</a> to merge <code>dev</code> into <code>main</code>.</p>
-</section><section id="basic-markdown-syntax" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="basic-markdown-syntax">
-<span class="header-section-number">11.5</span> Basic Markdown Syntax</h2>
+</section>
+<section id="basic-markdown-syntax" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="basic-markdown-syntax"><span class="header-section-number">11.5</span> Basic Markdown Syntax</h2>
 <p>In Quarto, text formatting is based on <strong>Markdown</strong> — a lightweight markup language that uses plain text symbols to control layout.</p>
 <p>Commonly used markers are…</p>
 <p><strong>Bold:</strong> Double asterisks <code>**Text**</code> turn text <strong>bold</strong>.</p>
@@ -709,12 +748,14 @@ Figure&nbsp;11.10: Commit with message ‘test’ was pushed to the dev branch a
 ### Heading level 3</code></pre>
 <p><strong>Tables</strong> are created by using the symbols <code>|</code> and <code>-</code>. For example, the <a href="01-introduction.html#numop" target="_blank">numeric operators table</a> in the first lesson was written in Markdown. Figure <a href="#fig-mtab" class="quarto-xref">Figure&nbsp;<span>11.11</span></a> shows how such a table is constructed.</p>
 <div id="fig-mtab" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-mtab-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mtab-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/tables.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mtab-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.11: How Tables are made in Markdown
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p>To create an <strong>ordered list</strong>, use numbers followed by a period. The first item should start with the number <code>1</code>:</p>
 <pre><code>Code - Ordered List:
@@ -731,8 +772,7 @@ Figure&nbsp;11.11: How Tables are made in Markdown
 <ul>
 <li>Item 3a</li>
 <li>Item 3b</li>
-</ul>
-</li>
+</ul></li>
 </ol>
 <p>To create an <strong>unordered list</strong>, use <code>*</code>, <code>-</code>, or <code>+</code>:</p>
 <pre><code>Code - Unordered List:
@@ -747,8 +787,7 @@ Figure&nbsp;11.11: How Tables are made in Markdown
 <ul>
 <li>Item 2a</li>
 <li>Item 2b</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p><strong>Hyperlinks</strong> are created with the format <code>[Text](URL)</code>, for example, <code>[GitHub](https://github.com/){target="_blank"}</code> becomes <a href="https://github.com/" target="_blank">GitHub</a>. The <code>target="_blank"</code> parameter opens the link in a new tab, which is a good practice when linking to external websites.</p>
 <p><strong>Blockquotes</strong> are indicated by <code>&gt;</code> and can be nested:</p>
@@ -788,71 +827,76 @@ Note
 <p>See <a href="https://rpruim.github.io/s341/S19/from-class/MathinRmd.html" target="_blank">“Mathematics in R Markdown”</a> as well as <a href="https://quarto.org/docs/authoring/markdown-basics.html" target="_blank">Markdown Basics</a> for more.</p>
 </div>
 </div>
-<section id="references-in-quarto" class="level3" data-number="11.5.1"><h3 data-number="11.5.1" class="anchored" data-anchor-id="references-in-quarto">
-<span class="header-section-number">11.5.1</span> References in Quarto</h3>
+<section id="references-in-quarto" class="level3" data-number="11.5.1">
+<h3 data-number="11.5.1" class="anchored" data-anchor-id="references-in-quarto"><span class="header-section-number">11.5.1</span> References in Quarto</h3>
 <p>Quarto makes it easy to insert citations and automatically generate a bibliography — using a <code>.bib</code> file to store reference metadata.</p>
 <p>To begin, create a new plain-text file in a simple editor (e.g., Notepad, VS Code, or RStudio’s built-in editor), and save it with a <code>.bib</code> extension (e.g., <code>references.bib</code>) in your RStudio project folder.</p>
 <ol type="1">
-<li>
-<strong>Enable BibTeX Export:</strong> Modify your settings in Google Scholar to enable BibTeX export (see <a href="#fig-scholar1" class="quarto-xref">Figure&nbsp;<span>11.12</span></a>).</li>
+<li><strong>Enable BibTeX Export:</strong> Modify your settings in Google Scholar to enable BibTeX export (see <a href="#fig-scholar1" class="quarto-xref">Figure&nbsp;<span>11.12</span></a>).</li>
 </ol>
 <div id="fig-scholar1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-scholar1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scholar1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ScholarSettings.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scholar1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.12: Enable BibTeX in Firefox 106.0.1
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <blockquote class="blockquote">
 <p>Browser versions may vary. For assistance, refer to the discussion forum if needed.</p>
 </blockquote>
 <ol start="2" type="1">
-<li>
-<strong>Export BibTeX Entries:</strong> After enabling BibTeX export, a new link “Import into BibTeX” will appear in Google Scholar (see <a href="#fig-scholar2" class="quarto-xref">Figure&nbsp;<span>11.13</span></a>).</li>
+<li><strong>Export BibTeX Entries:</strong> After enabling BibTeX export, a new link “Import into BibTeX” will appear in Google Scholar (see <a href="#fig-scholar2" class="quarto-xref">Figure&nbsp;<span>11.13</span></a>).</li>
 </ol>
 <div id="fig-scholar2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-scholar2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scholar2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/bibtexoption.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scholar2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.13: BibTeX Link in Firefox 106.0.1
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p>Click the link and copy the BibTeX code into your <code>.bib</code> file.</p>
 <ol start="3" type="1">
-<li>
-<strong>Integrate References in the Quarto document:</strong> Specify the location of your <code>.bib</code> file in the YAML metadata of your Quarto document (<code>bibliography: &lt;.bib file&gt;</code>). Insert <code>@</code> followed by the BibTeX key to add citations (see <a href="#fig-ref" class="quarto-xref">Figure&nbsp;<span>11.14</span></a>).</li>
+<li><strong>Integrate References in the Quarto document:</strong> Specify the location of your <code>.bib</code> file in the YAML metadata of your Quarto document (<code>bibliography: &lt;.bib file&gt;</code>). Insert <code>@</code> followed by the BibTeX key to add citations (see <a href="#fig-ref" class="quarto-xref">Figure&nbsp;<span>11.14</span></a>).</li>
 </ol>
 <div id="fig-ref" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/refs.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.14: Integrate BibTeX reference in Quarto document
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <ol start="4" type="1">
-<li>
-<strong>Compile the Document:</strong> Render the Quarto document as HTML. Quarto processes both indirect (without square brackets) and direct citations (with square brackets) and includes a bibliography (see <a href="#fig-ref2" class="quarto-xref">Figure&nbsp;<span>11.15</span></a>).</li>
+<li><strong>Compile the Document:</strong> Render the Quarto document as HTML. Quarto processes both indirect (without square brackets) and direct citations (with square brackets) and includes a bibliography (see <a href="#fig-ref2" class="quarto-xref">Figure&nbsp;<span>11.15</span></a>).</li>
 </ol>
 <div id="fig-ref2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ref2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ref2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/knit_pdf.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ref2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.15: Quarto with reference
-</figcaption></figure>
+</figcaption>
+</figure>
 </div>
 <p>For a practical demonstration, download and explore this <a href="data/testquarto.zip" target="_blank">Quarto reference example</a>. Unzip the folder and open the <code>.Rproj</code> file in RStudio.</p>
-</section></section><section id="extending-quarto-with-extensions-and-filters" class="level2" data-number="11.6"><h2 data-number="11.6" class="anchored" data-anchor-id="extending-quarto-with-extensions-and-filters">
-<span class="header-section-number">11.6</span> Extending Quarto with Extensions and Filters</h2>
+</section>
+</section>
+<section id="extending-quarto-with-extensions-and-filters" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="extending-quarto-with-extensions-and-filters"><span class="header-section-number">11.6</span> Extending Quarto with Extensions and Filters</h2>
 <p>Quarto’s core is deliberately light, but you can extend it with optional <strong>community-built extensions</strong> especially useful for advanced customization or automation.</p>
-<section id="how-it-works-under-the-hood" class="level3" data-number="11.6.1"><h3 data-number="11.6.1" class="anchored" data-anchor-id="how-it-works-under-the-hood">
-<span class="header-section-number">11.6.1</span> How it works under the hood</h3>
+<section id="how-it-works-under-the-hood" class="level3" data-number="11.6.1">
+<h3 data-number="11.6.1" class="anchored" data-anchor-id="how-it-works-under-the-hood"><span class="header-section-number">11.6.1</span> How it works under the hood</h3>
 <ol type="1">
-<li>
-<code>quarto add …</code> downloads the extension into an <strong><code>_extensions/</code></strong> folder at your project root (commit this folder so collaborators get the same behaviour).<br>
+<li><code>quarto add …</code> downloads the extension into an <strong><code>_extensions/</code></strong> folder at your project root (commit this folder so collaborators get the same behaviour).<br>
 </li>
 <li>During render, <strong>pandoc</strong> automatically loads any Lua filters it finds there.<br>
 </li>
@@ -861,8 +905,9 @@ Figure&nbsp;11.15: Quarto with reference
 <blockquote class="blockquote">
 <p><strong>Why Lua?</strong> Pandoc’s native filter language is Lua, so Lua scripts run with zero external dependencies and maximum speed.</p>
 </blockquote>
-</section><section id="one-line-install-example" class="level3" data-number="11.6.2"><h3 data-number="11.6.2" class="anchored" data-anchor-id="one-line-install-example">
-<span class="header-section-number">11.6.2</span> One-line install example</h3>
+</section>
+<section id="one-line-install-example" class="level3" data-number="11.6.2">
+<h3 data-number="11.6.2" class="anchored" data-anchor-id="one-line-install-example"><span class="header-section-number">11.6.2</span> One-line install example</h3>
 <div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adds a custom-callout filter; the Exercise boxes in this module are created with it.</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> add coatless-quarto/custom-callout</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A catalog of community-maintained add-ons (plus a short “write your own” guide) lives in the <a href="https://quarto.org/docs/extensions/" target="_blank">Quarto Extension Gallery</a>.</p>
@@ -872,8 +917,10 @@ Figure&nbsp;11.15: Quarto with reference
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> custom-callout</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This tells Quarto to activate these filters during rendering.</p>
 <p>(Always check the extension’s README for extra setup instructions.)</p>
-</section></section><section id="speed-up-your-workflows" class="level2" data-number="11.7"><h2 data-number="11.7" class="anchored" data-anchor-id="speed-up-your-workflows">
-<span class="header-section-number">11.7</span> Speed up your workflows</h2>
+</section>
+</section>
+<section id="speed-up-your-workflows" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="speed-up-your-workflows"><span class="header-section-number">11.7</span> Speed up your workflows</h2>
 <p>Quarto significantly enhances the efficiency of repetitive workflows. For instance, consider a scenario where a client requires daily updates on specific spatial economic indicators. Instead of manually generating a new report each day, Quarto can automate this process, creating data reports with charts that update automatically upon compilation. This approach can save substantial time and effort.</p>
 <p>Real-time data retrieval is possible through <a href="https://www.alphavantage.co/" target="_blank">Alpha Vantage</a>, which provides financial market data via the <a href="https://www.alphavantage.co/documentation/" target="_blank">Alpha Vantage Rest API</a>. The R library <a href="https://cran.r-project.org/web/packages/alphavantager/index.html" target="_blank"><code>alphavantager</code></a> facilitates API access within R. The use of <code>alphavantager</code> enables the extraction of various types of financial data, including real-time stock prices, FX rates, and technical indicators, directly into R. This allows for efficient data processing and visualization, making it a good tool for finance-related reports and analyses in Quarto.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -910,8 +957,9 @@ Exercise
 <p>Try enhancing the report with an additional spatial indicator, such as a map displaying exchange rates from national currencies to the Euro.</p>
 </div>
 </div>
-</section><section id="self-study" class="level2" data-number="11.8"><h2 data-number="11.8" class="anchored" data-anchor-id="self-study">
-<span class="header-section-number">11.8</span> Self-study</h2>
+</section>
+<section id="self-study" class="level2" data-number="11.8">
+<h2 data-number="11.8" class="anchored" data-anchor-id="self-study"><span class="header-section-number">11.8</span> Self-study</h2>
 <p>The vast functionalities of Quarto extend beyond the scope of a single lesson. To fully exploit its capabilities, refer to the comprehensive <a href="https://quarto.org/docs/guide/" target="_blank">Quarto Guide</a>.</p>
 <p>This guide covers additional topics such as the integration of figures or cross references, computations in various languages such as R, Julia, and Observable and formats such as quarto projects, presentations, dashboards, websites, books or manuscripts.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -929,7 +977,10 @@ Note
 </div>
 
 
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1345,19 +1396,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
       <a href="./10-data-viz.html" class="pagination-link" aria-label="Data Visualization">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Visualization</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer"><div class="nav-footer">
+<footer class="footer">
+  <div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
@@ -1369,6 +1420,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
+
 
 
 <script src="site_libs/quarto-html/zenscroll-min.js"></script>
