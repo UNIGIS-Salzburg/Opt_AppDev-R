@@ -1,24 +1,26 @@
 # Quarto
 
-According to the [Quarto Website](https://quarto.org/){target="_blank"}, *Quarto is an open-source scientific and technical publishing system*, and it is already available on your machines because it is bundled with recent versions of RStudio (version 2022.07 or later).
+According to the [Quarto Website](https://quarto.org/){target="_blank"}, *Quarto is an open-source scientific and technical publishing system*. It comes bundled with recent versions of RStudio (2022.07 or later), so it's already available on your machines.
 
-Quarto is part of a set of tools designed to enhance the reproducibility of your work. Other tools and platforms such as [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"}, [ArXiv](https://arxiv.org/){target="_blank"}, and [bioRxiv](https://www.biorxiv.org/){target="_blank"} can facilitate reproducibility in various ways. In this module, we won't explore the paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"} in detail. Instead, our focus will be on how to use Quarto to make your analyses and reports more appealing, interactive, and efficient.
+Quarto is part of a broader ecosystem of tools that support reproducible research. Platforms like [GitHub](https://github.com/){target="_blank"}, [Jupyter](https://jupyter.org/){target="_blank"}, [Docker](https://www.docker.com/){target="_blank"}, [ArXiv](https://arxiv.org/){target="_blank"}, and [bioRxiv](https://www.biorxiv.org/){target="_blank"} can facilitate reproducibility in various ways. In this module, we won't explore the paradigm of [reproducible research](https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801){target="_blank"} in detail. Instead, we’ll focus on how to use Quarto to make your analyses and reports more **appealing**, **interactive**, and **efficient**.
 
 In this lesson, we’ll weave code and narrative into professionally rendered Quarto documents and use [GitHub](https://github.com/){target="_blank"} to safely store, share, and administer our results.    
 
 ## Set up your work environment
 
-Before creating your first Quarto document, we need to **set up** the **GitHub** environment. Originally founded as a platform for software developers, GitHub's architecture is designed to manage changes made during software development. This architecture is also beneficial for version control of documents or any information collection.
+Before creating your first Quarto document, we need to set up your **GitHub environment**.
 
-Version control is especially important when working in teams, as it helps synchronize efforts among project participants. However, GitHub is also a reliable and open online platform for individual work, providing change tracking, documentation, and sharing features.
+Originally designed for software development, GitHub is also a powerful tool for managing changes in documents and data projects. Its version control system helps track edits, collaborate with others, and maintain a clear history of your work.
+
+Even if you're working solo, GitHub offers valuable features like change tracking, documentation, and easy sharing.
 
 To set up your personal GitHub environment, follow these steps:
 
 1) Review the [Hello-World Section](https://docs.github.com/en/get-started/quickstart/hello-world){target="_blank"} in GitHub's Quickstart Documentation. Initially, reading it is sufficient—no need to complete the tutorial yet.
 2) [Create a GitHub account](https://github.com/){target="_blank"}.
-3) [Download and install Git](https://git-scm.com/downloads){target="_blank"}. Git is a distributed **VCS (version control system)** that mirrors the codebase and its full history on every computer. GitHub is a web-based interface that integrates seamlessly with Git. For a clear explanation of Git's core concepts, watch this [video](https://www.youtube.com/watch?v=uR6G2v_WsRA){target="_blank"}.
+3) [Download and install Git](https://git-scm.com/downloads){target="_blank"}. Git is a distributed **VCS (version control system)** that stores your project history locally and remotely. GitHub is a web-based interface that works seamlessly with Git. For a quick intro to Git’s core concepts, watch this [video](https://www.youtube.com/watch?v=uR6G2v_WsRA){target="_blank"}.
 4) In RStudio (under Tools > Global Options > Git / SVN), check "enable version control" and set the path to `git`. On Windows: `C:\Program Files\Git\bin\git.exe`. On macOS/Linux, the path is usually set automatically (e.g., `/usr/bin/git` or `/opt/homebrew/bin/git` if installed via Homebrew). After setting the path, restart RStudio.
-5) [Create a repository](https://docs.github.com/en/get-started/quickstart/create-a-repo){target="_blank"} on GitHub. In the tutorial, skip the section 'Commit your first changes'.
+5) [Create a repository](https://docs.github.com/en/get-started/quickstart/create-a-repo){target="_blank"} on GitHub. You can skip the “Commit your first changes” section for now.
 6) By default, your repository will have one branch named `main`. Create an additional branch called `dev` off the `main`. Follow the instructions in the [Hello-World Tutorial](https://docs.github.com/en/get-started/quickstart/hello-world){target="_blank"} for guidance.
 
 ::: callout-note
@@ -29,72 +31,110 @@ For technical issues, please consult the discussion forum.
 
 ### Tell Git who you are (one-time setup)
 
-Before your first commit, set your identity in the Terminal Tab:
+Before making your first commit, configure Git with your name and email. These values are stored locally and will be attached to each commit you make.
+
+In the **Terminal tab** of RStudio, run:
 
 ```bash
-git config --global user.name  "Jane Doe"
+git config --global user.name "Jane Doe"
 git config --global user.email "jane.doe@example.com"
 ```
 
-Confirm:
+To verify:
 
 ```bash
 git config --global --list
 ```
 
-These values are stored locally and appear in every commit.  
-They are independent of the token or SSH key you’ll use when pushing.
+This setup is independent of how you authenticate with GitHub (via token or SSH key).
 
 ### Authenticating with GitHub
 
-Most “*push rejected: authentication failed*” errors disappear once you pick **one** modern login method and finish a short, two-step setup.
-Password-based Git access was turned off in 2021, so every workflow now relies on either a **personal-access  token (PAT)** carried over HTTPS or an **SSH key-pair**.
+Since 2021, GitHub no longer supports password-based authentication. You must choose one of the following secure methods:
 
-| Method | 2-step quick-start | Good to know |
-| ------ | ------------------ | ------------ |
-| **Fine-grained PAT&nbsp;(HTTPS)** | 1) In GitHub go to **Settings > Developer settings > Personal access tokens > Fine-grained tokens > Generate new token**.<br>2) Choose a name, tick the *repo* permission, set an expiry date, and copy the token. Paste it the first time RStudio asks for a password (your username stays the same). | Default and simplest—works behind most firewalls; you can scope the token to one repo or organisation; regenerate when it expires (classic PATs are being phased out). |
-| **SSH key** | 1) Run `ssh-keygen -t ed25519 -C "you@example.com"` and press **Enter** three times.<br>2) Copy `~/.ssh/id_ed25519.pub` into GitHub under **Settings > SSH & GPG keys > New SSH key**. | No tokens to paste; great for scripts and CI; works offline once the key is in your agent; if port 22 is blocked, use `ssh.github.com:443`. |
-| **Git Credential Manager (GCM)** | Install Git on Windows (bundled) or run `brew install --cask git-credential-manager` on macOS.<br>The first push opens a browser login and GCM stores the resulting token in your system keychain automatically. | Zero copy-pasting; rotates tokens automatically; cross-platform; ideal if you already use Microsoft or GitHub Enterprise SSO. |
+#### Personal Access Token (HTTPS)
+
+- Navigate to:  
+  **GitHub > Settings > Developer settings > Personal access tokens > Fine-grained tokens**
+- Click **Generate new token**.
+- Provide a name, select the `repo` permission, set an expiry date, and copy the token.
+- When RStudio prompts for a password during your first push, paste the token. Your GitHub username remains unchanged.
+
+This method is straightforward and works reliably across most environments.
+
+#### SSH Key
+
+- Generate a key:
+
+  ```bash
+  ssh-keygen -t ed25519 -C "you@example.com"
+  ```
+
+  Press Enter to accept the defaults.
+
+- Copy the contents of `~/.ssh/id_ed25519.pub` and add it to GitHub under:  
+  **Settings > SSH & GPG keys > New SSH key**
+
+SSH is well-suited for automation and scripting workflows.
+
+#### Git Credential Manager (GCM)
+
+- On **Windows**, GCM is bundled with Git.
+- On **macOS**, install via:
+
+  ```bash
+  brew install --cask git-credential-manager
+  ```
+
+The first push will open a browser window for login. GCM stores your credentials securely in your system keychain and handles token rotation automatically.
 
 ::: callout-note
 
-See or wipe cached secrets anytime via **RStudio > Tools > Global Options > Git/SVN > Credentials** (on Windows, these are stored in the Credential Manager; on macOS, in the Keychain Access utility).
+To view or clear saved credentials in RStudio:  
+**Tools > Global Options > Git/SVN > Credentials**
+
+On Windows, credentials are stored in the **Credential Manager**.  
+On macOS, they’re stored in **Keychain Access**.
 
 :::
 
-### Switching your remote from HTTPS to SSH
+### Switching between HTTPS and SSH
 
-If you cloned over HTTPS but later add a key:
+If you cloned a repository using HTTPS but later want to switch to SSH:
 
 ```bash
 git remote set-url origin git@github.com:<USER>/<REPO>.git
 ```
 
-…and vice-versa for HTTPS:
+To switch back to HTTPS:
 
 ```bash
 git remote set-url origin https://github.com/<USER>/<REPO>.git
 ```
-### Common troubleshooting checklist
 
-| Symptom | Fix |
-| --- | --- |
-| `fatal: Authentication failed` immediately after token paste | Token expired or wrong scope; generate a new fine-grained PAT with **`repo`** access. |
-| Prompted for credentials on every pull/push | Enable credential caching: `git config --global credential.helper manager-core` (GCM) or `store` (plain-text fallback). |
-| `Permission denied (publickey)` with SSH | 1) Run `ssh -T git@github.com` for a verbose test.<br>2) Make sure the key is in your agent: `ssh-add ~/.ssh/id_ed25519`.<br>3) If you’re behind a corporate proxy, add to `~/.ssh/config`: `Host github.com` / `Hostname ssh.github.com` / `Port 443`. |
-| Two-factor authentication enabled, PAT works in CLI but RStudio still asks | Upgrade to RStudio ≥ 2023.12; older builds ignore macOS/Windows keychain entries. |
+### Common Troubleshooting Checklist
 
-Once your first push succeeds, Git stores your chosen credentials, and the warnings usually disappear for good.
+| Issue | Solution |
+|-------|----------|
+| `Authentication failed` after token paste | Token expired or missing `repo` scope. Generate a new fine-grained PAT. |
+| Prompted for credentials on every push/pull | Enable credential caching: `git config --global credential.helper manager-core` |
+| `Permission denied (publickey)` with SSH | Run `ssh -T git@github.com` to test. Add key to agent: `ssh-add ~/.ssh/id_ed25519`. |
+| RStudio ignores saved credentials | Upgrade to RStudio ≥ 2023.12. Older versions may not use system keychains correctly. |
 
-Need more depth? Jenny Bryan’s *Happy Git with R* chapter on “[Credential caching](https://happygitwithr.com/credential-caching.html){target="_blank"}” walks through platform-specific storage back-ends.
+For platform-specific instructions on credential caching and authentication, refer to [GitHub’s official documentation](https://docs.github.com/en/get-started/git-basics/caching-your-github-credentials-in-git){target="_blank"}.
 
 ## Create a local clone
 
-Cloning means copying the contents of a GitHub repository (including version history) to your computer, so you can work on it locally in RStudio. To work on your project locally, you need to clone your GitHub repository to your computer. Here's how:
+Cloning a repository means copying its contents including version history from GitHub to your local machine. This allows you to work on the project in RStudio while maintaining version control.
 
-In RStudio, go to (File > New Project > Version Control > Git).
+To clone your repository:
 
-Use the HTTPS or SSH link from your GitHub repository, depending on which authentication method you’ve configured and select a local directory for the clone. Then click "Create Project":
+1. In RStudio, navigate to:  
+   **File > New Project > Version Control > Git**
+
+2. Use the **HTTPS or SSH link** from your GitHub repository (found under the green “Code” button), depending on your chosen authentication method.
+
+3. Select a local directory for the clone and click **Create Project**.
 
 ::: {#fig-clone}
 
@@ -104,7 +144,7 @@ Clone GitHub Repository
 
 :::
 
-Once you have cloned the online repository, you’ll see the contents of the repository in the Files pane, and a new Git tab will appear in the RStudio interface.
+After cloning, the repository’s contents will appear in the **Files** pane, and a new **Git** tab will be visible in the RStudio interface.
 
 ::: {#fig-newinstud}
 
@@ -115,13 +155,13 @@ New features in RStudio
 
 :::
 
-By default, the repository includes three files:
+By default, the repository includes:
 
 1) [`.gitignore`](https://git-scm.com/docs/gitignore){target="_blank"}: Specifies intentionally untracked files to ignore.
 2) [RStudio Project File](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects){target="_blank"} (`.Rproj`): Contains metadata for the RStudio project.
 3) [ReadMe File](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes){target="_blank"} (`.md`): A markdown file with information about the repository.
 
-The [`gitignore`](https://git-scm.com/docs/gitignore){target="_blank"} and [`.Rproj`](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects){target="_blank"} files are created locally when initializing the project in RStudio. These files may not yet exist on GitHub, depending on how the online repository was set up.
+The [`gitignore`](https://git-scm.com/docs/gitignore){target="_blank"} and [`.Rproj`](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects){target="_blank"} files are created locally when initializing the project in RStudio. These may not yet exist on GitHub, depending on how the repository was originally set up.
 
 ::: {#fig-change}
 
@@ -131,7 +171,6 @@ The [`gitignore`](https://git-scm.com/docs/gitignore){target="_blank"} and [`.Rp
 Changes in Git tab
 
 :::
-
 
 Before making further changes, switch to the `dev` branch:
 
@@ -147,17 +186,18 @@ At this point, the `dev` branch mirrors the `main` branch.
 
 ::: callout-note
 
-It is highly recommended to work in progress on a separate developer branch, like `dev`, and keep the `main` branch for stable versions. You can later merge changes from `dev` to `main` through a pull request (see [Opening a Pull Request](https://docs.github.com/en/get-started/quickstart/hello-world#opening-a-pull-request){target="_blank"}).
+It is recommended to work on a separate development branch (e.g., `dev`) and reserve the `main` branch for stable versions. Changes can later be merged into `main` via a pull request. See [Opening a Pull Request](https://docs.github.com/en/get-started/quickstart/hello-world#opening-a-pull-request){target="_blank"} for details.
 
 :::
 
-## Creating Your First Quarto Document
+## Creating your first Quarto document
 
 Now that the environment is set up, let's create our first Quarto document.
 
 In RStudio: Navigate to (File > New File > Quarto Document). Enter a title for your document, accept the default settings, click "OK", and save the file. You'll receive a sample Quarto file with the extension `.qmd`.
 
-By default, Quarto is in [Visual Editing](https://quarto.org/docs/visual-editor/){target="_blank"} mode, which provides a [WYSIWYM-style](https://en.wikipedia.org/wiki/WYSIWYM){target="_blank"} editing interface for Quarto documents. Switch to the Source Editor: 
+By default, Quarto is in [Visual Editing](https://quarto.org/docs/visual-editor/){target="_blank"} mode, which provides a [WYSIWYM-style](https://en.wikipedia.org/wiki/WYSIWYM){target="_blank"} editing interface for Quarto documents. To switch to the Source Editor:
+
 
 ::: {#fig-schem1}
 
@@ -167,18 +207,18 @@ Switch mode in RStudio
 
 :::
 
-> While the Visual Editor interface is more intuitive, the source editor promotes a deeper understanding of underlying structures. Moreover, errors can be spotted and debugged more easily in Source Editor mode.
+> While the Visual Editor is intuitive and beginner-friendly, the Source Editor offers greater control and transparency. It also makes debugging and version control easier.
 
-Quarto gives you two editors:
+Quarto supports two editing modes:
 
-| Mode | Best for | How to toggle |
+| Mode | Best suited for | How to switch |
 |------|----------|---------------|
-| **Visual (WYSIWYM)** | quick drafting, beginners, content-first writing | Click > “Visual" |
-| **Source** | precise Markdown control, debugging chunk options, version-control diffs | Click > “Source” (or the same shortcut) |
+| **Visual (WYSIWYM)** | Quick drafting, beginners, content-first writing | Click  “Visual" |
+| **Source** | Precise Markdown control, debugging chunk options, version-control diffs | Click “Source” |
 
-> **Recommendation:** start in *Visual* if you are new to Markdown, but switch to *Source* once you need fine-grained control or when preparing a pull-request diff– the raw text makes code reviews and troubleshooting easier.
+> **Recommendation:** Start in *Visual* mode if you're new to Markdown. Switch to *Source* mode when you need fine-grained control or are preparing code for review or collaboration.
 
-Quarto documents include three core components. **Metadata**, **text** and **code**:
+Quarto documents consist of three core components: **metadata**, **text**, and **code**.
 
 ::: {#fig-schem2}
 
@@ -188,13 +228,13 @@ Quarto sample file
 
 :::
 
-Metadata is written in YAML syntax and defines document properties like the title, output format, or creation date.
+The metadata section is written in YAML and defines properties such as the document title, output format, and creation date.
 
 ::: {.exercisebox title="Exercise"}
 
 Explore YAML syntax and document properties [here](https://rpubs.com/drgregmartin/1266674){target="_blank"}.
 
-Insert a suitable parameter in the metadata section of your Quarto document to include today's date in the document header. Click the **Render** button in RStudio to generate the HTML output. 
+Add a parameter to the metadata section of your Quarto document to include today’s date in the header. Then click **Render** in RStudio to generate the HTML output.
 
 :::
 
@@ -213,7 +253,7 @@ date: today
 
 :::
 
-Similarly, you may change the output format under YAML parameter `format`. Quarto supports output formats like HTML, PDF, MS Word, ePub, Jupyter and many more (see [all Quarto Formats](https://quarto.org/docs/output-formats/all-formats.html){target="_blank"}). 
+You can also change the output format using the `format` parameter. Quarto supports a wide range of formats including HTML, PDF, Word, ePub, Jupyter, and more. See the full list [here](https://quarto.org/docs/output-formats/all-formats.html){target="_blank"}. 
 
 ::: callout-note
 
@@ -221,19 +261,24 @@ Alternatively, YAML-configurations may be specified on a project level (separate
 
 :::
 
-In Quarto, code blocks start and end with three backticks. To identify an R code block, use `{r}` right after the opening backticks. For example:
+Code blocks in Quarto begin and end with three backticks. To specify an R code block, use `{r}` after the opening backticks:
 
 ```{r}
 summary(cars)
 ```
 
-Other supported languages include Python, Julia, and Observable JS.
+Quarto supports multiple languages including R, Python, Julia, and Observable JS.
 
-You can customize how code behaves in your document using execution options. For example, the chunk option `#| echo: false` hides the code from the output but still runs it. The option `#| eval: false` shows the code but does not execute it — useful for teaching, documentation, or drafts where you want to show syntax without generating output. A full list of execution options is available [here](https://quarto.org/docs/computations/execution-options.html){target="_blank"}.
+You can control how code behaves using execution options. For example:
+
+- `#| echo: false` hides the code but still runs it.
+- `#| eval: false` shows the code but does not execute it.
+
+These options are useful for teaching, documentation, or drafts. A full list is available [here](https://quarto.org/docs/computations/execution-options.html){target="_blank"}.
 
 ::: {.exercisebox title="Exercise"}
 
-Insert the following code into your Quarto document, add some explanatory text below the chart of results and render as HTML:
+Insert the following code into your Quarto document. Add explanatory text below the chart and render the document as HTML:
 
 ```{r eval=FALSE}
 
@@ -246,18 +291,18 @@ ggplot(data=cars, aes(x=speed, y=dist)) +
 
 :::
 
-This simple exercise illustrates the fundamental benefit of Quarto. It facilitates weaving together narrative text and code into data reports and documents that can be exported in various formats.  
+This exercise demonstrates one of Quarto’s key strengths: the ability to combine narrative and code into a single, reproducible document that can be rendered in multiple formats.
 
 
-### Under the Hood - the Render Pipeline  
+### Under the hood – the render pipeline
 
-When you click **Render**, Quarto runs a processing pipeline behind the scenes that converts your `.qmd` file into the final document. This happens in three steps:
+When you click **Render**, Quarto runs a processing pipeline that converts your `.qmd` file into the final output document. This process involves three main steps:
 
-1. **knitr** executes your code chunks and generates a Markdown (`.md`) file. This intermediate file combines your code, output, and written content into a single Markdown document.
+1. **knitr** (for R) or **Jupyter** (for Python) executes the code chunks and generates an intermediate Markdown (`.md`) file. This file combines your code, output, and narrative text.
 
-2. **pandoc** converts the Markdown into the final output format (HTML, PDF, Word, etc.).
+2. **pandoc** converts the Markdown file into the final output format—such as HTML, PDF, or Word—applying layout and styling.
 
-3. The finished output opens in the RStudio Viewer or browser.
+3. The rendered document opens in the RStudio Viewer or your default browser.
 
 ```text
 .qmd  -->  knitr(r)/jupyter(py) (code runs) --> .md  -->  pandoc --> HTML | PDF | Word
@@ -265,17 +310,17 @@ When you click **Render**, Quarto runs a processing pipeline behind the scenes t
                                     executes R/Python   LaTeX, styling, layout
 ```
 
-You can specify the desired output format in the document’s YAML front matter or in the `_quarto.yml` config file.
+You can specify the desired output format in the document’s YAML front matter or in a project-level `_quarto.yml` configuration file.
 
-Understanding this pipeline is helpful when debugging — you’ll know whether a problem comes from code execution, Markdown conversion, or final document rendering.
+Understanding this pipeline is useful for debugging. It helps you identify whether an issue originates from code execution, Markdown conversion, or final rendering.
 
 > For more details, see the [Quarto Documentation](https://quarto.org/docs/get-started/hello/rstudio.html#how-it-works){target="_blank"}.
 
 ## Synchronizing with GitHub
 
-Regular synchronization of your local changes with the online repository is a key practice in version control. Start by pulling any updates from the repository.
+Regular synchronization between your local project and the online repository is essential for version control. Begin by pulling any updates from GitHub.
 
-In the RStudio Git tab, click the "Pull" button (see @fig-pull). A notification should indicate whether any new changes are available (e.g., `Already up to date`).
+In RStudio’s Git tab, click the **Pull** button:
 
 ::: {#fig-pull}
 
@@ -286,13 +331,22 @@ Make Pull
 
 :::
 
-Even if you're working on your own, it's a good idea to routinely start the sync process with a "Pull".
+Even when working alone, it's good practice to start each session with a pull to ensure your local copy is up to date.
 
-Next, commit your changes. Think of committing as taking a snapshot of your progress, accompanied by a descriptive message.
+Next, commit your changes. A commit is a snapshot of your progress, accompanied by a descriptive message.
 
-First, save all documents in RStudio. Then, hit the "Commit" button in the Git tab. The commit window will display a list of modified files. Green highlights indicate new content; red highlights show deleted content. This is called a **diff view**, showing the exact changes made since your last commit.
+1. Save all open files in RStudio.
+2. Click the **Commit** button in the Git tab.
+3. The commit window shows modified files. Green highlights indicate new content; red highlights indicate deletions. This is called a **diff view**, showing changes since your last commit.
 
-Check the boxes next to each file you want to include, then enter a commit message describing the changes. Alternatively, run `git add -A` in the terminal to add all files at once (see this [list of popular Git commands](https://github.com/joshnh/Git-Commands){target="_blank"}). After selecting files, enter a meaningful commit message and click "Commit".
+Select the files to include, write a meaningful commit message, and click **Commit**.
+
+Alternatively, you can use the terminal:
+
+```bash
+git add -A
+git commit -m "test"
+```
 
 See @fig-commit.
 
@@ -305,7 +359,7 @@ Make Commit
 
 :::
 
-Finally, push your committed changes to the online repository:
+Finally, push your committed changes to GitHub:
 
 ::: {#fig-push}
 
@@ -316,7 +370,7 @@ Make Push
 
 :::
 
-Your online repository on GitHub should now be updated (switch to `dev` branch in your repository) (see @fig-commitfin).
+Your online repository should now reflect the latest changes. Make sure you're viewing the correct branch (e.g., `dev`) on GitHub.
 
 ::: {#fig-commitfin}
 
@@ -327,28 +381,27 @@ Commit with message 'test' was pushed to the dev branch a minute ago
 
 :::
 
-In our example, the dev branch is two commits ahead of the main branch. To share your updates or integrate them into the stable version, you can [open a pull request](https://docs.github.com/en/get-started/quickstart/hello-world#opening-a-pull-request){target="_blank"} to merge `dev` into `main`.
+In this example, the `dev` branch is two commits ahead of `main`. To share your updates or integrate them into the stable version, [open a pull request](https://docs.github.com/en/get-started/quickstart/hello-world#opening-a-pull-request){target="_blank"} to merge `dev` into `main`.
 
-## Basic Markdown Syntax
+## Basic markdown syntax
 
-In Quarto, text formatting is based on **Markdown** — a lightweight markup language that uses plain text symbols to control layout.
+Quarto uses **Markdown**, a lightweight markup language, to format text. Markdown relies on plain-text symbols to control layout and styling.
 
-Commonly used markers are... 
+### Common formatting
 
-**Bold:** Double asterisks `**Text**` turn text **bold**.
+- **Bold**: Use double asterisks: `**Text**` → **Text**
+- *Italic*: Use single asterisks: `*Text*` → *Text*
+- **Headings**: Use hash signs `#` to define heading levels:
 
-**Italicize:** Single asterisks `*Text*` create *italicized* text.
+```markdown
+# Heading level 1
+## Heading level 2
+### Heading level 3
+```
 
-**Headings:** Use hash signs `#` for headings. The number of hashes denotes the heading level:
+### Tables
 
-
-    # Heading level 1
-
-    ## Heading level 2
-
-    ### Heading level 3
-
-**Tables** are created by using the symbols `|` and `-`. For example, the [numeric operators table](#numop){target="_blank"} in the first lesson was written in Markdown. Figure @fig-mtab shows how such a table is constructed.
+Tables are created using pipes `|` and dashes `-`. For example, the numeric operators table in the first lesson was written in Markdown. Figure @fig-mtab shows how such a table is constructed.
 
 ::: {#fig-mtab}
 
@@ -359,7 +412,9 @@ How Tables are made in Markdown
 
 :::
 
-To create an **ordered list**, use numbers followed by a period. The first item should start with the number `1`:
+### Lists
+
+**Ordered lists** use numbers followed by a period:
     
     Code - Ordered List:
     1. item 1
@@ -392,9 +447,21 @@ To create an **unordered list**, use `*`, `-`, or `+`:
     + Item 2a
     - Item 2b
 
-**Hyperlinks** are created with the format `[Text](URL)`, for example, `[GitHub](https://github.com/){target="_blank"}` becomes [GitHub](https://github.com/){target="_blank"}. The `target="_blank"` parameter opens the link in a new tab, which is a good practice when linking to external websites.
+### Hyperlinks
 
-**Blockquotes** are indicated by `>` and can be nested:
+Use `Text` to create links. For example:
+
+```markdown
+[GitHub](https://github.com/){target="_blank"}
+```
+
+This renders as: [GitHub](https://github.com/){target="_blank"}. The `target="_blank"` parameter opens the link in a new tab, which is a good practice when linking to external websites.
+
+The `target="_blank"` attribute opens the link in a new tab, which is recommended for external sites.
+
+### Blockquotes
+
+Use `>` for blockquotes. Nesting is possible with multiple `>`:
 
     >"Everything is related to everything else, but near things are more related than distant things".
     >
@@ -406,15 +473,17 @@ To create an **unordered list**, use `*`, `-`, or `+`:
 >
 >>The phenomenon external to an area of interest affects what goes on inside.
 
-By now, you've seen that some characters (like `#`, `*`, `>` or `$`) have **special meaning** in Markdown. If you want to show them literally in your text, you need to escape them by adding a backslash (`\`) before the character.
+### Escaping special characters
 
-For example:
+Some characters have special meaning in Markdown (e.g., `#`, `*`, `>`, `$`). To display them literally, prefix with a backslash (`\`):
 
-`\#` shows a hash symbol `#`
+- `\#` → `#`
+- `\*` → `*`
 
-`\*` shows an asterisk `*`
 
-Quarto supports a large number of **mathematical notations** using dollar signs `$`:   
+### Mathematical notation
+
+Quarto supports LaTeX-style math using dollar signs: 
 
 **Math. notation example 1:**
 
@@ -440,12 +509,15 @@ See ["Mathematics in R Markdown"](https://rpruim.github.io/s341/S19/from-class/M
 
 ### References in Quarto
 
-Quarto makes it easy to insert citations and automatically generate a bibliography — using a `.bib` file to store reference metadata.
+Quarto supports citation management and automatic bibliography generation using a `.bib` file, which stores reference metadata in BibTeX format.
 
+#### Create a `.bib` File
 
-To begin, create a new plain-text file in a simple editor (e.g., Notepad, VS Code, or RStudio’s built-in editor), and save it with a `.bib` extension (e.g., `references.bib`) in your RStudio project folder.
+Create a plain-text file using any editor (e.g., Notepad, VS Code, or RStudio) and save it with a `.bib` extension (e.g., `references.bib`) in your project folder.
 
-1. **Enable BibTeX Export:** Modify your settings in Google Scholar to enable BibTeX export (see @fig-scholar1).
+#### Enable BibTeX export in Google Scholar
+
+To export references from Google Scholar, enable BibTeX export in your settings:
 
 ::: {#fig-scholar1}
 
@@ -456,34 +528,45 @@ Enable BibTeX in Firefox 106.0.1
 
 :::
 
-> Browser versions may vary. For assistance, refer to the discussion forum if needed.
+> Browser interfaces may vary. Refer to the course discussion forum if you encounter issues.
 
-2. **Export BibTeX Entries:** After enabling BibTeX export, a new link "Import into BibTeX" will appear in Google Scholar (see @fig-scholar2).
+#### Export BibTeX entries
 
+Once BibTeX export is enabled, a new link labeled **"Import into BibTeX"** will appear below each reference:
 
 ::: {#fig-scholar2}
 
 ![](images/bibtexoption.png){width="80%" fig-align="center"}
 
-
 BibTeX Link in Firefox 106.0.1
 
 :::
 
-Click the link and copy the BibTeX code into your `.bib` file.
+Click the link and copy the BibTeX entry into your `.bib` file.
 
-3. **Integrate References in the Quarto document:** Specify the location of your `.bib` file in the YAML metadata of your Quarto document (`bibliography: <.bib file>`). Insert `@` followed by the BibTeX key to add citations (see @fig-ref).
+#### Integrate references in Quarto
+
+To cite references in your Quarto document:
+
+1. Specify the `.bib` file in the YAML metadata:
+
+```yaml
+bibliography: references.bib
+```
+
+2. Use `@<BibTeXKey>` to insert citations in your text.
 
 ::: {#fig-ref}
 
 ![](images/refs.png){width="80%" fig-align="center"}
 
-
 Integrate BibTeX reference in Quarto document
 
 :::
 
-4. **Compile the Document:** Render the Quarto document as HTML. Quarto processes both indirect (without square brackets) and direct citations (with square brackets) and includes a bibliography (see @fig-ref2).
+#### Render the document
+
+Render the document to HTML. Quarto will process citations and generate a bibliography automatically. Both inline (`@key`) and bracketed (`[@key]`) citation styles are supported.
 
 ::: {#fig-ref2}
 
@@ -494,31 +577,34 @@ Quarto with reference
 
 :::
 
-For a practical demonstration, download and explore this [Quarto reference example](data/testquarto.zip){target="_blank"}.  Unzip the folder and open the `.Rproj` file in RStudio.
-
-## Extending Quarto with Extensions and Filters
-
-Quarto’s core is deliberately light, but you can extend it with optional **community-built extensions** especially useful for advanced customization or automation.
+For a hands-on example, download this [Quarto reference example](data/testquarto.zip){target="_blank"}, unzip the folder, and open the `.Rproj` file in RStudio.
 
 
-### How it works under the hood  
+## Extending Quarto with extensions and filters
 
-1. `quarto add …` downloads the extension into an **`_extensions/`** folder at your project root (commit this folder so collaborators get the same behaviour).  
-2. During render, **pandoc** automatically loads any Lua filters it finds there.  
-3. These filters modify the document on the fly—e.g. injecting diagrams or styling call-outs.
+Quarto’s core is intentionally lightweight, but it can be extended with **community-built extensions** for advanced customization, automation, and enhanced interactivity.
 
-> **Why Lua?** Pandoc’s native filter language is Lua, so Lua scripts run with zero external dependencies and maximum speed.
+### How It Works Under the Hood
 
-### One-line install example
+1. Running `quarto add ...` downloads the extension into an `_extensions/` folder at the root of your project.  
+   → This folder should be committed to version control so collaborators share the same behavior.
+
+2. During rendering, **Pandoc** automatically loads any Lua filters found in `_extensions/`.
+
+3. These filters modify the document dynamically — for example, by injecting diagrams or styling callouts.
+
+> **Why Lua?** Pandoc’s native filter language is Lua. Lua filters run without external dependencies and offer high performance.
+
+### Example: one-line installation
 
 ```bash
-# Adds a custom-callout filter; the Exercise boxes in this module are created with it.
+# Adds a custom callout filter. The Exercise boxes in this module use it.
 quarto add coatless-quarto/custom-callout
 ```
 
-A catalog of community-maintained add-ons (plus a short “write your own” guide) lives in the [Quarto Extension Gallery](https://quarto.org/docs/extensions/){target="_blank"}.
+A catalog of available extensions along with a short guide on writing your own is available in the [Quarto Extension Gallery](https://quarto.org/docs/extensions/){target="_blank"}.
 
-Filters need to be listed in your `_quarto.yml`:
+To activate filters, list them in your `_quarto.yml` file:
 
 ```yaml
 filters:
@@ -526,15 +612,16 @@ filters:
   - custom-callout
 ```
 
-This tells Quarto to activate these filters during rendering.
-
-(Always check the extension’s README for extra setup instructions.)
+Always check the extension’s README for additional setup instructions.
 
 ## Speed up your workflows
 
-Quarto significantly enhances the efficiency of repetitive workflows. For instance, consider a scenario where a client requires daily updates on specific spatial economic indicators. Instead of manually generating a new report each day, Quarto can automate this process, creating data reports with charts that update automatically upon compilation. This approach can save substantial time and effort.
+Quarto can significantly streamline repetitive reporting tasks. For example, if a client requires daily updates on spatial economic indicators, you can automate the process using Quarto. Instead of manually generating reports, Quarto can compile updated data and visualizations each time the document is rendered.
 
-Real-time data retrieval is possible through [Alpha Vantage](https://www.alphavantage.co/){target="_blank"}, which provides financial market data via the [Alpha Vantage Rest API](https://www.alphavantage.co/documentation/){target="_blank"}. The R library [`alphavantager`](https://cran.r-project.org/web/packages/alphavantager/index.html){target="_blank"} facilitates API access within R. The use of `alphavantager` enables the extraction of various types of financial data, including real-time stock prices, FX rates, and technical indicators, directly into R. This allows for efficient data processing and visualization, making it a good tool for finance-related reports and analyses in Quarto.
+For real-time data, [Alpha Vantage](https://www.alphavantage.co/){target="_blank"} provides financial market data via its [Alpha Vantage Rest API](https://www.alphavantage.co/documentation/){target="_blank"}. The R package [`alphavantager`](https://cran.r-project.org/web/packages/alphavantager/index.html){target="_blank"} enables access to this API directly from R.
+
+This allows you to retrieve real-time stock prices, FX rates, and technical indicators, and integrate them into Quarto reports for automated analysis and visualization.
+
 
 ::: callout-note
 
@@ -560,12 +647,16 @@ Try enhancing the report with an additional spatial indicator, such as a map dis
 
 ## Self-study
 
-The vast functionalities of Quarto extend beyond the scope of a single lesson. To fully exploit its capabilities, refer to the comprehensive [Quarto Guide](https://quarto.org/docs/guide/){target="_blank"}.
+Quarto’s capabilities extend far beyond what we’ve covered in this session. To explore more advanced features, consult the [Quarto Guide](https://quarto.org/docs/guide/){target="_blank"}.
 
-This guide covers additional topics such as the integration of figures or cross references, computations in various languages such as R, Julia, and Observable and formats such as quarto projects, presentations, dashboards, websites, books or manuscripts. 
+Topics include:
+
+- Cross-references and figure management
+- Computations in R, Python, Julia, and Observable
+- Output formats such as presentations, dashboards, websites, books, and manuscripts
 
 ::: callout-note
 
-To find inspiration for your own projects you may consult the [Quarto Gallery](https://quarto.org/docs/gallery/){target="_blank"} that provides a variety of Quarto best practice examples.
+To find inspiration for your own projects you may consult the [Quarto Gallery](https://quarto.org/docs/gallery/){target="_blank"}, which showcases a wide range of real-world examples
 
 :::
