@@ -652,7 +652,7 @@ Solution
 <span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Get length of TRUE values (grid value &gt; 0.5) in logic vectors</span></span>
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(log_vec[log_vec<span class="sc">==</span> <span class="cn">TRUE</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 193</code></pre>
+<pre><code>[1] 187</code></pre>
 </div>
 </div>
 <p>It is apparent from the code example above that avoiding loops in R code makes code shorter and increases performance. Increase the size of your raster grid (e.g.&nbsp;<code>ncol=100</code>, <code>nrow=100</code>) and test respective code realizations to investigate the difference in code performance. More information on vectorization and parallelization of operations in R can be found <a href="https://tmieno2.github.io/R-as-GIS-for-Economists/repetitive-processes-and-looping.html#do-you-really-need-to-loop" target="_blank">here</a>.</p>
