@@ -11,7 +11,6 @@ $font-size-root: 18px !default; // Base font size
 /*-- scss:rules --*/
 
 /* Quarto Main Navigation Styling Inherited by Quarto Render ------------------------------------------------------ */
-
 @media (min-width: 992px) {
   body.floating .page-columns {
     display: grid;
@@ -212,6 +211,8 @@ div.sidebar-search input {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: $content-bg;
+  word-wrap: break-word;
+
 }
 
 /* Callout Styling ------------------------------------------------------ */
@@ -408,4 +409,12 @@ body {
   li {
     font-size: 0.9rem;
   }
+}
+
+@media print {
+    /* issue with callout-collapse in print */
+    .callout-collapse.collapse:not(.show) {
+        display: block !important; 
+        visibility: visible !important;
+    }
 }

@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
-
+<meta name="generator" content="quarto-1.7.32">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
 <title>11&nbsp; Quarto – Automated Data Processing with R</title>
 <style>
 code{white-space: pre-wrap;}
@@ -21,8 +18,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +31,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -56,7 +54,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -65,16 +62,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./10-data-viz.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a7001429fb728b692d743f19cb87ea92.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-b14b9a422f3e857722ce30adfbcf52b7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -100,11 +97,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
-}</script>
-<style>html{ scroll-behavior: smooth; }</style>
-
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
+}</script><style>html{ scroll-behavior: smooth; }</style>
+<script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script><script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
  for (var i = 0; i < mathElements.length; i++) {
@@ -117,9 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     fleqn: false
    });
 }}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
-
+  </script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 <script type="text/javascript">
 const typesetMath = (el) => {
   if (window.MathJax) {
@@ -145,17 +137,12 @@ const typesetMath = (el) => {
 window.Quarto = {
   typesetMath
 };
-</script>
-
-<link rel="stylesheet" href="css/custom.css">
+</script><link rel="stylesheet" href="css/custom.css">
 </head>
-
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav"><div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
@@ -166,16 +153,11 @@ window.Quarto = {
         <i class="bi bi-search"></i>
       </button>
     </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="https://unigis.at/" class="sidebar-logo-link">
-      <img src="./branding/UNIGIS_Salzburg_Schriftlogo_v05.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
+      <img src="./branding/UNIGIS_Salzburg_Schriftlogo_v05.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Automated Data Processing with R</a> 
     </div>
@@ -187,7 +169,7 @@ window.Quarto = {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
+<li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
@@ -260,31 +242,34 @@ window.Quarto = {
   </div>
 </li>
     </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+</div>
+</nav><div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Lesson Content</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Lesson Content</h2>
    
   <ul>
-  <li><a href="#set-up-your-work-environment" id="toc-set-up-your-work-environment" class="nav-link active" data-scroll-target="#set-up-your-work-environment"><span class="header-section-number">11.1</span> Set up your work environment</a>
+<li>
+<a href="#set-up-your-work-environment" id="toc-set-up-your-work-environment" class="nav-link active" data-scroll-target="#set-up-your-work-environment"><span class="header-section-number">11.1</span> Set up your work environment</a>
   <ul class="collapse">
-  <li><a href="#tell-git-who-you-are-one-time-setup" id="toc-tell-git-who-you-are-one-time-setup" class="nav-link" data-scroll-target="#tell-git-who-you-are-one-time-setup"><span class="header-section-number">11.1.1</span> Tell Git who you are (one-time setup)</a></li>
+<li><a href="#tell-git-who-you-are-one-time-setup" id="toc-tell-git-who-you-are-one-time-setup" class="nav-link" data-scroll-target="#tell-git-who-you-are-one-time-setup"><span class="header-section-number">11.1.1</span> Tell Git who you are (one-time setup)</a></li>
   <li><a href="#authenticating-with-github" id="toc-authenticating-with-github" class="nav-link" data-scroll-target="#authenticating-with-github"><span class="header-section-number">11.1.2</span> Authenticating with GitHub</a></li>
   <li><a href="#switching-between-https-and-ssh" id="toc-switching-between-https-and-ssh" class="nav-link" data-scroll-target="#switching-between-https-and-ssh"><span class="header-section-number">11.1.3</span> Switching between HTTPS and SSH</a></li>
   <li><a href="#common-troubleshooting-checklist" id="toc-common-troubleshooting-checklist" class="nav-link" data-scroll-target="#common-troubleshooting-checklist"><span class="header-section-number">11.1.4</span> Common Troubleshooting Checklist</a></li>
-  </ul></li>
+  </ul>
+</li>
   <li><a href="#create-a-local-clone" id="toc-create-a-local-clone" class="nav-link" data-scroll-target="#create-a-local-clone"><span class="header-section-number">11.2</span> Create a local clone</a></li>
-  <li><a href="#creating-your-first-quarto-document" id="toc-creating-your-first-quarto-document" class="nav-link" data-scroll-target="#creating-your-first-quarto-document"><span class="header-section-number">11.3</span> Creating your first Quarto document</a>
+  <li>
+<a href="#creating-your-first-quarto-document" id="toc-creating-your-first-quarto-document" class="nav-link" data-scroll-target="#creating-your-first-quarto-document"><span class="header-section-number">11.3</span> Creating your first Quarto document</a>
   <ul class="collapse">
-  <li><a href="#under-the-hood-the-render-pipeline" id="toc-under-the-hood-the-render-pipeline" class="nav-link" data-scroll-target="#under-the-hood-the-render-pipeline"><span class="header-section-number">11.3.1</span> Under the hood – the render pipeline</a></li>
-  </ul></li>
+<li><a href="#under-the-hood-the-render-pipeline" id="toc-under-the-hood-the-render-pipeline" class="nav-link" data-scroll-target="#under-the-hood-the-render-pipeline"><span class="header-section-number">11.3.1</span> Under the hood – the render pipeline</a></li>
+  </ul>
+</li>
   <li><a href="#synchronizing-with-github" id="toc-synchronizing-with-github" class="nav-link" data-scroll-target="#synchronizing-with-github"><span class="header-section-number">11.4</span> Synchronizing with GitHub</a></li>
-  <li><a href="#basic-markdown-syntax" id="toc-basic-markdown-syntax" class="nav-link" data-scroll-target="#basic-markdown-syntax"><span class="header-section-number">11.5</span> Basic markdown syntax</a>
+  <li>
+<a href="#basic-markdown-syntax" id="toc-basic-markdown-syntax" class="nav-link" data-scroll-target="#basic-markdown-syntax"><span class="header-section-number">11.5</span> Basic markdown syntax</a>
   <ul class="collapse">
-  <li><a href="#common-formatting" id="toc-common-formatting" class="nav-link" data-scroll-target="#common-formatting"><span class="header-section-number">11.5.1</span> Common formatting</a></li>
+<li><a href="#common-formatting" id="toc-common-formatting" class="nav-link" data-scroll-target="#common-formatting"><span class="header-section-number">11.5.1</span> Common formatting</a></li>
   <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables"><span class="header-section-number">11.5.2</span> Tables</a></li>
   <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">11.5.3</span> Lists</a></li>
   <li><a href="#hyperlinks" id="toc-hyperlinks" class="nav-link" data-scroll-target="#hyperlinks"><span class="header-section-number">11.5.4</span> Hyperlinks</a></li>
@@ -292,23 +277,24 @@ window.Quarto = {
   <li><a href="#escaping-special-characters" id="toc-escaping-special-characters" class="nav-link" data-scroll-target="#escaping-special-characters"><span class="header-section-number">11.5.6</span> Escaping special characters</a></li>
   <li><a href="#mathematical-notation" id="toc-mathematical-notation" class="nav-link" data-scroll-target="#mathematical-notation"><span class="header-section-number">11.5.7</span> Mathematical notation</a></li>
   <li><a href="#references-in-quarto" id="toc-references-in-quarto" class="nav-link" data-scroll-target="#references-in-quarto"><span class="header-section-number">11.5.8</span> References in Quarto</a></li>
-  </ul></li>
-  <li><a href="#extending-quarto-with-extensions-and-filters" id="toc-extending-quarto-with-extensions-and-filters" class="nav-link" data-scroll-target="#extending-quarto-with-extensions-and-filters"><span class="header-section-number">11.6</span> Extending Quarto with extensions and filters</a>
+  </ul>
+</li>
+  <li>
+<a href="#extending-quarto-with-extensions-and-filters" id="toc-extending-quarto-with-extensions-and-filters" class="nav-link" data-scroll-target="#extending-quarto-with-extensions-and-filters"><span class="header-section-number">11.6</span> Extending Quarto with extensions and filters</a>
   <ul class="collapse">
-  <li><a href="#how-it-works-under-the-hood" id="toc-how-it-works-under-the-hood" class="nav-link" data-scroll-target="#how-it-works-under-the-hood"><span class="header-section-number">11.6.1</span> How It Works Under the Hood</a></li>
+<li><a href="#how-it-works-under-the-hood" id="toc-how-it-works-under-the-hood" class="nav-link" data-scroll-target="#how-it-works-under-the-hood"><span class="header-section-number">11.6.1</span> How It Works Under the Hood</a></li>
   <li><a href="#example-one-line-installation" id="toc-example-one-line-installation" class="nav-link" data-scroll-target="#example-one-line-installation"><span class="header-section-number">11.6.2</span> Example: one-line installation</a></li>
-  </ul></li>
+  </ul>
+</li>
   <li><a href="#speed-up-your-workflows" id="toc-speed-up-your-workflows" class="nav-link" data-scroll-target="#speed-up-your-workflows"><span class="header-section-number">11.7</span> Speed up your workflows</a></li>
   <li><a href="#self-study" id="toc-self-study" class="nav-link" data-scroll-target="#self-study"><span class="header-section-number">11.8</span> Self-study</a></li>
-  </ul>
-</nav>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quarto</span></h1>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
+<h1 class="title">
+<span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Quarto</span>
+</h1>
 </div>
 
 
@@ -322,24 +308,24 @@ window.Quarto = {
   
 
 
-</header>
-
-
-<p>According to the <a href="https://quarto.org/" target="_blank">Quarto Website</a>, <em>Quarto is an open-source scientific and technical publishing system</em>. It comes bundled with recent versions of RStudio (2022.07 or later), so it’s already available on your machines.</p>
+</header><p>According to the <a href="https://quarto.org/" target="_blank">Quarto Website</a>, <em>Quarto is an open-source scientific and technical publishing system</em>. It comes bundled with recent versions of RStudio (2022.07 or later), so it’s already available on your machines.</p>
 <p>Quarto is part of a broader ecosystem of tools that support reproducible research. Platforms like <a href="https://github.com/" target="_blank">GitHub</a>, <a href="https://jupyter.org/" target="_blank">Jupyter</a>, <a href="https://www.docker.com/" target="_blank">Docker</a>, <a href="https://arxiv.org/" target="_blank">ArXiv</a>, and <a href="https://www.biorxiv.org/" target="_blank">bioRxiv</a> can facilitate reproducibility in various ways. In this module, we won’t explore the paradigm of <a href="https://esajournals.onlinelibrary.wiley.com/doi/full/10.1002/bes2.1801" target="_blank">reproducible research</a> in detail. Instead, we’ll focus on how to use Quarto to make your analyses and reports more <strong>appealing</strong>, <strong>interactive</strong>, and <strong>efficient</strong>.</p>
 <p>In this lesson, we’ll weave code and narrative into professionally rendered Quarto documents and use <a href="https://github.com/" target="_blank">GitHub</a> to safely store, share, and administer our results.</p>
-<section id="set-up-your-work-environment" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="set-up-your-work-environment"><span class="header-section-number">11.1</span> Set up your work environment</h2>
+<section id="set-up-your-work-environment" class="level2" data-number="11.1"><h2 data-number="11.1" class="anchored" data-anchor-id="set-up-your-work-environment">
+<span class="header-section-number">11.1</span> Set up your work environment</h2>
 <p>Before creating your first Quarto document, we need to set up your <strong>GitHub environment</strong>.</p>
 <p>Originally designed for software development, GitHub is also a powerful tool for managing changes in documents and data projects. Its version control system helps track edits, collaborate with others, and maintain a clear history of your work.</p>
 <p>Even if you’re working solo, GitHub offers valuable features like change tracking, documentation, and easy sharing.</p>
 <p>To set up your personal GitHub environment, follow these steps:</p>
 <ol type="1">
 <li>Review the <a href="https://docs.github.com/en/get-started/quickstart/hello-world" target="_blank">Hello-World Section</a> in GitHub’s Quickstart Documentation. Initially, reading it is sufficient—no need to complete the tutorial yet.</li>
-<li><a href="https://github.com/" target="_blank">Create a GitHub account</a>.</li>
-<li><a href="https://git-scm.com/downloads" target="_blank">Download and install Git</a>. Git is a distributed <strong>VCS (version control system)</strong> that stores your project history locally and remotely. GitHub is a web-based interface that works seamlessly with Git. For a quick intro to Git’s core concepts, watch this <a href="https://www.youtube.com/watch?v=uR6G2v_WsRA" target="_blank">video</a>.</li>
+<li>
+<a href="https://github.com/" target="_blank">Create a GitHub account</a>.</li>
+<li>
+<a href="https://git-scm.com/downloads" target="_blank">Download and install Git</a>. Git is a distributed <strong>VCS (version control system)</strong> that stores your project history locally and remotely. GitHub is a web-based interface that works seamlessly with Git. For a quick intro to Git’s core concepts, watch this <a href="https://www.youtube.com/watch?v=uR6G2v_WsRA" target="_blank">video</a>.</li>
 <li>In RStudio (under Tools &gt; Global Options &gt; Git / SVN), check “enable version control” and set the path to <code>git</code>. On Windows: <code>C:\Program Files\Git\bin\git.exe</code>. On macOS/Linux, the path is usually set automatically (e.g., <code>/usr/bin/git</code> or <code>/opt/homebrew/bin/git</code> if installed via Homebrew). After setting the path, restart RStudio.</li>
-<li><a href="https://docs.github.com/en/get-started/quickstart/create-a-repo" target="_blank">Create a repository</a> on GitHub. You can skip the “Commit your first changes” section for now.</li>
+<li>
+<a href="https://docs.github.com/en/get-started/quickstart/create-a-repo" target="_blank">Create a repository</a> on GitHub. You can skip the “Commit your first changes” section for now.</li>
 <li>By default, your repository will have one branch named <code>main</code>. Create an additional branch called <code>dev</code> off the <code>main</code>. Follow the instructions in the <a href="https://docs.github.com/en/get-started/quickstart/hello-world" target="_blank">Hello-World Tutorial</a> for guidance.</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -355,8 +341,8 @@ Note
 <p>For technical issues, please consult the discussion forum.</p>
 </div>
 </div>
-<section id="tell-git-who-you-are-one-time-setup" class="level3" data-number="11.1.1">
-<h3 data-number="11.1.1" class="anchored" data-anchor-id="tell-git-who-you-are-one-time-setup"><span class="header-section-number">11.1.1</span> Tell Git who you are (one-time setup)</h3>
+<section id="tell-git-who-you-are-one-time-setup" class="level3" data-number="11.1.1"><h3 data-number="11.1.1" class="anchored" data-anchor-id="tell-git-who-you-are-one-time-setup">
+<span class="header-section-number">11.1.1</span> Tell Git who you are (one-time setup)</h3>
 <p>Before making your first commit, configure Git with your name and email. These values are stored locally and will be attached to each commit you make.</p>
 <p>In the <strong>Terminal tab</strong> of RStudio, run:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Jane Doe"</span></span>
@@ -364,38 +350,38 @@ Note
 <p>To verify:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> <span class="at">--list</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This setup is independent of how you authenticate with GitHub (via token or SSH key).</p>
-</section>
-<section id="authenticating-with-github" class="level3" data-number="11.1.2">
-<h3 data-number="11.1.2" class="anchored" data-anchor-id="authenticating-with-github"><span class="header-section-number">11.1.2</span> Authenticating with GitHub</h3>
+</section><section id="authenticating-with-github" class="level3" data-number="11.1.2"><h3 data-number="11.1.2" class="anchored" data-anchor-id="authenticating-with-github">
+<span class="header-section-number">11.1.2</span> Authenticating with GitHub</h3>
 <p>Since 2021, GitHub no longer supports password-based authentication. You must choose one of the following secure methods:</p>
-<section id="personal-access-token-https" class="level4" data-number="11.1.2.1">
-<h4 data-number="11.1.2.1" class="anchored" data-anchor-id="personal-access-token-https"><span class="header-section-number">11.1.2.1</span> Personal Access Token (HTTPS)</h4>
+<section id="personal-access-token-https" class="level4" data-number="11.1.2.1"><h4 data-number="11.1.2.1" class="anchored" data-anchor-id="personal-access-token-https">
+<span class="header-section-number">11.1.2.1</span> Personal Access Token (HTTPS)</h4>
 <ul>
-<li>Navigate to:<br>
-<strong>GitHub &gt; Settings &gt; Developer settings &gt; Personal access tokens &gt; Fine-grained tokens</strong></li>
+<li>Navigate to:<br><strong>GitHub &gt; Settings &gt; Developer settings &gt; Personal access tokens &gt; Fine-grained tokens</strong>
+</li>
 <li>Click <strong>Generate new token</strong>.</li>
 <li>Provide a name, select the <code>repo</code> permission, set an expiry date, and copy the token.</li>
 <li>When RStudio prompts for a password during your first push, paste the token. Your GitHub username remains unchanged.</li>
 </ul>
 <p>This method is straightforward and works reliably across most environments.</p>
-</section>
-<section id="ssh-key" class="level4" data-number="11.1.2.2">
-<h4 data-number="11.1.2.2" class="anchored" data-anchor-id="ssh-key"><span class="header-section-number">11.1.2.2</span> SSH Key</h4>
+</section><section id="ssh-key" class="level4" data-number="11.1.2.2"><h4 data-number="11.1.2.2" class="anchored" data-anchor-id="ssh-key">
+<span class="header-section-number">11.1.2.2</span> SSH Key</h4>
 <ul>
-<li><p>Generate a key:</p>
+<li>
+<p>Generate a key:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">"you@example.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Press Enter to accept the defaults.</p></li>
-<li><p>Copy the contents of <code>~/.ssh/id_ed25519.pub</code> and add it to GitHub under:<br>
-<strong>Settings &gt; SSH &amp; GPG keys &gt; New SSH key</strong></p></li>
+<p>Press Enter to accept the defaults.</p>
+</li>
+<li><p>Copy the contents of <code>~/.ssh/id_ed25519.pub</code> and add it to GitHub under:<br><strong>Settings &gt; SSH &amp; GPG keys &gt; New SSH key</strong></p></li>
 </ul>
 <p>SSH is well-suited for automation and scripting workflows.</p>
-</section>
-<section id="git-credential-manager-gcm" class="level4" data-number="11.1.2.3">
-<h4 data-number="11.1.2.3" class="anchored" data-anchor-id="git-credential-manager-gcm"><span class="header-section-number">11.1.2.3</span> Git Credential Manager (GCM)</h4>
+</section><section id="git-credential-manager-gcm" class="level4" data-number="11.1.2.3"><h4 data-number="11.1.2.3" class="anchored" data-anchor-id="git-credential-manager-gcm">
+<span class="header-section-number">11.1.2.3</span> Git Credential Manager (GCM)</h4>
 <ul>
 <li><p>On <strong>Windows</strong>, GCM is bundled with Git.</p></li>
-<li><p>On <strong>macOS</strong>, install via:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> git-credential-manager</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li>
+<p>On <strong>macOS</strong>, install via:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install <span class="at">--cask</span> git-credential-manager</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</li>
 </ul>
 <p>The first push will open a browser window for login. GCM stores your credentials securely in your system keychain and handles token rotation automatically.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -408,45 +394,42 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To view or clear saved credentials in RStudio:<br>
-<strong>Tools &gt; Global Options &gt; Git/SVN &gt; Credentials</strong></p>
+<p>To view or clear saved credentials in RStudio:<br><strong>Tools &gt; Global Options &gt; Git/SVN &gt; Credentials</strong></p>
 <p>On Windows, credentials are stored in the <strong>Credential Manager</strong>.<br>
 On macOS, they’re stored in <strong>Keychain Access</strong>.</p>
 </div>
 </div>
-</section>
-</section>
-<section id="switching-between-https-and-ssh" class="level3" data-number="11.1.3">
-<h3 data-number="11.1.3" class="anchored" data-anchor-id="switching-between-https-and-ssh"><span class="header-section-number">11.1.3</span> Switching between HTTPS and SSH</h3>
+</section></section><section id="switching-between-https-and-ssh" class="level3" data-number="11.1.3"><h3 data-number="11.1.3" class="anchored" data-anchor-id="switching-between-https-and-ssh">
+<span class="header-section-number">11.1.3</span> Switching between HTTPS and SSH</h3>
 <p>If you cloned a repository using HTTPS but later want to switch to SSH:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote set-url origin git@github.com:<span class="op">&lt;</span>USER<span class="op">&gt;</span>/<span class="op">&lt;</span>REPO<span class="op">&gt;</span>.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To switch back to HTTPS:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote set-url origin https://github.com/<span class="op">&lt;</span>USER<span class="op">&gt;</span>/<span class="op">&lt;</span>REPO<span class="op">&gt;</span>.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="common-troubleshooting-checklist" class="level3" data-number="11.1.4">
-<h3 data-number="11.1.4" class="anchored" data-anchor-id="common-troubleshooting-checklist"><span class="header-section-number">11.1.4</span> Common Troubleshooting Checklist</h3>
+</section><section id="common-troubleshooting-checklist" class="level3" data-number="11.1.4"><h3 data-number="11.1.4" class="anchored" data-anchor-id="common-troubleshooting-checklist">
+<span class="header-section-number">11.1.4</span> Common Troubleshooting Checklist</h3>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 41%">
 <col style="width: 58%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th>Issue</th>
 <th>Solution</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
-<td><code>Authentication failed</code> after token paste</td>
+<td>
+<code>Authentication failed</code> after token paste</td>
 <td>Token expired or missing <code>repo</code> scope. Generate a new fine-grained PAT.</td>
 </tr>
 <tr class="even">
 <td>Prompted for credentials on every push/pull</td>
-<td>Enable credential caching: <code>git config --global credential.helper manager-core</code></td>
+<td>Enable credential caching: <code>git config --global credential.helper manager-core</code>
+</td>
 </tr>
 <tr class="odd">
-<td><code>Permission denied (publickey)</code> with SSH</td>
+<td>
+<code>Permission denied (publickey)</code> with SSH</td>
 <td>Run <code>ssh -T git@github.com</code> to test. Add key to agent: <code>ssh-add ~/.ssh/id_ed25519</code>.</td>
 </tr>
 <tr class="even">
@@ -456,66 +439,58 @@ On macOS, they’re stored in <strong>Keychain Access</strong>.</p>
 </tbody>
 </table>
 <p>For platform-specific instructions on credential caching and authentication, refer to <a href="https://docs.github.com/en/get-started/git-basics/caching-your-github-credentials-in-git" target="_blank">GitHub’s official documentation</a>.</p>
-</section>
-</section>
-<section id="create-a-local-clone" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="create-a-local-clone"><span class="header-section-number">11.2</span> Create a local clone</h2>
+</section></section><section id="create-a-local-clone" class="level2" data-number="11.2"><h2 data-number="11.2" class="anchored" data-anchor-id="create-a-local-clone">
+<span class="header-section-number">11.2</span> Create a local clone</h2>
 <p>Cloning a repository means copying its contents including version history from GitHub to your local machine. This allows you to work on the project in RStudio while maintaining version control.</p>
 <p>To clone your repository:</p>
 <ol type="1">
-<li><p>In RStudio, navigate to:<br>
-<strong>File &gt; New Project &gt; Version Control &gt; Git</strong></p></li>
+<li><p>In RStudio, navigate to:<br><strong>File &gt; New Project &gt; Version Control &gt; Git</strong></p></li>
 <li><p>Use the <strong>HTTPS or SSH link</strong> from your GitHub repository (found under the green “Code” button), depending on your chosen authentication method.</p></li>
 <li><p>Select a local directory for the clone and click <strong>Create Project</strong>.</p></li>
 </ol>
 <div id="fig-clone" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-clone-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-clone-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Gitclone.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-clone-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.1: Clone GitHub Repository
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>After cloning, the repository’s contents will appear in the <strong>Files</strong> pane, and a new <strong>Git</strong> tab will be visible in the RStudio interface.</p>
 <div id="fig-newinstud" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-newinstud-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-newinstud-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/NewFeatures.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-newinstud-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.2: New features in RStudio
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>By default, the repository includes:</p>
 <ol type="1">
-<li><a href="https://git-scm.com/docs/gitignore" target="_blank"><code>.gitignore</code></a>: Specifies intentionally untracked files to ignore.</li>
-<li><a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank">RStudio Project File</a> (<code>.Rproj</code>): Contains metadata for the RStudio project.</li>
-<li><a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes" target="_blank">ReadMe File</a> (<code>.md</code>): A markdown file with information about the repository.</li>
+<li>
+<a href="https://git-scm.com/docs/gitignore" target="_blank"><code>.gitignore</code></a>: Specifies intentionally untracked files to ignore.</li>
+<li>
+<a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank">RStudio Project File</a> (<code>.Rproj</code>): Contains metadata for the RStudio project.</li>
+<li>
+<a href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes" target="_blank">ReadMe File</a> (<code>.md</code>): A markdown file with information about the repository.</li>
 </ol>
 <p>The <a href="https://git-scm.com/docs/gitignore" target="_blank"><code>gitignore</code></a> and <a href="https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects" target="_blank"><code>.Rproj</code></a> files are created locally when initializing the project in RStudio. These may not yet exist on GitHub, depending on how the repository was originally set up.</p>
 <div id="fig-change" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Changes.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.3: Changes in Git tab
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>Before making further changes, switch to the <code>dev</code> branch:</p>
 <div id="fig-branch" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-branch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-branch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Branches.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-branch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.4: Switch branch
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>At this point, the <code>dev</code> branch mirrors the <code>main</code> branch.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -531,21 +506,18 @@ Note
 <p>It is recommended to work on a separate development branch (e.g., <code>dev</code>) and reserve the <code>main</code> branch for stable versions. Changes can later be merged into <code>main</code> via a pull request. See <a href="https://docs.github.com/en/get-started/quickstart/hello-world#opening-a-pull-request" target="_blank">Opening a Pull Request</a> for details.</p>
 </div>
 </div>
-</section>
-<section id="creating-your-first-quarto-document" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="creating-your-first-quarto-document"><span class="header-section-number">11.3</span> Creating your first Quarto document</h2>
+</section><section id="creating-your-first-quarto-document" class="level2" data-number="11.3"><h2 data-number="11.3" class="anchored" data-anchor-id="creating-your-first-quarto-document">
+<span class="header-section-number">11.3</span> Creating your first Quarto document</h2>
 <p>Now that the environment is set up, let’s create our first Quarto document.</p>
 <p>In RStudio: Navigate to (File &gt; New File &gt; Quarto Document). Enter a title for your document, accept the default settings, click “OK”, and save the file. You’ll receive a sample Quarto file with the extension <code>.qmd</code>.</p>
 <p>By default, Quarto is in <a href="https://quarto.org/docs/visual-editor/" target="_blank">Visual Editing</a> mode, which provides a <a href="https://en.wikipedia.org/wiki/WYSIWYM" target="_blank">WYSIWYM-style</a> editing interface for Quarto documents. To switch to the Source Editor:</p>
 <div id="fig-schem1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-schem1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-schem1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/VisEditor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schem1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.5: Switch mode in RStudio
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <blockquote class="blockquote">
 <p>While the Visual Editor is intuitive and beginner-friendly, the Source Editor offers greater control and transparency. It also makes debugging and version control easier.</p>
@@ -557,13 +529,11 @@ Figure&nbsp;11.5: Switch mode in RStudio
 <col style="width: 32%">
 <col style="width: 48%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th>Mode</th>
 <th>Best suited for</th>
 <th>How to switch</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td><strong>Visual (WYSIWYM)</strong></td>
@@ -582,14 +552,12 @@ Figure&nbsp;11.5: Switch mode in RStudio
 </blockquote>
 <p>Quarto documents consist of three core components: <strong>metadata</strong>, <strong>text</strong>, and <strong>code</strong>.</p>
 <div id="fig-schem2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-schem2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-schem2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/SampleFile.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-schem2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.6: Quarto sample file
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>The metadata section is written in YAML and defines properties such as the document title, output format, and creation date.</p>
 <div class="callout callout-style-default callout-exercisebox callout-titled">
@@ -645,7 +613,7 @@ Note
 </div>
 <p>Code blocks in Quarto begin and end with three backticks. To specify an R code block, use <code>{r}</code> after the opening backticks:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     speed           dist       
  Min.   : 4.0   Min.   :  2.00  
@@ -659,8 +627,10 @@ Note
 <p>Quarto supports multiple languages including R, Python, Julia, and Observable JS.</p>
 <p>You can control how code behaves using execution options. For example:</p>
 <ul>
-<li><code>#| echo: false</code> hides the code but still runs it.</li>
-<li><code>#| eval: false</code> shows the code but does not execute it.</li>
+<li>
+<code>#| echo: false</code> hides the code but still runs it.</li>
+<li>
+<code>#| eval: false</code> shows the code but does not execute it.</li>
 </ul>
 <p>These options are useful for teaching, documentation, or drafts. A full list is available <a href="https://quarto.org/docs/computations/execution-options.html" target="_blank">here</a>.</p>
 <div class="callout callout-style-default callout-exercisebox callout-titled">
@@ -675,16 +645,16 @@ Exercise
 <div class="callout-body-container callout-body">
 <p>Insert the following code into your Quarto document. Add explanatory text below the chart and render the document as HTML:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>cars, <span class="fu">aes</span>(<span class="at">x=</span>speed, <span class="at">y=</span>dist)) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data<span class="op">=</span><span class="va">cars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">speed</span>, y<span class="op">=</span><span class="va">dist</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <p>This exercise demonstrates one of Quarto’s key strengths: the ability to combine narrative and code into a single, reproducible document that can be rendered in multiple formats.</p>
-<section id="under-the-hood-the-render-pipeline" class="level3" data-number="11.3.1">
-<h3 data-number="11.3.1" class="anchored" data-anchor-id="under-the-hood-the-render-pipeline"><span class="header-section-number">11.3.1</span> Under the hood – the render pipeline</h3>
+<section id="under-the-hood-the-render-pipeline" class="level3" data-number="11.3.1"><h3 data-number="11.3.1" class="anchored" data-anchor-id="under-the-hood-the-render-pipeline">
+<span class="header-section-number">11.3.1</span> Under the hood – the render pipeline</h3>
 <p>When you click <strong>Render</strong>, Quarto runs a processing pipeline that converts your <code>.qmd</code> file into the final output document. This process involves three main steps:</p>
 <ol type="1">
 <li><p><strong>knitr</strong> (for R) or <strong>Jupyter</strong> (for Python) executes the code chunks and generates an intermediate Markdown (<code>.md</code>) file. This file combines your code, output, and narrative text.</p></li>
@@ -699,21 +669,17 @@ Exercise
 <blockquote class="blockquote">
 <p>For more details, see the <a href="https://quarto.org/docs/get-started/hello/rstudio.html#how-it-works" target="_blank">Quarto Documentation</a>.</p>
 </blockquote>
-</section>
-</section>
-<section id="synchronizing-with-github" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="synchronizing-with-github"><span class="header-section-number">11.4</span> Synchronizing with GitHub</h2>
+</section></section><section id="synchronizing-with-github" class="level2" data-number="11.4"><h2 data-number="11.4" class="anchored" data-anchor-id="synchronizing-with-github">
+<span class="header-section-number">11.4</span> Synchronizing with GitHub</h2>
 <p>Regular synchronization between your local project and the online repository is essential for version control. Begin by pulling any updates from GitHub.</p>
 <p>In RStudio’s Git tab, click the <strong>Pull</strong> button:</p>
 <div id="fig-pull" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-pull-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-pull-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/pull.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pull-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.7: Make Pull
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>Even when working alone, it’s good practice to start each session with a pull to ensure your local copy is up to date.</p>
 <p>Next, commit your changes. A commit is a snapshot of your progress, accompanied by a descriptive message.</p>
@@ -728,69 +694,63 @@ Figure&nbsp;11.7: Make Pull
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"test"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>See <a href="#fig-commit" class="quarto-xref">Figure&nbsp;<span>11.8</span></a>.</p>
 <div id="fig-commit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-commit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-commit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/commit.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-commit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.8: Make Commit
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>Finally, push your committed changes to GitHub:</p>
 <div id="fig-push" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-push-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-push-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Push.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-push-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.9: Make Push
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>Your online repository should now reflect the latest changes. Make sure you’re viewing the correct branch (e.g., <code>dev</code>) on GitHub.</p>
 <div id="fig-commitfin" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-commitfin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-commitfin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/CommitFinished.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-commitfin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.10: Commit with message ‘test’ was pushed to the dev branch a minute ago
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>In this example, the <code>dev</code> branch is two commits ahead of <code>main</code>. To share your updates or integrate them into the stable version, <a href="https://docs.github.com/en/get-started/quickstart/hello-world#opening-a-pull-request" target="_blank">open a pull request</a> to merge <code>dev</code> into <code>main</code>.</p>
-</section>
-<section id="basic-markdown-syntax" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="basic-markdown-syntax"><span class="header-section-number">11.5</span> Basic markdown syntax</h2>
+</section><section id="basic-markdown-syntax" class="level2" data-number="11.5"><h2 data-number="11.5" class="anchored" data-anchor-id="basic-markdown-syntax">
+<span class="header-section-number">11.5</span> Basic markdown syntax</h2>
 <p>Quarto uses <strong>Markdown</strong>, a lightweight markup language, to format text. Markdown relies on plain-text symbols to control layout and styling.</p>
-<section id="common-formatting" class="level3" data-number="11.5.1">
-<h3 data-number="11.5.1" class="anchored" data-anchor-id="common-formatting"><span class="header-section-number">11.5.1</span> Common formatting</h3>
+<section id="common-formatting" class="level3" data-number="11.5.1"><h3 data-number="11.5.1" class="anchored" data-anchor-id="common-formatting">
+<span class="header-section-number">11.5.1</span> Common formatting</h3>
 <ul>
-<li><strong>Bold</strong>: Use double asterisks: <code>**Text**</code> → <strong>Text</strong></li>
-<li><em>Italic</em>: Use single asterisks: <code>*Text*</code> → <em>Text</em></li>
-<li><strong>Headings</strong>: Use hash signs <code>#</code> to define heading levels:</li>
+<li>
+<strong>Bold</strong>: Use double asterisks: <code>**Text**</code> → <strong>Text</strong>
+</li>
+<li>
+<em>Italic</em>: Use single asterisks: <code>*Text*</code> → <em>Text</em>
+</li>
+<li>
+<strong>Headings</strong>: Use hash signs <code>#</code> to define heading levels:</li>
 </ul>
 <div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Heading level 1</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">## Heading level 2</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">### Heading level 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="tables" class="level3" data-number="11.5.2">
-<h3 data-number="11.5.2" class="anchored" data-anchor-id="tables"><span class="header-section-number">11.5.2</span> Tables</h3>
+</section><section id="tables" class="level3" data-number="11.5.2"><h3 data-number="11.5.2" class="anchored" data-anchor-id="tables">
+<span class="header-section-number">11.5.2</span> Tables</h3>
 <p>Tables are created using pipes <code>|</code> and dashes <code>-</code>. For example, the numeric operators table in the first lesson was written in Markdown. Figure <a href="#fig-mtab" class="quarto-xref">Figure&nbsp;<span>11.11</span></a> shows how such a table is constructed.</p>
 <div id="fig-mtab" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-mtab-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-mtab-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/tables.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mtab-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.11: How Tables are made in Markdown
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
-</section>
-<section id="lists" class="level3" data-number="11.5.3">
-<h3 data-number="11.5.3" class="anchored" data-anchor-id="lists"><span class="header-section-number">11.5.3</span> Lists</h3>
+</section><section id="lists" class="level3" data-number="11.5.3"><h3 data-number="11.5.3" class="anchored" data-anchor-id="lists">
+<span class="header-section-number">11.5.3</span> Lists</h3>
 <p><strong>Ordered lists</strong> use numbers followed by a period:</p>
 <pre><code>Code - Ordered List:
 1. item 1
@@ -806,7 +766,8 @@ Figure&nbsp;11.11: How Tables are made in Markdown
 <ul>
 <li>Item 3a</li>
 <li>Item 3b</li>
-</ul></li>
+</ul>
+</li>
 </ol>
 <p>To create an <strong>unordered list</strong>, use <code>*</code>, <code>-</code>, or <code>+</code>:</p>
 <pre><code>Code - Unordered List:
@@ -821,18 +782,16 @@ Figure&nbsp;11.11: How Tables are made in Markdown
 <ul>
 <li>Item 2a</li>
 <li>Item 2b</li>
-</ul></li>
 </ul>
-</section>
-<section id="hyperlinks" class="level3" data-number="11.5.4">
-<h3 data-number="11.5.4" class="anchored" data-anchor-id="hyperlinks"><span class="header-section-number">11.5.4</span> Hyperlinks</h3>
+</li>
+</ul></section><section id="hyperlinks" class="level3" data-number="11.5.4"><h3 data-number="11.5.4" class="anchored" data-anchor-id="hyperlinks">
+<span class="header-section-number">11.5.4</span> Hyperlinks</h3>
 <p>Use <code>Text</code> to create links. For example:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">GitHub</span><span class="co">](https://github.com/)</span>{target="_blank"}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This renders as: <a href="https://github.com/" target="_blank">GitHub</a>. The <code>target="_blank"</code> parameter opens the link in a new tab, which is a good practice when linking to external websites.</p>
 <p>The <code>target="_blank"</code> attribute opens the link in a new tab, which is recommended for external sites.</p>
-</section>
-<section id="blockquotes" class="level3" data-number="11.5.5">
-<h3 data-number="11.5.5" class="anchored" data-anchor-id="blockquotes"><span class="header-section-number">11.5.5</span> Blockquotes</h3>
+</section><section id="blockquotes" class="level3" data-number="11.5.5"><h3 data-number="11.5.5" class="anchored" data-anchor-id="blockquotes">
+<span class="header-section-number">11.5.5</span> Blockquotes</h3>
 <p>Use <code>&gt;</code> for blockquotes. Nesting is possible with multiple <code>&gt;</code>:</p>
 <pre><code>&gt;"Everything is related to everything else, but near things are more related than distant things".
 &gt;
@@ -844,17 +803,18 @@ Figure&nbsp;11.11: How Tables are made in Markdown
 <p>The phenomenon external to an area of interest affects what goes on inside.</p>
 </blockquote>
 </blockquote>
-</section>
-<section id="escaping-special-characters" class="level3" data-number="11.5.6">
-<h3 data-number="11.5.6" class="anchored" data-anchor-id="escaping-special-characters"><span class="header-section-number">11.5.6</span> Escaping special characters</h3>
+</section><section id="escaping-special-characters" class="level3" data-number="11.5.6"><h3 data-number="11.5.6" class="anchored" data-anchor-id="escaping-special-characters">
+<span class="header-section-number">11.5.6</span> Escaping special characters</h3>
 <p>Some characters have special meaning in Markdown (e.g., <code>#</code>, <code>*</code>, <code>&gt;</code>, <code>$</code>). To display them literally, prefix with a backslash (<code>\</code>):</p>
 <ul>
-<li><code>\#</code> → <code>#</code></li>
-<li><code>\*</code> → <code>*</code></li>
-</ul>
-</section>
-<section id="mathematical-notation" class="level3" data-number="11.5.7">
-<h3 data-number="11.5.7" class="anchored" data-anchor-id="mathematical-notation"><span class="header-section-number">11.5.7</span> Mathematical notation</h3>
+<li>
+<code>\#</code> → <code>#</code>
+</li>
+<li>
+<code>\*</code> → <code>*</code>
+</li>
+</ul></section><section id="mathematical-notation" class="level3" data-number="11.5.7"><h3 data-number="11.5.7" class="anchored" data-anchor-id="mathematical-notation">
+<span class="header-section-number">11.5.7</span> Mathematical notation</h3>
 <p>Quarto supports LaTeX-style math using dollar signs:</p>
 <p><strong>Math. notation example 1:</strong></p>
 <p><code>$x = y$</code></p>
@@ -877,48 +837,40 @@ Note
 <p>See <a href="https://rpruim.github.io/s341/S19/from-class/MathinRmd.html" target="_blank">“Mathematics in R Markdown”</a> as well as <a href="https://quarto.org/docs/authoring/markdown-basics.html" target="_blank">Markdown Basics</a> for more.</p>
 </div>
 </div>
-</section>
-<section id="references-in-quarto" class="level3" data-number="11.5.8">
-<h3 data-number="11.5.8" class="anchored" data-anchor-id="references-in-quarto"><span class="header-section-number">11.5.8</span> References in Quarto</h3>
+</section><section id="references-in-quarto" class="level3" data-number="11.5.8"><h3 data-number="11.5.8" class="anchored" data-anchor-id="references-in-quarto">
+<span class="header-section-number">11.5.8</span> References in Quarto</h3>
 <p>Quarto supports citation management and automatic bibliography generation using a <code>.bib</code> file, which stores reference metadata in BibTeX format.</p>
-<section id="create-a-.bib-file" class="level4" data-number="11.5.8.1">
-<h4 data-number="11.5.8.1" class="anchored" data-anchor-id="create-a-.bib-file"><span class="header-section-number">11.5.8.1</span> Create a <code>.bib</code> File</h4>
+<section id="create-a-.bib-file" class="level4" data-number="11.5.8.1"><h4 data-number="11.5.8.1" class="anchored" data-anchor-id="create-a-.bib-file">
+<span class="header-section-number">11.5.8.1</span> Create a <code>.bib</code> File</h4>
 <p>Create a plain-text file using any editor (e.g., Notepad, VS Code, or RStudio) and save it with a <code>.bib</code> extension (e.g., <code>references.bib</code>) in your project folder.</p>
-</section>
-<section id="enable-bibtex-export-in-google-scholar" class="level4" data-number="11.5.8.2">
-<h4 data-number="11.5.8.2" class="anchored" data-anchor-id="enable-bibtex-export-in-google-scholar"><span class="header-section-number">11.5.8.2</span> Enable BibTeX export in Google Scholar</h4>
+</section><section id="enable-bibtex-export-in-google-scholar" class="level4" data-number="11.5.8.2"><h4 data-number="11.5.8.2" class="anchored" data-anchor-id="enable-bibtex-export-in-google-scholar">
+<span class="header-section-number">11.5.8.2</span> Enable BibTeX export in Google Scholar</h4>
 <p>To export references from Google Scholar, enable BibTeX export in your settings:</p>
 <div id="fig-scholar1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-scholar1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-scholar1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ScholarSettings.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scholar1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.12: Enable BibTeX in Firefox 106.0.1
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <blockquote class="blockquote">
 <p>Browser interfaces may vary. Refer to the course discussion forum if you encounter issues.</p>
 </blockquote>
-</section>
-<section id="export-bibtex-entries" class="level4" data-number="11.5.8.3">
-<h4 data-number="11.5.8.3" class="anchored" data-anchor-id="export-bibtex-entries"><span class="header-section-number">11.5.8.3</span> Export BibTeX entries</h4>
+</section><section id="export-bibtex-entries" class="level4" data-number="11.5.8.3"><h4 data-number="11.5.8.3" class="anchored" data-anchor-id="export-bibtex-entries">
+<span class="header-section-number">11.5.8.3</span> Export BibTeX entries</h4>
 <p>Once BibTeX export is enabled, a new link labeled <strong>“Import into BibTeX”</strong> will appear below each reference:</p>
 <div id="fig-scholar2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-scholar2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-scholar2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/bibtexoption.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scholar2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.13: BibTeX Link in Firefox 106.0.1
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>Click the link and copy the BibTeX entry into your <code>.bib</code> file.</p>
-</section>
-<section id="integrate-references-in-quarto" class="level4" data-number="11.5.8.4">
-<h4 data-number="11.5.8.4" class="anchored" data-anchor-id="integrate-references-in-quarto"><span class="header-section-number">11.5.8.4</span> Integrate references in Quarto</h4>
+</section><section id="integrate-references-in-quarto" class="level4" data-number="11.5.8.4"><h4 data-number="11.5.8.4" class="anchored" data-anchor-id="integrate-references-in-quarto">
+<span class="header-section-number">11.5.8.4</span> Integrate references in Quarto</h4>
 <p>To cite references in your Quarto document:</p>
 <ol type="1">
 <li>Specify the <code>.bib</code> file in the YAML metadata:</li>
@@ -928,38 +880,30 @@ Figure&nbsp;11.13: BibTeX Link in Firefox 106.0.1
 <li>Use <code>@&lt;BibTeXKey&gt;</code> to insert citations in your text.</li>
 </ol>
 <div id="fig-ref" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/refs.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ref-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.14: Integrate BibTeX reference in Quarto document
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
-</section>
-<section id="render-the-document" class="level4" data-number="11.5.8.5">
-<h4 data-number="11.5.8.5" class="anchored" data-anchor-id="render-the-document"><span class="header-section-number">11.5.8.5</span> Render the document</h4>
+</section><section id="render-the-document" class="level4" data-number="11.5.8.5"><h4 data-number="11.5.8.5" class="anchored" data-anchor-id="render-the-document">
+<span class="header-section-number">11.5.8.5</span> Render the document</h4>
 <p>Render the document to HTML. Quarto will process citations and generate a bibliography automatically. Both inline (<code>@key</code>) and bracketed (<code>[@key]</code>) citation styles are supported.</p>
 <div id="fig-ref2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-ref2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="quarto-float quarto-float-fig figure"><div aria-describedby="fig-ref2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/knit_pdf.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ref2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.15: Quarto with reference
-</figcaption>
-</figure>
+</figcaption></figure>
 </div>
 <p>For a hands-on example, download this <a href="data/testquarto.zip" target="_blank">Quarto reference example</a>, unzip the folder, and open the <code>.Rproj</code> file in RStudio.</p>
-</section>
-</section>
-</section>
-<section id="extending-quarto-with-extensions-and-filters" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="extending-quarto-with-extensions-and-filters"><span class="header-section-number">11.6</span> Extending Quarto with extensions and filters</h2>
+</section></section></section><section id="extending-quarto-with-extensions-and-filters" class="level2" data-number="11.6"><h2 data-number="11.6" class="anchored" data-anchor-id="extending-quarto-with-extensions-and-filters">
+<span class="header-section-number">11.6</span> Extending Quarto with extensions and filters</h2>
 <p>Quarto’s core is intentionally lightweight, but it can be extended with <strong>community-built extensions</strong> for advanced customization, automation, and enhanced interactivity.</p>
-<section id="how-it-works-under-the-hood" class="level3" data-number="11.6.1">
-<h3 data-number="11.6.1" class="anchored" data-anchor-id="how-it-works-under-the-hood"><span class="header-section-number">11.6.1</span> How It Works Under the Hood</h3>
+<section id="how-it-works-under-the-hood" class="level3" data-number="11.6.1"><h3 data-number="11.6.1" class="anchored" data-anchor-id="how-it-works-under-the-hood">
+<span class="header-section-number">11.6.1</span> How It Works Under the Hood</h3>
 <ol type="1">
 <li><p>Running <code>quarto add ...</code> downloads the extension into an <code>_extensions/</code> folder at the root of your project.<br>
 → This folder should be committed to version control so collaborators share the same behavior.</p></li>
@@ -969,9 +913,8 @@ Figure&nbsp;11.15: Quarto with reference
 <blockquote class="blockquote">
 <p><strong>Why Lua?</strong> Pandoc’s native filter language is Lua. Lua filters run without external dependencies and offer high performance.</p>
 </blockquote>
-</section>
-<section id="example-one-line-installation" class="level3" data-number="11.6.2">
-<h3 data-number="11.6.2" class="anchored" data-anchor-id="example-one-line-installation"><span class="header-section-number">11.6.2</span> Example: one-line installation</h3>
+</section><section id="example-one-line-installation" class="level3" data-number="11.6.2"><h3 data-number="11.6.2" class="anchored" data-anchor-id="example-one-line-installation">
+<span class="header-section-number">11.6.2</span> Example: one-line installation</h3>
 <div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adds a custom callout filter. The Exercise boxes in this module use it.</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> add coatless-quarto/custom-callout</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A catalog of available extensions along with a short guide on writing your own is available in the <a href="https://quarto.org/docs/extensions/" target="_blank">Quarto Extension Gallery</a>.</p>
@@ -980,10 +923,8 @@ Figure&nbsp;11.15: Quarto with reference
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> webr</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> custom-callout</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Always check the extension’s README for additional setup instructions.</p>
-</section>
-</section>
-<section id="speed-up-your-workflows" class="level2" data-number="11.7">
-<h2 data-number="11.7" class="anchored" data-anchor-id="speed-up-your-workflows"><span class="header-section-number">11.7</span> Speed up your workflows</h2>
+</section></section><section id="speed-up-your-workflows" class="level2" data-number="11.7"><h2 data-number="11.7" class="anchored" data-anchor-id="speed-up-your-workflows">
+<span class="header-section-number">11.7</span> Speed up your workflows</h2>
 <p>Quarto can significantly streamline repetitive reporting tasks. For example, if a client requires daily updates on spatial economic indicators, you can automate the process using Quarto. Instead of manually generating reports, Quarto can compile updated data and visualizations each time the document is rendered.</p>
 <p>For real-time data, <a href="https://www.alphavantage.co/" target="_blank">Alpha Vantage</a> provides financial market data via its <a href="https://www.alphavantage.co/documentation/" target="_blank">Alpha Vantage Rest API</a>. The R package <a href="https://cran.r-project.org/web/packages/alphavantager/index.html" target="_blank"><code>alphavantager</code></a> enables access to this API directly from R.</p>
 <p>This allows you to retrieve real-time stock prices, FX rates, and technical indicators, and integrate them into Quarto reports for automated analysis and visualization.</p>
@@ -1021,9 +962,8 @@ Exercise
 <p>Try enhancing the report with an additional spatial indicator, such as a map displaying exchange rates from national currencies to the Euro.</p>
 </div>
 </div>
-</section>
-<section id="self-study" class="level2" data-number="11.8">
-<h2 data-number="11.8" class="anchored" data-anchor-id="self-study"><span class="header-section-number">11.8</span> Self-study</h2>
+</section><section id="self-study" class="level2" data-number="11.8"><h2 data-number="11.8" class="anchored" data-anchor-id="self-study">
+<span class="header-section-number">11.8</span> Self-study</h2>
 <p>Quarto’s capabilities extend far beyond what we’ve covered in this session. To explore more advanced features, consult the <a href="https://quarto.org/docs/guide/" target="_blank">Quarto Guide</a>.</p>
 <p>Topics include:</p>
 <ul>
@@ -1046,240 +986,243 @@ Note
 </div>
 
 
-</section>
-
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
+</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
+      return false;
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
         }
-        return container.innerHTML
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1287,187 +1230,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
       <a href="./10-data-viz.html" class="pagination-link" aria-label="Data Visualization">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Data Visualization</span></span>
       </a>          
@@ -1476,8 +1393,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
+<footer class="footer"><div class="nav-footer">
     <div class="nav-footer-left">
       &nbsp;
     </div>   
@@ -1489,8 +1405,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-
-
 
 
 <script src="site_libs/quarto-html/zenscroll-min.js"></script>

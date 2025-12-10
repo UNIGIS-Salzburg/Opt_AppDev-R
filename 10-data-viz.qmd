@@ -160,8 +160,10 @@ airquality %>%
     )
   ) +
   
-  ggplot2::xlab("NO2 [mg/m^3]") + # add x-axis label
-  ggplot2::ylab("Count") +        # add y-axis label
+  labs(
+    x = "NO2 [mg/m^3]",           # add x-axis label
+    y = "Count"                    # add y-axis label
+  ) +
   scale_fill_manual(name = "Measurement stations", values = c("grey20", "grey50", "grey80")) + # add legend
   ggplot2::geom_histogram() +   
   ggplot2::theme_bw()            
@@ -180,11 +182,15 @@ So far, we have added two axis labels. Create a new R-Script, download the [inpu
 
 ::: {.exercisebox title="Solution" collapse="true" appearance="simple"}
 
-Insert a title by adding:
+Insert a title by adding it to the `labs()` function:
 
 ```{r, echo=TRUE, eval=FALSE}
     
-ggplot2::ggtitle("Nitrogen dioxide concentration")
+labs(
+  x = "NO2 [mg/m^3]",
+  y = "Count",
+  title = "Nitrogen dioxide concentration"
+)
 
 ```
     
@@ -208,7 +214,7 @@ airquality %>%
       x = value         # map variable 'value' onto x-axis
     )
   ) +
-  ggplot2::xlab("NO2 [mg/m^3]") +
+  labs(x = "NO2 [mg/m^3]") +
   ggplot2::geom_boxplot() +    # define geometry
   ggplot2::theme(
     axis.text.y = element_blank(),    # remove text and ticks from y axis
@@ -228,7 +234,7 @@ The upper **whisker** extends from the hinge to the largest value no further tha
 
 ::: {.exercisebox title="Exercise"}
 
-In our histogram examples, we have mapped the variable ‘station’ onto visual variable `color` to separately visualize measurements of different stations. Try to apply the same approach to render measurements of stations `S125`, `S270` and `S431` separately in a box plot.
+In our histogram examples, we have mapped the variable 'station' onto visual variable `color` to separately visualize measurements of different stations. Try to apply the same approach to render measurements of stations `S125`, `S270` and `S431` separately in a box plot.
 
 See [our solution](Solution_Exercise_boxplots.R){target="_blank"}!  
 
@@ -257,8 +263,10 @@ temp_humidity_joined <- temp_tab %>%
 
 # Create the scatterplot
 ggplot(temp_humidity_joined, aes(x = value.x, y = value.y)) +
-  xlab("Air Temperature [°C]") +
-  ylab("Relative Humidity [%]") +
+  labs(
+    x = "Air Temperature [°C]",
+    y = "Relative Humidity [%]"
+  ) +
   geom_point(color = "blue") +
   geom_smooth(method = lm, color = "red", fill = "#69b3a2", se = TRUE) +
   theme_minimal()          
@@ -309,8 +317,12 @@ nc <- sf::st_read("data/nc.shp")
 # Basic map of North Carolina
 ggplot(data = nc) +
   geom_sf() +
-  xlab("Longitude") + ylab("Latitude") +
-  ggtitle("North Carolina", subtitle = paste0("(", length(unique(nc$NAME)), " counties)"))
+  labs(
+    x = "Longitude",
+    y = "Latitude",
+    title = "North Carolina",
+    subtitle = paste0("(", length(unique(nc$NAME)), " counties)")
+  )
 
 ```
 
@@ -322,8 +334,12 @@ The geometry element `geom_sf` provides a number of arguments to customize the a
 # Map with custom colors
 ggplot(data = nc) + 
   geom_sf(color = "black", fill = "lightgreen") +
-  xlab("Longitude") + ylab("Latitude") +
-  ggtitle("North Carolina", subtitle = paste0("(", length(unique(nc$NAME)), " counties)"))
+  labs(
+    x = "Longitude",
+    y = "Latitude",
+    title = "North Carolina",
+    subtitle = paste0("(", length(unique(nc$NAME)), " counties)")
+  )
 
 ```
 
@@ -334,8 +350,12 @@ Data attributes can be visually represented as well. In this example, the `AREA`
 ggplot(data = nc) +
   geom_sf(aes(fill = AREA)) +
   scale_fill_viridis_c(option = "plasma", trans = "sqrt")  +
-  xlab("Longitude") + ylab("Latitude") +
-  ggtitle("North Carolina", subtitle = paste0("(", length(unique(nc$NAME)), " counties)"))
+  labs(
+    x = "Longitude",
+    y = "Latitude",
+    title = "North Carolina",
+    subtitle = paste0("(", length(unique(nc$NAME)), " counties)")
+  )
 
 ```
 
@@ -346,12 +366,16 @@ The function `coord_sf()` allows you to work with the coordinate system, which i
 ggplot(data = nc) +
   geom_sf() +
   coord_sf(crs = st_crs(32618)) + # Projecting to WGS 84 / UTM zone 18N  
-  xlab("Longitude") + ylab("Latitude") +
-  ggtitle("North Carolina", subtitle = paste0("(", length(unique(nc$NAME)), " counties)"))  
+  labs(
+    x = "Longitude",
+    y = "Latitude",
+    title = "North Carolina",
+    subtitle = paste0("(", length(unique(nc$NAME)), " counties)")
+  )
 
 ```
 
-The extent of the map can also be set in `coord_sf`, in practice allowing to “zoom” in the area of interest, provided by limits on the x-axis (`xlim`), and on the y-axis (`ylim`). The limits are automatically expanded by a fraction to ensure that data and axes do not overlap; it can also be turned off to exactly match the limits provided with `expand = FALSE`:
+The extent of the map can also be set in `coord_sf`, in practice allowing to "zoom" in the area of interest, provided by limits on the x-axis (`xlim`), and on the y-axis (`ylim`). The limits are automatically expanded by a fraction to ensure that data and axes do not overlap; it can also be turned off to exactly match the limits provided with `expand = FALSE`:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE, out.width= '85%', fig.align='center'}
 
@@ -432,8 +456,12 @@ ggplot(data = nc) +
                          style = north_arrow_fancy_orienteering) + 
   scale_fill_viridis_c(trans = "sqrt", alpha = .4) +
   coord_sf(xlim = c(-84.9, -70), ylim = c(24.5, 37), expand = FALSE) +
-  xlab("Longitude") + ylab("Latitude") +
-  ggtitle("US Southeast", subtitle = "(Detail: North Carolina)") +
+  labs(
+    x = "Longitude",
+    y = "Latitude",
+    title = "US Southeast",
+    subtitle = "(Detail: North Carolina)"
+  ) +
   annotate(geom = "text", x = -76.5, y = 30.5, label = "Atlantic Ocean", 
            fontface = "italic", color = "grey22", size = 6) +
   theme(panel.grid.major = element_line(color = gray(0.5), linetype = "dashed", 
@@ -494,4 +522,4 @@ leaflet() %>%
             options = popupOptions(closeButton = TRUE))
 ```
 
-Moreover, Leaflet offers numerous methods and functions for [manipulating the map widget](https://rstudio.github.io/leaflet/map_widget.html){target="_blank"} and integrating [lines and shapes](https://rstudio.github.io/leaflet/shapes.html){target="_blank"}, [GeoJSON](https://rstudio.github.io/leaflet/json.html){target="_blank"} and [Raster Images](https://rstudio.github.io/leaflet/raster.html){target="_blank"}. To get more information on creating interactive maps with R and Leaflet, turn to the [Documentation](https://rstudio.github.io/leaflet/){target="_blank"}.    
+Moreover, Leaflet offers numerous methods and functions for [manipulating the map widget](https://rstudio.github.io/leaflet/map_widget.html){target="_blank"} and integrating [lines and shapes](https://rstudio.github.io/leaflet/shapes.html){target="_blank"}, [GeoJSON](https://rstudio.github.io/leaflet/json.html){target="_blank"} and [Raster Images](https://rstudio.github.io/leaflet/raster.html){target="_blank"}. To get more information on creating interactive maps with R and Leaflet, turn to the [Documentation](https://rstudio.github.io/leaflet/){target="_blank"}.
