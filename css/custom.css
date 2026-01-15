@@ -32,13 +32,13 @@ div.callout-exercisebox > .callout-body {
   background-color: #e6f4ea !important;
 }
 
-/* Collapsible behavior (for 'Solution' callouts) */
-div.callout-collapse.collapse.show {
+/* Collapsible behavior (only for Exercisebox) */
+.callout-exercisebox .callout-collapse.collapse.show {
   background-color: #e6f4ea !important;
   border-left-color: #006847 !important;
 }
 
-div.callout-collapse.collapse {
+.callout-exercisebox .callout-collapse.collapse {
   background-color: #e6f4ea !important;
 }
 
@@ -71,6 +71,48 @@ div.callout-assignmentbox.callout-titled .callout-icon::before {
 div.callout-assignmentbox > .callout-header,
 div.callout-assignmentbox > .callout-body {
   background-color: #FFE6E6 !important;
+}
+
+/* ---------------------------------------------
+   Custom Callout: Collapsebox
+   --------------------------------------------- */
+
+/* Main container */
+.callout-collapsebox {
+  border-left-color: #B0B0B0 !important; /* Light grey */
+  background-color: #F7F7F7 !important; /* Light grey background */
+}
+
+/* Header and body styling */
+div.callout-collapsebox > .callout-header,
+div.callout-collapsebox > .callout-body {
+  background-color: #F7F7F7 !important;
+}
+
+/* Title styling for all collapsebox variants */
+.callout-collapsebox .callout-header .callout-title-container {
+  font-weight: normal !important;
+  /* font-style: italic; */ /* Optional */
+}
+
+/* Collapsible behavior */
+.callout-collapsebox .callout-collapse.collapse.show {
+  background-color: #F7F7F7 !important;
+  border-left-color: #B0B0B0 !important;
+}
+
+.callout-collapsebox .callout-collapse.collapse {
+  background-color: #F7F7F7 !important;
+}
+
+/* Remove icon from collapsible callouts with simple style */
+div.callout.callout-collapsebox.callout-style-simple .callout-icon-container {
+  display: none;
+}
+
+/* Keep consistent padding rules for all titled simple boxes */
+div.callout:not(.no-icon).callout-titled.callout-style-simple .callout-body {
+  padding-left: 0;
 }
 
 /* ---------------------------------------------

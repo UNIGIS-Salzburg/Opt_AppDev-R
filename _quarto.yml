@@ -69,6 +69,10 @@ custom-callout:
     icon: true
   assignmentbox:
     icon: true
+  collapsebox:
+    icon: false
+    collapse: true
+    appearance: minimal
 
 editor: source
 lang: en
