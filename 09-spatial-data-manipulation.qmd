@@ -49,14 +49,22 @@ library(sf)
 full_url <- "https://gis.lfrz.gv.at/api/geodata/i009501/ogc/features/v1/collections/i009501:invekos_feldstuecke_2024_1/items?f=json&bbox=14,48,14.02,48.02"
 
 # Make the request and convert the response to an sf object
-invekos <- request(full_url) %>%   # Create request
-  req_perform() %>%                # Execute request
-  resp_body_string() %>%           # Extract JSON body as string
-  geojsonsf::geojson_sf()          # Convert JSON string to sf object
+invekos <- request(full_url) %>%    # Create request
+  req_perform() %>%                 # Execute request
+  resp_body_string() %>%            # Extract JSON body as string
+  geojsonsf::geojson_sf() %>%       # Convert JSON string to sf object
+  st_transform(31287)               # Reproject to MGI / Austria Lambert (EPSG:31287)
 
 ```
 
 The above code retrieves polygon features within the specified bounding box and stores them in an object named `invekos`.
+
+::: callout-note
+GeoJSON is always encoded in WGS84 / EPSG:4326, per the GeoJSON specification, 
+regardless of the source dataset's native CRS. That's why we explicitly reproject 
+to EPSG:31287 (Austria's official projected CRS) immediately after loading, so 
+that later distance and area calculations return meters rather than degrees.
+:::
 
 ## Data Cleaning
 
@@ -208,7 +216,8 @@ farms_url <- "https://gis.lfrz.gv.at/api/geodata/i009501/ogc/features/v1/collect
 farms <- httr2::request(farms_url) %>%   # Create request
   httr2::req_perform() %>%               # Execute request
   httr2::resp_body_string() %>%          # Extract JSON body as string
-  geojsonsf::geojson_sf()                # Convert JSON string to sf object
+  geojsonsf::geojson_sf() %>%            # Convert JSON string to sf object
+  st_transform(31287)                    # Reproject to MGI / Austria Lambert (EPSG:31287)
 
 # Plot land parcels with farm points overlayed
 plot(invekos.sub[1], main = NULL, key.pos = NULL, reset = FALSE, col_graticule = "grey")
@@ -230,9 +239,14 @@ The `st_distance` function calculates the shortest distance matrix between the g
 
 ::: {.exercisebox title="Exercise"}
 
-Distances are computed in meters, which may seem unexpected since the reference system's units are in degrees. To understand the underlying calculations, examine the coordinate reference system of the `sf` objects `farms` and `invekos.sub` using `sf::st_crs()`. This will reveal that objects use a projected coordinate system (EPSG:31287), which allows for metric distance calculations.
+Distances are computed in meters. To understand why, examine the coordinate 
+reference system of the `sf` objects `farms` and `invekos.sub` using `sf::st_crs()`. 
+This confirms that both objects were reprojected to EPSG:31287 (a projected CRS) 
+earlier in the workflow, which is what allows `st_distance()` to compute planar, 
+metric distances directly.
 
-In this short exercise, we will take a closer look at the algorithm that is implemented in the function `st_distance`.
+In this short exercise, we will take a closer look at the algorithm that is 
+implemented in the function `st_distance`.
 
 Open the [documentation of `st_distance`](https://r-spatial.github.io/sf/reference/geos_measures.html){target="_blank"} to find out how metric distances are derived from geographic coordinates.
 
@@ -241,6 +255,8 @@ Open the [documentation of `st_distance`](https://r-spatial.github.io/sf/referen
 ::: {.exercisebox title="Solution" collapse="true" appearance="simple"}
 
 According to the documentation, metric distances are computed based on the Coordinate Reference System (CRS) of the `sf` objects. Since both `farms` and `invekos.sub` use **EPSG:31287** (a projected CRS), the `st_distance` function calculates planar (Euclidean) distances in meters. This is possible because projected CRSs preserve distance relationships locally, unlike geographic CRSs which use degrees.
+
+Note: had the data been left in EPSG:4326, `st_distance()` would still have returned meters, since sf defaults to the s2 spherical geometry engine for unprojected long/lat data. However, the calculation would then be a geodesic/great-circle distance rather than the planar Euclidean distance shown here.
 
 For more detailed information on distance calculations, refer to [Algorithms for geodesics, Journal of Geodesy](https://link.springer.com/article/10.1007/s00190-012-0578-z){target="_blank"}.
 

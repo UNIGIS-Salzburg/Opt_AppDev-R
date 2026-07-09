@@ -2,10 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>9&nbsp; Spatial Data Manipulation – Automated Data Processing with R</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -69,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b14b9a422f3e857722ce30adfbcf52b7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-ab8559c41e78ecb6495d4dabffa8efa4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -119,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="https://unigis.at/" class="sidebar-logo-link">
-      <img src="./branding/UNIGIS_Salzburg_Schriftlogo_v05.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="./branding/UNIGIS_Salzburg_Schriftlogo_v05.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="./branding/UNIGIS_Salzburg_Schriftlogo_v05.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Automated Data Processing with R</a> 
     </div>
@@ -277,7 +280,7 @@ Note
 <p>For a visual representation of the bounding box, enter the coordinates <code>14,48,14.02,48.02</code> into <a href="https://linestrings.com/bbox/" target="_blank">linestrings.com</a> and click “Display box”.</p>
 <p>To execute the request in R, use the following script:</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr2.r-lib.org">httr2</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://httr2.r-lib.org">httr2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/SymbolixAU/geojsonsf">geojsonsf</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
 <span></span>
@@ -285,23 +288,37 @@ Note
 <span><span class="va">full_url</span> <span class="op">&lt;-</span> <span class="st">"https://gis.lfrz.gv.at/api/geodata/i009501/ogc/features/v1/collections/i009501:invekos_feldstuecke_2024_1/items?f=json&amp;bbox=14,48,14.02,48.02"</span></span>
 <span></span>
 <span><span class="co"># Make the request and convert the response to an sf object</span></span>
-<span><span class="va">invekos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://httr2.r-lib.org/reference/request.html">request</a></span><span class="op">(</span><span class="va">full_url</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>   <span class="co"># Create request</span></span>
-<span>  <span class="fu"><a href="https://httr2.r-lib.org/reference/req_perform.html">req_perform</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                <span class="co"># Execute request</span></span>
-<span>  <span class="fu"><a href="https://httr2.r-lib.org/reference/resp_body_raw.html">resp_body_string</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>           <span class="co"># Extract JSON body as string</span></span>
-<span>  <span class="fu">geojsonsf</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geojsonsf/man/geojson_sf.html">geojson_sf</a></span><span class="op">(</span><span class="op">)</span>          <span class="co"># Convert JSON string to sf object</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="va">invekos</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://httr2.r-lib.org/reference/request.html">request</a></span><span class="op">(</span><span class="va">full_url</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>    <span class="co"># Create request</span></span>
+<span>  <span class="fu"><a href="https://httr2.r-lib.org/reference/req_perform.html">req_perform</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>                 <span class="co"># Execute request</span></span>
+<span>  <span class="fu"><a href="https://httr2.r-lib.org/reference/resp_body_raw.html">resp_body_string</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>            <span class="co"># Extract JSON body as string</span></span>
+<span>  <span class="fu">geojsonsf</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geojsonsf/man/geojson_sf.html">geojson_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>       <span class="co"># Convert JSON string to sf object</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="fl">31287</span><span class="op">)</span>               <span class="co"># Reproject to MGI / Austria Lambert (EPSG:31287)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The above code retrieves polygon features within the specified bounding box and stores them in an object named <code>invekos</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>GeoJSON is always encoded in WGS84 / EPSG:4326, per the GeoJSON specification, regardless of the source dataset’s native CRS. That’s why we explicitly reproject to EPSG:31287 (Austria’s official projected CRS) immediately after loading, so that later distance and area calculations return meters rather than degrees.</p>
+</div>
+</div>
 </section><section id="data-cleaning" class="level2" data-number="9.2"><h2 data-number="9.2" class="anchored" data-anchor-id="data-cleaning">
 <span class="header-section-number">9.2</span> Data Cleaning</h2>
 <p>Once the data is loaded into R, we can more closely examine its structure. The <code>dplyr</code> function <code>glimpse</code>, for instance, allows us to preview each column’s name and type:</p>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
-<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">invekos</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></span>
+<span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">invekos</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 100
 Columns: 15
 $ fart_id           &lt;dbl&gt; 1822, 1822, 1822, 1822, 1822, 1822, 1822, 1822, 1822…
-$ gml_geom          &lt;chr&gt; "[B@6320a1f2", "[B@510ac916", "[B@3a6717a1", "[B@2d6…
+$ gml_geom          &lt;chr&gt; "[B@19e446b1", "[B@7a561a68", "[B@6b344c5e", "[B@280…
 $ gml_length        &lt;dbl&gt; 1086, 883, 786, 1599, 482, 718, 1432, 1094, 884, 116…
 $ geom_date_created &lt;chr&gt; "2022-10-01T05:56:50+02:00", "2022-10-01T05:56:50+02…
 $ log_pkey          &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3…
@@ -314,7 +331,7 @@ $ inspire_id        &lt;chr&gt; "https://data.inspire.gv.at/0095/33078dd6-05e0-4
 $ fnar_bezeichnung  &lt;chr&gt; "ACKERLAND", "ACKERLAND", "GRÜNLAND", "ACKERLAND", "…
 $ fs_flaeche_ha     &lt;dbl&gt; 1.52789444, 1.76240452, 0.20852359, 7.88961123, 0.02…
 $ geo_id            &lt;dbl&gt; 12316762, 12316764, 12316768, 12301276, 12301279, 12…
-$ geometry          &lt;POLYGON [°]&gt; POLYGON ((14.01608 48.00954..., POLYGON ((14…</code></pre>
+$ geometry          &lt;POLYGON [m]&gt; POLYGON ((450982.7 456914.3..., POLYGON ((45…</code></pre>
 </div>
 </div>
 <blockquote class="blockquote">
@@ -322,12 +339,12 @@ $ geometry          &lt;POLYGON [°]&gt; POLYGON ((14.01608 48.00954..., POLYGON
 </blockquote>
 <p>To create a subset of the <code>invekos</code> sf-object, use the following code:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">invekos</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">invekos</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">fnar_bezeichnung</span>, <span class="va">fs_flaeche_ha</span>, <span class="va">geo_id</span>, <span class="va">geometry</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">.</span>, format<span class="op">=</span><span class="st">"html"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">.</span>, format<span class="op">=</span><span class="st">"html"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="caption-top table table-sm table-striped small">
 <thead><tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">fnar_bezeichnung</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">fs_flaeche_ha</th>
@@ -339,13 +356,13 @@ $ geometry          &lt;POLYGON [°]&gt; POLYGON ((14.01608 48.00954..., POLYGON
 <td style="text-align: left;">ACKERLAND</td>
 <td style="text-align: right;">1.527894</td>
 <td style="text-align: right;">12316762</td>
-<td style="text-align: left;">POLYGON ((14.01608 48.00954...</td>
+<td style="text-align: left;">POLYGON ((450982.7 456914.3...</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ACKERLAND</td>
 <td style="text-align: right;">1.762404</td>
 <td style="text-align: right;">12316764</td>
-<td style="text-align: left;">POLYGON ((14.01608 48.00931...</td>
+<td style="text-align: left;">POLYGON ((450983 456889, 45...</td>
 </tr>
 </tbody>
 </table>
@@ -353,31 +370,31 @@ $ geometry          &lt;POLYGON [°]&gt; POLYGON ((14.01608 48.00954..., POLYGON
 </div>
 <p>Field names and entries are in German. To rename them, use the base R function <code><a href="https://rdrr.io/r/base/colnames.html">colnames()</a></code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Subset of invekos object</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Subset of invekos object</span></span>
 <span><span class="va">invekos.sub</span> <span class="op">&lt;-</span> <span class="va">invekos</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">fnar_bezeichnung</span>, <span class="va">fs_flaeche_ha</span>, <span class="va">geo_id</span>, <span class="va">geometry</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Renaming fields</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">invekos.sub</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"land_use"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">invekos.sub</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"area_ha"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">invekos.sub</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"area_ha"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Entries are renamed using <code>dplyr</code>’s <code>mutate</code> and <code>case_when</code> functions:</p>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">invekos.sub</span><span class="op">$</span><span class="va">land_use</span><span class="op">)</span>  <span class="co"># Unique entries in 'land_use'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">invekos.sub</span><span class="op">$</span><span class="va">land_use</span><span class="op">)</span>  <span class="co"># Unique entries in 'land_use'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "ACKERLAND" "GRÜNLAND" </code></pre>
 </div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Renaming entries 'ACKERLAND' and 'GRÜNLAND'</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Renaming entries 'ACKERLAND' and 'GRÜNLAND'</span></span>
 <span><span class="va">invekos.sub</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span><span class="va">invekos.sub</span>, land_use <span class="op">=</span> </span>
-<span>                               <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span><span class="va">land_use</span> <span class="op">==</span> <span class="st">'ACKERLAND'</span> <span class="op">~</span> <span class="st">'arable land'</span>,</span>
+<span>                               <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case-and-replace-when.html">case_when</a></span><span class="op">(</span><span class="va">land_use</span> <span class="op">==</span> <span class="st">'ACKERLAND'</span> <span class="op">~</span> <span class="st">'arable land'</span>,</span>
 <span>                               <span class="va">land_use</span> <span class="op">==</span> <span class="st">'GRÜNLAND'</span> <span class="op">~</span> <span class="st">'grassland'</span>, <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">'Other'</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Display result</span></span>
 <span><span class="va">invekos.sub</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">.</span>, format<span class="op">=</span><span class="st">"html"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">.</span>, format<span class="op">=</span><span class="st">"html"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table class="caption-top table table-sm table-striped small">
 <thead><tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">land_use</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">area_ha</th>
@@ -389,13 +406,13 @@ $ geometry          &lt;POLYGON [°]&gt; POLYGON ((14.01608 48.00954..., POLYGON
 <td style="text-align: left;">arable land</td>
 <td style="text-align: right;">1.527894</td>
 <td style="text-align: right;">12316762</td>
-<td style="text-align: left;">POLYGON ((14.01608 48.00954...</td>
+<td style="text-align: left;">POLYGON ((450982.7 456914.3...</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">arable land</td>
 <td style="text-align: right;">1.762404</td>
 <td style="text-align: right;">12316764</td>
-<td style="text-align: left;">POLYGON ((14.01608 48.00931...</td>
+<td style="text-align: left;">POLYGON ((450983 456889, 45...</td>
 </tr>
 </tbody>
 </table>
@@ -403,7 +420,7 @@ $ geometry          &lt;POLYGON [°]&gt; POLYGON ((14.01608 48.00954..., POLYGON
 </div>
 <p>For an initial visual impression, plot the sf-object using the base R <code><a href="https://rspatial.github.io/terra/reference/plot.html">plot()</a></code> function:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">invekos.sub</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, main<span class="op">=</span><span class="st">"Land Use"</span>, key.pos <span class="op">=</span> <span class="fl">1</span>, key.width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/layout.html">lcm</a></span><span class="op">(</span><span class="fl">1.8</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">invekos.sub</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, main<span class="op">=</span><span class="st">"Land Use"</span>, key.pos <span class="op">=</span> <span class="fl">1</span>, key.width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/layout.html">lcm</a></span><span class="op">(</span><span class="fl">1.8</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="09-spatial-data-manipulation_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
@@ -414,8 +431,8 @@ $ geometry          &lt;POLYGON [°]&gt; POLYGON ((14.01608 48.00954..., POLYGON
 <p>By default, the <code><a href="https://rspatial.github.io/terra/reference/plot.html">plot()</a></code> function generates a multi-panel plot, with one sub-plot for each field of the object. However, specifying <code>invekos.sub[1]</code> restricts the output to a single plot, specifically showcasing the <code>land_use</code> field. The function parameter <code>key.pos = 1</code> aligns the legend below the map (1=below, 2=left, 3=above and 4=right). <code>key.width</code> defines the width of the legend.</p>
 <p>Next, we can validate the geometry of sf polygons using <code>st_is_valid</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/valid.html">st_is_valid</a></span><span class="op">(</span><span class="va">invekos</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/valid.html">st_is_valid</a></span><span class="op">(</span><span class="va">invekos</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Mode    TRUE 
 logical     100 </code></pre>
@@ -428,7 +445,7 @@ logical     100 </code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exercise
+<span class="screen-reader-only">Exercisebox</span>Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -436,7 +453,7 @@ Exercise
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Coordinates for the polygon</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Coordinates for the polygon</span></span>
 <span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># List of coordinate matrices</span></span>
@@ -449,26 +466,26 @@ Exercise
 <span><span class="va">error_sf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf.html">st_sf</a></span><span class="op">(</span>geometry <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html">st_sfc</a></span><span class="op">(</span><span class="va">polygon</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Validity check</span></span>
-<span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/valid.html">st_is_valid</a></span><span class="op">(</span><span class="va">error_sf</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/valid.html">st_is_valid</a></span><span class="op">(</span><span class="va">error_sf</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
 </div>
 <div class="callout callout-style-simple callout-exercisebox callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Solution
+<span class="screen-reader-only">Exercisebox</span>Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>When plotted, the polygon reveals a <a href="https://en.wikipedia.org/wiki/Sliver_polygon" target="_blank">sliver polygon</a>, which is invalid due to its shape.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">error_sf</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">error_sf</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="09-spatial-data-manipulation_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
@@ -488,9 +505,9 @@ Solution
 <p>The structure of an <code>sf</code> object is similar to that of data frames, enabling attribute-based filtering operations using <code>dplyr</code> functions, as described in Lesson <a href="07-data-manipulation.html" target="_blank">Data Manipulation</a>.</p>
 <p>For example, to extract grassland parcels, the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function is used:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">invekos.sub</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">invekos.sub</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">land_use</span><span class="op">==</span><span class="st">'grassland'</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">.</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, main<span class="op">=</span><span class="st">"Land Use"</span>, key.pos <span class="op">=</span> <span class="fl">1</span>, key.width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/layout.html">lcm</a></span><span class="op">(</span><span class="fl">1.8</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">.</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, main<span class="op">=</span><span class="st">"Land Use"</span>, key.pos <span class="op">=</span> <span class="fl">1</span>, key.width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/layout.html">lcm</a></span><span class="op">(</span><span class="fl">1.8</span><span class="op">)</span><span class="op">)</span><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="09-spatial-data-manipulation_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
@@ -505,7 +522,7 @@ Solution
 <span class="header-section-number">9.3.1</span> Geometrical operations</h3>
 <p>The <code>sf</code> package provides a range of geometric predicates such as <code>st_within</code>, <code>st_contains</code>, or <code>st_crosses</code>. A complete list is available <a href="https://r-spatial.github.io/sf/reference/geos_binary_pred.html" target="_blank">here</a>. While these functions are often used between pairs of simple feature geometry sets, they can also operate on a single <code>sf</code> object:</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_binary_pred.html">st_intersects</a></span><span class="op">(</span><span class="va">invekos.sub</span>, sparse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_binary_pred.html">st_intersects</a></span><span class="op">(</span><span class="va">invekos.sub</span>, sparse <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Sparse geometry binary predicate list of length 100, where the
 predicate was `intersects'
@@ -527,18 +544,19 @@ first 10 elements:
 <span class="header-section-number">9.3.2</span> Binary operations</h3>
 <p>Binary operations are essential for analyzing spatial relationships between different datasets. Here, we demonstrate this by creating an <code>sf</code> object representing farmsteads using data from the <a href="https://gis.lfrz.gv.at/api/geodata/i009501/ogc/features/v1/collections?f=text%2Fhtml" target="_blank">AMA Rest API service</a>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Define the new API endpoint for farmsteads</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Define the new API endpoint for farmsteads</span></span>
 <span><span class="va">farms_url</span> <span class="op">&lt;-</span> <span class="st">"https://gis.lfrz.gv.at/api/geodata/i009501/ogc/features/v1/collections/i009501:invekos_hofstellen_2024_1/items?f=json&amp;bbox=14,48,14.02,48.02&amp;limit=100"</span></span>
 <span></span>
 <span><span class="co"># Make the request and convert the response to an sf object</span></span>
 <span><span class="va">farms</span> <span class="op">&lt;-</span> <span class="fu">httr2</span><span class="fu">::</span><span class="fu"><a href="https://httr2.r-lib.org/reference/request.html">request</a></span><span class="op">(</span><span class="va">farms_url</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>   <span class="co"># Create request</span></span>
 <span>  <span class="fu">httr2</span><span class="fu">::</span><span class="fu"><a href="https://httr2.r-lib.org/reference/req_perform.html">req_perform</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>               <span class="co"># Execute request</span></span>
 <span>  <span class="fu">httr2</span><span class="fu">::</span><span class="fu"><a href="https://httr2.r-lib.org/reference/resp_body_raw.html">resp_body_string</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>          <span class="co"># Extract JSON body as string</span></span>
-<span>  <span class="fu">geojsonsf</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geojsonsf/man/geojson_sf.html">geojson_sf</a></span><span class="op">(</span><span class="op">)</span>                <span class="co"># Convert JSON string to sf object</span></span>
+<span>  <span class="fu">geojsonsf</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/geojsonsf/man/geojson_sf.html">geojson_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>            <span class="co"># Convert JSON string to sf object</span></span>
+<span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="fl">31287</span><span class="op">)</span>                    <span class="co"># Reproject to MGI / Austria Lambert (EPSG:31287)</span></span>
 <span></span>
 <span><span class="co"># Plot land parcels with farm points overlayed</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">invekos.sub</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, main <span class="op">=</span> <span class="cn">NULL</span>, key.pos <span class="op">=</span> <span class="cn">NULL</span>, reset <span class="op">=</span> <span class="cn">FALSE</span>, col_graticule <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">farms</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, main <span class="op">=</span> <span class="cn">NULL</span>, key.pos <span class="op">=</span> <span class="cn">NULL</span>, pch <span class="op">=</span> <span class="fl">7</span>, col <span class="op">=</span> <span class="st">'red'</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, cex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">farms</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, main <span class="op">=</span> <span class="cn">NULL</span>, key.pos <span class="op">=</span> <span class="cn">NULL</span>, pch <span class="op">=</span> <span class="fl">7</span>, col <span class="op">=</span> <span class="st">'red'</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, cex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="09-spatial-data-manipulation_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
@@ -551,7 +569,7 @@ first 10 elements:
 </blockquote>
 <p>We proceed to calculate the distances between farms and land parcels to determine proximity:</p>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dist_m</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_distance</a></span><span class="op">(</span><span class="va">farms</span>, <span class="va">invekos.sub</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dist_m</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_distance</a></span><span class="op">(</span><span class="va">farms</span>, <span class="va">invekos.sub</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The <code>st_distance</code> function calculates the shortest distance matrix between the geometries of the two <code>sf</code> objects, with distances returned in meters.</p>
 <div class="callout callout-style-default callout-exercisebox callout-titled">
@@ -560,28 +578,29 @@ first 10 elements:
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exercise
+<span class="screen-reader-only">Exercisebox</span>Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Distances are computed in meters, which may seem unexpected since the reference system’s units are in degrees. To understand the underlying calculations, examine the coordinate reference system of the <code>sf</code> objects <code>farms</code> and <code>invekos.sub</code> using <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html">sf::st_crs()</a></code>. This will reveal that objects use a projected coordinate system (EPSG:31287), which allows for metric distance calculations.</p>
+<p>Distances are computed in meters. To understand why, examine the coordinate reference system of the <code>sf</code> objects <code>farms</code> and <code>invekos.sub</code> using <code><a href="https://r-spatial.github.io/sf/reference/st_crs.html">sf::st_crs()</a></code>. This confirms that both objects were reprojected to EPSG:31287 (a projected CRS) earlier in the workflow, which is what allows <code><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_distance()</a></code> to compute planar, metric distances directly.</p>
 <p>In this short exercise, we will take a closer look at the algorithm that is implemented in the function <code>st_distance</code>.</p>
 <p>Open the <a href="https://r-spatial.github.io/sf/reference/geos_measures.html" target="_blank">documentation of <code>st_distance</code></a> to find out how metric distances are derived from geographic coordinates.</p>
 </div>
 </div>
 <div class="callout callout-style-simple callout-exercisebox callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Solution
+<span class="screen-reader-only">Exercisebox</span>Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>According to the documentation, metric distances are computed based on the Coordinate Reference System (CRS) of the <code>sf</code> objects. Since both <code>farms</code> and <code>invekos.sub</code> use <strong>EPSG:31287</strong> (a projected CRS), the <code>st_distance</code> function calculates planar (Euclidean) distances in meters. This is possible because projected CRSs preserve distance relationships locally, unlike geographic CRSs which use degrees.</p>
+<p>Note: had the data been left in EPSG:4326, <code><a href="https://r-spatial.github.io/sf/reference/geos_measures.html">st_distance()</a></code> would still have returned meters, since sf defaults to the s2 spherical geometry engine for unprojected long/lat data. However, the calculation would then be a geodesic/great-circle distance rather than the planar Euclidean distance shown here.</p>
 <p>For more detailed information on distance calculations, refer to <a href="https://link.springer.com/article/10.1007/s00190-012-0578-z" target="_blank">Algorithms for geodesics, Journal of Geodesy</a>.</p>
 </div>
 </div>
@@ -589,16 +608,16 @@ Solution
 <p>When plotting the complete distance matrix <code>dist_m</code>, we see that column 1 contains the distances between the first feature (parcel 1) in the <code>invekos.sub</code> <code>sf</code> object and the 100 farm features of the farms sf object. Accordingly, the matrix has 100 columns (one for every parcel) and 100 rows (one for every farm).</p>
 <p>The following line returns the first column of the distance matrix as a vector:</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dist_m</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">dist_m</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Units: [m]
- [1]  143.1406  813.3666  825.8695  211.4067 1360.1150  964.9589  804.7171
- [8] 1025.2758  204.4024  810.4991  898.8973</code></pre>
+ [1]  143.0920  814.0919  826.3372  211.3395 1362.5119  967.5402  805.3367
+ [8] 1024.9511  204.3396  811.6411  899.6002</code></pre>
 </div>
 </div>
 <p>To identify the farm that is located closest to parcel 1, we need to query the index of the minimum value in this vector:</p>
 <div class="cell">
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">dist_m</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">dist_m</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">dist_m</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">dist_m</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
@@ -609,7 +628,7 @@ Solution
 <p><strong>Approach 1: Dynamic Loop Using <code>ncol(dist_m)</code></strong></p>
 <p>This method dynamically adjusts the loop to the number of parcels by using <code>ncol(dist_m)</code>. It’s flexible and scalable, making it suitable for datasets where the number of parcels may change.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Approach 1: Dynamic Loop Using ncol(dist_m)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Approach 1: Dynamic Loop Using ncol(dist_m)</span></span>
 <span><span class="va">closest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">dist_m</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
@@ -623,7 +642,7 @@ Solution
 <span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">invekos.sub</span>, <span class="va">closest</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">.</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>, main <span class="op">=</span> <span class="cn">NULL</span>, key.pos <span class="op">=</span> <span class="cn">NULL</span>, reset <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">}</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">farms</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, main <span class="op">=</span> <span class="cn">NULL</span>, key.pos <span class="op">=</span> <span class="cn">NULL</span>, pch <span class="op">=</span> <span class="fl">7</span>, col <span class="op">=</span> <span class="st">'red'</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, cex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">farms</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, main <span class="op">=</span> <span class="cn">NULL</span>, key.pos <span class="op">=</span> <span class="cn">NULL</span>, pch <span class="op">=</span> <span class="fl">7</span>, col <span class="op">=</span> <span class="st">'red'</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, cex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="09-spatial-data-manipulation_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
@@ -634,7 +653,7 @@ Solution
 <p><strong>Approach 2: Fixed Loop Using a Hardcoded Value (e.g., 100)</strong></p>
 <p>This method uses a fixed number of iterations (100) based on prior knowledge of the dataset size. It’s simpler but less flexible, as it requires manual adjustment if the number of parcels changes.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Approach 2: Fixed Loop Using a Hardcoded Value (e.g., 100)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Approach 2: Fixed Loop Using a Hardcoded Value (e.g., 100)</span></span>
 <span><span class="va">closest</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span><span class="op">{</span></span>
@@ -648,7 +667,7 @@ Solution
 <span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">invekos.sub</span>, <span class="va">closest</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">.</span><span class="op">[</span><span class="fl">4</span><span class="op">]</span>, main <span class="op">=</span> <span class="cn">NULL</span>, key.pos <span class="op">=</span> <span class="cn">NULL</span>, reset <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">}</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">farms</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, main <span class="op">=</span> <span class="cn">NULL</span>, key.pos <span class="op">=</span> <span class="cn">NULL</span>, pch <span class="op">=</span> <span class="fl">7</span>, col <span class="op">=</span> <span class="st">'red'</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, cex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">farms</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, main <span class="op">=</span> <span class="cn">NULL</span>, key.pos <span class="op">=</span> <span class="cn">NULL</span>, pch <span class="op">=</span> <span class="fl">7</span>, col <span class="op">=</span> <span class="st">'red'</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, cex <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="09-spatial-data-manipulation_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
@@ -681,10 +700,10 @@ Note
 <p>Resampling is crucial for working with raster datasets. It alters the spatial resolution, allowing you to align multiple rasters with different resolutions. Additionally, it adjusts the level of detail necessary for your analysis.</p>
 <p>Let’s demonstrate resampling with the <code>terra</code> sample dataset:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/">terra</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/">terra</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/rast.html">rast</a></span><span class="op">(</span><span class="st">"data/terra_sample.tif"</span><span class="op">)</span> <span class="co"># path may be different on your machine</span></span>
-<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">r</span>, main<span class="op">=</span><span class="st">'SpatRaster from file'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">r</span>, main<span class="op">=</span><span class="st">'SpatRaster from file'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="09-spatial-data-manipulation_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
@@ -694,25 +713,25 @@ Note
 </div>
 <p>Before we change the raster resolution of <code>SpatRaster Object</code>, it is important to know the original resolution of the raster. You can use the <code><a href="https://rspatial.github.io/terra/reference/dimensions.html">res()</a></code> function to check the original resolution:</p>
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html">res</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html">res</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 40 40</code></pre>
 </div>
 </div>
 <p>For resampling, we’ll create a target raster by copying the original and setting a new resolution:</p>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r2</span> <span class="op">&lt;-</span> <span class="va">r</span></span>
-<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html">res</a></span><span class="op">(</span><span class="va">r2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">80</span> <span class="co"># Assigning a new resolution of 80x80</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r2</span> <span class="op">&lt;-</span> <span class="va">r</span></span>
+<span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html">res</a></span><span class="op">(</span><span class="va">r2</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">80</span> <span class="co"># Assigning a new resolution of 80x80</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Although this operation clears the raster values, <code>r2</code> can still be used as a target for resampling:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r_resampled</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">r2</span>, method<span class="op">=</span><span class="st">"bilinear"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r_resampled</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/resample.html">resample</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">r2</span>, method<span class="op">=</span><span class="st">"bilinear"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html">res</a></span><span class="op">(</span><span class="va">r2</span><span class="op">)</span> <span class="co"># Verify the new resolution</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/dimensions.html">res</a></span><span class="op">(</span><span class="va">r2</span><span class="op">)</span> <span class="co"># Verify the new resolution</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 80 80</code></pre>
 </div>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">r_resampled</span>, main<span class="op">=</span><span class="st">'Resampled 80x80'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">r_resampled</span>, main<span class="op">=</span><span class="st">'Resampled 80x80'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="09-spatial-data-manipulation_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
@@ -726,16 +745,16 @@ Note
 <p>Raster cropping allows you to select a specific area from a larger raster dataset for targeted analysis. Both <code>SpatRaster</code> and <code>SpatExtent</code> objects can be utilized for cropping operations.</p>
 <p>To derive an extent from a <code>SpatRaster</code>, the <code>ext</code> function is used:</p>
 <div class="cell">
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/ext.html">ext</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/ext.html">ext</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>SpatExtent : 178400, 181600, 329400, 334000 (xmin, xmax, ymin, ymax)</code></pre>
 </div>
 </div>
 <p>The output format is <code>&lt;xmin, xmax, ymin, ymax&gt;</code>. Knowing this, we can define a cropping extent and apply it using the <code>crop</code> function:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">crop_ext</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/ext.html">ext</a></span><span class="op">(</span><span class="fl">180000</span>, <span class="fl">180200</span>, <span class="fl">331000</span>, <span class="fl">331250</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">crop_ext</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/ext.html">ext</a></span><span class="op">(</span><span class="fl">180000</span>, <span class="fl">180200</span>, <span class="fl">331000</span>, <span class="fl">331250</span><span class="op">)</span></span>
 <span><span class="va">subset_r</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/crop.html">crop</a></span><span class="op">(</span><span class="va">r</span>, <span class="va">crop_ext</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">subset_r</span>, main<span class="op">=</span><span class="st">'Subset of r'</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">subset_r</span>, main<span class="op">=</span><span class="st">'Subset of r'</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="09-spatial-data-manipulation_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
@@ -749,14 +768,14 @@ Note
 <p><code>Terra</code> provides functionality for algebraic operations on rasters, supporting standard arithmetic and logical operators, and functions like <code>abs</code> and <code>round</code>. For a full list, visit the <a href="https://rspatial.org/pkg/4-algebra.html" target="_blank">terra algebra documentation</a>.</p>
 <p>Here’s how you can perform some simple operations:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Add a constant value to each cell</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Add a constant value to each cell</span></span>
 <span><span class="va">s</span> <span class="op">&lt;-</span> <span class="va">r</span> <span class="op">+</span> <span class="fl">10</span></span>
 <span><span class="co"># Calculate the square root of cell values</span></span>
 <span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span>
 <span><span class="co"># Generate a logical raster based on cell value equality</span></span>
 <span><span class="va">s1</span> <span class="op">&lt;-</span> <span class="va">s</span> <span class="op">==</span> <span class="fl">15</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">s1</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="09-spatial-data-manipulation_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
@@ -767,8 +786,8 @@ Note
 <p>Operators can be applied between <code>SpatRaster</code> objects with matching resolutions and origins. The result covers their spatial intersection.</p>
 <p>You can also perform in-place replacements:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r</span><span class="op">[</span><span class="va">r</span> <span class="op">==</span> <span class="fl">255</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">2550</span></span>
-<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">r</span><span class="op">[</span><span class="va">r</span> <span class="op">==</span> <span class="fl">255</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">2550</span></span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html">plot</a></span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="09-spatial-data-manipulation_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
@@ -844,13 +863,14 @@ Note
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

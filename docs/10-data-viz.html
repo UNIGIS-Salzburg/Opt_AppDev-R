@@ -2,10 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>10&nbsp; Data Visualization – Automated Data Processing with R</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -69,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b14b9a422f3e857722ce30adfbcf52b7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-ab8559c41e78ecb6495d4dabffa8efa4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
@@ -99,11 +102,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script><style>html{ scroll-behavior: smooth; }</style>
-<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<link href="site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
 <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script><script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet">
 <script src="site_libs/leaflet-1.3.1/leaflet.js"></script><link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet">
 <script src="site_libs/proj4-2.6.2/proj4.min.js"></script><script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script><link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet">
-<script src="site_libs/leaflet-binding-2.2.3/leaflet.js"></script><script src="site_libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script><script src="site_libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script><link rel="stylesheet" href="css/custom.css">
+<script src="site_libs/leaflet-binding-2.2.3/leaflet.js"></script><script src="site_libs/leaflet-providers-3.0.0/leaflet-providers.js"></script><script src="site_libs/leaflet-providers-plugin-2.2.3/leaflet-providers-plugin.js"></script><link rel="stylesheet" href="css/custom.css">
 </head>
 <body class="nav-sidebar floating quarto-light">
 
@@ -123,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="https://unigis.at/" class="sidebar-logo-link">
-      <img src="./branding/UNIGIS_Salzburg_Schriftlogo_v05.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"></a>
+      <img src="./branding/UNIGIS_Salzburg_Schriftlogo_v05.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none"><img src="./branding/UNIGIS_Salzburg_Schriftlogo_v05.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none"></a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Automated Data Processing with R</a> 
     </div>
@@ -285,7 +288,7 @@ Figure&nbsp;10.1: Visual variables in Bubble Chart. Source: <a href="https://www
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exercise
+<span class="screen-reader-only">Exercisebox</span>Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -317,14 +320,14 @@ Note
 </blockquote>
 <p>For instance, consider a dataset representing annual rainfall measurements across different cities, measured in millimeters (mm). In this wide format, each row corresponds to a city, and the columns represent rainfall measurements for different years:</p>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Example of a wide format dataset</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Example of a wide format dataset</span></span>
 <span><span class="va">wide_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
 <span>  City <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"CityA"</span>, <span class="st">"CityB"</span>, <span class="st">"CityC"</span>, <span class="st">"CityD"</span>, <span class="st">"CityE"</span><span class="op">)</span>,</span>
 <span>  Rainfall_2015 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">600</span>, <span class="fl">500</span>, <span class="fl">550</span>, <span class="fl">450</span>, <span class="fl">400</span><span class="op">)</span>,</span>
 <span>  Rainfall_2016 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">650</span>, <span class="fl">550</span>, <span class="fl">600</span>, <span class="fl">500</span>, <span class="fl">450</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">wide_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">wide_data</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead><tr class="header">
@@ -369,14 +372,14 @@ Note
 </blockquote>
 <p>Using the same rainfall dataset as an example, a long format would list each year’s rainfall for each city as a separate row:</p>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Example of long-format data:</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Example of long-format data:</span></span>
 <span><span class="va">long_data</span> <span class="op">&lt;-</span> <span class="fu">tidyr</span><span class="fu">::</span><span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span> </span>
 <span>  <span class="va">wide_data</span>,</span>
 <span>  cols <span class="op">=</span> <span class="op">-</span><span class="va">City</span>, </span>
 <span>  names_to <span class="op">=</span> <span class="st">"Year"</span>, </span>
 <span>  values_to <span class="op">=</span> <span class="st">"Rainfall"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">long_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">long_data</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead><tr class="header">
@@ -474,7 +477,7 @@ Note
 </ul>
 <p>Let’s start by displaying the first few rows of this dataset:</p>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Read the dataset (Note: Semi-colon separated)</span></span>
@@ -483,7 +486,7 @@ Note
 <span><span class="co"># Display the first five rows</span></span>
 <span><span class="va">airquality</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice_head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead><tr class="header">
@@ -541,7 +544,7 @@ Note
 </div>
 <p>The code below filters the airquality dataset by measurement component and temporal resolution. Then the data subset is passed as a first argument to function <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code>. In the second argument, we map the variable <code>value</code> onto the x-axis with the aesthetics argument <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>. <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> specifies the geometry of the plot and <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw()</a></code> is used to add a <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" target="_blank">background theme</a>.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># filter NO2 measurements with temporal resolution 30min (HMW)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># filter NO2 measurements with temporal resolution 30min (HMW)</span></span>
 <span><span class="va">airquality</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">component</span> <span class="op">==</span> <span class="st">"NO2"</span> <span class="op">&amp;</span> <span class="va">meantype</span> <span class="op">==</span> <span class="st">"HMW"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span></span>
@@ -552,7 +555,7 @@ Note
 <span>    <span class="op">)</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>    <span class="co"># define geometry</span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span>            <span class="co"># define theme</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span>            <span class="co"># define theme</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="10-data-viz_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
@@ -562,7 +565,7 @@ Note
 </div>
 <p>To differentiate between measurements from various stations, we can map the <code>station</code> variable to the color attribute:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">airquality</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">airquality</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">component</span> <span class="op">==</span> <span class="st">"NO2"</span> <span class="op">&amp;</span> <span class="va">meantype</span> <span class="op">==</span> <span class="st">"HMW"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">station</span> <span class="op">==</span> <span class="st">"S125"</span> <span class="op">|</span> <span class="va">station</span> <span class="op">==</span> <span class="st">"S431"</span> <span class="op">|</span> <span class="va">station</span> <span class="op">==</span> <span class="st">"S270"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>    <span class="co"># select 3 stations</span></span>
 <span></span>
@@ -580,7 +583,7 @@ Note
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"Measurement stations"</span>, values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"grey20"</span>, <span class="st">"grey50"</span>, <span class="st">"grey80"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="co"># add legend</span></span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>   </span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span>            </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span>            </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="10-data-viz_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
@@ -598,7 +601,7 @@ Note
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exercise
+<span class="screen-reader-only">Exercisebox</span>Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -606,12 +609,12 @@ Exercise
 </div>
 </div>
 <div class="callout callout-style-simple callout-exercisebox callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Solution
+<span class="screen-reader-only">Exercisebox</span>Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -619,11 +622,11 @@ Solution
 <div class="callout-body-container callout-body">
 <p>Insert a title by adding it to the <code><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs()</a></code> function:</p>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="st">"NO2 [mg/m^3]"</span>,</span>
 <span>  y <span class="op">=</span> <span class="st">"Count"</span>,</span>
 <span>  title <span class="op">=</span> <span class="st">"Nitrogen dioxide concentration"</span></span>
-<span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -633,7 +636,7 @@ Solution
 <p>The same basic syntax is used to create other types of plots like bar plots (use geometry <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" target="_blank"><code>geom_bar()</code></a> or <a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" target="_blank"><code>geom_col()</code></a>, line plots (use geometry <a href="https://ggplot2.tidyverse.org/reference/geom_path.html" target="_blank"><code>geom_line()</code></a>) and many <a href="https://ggplot2.tidyverse.org/reference/index.html" target="_blank">others</a>.</p>
 <p>For instance, if we replace <code><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram()</a></code> by <code><a href="https://ggplot2.tidyverse.org/reference/geom_boxplot.html">geom_boxplot()</a></code>, the value distribution of NO2 measurements is visualized by means of a box plot:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># filter NO2 measurements with temporal resolution 30min (HMW)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># filter NO2 measurements with temporal resolution 30min (HMW)</span></span>
 <span><span class="va">airquality</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">component</span> <span class="op">==</span> <span class="st">"NO2"</span> <span class="op">&amp;</span> <span class="va">meantype</span> <span class="op">==</span> <span class="st">"HMW"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span></span>
@@ -648,7 +651,7 @@ Solution
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span></span>
 <span>    axis.text.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,    <span class="co"># remove text and ticks from y axis</span></span>
 <span>    axis.ticks.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="10-data-viz_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
@@ -668,7 +671,7 @@ Solution
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exercise
+<span class="screen-reader-only">Exercisebox</span>Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -681,7 +684,7 @@ Exercise
 <p>Scatterplots serve as a pivotal tool in statistical analysis, particularly when it comes to exploring the interplay between two variables. Their strength lies in visually capturing the nature and strength of relationships.</p>
 <p>Consider the scenario where we seek to understand the relationship between air temperature (<code>TEMP</code>) and relative humidity (<code>RF</code>). For this purpose, we delve into the <code>airquality</code> dataset, focusing on half-hourly readings from station <code>S108</code>. Our objective is to juxtapose the temperature and humidity readings and analyze their correlation:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Extract half-hourly temperature readings from station S108</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Extract half-hourly temperature readings from station S108</span></span>
 <span><span class="va">temp_tab</span> <span class="op">&lt;-</span> <span class="va">airquality</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">component</span> <span class="op">==</span> <span class="st">"TEMP"</span>, <span class="va">meantype</span> <span class="op">==</span> <span class="st">"HMW"</span>, <span class="va">station</span> <span class="op">==</span> <span class="st">"S108"</span><span class="op">)</span> </span>
 <span></span>
@@ -702,7 +705,7 @@ Exercise
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_smooth.html">geom_smooth</a></span><span class="op">(</span>method <span class="op">=</span> <span class="va">lm</span>, color <span class="op">=</span> <span class="st">"red"</span>, fill <span class="op">=</span> <span class="st">"#69b3a2"</span>, se <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span>          </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span>          </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="10-data-viz_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></p>
@@ -718,7 +721,7 @@ Exercise
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exercise
+<span class="screen-reader-only">Exercisebox</span>Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -733,12 +736,12 @@ Exercise
 </div>
 </div>
 <div class="callout callout-style-simple callout-exercisebox callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Solution
+<span class="screen-reader-only">Exercisebox</span>Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -758,7 +761,7 @@ Solution
 <p>Before diving into the examples, ensure you have the <code>sf</code> and <code>ggplot2</code> libraries installed and loaded. Additionally, download the <a href="data/nc.zip" target="_blank">North Carolina</a> and <a href="data/us-states.zip" target="_blank">US States</a> datasets for practical implementation.</p>
 <p>Our first endeavor is to construct a foundational map of North Carolina:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Load North Carolina shapefile</span></span>
@@ -772,7 +775,7 @@ Solution
 <span>    y <span class="op">=</span> <span class="st">"Latitude"</span>,</span>
 <span>    title <span class="op">=</span> <span class="st">"North Carolina"</span>,</span>
 <span>    subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"("</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">NAME</span><span class="op">)</span><span class="op">)</span>, <span class="st">" counties)"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="10-data-viz_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
@@ -783,7 +786,7 @@ Solution
 <p>In the code above, we first load the North Carolina shapefile as an <code>sf()</code> object and then assign the data to the <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot()</a></code> graph. The <code>geom_sf</code> function adds a geometry stored in a <code>sf</code> object. Other map components such as title and axis labels are added by means of a plus sign. Note that <code>length(unique(nc$NAME))</code> returns the count of table rows, which corresponds to the number of geometries/counties. Geometry count and string “counties” are concatenated by function <code><a href="https://rdrr.io/r/base/paste.html">paste0()</a></code>.</p>
 <p>The geometry element <code>geom_sf</code> provides a number of arguments to customize the appearance of vector features:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Map with custom colors</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Map with custom colors</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">nc</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="st">"lightgreen"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
@@ -791,7 +794,7 @@ Solution
 <span>    y <span class="op">=</span> <span class="st">"Latitude"</span>,</span>
 <span>    title <span class="op">=</span> <span class="st">"North Carolina"</span>,</span>
 <span>    subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"("</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">NAME</span><span class="op">)</span><span class="op">)</span>, <span class="st">" counties)"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="10-data-viz_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
@@ -801,7 +804,7 @@ Solution
 </div>
 <p>Data attributes can be visually represented as well. In this example, the <code>AREA</code> variable influences the fill color:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Map with fill based on AREA</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Map with fill based on AREA</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">nc</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">AREA</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_fill_viridis_c</a></span><span class="op">(</span>option <span class="op">=</span> <span class="st">"plasma"</span>, trans <span class="op">=</span> <span class="st">"sqrt"</span><span class="op">)</span>  <span class="op">+</span></span>
@@ -810,7 +813,7 @@ Solution
 <span>    y <span class="op">=</span> <span class="st">"Latitude"</span>,</span>
 <span>    title <span class="op">=</span> <span class="st">"North Carolina"</span>,</span>
 <span>    subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"("</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">NAME</span><span class="op">)</span><span class="op">)</span>, <span class="st">" counties)"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="10-data-viz_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
@@ -820,7 +823,7 @@ Solution
 </div>
 <p>The function <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf()</a></code> allows you to work with the coordinate system, which includes both the projection and extent of the map. By default, the map will use the coordinate system of the first layer or if the layer has no coordinate system, fall back on the geographic coordinate system WGS84. Using the argument <code>crs</code>, it is possible to override this setting, and project on the fly to any projection that has an <a href="https://epsg.io/" target="_blank">EPSG code</a>. For instance, we may change the coordinate system to EPSG 32618, which corresponds to WGS 84 / UTM zone 18N:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Map with changed coordinate system</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Map with changed coordinate system</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">nc</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="fl">32618</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="co"># Projecting to WGS 84 / UTM zone 18N  </span></span>
@@ -829,7 +832,7 @@ Solution
 <span>    y <span class="op">=</span> <span class="st">"Latitude"</span>,</span>
 <span>    title <span class="op">=</span> <span class="st">"North Carolina"</span>,</span>
 <span>    subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"("</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">NAME</span><span class="op">)</span><span class="op">)</span>, <span class="st">" counties)"</span><span class="op">)</span></span>
-<span>  <span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="10-data-viz_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
@@ -839,14 +842,14 @@ Solution
 </div>
 <p>The extent of the map can also be set in <code>coord_sf</code>, in practice allowing to “zoom” in the area of interest, provided by limits on the x-axis (<code>xlim</code>), and on the y-axis (<code>ylim</code>). The limits are automatically expanded by a fraction to ensure that data and axes do not overlap; it can also be turned off to exactly match the limits provided with <code>expand = FALSE</code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://paleolimbot.github.io/ggspatial/">"ggspatial"</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://paleolimbot.github.io/ggspatial/">"ggspatial"</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">nc</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">78.9</span>, <span class="op">-</span><span class="fl">75.5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">34</span>, <span class="fl">34.85</span><span class="op">)</span>, expand <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://paleolimbot.github.io/ggspatial/reference/annotation_scale.html">annotation_scale</a></span><span class="op">(</span>location <span class="op">=</span> <span class="st">"br"</span>, width_hint <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="fu"><a href="https://paleolimbot.github.io/ggspatial/reference/annotation_north_arrow.html">annotation_north_arrow</a></span><span class="op">(</span>location <span class="op">=</span> <span class="st">"bl"</span>, which_north <span class="op">=</span> <span class="st">"true"</span>, </span>
 <span>        pad_x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">14.5</span>, <span class="st">"cm"</span><span class="op">)</span>, pad_y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grid/unit.html">unit</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="st">"cm"</span><span class="op">)</span>,</span>
-<span>        style <span class="op">=</span> <span class="va">north_arrow_fancy_orienteering</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>        style <span class="op">=</span> <span class="va">north_arrow_fancy_orienteering</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="10-data-viz_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
@@ -859,7 +862,7 @@ Solution
 </blockquote>
 <p>In the following example, we will assign labels to vector features. The function <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text()</a></code> can be used to add a layer of text to a map using geographic coordinates. The North Carolina dataset contains county names as column (<code>column: NAME</code>). In order to define label positions, we take the centroids of the county polygons (function <code><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid()</a></code>), derive x and y coordinates from centroids (function <code><a href="https://r-spatial.github.io/sf/reference/st_coordinates.html">st_coordinates()</a></code>), merge the new x and y columns with the columns of <code>nc</code> and assign the output to a new variable identifier <code>nc_points</code>:</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">nc</span>, <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_coordinates.html">st_coordinates</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">geometry</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">nc_points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">nc</span>, <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_coordinates.html">st_coordinates</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">geometry</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-exercisebox callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -867,7 +870,7 @@ Solution
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Exercise
+<span class="screen-reader-only">Exercisebox</span>Exercise
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -876,21 +879,21 @@ Exercise
 </div>
 </div>
 <div class="callout callout-style-simple callout-exercisebox callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Solution
+<span class="screen-reader-only">Exercisebox</span>Solution
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">geometry</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="va">nc</span><span class="op">$</span><span class="va">geometry</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_coordinates.html">st_coordinates</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">nc</span>, <span class="va">.</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">nc</span>, <span class="va">.</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Note that the reading direction of pipe syntax code is from left to right (more intuitive), whereas standard syntax (nested functions) is read from right to left.</p>
 </div>
@@ -898,13 +901,13 @@ Solution
 </div>
 <p>After deriving centroid coordinates from <code>nc</code> geometries, we call the new variable <code>nc_points</code> in function <code>geom_text</code> and map X and Y columns (centroid coordinates) onto visual variables x and y (position in graph) and also map column <code>NAME</code> onto visual variable label. Moreover, we can insert individual text annotations manually by means of function <code><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate()</a></code>:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">nc</span><span class="op">)</span> <span class="op">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">nc</span><span class="op">)</span> <span class="op">+</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span>data<span class="op">=</span> <span class="va">nc_points</span>,<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x<span class="op">=</span><span class="va">X</span>, y<span class="op">=</span><span class="va">Y</span>, label<span class="op">=</span><span class="va">NAME</span><span class="op">)</span>,</span>
 <span>    color <span class="op">=</span> <span class="st">"darkblue"</span>, fontface <span class="op">=</span> <span class="st">"bold"</span>, check_overlap <span class="op">=</span> <span class="cn">FALSE</span>, size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> <span class="op">+</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"text"</span>, x <span class="op">=</span> <span class="op">-</span><span class="fl">76.5</span>, y <span class="op">=</span> <span class="fl">34.3</span>, label <span class="op">=</span> <span class="st">"Atlantic Ocean"</span>, </span>
 <span>    fontface <span class="op">=</span> <span class="st">"italic"</span>, color <span class="op">=</span> <span class="st">"grey22"</span>, size <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">+</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">78.9</span>, <span class="op">-</span><span class="fl">75.5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">34</span>, <span class="fl">34.85</span><span class="op">)</span>, expand <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">78.9</span>, <span class="op">-</span><span class="fl">75.5</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">34</span>, <span class="fl">34.85</span><span class="op">)</span>, expand <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="10-data-viz_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
@@ -914,7 +917,7 @@ Solution
 </div>
 <p>In our final example, we combine previously introduced methods to craft a detailed map visualization. This example layers data sources, customizes feature appearances, and adds informative annotations:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">us_states</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span><span class="st">"data/us-states.shp"</span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">us_states</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">st_read</a></span><span class="op">(</span><span class="st">"data/us-states.shp"</span><span class="op">)</span></span>
 <span><span class="va">us_states_points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="va">us_states</span><span class="op">)</span></span>
 <span><span class="va">us_states_points</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">us_states</span>, <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_coordinates.html">st_coordinates</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_unary.html">st_centroid</a></span><span class="op">(</span><span class="va">us_states</span><span class="op">$</span><span class="va">geometry</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -938,7 +941,7 @@ Solution
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span>geom <span class="op">=</span> <span class="st">"text"</span>, x <span class="op">=</span> <span class="op">-</span><span class="fl">76.5</span>, y <span class="op">=</span> <span class="fl">30.5</span>, label <span class="op">=</span> <span class="st">"Atlantic Ocean"</span>, </span>
 <span>           fontface <span class="op">=</span> <span class="st">"italic"</span>, color <span class="op">=</span> <span class="st">"grey22"</span>, size <span class="op">=</span> <span class="fl">6</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>panel.grid.major <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_line</a></span><span class="op">(</span>color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/gray.html">gray</a></span><span class="op">(</span><span class="fl">0.5</span><span class="op">)</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, </span>
-<span>       size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"aliceblue"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>       size <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, panel.background <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"aliceblue"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure"><p><img src="10-data-viz_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
@@ -948,8 +951,8 @@ Solution
 </div>
 <p>Here, <code><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf()</a></code> adds layers of US state polygons. <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_label()</a></code> offers an alternative to <code><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text()</a></code> for feature labeling, with <code>nudge_x</code> providing horizontal label offset. The map is saved in both PDF for high-quality prints and PNG for web use.</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"data/map.pdf"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"data/map_web.png"</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">10</span>, dpi <span class="op">=</span> <span class="st">"screen"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"data/map.pdf"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsave.html">ggsave</a></span><span class="op">(</span><span class="st">"data/map_web.png"</span>, width <span class="op">=</span> <span class="fl">10</span>, height <span class="op">=</span> <span class="fl">10</span>, dpi <span class="op">=</span> <span class="st">"screen"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -969,10 +972,10 @@ Note
 <p>The <a href="https://cran.r-project.org/web/packages/leaflet/index.html" target="_blank">Leaflet library for R</a> makes it easy to create interactive web maps. Leaflet is one of the most popular open-source JavaScript libraries used by a number of websites such as <a href="http://maps.heathrow.com/" target="_blank">Airport Heathrow</a>, <a href="https://www.flickr.com/map" target="_blank">Flickr</a> or <a href="https://www.openstreetmap.org/#map=14/53.7727/20.5526" target="_blank">OpenStreetMap</a>.</p>
 <p>Start by initializing a Leaflet map widget and augment it with base layers and interactive markers:</p>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span></span>
 <span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html">leaflet</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addMarkers</a></span><span class="op">(</span>lng<span class="op">=</span><span class="fl">174.768</span>, lat<span class="op">=</span><span class="op">-</span><span class="fl">36.852</span>, popup<span class="op">=</span><span class="st">"The birthplace of R"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>    <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addMarkers</a></span><span class="op">(</span>lng<span class="op">=</span><span class="fl">174.768</span>, lat<span class="op">=</span><span class="op">-</span><span class="fl">36.852</span>, popup<span class="op">=</span><span class="st">"The birthplace of R"</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The pipe operator (<code>%&gt;%</code>) conveniently adds layers, thanks to Leaflet’s function design.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -990,7 +993,7 @@ Note
 </div>
 <p>The same pipe-syntax can be used to add <a href="https://rstudio.github.io/leaflet/markers.html" target="_blank">Markers</a> and HTML <a href="https://rstudio.github.io/leaflet/popups.html" target="_blank">Labels</a> or <a href="https://rstudio.github.io/leaflet/popups.html" target="_blank">Popups</a>. In the following example, an HTML Popup locates a restaurant:</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rstudio.github.io/leaflet/">leaflet</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">content</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">"&lt;br/&gt;"</span>,</span>
 <span>                 <span class="st">"&lt;b&gt;&lt;a href='https://www.techno-z.at/standort-und-service/gastronomie/'&gt;Bistro im Techno_Z&lt;/a&gt;&lt;/b&gt;"</span>,</span>
@@ -1003,10 +1006,10 @@ Note
 <span>  <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-methods.html">setView</a></span><span class="op">(</span>lng <span class="op">=</span> <span class="fl">13.040030</span>, lat <span class="op">=</span> <span class="fl">47.823112</span>, zoom <span class="op">=</span> <span class="fl">18</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/addProviderTiles.html">addProviderTiles</a></span><span class="op">(</span><span class="st">"OpenStreetMap.Mapnik"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html">addPopups</a></span><span class="op">(</span><span class="fl">13.040030</span>, <span class="fl">47.823112</span>, <span class="va">content</span>,</span>
-<span>            options <span class="op">=</span> <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-options.html">popupOptions</a></span><span class="op">(</span>closeButton <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span>            options <span class="op">=</span> <span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-options.html">popupOptions</a></span><span class="op">(</span>closeButton <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-36ccdc520d6c70295290" style="width:100%;height:371px;"></div>
-<script type="application/json" data-for="htmlwidget-36ccdc520d6c70295290">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"setView":[[47.823112,13.04003],18,[]],"calls":[{"method":"addProviderTiles","args":["OpenStreetMap.Mapnik",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addPopups","args":[47.823112,13.04003,"<b><a href='https://www.techno-z.at/standort-und-service/gastronomie/'>Bistro im Techno_Z<\/a><\/b><br/>Schillerstrasse 30<br/>5020 Salzburg<br/>This is where I had lunch today!",null,null,{"maxWidth":300,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"className":""}]}],"limits":{"lat":[47.823112,47.823112],"lng":[13.04003,13.04003]}},"evals":[],"jsHooks":[]}</script>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-3e9be4900da6ada7588c" style="width:100%;height:371px;"></div>
+<script type="application/json" data-for="htmlwidget-3e9be4900da6ada7588c">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"setView":[[47.823112,13.04003],18,[]],"calls":[{"method":"addProviderTiles","args":["OpenStreetMap.Mapnik",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addPopups","args":[47.823112,13.04003,"<b><a href='https://www.techno-z.at/standort-und-service/gastronomie/'>Bistro im Techno_Z<\/a><\/b><br/>Schillerstrasse 30<br/>5020 Salzburg<br/>This is where I had lunch today!",null,null,{"maxWidth":300,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"className":""}]}],"limits":{"lat":[47.823112,47.823112],"lng":[13.04003,13.04003]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>Moreover, Leaflet offers numerous methods and functions for <a href="https://rstudio.github.io/leaflet/map_widget.html" target="_blank">manipulating the map widget</a> and integrating <a href="https://rstudio.github.io/leaflet/shapes.html" target="_blank">lines and shapes</a>, <a href="https://rstudio.github.io/leaflet/json.html" target="_blank">GeoJSON</a> and <a href="https://rstudio.github.io/leaflet/raster.html" target="_blank">Raster Images</a>. To get more information on creating interactive maps with R and Leaflet, turn to the <a href="https://rstudio.github.io/leaflet/" target="_blank">Documentation</a>.</p>
@@ -1063,13 +1066,14 @@ Note
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

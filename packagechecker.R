@@ -2,7 +2,7 @@
 current_directory <- getwd()
 
 # List all .Rmd files in the project directory
-rmd_files <- list.files(current_directory, pattern = "\\.Rmd$", full.names = TRUE)
+rmd_files <- list.files(current_directory, pattern = "\\.qmd$", full.names = TRUE)
 used_packages <- list()
 
 # Loop through each .Rmd file and extract package usage
